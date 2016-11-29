@@ -1,4 +1,4 @@
-/*Auto generated file. Do not modify. Thu Sep 29 23:53:31 CST 2016 */
+/*Auto generated file. Do not modify. Tue Nov 29 16:01:05 CST 2016 */
 
 #import "Data.h"
 #import "MediaContent.h"
@@ -16,7 +16,8 @@
 @property(strong, nonatomic) NSString* link;
 @property(strong, nonatomic) NSNumber* ageStart;
 @property(strong, nonatomic) NSNumber* ageEnd;
-@property(strong, nonatomic) NSNumber* isPublic;
 @property(strong, nonatomic) NSMutableArray* resources;
+@property(strong, nonatomic) NSNumber* value;
+@property(strong, nonatomic) NSString* originalCourseId;
 
 @end

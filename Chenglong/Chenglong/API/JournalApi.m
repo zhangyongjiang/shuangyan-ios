@@ -1,33 +1,12 @@
-/*Auto generated file. Do not modify. Thu Sep 29 23:53:34 CST 2016 */
+/*Auto generated file. Do not modify. Tue Nov 29 16:01:14 CST 2016 */
 
 #import "JournalApi.h"
 #import "ObjectMapper.h"
 
 @implementation JournalApi
 
-+(AFHTTPRequestOperation*) JournalAPI_AddResourceToJournal:(NSDictionary*)filePart journalId:(NSString*)journalId onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/add-resource";
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    if(journalId) [dict setObject:journalId forKey:@"journalId"];
-    return [WebService upload:filePart
-	            parameters:dict
-	            toPath:url_
-	               success:^(AFHTTPRequestOperation *operation, id responseObject) {
-	                   ObjectMapper *mapper = [ObjectMapper mapper];
-	                   NSError *error;
-	                   Journal* resp = [mapper mapObject:responseObject toClass:[Journal class] withError:&error];
-	                   if (error) {
-	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
-	                   } else { 
-	                       successBlock(resp);
-	                   }
-	               } apiError:^(APIError* error) {
-	                   errorBlock(error);
-	               }];
-}
-
-+(AFHTTPRequestOperation*) JournalAPI_UpdateText:(Journal*)journal onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/update";
++(AFHTTPRequestOperation*) JournalAPI_RemoveResources:(Journal*)journal onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/journal-service/remove-resource";
     return [[WebService getOperationManager] POST:url_
 	            parameters:[journal toDictionary]
 	               success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -44,29 +23,8 @@
 	               }];
 }
 
-+(AFHTTPRequestOperation*) JournalAPI_CreateJournal:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/create";
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    if(json) [dict setObject:json forKey:@"json"];
-    return [WebService upload:filePart
-	            parameters:dict
-	            toPath:url_
-	               success:^(AFHTTPRequestOperation *operation, id responseObject) {
-	                   ObjectMapper *mapper = [ObjectMapper mapper];
-	                   NSError *error;
-	                   Journal* resp = [mapper mapObject:responseObject toClass:[Journal class] withError:&error];
-	                   if (error) {
-	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
-	                   } else { 
-	                       successBlock(resp);
-	                   }
-	               } apiError:^(APIError* error) {
-	                   errorBlock(error);
-	               }];
-}
-
 +(AFHTTPRequestOperation*) JournalAPI_ListUserJournals:(NSString*)userId page:(NSNumber*)page onSuccess:(void (^)(JournalDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/list";
+    NSString* url_ = @"/journal-service/list";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(userId) [dict setObject:userId forKey:@"userId"];
     if(page) [dict setObject:page forKey:@"page"];
@@ -86,8 +44,47 @@
 	               }];
 }
 
++(AFHTTPRequestOperation*) JournalAPI_RemoveJournal:(NSString*)journalId onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/journal-service/remove/{journalId}";
+    NSString *replacejournalId = [journalId description];
+    if(replacejournalId)
+        url_ = [url_ stringByReplacingOccurrencesOfString:@"{journalId}" withString:replacejournalId];
+    return [[WebService getOperationManager] POST:url_
+	            parameters:nil
+	               success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	                   ObjectMapper *mapper = [ObjectMapper mapper];
+	                   NSError *error;
+	                   Journal* resp = [mapper mapObject:responseObject toClass:[Journal class] withError:&error];
+	                   if (error) {
+	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+	                   } else { 
+	                       successBlock(resp);
+	                   }
+	               } apiError:^(APIError* error) {
+	                   errorBlock(error);
+	               }];
+}
+
++(AFHTTPRequestOperation*) JournalAPI_UpdateText:(Journal*)journal onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/journal-service/update";
+    return [[WebService getOperationManager] POST:url_
+	            parameters:[journal toDictionary]
+	               success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	                   ObjectMapper *mapper = [ObjectMapper mapper];
+	                   NSError *error;
+	                   Journal* resp = [mapper mapObject:responseObject toClass:[Journal class] withError:&error];
+	                   if (error) {
+	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+	                   } else { 
+	                       successBlock(resp);
+	                   }
+	               } apiError:^(APIError* error) {
+	                   errorBlock(error);
+	               }];
+}
+
 +(AFHTTPRequestOperation*) JournalAPI_GetJournal:(NSString*)journalId onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/get/{journalId}";
+    NSString* url_ = @"/journal-service/get/{journalId}";
     NSString *replacejournalId = [journalId description];
     if(replacejournalId)
         url_ = [url_ stringByReplacingOccurrencesOfString:@"{journalId}" withString:replacejournalId];
@@ -107,13 +104,13 @@
 	               }];
 }
 
-+(AFHTTPRequestOperation*) JournalAPI_RemoveJournal:(NSString*)journalId onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/remove/{journalId}";
-    NSString *replacejournalId = [journalId description];
-    if(replacejournalId)
-        url_ = [url_ stringByReplacingOccurrencesOfString:@"{journalId}" withString:replacejournalId];
-    return [[WebService getOperationManager] POST:url_
-	            parameters:nil
++(AFHTTPRequestOperation*) JournalAPI_CreateJournal:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/journal-service/create";
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    if(json) [dict setObject:json forKey:@"json"];
+    return [WebService upload:filePart
+	            parameters:dict
+	            toPath:url_
 	               success:^(AFHTTPRequestOperation *operation, id responseObject) {
 	                   ObjectMapper *mapper = [ObjectMapper mapper];
 	                   NSError *error;
@@ -128,10 +125,13 @@
 	               }];
 }
 
-+(AFHTTPRequestOperation*) JournalAPI_RemoveResources:(Journal*)journal onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/remove-resource";
-    return [[WebService getOperationManager] POST:url_
-	            parameters:[journal toDictionary]
++(AFHTTPRequestOperation*) JournalAPI_AddResourceToJournal:(NSDictionary*)filePart journalId:(NSString*)journalId onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/journal-service/add-resource";
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    if(journalId) [dict setObject:journalId forKey:@"journalId"];
+    return [WebService upload:filePart
+	            parameters:dict
+	            toPath:url_
 	               success:^(AFHTTPRequestOperation *operation, id responseObject) {
 	                   ObjectMapper *mapper = [ObjectMapper mapper];
 	                   NSError *error;

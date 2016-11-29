@@ -1,4 +1,4 @@
-/*Auto generated file. Do not modify. Thu Sep 29 23:53:34 CST 2016 */
+/*Auto generated file. Do not modify. Tue Nov 29 16:01:13 CST 2016 */
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
@@ -12,13 +12,13 @@
 
 +(AFHTTPRequestOperation*) CalendarAPI_RemoveEvent:(NSString*)eventId onSuccess:(void (^)(Event *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
-+(AFHTTPRequestOperation*) CalendarAPI_UpdateEvent:(Event*)event onSuccess:(void (^)(Event *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
++(AFHTTPRequestOperation*) CalendarAPI_CreateEvent:(Event*)event onSuccess:(void (^)(Event *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(AFHTTPRequestOperation*) CalendarAPI_ListUserEvents:(NSNumber*)startTime page:(NSNumber*)page onSuccess:(void (^)(EventList *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
-+(AFHTTPRequestOperation*) CalendarAPI_RemoveAllEvents:(NSString*)parentEventId onSuccess:(void (^)(GenericResponse *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
++(AFHTTPRequestOperation*) CalendarAPI_UpdateEvent:(Event*)event onSuccess:(void (^)(Event *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
-+(AFHTTPRequestOperation*) CalendarAPI_CreateEvent:(Event*)event onSuccess:(void (^)(Event *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
++(AFHTTPRequestOperation*) CalendarAPI_RemoveAllEvents:(NSString*)parentEventId onSuccess:(void (^)(GenericResponse *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 
 @end

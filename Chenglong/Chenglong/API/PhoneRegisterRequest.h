@@ -1,4 +1,4 @@
-/*Auto generated file. Do not modify. Thu Sep 29 23:53:31 CST 2016 */
+/*Auto generated file. Do not modify. Tue Nov 29 16:01:04 CST 2016 */
 
 #import "Data.h"
 
@@ -10,5 +10,7 @@
 @property(strong, nonatomic) NSString* name;
 @property(strong, nonatomic) NSString* password;
 @property(strong, nonatomic) NSString* validationCode;
+@property(strong, nonatomic) NSNumber* latitude;
+@property(strong, nonatomic) NSNumber* longitude;
 
 @end

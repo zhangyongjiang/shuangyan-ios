@@ -22,7 +22,7 @@ static NSString* const kCurrentDefaultEndPointKey = @"kCurrentDefaultEndPointKey
 
 
 + (NSArray*)endPoints {
-    return @[@"http://api-dev.mykaishi.com:8081", @"http://api-stage.mykaishi.com", @"http://api.mykaishi.com"];
+    return @[@"http://api.babazaojiao.com"];
 }
 
 
@@ -120,7 +120,7 @@ static NSString* const kCurrentDefaultEndPointKey = @"kCurrentDefaultEndPointKey
 + (NSString*)currentEndPoint {
     NSString* endPoint = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentDefaultEndPointKey];
     if ( endPoint == nil ) {
-        return [[WebService endPoints] lastObject]; // @"http://api.mykaishi.com"
+        return [[WebService endPoints] lastObject];
     } else {
         return endPoint;
     }

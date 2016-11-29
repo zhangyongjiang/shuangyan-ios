@@ -1,4 +1,4 @@
-/*Auto generated file. Do not modify. Thu Sep 29 23:53:31 CST 2016 */
+/*Auto generated file. Do not modify. Tue Nov 29 16:01:05 CST 2016 */
 
 #import "Business.h"
 #import "ObjectMapper.h"

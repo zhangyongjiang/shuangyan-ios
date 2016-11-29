@@ -114,36 +114,55 @@
 		ADEB6AA21D9BEC1B0082253C /* MyOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyOperationManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
 		ADEB6B991D9D6BB20082253C /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6B981D9D6BB20082253C /* Config.m */; };
-		ADEB6BD91D9D70C80082253C /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6B9E1D9D70C80082253C /* Account.m */; };
-		ADEB6BDA1D9D70C80082253C /* Advertising.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BA01D9D70C80082253C /* Advertising.m */; };
-		ADEB6BDB1D9D70C80082253C /* AdvertisingList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BA21D9D70C80082253C /* AdvertisingList.m */; };
-		ADEB6BDC1D9D70C80082253C /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BA41D9D70C80082253C /* Business.m */; };
-		ADEB6BDD1D9D70C80082253C /* BusinessList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BA61D9D70C80082253C /* BusinessList.m */; };
-		ADEB6BDE1D9D70C80082253C /* CalendarApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BA81D9D70C80082253C /* CalendarApi.m */; };
-		ADEB6BDF1D9D70C80082253C /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BAA1D9D70C80082253C /* Course.m */; };
-		ADEB6BE01D9D70C80082253C /* CourseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BAC1D9D70C80082253C /* CourseApi.m */; };
-		ADEB6BE11D9D70C80082253C /* CourseDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BAE1D9D70C80082253C /* CourseDetails.m */; };
-		ADEB6BE21D9D70C80082253C /* CourseList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BB01D9D70C80082253C /* CourseList.m */; };
-		ADEB6BE31D9D70C80082253C /* EmailRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BB21D9D70C80082253C /* EmailRegisterRequest.m */; };
-		ADEB6BE41D9D70C80082253C /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BB41D9D70C80082253C /* Event.m */; };
-		ADEB6BE51D9D70C80082253C /* EventList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BB61D9D70C80082253C /* EventList.m */; };
-		ADEB6BE61D9D70C80082253C /* FriendRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BB81D9D70C80082253C /* FriendRequest.m */; };
-		ADEB6BE71D9D70C80082253C /* GenericResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BBA1D9D70C80082253C /* GenericResponse.m */; };
-		ADEB6BE81D9D70C80082253C /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BBC1D9D70C80082253C /* Journal.m */; };
-		ADEB6BE91D9D70C80082253C /* JournalApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BBE1D9D70C80082253C /* JournalApi.m */; };
-		ADEB6BEA1D9D70C80082253C /* JournalDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BC01D9D70C80082253C /* JournalDetails.m */; };
-		ADEB6BEB1D9D70C80082253C /* JournalDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BC21D9D70C80082253C /* JournalDetailsList.m */; };
-		ADEB6BEC1D9D70C80082253C /* JournalList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BC41D9D70C80082253C /* JournalList.m */; };
-		ADEB6BED1D9D70C80082253C /* LocalApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BC61D9D70C80082253C /* LocalApi.m */; };
-		ADEB6BEE1D9D70C80082253C /* MediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BC81D9D70C80082253C /* MediaContent.m */; };
-		ADEB6BEF1D9D70C80082253C /* PhoneRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BCA1D9D70C80082253C /* PhoneRegisterRequest.m */; };
-		ADEB6BF01D9D70C80082253C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BCC1D9D70C80082253C /* User.m */; };
-		ADEB6BF11D9D70C80082253C /* UserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BCE1D9D70C80082253C /* UserApi.m */; };
-		ADEB6BF21D9D70C80082253C /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BD01D9D70C80082253C /* UserDetails.m */; };
-		ADEB6BF31D9D70C80082253C /* UserDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BD21D9D70C80082253C /* UserDetailsList.m */; };
-		ADEB6BF41D9D70C80082253C /* UserFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BD41D9D70C80082253C /* UserFriend.m */; };
-		ADEB6BF51D9D70C80082253C /* UserInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BD61D9D70C80082253C /* UserInterest.m */; };
-		ADEB6BF61D9D70C80082253C /* UserList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6BD81D9D70C80082253C /* UserList.m */; };
+		ADFEAB541DED6EBA00C0D703 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAAF31DED6EBA00C0D703 /* Account.m */; };
+		ADFEAB551DED6EBA00C0D703 /* Advertising.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAAF51DED6EBA00C0D703 /* Advertising.m */; };
+		ADFEAB561DED6EBA00C0D703 /* AdvertisingList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAAF71DED6EBA00C0D703 /* AdvertisingList.m */; };
+		ADFEAB571DED6EBA00C0D703 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAAF91DED6EBA00C0D703 /* Business.m */; };
+		ADFEAB581DED6EBA00C0D703 /* BusinessDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAAFB1DED6EBA00C0D703 /* BusinessDetails.m */; };
+		ADFEAB591DED6EBA00C0D703 /* BusinessDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAAFD1DED6EBA00C0D703 /* BusinessDetailsList.m */; };
+		ADFEAB5A1DED6EBA00C0D703 /* BusinessList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAAFF1DED6EBA00C0D703 /* BusinessList.m */; };
+		ADFEAB5B1DED6EBA00C0D703 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB011DED6EBA00C0D703 /* BusinessReview.m */; };
+		ADFEAB5C1DED6EBA00C0D703 /* BusinessReviewList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB031DED6EBA00C0D703 /* BusinessReviewList.m */; };
+		ADFEAB5D1DED6EBA00C0D703 /* BusinessSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB051DED6EBA00C0D703 /* BusinessSummary.m */; };
+		ADFEAB5E1DED6EBA00C0D703 /* CalendarApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB071DED6EBA00C0D703 /* CalendarApi.m */; };
+		ADFEAB5F1DED6EBA00C0D703 /* ChangePasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB091DED6EBA00C0D703 /* ChangePasswordRequest.m */; };
+		ADFEAB601DED6EBA00C0D703 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB0B1DED6EBA00C0D703 /* Course.m */; };
+		ADFEAB611DED6EBA00C0D703 /* CourseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB0D1DED6EBA00C0D703 /* CourseApi.m */; };
+		ADFEAB621DED6EBA00C0D703 /* CourseBuyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB0F1DED6EBA00C0D703 /* CourseBuyRequest.m */; };
+		ADFEAB631DED6EBA00C0D703 /* CourseDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB111DED6EBA00C0D703 /* CourseDetails.m */; };
+		ADFEAB641DED6EBA00C0D703 /* CourseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB131DED6EBA00C0D703 /* CourseInfo.m */; };
+		ADFEAB651DED6EBA00C0D703 /* CourseList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB151DED6EBA00C0D703 /* CourseList.m */; };
+		ADFEAB661DED6EBA00C0D703 /* CourseMoveRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB171DED6EBA00C0D703 /* CourseMoveRequest.m */; };
+		ADFEAB671DED6EBA00C0D703 /* EmailRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB191DED6EBA00C0D703 /* EmailRegisterRequest.m */; };
+		ADFEAB681DED6EBA00C0D703 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB1B1DED6EBA00C0D703 /* Event.m */; };
+		ADFEAB691DED6EBA00C0D703 /* EventList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB1D1DED6EBA00C0D703 /* EventList.m */; };
+		ADFEAB6A1DED6EBA00C0D703 /* FriendRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB1F1DED6EBA00C0D703 /* FriendRequest.m */; };
+		ADFEAB6B1DED6EBA00C0D703 /* GenericResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB211DED6EBA00C0D703 /* GenericResponse.m */; };
+		ADFEAB6C1DED6EBA00C0D703 /* Invitation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB231DED6EBA00C0D703 /* Invitation.m */; };
+		ADFEAB6D1DED6EBA00C0D703 /* InviteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB251DED6EBA00C0D703 /* InviteRequest.m */; };
+		ADFEAB6E1DED6EBA00C0D703 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB271DED6EBA00C0D703 /* Journal.m */; };
+		ADFEAB6F1DED6EBA00C0D703 /* JournalApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB291DED6EBA00C0D703 /* JournalApi.m */; };
+		ADFEAB701DED6EBA00C0D703 /* JournalDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB2B1DED6EBA00C0D703 /* JournalDetails.m */; };
+		ADFEAB711DED6EBA00C0D703 /* JournalDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB2D1DED6EBA00C0D703 /* JournalDetailsList.m */; };
+		ADFEAB721DED6EBA00C0D703 /* JournalList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB2F1DED6EBA00C0D703 /* JournalList.m */; };
+		ADFEAB731DED6EBA00C0D703 /* LocalApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB311DED6EBA00C0D703 /* LocalApi.m */; };
+		ADFEAB741DED6EBA00C0D703 /* MediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB331DED6EBA00C0D703 /* MediaContent.m */; };
+		ADFEAB751DED6EBA00C0D703 /* MoneyFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB351DED6EBA00C0D703 /* MoneyFlow.m */; };
+		ADFEAB761DED6EBA00C0D703 /* MoneyFlowList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB371DED6EBA00C0D703 /* MoneyFlowList.m */; };
+		ADFEAB771DED6EBA00C0D703 /* MoneyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB391DED6EBA00C0D703 /* MoneyRequest.m */; };
+		ADFEAB781DED6EBA00C0D703 /* PhoneLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB3B1DED6EBA00C0D703 /* PhoneLoginRequest.m */; };
+		ADFEAB791DED6EBA00C0D703 /* PhoneRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB3D1DED6EBA00C0D703 /* PhoneRegisterRequest.m */; };
+		ADFEAB7A1DED6EBA00C0D703 /* RenameRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB3F1DED6EBA00C0D703 /* RenameRequest.m */; };
+		ADFEAB7B1DED6EBA00C0D703 /* ResetPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB411DED6EBA00C0D703 /* ResetPasswordRequest.m */; };
+		ADFEAB7C1DED6EBA00C0D703 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB431DED6EBA00C0D703 /* User.m */; };
+		ADFEAB7D1DED6EBA00C0D703 /* UserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB451DED6EBA00C0D703 /* UserApi.m */; };
+		ADFEAB7E1DED6EBA00C0D703 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB471DED6EBA00C0D703 /* UserDetails.m */; };
+		ADFEAB7F1DED6EBA00C0D703 /* UserDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB491DED6EBA00C0D703 /* UserDetailsList.m */; };
+		ADFEAB801DED6EBA00C0D703 /* UserFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB4B1DED6EBA00C0D703 /* UserFriend.m */; };
+		ADFEAB811DED6EBA00C0D703 /* UserInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB4D1DED6EBA00C0D703 /* UserInterest.m */; };
+		ADFEAB821DED6EBA00C0D703 /* UserList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB4F1DED6EBA00C0D703 /* UserList.m */; };
+		ADFEAB831DED6EBA00C0D703 /* Wallet.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB511DED6EBA00C0D703 /* Wallet.m */; };
+		ADFEAB841DED6EBA00C0D703 /* WechatLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB531DED6EBA00C0D703 /* WechatLoginRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -374,66 +393,104 @@
 		ADEB6AA01D9BEC1B0082253C /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		ADEB6B971D9D6BB20082253C /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		ADEB6B981D9D6BB20082253C /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
-		ADEB6B9D1D9D70C80082253C /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
-		ADEB6B9E1D9D70C80082253C /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
-		ADEB6B9F1D9D70C80082253C /* Advertising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Advertising.h; sourceTree = "<group>"; };
-		ADEB6BA01D9D70C80082253C /* Advertising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Advertising.m; sourceTree = "<group>"; };
-		ADEB6BA11D9D70C80082253C /* AdvertisingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertisingList.h; sourceTree = "<group>"; };
-		ADEB6BA21D9D70C80082253C /* AdvertisingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertisingList.m; sourceTree = "<group>"; };
-		ADEB6BA31D9D70C80082253C /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
-		ADEB6BA41D9D70C80082253C /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
-		ADEB6BA51D9D70C80082253C /* BusinessList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessList.h; sourceTree = "<group>"; };
-		ADEB6BA61D9D70C80082253C /* BusinessList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessList.m; sourceTree = "<group>"; };
-		ADEB6BA71D9D70C80082253C /* CalendarApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarApi.h; sourceTree = "<group>"; };
-		ADEB6BA81D9D70C80082253C /* CalendarApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarApi.m; sourceTree = "<group>"; };
-		ADEB6BA91D9D70C80082253C /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
-		ADEB6BAA1D9D70C80082253C /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
-		ADEB6BAB1D9D70C80082253C /* CourseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseApi.h; sourceTree = "<group>"; };
-		ADEB6BAC1D9D70C80082253C /* CourseApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseApi.m; sourceTree = "<group>"; };
-		ADEB6BAD1D9D70C80082253C /* CourseDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetails.h; sourceTree = "<group>"; };
-		ADEB6BAE1D9D70C80082253C /* CourseDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetails.m; sourceTree = "<group>"; };
-		ADEB6BAF1D9D70C80082253C /* CourseList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseList.h; sourceTree = "<group>"; };
-		ADEB6BB01D9D70C80082253C /* CourseList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseList.m; sourceTree = "<group>"; };
-		ADEB6BB11D9D70C80082253C /* EmailRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailRegisterRequest.h; sourceTree = "<group>"; };
-		ADEB6BB21D9D70C80082253C /* EmailRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailRegisterRequest.m; sourceTree = "<group>"; };
-		ADEB6BB31D9D70C80082253C /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		ADEB6BB41D9D70C80082253C /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		ADEB6BB51D9D70C80082253C /* EventList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventList.h; sourceTree = "<group>"; };
-		ADEB6BB61D9D70C80082253C /* EventList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventList.m; sourceTree = "<group>"; };
-		ADEB6BB71D9D70C80082253C /* FriendRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequest.h; sourceTree = "<group>"; };
-		ADEB6BB81D9D70C80082253C /* FriendRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequest.m; sourceTree = "<group>"; };
-		ADEB6BB91D9D70C80082253C /* GenericResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericResponse.h; sourceTree = "<group>"; };
-		ADEB6BBA1D9D70C80082253C /* GenericResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericResponse.m; sourceTree = "<group>"; };
-		ADEB6BBB1D9D70C80082253C /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
-		ADEB6BBC1D9D70C80082253C /* Journal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Journal.m; sourceTree = "<group>"; };
-		ADEB6BBD1D9D70C80082253C /* JournalApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalApi.h; sourceTree = "<group>"; };
-		ADEB6BBE1D9D70C80082253C /* JournalApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalApi.m; sourceTree = "<group>"; };
-		ADEB6BBF1D9D70C80082253C /* JournalDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalDetails.h; sourceTree = "<group>"; };
-		ADEB6BC01D9D70C80082253C /* JournalDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalDetails.m; sourceTree = "<group>"; };
-		ADEB6BC11D9D70C80082253C /* JournalDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalDetailsList.h; sourceTree = "<group>"; };
-		ADEB6BC21D9D70C80082253C /* JournalDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalDetailsList.m; sourceTree = "<group>"; };
-		ADEB6BC31D9D70C80082253C /* JournalList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalList.h; sourceTree = "<group>"; };
-		ADEB6BC41D9D70C80082253C /* JournalList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalList.m; sourceTree = "<group>"; };
-		ADEB6BC51D9D70C80082253C /* LocalApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalApi.h; sourceTree = "<group>"; };
-		ADEB6BC61D9D70C80082253C /* LocalApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalApi.m; sourceTree = "<group>"; };
-		ADEB6BC71D9D70C80082253C /* MediaContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContent.h; sourceTree = "<group>"; };
-		ADEB6BC81D9D70C80082253C /* MediaContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContent.m; sourceTree = "<group>"; };
-		ADEB6BC91D9D70C80082253C /* PhoneRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneRegisterRequest.h; sourceTree = "<group>"; };
-		ADEB6BCA1D9D70C80082253C /* PhoneRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneRegisterRequest.m; sourceTree = "<group>"; };
-		ADEB6BCB1D9D70C80082253C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		ADEB6BCC1D9D70C80082253C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		ADEB6BCD1D9D70C80082253C /* UserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserApi.h; sourceTree = "<group>"; };
-		ADEB6BCE1D9D70C80082253C /* UserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserApi.m; sourceTree = "<group>"; };
-		ADEB6BCF1D9D70C80082253C /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
-		ADEB6BD01D9D70C80082253C /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
-		ADEB6BD11D9D70C80082253C /* UserDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsList.h; sourceTree = "<group>"; };
-		ADEB6BD21D9D70C80082253C /* UserDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsList.m; sourceTree = "<group>"; };
-		ADEB6BD31D9D70C80082253C /* UserFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFriend.h; sourceTree = "<group>"; };
-		ADEB6BD41D9D70C80082253C /* UserFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriend.m; sourceTree = "<group>"; };
-		ADEB6BD51D9D70C80082253C /* UserInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInterest.h; sourceTree = "<group>"; };
-		ADEB6BD61D9D70C80082253C /* UserInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInterest.m; sourceTree = "<group>"; };
-		ADEB6BD71D9D70C80082253C /* UserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserList.h; sourceTree = "<group>"; };
-		ADEB6BD81D9D70C80082253C /* UserList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserList.m; sourceTree = "<group>"; };
+		ADFEAAF21DED6EBA00C0D703 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		ADFEAAF31DED6EBA00C0D703 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		ADFEAAF41DED6EBA00C0D703 /* Advertising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Advertising.h; sourceTree = "<group>"; };
+		ADFEAAF51DED6EBA00C0D703 /* Advertising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Advertising.m; sourceTree = "<group>"; };
+		ADFEAAF61DED6EBA00C0D703 /* AdvertisingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertisingList.h; sourceTree = "<group>"; };
+		ADFEAAF71DED6EBA00C0D703 /* AdvertisingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertisingList.m; sourceTree = "<group>"; };
+		ADFEAAF81DED6EBA00C0D703 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
+		ADFEAAF91DED6EBA00C0D703 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
+		ADFEAAFA1DED6EBA00C0D703 /* BusinessDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessDetails.h; sourceTree = "<group>"; };
+		ADFEAAFB1DED6EBA00C0D703 /* BusinessDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessDetails.m; sourceTree = "<group>"; };
+		ADFEAAFC1DED6EBA00C0D703 /* BusinessDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessDetailsList.h; sourceTree = "<group>"; };
+		ADFEAAFD1DED6EBA00C0D703 /* BusinessDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessDetailsList.m; sourceTree = "<group>"; };
+		ADFEAAFE1DED6EBA00C0D703 /* BusinessList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessList.h; sourceTree = "<group>"; };
+		ADFEAAFF1DED6EBA00C0D703 /* BusinessList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessList.m; sourceTree = "<group>"; };
+		ADFEAB001DED6EBA00C0D703 /* BusinessReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReview.h; sourceTree = "<group>"; };
+		ADFEAB011DED6EBA00C0D703 /* BusinessReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessReview.m; sourceTree = "<group>"; };
+		ADFEAB021DED6EBA00C0D703 /* BusinessReviewList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReviewList.h; sourceTree = "<group>"; };
+		ADFEAB031DED6EBA00C0D703 /* BusinessReviewList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessReviewList.m; sourceTree = "<group>"; };
+		ADFEAB041DED6EBA00C0D703 /* BusinessSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessSummary.h; sourceTree = "<group>"; };
+		ADFEAB051DED6EBA00C0D703 /* BusinessSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessSummary.m; sourceTree = "<group>"; };
+		ADFEAB061DED6EBA00C0D703 /* CalendarApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarApi.h; sourceTree = "<group>"; };
+		ADFEAB071DED6EBA00C0D703 /* CalendarApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarApi.m; sourceTree = "<group>"; };
+		ADFEAB081DED6EBA00C0D703 /* ChangePasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordRequest.h; sourceTree = "<group>"; };
+		ADFEAB091DED6EBA00C0D703 /* ChangePasswordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordRequest.m; sourceTree = "<group>"; };
+		ADFEAB0A1DED6EBA00C0D703 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		ADFEAB0B1DED6EBA00C0D703 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		ADFEAB0C1DED6EBA00C0D703 /* CourseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseApi.h; sourceTree = "<group>"; };
+		ADFEAB0D1DED6EBA00C0D703 /* CourseApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseApi.m; sourceTree = "<group>"; };
+		ADFEAB0E1DED6EBA00C0D703 /* CourseBuyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseBuyRequest.h; sourceTree = "<group>"; };
+		ADFEAB0F1DED6EBA00C0D703 /* CourseBuyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseBuyRequest.m; sourceTree = "<group>"; };
+		ADFEAB101DED6EBA00C0D703 /* CourseDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetails.h; sourceTree = "<group>"; };
+		ADFEAB111DED6EBA00C0D703 /* CourseDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetails.m; sourceTree = "<group>"; };
+		ADFEAB121DED6EBA00C0D703 /* CourseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseInfo.h; sourceTree = "<group>"; };
+		ADFEAB131DED6EBA00C0D703 /* CourseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseInfo.m; sourceTree = "<group>"; };
+		ADFEAB141DED6EBA00C0D703 /* CourseList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseList.h; sourceTree = "<group>"; };
+		ADFEAB151DED6EBA00C0D703 /* CourseList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseList.m; sourceTree = "<group>"; };
+		ADFEAB161DED6EBA00C0D703 /* CourseMoveRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseMoveRequest.h; sourceTree = "<group>"; };
+		ADFEAB171DED6EBA00C0D703 /* CourseMoveRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseMoveRequest.m; sourceTree = "<group>"; };
+		ADFEAB181DED6EBA00C0D703 /* EmailRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailRegisterRequest.h; sourceTree = "<group>"; };
+		ADFEAB191DED6EBA00C0D703 /* EmailRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailRegisterRequest.m; sourceTree = "<group>"; };
+		ADFEAB1A1DED6EBA00C0D703 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		ADFEAB1B1DED6EBA00C0D703 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		ADFEAB1C1DED6EBA00C0D703 /* EventList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventList.h; sourceTree = "<group>"; };
+		ADFEAB1D1DED6EBA00C0D703 /* EventList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventList.m; sourceTree = "<group>"; };
+		ADFEAB1E1DED6EBA00C0D703 /* FriendRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequest.h; sourceTree = "<group>"; };
+		ADFEAB1F1DED6EBA00C0D703 /* FriendRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequest.m; sourceTree = "<group>"; };
+		ADFEAB201DED6EBA00C0D703 /* GenericResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericResponse.h; sourceTree = "<group>"; };
+		ADFEAB211DED6EBA00C0D703 /* GenericResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericResponse.m; sourceTree = "<group>"; };
+		ADFEAB221DED6EBA00C0D703 /* Invitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invitation.h; sourceTree = "<group>"; };
+		ADFEAB231DED6EBA00C0D703 /* Invitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invitation.m; sourceTree = "<group>"; };
+		ADFEAB241DED6EBA00C0D703 /* InviteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteRequest.h; sourceTree = "<group>"; };
+		ADFEAB251DED6EBA00C0D703 /* InviteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteRequest.m; sourceTree = "<group>"; };
+		ADFEAB261DED6EBA00C0D703 /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
+		ADFEAB271DED6EBA00C0D703 /* Journal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Journal.m; sourceTree = "<group>"; };
+		ADFEAB281DED6EBA00C0D703 /* JournalApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalApi.h; sourceTree = "<group>"; };
+		ADFEAB291DED6EBA00C0D703 /* JournalApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalApi.m; sourceTree = "<group>"; };
+		ADFEAB2A1DED6EBA00C0D703 /* JournalDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalDetails.h; sourceTree = "<group>"; };
+		ADFEAB2B1DED6EBA00C0D703 /* JournalDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalDetails.m; sourceTree = "<group>"; };
+		ADFEAB2C1DED6EBA00C0D703 /* JournalDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalDetailsList.h; sourceTree = "<group>"; };
+		ADFEAB2D1DED6EBA00C0D703 /* JournalDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalDetailsList.m; sourceTree = "<group>"; };
+		ADFEAB2E1DED6EBA00C0D703 /* JournalList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalList.h; sourceTree = "<group>"; };
+		ADFEAB2F1DED6EBA00C0D703 /* JournalList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalList.m; sourceTree = "<group>"; };
+		ADFEAB301DED6EBA00C0D703 /* LocalApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalApi.h; sourceTree = "<group>"; };
+		ADFEAB311DED6EBA00C0D703 /* LocalApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalApi.m; sourceTree = "<group>"; };
+		ADFEAB321DED6EBA00C0D703 /* MediaContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContent.h; sourceTree = "<group>"; };
+		ADFEAB331DED6EBA00C0D703 /* MediaContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContent.m; sourceTree = "<group>"; };
+		ADFEAB341DED6EBA00C0D703 /* MoneyFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyFlow.h; sourceTree = "<group>"; };
+		ADFEAB351DED6EBA00C0D703 /* MoneyFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFlow.m; sourceTree = "<group>"; };
+		ADFEAB361DED6EBA00C0D703 /* MoneyFlowList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyFlowList.h; sourceTree = "<group>"; };
+		ADFEAB371DED6EBA00C0D703 /* MoneyFlowList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFlowList.m; sourceTree = "<group>"; };
+		ADFEAB381DED6EBA00C0D703 /* MoneyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyRequest.h; sourceTree = "<group>"; };
+		ADFEAB391DED6EBA00C0D703 /* MoneyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyRequest.m; sourceTree = "<group>"; };
+		ADFEAB3A1DED6EBA00C0D703 /* PhoneLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneLoginRequest.h; sourceTree = "<group>"; };
+		ADFEAB3B1DED6EBA00C0D703 /* PhoneLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneLoginRequest.m; sourceTree = "<group>"; };
+		ADFEAB3C1DED6EBA00C0D703 /* PhoneRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneRegisterRequest.h; sourceTree = "<group>"; };
+		ADFEAB3D1DED6EBA00C0D703 /* PhoneRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneRegisterRequest.m; sourceTree = "<group>"; };
+		ADFEAB3E1DED6EBA00C0D703 /* RenameRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameRequest.h; sourceTree = "<group>"; };
+		ADFEAB3F1DED6EBA00C0D703 /* RenameRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameRequest.m; sourceTree = "<group>"; };
+		ADFEAB401DED6EBA00C0D703 /* ResetPasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordRequest.h; sourceTree = "<group>"; };
+		ADFEAB411DED6EBA00C0D703 /* ResetPasswordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordRequest.m; sourceTree = "<group>"; };
+		ADFEAB421DED6EBA00C0D703 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		ADFEAB431DED6EBA00C0D703 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		ADFEAB441DED6EBA00C0D703 /* UserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserApi.h; sourceTree = "<group>"; };
+		ADFEAB451DED6EBA00C0D703 /* UserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserApi.m; sourceTree = "<group>"; };
+		ADFEAB461DED6EBA00C0D703 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
+		ADFEAB471DED6EBA00C0D703 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
+		ADFEAB481DED6EBA00C0D703 /* UserDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsList.h; sourceTree = "<group>"; };
+		ADFEAB491DED6EBA00C0D703 /* UserDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsList.m; sourceTree = "<group>"; };
+		ADFEAB4A1DED6EBA00C0D703 /* UserFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFriend.h; sourceTree = "<group>"; };
+		ADFEAB4B1DED6EBA00C0D703 /* UserFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriend.m; sourceTree = "<group>"; };
+		ADFEAB4C1DED6EBA00C0D703 /* UserInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInterest.h; sourceTree = "<group>"; };
+		ADFEAB4D1DED6EBA00C0D703 /* UserInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInterest.m; sourceTree = "<group>"; };
+		ADFEAB4E1DED6EBA00C0D703 /* UserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserList.h; sourceTree = "<group>"; };
+		ADFEAB4F1DED6EBA00C0D703 /* UserList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserList.m; sourceTree = "<group>"; };
+		ADFEAB501DED6EBA00C0D703 /* Wallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wallet.h; sourceTree = "<group>"; };
+		ADFEAB511DED6EBA00C0D703 /* Wallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wallet.m; sourceTree = "<group>"; };
+		ADFEAB521DED6EBA00C0D703 /* WechatLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatLoginRequest.h; sourceTree = "<group>"; };
+		ADFEAB531DED6EBA00C0D703 /* WechatLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatLoginRequest.m; sourceTree = "<group>"; };
 		D266E6CBC3D71BF6521133C0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -814,66 +871,104 @@
 		ADEB6A511D9BEB140082253C /* API */ = {
 			isa = PBXGroup;
 			children = (
-				ADEB6B9D1D9D70C80082253C /* Account.h */,
-				ADEB6B9E1D9D70C80082253C /* Account.m */,
-				ADEB6B9F1D9D70C80082253C /* Advertising.h */,
-				ADEB6BA01D9D70C80082253C /* Advertising.m */,
-				ADEB6BA11D9D70C80082253C /* AdvertisingList.h */,
-				ADEB6BA21D9D70C80082253C /* AdvertisingList.m */,
-				ADEB6BA31D9D70C80082253C /* Business.h */,
-				ADEB6BA41D9D70C80082253C /* Business.m */,
-				ADEB6BA51D9D70C80082253C /* BusinessList.h */,
-				ADEB6BA61D9D70C80082253C /* BusinessList.m */,
-				ADEB6BA71D9D70C80082253C /* CalendarApi.h */,
-				ADEB6BA81D9D70C80082253C /* CalendarApi.m */,
-				ADEB6BA91D9D70C80082253C /* Course.h */,
-				ADEB6BAA1D9D70C80082253C /* Course.m */,
-				ADEB6BAB1D9D70C80082253C /* CourseApi.h */,
-				ADEB6BAC1D9D70C80082253C /* CourseApi.m */,
-				ADEB6BAD1D9D70C80082253C /* CourseDetails.h */,
-				ADEB6BAE1D9D70C80082253C /* CourseDetails.m */,
-				ADEB6BAF1D9D70C80082253C /* CourseList.h */,
-				ADEB6BB01D9D70C80082253C /* CourseList.m */,
-				ADEB6BB11D9D70C80082253C /* EmailRegisterRequest.h */,
-				ADEB6BB21D9D70C80082253C /* EmailRegisterRequest.m */,
-				ADEB6BB31D9D70C80082253C /* Event.h */,
-				ADEB6BB41D9D70C80082253C /* Event.m */,
-				ADEB6BB51D9D70C80082253C /* EventList.h */,
-				ADEB6BB61D9D70C80082253C /* EventList.m */,
-				ADEB6BB71D9D70C80082253C /* FriendRequest.h */,
-				ADEB6BB81D9D70C80082253C /* FriendRequest.m */,
-				ADEB6BB91D9D70C80082253C /* GenericResponse.h */,
-				ADEB6BBA1D9D70C80082253C /* GenericResponse.m */,
-				ADEB6BBB1D9D70C80082253C /* Journal.h */,
-				ADEB6BBC1D9D70C80082253C /* Journal.m */,
-				ADEB6BBD1D9D70C80082253C /* JournalApi.h */,
-				ADEB6BBE1D9D70C80082253C /* JournalApi.m */,
-				ADEB6BBF1D9D70C80082253C /* JournalDetails.h */,
-				ADEB6BC01D9D70C80082253C /* JournalDetails.m */,
-				ADEB6BC11D9D70C80082253C /* JournalDetailsList.h */,
-				ADEB6BC21D9D70C80082253C /* JournalDetailsList.m */,
-				ADEB6BC31D9D70C80082253C /* JournalList.h */,
-				ADEB6BC41D9D70C80082253C /* JournalList.m */,
-				ADEB6BC51D9D70C80082253C /* LocalApi.h */,
-				ADEB6BC61D9D70C80082253C /* LocalApi.m */,
-				ADEB6BC71D9D70C80082253C /* MediaContent.h */,
-				ADEB6BC81D9D70C80082253C /* MediaContent.m */,
-				ADEB6BC91D9D70C80082253C /* PhoneRegisterRequest.h */,
-				ADEB6BCA1D9D70C80082253C /* PhoneRegisterRequest.m */,
-				ADEB6BCB1D9D70C80082253C /* User.h */,
-				ADEB6BCC1D9D70C80082253C /* User.m */,
-				ADEB6BCD1D9D70C80082253C /* UserApi.h */,
-				ADEB6BCE1D9D70C80082253C /* UserApi.m */,
-				ADEB6BCF1D9D70C80082253C /* UserDetails.h */,
-				ADEB6BD01D9D70C80082253C /* UserDetails.m */,
-				ADEB6BD11D9D70C80082253C /* UserDetailsList.h */,
-				ADEB6BD21D9D70C80082253C /* UserDetailsList.m */,
-				ADEB6BD31D9D70C80082253C /* UserFriend.h */,
-				ADEB6BD41D9D70C80082253C /* UserFriend.m */,
-				ADEB6BD51D9D70C80082253C /* UserInterest.h */,
-				ADEB6BD61D9D70C80082253C /* UserInterest.m */,
-				ADEB6BD71D9D70C80082253C /* UserList.h */,
-				ADEB6BD81D9D70C80082253C /* UserList.m */,
+				ADFEAAF21DED6EBA00C0D703 /* Account.h */,
+				ADFEAAF31DED6EBA00C0D703 /* Account.m */,
+				ADFEAAF41DED6EBA00C0D703 /* Advertising.h */,
+				ADFEAAF51DED6EBA00C0D703 /* Advertising.m */,
+				ADFEAAF61DED6EBA00C0D703 /* AdvertisingList.h */,
+				ADFEAAF71DED6EBA00C0D703 /* AdvertisingList.m */,
+				ADFEAAF81DED6EBA00C0D703 /* Business.h */,
+				ADFEAAF91DED6EBA00C0D703 /* Business.m */,
+				ADFEAAFA1DED6EBA00C0D703 /* BusinessDetails.h */,
+				ADFEAAFB1DED6EBA00C0D703 /* BusinessDetails.m */,
+				ADFEAAFC1DED6EBA00C0D703 /* BusinessDetailsList.h */,
+				ADFEAAFD1DED6EBA00C0D703 /* BusinessDetailsList.m */,
+				ADFEAAFE1DED6EBA00C0D703 /* BusinessList.h */,
+				ADFEAAFF1DED6EBA00C0D703 /* BusinessList.m */,
+				ADFEAB001DED6EBA00C0D703 /* BusinessReview.h */,
+				ADFEAB011DED6EBA00C0D703 /* BusinessReview.m */,
+				ADFEAB021DED6EBA00C0D703 /* BusinessReviewList.h */,
+				ADFEAB031DED6EBA00C0D703 /* BusinessReviewList.m */,
+				ADFEAB041DED6EBA00C0D703 /* BusinessSummary.h */,
+				ADFEAB051DED6EBA00C0D703 /* BusinessSummary.m */,
+				ADFEAB061DED6EBA00C0D703 /* CalendarApi.h */,
+				ADFEAB071DED6EBA00C0D703 /* CalendarApi.m */,
+				ADFEAB081DED6EBA00C0D703 /* ChangePasswordRequest.h */,
+				ADFEAB091DED6EBA00C0D703 /* ChangePasswordRequest.m */,
+				ADFEAB0A1DED6EBA00C0D703 /* Course.h */,
+				ADFEAB0B1DED6EBA00C0D703 /* Course.m */,
+				ADFEAB0C1DED6EBA00C0D703 /* CourseApi.h */,
+				ADFEAB0D1DED6EBA00C0D703 /* CourseApi.m */,
+				ADFEAB0E1DED6EBA00C0D703 /* CourseBuyRequest.h */,
+				ADFEAB0F1DED6EBA00C0D703 /* CourseBuyRequest.m */,
+				ADFEAB101DED6EBA00C0D703 /* CourseDetails.h */,
+				ADFEAB111DED6EBA00C0D703 /* CourseDetails.m */,
+				ADFEAB121DED6EBA00C0D703 /* CourseInfo.h */,
+				ADFEAB131DED6EBA00C0D703 /* CourseInfo.m */,
+				ADFEAB141DED6EBA00C0D703 /* CourseList.h */,
+				ADFEAB151DED6EBA00C0D703 /* CourseList.m */,
+				ADFEAB161DED6EBA00C0D703 /* CourseMoveRequest.h */,
+				ADFEAB171DED6EBA00C0D703 /* CourseMoveRequest.m */,
+				ADFEAB181DED6EBA00C0D703 /* EmailRegisterRequest.h */,
+				ADFEAB191DED6EBA00C0D703 /* EmailRegisterRequest.m */,
+				ADFEAB1A1DED6EBA00C0D703 /* Event.h */,
+				ADFEAB1B1DED6EBA00C0D703 /* Event.m */,
+				ADFEAB1C1DED6EBA00C0D703 /* EventList.h */,
+				ADFEAB1D1DED6EBA00C0D703 /* EventList.m */,
+				ADFEAB1E1DED6EBA00C0D703 /* FriendRequest.h */,
+				ADFEAB1F1DED6EBA00C0D703 /* FriendRequest.m */,
+				ADFEAB201DED6EBA00C0D703 /* GenericResponse.h */,
+				ADFEAB211DED6EBA00C0D703 /* GenericResponse.m */,
+				ADFEAB221DED6EBA00C0D703 /* Invitation.h */,
+				ADFEAB231DED6EBA00C0D703 /* Invitation.m */,
+				ADFEAB241DED6EBA00C0D703 /* InviteRequest.h */,
+				ADFEAB251DED6EBA00C0D703 /* InviteRequest.m */,
+				ADFEAB261DED6EBA00C0D703 /* Journal.h */,
+				ADFEAB271DED6EBA00C0D703 /* Journal.m */,
+				ADFEAB281DED6EBA00C0D703 /* JournalApi.h */,
+				ADFEAB291DED6EBA00C0D703 /* JournalApi.m */,
+				ADFEAB2A1DED6EBA00C0D703 /* JournalDetails.h */,
+				ADFEAB2B1DED6EBA00C0D703 /* JournalDetails.m */,
+				ADFEAB2C1DED6EBA00C0D703 /* JournalDetailsList.h */,
+				ADFEAB2D1DED6EBA00C0D703 /* JournalDetailsList.m */,
+				ADFEAB2E1DED6EBA00C0D703 /* JournalList.h */,
+				ADFEAB2F1DED6EBA00C0D703 /* JournalList.m */,
+				ADFEAB301DED6EBA00C0D703 /* LocalApi.h */,
+				ADFEAB311DED6EBA00C0D703 /* LocalApi.m */,
+				ADFEAB321DED6EBA00C0D703 /* MediaContent.h */,
+				ADFEAB331DED6EBA00C0D703 /* MediaContent.m */,
+				ADFEAB341DED6EBA00C0D703 /* MoneyFlow.h */,
+				ADFEAB351DED6EBA00C0D703 /* MoneyFlow.m */,
+				ADFEAB361DED6EBA00C0D703 /* MoneyFlowList.h */,
+				ADFEAB371DED6EBA00C0D703 /* MoneyFlowList.m */,
+				ADFEAB381DED6EBA00C0D703 /* MoneyRequest.h */,
+				ADFEAB391DED6EBA00C0D703 /* MoneyRequest.m */,
+				ADFEAB3A1DED6EBA00C0D703 /* PhoneLoginRequest.h */,
+				ADFEAB3B1DED6EBA00C0D703 /* PhoneLoginRequest.m */,
+				ADFEAB3C1DED6EBA00C0D703 /* PhoneRegisterRequest.h */,
+				ADFEAB3D1DED6EBA00C0D703 /* PhoneRegisterRequest.m */,
+				ADFEAB3E1DED6EBA00C0D703 /* RenameRequest.h */,
+				ADFEAB3F1DED6EBA00C0D703 /* RenameRequest.m */,
+				ADFEAB401DED6EBA00C0D703 /* ResetPasswordRequest.h */,
+				ADFEAB411DED6EBA00C0D703 /* ResetPasswordRequest.m */,
+				ADFEAB421DED6EBA00C0D703 /* User.h */,
+				ADFEAB431DED6EBA00C0D703 /* User.m */,
+				ADFEAB441DED6EBA00C0D703 /* UserApi.h */,
+				ADFEAB451DED6EBA00C0D703 /* UserApi.m */,
+				ADFEAB461DED6EBA00C0D703 /* UserDetails.h */,
+				ADFEAB471DED6EBA00C0D703 /* UserDetails.m */,
+				ADFEAB481DED6EBA00C0D703 /* UserDetailsList.h */,
+				ADFEAB491DED6EBA00C0D703 /* UserDetailsList.m */,
+				ADFEAB4A1DED6EBA00C0D703 /* UserFriend.h */,
+				ADFEAB4B1DED6EBA00C0D703 /* UserFriend.m */,
+				ADFEAB4C1DED6EBA00C0D703 /* UserInterest.h */,
+				ADFEAB4D1DED6EBA00C0D703 /* UserInterest.m */,
+				ADFEAB4E1DED6EBA00C0D703 /* UserList.h */,
+				ADFEAB4F1DED6EBA00C0D703 /* UserList.m */,
+				ADFEAB501DED6EBA00C0D703 /* Wallet.h */,
+				ADFEAB511DED6EBA00C0D703 /* Wallet.m */,
+				ADFEAB521DED6EBA00C0D703 /* WechatLoginRequest.h */,
+				ADFEAB531DED6EBA00C0D703 /* WechatLoginRequest.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1096,130 +1191,149 @@
 			buildActionMask = 2147483647;
 			files = (
 				A364CCF41C94CBFA0075E65F /* Page.m in Sources */,
+				ADFEAB5C1DED6EBA00C0D703 /* BusinessReviewList.m in Sources */,
+				ADFEAB811DED6EBA00C0D703 /* UserInterest.m in Sources */,
 				A364CCD11C94CBFA0075E65F /* Image.m in Sources */,
+				ADFEAB661DED6EBA00C0D703 /* CourseMoveRequest.m in Sources */,
+				ADFEAB701DED6EBA00C0D703 /* JournalDetails.m in Sources */,
 				A364CCDF1C94CBFA0075E65F /* GalleryView.m in Sources */,
 				A364CCEE1C94CBFA0075E65F /* NSButton.m in Sources */,
 				A364CCCD1C94CBFA0075E65F /* iToast.m in Sources */,
+				ADFEAB5F1DED6EBA00C0D703 /* ChangePasswordRequest.m in Sources */,
 				A364CCC71C94CBFA0075E65F /* KDRatingView.m in Sources */,
 				A364CCF91C94CBFA0075E65F /* SimpleRow.m in Sources */,
+				ADFEAB691DED6EBA00C0D703 /* EventList.m in Sources */,
 				A364CBE21C94CBCF0075E65F /* AppDelegate.m in Sources */,
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
+				ADFEAB761DED6EBA00C0D703 /* MoneyFlowList.m in Sources */,
 				A364CCE61C94CBFA0075E65F /* LabelWithNext.m in Sources */,
 				A364CCE41C94CBFA0075E65F /* LabeledTabBar.m in Sources */,
 				A364CCDA1C94CBFA0075E65F /* CoverView.m in Sources */,
 				A364CCDB1C94CBFA0075E65F /* EmptyPage.m in Sources */,
 				A364CCE01C94CBFA0075E65F /* IconTitleCell.m in Sources */,
 				A364CCC01C94CBFA0075E65F /* UIViewController+JASidePanel.m in Sources */,
+				ADFEAB5A1DED6EBA00C0D703 /* BusinessList.m in Sources */,
 				A364CCEC1C94CBFA0075E65F /* MBSegmentedControl.m in Sources */,
 				A364CCE71C94CBFA0075E65F /* LabelWithTitle.m in Sources */,
 				A364CCC91C94CBFA0075E65F /* ObjectMapper.m in Sources */,
 				A364CCBB1C94CBFA0075E65F /* UITableViewCell+Util.m in Sources */,
 				A364CCFD1C94CBFA0075E65F /* SocialButtons.m in Sources */,
+				ADFEAB671DED6EBA00C0D703 /* EmailRegisterRequest.m in Sources */,
+				ADFEAB711DED6EBA00C0D703 /* JournalDetailsList.m in Sources */,
 				A364CCD81C94CBFA0075E65F /* BaseView.m in Sources */,
+				ADFEAB721DED6EBA00C0D703 /* JournalList.m in Sources */,
 				A364CCE81C94CBFA0075E65F /* Layout.m in Sources */,
-				ADEB6BE61D9D70C80082253C /* FriendRequest.m in Sources */,
 				A364CCB71C94CBFA0075E65F /* UIColor+String.m in Sources */,
+				ADFEAB681DED6EBA00C0D703 /* Event.m in Sources */,
+				ADFEAB611DED6EBA00C0D703 /* CourseApi.m in Sources */,
 				A364CCF11C94CBFA0075E65F /* NSScrollView.m in Sources */,
 				A364CCBE1C94CBFA0075E65F /* UIView+Position.m in Sources */,
 				A364CCB61C94CBFA0075E65F /* UIButton+Style.m in Sources */,
 				A364CCD41C94CBFA0075E65F /* LanguageText.m in Sources */,
-				ADEB6BF61D9D70C80082253C /* UserList.m in Sources */,
 				A364CCDC1C94CBFA0075E65F /* FitLabel.m in Sources */,
-				ADEB6BEA1D9D70C80082253C /* JournalDetails.m in Sources */,
-				ADEB6BED1D9D70C80082253C /* LocalApi.m in Sources */,
-				ADEB6BE51D9D70C80082253C /* EventList.m in Sources */,
-				ADEB6BDF1D9D70C80082253C /* Course.m in Sources */,
 				A364CCB91C94CBFA0075E65F /* UIImageView+Util.m in Sources */,
+				ADFEAB651DED6EBA00C0D703 /* CourseList.m in Sources */,
 				A364CCE51C94CBFA0075E65F /* LabelWithCaption.m in Sources */,
 				A364CCAF1C94CBFA0075E65F /* NSNotificationCenter+Util.m in Sources */,
-				ADEB6BE71D9D70C80082253C /* GenericResponse.m in Sources */,
 				A364CCD01C94CBFA0075E65F /* Data.m in Sources */,
+				ADFEAB5E1DED6EBA00C0D703 /* CalendarApi.m in Sources */,
 				A364CCA91C94CBFA0075E65F /* MenuViewController.m in Sources */,
-				ADEB6BDD1D9D70C80082253C /* BusinessList.m in Sources */,
 				A364CCD61C94CBFA0075E65F /* APBAlertView.m in Sources */,
 				A364CCFB1C94CBFA0075E65F /* SimpleTableViewPage.m in Sources */,
 				ADEB6B991D9D6BB20082253C /* Config.m in Sources */,
-				ADEB6BDC1D9D70C80082253C /* Business.m in Sources */,
+				ADFEAB571DED6EBA00C0D703 /* Business.m in Sources */,
 				A364CCEF1C94CBFA0075E65F /* NSImageTextButton.m in Sources */,
 				ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */,
-				ADEB6BF51D9D70C80082253C /* UserInterest.m in Sources */,
-				ADEB6BE91D9D70C80082253C /* JournalApi.m in Sources */,
-				ADEB6BEF1D9D70C80082253C /* PhoneRegisterRequest.m in Sources */,
 				A364CCCB1C94CBFA0075E65F /* TMDiskCache.m in Sources */,
 				A364CCD71C94CBFA0075E65F /* AvatarTitleSummaryCell.m in Sources */,
-				ADEB6BE41D9D70C80082253C /* Event.m in Sources */,
 				A364CCE31C94CBFA0075E65F /* IconTitleSummaryCell.m in Sources */,
 				A364CCB31C94CBFA0075E65F /* NSString+Util.m in Sources */,
 				A364CCA51C94CBFA0075E65F /* BaseViewController.m in Sources */,
 				A364CCF71C94CBFA0075E65F /* ScrollViewPage.m in Sources */,
 				A364CCF61C94CBFA0075E65F /* RadioButtonGroup.m in Sources */,
+				ADFEAB7D1DED6EBA00C0D703 /* UserApi.m in Sources */,
+				ADFEAB581DED6EBA00C0D703 /* BusinessDetails.m in Sources */,
 				A364CCFE1C94CBFA0075E65F /* TableViewPage.m in Sources */,
+				ADFEAB781DED6EBA00C0D703 /* PhoneLoginRequest.m in Sources */,
 				A364CCCA1C94CBFA0075E65F /* TMCache.m in Sources */,
 				A364CCCE1C94CBFA0075E65F /* UIImage+ImageEffects.m in Sources */,
-				ADEB6BDB1D9D70C80082253C /* AdvertisingList.m in Sources */,
+				ADFEAB6C1DED6EBA00C0D703 /* Invitation.m in Sources */,
+				ADFEAB771DED6EBA00C0D703 /* MoneyRequest.m in Sources */,
+				ADFEAB561DED6EBA00C0D703 /* AdvertisingList.m in Sources */,
+				ADFEAB731DED6EBA00C0D703 /* LocalApi.m in Sources */,
+				ADFEAB5B1DED6EBA00C0D703 /* BusinessReview.m in Sources */,
+				ADFEAB6E1DED6EBA00C0D703 /* Journal.m in Sources */,
+				ADFEAB7B1DED6EBA00C0D703 /* ResetPasswordRequest.m in Sources */,
+				ADFEAB7C1DED6EBA00C0D703 /* User.m in Sources */,
 				A364CCB21C94CBFA0075E65F /* NSObject+Event.m in Sources */,
 				A364CCFA1C94CBFA0075E65F /* SimpleTableViewData.m in Sources */,
 				A364CD001C94CBFA0075E65F /* UserImageView.m in Sources */,
-				ADEB6BDE1D9D70C80082253C /* CalendarApi.m in Sources */,
 				A364CCE21C94CBFA0075E65F /* IconTitleRightText.m in Sources */,
 				A364CCDD1C94CBFA0075E65F /* FormPage.m in Sources */,
 				A354C17B1C93ED9F00EE0DE5 /* MasterViewController.m in Sources */,
-				ADEB6BF21D9D70C80082253C /* UserDetails.m in Sources */,
-				ADEB6BE31D9D70C80082253C /* EmailRegisterRequest.m in Sources */,
 				A364CCC81C94CBFA0075E65F /* SimpleDateConverter.m in Sources */,
 				A364CCD91C94CBFA0075E65F /* CollectionViewPage.m in Sources */,
+				ADFEAB7A1DED6EBA00C0D703 /* RenameRequest.m in Sources */,
 				A364CCA81C94CBFA0075E65F /* MenuTopView.m in Sources */,
-				ADEB6BEE1D9D70C80082253C /* MediaContent.m in Sources */,
 				A364CCBF1C94CBFA0075E65F /* JASidePanelController.m in Sources */,
-				ADEB6BEB1D9D70C80082253C /* JournalDetailsList.m in Sources */,
 				A364CCEA1C94CBFA0075E65F /* ListValuePickerView.m in Sources */,
 				A364CCB11C94CBFA0075E65F /* NSObject+Attach.m in Sources */,
+				ADFEAB6B1DED6EBA00C0D703 /* GenericResponse.m in Sources */,
 				A364CCBC1C94CBFA0075E65F /* UITextField+Style.m in Sources */,
 				A364CCF21C94CBFA0075E65F /* NSSlidePanelController.m in Sources */,
-				ADEB6BE21D9D70C80082253C /* CourseList.m in Sources */,
+				ADFEAB631DED6EBA00C0D703 /* CourseDetails.m in Sources */,
+				ADFEAB751DED6EBA00C0D703 /* MoneyFlow.m in Sources */,
+				ADFEAB841DED6EBA00C0D703 /* WechatLoginRequest.m in Sources */,
 				A364CCD31C94CBFA0075E65F /* LanguageFile.m in Sources */,
 				A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */,
+				ADFEAB7F1DED6EBA00C0D703 /* UserDetailsList.m in Sources */,
+				ADFEAB791DED6EBA00C0D703 /* PhoneRegisterRequest.m in Sources */,
 				A364CCED1C94CBFA0075E65F /* NavigationControllerBase.m in Sources */,
 				A364CCBD1C94CBFA0075E65F /* UIView+Autolayout.m in Sources */,
-				ADEB6BF41D9D70C80082253C /* UserFriend.m in Sources */,
+				ADFEAB831DED6EBA00C0D703 /* Wallet.m in Sources */,
 				A364CCB41C94CBFA0075E65F /* NSUserDefaults+Util.m in Sources */,
 				A364CCFF1C94CBFA0075E65F /* TableViewSectionHeader.m in Sources */,
+				ADFEAB601DED6EBA00C0D703 /* Course.m in Sources */,
+				ADFEAB821DED6EBA00C0D703 /* UserList.m in Sources */,
 				A364CCB81C94CBFA0075E65F /* UIImage+Cat.m in Sources */,
 				A364CCAA1C94CBFA0075E65F /* ScrollViewController.m in Sources */,
 				A364CCFC1C94CBFA0075E65F /* SimpleTableViewSection.m in Sources */,
-				ADEB6BEC1D9D70C80082253C /* JournalList.m in Sources */,
 				A364CCEB1C94CBFA0075E65F /* LogoImageView.m in Sources */,
 				ADEB6AA21D9BEC1B0082253C /* MyOperationManager.m in Sources */,
 				A364CCAE1C94CBFA0075E65F /* NSDate+Util.m in Sources */,
 				A364CCA61C94CBFA0075E65F /* MenuItem.m in Sources */,
 				A364CD011C94CBFA0075E65F /* WebViewController.m in Sources */,
-				ADEB6BE11D9D70C80082253C /* CourseDetails.m in Sources */,
 				A364CCA71C94CBFA0075E65F /* MenuPage.m in Sources */,
+				ADFEAB741DED6EBA00C0D703 /* MediaContent.m in Sources */,
 				A364CCF01C94CBFA0075E65F /* NSPickerView.m in Sources */,
 				A364CCAC1C94CBFA0075E65F /* UberViewController.m in Sources */,
 				A364CCF81C94CBFA0075E65F /* SendMessagePage.m in Sources */,
 				A364CCBA1C94CBFA0075E65F /* UILabel+Cat.m in Sources */,
-				ADEB6BD91D9D70C80082253C /* Account.m in Sources */,
+				ADFEAB541DED6EBA00C0D703 /* Account.m in Sources */,
 				A364CCAB1C94CBFA0075E65F /* TextViewController.m in Sources */,
 				A364CCAD1C94CBFA0075E65F /* NSData+Uitl.m in Sources */,
+				ADFEAB801DED6EBA00C0D703 /* UserFriend.m in Sources */,
 				A364CCD21C94CBFA0075E65F /* LanguageDict.m in Sources */,
+				ADFEAB621DED6EBA00C0D703 /* CourseBuyRequest.m in Sources */,
 				A364CCB01C94CBFA0075E65F /* NSNumber+Util.m in Sources */,
 				A364CCE91C94CBFA0075E65F /* Line.m in Sources */,
-				ADEB6BF31D9D70C80082253C /* UserDetailsList.m in Sources */,
-				ADEB6BF01D9D70C80082253C /* User.m in Sources */,
+				ADFEAB6D1DED6EBA00C0D703 /* InviteRequest.m in Sources */,
 				A364CCCF1C94CBFA0075E65F /* AppConfiguration.m in Sources */,
+				ADFEAB7E1DED6EBA00C0D703 /* UserDetails.m in Sources */,
+				ADFEAB6F1DED6EBA00C0D703 /* JournalApi.m in Sources */,
+				ADFEAB641DED6EBA00C0D703 /* CourseInfo.m in Sources */,
 				A364CCE11C94CBFA0075E65F /* IconTitleRightImg.m in Sources */,
-				ADEB6BF11D9D70C80082253C /* UserApi.m in Sources */,
 				A364CCCC1C94CBFA0075E65F /* TMMemoryCache.m in Sources */,
+				ADFEAB5D1DED6EBA00C0D703 /* BusinessSummary.m in Sources */,
 				A354C1751C93ED9F00EE0DE5 /* main.m in Sources */,
-				ADEB6BDA1D9D70C80082253C /* Advertising.m in Sources */,
+				ADFEAB551DED6EBA00C0D703 /* Advertising.m in Sources */,
 				A364CCF51C94CBFA0075E65F /* RadioButton.m in Sources */,
 				A364CCF31C94CBFA0075E65F /* NSTableViewCell.m in Sources */,
+				ADFEAB6A1DED6EBA00C0D703 /* FriendRequest.m in Sources */,
 				A354C17E1C93ED9F00EE0DE5 /* DetailViewController.m in Sources */,
+				ADFEAB591DED6EBA00C0D703 /* BusinessDetailsList.m in Sources */,
 				A364CCB51C94CBFA0075E65F /* UIApplication+Util.m in Sources */,
 				A364CCDE1C94CBFA0075E65F /* FormTextField.m in Sources */,
-				ADEB6BE81D9D70C80082253C /* Journal.m in Sources */,
-				ADEB6BE01D9D70C80082253C /* CourseApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
