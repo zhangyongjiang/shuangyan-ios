@@ -163,6 +163,8 @@
 		ADFEAB821DED6EBA00C0D703 /* UserList.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB4F1DED6EBA00C0D703 /* UserList.m */; };
 		ADFEAB831DED6EBA00C0D703 /* Wallet.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB511DED6EBA00C0D703 /* Wallet.m */; };
 		ADFEAB841DED6EBA00C0D703 /* WechatLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB531DED6EBA00C0D703 /* WechatLoginRequest.m */; };
+		ADFEAB8B1DED740700C0D703 /* RegisterPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB881DED740700C0D703 /* RegisterPage.m */; };
+		ADFEAB8C1DED740700C0D703 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB8A1DED740700C0D703 /* RegisterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -491,6 +493,10 @@
 		ADFEAB511DED6EBA00C0D703 /* Wallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wallet.m; sourceTree = "<group>"; };
 		ADFEAB521DED6EBA00C0D703 /* WechatLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatLoginRequest.h; sourceTree = "<group>"; };
 		ADFEAB531DED6EBA00C0D703 /* WechatLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatLoginRequest.m; sourceTree = "<group>"; };
+		ADFEAB871DED740700C0D703 /* RegisterPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPage.h; sourceTree = "<group>"; };
+		ADFEAB881DED740700C0D703 /* RegisterPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPage.m; sourceTree = "<group>"; };
+		ADFEAB891DED740700C0D703 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		ADFEAB8A1DED740700C0D703 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		D266E6CBC3D71BF6521133C0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -545,6 +551,7 @@
 		A354C1721C93ED9F00EE0DE5 /* Chenglong */ = {
 			isa = PBXGroup;
 			children = (
+				ADFEAB851DED740700C0D703 /* RegisterProcess */,
 				ADEB6A9A1D9BEC1B0082253C /* WebService */,
 				ADEB6A511D9BEB140082253C /* API */,
 				A364CBE31C94CBF90075E65F /* Controllers */,
@@ -986,6 +993,25 @@
 			path = WebService;
 			sourceTree = "<group>";
 		};
+		ADFEAB851DED740700C0D703 /* RegisterProcess */ = {
+			isa = PBXGroup;
+			children = (
+				ADFEAB861DED740700C0D703 /* Register */,
+			);
+			path = RegisterProcess;
+			sourceTree = "<group>";
+		};
+		ADFEAB861DED740700C0D703 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				ADFEAB871DED740700C0D703 /* RegisterPage.h */,
+				ADFEAB881DED740700C0D703 /* RegisterPage.m */,
+				ADFEAB891DED740700C0D703 /* RegisterViewController.h */,
+				ADFEAB8A1DED740700C0D703 /* RegisterViewController.m */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		B5478B3D34D2A9785A86FD1F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1223,6 +1249,7 @@
 				A364CCD81C94CBFA0075E65F /* BaseView.m in Sources */,
 				ADFEAB721DED6EBA00C0D703 /* JournalList.m in Sources */,
 				A364CCE81C94CBFA0075E65F /* Layout.m in Sources */,
+				ADFEAB8C1DED740700C0D703 /* RegisterViewController.m in Sources */,
 				A364CCB71C94CBFA0075E65F /* UIColor+String.m in Sources */,
 				ADFEAB681DED6EBA00C0D703 /* Event.m in Sources */,
 				ADFEAB611DED6EBA00C0D703 /* CourseApi.m in Sources */,
@@ -1254,6 +1281,7 @@
 				ADFEAB7D1DED6EBA00C0D703 /* UserApi.m in Sources */,
 				ADFEAB581DED6EBA00C0D703 /* BusinessDetails.m in Sources */,
 				A364CCFE1C94CBFA0075E65F /* TableViewPage.m in Sources */,
+				ADFEAB8B1DED740700C0D703 /* RegisterPage.m in Sources */,
 				ADFEAB781DED6EBA00C0D703 /* PhoneLoginRequest.m in Sources */,
 				A364CCCA1C94CBFA0075E65F /* TMCache.m in Sources */,
 				A364CCCE1C94CBFA0075E65F /* UIImage+ImageEffects.m in Sources */,
