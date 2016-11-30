@@ -7,12 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "DetailViewController.h"
 #import "UberViewController.h"
 #import "NSSlidePanelController.h"
 #import "NavigationControllerBase.h"
 #import "MenuViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "SplashViewController.h"
+#import "APBAlertView.h"
+#import "RegisterNaviController.h"
 
 @interface AppDelegate ()
 
@@ -31,9 +33,17 @@
     [window makeKeyAndVisible];
     self.window = window;
     
-    CLLocationManager* myLocationManager = [[CLLocationManager alloc] init];
-    [myLocationManager requestWhenInUseAuthorization];
+    [self splash];
     
+    return YES;
+}
+
+-(void)splash {
+    SplashViewController* controller = [[SplashViewController alloc] init];
+    self.window.rootViewController = controller;
+}
+
+-(void)setupSlideMenu {
     self.slidePanelController = [[NSSlidePanelController alloc] init];
     self.slidePanelController.shouldDelegateAutorotateToVisiblePanel = false;
     
@@ -43,9 +53,13 @@
     [self.navController pushViewController:controller animated: YES];
     self.navController.navigationBar.translucent = YES;
     self.slidePanelController.leftPanel = [[MenuViewController alloc] init];
-
+    
     self.window.rootViewController = self.slidePanelController;
-    return YES;
+}
+
+-(void)askForLocation {
+    CLLocationManager* myLocationManager = [[CLLocationManager alloc] init];
+    [myLocationManager requestWhenInUseAuthorization];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -68,6 +82,84 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
++(AppDelegate*)getInstance {
+    return [UIApplication sharedApplication].delegate;
+}
+
+-(void) showViewController:(UIViewController*)controller {
+    //    [self.slidePanelController showCenterPanelAnimated:YES];
+    //    for (UIViewController* c in self.navController.viewControllers) {
+    //        [[NSNotificationCenter defaultCenter] removeObserver:c];
+    //    }
+    //    [self.navController setViewControllers:@[controller]];
+}
+
+-(void) pushViewController:(UIViewController*)controller {
+    //    [self.slidePanelController showCenterPanelAnimated:YES];
+    //    [self.navController pushViewController:controller animated:YES];
+}
+
+-(void)alertWithTitle:(NSString *)title andMsg:(NSString *)msg handler:(void (^)(UIAlertAction *action))handler{
+    if ([UIAlertController class])
+    {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:handler]];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:^{
+        }];
+    }
+    else
+    {
+        APBAlertView *alertView = [[APBAlertView alloc]
+                                   initWithTitle:title
+                                   message:msg
+                                   cancelButtonTitle:nil
+                                   otherButtonTitles:@[@"OK"]
+                                   cancelHandler:^{
+                                   }
+                                   confirmationHandler:^(NSInteger otherButtonIndex) {
+                                       handler(nil);
+                                   }];
+        [alertView show];
+    }
+}
+
+-(void)presentViewController:(UIViewController*)controller completion:(void (^)(void))completion{
+    //    [self.navController presentViewController:controller animated:YES completion:completion];
+}
+
+-(void)alertWithTitle:(NSString *)title andMsg:(NSString *)msg ok:(void (^)(UIAlertAction *action))ok  cancel:(void (^)(UIAlertAction *action))cancel{
+    if ([UIAlertController class]) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:ok]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:cancel]];
+        //        [self.navController presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        APBAlertView *alertView = [[APBAlertView alloc]
+                                   initWithTitle:title
+                                   message:msg
+                                   cancelButtonTitle:@"Cancel"
+                                   otherButtonTitles:@[@"OK"]
+                                   cancelHandler:^{
+                                       cancel(nil);
+                                   }
+                                   confirmationHandler:^(NSInteger otherButtonIndex) {
+                                       ok(nil);
+                                   }];
+        [alertView show];
+    }
+}
+
+-(void)startRegisterProcess {
+    RegisterNaviController* controller = [[RegisterNaviController alloc] init];
+    self.window.rootViewController = controller;
+}
+
+-(void)gotoMainPage {
+    
 }
 
 @end

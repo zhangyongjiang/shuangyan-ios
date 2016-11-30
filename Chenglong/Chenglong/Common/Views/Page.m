@@ -19,7 +19,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.backgroundColor = [UIColor colorFromString:@"nsbg"];
+    self.backgroundColor = [UIColor bgColor];
     
     return self;
 }

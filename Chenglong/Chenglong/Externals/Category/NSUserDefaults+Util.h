@@ -44,4 +44,6 @@
 +(void)saveCartNumber:(NSInteger)cartNumber;
 +(int)savedCartNumber;
 
++(BOOL)isRegisteredUser;
+
 @end

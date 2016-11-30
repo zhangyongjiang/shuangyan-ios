@@ -228,7 +228,7 @@ static NSMutableDictionary* colorNames;
 }
 
 +(UIColor*)bgColor {
-    return [self colorFromString:@"nsbg"];
+    return [self whiteColor];
 }
 
 +(UIColor*) colorFromString:(NSString*) colorStr {

@@ -25,6 +25,7 @@
 
 #import "NSUserDefaults+Util.h"
 #import "ObjectMapper.h"
+#import "User.h"
 
 @implementation NSUserDefaults (Util)
 
@@ -85,5 +86,10 @@
     }
     else
         return 0;
+}
+
++(BOOL)isRegisteredUser {
+    User* user = [NSUserDefaults get:@"USER"];
+    return user != nil;
 }
 @end
