@@ -57,6 +57,11 @@
 #import "NSObject+Attach.h"
 #import "Line.h"
 #import "NSData+Uitl.h"
-
+#import "CalendarApi.h"
+#import "CourseApi.h"
+#import "JournalApi.h"
+#import "LocalApi.h"
+#import "UserApi.h"
+#import "APIError.h"
 
 #endif

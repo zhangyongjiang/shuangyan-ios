@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <AFNetworking.h>
+#import "APIError.h"
 
 @interface BaseViewController : UIViewController
 
 @property(assign,nonatomic)BOOL transparentNavbar;
 
+-(void)showErrorMessage:(NSString*)errMsg err:(APIError *)err;
 -(void)alertWithTitle:(NSString*)title andMsg:(NSString *)msg;
 -(void)alertWithTitle:(NSString*)title andMsg:(NSString*)msg handler:(void (^)(UIAlertAction *action))handler;
 -(UIAlertController*)alertWithTitle:(NSString *)title andMsg:(NSString *)msg

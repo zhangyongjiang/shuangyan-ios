@@ -366,4 +366,10 @@
     [self.operations addObject:operation];
 }
 
+-(void)showErrorMessage:(NSString *)errMsg err:(APIError*)err{
+//    [[iToast makeText:errMsg] show];
+    NSLog(@"%@ %@", errMsg, err);
+    
+}
+
 @end
