@@ -17,7 +17,7 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:(frame.size.width<0.0001 ? CGRectMake(PagePadding, 0, FullWidthExcludePadding, 44*[UIView scale]) : frame)];
-    self.layer.cornerRadius = self.height/2.;
+//    self.layer.cornerRadius = self.height/2.;
 //    [self.layer setBorderColor:[[UIColor colorFromString:@"nsred"] CGColor]];
 //    [self.layer setBorderWidth:2];
     [self book];

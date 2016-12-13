@@ -56,30 +56,39 @@
 }
 
 -(NSButton*)createActionButton:(NSString*)title image:(NSString*)imgname bgcolr:(UIColor*)color{
-    NSButton* btn = [[NSButton alloc] initWithFrame:CGRectMake(PagePadding, 0, 250, 45)];
+    CGFloat height = 45;
+    CGFloat width = ([UIView screenWidth] - PagePadding * 2 ) * 0.8;
+    NSButton* btn = [[NSButton alloc] initWithFrame:CGRectMake(PagePadding, [UIView screenHeight] -height-PagePadding, width, height)];
     [btn styleBook17];
     [self addSubview:btn];
-    [btn alignParentRightWithMarghin:10*[UIView scale]];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor mainColor] forState:UIControlStateSelected];
-    [btn setTitleColor:[UIColor mainColor] forState:UIControlStateHighlighted];
+    [btn hcenterInParent];
+    
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateSelected];
     [btn setTitle:title forState:UIControlStateHighlighted];
     
-    UIImage* img = [UIImage imageNamed:imgname];
-    [btn setImage:img forState:UIControlStateNormal];
-    [btn setImage:img forState:UIControlStateSelected];
-    [btn setImage:img forState:UIControlStateHighlighted];
-    [btn hcenterInParent];
-    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20);
-    btn.backgroundColor = color;
-    
-    btn.layer.borderColor = [UIColor whiteColor].CGColor;
-    btn.layer.borderWidth = 1;
-    
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     return btn;
 }
+
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 @end
 
 

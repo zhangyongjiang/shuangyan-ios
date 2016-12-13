@@ -12,7 +12,7 @@
 
     self.scrollView = self.page.scrollView;
     
-    [self performSelector:@selector(next) withObject:nil afterDelay:3];
+    [self performSelector:@selector(next) withObject:nil afterDelay:0.1];
 }
 
 -(void)next {

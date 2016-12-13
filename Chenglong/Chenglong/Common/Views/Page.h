@@ -20,6 +20,8 @@
 -(void)show:(NSString*)name width:(CGFloat)imgw height:(CGFloat)imgh x:(CGFloat)x y:(CGFloat)y  toView:(UIView*)view;
 
 -(NSButton*)createActionButton:(NSString*)title image:(NSString*)imgname bgcolr:(UIColor*)color;
++(NSButton*)createActionButton:(NSString*)title image:(NSString*)imgname bgcolor:(UIColor*)color pview:(UIView*) pview ;
++ (UIImage *)imageWithColor:(UIColor *)color;
 
 @end
 
