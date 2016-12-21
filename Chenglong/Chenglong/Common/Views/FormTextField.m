@@ -51,6 +51,7 @@
 
 -(id)initWithPlaceHolder:(NSString*)placeHolder {
     self = [super initWithFrame:CGRectMake(PagePadding, 0, FullWidthExcludePadding, FormFieldHeight)];
+    self.accessibilityLabel = placeHolder;
     self.placeholder = placeHolder;
     return self;
 }

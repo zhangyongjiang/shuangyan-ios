@@ -168,7 +168,15 @@ static NSString* const kCurrentDefaultEndPointKey = @"kCurrentDefaultEndPointKey
             }
         }
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(operation, responseObject);
+        NSData* data = responseObject;
+//        NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@", newStr);        
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                             options:kNilOptions
+                                                               error:&error];
+        
+        success(operation, json);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
         errorBlock(apiError);

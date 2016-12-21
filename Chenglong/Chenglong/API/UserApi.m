@@ -181,7 +181,7 @@
 	            parameters:nil
 	            toPath:url_
 	               success:^(AFHTTPRequestOperation *operation, id responseObject) {
-	                   ObjectMapper *mapper = [ObjectMapper mapper];
+                       ObjectMapper *mapper = [ObjectMapper mapper];
 	                   NSError *error;
 	                   MediaContent* resp = [mapper mapObject:responseObject toClass:[MediaContent class] withError:&error];
 	                   if (error) {
