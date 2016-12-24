@@ -14,7 +14,7 @@
 @property(assign,nonatomic)BOOL processed;
 @property(strong,nonatomic)NSError* rawError;
 
--(id)initWithOperation:(AFHTTPRequestOperation*)operation andError:(NSError *)error;
+-(id)initWithOperation:(NSURLSessionDataTask*)task andError:(NSError *)error;
 
 -(BOOL)isUnknown;
 -(BOOL)isInvalidInput;

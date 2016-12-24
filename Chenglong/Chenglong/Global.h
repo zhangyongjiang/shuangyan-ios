@@ -1,60 +1,33 @@
 //
 //  Global.h
+//  Kaishi
 //
+//  Created by Hyun Cho on 6/23/15.
+//  Copyright (c) 2015 BCGDV. All rights reserved.
 //
-//  Created by Kevin Zhang on 12/24/14.
-//  Copyright (c) 2014 Kevin Zhang. All rights reserved.
-//
 
-#ifndef ishopping_Global_h
-#define ishopping_Global_h
+#import <Foundation/Foundation.h>
+#import "User.h"
+#import "UserDetails.h"
+#import "Constants.h"
+#import "NSObject+TMCache.h"
 
-#define VariableName(arg) (@""#arg)
+static NSInteger max_second = 120;//验证码倒计时时间
 
-#define FullWidth ([UIView screenWidth])
-#define PagePadding  (10*[UIView scale])
-#define FullWidthExcludePadding   ([UIView screenWidth]-PagePadding*2)
-#define HalfWidthExcludePadding2   (([UIView screenWidth]-PagePadding*2)/2)
-#define HalfWidthExcludePadding3   (([UIView screenWidth]-PagePadding*3)/2)
-#define FormFieldHeight (45*[UIView scale])
-#define LabelLineHeight 44
-#define SectionSpacing  (25*[UIView scale])
+@interface Global : NSObject
 
-#define ButtonHeightLarge (40*[UIView scale])
-#define ButtonHeightSmall (30*[UIView scale])
++ (User*)loggedInUser;
++ (User*)cachedUser;
++ (void)setLoggedInUser:(User*)user;
 
-#define NotificationRefreshControl      @"NotificationRefreshControl"
-#define NotificationEndOfDisplay        @"NotificationEndOfDisplay"
-#define NotificationPushController      @"NotificationPushController"
-#define NotificationPresentController   @"NotificationPresentController"
-#define NotificationNewReview           @"NotificationNewReview"
-#define NotificationLogout              @"NotificationLogout"
-#define NotificationNoGuest             @"NotificationNoGuest"
-#define NotificationAlert               @"NotificationAlert"
-#define NotificationMeChanged           @"NotificationMeChanged"
-#define NotificationCartChanged         @"NotificationCartChanged"
-#define NotificationMsgChanged          @"NotificationMsgChanged"
-#define NotificationLangChanged         @"NotificationLangChanged"
-#define NotificationTextFieldFocused    @"NotificationTextFieldFocused"
-#define NotificationProductChanged      @"NotificationProductChanged"
-#define NotificationBackgroundImage     @"NotificationBackgroundImage"
-#define NotificationEditing             @"NotificationEditing"
-#define NotificationLabelTabChanged     @"NotificationLabelTabChanged"
++ (NSString*)versionString;
++ (NSString*)versionNoBundle;
 
-#define EventCollectionViewLongPress    @"EventCollectionViewLongPress"
+@end
 
-#define FontMedium  @"GothamRounded-Medium"
-#define FontBook    @"GothamRounded-Book"
 
-#define PageSize 20
+extern NSString* const kOauthTokenKey;
+extern NSString* const kOauthTokenFirstTimeKey;
 
-#define CornerRadius 5*[UIView scale]
-#define FormBorderColor [UIColor colorFromRGB:0xc8c7cc]
-#define FormBorderWidth 1
-#define FormTopMargin   (68*[UIView scale])
-#define FormFieldMargin 1
-#define ViewMargin 25
-
-#define TextViewPlaceHolder @"Your review"
-
-#endif
+extern const NSInteger kMinNicknameLength;
+extern const NSInteger kMaxNicknameLength;

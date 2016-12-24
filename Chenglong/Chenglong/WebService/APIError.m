@@ -3,17 +3,23 @@
 
 @implementation APIError
 
--(id)initWithOperation:(AFHTTPRequestOperation *)operation andError:(NSError *)error {
+-(id)initWithOperation:(NSURLSessionDataTask *)task andError:(NSError *)error {
     self = [super init];
-
+    
+    NSHTTPURLResponse *operation = (NSHTTPURLResponse*)task.response;
+    NSDictionary *responseObject;
+    if (error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]) {
+        responseObject = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+    }
     self.rawError = error;
-    self.statusCode = [operation.response statusCode];
-    if (self.statusCode == 500 && IS_CLASS(operation.responseObject, NSDictionary) ) {
-        self.errorCode = [operation.responseObject objectForKey:@"errorCode"];
+    self.statusCode = [operation statusCode];
+    
+    if (self.statusCode == 500 && IS_CLASS(responseObject, NSDictionary) ) {
+        self.errorCode = [responseObject objectForKey:@"errorCode"];
         if ( self.errorCode == nil ) {
             self.errorCode = @"System Error";
         }
-        NSDictionary* response = operation.responseObject;
+        NSDictionary* response = responseObject;
         if ( IS_CLASS(response, NSDictionary) && response[@"message"] != nil ) {
             self.errorMsg = response[@"message"];
         } else if ( IS_CLASS(response, NSDictionary) && response[@"errorMsg"] != nil ) {
@@ -21,51 +27,52 @@
         } else {
             self.errorMsg = @"Please report. Thanks.";
         }
-    } else if (operation.responseObject &&
-             IS_CLASS(operation.responseObject, NSDictionary) &&
-             [operation.responseObject respondsToSelector:@selector(objectForKey:)]) {
-        self.errorCode = [operation.responseObject objectForKey:@"errorCode"];
-        self.errorMsg = [operation.responseObject objectForKey:@"errorMsg"];
+    } else if (responseObject &&
+               IS_CLASS(responseObject, NSDictionary) &&
+               [responseObject respondsToSelector:@selector(objectForKey:)]) {
+        self.errorCode = [responseObject objectForKey:@"errorCode"];
+        self.errorMsg = [responseObject objectForKey:@"errorMsg"];
         if ( self.errorCode.length == 0 ) {
-            self.errorCode = [operation.responseObject objectForKey:@"error"];
+            self.errorCode = [responseObject objectForKey:@"error"];
         }
         if ( self.errorMsg.length == 0 ) {
-            self.errorMsg = [operation.responseObject objectForKey:@"error_description"];
+            self.errorMsg = [responseObject objectForKey:@"error_description"];
         }
     } else if([@"NSURLErrorDomain" isEqualToString:error.domain]) {
         
         self.errorCode = [error localizedDescription];
         self.errorMsg = [error localizedRecoverySuggestion];
         
-        if ( self.errorMsg == nil ) {
+        if ( self.errorMsg == nil )
+        {
             if(error.code == NSURLErrorNotConnectedToInternet) { // -1009
-                self.errorMsg = KaishiLocalizedString(@"NetworkError", nil);
+                self.errorMsg = ZaoJiaoLocalizedString(@"NetworkNoConnect", nil);
             } else if(error.code == NSURLErrorTimedOut) { // -1001
 #ifdef CONFIG_APP_STORE
                 // don't show the time outs for app store version
                 self.errorMsg = nil;
                 self.errorCode = nil;
 #else
-//                NSString* urlString = [operation.request.URL absoluteString];
-//                self.errorMsg = urlString;
-                self.errorMsg = KaishiLocalizedString(@"TryAgainError", nil);
+                //                NSString* urlString = [operation.request.URL absoluteString];
+                //                self.errorMsg = urlString;
+                self.errorMsg = ZaoJiaoLocalizedString(@"TryAgainError", nil);
 #endif
             } else if ( error.code == NSURLErrorNetworkConnectionLost ) { // -1005
-                self.errorMsg = KaishiLocalizedString(@"NetworkLostError", nil);
+                self.errorMsg = ZaoJiaoLocalizedString(@"NetworkLostError", nil);
             } else if ( error.code == NSURLErrorCannotConnectToHost ) { // -1004
-                self.errorMsg = KaishiLocalizedString(@"TryAgainError", nil);
+                self.errorMsg = ZaoJiaoLocalizedString(@"TryAgainError", nil);
             } else if ( error.code == NSURLErrorCancelled ) { // -999
                 // an exception.. if we cancel a request, don't show any message.
                 self.errorMsg = nil;
                 self.errorCode = nil;
             } else {
-                self.errorMsg = KaishiLocalizedString(@"TryAgainError", nil);
+                self.errorMsg = ZaoJiaoLocalizedString(@"TryAgainError", nil);
             }
         }
         
     } else {
-        self.errorCode = KaishiLocalizedString(@"UnknownError", nil);
-        self.errorMsg = [NSString stringWithFormat:@"%@", operation.response];
+        self.errorCode = ZaoJiaoLocalizedString(@"UnknownError", nil);
+        self.errorMsg = [NSString stringWithFormat:@"%@", operation];
     }
     
     if ( IS_CLASS(self.errorCode, NSNull) ) {

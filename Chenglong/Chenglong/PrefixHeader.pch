@@ -13,6 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import "Global.h"
+#import "FileReferenceHeader.h"
 #import "AppDelegate.h"
 #import "Page.h"
 #import "FormPage.h"
@@ -63,5 +64,8 @@
 #import "LocalApi.h"
 #import "UserApi.h"
 #import "APIError.h"
+
+#import "UIImageView+WebCache.h"
+#import "NSObject+Tips.h"
 
 #endif

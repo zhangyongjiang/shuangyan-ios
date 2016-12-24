@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
-#import "MyOperationManager.h"
+#import "MyHTTPSessionManager.h"
 
 @interface WebService : NSObject
 
@@ -8,20 +8,14 @@
 + (NSString *)baseUrl;
 + (NSString *)sharingBaseUrl;
 + (NSString *)tosUrl;
-+ (MyOperationManager*)getOperationManager;
++ (MyHTTPSessionManager*)getOperationManager;
 + (void)saveCookies;
 + (void)loadCookies;
 + (void)removeAllCookies;
 + (BOOL)hasSessionCookies;
-+ (void)showError:(NSError*)err withOperation:(AFHTTPRequestOperation*)operation;
++ (void)showError:(NSError*)err withOperation:(NSURLSessionDataTask*)operation;
 + (NSString*)currentEndPoint;
 + (NSInteger)currentEndPointIndex;
 + (void)setCurrentEndPoint:(NSString*)endPoint;
-
-+(AFHTTPRequestOperation*)upload:(NSDictionary*)dataDic
-                      parameters:(NSDictionary*)parameters
-                          toPath:(NSString*)path
-                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                        apiError:(void (^)(APIError *err))errorBlock;
 
 @end

@@ -45,7 +45,7 @@ static NSMutableArray* htmlTags;
     
     CGFloat width = 150;
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(PagePadding, PagePadding, width, width)];
-    [self.imageView setImageWithPath:self.imgPath];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imgPath]];
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.scrollView.backgroundColor = [UIColor colorFromString:@"nsbg"];

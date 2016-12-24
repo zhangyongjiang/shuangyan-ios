@@ -354,15 +354,15 @@
 }
 
 -(void)cancelAllOperations {
-    for (AFHTTPRequestOperation* operation in self.operations) {
-        if(![operation isFinished]) {
+    for (NSURLSessionDataTask* operation in self.operations) {
+        if(operation) {
             [operation cancel];
         }
     }
     [self.operations removeAllObjects];
 }
 
--(void)addOperation:(AFHTTPRequestOperation *)operation {
+-(void)addOperation:(NSURLSessionDataTask *)operation {
     [self.operations addObject:operation];
 }
 

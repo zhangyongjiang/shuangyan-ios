@@ -9,7 +9,7 @@ static NSString* const kCurrentDefaultEndPointKey = @"kCurrentDefaultEndPointKey
 
 @interface WebService()
 
-@property(strong, nonatomic)MyOperationManager* operationManager;
+@property(strong, nonatomic)MyHTTPSessionManager* operationManager;
 
 @end
 
@@ -26,7 +26,7 @@ static NSString* const kCurrentDefaultEndPointKey = @"kCurrentDefaultEndPointKey
 }
 
 
-+(MyOperationManager*)getOperationManager {
++(MyHTTPSessionManager*)getOperationManager {
     return instance.operationManager;
 }
 
@@ -103,7 +103,7 @@ static NSString* const kCurrentDefaultEndPointKey = @"kCurrentDefaultEndPointKey
 
 - (void)createOperationManager {
     
-    MyOperationManager *manager = [[MyOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[WebService baseUrl]]];
+    MyHTTPSessionManager *manager = [[MyHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[WebService baseUrl]]];
     manager.securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy.validatesDomainName = NO;
     [manager setDefaultJsonRequestSerializer];
@@ -113,7 +113,7 @@ static NSString* const kCurrentDefaultEndPointKey = @"kCurrentDefaultEndPointKey
 }
 
 
-+ (void)showError:(NSError *)err withOperation:(AFHTTPRequestOperation *)operation {
++ (void)showError:(NSError *)err withOperation:(NSURLSessionDataTask *)operation {
 }
 
 
@@ -138,51 +138,6 @@ static NSString* const kCurrentDefaultEndPointKey = @"kCurrentDefaultEndPointKey
     NSArray* endPoints = [WebService endPoints];
     NSInteger index = [endPoints indexOfObject:[WebService currentEndPoint]];
     return index;
-}
-
-+(AFHTTPRequestOperation*)upload:(NSDictionary*)dataDic
-                      parameters:(NSDictionary*)parameters
-                          toPath:(NSString*)path
-                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                         apiError:(void (^)(APIError *err))errorBlock
-
-{
-    MyOperationManager *manager = [[MyOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[WebService baseUrl]]];
-    manager.securityPolicy.allowInvalidCertificates = YES;
-    manager.securityPolicy.validatesDomainName = NO;
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    [manager setAuthorizationToken];
-    //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    AFHTTPRequestOperation* operation = [manager POST:path parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        for (NSString* key in [dataDic keyEnumerator]) {
-            id obj = [dataDic objectForKey:key];
-            if ( IS_CLASS(obj, NSData) ) {
-                NSData *data = [dataDic objectForKey:key];
-                [formData appendPartWithFileData:data name:key fileName:@"file.jpeg" mimeType:@"image/jpeg"];
-            } else if ( IS_CLASS(obj, NSArray) ) {
-                NSArray* dataArray  = obj;
-                for (id data in dataArray ) {
-                        [formData appendPartWithFileData:data name:key fileName:@"file.jpeg" mimeType:@"image/jpeg"];
-                }
-            }
-        }
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSData* data = responseObject;
-//        NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@", newStr);        
-        NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:kNilOptions
-                                                               error:&error];
-        
-        success(operation, json);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
-        errorBlock(apiError);
-    }];
-    
-    return operation;
 }
 
 @end

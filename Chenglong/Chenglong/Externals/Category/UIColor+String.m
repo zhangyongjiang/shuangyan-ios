@@ -235,8 +235,6 @@ static NSMutableDictionary* colorNames;
     UIColor* color = [colorNames objectForKey:[colorStr lowercaseString]];
     if(color)
         return color;
-    NSString* original = colorStr;
-    
     colorStr = [colorStr lowercaseString];
     colorStr = [colorStr stringByReplacingOccurrencesOfString:@" " withString:@""];
     float value;
@@ -316,6 +314,26 @@ static NSMutableDictionary* colorNames;
 
 + (UIColor *)gradientColorWithR0:(CGFloat)r0 g0:(CGFloat)g0 b0:(CGFloat)b0 a0:(CGFloat)a0 r1:(CGFloat)r1 g1:(CGFloat)g1 b1:(CGFloat)b1 a1:(CGFloat)a1 size:(CGSize)size {
     return [UIColor colorWithPatternImage:[self gradientImageWithR0:r0 g0:g0 b0:b0 a0:a0 r1:r1 g1:g1 b1:b1 a1:a1 size:size]];
+}
+
++ (UIImage *)colorImg:(UIColor*)color {
+    CGSize imageSize = CGSizeMake(50.0, 50.0);
+    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
+    [color set];
+    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
+    UIImage *colorImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return colorImg;
+}
+
++ (UIImage *)colorImg:(UIColor*)color size:(CGSize)size {
+    CGSize imageSize = size;
+    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
+    [color set];
+    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
+    UIImage *colorImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return colorImg;
 }
 
 @end

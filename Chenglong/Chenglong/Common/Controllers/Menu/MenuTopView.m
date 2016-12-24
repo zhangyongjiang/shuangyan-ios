@@ -87,7 +87,7 @@
 }
 
 -(void)updateUserImage:(NSString *)path {
-    [self.userImgView setImageWithPath:path];
+    [self.userImgView sd_setImageWithURL:[NSURL URLWithString:path]];
 }
 
 -(void)layoutSubviews {

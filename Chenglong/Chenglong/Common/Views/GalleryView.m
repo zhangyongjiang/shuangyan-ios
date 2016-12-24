@@ -51,11 +51,11 @@
         [self.imgViews addObject:imgView];
         imgView.contentMode = UIViewContentModeScaleAspectFill;
         __weak id weakSelf = self;
-        [imgView setImageWithPath:[self.imgs objectAtIndex:i] placeholderImage:nil success:^(UIImage *image, UIImageView* view) {
+        [imgView sd_setImageWithURL:[self.imgs objectAtIndex:i] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             GalleryView* s = (GalleryView*)weakSelf;
             if (s.tintColor) {
                 UIImage* newImg = [image applyBlurWithRadius:5 tintColor:s.tintColor saturationDeltaFactor:1.8 maskImage:nil];
-                view.image = newImg;
+                imgView.image = newImg;
             }
         }];
         [self.scrollView addSubview:imgView];

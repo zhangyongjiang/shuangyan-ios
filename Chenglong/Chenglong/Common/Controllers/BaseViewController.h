@@ -37,6 +37,6 @@
 
 -(void)handleEvent:(NSString *)name fromSource:(NSObject *)source data:(NSObject *)data;
 
--(void)addOperation:(AFHTTPRequestOperation*)operation;
+-(void)addOperation:(NSURLSessionDataTask*)operation;
 -(void)cancelAllOperations;
 @end

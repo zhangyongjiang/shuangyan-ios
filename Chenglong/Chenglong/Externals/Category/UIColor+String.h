@@ -35,4 +35,7 @@
 + (UIImage *)gradientImageWithR0:(CGFloat)r0 g0:(CGFloat)g0 b0:(CGFloat)b0 a0:(CGFloat)a0 r1:(CGFloat)r1 g1:(CGFloat)g1 b1:(CGFloat)b1 a1:(CGFloat)a1 size:(CGSize)size;
 + (UIColor *)gradientColorWithR0:(CGFloat)r0 g0:(CGFloat)g0 b0:(CGFloat)b0 a0:(CGFloat)a0 r1:(CGFloat)r1 g1:(CGFloat)g1 b1:(CGFloat)b1 a1:(CGFloat)a1 size:(CGSize)size;
 
++ (UIImage *)colorImg:(UIColor*)color;
++ (UIImage *)colorImg:(UIColor*)color size:(CGSize)size;
+
 @end

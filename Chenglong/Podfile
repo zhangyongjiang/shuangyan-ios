@@ -1,9 +1,11 @@
-source 'https://github.com/CocoaPods/Specs.git'
 
-pod 'AFNetworking', '~> 2.4'
-pod "Appirater"
-pod 'SVProgressHUD'
-pod 'NSDate+TimeAgo'
-pod 'FLAnimatedImage', '~> 1.0'
-pod 'PureLayout'
+target 'Chenglong' do
 
+pod 'AFNetworking', '~> 3.1.0'
+pod 'SVProgressHUD', '~> 2.0.3'
+pod 'PureLayout', '~> 2.0.6'
+pod 'SDWebImage' , '~> 3.8.1'
+pod 'Lockbox' , '~> 2.1.0'
+pod 'MJRefresh', '~> 3.1.12'
+
+end

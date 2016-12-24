@@ -27,10 +27,6 @@
 
 @interface UIImageView (Util)
 
--(void)setImageWithPath:(NSString *)path;
--(void)setImageWithPath:(NSString *)path placeholderImage:(UIImage*)placeholderImage;
--(void)setImageWithPath:(NSString *)path  placeholderImage:(UIImage*)placeholderImage success:(void (^)(UIImage *image, UIImageView* view))success;
--(void)setImageWithPathArray:(NSArray*) array;
--(void)setImageWithPath:(NSString *)path andArray:(NSArray*) array;
+
 
 @end

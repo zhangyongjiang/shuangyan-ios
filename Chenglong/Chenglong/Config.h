@@ -1,9 +1,9 @@
 //
 //  Config.h
-//  Kaishi
+//  ZaoJiao
 //
-//  Created by Hyun Cho on 6/12/15.
-//  Copyright (c) 2015 BCGDV. All rights reserved.
+//  Created by wangyaochang on 2016/12/24.
+//  Copyright © 2016年 Chenglong. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,12 +15,12 @@
 
 #ifdef CONFIG_APP_STORE
 
-#define KaishiLocalizedString(key, comment) \
+#define ZaoJiaoLocalizedString(key, comment) \
     NSLocalizedString(key, comment)
 
 #else
 
-#define KaishiLocalizedString(key, comment) \
+#define ZaoJiaoLocalizedString(key, comment) \
     [[Config.shared currentLocalizationBundle] localizedStringForKey:(key) value:@"" table:nil]
 
 #endif
@@ -43,15 +43,6 @@ typedef NS_ENUM(NSInteger, DeploymentType) {
 - (void)toggleLocalizations;
 @property (nonatomic, strong) NSBundle* currentLocalizationBundle;
 #endif
-
-// kicktracker
-@property (nonatomic, assign) double kickTrackerSessionTimeout;
-@property (nonatomic, readonly) double kickTrackerSessionTimeoutMillisecs;
-
-@property (nonatomic, assign) double journalReminderTimeout;
-@property (nonatomic, assign) double nutritionReminderTimeout;
-
-@property (nonatomic, strong) NSDate* communityReminderTimeout;
 
 @property (nonatomic, assign) CGFloat defaultImageMaxHeight;
 @property (nonatomic, assign) CGFloat defaultImageQuality;
