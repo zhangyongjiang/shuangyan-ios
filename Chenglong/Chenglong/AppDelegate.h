@@ -11,17 +11,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-+(AppDelegate*)getInstance;
-
-- (void) showViewController:(UIViewController*)controller;
-- (void) pushViewController:(UIViewController*)controller ;
-- (void) presentViewController:(UIViewController*)controller completion:(void (^)(void))completion;
-- (void) alertWithTitle:(NSString *)title andMsg:(NSString *)msg handler:(void (^)(UIAlertAction *action))handler;
-- (void) alertWithTitle:(NSString *)title andMsg:(NSString *)msg ok:(void (^)(UIAlertAction *action))ok  cancel:(void (^)(UIAlertAction *action))cancel;
-
--(void)startRegisterProcess;
--(void)gotoMainPage;
-
+- (void)logout;
 @end
 

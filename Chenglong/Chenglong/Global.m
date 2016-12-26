@@ -19,7 +19,7 @@ NSString* const kSessionCookies = @"sessionCookies";
 const NSInteger kMinNicknameLength = 1;
 const NSInteger kMaxNicknameLength = 12;
 
-
+static NSString* const kCacheUserModel = @"kCacheUserModel";
 static NSString* const kCacheUserPhone = @"CacheUserPhone";
 static NSString* const kCachedUserIdKey = @"CachedUserIdKey";
 static NSString* const kCachedUserNicknameKey = @"CachedUserNicknameKey";
@@ -50,36 +50,22 @@ static Global *_shared = nil;
 
 
 + (User*)loggedInUser {
+    User *user = [User tm_objectForKey:kCacheUserModel];
+    if ([Global shared].loggedInUser == nil && user != nil) {
+        [Global shared].loggedInUser = user;
+    }
     return [Global shared].loggedInUser;
 }
 
-
-+ (User*)cachedUser {
-    User* user = [[User alloc] init];
-
-    NSString* userId = [[NSUserDefaults standardUserDefaults] objectForKey:kCachedUserIdKey];
-
-    if ( userId.length > 0 ) {
-        NSString* nickName = [[NSUserDefaults standardUserDefaults] objectForKey:kCachedUserNicknameKey];
-        NSString* imgPath = [[NSUserDefaults standardUserDefaults] objectForKey:kCachedUserImgPath];
-        NSString* phone = [[NSUserDefaults standardUserDefaults] objectForKey:kCacheUserPhone];
-        user.id = userId;
-        user.name = nickName;
-        user.phone = phone;
-        user.imgPath = imgPath;
-        
-        return user;
-    } else {
-        return nil;
-    }
-}
-
-
 + (void)setLoggedInUser:(User*)user {
+    
+    
     [Global shared].loggedInUser = user;
     
     
     if ( user != nil ) {
+        [user tm_setObject:user forKey:kCacheUserModel];
+        
         [[NSUserDefaults standardUserDefaults] setObject:user.id forKey:kCachedUserIdKey];
         [[NSUserDefaults standardUserDefaults] setObject:user.name forKey:kCachedUserNicknameKey];
         [[NSUserDefaults standardUserDefaults] setObject:user.imgPath forKey:kCachedUserImgPath];
@@ -88,18 +74,8 @@ static Global *_shared = nil;
         [WebService saveCookies];
         
     } else {
-        
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCachedUserIdKey];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCachedUserNicknameKey];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCachedUserImgPath];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCacheUserPhone];
-
-        [Lockbox setString:@"" forKey:kOauthTokenKey]; // wipe out the auth token
-        
         [WebService removeAllCookies];
-        
     }
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }

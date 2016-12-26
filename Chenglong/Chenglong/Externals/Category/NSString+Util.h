@@ -1,34 +1,59 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 //
 //  NSString+Util.h
+//  Kaishi
 //
-//
-//  Created by Kevin Zhang on 1/2/15.
-//  Copyright (c) 2015 Kevin Zhang. All rights reserved.
+//  Created by wangyaochang on 16/7/5.
+//  Copyright © 2016年 BCGDV. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface NSString (Util)
 
--(NSString*)trim;
+/**
+ *  @brief 是否为空
+ *
+ *  @param aString 需要判断的字符串
+ *
+ *  @return 是否为空
+ */
++ (BOOL)isEmpty:(NSString*)aString;
+
+/**
+ *  去除多余空格
+ */
+- (NSString *)trim;
+/**
+ * 返回字符串的 自定义 大小
+ */
+- (CGSize)textSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+
+/**
+ *  判断密码是否有效
+ *
+ *  @return YES 符合 NO 不符合
+ */
+- (BOOL)kaishiJudgePwdCorrect;
+
+/**
+ *  将普通string转换为 给特定range 加样式 的 attributeString
+ *
+ *  @param defalutDic 默认的样式dic
+ *  @param range      需要特殊样式的range
+ *  @param changeDic  特殊样式dic
+ *
+ *  @return attributeString
+ */
+- (NSMutableAttributedString *)getAttributeStrWithDefalutDic:(NSDictionary *)defalutDic range:(NSRange)range changeDic:(NSDictionary *)changeDic;
+
+/**
+ *  返回重复字符的range string
+ *  @param findText 查找的字符
+ *
+ *  @return 返回重复字符的range的string
+ */
+- (NSMutableArray *)getRangeStr:(NSString *)findText;
+
 -(NSArray*)splitBy:(NSString*)str;
 -(int)indexOf:(NSString*)substr;
-
 @end

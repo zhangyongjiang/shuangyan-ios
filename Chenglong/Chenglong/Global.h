@@ -17,7 +17,6 @@ static NSInteger max_second = 120;//验证码倒计时时间
 @interface Global : NSObject
 
 + (User*)loggedInUser;
-+ (User*)cachedUser;
 + (void)setLoggedInUser:(User*)user;
 
 + (NSString*)versionString;

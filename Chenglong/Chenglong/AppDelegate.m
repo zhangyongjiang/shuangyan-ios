@@ -7,60 +7,60 @@
 //
 
 #import "AppDelegate.h"
-#import "UberViewController.h"
-#import "NSSlidePanelController.h"
-#import "NavigationControllerBase.h"
-#import "MenuViewController.h"
-#import <CoreLocation/CoreLocation.h>
-#import "SplashViewController.h"
-#import "APBAlertView.h"
-#import "RegisterNaviController.h"
+#import "WebService.h"
+#import "LoginViewController.h"
+#import "MainTabBarController.h"
 
 @interface AppDelegate ()
-
-@property(strong, nonatomic) NSSlidePanelController* slidePanelController;
-@property(strong, nonatomic) NavigationControllerBase* navController;
-@property(strong, nonatomic) NSSlidePanelController* resumeController;
+{
+    BOOL isFirstUseApp;
+}
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     window.backgroundColor = [UIColor whiteColor];
     [window makeKeyAndVisible];
     self.window = window;
     
-    [self splash];
+    if ( [[NSUserDefaults standardUserDefaults] objectForKey:kOauthTokenFirstTimeKey] == nil )
+    {
+        // save that we have opened this app
+        [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:kOauthTokenFirstTimeKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        isFirstUseApp = YES;
+    }
+    else
+    {
+        isFirstUseApp = NO;
+    }
+    
+    [Config shared]; // initialize the config for dev bundle loading
+    [WebService loadCookies]; // this loads user session info
+    
+    if ( [Global loggedInUser] != nil) {
+        
+        MainTabBarController* tabBarController = [[MainTabBarController alloc] initWithNibName:nil bundle:nil];
+        self.window.rootViewController = tabBarController;
+        
+    } else {
+        
+        LoginViewController* loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+        self.window.rootViewController = navController;
+    }
+    
+    [self setupAppearance];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0; // TODO: temporary solution
     
     return YES;
 }
 
--(void)splash {
-    SplashViewController* controller = [[SplashViewController alloc] init];
-    self.window.rootViewController = controller;
-}
-
--(void)setupSlideMenu {
-    self.slidePanelController = [[NSSlidePanelController alloc] init];
-    self.slidePanelController.shouldDelegateAutorotateToVisiblePanel = false;
-    
-    self.navController = [[NavigationControllerBase alloc] init];
-    self.slidePanelController.centerPanel = self.navController;
-    UberViewController* controller = [[UberViewController alloc] init];
-    [self.navController pushViewController:controller animated: YES];
-    self.navController.navigationBar.translucent = YES;
-    self.slidePanelController.leftPanel = [[MenuViewController alloc] init];
-    
-    self.window.rootViewController = self.slidePanelController;
-}
-
--(void)askForLocation {
-    CLLocationManager* myLocationManager = [[CLLocationManager alloc] init];
-    [myLocationManager requestWhenInUseAuthorization];
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -85,80 +85,31 @@
 }
 
 
-+(AppDelegate*)getInstance {
-    return [UIApplication sharedApplication].delegate;
-}
-
--(void) showViewController:(UIViewController*)controller {
-    //    [self.slidePanelController showCenterPanelAnimated:YES];
-    //    for (UIViewController* c in self.navController.viewControllers) {
-    //        [[NSNotificationCenter defaultCenter] removeObserver:c];
-    //    }
-    //    [self.navController setViewControllers:@[controller]];
-}
-
--(void) pushViewController:(UIViewController*)controller {
-    //    [self.slidePanelController showCenterPanelAnimated:YES];
-    //    [self.navController pushViewController:controller animated:YES];
-}
-
--(void)alertWithTitle:(NSString *)title andMsg:(NSString *)msg handler:(void (^)(UIAlertAction *action))handler{
-    if ([UIAlertController class])
-    {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:handler]];
-        [self.window.rootViewController presentViewController:alert animated:YES completion:^{
-        }];
+#pragma Setup
+- (void)setupAppearance {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [UINavigationBar appearance].tintColor = [UIColor kaishiColor:UIColorTypeThemeSelected];
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeBarTitleColor], NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    if ( SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ) {
+        [UITabBar appearance].translucent = NO;
     }
-    else
-    {
-        APBAlertView *alertView = [[APBAlertView alloc]
-                                   initWithTitle:title
-                                   message:msg
-                                   cancelButtonTitle:nil
-                                   otherButtonTitles:@[@"OK"]
-                                   cancelHandler:^{
-                                   }
-                                   confirmationHandler:^(NSInteger otherButtonIndex) {
-                                       handler(nil);
-                                   }];
-        [alertView show];
-    }
-}
-
--(void)presentViewController:(UIViewController*)controller completion:(void (^)(void))completion{
-    //    [self.navController presentViewController:controller animated:YES completion:completion];
-}
-
--(void)alertWithTitle:(NSString *)title andMsg:(NSString *)msg ok:(void (^)(UIAlertAction *action))ok  cancel:(void (^)(UIAlertAction *action))cancel{
-    if ([UIAlertController class]) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:ok]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:cancel]];
-        //        [self.navController presentViewController:alert animated:YES completion:nil];
-    }
-    else {
-        APBAlertView *alertView = [[APBAlertView alloc]
-                                   initWithTitle:title
-                                   message:msg
-                                   cancelButtonTitle:@"Cancel"
-                                   otherButtonTitles:@[@"OK"]
-                                   cancelHandler:^{
-                                       cancel(nil);
-                                   }
-                                   confirmationHandler:^(NSInteger otherButtonIndex) {
-                                       ok(nil);
-                                   }];
-        [alertView show];
-    }
-}
-
--(void)startRegisterProcess {
-    RegisterNaviController* controller = [[RegisterNaviController alloc] init];
-    self.window.rootViewController = controller;
-}
-
--(void)gotoMainPage {
+    [UITabBar appearance].backgroundColor = [UIColor whiteColor];
+    [UITabBar appearance].tintColor = [UIColor kaishiColor:UIColorTypeThemeSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeBarTitleColor],NSFontAttributeName : [UIFont systemFontOfSize:13.f]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeThemeSelected],NSFontAttributeName : [UIFont systemFontOfSize:13.f]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -4)];
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.f]} forState:UIControlStateNormal];
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+                                                         forBarMetrics:UIBarMetricsDefault];
+    
+    // general progress view
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     
 }
 

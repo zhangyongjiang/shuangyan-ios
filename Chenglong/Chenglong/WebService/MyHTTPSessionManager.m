@@ -1,4 +1,5 @@
 #import "MyHTTPSessionManager.h"
+#import "WebService.h"
 
 static double nocacheTillSecond = 0;
 static double kDefaultRequestTimeOutInSecs = 30;
