@@ -9,11 +9,37 @@
 #ifndef Quber_PrefixHeader_pch
 #define Quber_PrefixHeader_pch
 
+typedef void(^BlankBlock)(void);
+
+#define IS_CLASS(__obj, __class)                          [__obj isKindOfClass:[__class class]]
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+#define SCREEN_BOUNDS_SIZE [UIScreen mainScreen].bounds.size
+#define SCREEN_BOUNDS_SIZE_WIDTH SCREEN_BOUNDS_SIZE.width
+#define SCREEN_BOUNDS_SIZE_HEIGHT SCREEN_BOUNDS_SIZE.height
+
+#define WeakSelf(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+
+#define ALERT_VIEW_WITH_TITLE(__title, __msg)         {if (__msg){UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:__title message:__msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil]; [alertView show]; }}
+
+#define ALERT_VIEW(__msg){if (__msg){UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil message:__msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil]; [alertView show]; }}
+
+#define PageSize 20
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
-#import "FileReferenceHeader.h"
-#import <PureLayout.h>
+#import "UserApi.h"
+#import "LocalApi.h"
+#import "CourseApi.h"
+#import "JournalApi.h"
+#import "CalendarApi.h"
+
+#import "PureLayout.h"
 #import "SDImageCache+Thumbnail.h"
 #import "UIImageView+WebCache.h"
 #import "UIColor+Kaishi.h"
@@ -28,6 +54,8 @@
 #import "NSObject+TMCache.h"
 #import "NSObject+Tips.h"
 #import "AppDelegate.h"
+#import "TTTAttributedLabel.h"
+#import "SecondCountdown.h"
 
 #import "UINavigationController+BackButtonHandler.h"
 #import "UIView+Nib.h"

@@ -30,3 +30,6 @@ extern NSString* const kOauthTokenFirstTimeKey;
 
 extern const NSInteger kMinNicknameLength;
 extern const NSInteger kMaxNicknameLength;
+
+//登录成功
+extern NSString* const kAppLoginSuccessNotificationKey;

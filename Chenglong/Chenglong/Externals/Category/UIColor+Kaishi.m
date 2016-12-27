@@ -147,7 +147,7 @@ static UIColor* currentThemeColor = nil;
             color = UIColorFromRGB(0x808080);
             break;
         case UIColorTypeBarTitleColor:
-            color = UIColorFromRGB(0xdf1663);
+            color = UIColorFromRGB(0x9b9b9b);
             break;
         case UIColorTypeThemeSelected:
             color = UIColorFromRGB(0xdf1663);

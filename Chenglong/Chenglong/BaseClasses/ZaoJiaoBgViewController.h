@@ -13,5 +13,6 @@
 @property (nonatomic, strong) UIView *navBgView;
 @property (nonatomic, strong) UIView *shadowLineView;
 
-
+//显示错误信息等
+- (void)alertShowWithMsg:(NSString *)msg;
 @end

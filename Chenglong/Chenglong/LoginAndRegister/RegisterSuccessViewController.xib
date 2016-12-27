@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterSuccessViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="register_success_right" translatesAutoresizingMaskIntoConstraints="NO" id="yeO-px-gGc">
+                    <rect key="frame" x="117.5" y="115" width="85" height="85"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="QQU-hx-d9q"/>
+                        <constraint firstAttribute="height" constant="85" id="nCL-oO-bDA"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="习惯的力量 - 让我们制定一个小计划" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEn-aH-Z9E">
+                    <rect key="frame" x="54" y="240" width="212.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy6-Mr-MeB">
+                    <rect key="frame" x="20" y="326" width="280" height="44"/>
+                    <color key="backgroundColor" red="0.87450980389999999" green="0.086274509799999996" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="ETg-s1-YYJ"/>
+                        <constraint firstAttribute="height" constant="44" id="XhZ-xh-Jx2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="下一步">
+                        <color key="titleColor" red="1" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="nextStepEvent:" destination="-1" eventType="touchUpInside" id="mbU-Bg-svJ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yeO-px-gGc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="115" id="71p-xc-eyK"/>
+                <constraint firstItem="VEn-aH-Z9E" firstAttribute="top" secondItem="yeO-px-gGc" secondAttribute="bottom" constant="40" id="OTb-AX-tCy"/>
+                <constraint firstItem="VEn-aH-Z9E" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Pgz-z7-B7B"/>
+                <constraint firstItem="yeO-px-gGc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QQU-JS-eTI"/>
+                <constraint firstItem="Iy6-Mr-MeB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RLY-hA-IDz"/>
+                <constraint firstItem="Iy6-Mr-MeB" firstAttribute="top" secondItem="VEn-aH-Z9E" secondAttribute="bottom" constant="70" id="ZU8-hB-6vQ"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VEn-aH-Z9E" secondAttribute="trailing" constant="15" id="pRT-9z-hYj"/>
+                <constraint firstItem="VEn-aH-Z9E" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rzk-bK-qTE"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="register_success_right" width="85" height="85"/>
+    </resources>
+</document>

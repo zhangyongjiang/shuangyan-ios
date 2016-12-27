@@ -6,6 +6,8 @@
 //  Copyright © 2016年 Chenglong. All rights reserved.
 //
 
+#import "ZaoJiaoBgViewController.h"
+
 @interface LoginViewController : ZaoJiaoBgViewController
 
 @end

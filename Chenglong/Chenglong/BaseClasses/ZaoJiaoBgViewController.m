@@ -28,6 +28,8 @@
     _shadowLineView = [UIView newAutoLayoutView];
     _shadowLineView.backgroundColor = [UIColor kaishiColor:UIColorTypeTableSeparateColor];
     [_navBgView addSubview:_shadowLineView];
+    
+    [self.view setNeedsUpdateConstraints];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -38,6 +40,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -50,8 +53,20 @@
     [_navBgView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(-64, 0, 0, 0) excludingEdge:ALEdgeBottom];
     [_navBgView autoSetDimension:ALDimensionHeight toSize:64.f];
     [_shadowLineView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
-    [_shadowLineView autoSetDimension:ALDimensionHeight toSize:.5f];
+    [_shadowLineView autoSetDimension:ALDimensionHeight toSize:1.f];
 }
 
 
+//显示错误信息等
+- (void)alertShowWithMsg:(NSString *)msg
+{
+    if(iOSVersionGreaterThanOrEqualTo(@"8.0")){
+        UIAlertController *alertCon = [UIAlertController alertControllerWithTitle:nil message:msg preferredStyle:UIAlertControllerStyleAlert];
+        [alertCon addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }]];
+        [self presentViewController:alertCon animated:YES completion:^{}];}
+    else{
+        ALERT_VIEW(msg);
+    }
+}
 @end

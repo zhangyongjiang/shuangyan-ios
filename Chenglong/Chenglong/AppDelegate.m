@@ -50,12 +50,13 @@
         
     } else {
         
-        LoginViewController* loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+        LoginViewController* loginViewController = [[LoginViewController alloc] init];
         UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
         self.window.rootViewController = navController;
     }
     
     [self setupAppearance];
+    [self setupNotification];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0; // TODO: temporary solution
     
     return YES;
@@ -84,12 +85,16 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - 添加通知
+- (void)setupNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginSuccess:) name:kAppLoginSuccessNotificationKey object:nil];
+}
 
 #pragma Setup
 - (void)setupAppearance {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [UINavigationBar appearance].tintColor = [UIColor kaishiColor:UIColorTypeThemeSelected];
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeBarTitleColor], NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeThemeSelected], NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     if ( SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ) {
@@ -97,20 +102,41 @@
     }
     [UITabBar appearance].backgroundColor = [UIColor whiteColor];
     [UITabBar appearance].tintColor = [UIColor kaishiColor:UIColorTypeThemeSelected];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeBarTitleColor],NSFontAttributeName : [UIFont systemFontOfSize:13.f]} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeThemeSelected],NSFontAttributeName : [UIFont systemFontOfSize:13.f]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeBarTitleColor],NSFontAttributeName : [UIFont systemFontOfSize:11.f]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor kaishiColor:UIColorTypeThemeSelected],NSFontAttributeName : [UIFont systemFontOfSize:11.f]} forState:UIControlStateSelected];
     [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -4)];
     
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.f]} forState:UIControlStateNormal];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
-    
+    UIImage* image = [[UIImage imageNamed:@"nav_btn_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(0, image.size.width, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     // general progress view
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     
+}
+
+#pragma mark - Login/Out
+
+- (void)logout
+{
+    //退出
+    [Global setLoggedInUser:nil];
+    
+    // clear image caches
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] clearDisk];
+    LoginViewController* loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    self.window.rootViewController = navController;
+}
+- (void)onLoginSuccess:(NSNotification *)noti
+{
+    MainTabBarController* tabBarController = [[MainTabBarController alloc] initWithNibName:nil bundle:nil];
+    self.window.rootViewController = tabBarController;
 }
 
 @end

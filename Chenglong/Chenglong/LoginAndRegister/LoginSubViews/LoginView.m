@@ -13,11 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIView *headerBgView1;
 @property (weak, nonatomic) IBOutlet UIView *headerBgView2;
 @property (weak, nonatomic) IBOutlet UIImageView *headerView;
-@property (weak, nonatomic) IBOutlet UITextField *tfPhone;
-@property (weak, nonatomic) IBOutlet UITextField *tfPwd;
-@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
-@property (weak, nonatomic) IBOutlet UIButton *btnForgetPwd;
-
 
 @end
 
@@ -41,9 +36,19 @@
     
     _tfPhone.leftViewMode = UITextFieldViewModeAlways;
     _tfPwd.leftViewMode = UITextFieldViewModeAlways;
-    _tfPhone.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_phone_icon"]];
-    _tfPwd.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_pwd_icon"]];
+    UIImageView *phontIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_phone_icon"]];
+    phontIcon.frame = CGRectMake(0, 0, 26, 16);
+    phontIcon.contentMode = UIViewContentModeLeft;
+    _tfPhone.leftView = phontIcon;
+    UIImageView *pwdIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_pwd_icon"]];
+    pwdIcon.frame = CGRectMake(0, 0, 26, 16);
+    pwdIcon.contentMode = UIViewContentModeLeft;
+    _tfPwd.leftView = pwdIcon;
     
 }
 
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self endEditing:YES];
+}
 @end

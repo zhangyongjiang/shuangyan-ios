@@ -61,8 +61,6 @@
 		0300498F1E0E68B4006EDC29 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 030049891E0E68B4006EDC29 /* 37x-Checkmark@2x.png */; };
 		030049901E0E68B4006EDC29 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300498B1E0E68B4006EDC29 /* MBProgressHUD.m */; };
 		030049911E0E68B4006EDC29 /* NSObject+Tips.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300498D1E0E68B4006EDC29 /* NSObject+Tips.m */; };
-		030049961E0FB6BB006EDC29 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030049941E0FB6BB006EDC29 /* LoginViewController.m */; };
-		030049971E0FB6BB006EDC29 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030049951E0FB6BB006EDC29 /* LoginViewController.xib */; };
 		0300499B1E0FB77E006EDC29 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300499A1E0FB77E006EDC29 /* LoginView.m */; };
 		0300499D1E0FB799006EDC29 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0300499C1E0FB799006EDC29 /* LoginView.xib */; };
 		032911461E113B10000C1F5A /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911431E113B10000C1F5A /* NJKWebViewProgress.m */; };
@@ -94,6 +92,15 @@
 		0329119D1E1143FB000C1F5A /* SameCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0329119C1E1143FB000C1F5A /* SameCityViewController.m */; };
 		032911A01E114409000C1F5A /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0329119F1E114409000C1F5A /* CommunityViewController.m */; };
 		032911A31E114413000C1F5A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911A21E114413000C1F5A /* ProfileViewController.m */; };
+		032911A71E125716000C1F5A /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911A61E125716000C1F5A /* RegisterViewController.m */; };
+		032911AF1E125CD7000C1F5A /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911AE1E125CD7000C1F5A /* RegisterView.m */; };
+		032911B11E125CDF000C1F5A /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911B01E125CDF000C1F5A /* RegisterView.xib */; };
+		032911B41E126C45000C1F5A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911B31E126C45000C1F5A /* LoginViewController.m */; };
+		032911B81E12705F000C1F5A /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911B71E12705F000C1F5A /* LoginViewController.xib */; };
+		032911BA1E127068000C1F5A /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911B91E127068000C1F5A /* RegisterViewController.xib */; };
+		032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911BD1E1296A8000C1F5A /* SecondCountdown.m */; };
+		032911C21E129B77000C1F5A /* RegisterSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911C01E129B77000C1F5A /* RegisterSuccessViewController.m */; };
+		032911C31E129B77000C1F5A /* RegisterSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911C11E129B77000C1F5A /* RegisterSuccessViewController.xib */; };
 		0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386EF591E0FC86D009A1DFE /* UIView+Nib.m */; };
 		0386EF5D1E0FC86D009A1DFE /* UIViewController+Nib.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386EF5B1E0FC86D009A1DFE /* UIViewController+Nib.m */; };
 		148414EB8B774F6AA74B9B49 /* libPods-Chenglong.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E3D952CD33D1BC5D08FDA /* libPods-Chenglong.a */; };
@@ -136,7 +143,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		030048EE1E0E5CDB006EDC29 /* FileReferenceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileReferenceHeader.h; sourceTree = "<group>"; };
 		030048EF1E0E5D17006EDC29 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		030048F01E0E5D17006EDC29 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		030048F11E0E5D17006EDC29 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
@@ -244,9 +250,6 @@
 		0300498B1E0E68B4006EDC29 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		0300498C1E0E68B4006EDC29 /* NSObject+Tips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Tips.h"; sourceTree = "<group>"; };
 		0300498D1E0E68B4006EDC29 /* NSObject+Tips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Tips.m"; sourceTree = "<group>"; };
-		030049931E0FB6BB006EDC29 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		030049941E0FB6BB006EDC29 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		030049951E0FB6BB006EDC29 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		030049991E0FB77E006EDC29 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		0300499A1E0FB77E006EDC29 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		0300499C1E0FB799006EDC29 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
@@ -308,6 +311,20 @@
 		0329119F1E114409000C1F5A /* CommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityViewController.m; sourceTree = "<group>"; };
 		032911A11E114413000C1F5A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		032911A21E114413000C1F5A /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		032911A51E125716000C1F5A /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		032911A61E125716000C1F5A /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		032911AD1E125CD7000C1F5A /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
+		032911AE1E125CD7000C1F5A /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
+		032911B01E125CDF000C1F5A /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
+		032911B21E126C45000C1F5A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		032911B31E126C45000C1F5A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		032911B71E12705F000C1F5A /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		032911B91E127068000C1F5A /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		032911BC1E1296A8000C1F5A /* SecondCountdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondCountdown.h; sourceTree = "<group>"; };
+		032911BD1E1296A8000C1F5A /* SecondCountdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondCountdown.m; sourceTree = "<group>"; };
+		032911BF1E129B77000C1F5A /* RegisterSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSuccessViewController.h; sourceTree = "<group>"; };
+		032911C01E129B77000C1F5A /* RegisterSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSuccessViewController.m; sourceTree = "<group>"; };
+		032911C11E129B77000C1F5A /* RegisterSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterSuccessViewController.xib; sourceTree = "<group>"; };
 		0386EF581E0FC86D009A1DFE /* UIView+Nib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Nib.h"; sourceTree = "<group>"; };
 		0386EF591E0FC86D009A1DFE /* UIView+Nib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Nib.m"; sourceTree = "<group>"; };
 		0386EF5A1E0FC86D009A1DFE /* UIViewController+Nib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Nib.h"; sourceTree = "<group>"; };
@@ -494,9 +511,15 @@
 		030049921E0E6C8D006EDC29 /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
-				030049931E0FB6BB006EDC29 /* LoginViewController.h */,
-				030049941E0FB6BB006EDC29 /* LoginViewController.m */,
-				030049951E0FB6BB006EDC29 /* LoginViewController.xib */,
+				032911B21E126C45000C1F5A /* LoginViewController.h */,
+				032911B31E126C45000C1F5A /* LoginViewController.m */,
+				032911B71E12705F000C1F5A /* LoginViewController.xib */,
+				032911A51E125716000C1F5A /* RegisterViewController.h */,
+				032911A61E125716000C1F5A /* RegisterViewController.m */,
+				032911B91E127068000C1F5A /* RegisterViewController.xib */,
+				032911BF1E129B77000C1F5A /* RegisterSuccessViewController.h */,
+				032911C01E129B77000C1F5A /* RegisterSuccessViewController.m */,
+				032911C11E129B77000C1F5A /* RegisterSuccessViewController.xib */,
 				030049981E0FB769006EDC29 /* LoginSubViews */,
 			);
 			path = LoginAndRegister;
@@ -508,6 +531,9 @@
 				030049991E0FB77E006EDC29 /* LoginView.h */,
 				0300499A1E0FB77E006EDC29 /* LoginView.m */,
 				0300499C1E0FB799006EDC29 /* LoginView.xib */,
+				032911AD1E125CD7000C1F5A /* RegisterView.h */,
+				032911AE1E125CD7000C1F5A /* RegisterView.m */,
+				032911B01E125CDF000C1F5A /* RegisterView.xib */,
 			);
 			path = LoginSubViews;
 			sourceTree = "<group>";
@@ -601,6 +627,15 @@
 			path = ProfileControllers;
 			sourceTree = "<group>";
 		};
+		032911BB1E129694000C1F5A /* OtherClasses */ = {
+			isa = PBXGroup;
+			children = (
+				032911BC1E1296A8000C1F5A /* SecondCountdown.h */,
+				032911BD1E1296A8000C1F5A /* SecondCountdown.m */,
+			);
+			path = OtherClasses;
+			sourceTree = "<group>";
+		};
 		8BED9CC683C49F5C31AEEE26 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,7 +680,6 @@
 				032911951E114375000C1F5A /* SameCityControllers */,
 				032911961E1143AF000C1F5A /* CommunityControllers */,
 				032911971E1143C3000C1F5A /* ProfileControllers */,
-				030048EE1E0E5CDB006EDC29 /* FileReferenceHeader.h */,
 				A364CBE01C94CBCF0075E65F /* AppDelegate.h */,
 				A364CBE11C94CBCF0075E65F /* AppDelegate.m */,
 				032911911E1142FD000C1F5A /* MainTabBarController.h */,
@@ -694,6 +728,7 @@
 		A364CBF51C94CBFA0075E65F /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				032911BB1E129694000C1F5A /* OtherClasses */,
 				032911601E113BD0000C1F5A /* YCAlertView */,
 				032911561E113BA8000C1F5A /* SDiPhoneVersion */,
 				032911481E113B1C000C1F5A /* UIViewController+BackButton */,
@@ -942,8 +977,11 @@
 				A354C1861C93ED9F00EE0DE5 /* LaunchScreen.storyboard in Resources */,
 				0300498F1E0E68B4006EDC29 /* 37x-Checkmark@2x.png in Resources */,
 				A354C1831C93ED9F00EE0DE5 /* Assets.xcassets in Resources */,
-				030049971E0FB6BB006EDC29 /* LoginViewController.xib in Resources */,
+				032911B11E125CDF000C1F5A /* RegisterView.xib in Resources */,
+				032911B81E12705F000C1F5A /* LoginViewController.xib in Resources */,
+				032911C31E129B77000C1F5A /* RegisterSuccessViewController.xib in Resources */,
 				0300499D1E0FB799006EDC29 /* LoginView.xib in Resources */,
+				032911BA1E127068000C1F5A /* RegisterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,7 +1058,6 @@
 				0300496F1E0E5F60006EDC29 /* FriendRequest.m in Sources */,
 				0329116C1E113C83000C1F5A /* NSString+Util.m in Sources */,
 				032911A31E114413000C1F5A /* ProfileViewController.m in Sources */,
-				030049961E0FB6BB006EDC29 /* LoginViewController.m in Sources */,
 				032911871E113D1F000C1F5A /* UINavigationBar+Awesome.m in Sources */,
 				0329119A1E1143ED000C1F5A /* FileViewController.m in Sources */,
 				030048F31E0E5D17006EDC29 /* Constants.m in Sources */,
@@ -1096,6 +1133,7 @@
 				0300496C1E0E5F60006EDC29 /* EmailRegisterRequest.m in Sources */,
 				030049721E0E5F60006EDC29 /* InviteRequest.m in Sources */,
 				032911591E113BA8000C1F5A /* SDiPhoneVersion.m in Sources */,
+				032911C21E129B77000C1F5A /* RegisterSuccessViewController.m in Sources */,
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
 				030049771E0E5F61006EDC29 /* MediaContent.m in Sources */,
@@ -1109,13 +1147,17 @@
 				030049901E0E68B4006EDC29 /* MBProgressHUD.m in Sources */,
 				0300495F1E0E5F60006EDC29 /* BusinessDetails.m in Sources */,
 				030049671E0E5F60006EDC29 /* CourseBuyRequest.m in Sources */,
+				032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */,
+				032911B41E126C45000C1F5A /* LoginViewController.m in Sources */,
 				030048FF1E0E5D65006EDC29 /* TMCache.m in Sources */,
 				032911471E113B10000C1F5A /* NJKWebViewProgressView.m in Sources */,
 				ADFEAB6F1DED6EBA00C0D703 /* JournalApi.m in Sources */,
+				032911A71E125716000C1F5A /* RegisterViewController.m in Sources */,
 				030049711E0E5F60006EDC29 /* Invitation.m in Sources */,
 				032911661E113BD0000C1F5A /* UCActionSheet.m in Sources */,
 				A354C1751C93ED9F00EE0DE5 /* main.m in Sources */,
 				030049731E0E5F60006EDC29 /* Journal.m in Sources */,
+				032911AF1E125CD7000C1F5A /* RegisterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

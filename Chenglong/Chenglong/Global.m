@@ -25,6 +25,9 @@ static NSString* const kCachedUserIdKey = @"CachedUserIdKey";
 static NSString* const kCachedUserNicknameKey = @"CachedUserNicknameKey";
 static NSString* const kCachedUserImgPath = @"CachedUserImgPath";
 
+//登录成功
+NSString* const kAppLoginSuccessNotificationKey = @"kAppLoginSuccessNotificationKey";
+
 
 static Global *_shared = nil;
 
