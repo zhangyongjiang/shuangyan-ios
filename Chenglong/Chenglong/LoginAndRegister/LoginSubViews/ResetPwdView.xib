@@ -64,7 +64,7 @@
                         <constraint firstAttribute="height" constant="40" id="4fX-6x-NYP"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1TO-oP-CBe" userLabel="lineView">
                     <rect key="frame" x="38" y="178" width="244" height="0.5"/>
@@ -79,7 +79,7 @@
                         <constraint firstAttribute="height" constant="40" id="n4b-dT-NeN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgx-O8-cg7">
                     <rect key="frame" x="38" y="282" width="244" height="44"/>

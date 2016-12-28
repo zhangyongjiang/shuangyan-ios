@@ -60,7 +60,7 @@
                         <constraint firstAttribute="height" constant="40" id="qgP-bj-Ngy"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0PZ-vp-aqL" userLabel="lineView">
                     <rect key="frame" x="38" y="178" width="244" height="0.5"/>
