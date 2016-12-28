@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Data : NSObject
+@interface Data : NSObject<NSCoding>
 
 -(NSString *) toJson;
 -(NSString*)addToUrlString:(NSString *)urlString;

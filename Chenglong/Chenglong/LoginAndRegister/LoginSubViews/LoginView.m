@@ -45,6 +45,11 @@
     pwdIcon.contentMode = UIViewContentModeLeft;
     _tfPwd.leftView = pwdIcon;
     
+    NSString *imgUrl = KUserDefaultsGetValue(kCachedUserImgPath);
+    if (imgUrl) {
+        [_headerView sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:nil];
+    }
+    
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

@@ -19,11 +19,11 @@ NSString* const kSessionCookies = @"sessionCookies";
 const NSInteger kMinNicknameLength = 1;
 const NSInteger kMaxNicknameLength = 12;
 
-static NSString* const kCacheUserModel = @"kCacheUserModel";
-static NSString* const kCacheUserPhone = @"CacheUserPhone";
-static NSString* const kCachedUserIdKey = @"CachedUserIdKey";
-static NSString* const kCachedUserNicknameKey = @"CachedUserNicknameKey";
-static NSString* const kCachedUserImgPath = @"CachedUserImgPath";
+NSString* const kCacheUserModel = @"kCacheUserModel";
+NSString* const kCacheUserPhone = @"CacheUserPhone";
+NSString* const kCachedUserIdKey = @"CachedUserIdKey";
+NSString* const kCachedUserNicknameKey = @"CachedUserNicknameKey";
+NSString* const kCachedUserImgPath = @"CachedUserImgPath";
 
 //登录成功
 NSString* const kAppLoginSuccessNotificationKey = @"kAppLoginSuccessNotificationKey";
@@ -54,6 +54,7 @@ static Global *_shared = nil;
 
 + (User*)loggedInUser {
     User *user = [User tm_objectForKey:kCacheUserModel];
+    
     if ([Global shared].loggedInUser == nil && user != nil) {
         [Global shared].loggedInUser = user;
     }
@@ -62,12 +63,10 @@ static Global *_shared = nil;
 
 + (void)setLoggedInUser:(User*)user {
     
-    
     [Global shared].loggedInUser = user;
     
-    
     if ( user != nil ) {
-        [user tm_setObject:user forKey:kCacheUserModel];
+        [User tm_setObject:user forKey:kCacheUserModel];
         
         [[NSUserDefaults standardUserDefaults] setObject:user.id forKey:kCachedUserIdKey];
         [[NSUserDefaults standardUserDefaults] setObject:user.name forKey:kCachedUserNicknameKey];
@@ -77,6 +76,7 @@ static Global *_shared = nil;
         [WebService saveCookies];
         
     } else {
+        [User tm_removeObjectForKey:kCacheUserModel];
         [WebService removeAllCookies];
     }
     [[NSUserDefaults standardUserDefaults] synchronize];

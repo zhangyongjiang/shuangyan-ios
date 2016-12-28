@@ -1,28 +1,27 @@
 //
-//  RegisterViewController.m
+//  ResetPwdViewController.m
 //  Chenglong
 //
-//  Created by wangyaochang on 2016/12/27.
+//  Created by wangyaochang on 2016/12/28.
 //  Copyright © 2016年 Chenglong. All rights reserved.
 //
 
-#import "RegisterViewController.h"
-#import "RegisterView.h"
-#import "RegisterSuccessViewController.h"
+#import "ResetPwdViewController.h"
+#import "ResetPwdView.h"
 
-static CGFloat registerViewHeight = 380.f;
+static CGFloat registerViewHeight = 340.f;
 
-@interface RegisterViewController ()
+@interface ResetPwdViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) RegisterView *registerView;
+@property (nonatomic, strong) ResetPwdView *resetPwdView;
 @end
 
-@implementation RegisterViewController
+@implementation ResetPwdViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
     
     self.navigationItem.title = @"注册";
     
@@ -44,9 +43,9 @@ static CGFloat registerViewHeight = 380.f;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.contentSize = CGSizeMake(SCREEN_BOUNDS_SIZE_WIDTH, SCREEN_BOUNDS_SIZE_HEIGHT);
     
-    self.registerView = [RegisterView loadFromNibWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS_SIZE_WIDTH, registerViewHeight)];
-    [self.registerView.btnRegister addTarget:self action:@selector(registerEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.registerView];
+    self.resetPwdView = [ResetPwdView loadFromNibWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS_SIZE_WIDTH, registerViewHeight)];
+    [self.resetPwdView.btnSubmit addTarget:self action:@selector(resetPwdEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:self.resetPwdView];
     
     [self.view addSubview:self.scrollView];
 }
@@ -56,14 +55,14 @@ static CGFloat registerViewHeight = 380.f;
     
 }
 
-- (void)registerEvent:(UIButton *)btn
+- (void)resetPwdEvent:(UIButton *)btn
 {
     [self.view endEditing:YES];
     
-    NSString* phoneNumber = [self.registerView.tfPhone.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* pwd = [self.registerView.tfPwd.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* code = [self.registerView.tfCode.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* name = [self.registerView.tfNickName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* phoneNumber = [self.resetPwdView.tfPhone.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* pwd = [self.resetPwdView.tfPwd.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* code = [self.resetPwdView.tfCode.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* againPwd = [self.resetPwdView.tfAgainPwd.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ( phoneNumber.length == 0 ) {
         [self presentMessageTips:@"手机号不能为空"];
         return;
@@ -76,27 +75,27 @@ static CGFloat registerViewHeight = 380.f;
         [self presentMessageTips:@"密码为6~16位数字字母组合"];
         return;
     }
-    if ( name.length == 0 ) {
-        [self presentMessageTips:@"昵称不能为空"];
+    if ( againPwd.length == 0 || againPwd.length < 6 || againPwd.length > 16) {
+        [self presentMessageTips:@"密码为6~16位数字字母组合"];
         return;
     }
-    PhoneRegisterRequest* registerRequest = [[PhoneRegisterRequest alloc] init];
-    registerRequest.phone = phoneNumber;
-    registerRequest.password = pwd;
-    registerRequest.validationCode = @"160718";//通用验证码 160718
-    registerRequest.name = name;
+    if (![pwd isEqualToString:againPwd]) {
+        [self presentMessageTips:@"两次密码不一样"];
+        return;
+    }
+    
+    ResetPasswordRequest* resetRequest = [[ResetPasswordRequest alloc] init];
+    resetRequest.phone = phoneNumber;
+    resetRequest.password = pwd;
+    resetRequest.validationCode = @"160718";//通用验证码 160718
     WeakSelf(weakSelf)
-    [SVProgressHUD showWithStatus:@"注册中"];
-    [UserApi UserAPI_RegisterByPhone:registerRequest onSuccess:^(User *resp) {
-        
+    [SVProgressHUD showWithStatus:@"重置中"];
+    [UserApi UserAPI_ResetPassword:resetRequest onSuccess:^(GenericResponse *resp) {
         [SVProgressHUD dismiss];
-        [Global setLoggedInUser:resp];
-        RegisterSuccessViewController *registerSuccess = [RegisterSuccessViewController loadFromNib];
-        [weakSelf.navigationController pushViewController:registerSuccess animated:YES];
-        
+        [weakSelf alertShowWithMsg:@"重置成功"];
     } onError:^(APIError *err) {
         [SVProgressHUD dismiss];
-        [weakSelf alertShowWithMsg:@"手机已经被注册"];
+        [weakSelf alertShowWithMsg:err.errorMsg];
     }];
 }
 
@@ -107,14 +106,14 @@ static CGFloat registerViewHeight = 380.f;
     NSValue *keyboardFrameEnd = [keyboardInformation valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrame = [keyboardFrameEnd CGRectValue];
     _scrollView.height = SCREEN_BOUNDS_SIZE_HEIGHT - keyboardFrame.size.height - 64;
-    _registerView.height = registerViewHeight;
+    _resetPwdView.height = registerViewHeight;
     self.scrollView.contentSize = CGSizeMake(SCREEN_BOUNDS_SIZE_WIDTH, registerViewHeight);
     
 }
 - (void)keyboardHidden:(NSNotification *)note
 {
     _scrollView.height = SCREEN_BOUNDS_SIZE_HEIGHT;
-    _registerView.height = SCREEN_BOUNDS_SIZE_HEIGHT-64;
+    _resetPwdView.height = SCREEN_BOUNDS_SIZE_HEIGHT-64;
     self.scrollView.contentSize = CGSizeMake(SCREEN_BOUNDS_SIZE_WIDTH, SCREEN_BOUNDS_SIZE_HEIGHT);
 }
 

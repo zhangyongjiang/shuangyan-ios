@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "LoginView.h"
 #import "RegisterViewController.h"
+#import "ResetPwdViewController.h"
 
 static CGFloat loginViewHeight = 450.f;
 
@@ -102,7 +103,8 @@ static CGFloat loginViewHeight = 450.f;
 
 - (void)resetPwdEvent:(UIButton *)btn
 {
-    
+    ResetPwdViewController *resetCon = [ResetPwdViewController loadFromNib];
+    [self.navigationController pushViewController:resetCon animated:YES];
 }
 
 #pragma mark - 键盘

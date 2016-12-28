@@ -101,6 +101,10 @@
 		032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911BD1E1296A8000C1F5A /* SecondCountdown.m */; };
 		032911C21E129B77000C1F5A /* RegisterSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911C01E129B77000C1F5A /* RegisterSuccessViewController.m */; };
 		032911C31E129B77000C1F5A /* RegisterSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911C11E129B77000C1F5A /* RegisterSuccessViewController.xib */; };
+		032911CD1E139FDD000C1F5A /* ResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911CB1E139FDD000C1F5A /* ResetPwdViewController.m */; };
+		032911CE1E139FDD000C1F5A /* ResetPwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911CC1E139FDD000C1F5A /* ResetPwdViewController.xib */; };
+		032911D11E139FEC000C1F5A /* ResetPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911D01E139FEC000C1F5A /* ResetPwdView.m */; };
+		032911D31E139FF7000C1F5A /* ResetPwdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911D21E139FF7000C1F5A /* ResetPwdView.xib */; };
 		0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386EF591E0FC86D009A1DFE /* UIView+Nib.m */; };
 		0386EF5D1E0FC86D009A1DFE /* UIViewController+Nib.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386EF5B1E0FC86D009A1DFE /* UIViewController+Nib.m */; };
 		148414EB8B774F6AA74B9B49 /* libPods-Chenglong.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E3D952CD33D1BC5D08FDA /* libPods-Chenglong.a */; };
@@ -325,6 +329,12 @@
 		032911BF1E129B77000C1F5A /* RegisterSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSuccessViewController.h; sourceTree = "<group>"; };
 		032911C01E129B77000C1F5A /* RegisterSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSuccessViewController.m; sourceTree = "<group>"; };
 		032911C11E129B77000C1F5A /* RegisterSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterSuccessViewController.xib; sourceTree = "<group>"; };
+		032911CA1E139FDD000C1F5A /* ResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdViewController.h; sourceTree = "<group>"; };
+		032911CB1E139FDD000C1F5A /* ResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPwdViewController.m; sourceTree = "<group>"; };
+		032911CC1E139FDD000C1F5A /* ResetPwdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPwdViewController.xib; sourceTree = "<group>"; };
+		032911CF1E139FEC000C1F5A /* ResetPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdView.h; sourceTree = "<group>"; };
+		032911D01E139FEC000C1F5A /* ResetPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPwdView.m; sourceTree = "<group>"; };
+		032911D21E139FF7000C1F5A /* ResetPwdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPwdView.xib; sourceTree = "<group>"; };
 		0386EF581E0FC86D009A1DFE /* UIView+Nib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Nib.h"; sourceTree = "<group>"; };
 		0386EF591E0FC86D009A1DFE /* UIView+Nib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Nib.m"; sourceTree = "<group>"; };
 		0386EF5A1E0FC86D009A1DFE /* UIViewController+Nib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Nib.h"; sourceTree = "<group>"; };
@@ -517,6 +527,9 @@
 				032911A51E125716000C1F5A /* RegisterViewController.h */,
 				032911A61E125716000C1F5A /* RegisterViewController.m */,
 				032911B91E127068000C1F5A /* RegisterViewController.xib */,
+				032911CA1E139FDD000C1F5A /* ResetPwdViewController.h */,
+				032911CB1E139FDD000C1F5A /* ResetPwdViewController.m */,
+				032911CC1E139FDD000C1F5A /* ResetPwdViewController.xib */,
 				032911BF1E129B77000C1F5A /* RegisterSuccessViewController.h */,
 				032911C01E129B77000C1F5A /* RegisterSuccessViewController.m */,
 				032911C11E129B77000C1F5A /* RegisterSuccessViewController.xib */,
@@ -534,6 +547,9 @@
 				032911AD1E125CD7000C1F5A /* RegisterView.h */,
 				032911AE1E125CD7000C1F5A /* RegisterView.m */,
 				032911B01E125CDF000C1F5A /* RegisterView.xib */,
+				032911CF1E139FEC000C1F5A /* ResetPwdView.h */,
+				032911D01E139FEC000C1F5A /* ResetPwdView.m */,
+				032911D21E139FF7000C1F5A /* ResetPwdView.xib */,
 			);
 			path = LoginSubViews;
 			sourceTree = "<group>";
@@ -977,8 +993,10 @@
 				A354C1861C93ED9F00EE0DE5 /* LaunchScreen.storyboard in Resources */,
 				0300498F1E0E68B4006EDC29 /* 37x-Checkmark@2x.png in Resources */,
 				A354C1831C93ED9F00EE0DE5 /* Assets.xcassets in Resources */,
+				032911CE1E139FDD000C1F5A /* ResetPwdViewController.xib in Resources */,
 				032911B11E125CDF000C1F5A /* RegisterView.xib in Resources */,
 				032911B81E12705F000C1F5A /* LoginViewController.xib in Resources */,
+				032911D31E139FF7000C1F5A /* ResetPwdView.xib in Resources */,
 				032911C31E129B77000C1F5A /* RegisterSuccessViewController.xib in Resources */,
 				0300499D1E0FB799006EDC29 /* LoginView.xib in Resources */,
 				032911BA1E127068000C1F5A /* RegisterViewController.xib in Resources */,
@@ -1116,6 +1134,7 @@
 				0300497E1E0E5F61006EDC29 /* ResetPasswordRequest.m in Sources */,
 				030049861E0E5F61006EDC29 /* WechatLoginRequest.m in Sources */,
 				030048FE1E0E5D65006EDC29 /* NSObject+TMCache.m in Sources */,
+				032911CD1E139FDD000C1F5A /* ResetPwdViewController.m in Sources */,
 				030049761E0E5F61006EDC29 /* JournalList.m in Sources */,
 				0300496E1E0E5F60006EDC29 /* EventList.m in Sources */,
 				0300495E1E0E5F60006EDC29 /* Business.m in Sources */,
@@ -1145,6 +1164,7 @@
 				032911751E113CBA000C1F5A /* SDImageCache+Thumbnail.m in Sources */,
 				030049651E0E5F60006EDC29 /* ChangePasswordRequest.m in Sources */,
 				030049901E0E68B4006EDC29 /* MBProgressHUD.m in Sources */,
+				032911D11E139FEC000C1F5A /* ResetPwdView.m in Sources */,
 				0300495F1E0E5F60006EDC29 /* BusinessDetails.m in Sources */,
 				030049671E0E5F60006EDC29 /* CourseBuyRequest.m in Sources */,
 				032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */,

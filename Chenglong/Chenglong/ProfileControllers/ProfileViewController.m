@@ -27,11 +27,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"我的";
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.backgroundColor = [UIColor kaishiColor:UIColorTypeThemeSelected];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(100, 200, 200, 45);
+    [btn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(loginOut:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loginOut:(UIButton *)btn
+{
+    AppDelegate *app = kAppDelegate;
+    [app logout];
 }
 
 @end
