@@ -34,16 +34,9 @@
     _headerView.layer.cornerRadius = CGRectGetHeight(_headerView.bounds)/2;
     _headerView.layer.masksToBounds = YES;
     
-    _tfPhone.leftViewMode = UITextFieldViewModeAlways;
-    _tfPwd.leftViewMode = UITextFieldViewModeAlways;
-    UIImageView *phontIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_phone_icon"]];
-    phontIcon.frame = CGRectMake(0, 0, 26, 16);
-    phontIcon.contentMode = UIViewContentModeLeft;
-    _tfPhone.leftView = phontIcon;
-    UIImageView *pwdIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_pwd_icon"]];
-    pwdIcon.frame = CGRectMake(0, 0, 26, 16);
-    pwdIcon.contentMode = UIViewContentModeLeft;
-    _tfPwd.leftView = pwdIcon;
+    CGRect frame = CGRectMake(0, 0, 26, 16);
+    [_tfPhone setLeftView:frame imageName:@"login_phone_icon"];
+    [_tfPwd setLeftView:frame imageName:@"login_pwd_icon"];
     
     NSString *imgUrl = KUserDefaultsGetValue(kCachedUserImgPath);
     if (imgUrl) {

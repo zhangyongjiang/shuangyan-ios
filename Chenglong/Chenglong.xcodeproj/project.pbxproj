@@ -105,6 +105,10 @@
 		032911CE1E139FDD000C1F5A /* ResetPwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911CC1E139FDD000C1F5A /* ResetPwdViewController.xib */; };
 		032911D11E139FEC000C1F5A /* ResetPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911D01E139FEC000C1F5A /* ResetPwdView.m */; };
 		032911D31E139FF7000C1F5A /* ResetPwdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911D21E139FF7000C1F5A /* ResetPwdView.xib */; };
+		032911D61E13E8D0000C1F5A /* UITextField+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911D51E13E8D0000C1F5A /* UITextField+Util.m */; };
+		0335B3031E15031B00A2A74B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3021E15031B00A2A74B /* Default@2x.png */; };
+		0335B3051E15045000A2A74B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3041E15045000A2A74B /* Default-568h@2x.png */; };
+		0335B3071E15045C00A2A74B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3061E15045C00A2A74B /* Default.png */; };
 		0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386EF591E0FC86D009A1DFE /* UIView+Nib.m */; };
 		0386EF5D1E0FC86D009A1DFE /* UIViewController+Nib.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386EF5B1E0FC86D009A1DFE /* UIViewController+Nib.m */; };
 		148414EB8B774F6AA74B9B49 /* libPods-Chenglong.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E3D952CD33D1BC5D08FDA /* libPods-Chenglong.a */; };
@@ -335,6 +339,11 @@
 		032911CF1E139FEC000C1F5A /* ResetPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdView.h; sourceTree = "<group>"; };
 		032911D01E139FEC000C1F5A /* ResetPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPwdView.m; sourceTree = "<group>"; };
 		032911D21E139FF7000C1F5A /* ResetPwdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPwdView.xib; sourceTree = "<group>"; };
+		032911D41E13E8D0000C1F5A /* UITextField+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Util.h"; sourceTree = "<group>"; };
+		032911D51E13E8D0000C1F5A /* UITextField+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Util.m"; sourceTree = "<group>"; };
+		0335B3021E15031B00A2A74B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		0335B3041E15045000A2A74B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		0335B3061E15045C00A2A74B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0386EF581E0FC86D009A1DFE /* UIView+Nib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Nib.h"; sourceTree = "<group>"; };
 		0386EF591E0FC86D009A1DFE /* UIView+Nib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Nib.m"; sourceTree = "<group>"; };
 		0386EF5A1E0FC86D009A1DFE /* UIViewController+Nib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Nib.h"; sourceTree = "<group>"; };
@@ -715,6 +724,9 @@
 		A354C1731C93ED9F00EE0DE5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0335B3061E15045C00A2A74B /* Default.png */,
+				0335B3021E15031B00A2A74B /* Default@2x.png */,
+				0335B3041E15045000A2A74B /* Default-568h@2x.png */,
 				A354C1841C93ED9F00EE0DE5 /* LaunchScreen.storyboard */,
 				A364CC4B1C94CBFA0075E65F /* PrefixHeader.pch */,
 				A354C1871C93ED9F00EE0DE5 /* Info.plist */,
@@ -792,6 +804,8 @@
 				0386EF591E0FC86D009A1DFE /* UIView+Nib.m */,
 				0386EF5A1E0FC86D009A1DFE /* UIViewController+Nib.h */,
 				0386EF5B1E0FC86D009A1DFE /* UIViewController+Nib.m */,
+				032911D41E13E8D0000C1F5A /* UITextField+Util.h */,
+				032911D51E13E8D0000C1F5A /* UITextField+Util.m */,
 				0329115A1E113BC0000C1F5A /* TTTAttributedLabel.h */,
 				0329115B1E113BC0000C1F5A /* TTTAttributedLabel.m */,
 			);
@@ -989,6 +1003,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0335B3031E15031B00A2A74B /* Default@2x.png in Resources */,
 				0300498E1E0E68B4006EDC29 /* 37x-Checkmark.png in Resources */,
 				A354C1861C93ED9F00EE0DE5 /* LaunchScreen.storyboard in Resources */,
 				0300498F1E0E68B4006EDC29 /* 37x-Checkmark@2x.png in Resources */,
@@ -997,7 +1012,9 @@
 				032911B11E125CDF000C1F5A /* RegisterView.xib in Resources */,
 				032911B81E12705F000C1F5A /* LoginViewController.xib in Resources */,
 				032911D31E139FF7000C1F5A /* ResetPwdView.xib in Resources */,
+				0335B3051E15045000A2A74B /* Default-568h@2x.png in Resources */,
 				032911C31E129B77000C1F5A /* RegisterSuccessViewController.xib in Resources */,
+				0335B3071E15045C00A2A74B /* Default.png in Resources */,
 				0300499D1E0FB799006EDC29 /* LoginView.xib in Resources */,
 				032911BA1E127068000C1F5A /* RegisterViewController.xib in Resources */,
 			);
@@ -1151,6 +1168,7 @@
 				ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */,
 				0300496C1E0E5F60006EDC29 /* EmailRegisterRequest.m in Sources */,
 				030049721E0E5F60006EDC29 /* InviteRequest.m in Sources */,
+				032911D61E13E8D0000C1F5A /* UITextField+Util.m in Sources */,
 				032911591E113BA8000C1F5A /* SDiPhoneVersion.m in Sources */,
 				032911C21E129B77000C1F5A /* RegisterSuccessViewController.m in Sources */,
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,

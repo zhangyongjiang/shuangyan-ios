@@ -40,29 +40,11 @@
 
 - (void)setupSubViews
 {
-    UIImageView *phontIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_phone_icon"]];
-    phontIcon.frame = CGRectMake(0, 0, 26, 16);
-    phontIcon.contentMode = UIViewContentModeLeft;
-    _tfPhone.leftView = phontIcon;
-    _tfPhone.leftViewMode = UITextFieldViewModeAlways;
-    
-    UIImageView *pwdIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_pwd_icon"]];
-    pwdIcon.frame = CGRectMake(0, 0, 26, 16);
-    pwdIcon.contentMode = UIViewContentModeLeft;
-    _tfPwd.leftView = pwdIcon;
-    _tfPwd.leftViewMode = UITextFieldViewModeAlways;
-    
-    UIImageView *codeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"register_icon_code"]];
-    codeIcon.frame = CGRectMake(0, 0, 26, 16);
-    codeIcon.contentMode = UIViewContentModeLeft;
-    _tfCode.leftView = codeIcon;
-    _tfCode.leftViewMode = UITextFieldViewModeAlways;
-    
-    UIImageView *nameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"register_icon_name"]];
-    nameIcon.frame = CGRectMake(0, 0, 26, 16);
-    nameIcon.contentMode = UIViewContentModeLeft;
-    _tfNickName.leftView = nameIcon;
-    _tfNickName.leftViewMode = UITextFieldViewModeAlways;
+    CGRect frame = CGRectMake(0, 0, 26, 16);
+    [_tfPhone setLeftView:frame imageName:@"login_phone_icon"];
+    [_tfPwd setLeftView:frame imageName:@"login_pwd_icon"];
+    [_tfCode setLeftView:frame imageName:@"register_icon_code"];
+    [_tfNickName setLeftView:frame imageName:@"register_icon_name"];
     
     [_btnSendCode setTitleColor:[UIColor kaishiColor:UIColorTypeThemeSelected] forState:UIControlStateNormal];
     [_btnSendCode setTitleColor:[UIColor colorFromString:@"c6c8cd"] forState:UIControlStateDisabled];
