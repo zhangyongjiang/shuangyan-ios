@@ -72,6 +72,6 @@ typedef void(^BlankBlock)(void);
 #import "ZaoJiaoBgViewController.h"
 #import "UCActionSheet.h"
 #import "FDAlertView.h"
-
+#import "XTPopView.h"
 
 #endif
