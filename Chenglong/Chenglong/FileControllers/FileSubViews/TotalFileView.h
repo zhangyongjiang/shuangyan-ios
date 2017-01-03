@@ -1,15 +1,15 @@
 //
-//  MyFilesView.h
+//  TotalFileView.h
 //  Chenglong
 //
-//  Created by wangyaochang on 2016/12/29.
+//  Created by wangyaochang on 2016/12/30.
 //  Copyright © 2016年 Chenglong. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MyFilesView : UIView
+@interface TotalFileView : UIView
 
-@property (weak, nonatomic) IBOutlet UITableView *myFileTableView;
+@property (weak, nonatomic) IBOutlet UITableView *totalFileTableView;
 @property (nonatomic, strong) NSMutableArray *fileListArr;
 @end

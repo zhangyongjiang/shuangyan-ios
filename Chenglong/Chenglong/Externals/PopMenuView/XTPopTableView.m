@@ -10,8 +10,6 @@
 
 @interface XTPopTableView ()
 
-@property (nonatomic, strong) UITableView *tableView;
-
 @end
 
 @implementation XTPopTableView
@@ -84,8 +82,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndexPathRow:)]) {
-        [self.delegate selectIndexPathRow:indexPath.row];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndexPathRow:view:)]) {
+        [self.delegate selectIndexPathRow:indexPath.row view:self];
         [self removeFromSuperview];
     }
 }

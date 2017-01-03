@@ -10,9 +10,8 @@
 
 @interface FilesChooseTitleView : UIView
 
-@property (weak, nonatomic) IBOutlet UILabel *lbTitle;
-@property (weak, nonatomic) IBOutlet UIImageView *imgIcon;
 @property (nonatomic, copy) BlankBlock tapTitleBlock;
 
 - (void)setupImgIconDirection:(BOOL)isUp;
+- (void)setupTitle:(NSString *)title;
 @end

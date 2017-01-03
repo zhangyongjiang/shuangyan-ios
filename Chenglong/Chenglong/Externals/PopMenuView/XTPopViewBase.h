@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, XTDirectionType)
 
 @property (nonatomic, assign) XTDirectionType type;
 
-@property (nonatomic, copy) BlankBlock dismissBlock;
+@property (nonatomic, copy) BlankBlock _Nonnull dismissBlock;
 
 // 初始化方法
 - (instancetype _Nonnull)initWithOrigin:(CGPoint) origin

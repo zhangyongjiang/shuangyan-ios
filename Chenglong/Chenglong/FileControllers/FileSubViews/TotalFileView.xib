@@ -11,32 +11,28 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MyFilesView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TotalFileView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RNR-lx-Ef8">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q8Z-58-VUf">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="iN0-l3-epB" id="9fd-YF-Rqr"/>
-                        <outlet property="delegate" destination="iN0-l3-epB" id="Aab-la-cl3"/>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="vI4-zZ-VXd"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="L86-nB-y0U"/>
                     </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="RNR-lx-Ef8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PuK-3c-7LT"/>
-                <constraint firstAttribute="bottom" secondItem="RNR-lx-Ef8" secondAttribute="bottom" id="UlW-rf-qcz"/>
-                <constraint firstAttribute="trailing" secondItem="RNR-lx-Ef8" secondAttribute="trailing" id="d6n-j8-ksY"/>
-                <constraint firstItem="RNR-lx-Ef8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qiv-lv-h6H"/>
+                <constraint firstAttribute="trailing" secondItem="Q8Z-58-VUf" secondAttribute="trailing" id="HOR-9E-NBq"/>
+                <constraint firstItem="Q8Z-58-VUf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nfh-pr-4YT"/>
+                <constraint firstItem="Q8Z-58-VUf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rsK-xJ-3jZ"/>
+                <constraint firstAttribute="bottom" secondItem="Q8Z-58-VUf" secondAttribute="bottom" id="uPa-6J-V5n"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="myFileTableView" destination="RNR-lx-Ef8" id="l89-HA-Vcj"/>
+                <outlet property="totalFileTableView" destination="Q8Z-58-VUf" id="WPj-Hs-Qfr"/>
             </connections>
         </view>
     </objects>

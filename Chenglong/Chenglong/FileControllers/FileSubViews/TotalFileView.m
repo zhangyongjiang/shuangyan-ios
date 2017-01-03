@@ -1,15 +1,15 @@
 //
-//  MyFilesView.m
+//  TotalFileView.m
 //  Chenglong
 //
-//  Created by wangyaochang on 2016/12/29.
+//  Created by wangyaochang on 2016/12/30.
 //  Copyright © 2016年 Chenglong. All rights reserved.
 //
 
-#import "MyFilesView.h"
-#import "FileNoDataView.h"
+#import "TotalFileView.h"
 
-@interface MyFilesView () <UITableViewDataSource,UITableViewDelegate>
+
+@interface TotalFileView () <UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic, assign) BOOL isLoading;
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
@@ -17,31 +17,25 @@
 
 @end
 
-@implementation MyFilesView
+@implementation TotalFileView
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    _myFileTableView.tableFooterView = [UIView new];
+    _totalFileTableView.tableFooterView = [UIView new];
     
 }
 
 - (void)setFileListArr:(NSMutableArray *)fileListArr
 {
     _fileListArr = fileListArr;
-    [_myFileTableView reloadData];
+    [_totalFileTableView reloadData];
 }
 
 #pragma mark - UITableView delegate datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (_fileListArr.count == 0) {
-        FileNoDataView *bgView = [FileNoDataView loadFromNib];
-        _myFileTableView.backgroundView = bgView;
-        return 0;
-    }
-    _myFileTableView.backgroundView = nil;
     return _fileListArr.count;
 }
 

@@ -94,7 +94,7 @@
     
     CGContextClosePath(context);
     [self.backGoundView.backgroundColor setFill];
-    [self.backgroundColor setStroke];
+    [self.backGoundView.backgroundColor setStroke];
     CGContextDrawPath(context, kCGPathFillStroke);
 }
 #pragma mark - popView

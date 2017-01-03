@@ -61,6 +61,7 @@ typedef void(^BlankBlock)(void);
 #import "TTTAttributedLabel.h"
 #import "SecondCountdown.h"
 #import "UITextField+Util.h"
+#import "UITableView+Util.h"
 
 #import "UINavigationController+BackButtonHandler.h"
 #import "UIView+Nib.h"

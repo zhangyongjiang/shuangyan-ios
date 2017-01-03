@@ -9,11 +9,13 @@
 #import "XTPopViewBase.h"
 @protocol SelectIndexPathDelegate <NSObject>
 
-- (void)selectIndexPathRow:(NSInteger )index;
+- (void)selectIndexPathRow:(NSInteger )index view:(XTPopViewBase * _Nullable)baseView;
 
 @end
 
 @interface XTPopTableView : XTPopViewBase<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
 // titles
 @property (nonatomic, strong) NSArray           * _Nonnull dataArray;
 // images
