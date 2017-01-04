@@ -8,6 +8,7 @@
 
 #import "MyFilesView.h"
 #import "FileNoDataView.h"
+#import "CourseDetailCell.h"
 
 @interface MyFilesView () <UITableViewDataSource,UITableViewDelegate>
 
@@ -23,6 +24,7 @@
 {
     [super awakeFromNib];
     _myFileTableView.tableFooterView = [UIView new];
+    [_myFileTableView  registerNib:[UINib nibWithNibName:@"CourseDetailCell" bundle:nil] forCellReuseIdentifier:@"CourseDetailCell"];
     
 }
 

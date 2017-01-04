@@ -14,7 +14,7 @@
 {
     UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imgName]];
     icon.frame = frame;
-    icon.contentMode = UIViewContentModeLeft;
+    icon.contentMode = UIViewContentModeCenter;
     self.leftView = icon;
     self.leftViewMode = UITextFieldViewModeAlways;
 }

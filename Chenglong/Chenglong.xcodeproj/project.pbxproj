@@ -106,6 +106,11 @@
 		032911D11E139FEC000C1F5A /* ResetPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911D01E139FEC000C1F5A /* ResetPwdView.m */; };
 		032911D31E139FF7000C1F5A /* ResetPwdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032911D21E139FF7000C1F5A /* ResetPwdView.xib */; };
 		032911D61E13E8D0000C1F5A /* UITextField+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911D51E13E8D0000C1F5A /* UITextField+Util.m */; };
+		032C96071E1D253E001EFC29 /* CourseDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96051E1D253E001EFC29 /* CourseDetailCell.m */; };
+		032C96081E1D253E001EFC29 /* CourseDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032C96061E1D253E001EFC29 /* CourseDetailCell.xib */; };
+		032C960A1E1D2A5A001EFC29 /* 512-512Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 032C96091E1D2A5A001EFC29 /* 512-512Icon.png */; };
+		032C960D1E1D2B90001EFC29 /* TotalFileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C960C1E1D2B90001EFC29 /* TotalFileHeaderView.m */; };
+		032C960F1E1D2B98001EFC29 /* TotalFileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032C960E1E1D2B98001EFC29 /* TotalFileHeaderView.xib */; };
 		0335B3031E15031B00A2A74B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3021E15031B00A2A74B /* Default@2x.png */; };
 		0335B3051E15045000A2A74B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3041E15045000A2A74B /* Default-568h@2x.png */; };
 		0335B3071E15045C00A2A74B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3061E15045C00A2A74B /* Default.png */; };
@@ -353,6 +358,13 @@
 		032911D21E139FF7000C1F5A /* ResetPwdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPwdView.xib; sourceTree = "<group>"; };
 		032911D41E13E8D0000C1F5A /* UITextField+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Util.h"; sourceTree = "<group>"; };
 		032911D51E13E8D0000C1F5A /* UITextField+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Util.m"; sourceTree = "<group>"; };
+		032C96041E1D253E001EFC29 /* CourseDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailCell.h; sourceTree = "<group>"; };
+		032C96051E1D253E001EFC29 /* CourseDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailCell.m; sourceTree = "<group>"; };
+		032C96061E1D253E001EFC29 /* CourseDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseDetailCell.xib; sourceTree = "<group>"; };
+		032C96091E1D2A5A001EFC29 /* 512-512Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "512-512Icon.png"; sourceTree = "<group>"; };
+		032C960B1E1D2B90001EFC29 /* TotalFileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalFileHeaderView.h; sourceTree = "<group>"; };
+		032C960C1E1D2B90001EFC29 /* TotalFileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalFileHeaderView.m; sourceTree = "<group>"; };
+		032C960E1E1D2B98001EFC29 /* TotalFileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TotalFileHeaderView.xib; sourceTree = "<group>"; };
 		0335B3021E15031B00A2A74B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0335B3041E15045000A2A74B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0335B3061E15045C00A2A74B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -724,6 +736,12 @@
 				0335B3341E164D3C00A2A74B /* TotalFileView.h */,
 				0335B3351E164D3C00A2A74B /* TotalFileView.m */,
 				0335B3371E164D4C00A2A74B /* TotalFileView.xib */,
+				032C960B1E1D2B90001EFC29 /* TotalFileHeaderView.h */,
+				032C960C1E1D2B90001EFC29 /* TotalFileHeaderView.m */,
+				032C960E1E1D2B98001EFC29 /* TotalFileHeaderView.xib */,
+				032C96041E1D253E001EFC29 /* CourseDetailCell.h */,
+				032C96051E1D253E001EFC29 /* CourseDetailCell.m */,
+				032C96061E1D253E001EFC29 /* CourseDetailCell.xib */,
 			);
 			path = FileSubViews;
 			sourceTree = "<group>";
@@ -791,6 +809,7 @@
 		A354C1731C93ED9F00EE0DE5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				032C96091E1D2A5A001EFC29 /* 512-512Icon.png */,
 				0335B3061E15045C00A2A74B /* Default.png */,
 				0335B3021E15031B00A2A74B /* Default@2x.png */,
 				0335B3041E15045000A2A74B /* Default-568h@2x.png */,
@@ -1073,9 +1092,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				032C96081E1D253E001EFC29 /* CourseDetailCell.xib in Resources */,
 				0335B3031E15031B00A2A74B /* Default@2x.png in Resources */,
 				0300498E1E0E68B4006EDC29 /* 37x-Checkmark.png in Resources */,
 				A354C1861C93ED9F00EE0DE5 /* LaunchScreen.storyboard in Resources */,
+				032C960A1E1D2A5A001EFC29 /* 512-512Icon.png in Resources */,
 				0300498F1E0E68B4006EDC29 /* 37x-Checkmark@2x.png in Resources */,
 				0335B3281E15378200A2A74B /* MyFilesView.xib in Resources */,
 				0335B3381E164D4C00A2A74B /* TotalFileView.xib in Resources */,
@@ -1083,6 +1104,7 @@
 				032911CE1E139FDD000C1F5A /* ResetPwdViewController.xib in Resources */,
 				0335B3231E15341800A2A74B /* FileNoDataView.xib in Resources */,
 				032911B11E125CDF000C1F5A /* RegisterView.xib in Resources */,
+				032C960F1E1D2B98001EFC29 /* TotalFileHeaderView.xib in Resources */,
 				032911B81E12705F000C1F5A /* LoginViewController.xib in Resources */,
 				0335B32D1E15390100A2A74B /* FilesChooseTitleView.xib in Resources */,
 				032911D31E139FF7000C1F5A /* ResetPwdView.xib in Resources */,
@@ -1169,6 +1191,7 @@
 				032911A31E114413000C1F5A /* ProfileViewController.m in Sources */,
 				032911871E113D1F000C1F5A /* UINavigationBar+Awesome.m in Sources */,
 				0335B3121E1508F800A2A74B /* XTPopViewBase.m in Sources */,
+				032C960D1E1D2B90001EFC29 /* TotalFileHeaderView.m in Sources */,
 				0329119A1E1143ED000C1F5A /* FileViewController.m in Sources */,
 				030048F31E0E5D17006EDC29 /* Constants.m in Sources */,
 				030049911E0E68B4006EDC29 /* NSObject+Tips.m in Sources */,
@@ -1176,6 +1199,7 @@
 				A364CBE21C94CBCF0075E65F /* AppDelegate.m in Sources */,
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
 				0386EF5D1E0FC86D009A1DFE /* UIViewController+Nib.m in Sources */,
+				032C96071E1D253E001EFC29 /* CourseDetailCell.m in Sources */,
 				030049601E0E5F60006EDC29 /* BusinessDetailsList.m in Sources */,
 				032911651E113BD0000C1F5A /* FDAlertView.m in Sources */,
 				0329114E1E113B1C000C1F5A /* UIViewController+BackButtonAction.m in Sources */,
