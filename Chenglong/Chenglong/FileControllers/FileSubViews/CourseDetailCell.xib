@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="512-512Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="R7X-B9-cC1">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bb-512.png" translatesAutoresizingMaskIntoConstraints="NO" id="R7X-B9-cC1">
                         <rect key="frame" x="12" y="10" width="140" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="TLY-Af-3Nf"/>
@@ -106,7 +106,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="512-512Icon.png" width="512" height="512"/>
+        <image name="bb-512.png" width="512" height="512"/>
         <image name="file_love_icon" width="14" height="14"/>
         <image name="file_zan_icon" width="14" height="14"/>
     </resources>

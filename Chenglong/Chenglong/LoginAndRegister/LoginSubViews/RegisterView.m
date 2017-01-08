@@ -73,14 +73,15 @@
 - (IBAction)sendCodeEvent:(id)sender
 {
     
-//    PhoneValidationRequest* validationRequest = [[PhoneValidationRequest alloc] init];
-//    validationRequest.phone = [Global loggedInUser].privateInfo.phone;
+    PhoneRegisterRequest* validationRequest = [[PhoneRegisterRequest alloc] init];
+    validationRequest.phone = [Global loggedInUser].phone;
     WeakSelf(weakSelf)
     [SVProgressHUD show];
     
-//    [KaishiApi UserAPI_SendPhoneValidationCode:validationRequest onSuccess:^(GenericResponse *resp) {
+    [UserApi UserAPI_SendPhoneValidationCode:validationRequest onSuccess:^(User *resp) {
+        
         [SVProgressHUD dismiss];
-    
+        
         self.btnSendCode.enabled = NO;
         [weakSelf.btnSendCode setTitle:[NSString stringWithFormat:@"%ld秒后重发",max_second] forState:UIControlStateNormal];
         
@@ -98,11 +99,10 @@
             [weakSelf.btnSendCode setTitle:@"获取验证码" forState:UIControlStateNormal];
             weakSelf.secondCountDown = nil;
         };
-        
-//    } onError:^(APIError *err) {
-//        [SVProgressHUD dismiss];
-//        ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
-//    }];
+    } onError:^(APIError *err) {
+        [SVProgressHUD dismiss];
+        ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+    }];
 }
 
 

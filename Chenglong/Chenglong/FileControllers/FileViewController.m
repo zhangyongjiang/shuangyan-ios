@@ -53,6 +53,7 @@
     WeakSelf(weakSelf)
     _fileTitleView = [FilesChooseTitleView loadFromNibWithFrame:CGRectMake(0, 0, 200, 42)];
     _fileTitleView.tapTitleBlock = ^{
+        [weakSelf.view endEditing:YES];
         [weakSelf.fileTitleView setupImgIconDirection:YES];
         [weakSelf showMenuTableView];
     };

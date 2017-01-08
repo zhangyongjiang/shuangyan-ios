@@ -74,5 +74,6 @@ typedef void(^BlankBlock)(void);
 #import "UCActionSheet.h"
 #import "FDAlertView.h"
 #import "XTPopView.h"
+#import "RemindBlankView.h"
 
 #endif
