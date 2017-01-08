@@ -105,7 +105,7 @@
 }
 
 +(NSURLSessionDataTask*) JournalAPI_CreateJournal:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/journal-service/create";
+    NSString* url_ = @"/zuul/journal-service/create";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(json) [dict setObject:json forKey:@"json"];
     return [MyHTTPSessionManager upload:filePart parameters:nil toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -125,7 +125,7 @@
 }
 
 +(NSURLSessionDataTask*) JournalAPI_AddResourceToJournal:(NSDictionary*)filePart journalId:(NSString*)journalId onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/journal-service/add-resource";
+    NSString* url_ = @"/zuul/journal-service/add-resource";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(journalId) [dict setObject:journalId forKey:@"journalId"];
     return [MyHTTPSessionManager upload:filePart parameters:nil toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {

@@ -220,7 +220,7 @@
 }
 
 +(NSURLSessionDataTask*) CourseAPI_CreateCourseFileWithResources:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/create-file-with-resources";
+    NSString* url_ = @"/zuul/course-service/create-file-with-resources";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(json) [dict setObject:json forKey:@"json"];
     return [MyHTTPSessionManager upload:filePart parameters:dict toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -357,7 +357,7 @@
 }
 
 +(NSURLSessionDataTask*) CourseAPI_AddResourceToCourse:(NSDictionary*)filePart courseId:(NSString*)courseId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/add-resource";
+    NSString* url_ = @"/zuul/course-service/add-resource";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(courseId) [dict setObject:courseId forKey:@"courseId"];
     return [MyHTTPSessionManager upload:filePart parameters:dict toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {
