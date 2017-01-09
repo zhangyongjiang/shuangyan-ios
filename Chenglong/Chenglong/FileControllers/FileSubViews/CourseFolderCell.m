@@ -29,4 +29,10 @@
     // Configure the view for the selected state
 }
 
+- (void)dataDidChange
+{
+    Course *course = self.data;
+    _lbFileName.text = course.title;
+}
+
 @end

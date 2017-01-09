@@ -52,8 +52,13 @@
 - (IBAction)sendCodeEvent:(id)sender
 {
     
+    if ([NSString isEmpty:_tfPhone.text]) {
+        [self presentFailureTips:@"请填写你的电话号码"];
+        return;
+    }
+    
     PhoneRegisterRequest* validationRequest = [[PhoneRegisterRequest alloc] init];
-    validationRequest.phone = [Global loggedInUser].phone;
+    validationRequest.phone = _tfPhone.text;
     WeakSelf(weakSelf)
     [SVProgressHUD show];
     [UserApi UserAPI_SendPhoneValidationCode:validationRequest onSuccess:^(User *resp) {

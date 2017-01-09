@@ -35,6 +35,7 @@
     [_refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [_myFileTableView addSubview:self.refreshControl];
     
+    _fileListArr = [NSMutableArray array];
     [self reloadTotalFileList:NO];
 }
 
@@ -100,7 +101,46 @@
 }
 - (void)creatFolderEvent:(UIButton *)btn
 {
-    
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [alert.textFields firstObject];
+        if ([NSString isEmpty:tf.text]) {
+            [self presentFailureTips:@"文件标题不能为空"];
+            return;
+        }
+        Course *course = [Course new];
+        course.title = tf.text;
+        [SVProgressHUD showWithStatus:@"创建中"];
+        [CourseApi CourseAPI_CreateCourseDir:course onSuccess:^(Course *resp) {
+            
+            [SVProgressHUD dismiss];
+            
+            [weakSelf.fileListArr addObject:resp];
+            
+            if (weakSelf.fileListArr.count > 1) {
+                [weakSelf.myFileTableView insertIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
+            }else{
+                [weakSelf.myFileTableView reloadData];
+            }
+            
+        } onError:^(APIError *err) {
+            
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - UITableView delegate datasource
@@ -126,10 +166,14 @@
         //文件夹
         cellIdenti = @"CourseFolderCell";
         CourseFolderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenti];
+        cell.data = course;
         return cell;
     }else{
         cellIdenti = @"CourseDetailCell";
         CourseDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseDetailCell"];
+        CourseDetails *detail = [CourseDetails new];
+        detail.course = course;
+        cell.data = detail;
         return cell;
     }
 }

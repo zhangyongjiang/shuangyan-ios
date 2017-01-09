@@ -10,7 +10,9 @@
 #import "CourseDetailCell.h"
 #import "TotalFileHeaderView.h"
 
-@interface TotalFileView () <UITableViewDataSource,UITableViewDelegate>
+@interface TotalFileView () <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+
+@property (nonatomic, strong) TotalFileHeaderView *fileHeaderView;
 
 @property (nonatomic, strong) NSString *keywordsStr;
 @property (nonatomic, strong) NSString *ageStr;
@@ -35,11 +37,17 @@
     
     TotalFileHeaderView *headerView = [TotalFileHeaderView loadFromNibWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS_SIZE_WIDTH, 60)];
     headerView.backgroundColor = [UIColor clearColor];
+    headerView.tfAge.delegate = self;
+    headerView.tfKeyword.delegate = self;
+    _fileHeaderView = headerView;
     _totalFileTableView.tableHeaderView = headerView;
     
     _refreshControl = [[UIRefreshControl alloc] init];
     [_refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [_totalFileTableView addSubview:self.refreshControl];
+    
+    _courseList = [CourseDetailsList new];
+    _courseList.items = [NSMutableArray array];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
@@ -68,7 +76,7 @@
     }
     self.loading = YES;
     WeakSelf(weakSelf)
-    self.requestOperation = [CourseApi CourseAPI_Search:_keywordsStr?:@"" page:@(_pageNum) onSuccess:^(CourseList *resp) {
+    self.requestOperation = [CourseApi CourseAPI_Search:_keywordsStr age:_ageStr.integerValue > 0 ? @(_ageStr.integerValue) : nil page:@(_pageNum) onSuccess:^(CourseDetailsList *resp) {
         weakSelf.loading=NO;
         weakSelf.requestOperation = nil;
         [weakSelf insertFileList:resp];
@@ -78,7 +86,7 @@
         }
     } onError:^(APIError *err) {
         weakSelf.loading=NO;
-        if (weakSelf.fileListArr.count<= 0) {
+        if (weakSelf.courseList.items.count<= 0) {
             [weakSelf.totalFileTableView reloadData];
         }
         if ( isRefresh ) {
@@ -98,7 +106,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (_fileListArr.count == 0) {
+    if (_courseList.items.count == 0) {
         
         RemindBlankView *bgView = [RemindBlankView loadWithImgTopValue:0 message:@"暂无文件" image:nil];
         bgView.isLoading = self.loading;
@@ -106,11 +114,12 @@
         return 0;
     }
     self.totalFileTableView.backgroundView = nil;
-    return _fileListArr.count;
+    return _courseList.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CourseDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseDetailCell"];
+    cell.data = _courseList.items[indexPath.row];
     return cell;
 }
 
@@ -124,9 +133,23 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - UITextField delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    _keywordsStr = _fileHeaderView.tfKeyword.text;
+    _ageStr = _fileHeaderView.tfAge.text;
+    if (![NSString isEmpty:_ageStr] || ![NSString isEmpty:_keywordsStr]) {
+        [self endEditing:YES];
+        [self resetFileDetailsList];
+        [self reloadTotalFileList:NO];
+    }
+    
+    return YES;
+}
+
 #pragma mark - handle data
 
-- (void)insertFileList:(CourseList*)courseList {
+- (void)insertFileList:(CourseDetailsList*)courseList {
     if (_pageNum == 0) {
         [self indexPathForCourseList:courseList];
         [_totalFileTableView reloadData];
@@ -136,17 +159,17 @@
     }
 }
 
-- (NSArray*)indexPathForCourseList:(CourseList*)courseList {
+- (NSArray*)indexPathForCourseList:(CourseDetailsList*)courseList {
     
     if (_pageNum == 0) {
-        [_fileListArr removeAllObjects];
+        [_courseList.items removeAllObjects];
     }
     
     NSMutableArray *indexPaths = [NSMutableArray array];
     
-    NSInteger index = (_fileListArr.count > 0) ? _fileListArr.count : 0;
+    NSInteger index = (_courseList.items.count > 0) ? _courseList.items.count : 0;
     for (CourseDetails *courseDetail in courseList.items) {
-        [_fileListArr addObject:courseDetail];
+        [_courseList.items addObject:courseDetail];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
         [indexPaths addObject:indexPath];
         index++;

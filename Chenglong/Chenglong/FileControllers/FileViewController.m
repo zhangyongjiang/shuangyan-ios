@@ -148,7 +148,13 @@
     if (baseView.tag == 10000) {
         [self handleTitleView:index];
     }else{
-        
+        if (index == 0) {
+            //新建文件
+            
+        }else if(index == 1){
+            //新建文件夹
+            [self.myFileView creatFolderEvent:nil];
+        }
     }
 }
 

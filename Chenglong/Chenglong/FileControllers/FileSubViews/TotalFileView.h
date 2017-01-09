@@ -11,6 +11,6 @@
 @interface TotalFileView : UIView
 
 @property (weak, nonatomic) IBOutlet UITableView *totalFileTableView;
-@property (nonatomic, strong) NSMutableArray *fileListArr;
+@property (nonatomic, strong) CourseDetailsList *courseList;
 
 @end
