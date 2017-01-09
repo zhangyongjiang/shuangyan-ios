@@ -4,6 +4,7 @@
 #import "AFNetworking.h"
 #import "APIError.h"
 #import "WebService.h"
+#import "CourseDetailsList.h"
 #import "CourseList.h"
 #import "Course.h"
 #import "GenericResponse.h"
@@ -15,7 +16,7 @@
 
 @interface CourseApi : NSObject
 
-+(NSURLSessionDataTask*) CourseAPI_Search:(NSString*)keywords page:(NSNumber*)page onSuccess:(void (^)(CourseList *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
++(NSURLSessionDataTask*) CourseAPI_Search:(NSString*)keywords age:(NSNumber*)age page:(NSNumber*)page onSuccess:(void (^)(CourseDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(NSURLSessionDataTask*) CourseAPI_CreateCourseFile:(Course*)course onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 

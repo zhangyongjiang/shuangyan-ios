@@ -6,7 +6,7 @@
 @implementation LocalApi
 
 +(NSURLSessionDataTask*) AdvertisingAPI_AddResourceToAdvertising:(NSDictionary*)filePart advertisingId:(NSString*)advertisingId onSuccess:(void (^)(Advertising *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/local-service/ads/add-resource";
+    NSString* url_ = @"/zuul/local-service/ads/add-resource";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(advertisingId) [dict setObject:advertisingId forKey:@"advertisingId"];
     return [MyHTTPSessionManager upload:filePart parameters:nil toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {

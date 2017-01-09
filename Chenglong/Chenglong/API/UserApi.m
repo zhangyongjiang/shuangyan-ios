@@ -176,7 +176,7 @@
 }
 
 +(NSURLSessionDataTask*) UserAPI_UploadUserImage:(NSDictionary*)filePart onSuccess:(void (^)(MediaContent *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/user-service/user/upload-image";
+    NSString* url_ = @"/zuul/user-service/user/upload-image";
     return [MyHTTPSessionManager upload:filePart parameters:nil toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSError *error;
         ObjectMapper *mapper = [ObjectMapper mapper];

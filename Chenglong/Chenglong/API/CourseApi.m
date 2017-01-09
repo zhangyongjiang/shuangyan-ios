@@ -5,17 +5,18 @@
 
 @implementation CourseApi
 
-+(NSURLSessionDataTask*) CourseAPI_Search:(NSString*)keywords page:(NSNumber*)page onSuccess:(void (^)(CourseList *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) CourseAPI_Search:(NSString*)keywords age:(NSNumber*)age page:(NSNumber*)page onSuccess:(void (^)(CourseDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
     NSString* url_ = @"/course-service/search";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(keywords) [dict setObject:keywords forKey:@"keywords"];
     if(page) [dict setObject:page forKey:@"page"];
+    if(age) [dict setObject:age forKey:@"age"];
     return [[WebService getOperationManager] GET:url_
 	            parameters:dict
 	               success:^(NSURLSessionDataTask *operation, id responseObject) {
 	                   ObjectMapper *mapper = [ObjectMapper mapper];
 	                   NSError *error;
-	                   CourseList* resp = [mapper mapObject:responseObject toClass:[CourseList class] withError:&error];
+	                   CourseDetailsList* resp = [mapper mapObject:responseObject toClass:[CourseDetailsList class] withError:&error];
 	                   if (error) {
 	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
 	                   } else { 
@@ -219,7 +220,7 @@
 }
 
 +(NSURLSessionDataTask*) CourseAPI_CreateCourseFileWithResources:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/create-file-with-resources";
+    NSString* url_ = @"/zuul/course-service/create-file-with-resources";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(json) [dict setObject:json forKey:@"json"];
     return [MyHTTPSessionManager upload:filePart parameters:dict toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -356,7 +357,7 @@
 }
 
 +(NSURLSessionDataTask*) CourseAPI_AddResourceToCourse:(NSDictionary*)filePart courseId:(NSString*)courseId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/add-resource";
+    NSString* url_ = @"/zuul/course-service/add-resource";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(courseId) [dict setObject:courseId forKey:@"courseId"];
     return [MyHTTPSessionManager upload:filePart parameters:dict toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {
