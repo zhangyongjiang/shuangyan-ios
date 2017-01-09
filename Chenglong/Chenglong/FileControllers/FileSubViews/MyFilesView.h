@@ -12,4 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *myFileTableView;
 @property (nonatomic, strong) NSMutableArray *fileListArr;
+@property (nonatomic, copy) BlankBlock lookOtherFileBlock;
+
+- (void)creatFolderEvent:(UIButton *)btn;
+- (void)creatFileEvent:(UIButton *)btn;
 @end

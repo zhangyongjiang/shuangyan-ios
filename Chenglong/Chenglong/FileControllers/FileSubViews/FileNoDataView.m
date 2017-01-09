@@ -10,9 +10,6 @@
 
 @interface FileNoDataView ()
 
-@property (weak, nonatomic) IBOutlet UIButton *btnFolder;
-@property (weak, nonatomic) IBOutlet UIButton *btnFile;
-
 @end
 
 @implementation FileNoDataView

@@ -75,6 +75,7 @@
             <connections>
                 <outlet property="btnFile" destination="KVz-qj-7U5" id="3Gd-wF-eYR"/>
                 <outlet property="btnFolder" destination="ShY-ns-8Q4" id="4fY-7D-jqg"/>
+                <outlet property="btnLookFiles" destination="5Fm-Wt-KYr" id="mGM-Ve-vet"/>
             </connections>
         </view>
     </objects>

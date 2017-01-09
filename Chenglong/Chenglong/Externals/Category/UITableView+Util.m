@@ -11,6 +11,16 @@
 @implementation UITableView (Util)
 
 
+- (void)setSelfSeparatorInset:(UIEdgeInsets)separatorInset
+{
+    if ([self respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self setSeparatorInset:separatorInset];
+    }
+    if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self setLayoutMargins:separatorInset];
+    }
+}
+
 - (void)reloadIndexPaths:(NSArray*)indexPaths {
     [self beginUpdates];
     [self reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];

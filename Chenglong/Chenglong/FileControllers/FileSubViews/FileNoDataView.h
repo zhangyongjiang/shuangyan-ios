@@ -10,4 +10,7 @@
 
 @interface FileNoDataView : UIView
 
+@property (weak, nonatomic) IBOutlet UIButton *btnLookFiles;
+@property (weak, nonatomic) IBOutlet UIButton *btnFolder;
+@property (weak, nonatomic) IBOutlet UIButton *btnFile;
 @end

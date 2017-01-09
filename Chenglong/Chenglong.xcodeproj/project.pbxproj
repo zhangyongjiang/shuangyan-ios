@@ -117,6 +117,8 @@
 		032C961C1E2207E9001EFC29 /* ProfileUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032C961A1E2207E9001EFC29 /* ProfileUnitCell.xib */; };
 		032C96201E2208B6001EFC29 /* ProfileHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C961E1E2208B6001EFC29 /* ProfileHeaderCell.m */; };
 		032C96211E2208B6001EFC29 /* ProfileHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032C961F1E2208B6001EFC29 /* ProfileHeaderCell.xib */; };
+		032C96251E222C9A001EFC29 /* CourseFolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96231E222C9A001EFC29 /* CourseFolderCell.m */; };
+		032C96261E222C9A001EFC29 /* CourseFolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032C96241E222C9A001EFC29 /* CourseFolderCell.xib */; };
 		0335B3031E15031B00A2A74B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3021E15031B00A2A74B /* Default@2x.png */; };
 		0335B3051E15045000A2A74B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3041E15045000A2A74B /* Default-568h@2x.png */; };
 		0335B3071E15045C00A2A74B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3061E15045C00A2A74B /* Default.png */; };
@@ -380,6 +382,9 @@
 		032C961D1E2208B6001EFC29 /* ProfileHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderCell.h; sourceTree = "<group>"; };
 		032C961E1E2208B6001EFC29 /* ProfileHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderCell.m; sourceTree = "<group>"; };
 		032C961F1E2208B6001EFC29 /* ProfileHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderCell.xib; sourceTree = "<group>"; };
+		032C96221E222C9A001EFC29 /* CourseFolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseFolderCell.h; sourceTree = "<group>"; };
+		032C96231E222C9A001EFC29 /* CourseFolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseFolderCell.m; sourceTree = "<group>"; };
+		032C96241E222C9A001EFC29 /* CourseFolderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseFolderCell.xib; sourceTree = "<group>"; };
 		0335B3021E15031B00A2A74B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0335B3041E15045000A2A74B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0335B3061E15045C00A2A74B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -771,6 +776,9 @@
 				032C960B1E1D2B90001EFC29 /* TotalFileHeaderView.h */,
 				032C960C1E1D2B90001EFC29 /* TotalFileHeaderView.m */,
 				032C960E1E1D2B98001EFC29 /* TotalFileHeaderView.xib */,
+				032C96221E222C9A001EFC29 /* CourseFolderCell.h */,
+				032C96231E222C9A001EFC29 /* CourseFolderCell.m */,
+				032C96241E222C9A001EFC29 /* CourseFolderCell.xib */,
 				032C96041E1D253E001EFC29 /* CourseDetailCell.h */,
 				032C96051E1D253E001EFC29 /* CourseDetailCell.m */,
 				032C96061E1D253E001EFC29 /* CourseDetailCell.xib */,
@@ -1126,6 +1134,7 @@
 			files = (
 				032C96211E2208B6001EFC29 /* ProfileHeaderCell.xib in Resources */,
 				032C96081E1D253E001EFC29 /* CourseDetailCell.xib in Resources */,
+				032C96261E222C9A001EFC29 /* CourseFolderCell.xib in Resources */,
 				0335B3031E15031B00A2A74B /* Default@2x.png in Resources */,
 				032C96141E21FFB8001EFC29 /* RemindBlankView.xib in Resources */,
 				0300498E1E0E68B4006EDC29 /* 37x-Checkmark.png in Resources */,
@@ -1249,6 +1258,7 @@
 				030049821E0E5F61006EDC29 /* UserFriend.m in Sources */,
 				032C96131E21FFB8001EFC29 /* RemindBlankView.m in Sources */,
 				032911A01E114409000C1F5A /* CommunityViewController.m in Sources */,
+				032C96251E222C9A001EFC29 /* CourseFolderCell.m in Sources */,
 				032911811E113D0C000C1F5A /* UIImageView+Thumbnail.m in Sources */,
 				030049001E0E5D65006EDC29 /* TMDiskCache.m in Sources */,
 				030049681E0E5F60006EDC29 /* CourseDetails.m in Sources */,

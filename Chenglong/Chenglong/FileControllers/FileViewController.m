@@ -71,6 +71,9 @@
     [self.view addSubview:_totalFileView];
     
     _myFileView = [MyFilesView loadFromNib];
+    _myFileView.lookOtherFileBlock = ^{
+        [weakSelf handleTitleView:1];
+    };
     [self.view addSubview:_myFileView];
     
 }
@@ -124,20 +127,26 @@
     
 }
 
+//处理中间title
+- (void)handleTitleView:(NSInteger)index
+{
+    [_fileTitleView setupImgIconDirection:NO];
+    [_fileTitleView setupTitle:_titleChooseArr[index]];
+    
+    if (index == 0) {
+        [self.view bringSubviewToFront:_myFileView];
+        self.navigationItem.rightBarButtonItem = _rightMenuItem;
+    }else if (index == 1){
+        [self.view bringSubviewToFront:_totalFileView];
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+}
+
 #pragma mark - menuView delegate
 - (void)selectIndexPathRow:(NSInteger )index view:(XTPopViewBase *)baseView
 {
     if (baseView.tag == 10000) {
-        [_fileTitleView setupImgIconDirection:NO];
-        [_fileTitleView setupTitle:_titleChooseArr[index]];
-        
-        if (index == 0) {
-            [self.view bringSubviewToFront:_myFileView];
-            self.navigationItem.rightBarButtonItem = _rightMenuItem;
-        }else if (index == 1){
-            [self.view bringSubviewToFront:_totalFileView];
-            self.navigationItem.rightBarButtonItem = nil;
-        }
+        [self handleTitleView:index];
     }else{
         
     }

@@ -15,8 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lbContent;
 @property (weak, nonatomic) IBOutlet UILabel *lbTime;
-@property (weak, nonatomic) IBOutlet UIImageView *imgZan;
-@property (weak, nonatomic) IBOutlet UILabel *lbZanNum;
 @property (weak, nonatomic) IBOutlet UIImageView *imgLove;
 @property (weak, nonatomic) IBOutlet UILabel *lbLoveNum;
 
@@ -35,4 +33,11 @@
     // Configure the view for the selected state
 }
 
+- (void)dataDidChange
+{
+    CourseDetails *detail = self.data;
+//    [_imgCourse sd_setImageWithURL:[NSURL URLWithString:detail.course] placeholderImage:[UIImage imageNamed:@"bb-512.png"]];
+    
+    
+}
 @end
