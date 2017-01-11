@@ -177,27 +177,6 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) CourseAPI_GetCourse:(NSString*)courseId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/get/{courseId}";
-    NSString *replacecourseId = [courseId description];
-    if(replacecourseId)
-        url_ = [url_ stringByReplacingOccurrencesOfString:@"{courseId}" withString:replacecourseId];
-    return [[WebService getOperationManager] GET:url_
-	            parameters:nil
-	               success:^(NSURLSessionDataTask *operation, id responseObject) {
-	                   ObjectMapper *mapper = [ObjectMapper mapper];
-	                   NSError *error;
-	                   Course* resp = [mapper mapObject:responseObject toClass:[Course class] withError:&error];
-	                   if (error) {
-	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
-	                   } else { 
-	                       successBlock(resp);
-	                   }
-	               } apiError:^(APIError* error) {
-	                   errorBlock(error);
-	               }];
-}
-
 +(NSURLSessionDataTask*) CourseAPI_Unlike:(NSString*)courseId onSuccess:(void (^)(CourseInfo *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
     NSString* url_ = @"/course-service/unlike/{courseId}";
     NSString *replacecourseId = [courseId description];
@@ -304,27 +283,6 @@
 	                   ObjectMapper *mapper = [ObjectMapper mapper];
 	                   NSError *error;
 	                   CourseInfo* resp = [mapper mapObject:responseObject toClass:[CourseInfo class] withError:&error];
-	                   if (error) {
-	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
-	                   } else { 
-	                       successBlock(resp);
-	                   }
-	               } apiError:^(APIError* error) {
-	                   errorBlock(error);
-	               }];
-}
-
-+(NSURLSessionDataTask*) CourseAPI_ListCourses:(NSString*)courseId page:(NSNumber*)page onSuccess:(void (^)(CourseDetails *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/list";
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    if(courseId) [dict setObject:courseId forKey:@"courseId"];
-    if(page) [dict setObject:page forKey:@"page"];
-    return [[WebService getOperationManager] GET:url_
-	            parameters:dict
-	               success:^(NSURLSessionDataTask *operation, id responseObject) {
-	                   ObjectMapper *mapper = [ObjectMapper mapper];
-	                   NSError *error;
-	                   CourseDetails* resp = [mapper mapObject:responseObject toClass:[CourseDetails class] withError:&error];
 	                   if (error) {
 	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
 	                   } else { 

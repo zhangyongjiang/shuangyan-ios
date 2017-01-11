@@ -34,8 +34,6 @@
 
 +(NSURLSessionDataTask*) CourseAPI_GetCourseDetails:(NSString*)courseId onSuccess:(void (^)(CourseDetails *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
-+(NSURLSessionDataTask*) CourseAPI_GetCourse:(NSString*)courseId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
-
 +(NSURLSessionDataTask*) CourseAPI_Unlike:(NSString*)courseId onSuccess:(void (^)(CourseInfo *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(NSURLSessionDataTask*) CourseAPI_CreateCourseFileWithResources:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
@@ -47,8 +45,6 @@
 +(NSURLSessionDataTask*) CourseAPI_RenameCourse:(RenameRequest*)req onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(NSURLSessionDataTask*) CourseAPI_Like:(NSString*)courseId onSuccess:(void (^)(CourseInfo *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
-
-+(NSURLSessionDataTask*) CourseAPI_ListCourses:(NSString*)courseId page:(NSNumber*)page onSuccess:(void (^)(CourseDetails *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(NSURLSessionDataTask*) CourseAPI_ListUserCourses:(NSString*)userId page:(NSNumber*)page onSuccess:(void (^)(CourseDetails *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 

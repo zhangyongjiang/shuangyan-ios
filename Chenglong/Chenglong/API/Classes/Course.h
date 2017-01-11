@@ -1,4 +1,4 @@
-/*Auto generated file. Do not modify. Tue Nov 29 16:01:05 CST 2016 */
+/*Auto generated file. Do not modify. Wed Jan 11 15:45:26 CST 2017 */
 
 #import "Data.h"
 #import "MediaContent.h"
@@ -11,6 +11,7 @@
 @property(strong, nonatomic) NSString* userId;
 @property(strong, nonatomic) NSString* title;
 @property(strong, nonatomic) NSString* content;
+@property(strong, nonatomic) NSString* author;
 @property(strong, nonatomic) NSString* parentCourseId;
 @property(strong, nonatomic) NSNumber* isDir;
 @property(strong, nonatomic) NSString* link;

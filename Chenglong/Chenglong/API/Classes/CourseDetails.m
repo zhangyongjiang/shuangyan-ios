@@ -1,10 +1,10 @@
-/*Auto generated file. Do not modify. Tue Nov 29 16:01:05 CST 2016 */
+/*Auto generated file. Do not modify. Wed Jan 11 15:45:26 CST 2017 */
 
 #import "CourseDetails.h"
 #import "ObjectMapper.h"
 
 @implementation CourseDetails
 
-MapClassToArray(Course, items);
+MapClassToArray(CourseDetails, items);
 
 @end
