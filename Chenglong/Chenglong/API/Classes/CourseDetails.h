@@ -9,6 +9,7 @@
 @property(strong, nonatomic) Course* course;
 @property(strong, nonatomic) CourseInfo* info;
 @property(strong, nonatomic) NSNumber* liked;
+@property (nonatomic, strong) User *user;
 @property(strong, nonatomic) NSMutableArray* items;
 
 @end

@@ -14,6 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - Lockbox (2.1.0)
   - MJRefresh (3.1.12)
   - PureLayout (2.0.6)
@@ -24,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - BlocksKit (~> 2.2.5)
   - Lockbox (~> 2.1.0)
   - MJRefresh (~> 3.1.12)
   - PureLayout (~> 2.0.6)
@@ -32,12 +48,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Lockbox: 16442da35d9d4286966936763be728a931d589c3
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: b2f30d066b958bbf57df63fcf3a8f03dab913175
+PODFILE CHECKSUM: 7af233c63247d99a9422863d2e0a59319b2825ff
 
 COCOAPODS: 1.0.1

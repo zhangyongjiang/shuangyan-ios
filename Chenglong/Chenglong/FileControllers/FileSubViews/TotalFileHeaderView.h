@@ -12,5 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *tfAge;
 @property (weak, nonatomic) IBOutlet UITextField *tfKeyword;
+@property (weak, nonatomic) IBOutlet UIButton *btnSearch;
+
 
 @end

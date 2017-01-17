@@ -27,6 +27,7 @@
     // Initialization code
     _dateFormatter = [[NSDateFormatter alloc] init];
     _dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    _lbContent.preferredMaxLayoutWidth = SCREEN_BOUNDS_SIZE_WIDTH - 165 - 10;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -40,7 +41,8 @@
     CourseDetails *detail = self.data;
 //    [_imgCourse sd_setImageWithURL:[NSURL URLWithString:detail.course] placeholderImage:[UIImage imageNamed:@"bb-512.png"]];
     _lbName.text = detail.course.title;
-    _lbContent.text = detail.course.content;
+    _lbUserName.text = detail.user.name;
+    _lbContent.text = [detail.course.content stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     _lbTime.text = [_dateFormatter stringFromDate:[NSDate dateFromMillisecs:detail.course.created]];
     _lbLoveNum.text = detail.liked.stringValue;
 }

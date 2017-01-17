@@ -27,7 +27,8 @@ NSString* const kCachedUserImgPath = @"CachedUserImgPath";
 
 //登录成功
 NSString* const kAppLoginSuccessNotificationKey = @"kAppLoginSuccessNotificationKey";
-
+//获取me成功
+NSString* const kGetMeInfoSuccessNotificationKey = @"kGetMeInfoSuccessNotificationKey";
 
 static Global *_shared = nil;
 

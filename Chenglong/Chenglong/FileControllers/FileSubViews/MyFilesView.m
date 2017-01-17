@@ -11,6 +11,7 @@
 #import "CourseDetailCell.h"
 #import "CourseFolderCell.h"
 #import "CourseDetailCell.h"
+#import "CreateFileViewController.h"
 
 @interface MyFilesView () <UITableViewDataSource,UITableViewDelegate>
 
@@ -36,6 +37,7 @@
     [_myFileTableView addSubview:self.refreshControl];
     
     _fileListArr = [NSMutableArray array];
+    _selectedArr = [NSMutableArray array];
     [self reloadTotalFileList:NO];
 }
 
@@ -97,7 +99,9 @@
 }
 - (void)creatFileEvent:(UIButton *)btn
 {
-    
+    CreateFileViewController *file = [CreateFileViewController loadFromNib];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
+    [[self getCurrentNavController] presentViewController:nav animated:YES completion:nil];
 }
 - (void)creatFolderEvent:(UIButton *)btn
 {
@@ -143,6 +147,55 @@
     }];
 }
 
+- (void)resetFolderName
+{
+    if (_selectedArr.count == 0) {
+        [self presentFailureTips:@"请选择一个文件"];
+        return;
+    }else if (_selectedArr.count > 1) {
+        [self presentFailureTips:@"不能选择多个文件"];
+        return;
+    }
+    
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [alert.textFields firstObject];
+        if ([NSString isEmpty:tf.text]) {
+            [self presentFailureTips:@"文件标题不能为空"];
+            return;
+        }
+        Course *course = weakSelf.selectedArr[0];
+        RenameRequest *request = [RenameRequest new];
+        request.courseId = course.id;
+        request.name = tf.text;
+        [SVProgressHUD showWithStatus:@"修改中"];
+        [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
+            [SVProgressHUD dismiss];
+            
+            [weakSelf.selectedArr removeObject:course];
+            NSInteger index = [weakSelf.fileListArr indexOfObject:course];
+            [weakSelf.fileListArr replaceObjectAtIndex:index withObject:resp];
+            [weakSelf.myFileTableView reloadIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+            
+        } onError:^(APIError *err) {
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
+
 #pragma mark - UITableView delegate datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -161,26 +214,40 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdenti = @"CourseFolderCell";
-    Course *course = _fileListArr[indexPath.row];
-    if (course.isDir.boolValue) {
-        //文件夹
-        cellIdenti = @"CourseFolderCell";
-        CourseFolderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenti];
-        cell.data = course;
-        return cell;
-    }else{
-        cellIdenti = @"CourseDetailCell";
-        CourseDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseDetailCell"];
-        CourseDetails *detail = [CourseDetails new];
-        detail.course = course;
-        cell.data = detail;
-        return cell;
-    }
+    CourseDetails *courseDetail = _fileListArr[indexPath.row];
+    CourseFolderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenti];
+    cell.data = courseDetail;
+    cell.btnFileSected.selected = [_selectedArr containsObject:courseDetail];
+    WeakSelf(weakSelf)
+    cell.btnSelectedBlock = ^{
+        //选择
+        if ([weakSelf.selectedArr containsObject:courseDetail]) {
+            //已经包含
+            [weakSelf.selectedArr removeObject:courseDetail];
+        }else{
+            [weakSelf.selectedArr addObject:courseDetail];
+        }
+    };
+    return cell;
+//    if (course.isDir.boolValue) {
+//        //文件夹
+//        cellIdenti = @"CourseFolderCell";
+//        CourseFolderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenti];
+//        cell.data = course;
+//        return cell;
+//    }else{
+//        cellIdenti = @"CourseDetailCell";
+//        CourseDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseDetailCell"];
+//        CourseDetails *detail = [CourseDetails new];
+//        detail.course = course;
+//        cell.data = detail;
+//        return cell;
+//    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Course *course = _fileListArr[indexPath.row];
-    return course.isDir.boolValue ? 44 : 100.f;
+    CourseDetails *detail = _fileListArr[indexPath.row];
+    return detail.course.isDir.boolValue ? 44 : 100.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

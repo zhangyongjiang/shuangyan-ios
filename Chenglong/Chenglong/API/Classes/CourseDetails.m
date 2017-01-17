@@ -5,6 +5,6 @@
 
 @implementation CourseDetails
 
-MapClassToArray(Course, items);
+MapClassToArray(CourseDetails, items);
 
 @end

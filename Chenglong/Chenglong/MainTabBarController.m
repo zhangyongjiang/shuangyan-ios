@@ -75,70 +75,27 @@
 #pragma mark - Setup
 
 - (void)loadLoggedInUser {
-//    User *user;
     
-//    UserDetails *userDetail = [Global loggedInUserDetails];
-//    if ( [Global loggedInUser] == nil || [Global cachedUser].privateInfo == nil || [Global cachedUser].privateInfo.phone == nil || userDetail == nil)
-//    {
-//        // we want to have a temporary cached user with limited info (id, duedate, nickname) so that dashboard and other controllers don't fail with server delays
-//        User* cachedUser = [Global cachedUser];
-//        if ( cachedUser != nil ) {
-//            [Global setLoggedInUser:cachedUser];
-//        }
-//        
-//        // update the real me
-//        [KaishiApi UserAPI_Me:^(UserDetails *resp) {
-//            
-//            // there was an error... try logging out
-//            if ( resp == nil || resp.user == nil ) {
-//                ALERT_VIEW_WITH_TITLE(KaishiLocalizedString(@"UserSessionExpired", nil), nil);
-//                
-//                AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//                [del logout];
-//            }
-//            else
-//            {
-//                [Global setLoggedInUser:resp.user];
-//                [Global setLoggedInUserDetails:resp];
-//                
-//                NSString* userId = [cachedUser.id stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
-//                @try {
-//                    [YunBaService setAlias:[userId copy] resultBlock:^(BOOL succ, NSError *error) {
-//                    }];
-//                } @catch (NSException *exception) {
-//                    
-//                }
-//                
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"MeLoaded" object:nil];
-//            }
-//            
-//        } onError:^(APIError *err) {
-//            
-//            if ( err.statusCode == 401 ) {
-//                ALERT_VIEW_WITH_TITLE(KaishiLocalizedString(@"UserSessionExpired", nil), nil);
-//                
-//                AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//                [del logout];
-//            } else {
-//                ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
-//            }
-//            
-//        } onRetry:^(NSURLSessionDataTask *oldOperation, NSURLSessionDataTask *newOperation) {
-//        }];
-//        
-//    }
-//    else
-//    {
-//        user = [Global loggedInUser];
-//        
-//        NSString* userId = [user.id stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
-//        @try {
-//            [YunBaService setAlias:[userId copy] resultBlock:^(BOOL succ, NSError *error) {
-//            }];
-//        } @catch (NSException *exception) {
-//            
-//        }
-//    }
+    [UserApi UserAPI_Me:^(User *resp) {
+        // there was an error... try logging out
+        if ( resp == nil ) {
+            AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [del logout];
+        }
+        else
+        {
+            [Global setLoggedInUser:resp];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGetMeInfoSuccessNotificationKey object:nil];
+        }
+    } onError:^(APIError *err) {
+        if ( err.statusCode == 401 ) {
+            AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [del logout];
+        } else {
+        
+        }
+    }];
 }
 
 @end

@@ -57,6 +57,11 @@
                     <constraint firstItem="WnE-6K-Gte" firstAttribute="top" secondItem="lg1-7U-Y1j" secondAttribute="bottom" constant="15" id="qku-fP-yM5"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="imgHeader" destination="aNE-mj-jcn" id="INK-CH-JHn"/>
+                <outlet property="lbName" destination="lg1-7U-Y1j" id="Ehk-BZ-UGd"/>
+                <outlet property="lbScoreNum" destination="tdQ-jS-5fE" id="v3e-hQ-zaJ"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

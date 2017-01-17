@@ -27,6 +27,8 @@
     _tfKeyword.layer.masksToBounds = YES;
     [_tfKeyword setLeftView:CGRectMake(0, 0, 24, 14) imageName:@"file_search_keyword_icon"];
     
+    _btnSearch.tintColor = [UIColor colorFromString:@"999999"];
+    [_btnSearch setImage:[[UIImage imageNamed:@"bar_icon_search"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
 }
 
 @end

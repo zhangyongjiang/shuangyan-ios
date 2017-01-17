@@ -10,7 +10,6 @@
 
 @interface CourseFolderCell ()
 
-@property (weak, nonatomic) IBOutlet UIButton *btnFileSected;
 @property (weak, nonatomic) IBOutlet UILabel *lbFileName;
 
 @end
@@ -31,8 +30,16 @@
 
 - (void)dataDidChange
 {
-    Course *course = self.data;
-    _lbFileName.text = course.title;
+    CourseDetails *courseDetail = self.data;
+    _lbFileName.text = courseDetail.course.title;
+}
+
+- (IBAction)btnSelectedEvent:(id)sender
+{
+    _btnFileSected.selected = !_btnFileSected.selected;
+    if (self.btnSelectedBlock) {
+        self.btnSelectedBlock();
+    }
 }
 
 @end

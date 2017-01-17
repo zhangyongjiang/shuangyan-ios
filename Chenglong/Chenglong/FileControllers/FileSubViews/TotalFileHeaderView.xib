@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入年龄" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AAb-xt-2Ja">
-                    <rect key="frame" x="10" y="5" width="172.5" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入年龄" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AAb-xt-2Ja">
+                    <rect key="frame" x="10" y="5" width="156.5" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="4wV-dr-GOI"/>
@@ -26,31 +26,42 @@
                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="search"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入关键字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xYN-7x-3CJ">
-                    <rect key="frame" x="192.5" y="5" width="172.5" height="30"/>
+                    <rect key="frame" x="176.5" y="5" width="156.5" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPI-p7-UeB">
+                    <rect key="frame" x="343" y="9" width="22" height="22"/>
+                    <state key="normal" image="bar_icon_search"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="ZPI-p7-UeB" firstAttribute="leading" secondItem="xYN-7x-3CJ" secondAttribute="trailing" constant="10" id="0Iu-3a-ci0"/>
                 <constraint firstItem="xYN-7x-3CJ" firstAttribute="leading" secondItem="AAb-xt-2Ja" secondAttribute="trailing" constant="10" id="FdO-Nx-Wnd"/>
                 <constraint firstItem="xYN-7x-3CJ" firstAttribute="height" secondItem="AAb-xt-2Ja" secondAttribute="height" id="HKi-4u-6Uh"/>
+                <constraint firstItem="ZPI-p7-UeB" firstAttribute="centerY" secondItem="xYN-7x-3CJ" secondAttribute="centerY" id="Hr5-ee-Ixl"/>
                 <constraint firstItem="xYN-7x-3CJ" firstAttribute="centerY" secondItem="AAb-xt-2Ja" secondAttribute="centerY" id="MNi-it-F7P"/>
-                <constraint firstAttribute="trailing" secondItem="xYN-7x-3CJ" secondAttribute="trailing" constant="10" id="MPp-WR-zOP"/>
                 <constraint firstItem="AAb-xt-2Ja" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="NVT-3d-pUf"/>
                 <constraint firstItem="xYN-7x-3CJ" firstAttribute="width" secondItem="AAb-xt-2Ja" secondAttribute="width" id="wo7-Ct-RYb"/>
                 <constraint firstItem="AAb-xt-2Ja" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="wzz-9l-f8A"/>
+                <constraint firstAttribute="trailing" secondItem="ZPI-p7-UeB" secondAttribute="trailing" constant="10" id="y1e-5m-PpK"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="btnSearch" destination="ZPI-p7-UeB" id="jEs-ut-RVQ"/>
                 <outlet property="tfAge" destination="AAb-xt-2Ja" id="8eW-yl-g8q"/>
                 <outlet property="tfKeyword" destination="xYN-7x-3CJ" id="49t-Sc-YVx"/>
             </connections>
+            <point key="canvasLocation" x="25.5" y="52"/>
         </view>
     </objects>
+    <resources>
+        <image name="bar_icon_search" width="22" height="22"/>
+    </resources>
 </document>

@@ -14,6 +14,16 @@
 
 static NSInteger max_second = 120;//验证码倒计时时间
 
+
+//日记类型
+typedef NS_ENUM(NSInteger, FileMediaType) {
+    FileMediaTypeNone = 0,//无
+    FileMediaTypeAdd = 1,//添加
+    FileMediaTypePhoto = 2,//图片
+    FileMediaTypeVideo = 3,//视频
+    FileMediaTypeAudio = 4//音频
+};
+
 @interface Global : NSObject
 
 + (User*)loggedInUser;
@@ -36,3 +46,5 @@ extern NSString* const kCachedUserImgPath;
 
 //登录成功
 extern NSString* const kAppLoginSuccessNotificationKey;
+//获取me成功
+extern NSString* const kGetMeInfoSuccessNotificationKey;

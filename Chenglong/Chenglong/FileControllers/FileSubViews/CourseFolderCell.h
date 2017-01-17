@@ -10,4 +10,6 @@
 
 @interface CourseFolderCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *btnFileSected;
+@property (nonatomic, copy) BlankBlock btnSelectedBlock;
 @end

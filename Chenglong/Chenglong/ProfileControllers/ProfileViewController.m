@@ -38,6 +38,8 @@
     self.imgsArr = @{@"0":@[@""],@"1":@[@"profile_fixpwd_icon",@"profile_friend_icon"],@"2":@[@"profile_msg_icon",@"profile_pay_icon"],@"3":@[@"profile_phone_icon",@"profile_info_icon"]};
     
     [self configSubViews];
+    
+    [self addobser];
 }
 
 - (void)updateViewConstraints
@@ -87,6 +89,11 @@
     [app logout];
 }
 
+- (void)addobser
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMeInfoSuccess:) name:kGetMeInfoSuccessNotificationKey object:nil];
+}
+
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -104,6 +111,7 @@
     if (indexPath.section == 0) {
         cellIdentifier = @"ProfileHeaderCell";
         ProfileHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        cell.data = [Global loggedInUser];
         return cell;
     }else{
         
@@ -177,6 +185,13 @@
         }
         
     }
+}
+
+#pragma mark - 通知
+
+- (void)getMeInfoSuccess:(NSNotification *)noti
+{
+    [self.profileTableView reloadIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
 }
 
 @end

@@ -8,6 +8,14 @@
 
 #import "ProfileHeaderCell.h"
 
+@interface ProfileHeaderCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgHeader;
+@property (weak, nonatomic) IBOutlet UILabel *lbName;
+@property (weak, nonatomic) IBOutlet UILabel *lbScoreNum;
+
+@end
+
 @implementation ProfileHeaderCell
 
 - (void)awakeFromNib {
@@ -21,4 +29,11 @@
     // Configure the view for the selected state
 }
 
+- (void)dataDidChange
+{
+    User *user = self.data;
+    [_imgHeader sd_setImageWithURL:[NSURL URLWithString:user.imgPath] placeholderImage:kDefaultHeaderImg];
+    _lbName.text = user.name;
+//    _lbScoreNum.text = user. 
+}
 @end

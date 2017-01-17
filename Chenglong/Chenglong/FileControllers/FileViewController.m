@@ -10,6 +10,7 @@
 #import "FilesChooseTitleView.h"
 #import "MyFilesView.h"
 #import "TotalFileView.h"
+#import "CreateFileViewController.h"
 
 @interface FileViewController ()<SelectIndexPathDelegate>
 
@@ -88,8 +89,10 @@
 #pragma mark - 右侧item事件
 - (void)rightItemEvent:(UIButton *)btn
 {
-    NSArray *arr = @[@"新文件",@"新文件夹",@"购买",@"移动",@"播放",@"改名"];
-    NSArray *imgArr = @[@"file_item_newFile_icon",@"file_item_newfolder_icon",@"file_item_buy_icon",@"file_item_exchange_icon",@"file_item_play_icon",@"file_item_edit_icon"];
+//    NSArray *arr = @[@"新文件",@"新文件夹",@"购买",@"移动",@"播放",@"改名"];
+//    NSArray *imgArr = @[@"file_item_newFile_icon",@"file_item_newfolder_icon",@"file_item_buy_icon",@"file_item_exchange_icon",@"file_item_play_icon",@"file_item_edit_icon"];
+    NSArray *arr = @[@"新文件",@"新文件夹",@"移动",@"播放",@"改名"];
+    NSArray *imgArr = @[@"file_item_newFile_icon",@"file_item_newfolder_icon",@"file_item_exchange_icon",@"file_item_play_icon",@"file_item_edit_icon"];
     CGPoint point = CGPointMake(btn.frame.origin.x + btn.frame.size.width / 2, btn.frame.origin.y + btn.frame.size.height + 10);
     XTPopTableView *_menuTableView = [[XTPopTableView alloc] initWithOrigin:point Width:150 Height:45*arr.count Type:XTTypeOfUpRight Color:[UIColor whiteColor]];
     _menuTableView.backgroundColor = [UIColor colorWithWhite:0 alpha:.3f];
@@ -149,11 +152,15 @@
         [self handleTitleView:index];
     }else{
         if (index == 0) {
-            //新建文件
-            
+            CreateFileViewController *file = [CreateFileViewController loadFromNib];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
+            [self.navigationController presentViewController:nav animated:YES completion:nil];
         }else if(index == 1){
             //新建文件夹
             [self.myFileView creatFolderEvent:nil];
+        }else if (index == 4){
+            //改名
+            [self.myFileView resetFolderName];
         }
     }
 }

@@ -10,7 +10,7 @@
 #import "CourseDetailCell.h"
 #import "TotalFileHeaderView.h"
 
-@interface TotalFileView () <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface TotalFileView () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) TotalFileHeaderView *fileHeaderView;
 
@@ -37,9 +37,8 @@
     
     TotalFileHeaderView *headerView = [TotalFileHeaderView loadFromNibWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS_SIZE_WIDTH, 60)];
     headerView.backgroundColor = [UIColor clearColor];
-    headerView.tfAge.delegate = self;
-    headerView.tfKeyword.delegate = self;
     _fileHeaderView = headerView;
+    [headerView.btnSearch addTarget:self action:@selector(btnSearchEvent:) forControlEvents:UIControlEventTouchUpInside];
     _totalFileTableView.tableHeaderView = headerView;
     
     _refreshControl = [[UIRefreshControl alloc] init];
@@ -102,6 +101,18 @@
     }];
 }
 
+#pragma mark - 搜索
+- (void)btnSearchEvent:(UIButton *)btn
+{
+    _keywordsStr = _fileHeaderView.tfKeyword.text;
+    _ageStr = _fileHeaderView.tfAge.text;
+    if (![NSString isEmpty:_ageStr] || ![NSString isEmpty:_keywordsStr]) {
+        [self endEditing:YES];
+        [self resetFileDetailsList];
+        [self reloadTotalFileList:NO];
+    }
+}
+
 #pragma mark - UITableView delegate datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -131,20 +142,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark - UITextField delegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    _keywordsStr = _fileHeaderView.tfKeyword.text;
-    _ageStr = _fileHeaderView.tfAge.text;
-    if (![NSString isEmpty:_ageStr] || ![NSString isEmpty:_keywordsStr]) {
-        [self endEditing:YES];
-        [self resetFileDetailsList];
-        [self reloadTotalFileList:NO];
-    }
-    
-    return YES;
 }
 
 #pragma mark - handle data

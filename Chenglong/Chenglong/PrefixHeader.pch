@@ -11,6 +11,7 @@
 
 typedef void(^BlankBlock)(void);
 
+#define kDefaultHeaderImg [UIImage imageNamed:@"header_default_img"]
 #define kAppDelegate (AppDelegate *)[UIApplication sharedApplication].delegate
 #define KUserDefaultsSetValue(__object,__key) if (__object && __key) {[[NSUserDefaults standardUserDefaults] setObject:__object forKey:__key]}
 #define KUserDefaultsGetValue(__key) [[NSUserDefaults standardUserDefaults] objectForKey:__key]
@@ -43,6 +44,8 @@ typedef void(^BlankBlock)(void);
 #import "JournalApi.h"
 #import "CalendarApi.h"
 
+#import <BlocksKit.h>
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "PureLayout.h"
 #import "SDImageCache+Thumbnail.h"
 #import "UIImageView+WebCache.h"
@@ -63,6 +66,7 @@ typedef void(^BlankBlock)(void);
 #import "UITextField+Util.h"
 #import "UITableView+Util.h"
 #import "NSObject+CurrentController.h"
+#import "UIPlaceHolderTextView.h"
 
 #import "UINavigationController+BackButtonHandler.h"
 #import "UIView+Nib.h"
