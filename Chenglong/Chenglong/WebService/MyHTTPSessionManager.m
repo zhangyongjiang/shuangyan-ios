@@ -85,7 +85,16 @@ NSUInteger kDefaultMaxRetries = 3;
     NSURLSessionDataTask *operation = [super GET:URLString parameters:parameters progress:nil
                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
                                              //                                               NSLog(@"GET SUCCESS: %@ with data: %@", URLString, parameters);
-                                             success(operation, responseObject);
+                                             NSDictionary* dict = responseObject;
+                                             NSNumber* obj = [dict objectForKey:@"success"];
+                                             if(obj.intValue) {
+                                                 success(operation, [dict objectForKey:@"data"]);
+                                             }
+                                             else {
+                                                 APIError* apiError = [[APIError alloc] initWithOperation:operation andError:nil];
+                                                 failure(apiError);
+                                                 [self logError:apiError operation:operation];
+                                             }
                                          }
                                          failure:^(NSURLSessionDataTask *operation, NSError *error) {
                                              //                                               NSLog(@"GET ERROR: %@ with data: %@. %@", URLString, parameters, error);
@@ -122,7 +131,16 @@ NSUInteger kDefaultMaxRetries = 3;
     NSURLSessionDataTask *operation = [super GET:URLString parameters:parameters progress:nil
                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
                                              //                                               NSLog(@"GET SUCCESS: %@ with data: %@", URLString, parameters);
-                                             success(operation, responseObject);
+                                             NSDictionary* dict = responseObject;
+                                             NSNumber* obj = [dict objectForKey:@"success"];
+                                             if(obj.intValue) {
+                                                 success(operation, [dict objectForKey:@"data"]);
+                                             }
+                                             else {
+                                                 APIError* apiError = [[APIError alloc] initWithOperation:operation andError:nil];
+                                                 failure(apiError);
+                                                 [self logError:apiError operation:operation];
+                                             }
                                          }
                                          failure:^(NSURLSessionDataTask *operation, NSError *error) {
                                              NSUInteger retriesRemaining = retries.integerValue - 1;
@@ -167,7 +185,16 @@ NSUInteger kDefaultMaxRetries = 3;
     NSURLSessionDataTask *operation = [super POST:URLString parameters:parameters progress:nil
                                           success:^(NSURLSessionDataTask *operation, id responseObject) {
                                               NSLog(@"POST SUCCESS: %@ with data: %@", URLString, parameters);
-                                              success(operation, responseObject);
+                                              NSDictionary* dict = responseObject;
+                                              NSNumber* obj = [dict objectForKey:@"success"];
+                                              if(obj.intValue) {
+                                                  success(operation, [dict objectForKey:@"data"]);
+                                              }
+                                              else {
+                                                  APIError* apiError = [[APIError alloc] initWithOperation:operation andError:nil];
+                                                  failure(apiError);
+                                                  [self logError:apiError operation:operation];
+                                              }
                                           }
                                           failure:^(NSURLSessionDataTask *operation, NSError *error) {
                                               //                                                NSLog(@"POST ERROR: %@ with data: %@. %@", URLString, parameters, error);
@@ -200,7 +227,16 @@ NSUInteger kDefaultMaxRetries = 3;
     
     return [super POST:URLString parameters:parameters constructingBodyWithBlock:block progress:uploadProgress
                success:^(NSURLSessionDataTask *operation, id responseObject) {
-                   success(operation, responseObject);
+                   NSDictionary* dict = responseObject;
+                   NSNumber* obj = [dict objectForKey:@"success"];
+                   if(obj.intValue) {
+                       success(operation, [dict objectForKey:@"data"]);
+                   }
+                   else {
+                       APIError* apiError = [[APIError alloc] initWithOperation:operation andError:nil];
+                       failure(apiError);
+                       [self logError:apiError operation:operation];
+                   }
                }
                failure:^(NSURLSessionDataTask *operation, NSError *error) {
                    APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
@@ -229,7 +265,16 @@ NSUInteger kDefaultMaxRetries = 3;
     
     NSURLSessionDataTask *operation = [super DELETE:URLString parameters:parameters
                                             success:^(NSURLSessionDataTask *operation, id responseObject) {
-                                                success(operation, responseObject);
+                                                NSDictionary* dict = responseObject;
+                                                NSNumber* obj = [dict objectForKey:@"success"];
+                                                if(obj.intValue) {
+                                                    success(operation, [dict objectForKey:@"data"]);
+                                                }
+                                                else {
+                                                    APIError* apiError = [[APIError alloc] initWithOperation:operation andError:nil];
+                                                    failure(apiError);
+                                                    [self logError:apiError operation:operation];
+                                                }
                                             }
                                             failure:^(NSURLSessionDataTask *operation, NSError *error) {
                                                 APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
@@ -282,7 +327,14 @@ NSUInteger kDefaultMaxRetries = 3;
         }
         
     } success:^(NSURLSessionDataTask *operation, id responseObject) {
-        success(operation, responseObject);
+        NSDictionary* dict = responseObject;
+        NSNumber* obj = [dict objectForKey:@"success"];
+        if(obj.intValue) {
+            success(operation, [dict objectForKey:@"data"]);
+        }
+        else {
+            failure(operation, nil);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         failure(operation, error);
         APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
