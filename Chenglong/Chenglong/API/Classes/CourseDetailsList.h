@@ -1,4 +1,4 @@
-/*Auto generated file. Do not modify. Sun Jan 08 15:32:39 CST 2017 */
+/*Auto generated file. Do not modify. Wed Jan 11 15:45:26 CST 2017 */
 
 #import "Data.h"
 #import "CourseDetails.h"

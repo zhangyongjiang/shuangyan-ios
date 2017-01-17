@@ -1,10 +1,10 @@
 /*Auto generated file. Do not modify. Wed Jan 11 15:45:26 CST 2017 */
 
-#import "Business.h"
+#import "UserInterestList.h"
 #import "ObjectMapper.h"
 
-@implementation Business
+@implementation UserInterestList
 
-MapClassToArray(MediaContent, resources);
+MapClassToArray(UserInterest, items);
 
 @end

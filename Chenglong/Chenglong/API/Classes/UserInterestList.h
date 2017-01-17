@@ -1,9 +1,9 @@
 /*Auto generated file. Do not modify. Wed Jan 11 15:45:26 CST 2017 */
 
 #import "Data.h"
-#import "UserDetails.h"
+#import "UserInterest.h"
 
-@interface UserDetailsList : Data
+@interface UserInterestList : Data
 
 @property(strong, nonatomic) NSMutableArray* items;
 
