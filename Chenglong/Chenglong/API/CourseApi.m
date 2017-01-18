@@ -198,7 +198,7 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) CourseAPI_CreateCourseFileWithResources:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) CourseAPI_CreateCourseFileWithResources:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock {
     NSString* url_ = @"/zuul/course-service/create-file-with-resources";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(json) [dict setObject:json forKey:@"json"];
@@ -212,7 +212,9 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];
@@ -314,7 +316,7 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) CourseAPI_AddResourceToCourse:(NSDictionary*)filePart courseId:(NSString*)courseId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) CourseAPI_AddResourceToCourse:(NSDictionary*)filePart courseId:(NSString*)courseId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock{
     NSString* url_ = @"/zuul/course-service/add-resource";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(courseId) [dict setObject:courseId forKey:@"courseId"];
@@ -328,7 +330,9 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];

@@ -5,7 +5,7 @@
 
 @implementation LocalApi
 
-+(NSURLSessionDataTask*) AdvertisingAPI_AddResourceToAdvertising:(NSDictionary*)filePart advertisingId:(NSString*)advertisingId onSuccess:(void (^)(Advertising *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) AdvertisingAPI_AddResourceToAdvertising:(NSDictionary*)filePart advertisingId:(NSString*)advertisingId onSuccess:(void (^)(Advertising *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock{
     NSString* url_ = @"/zuul/local-service/ads/add-resource";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(advertisingId) [dict setObject:advertisingId forKey:@"advertisingId"];
@@ -19,13 +19,15 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];
 }
 
-+(NSURLSessionDataTask*) AdvertisingAPI_CreateAdvertising:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Advertising *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) AdvertisingAPI_CreateAdvertising:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Advertising *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock{
     NSString* url_ = @"/local-service/ads/create";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(json) [dict setObject:json forKey:@"json"];
@@ -39,7 +41,9 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];
@@ -266,7 +270,7 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) LocalAPI_CreateBusiness:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Business *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) LocalAPI_CreateBusiness:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Business *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock{
     NSString* url_ = @"/local-service/local/create";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(json) [dict setObject:json forKey:@"json"];
@@ -280,13 +284,15 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];
 }
 
-+(NSURLSessionDataTask*) LocalAPI_AddResourceToBusiness:(NSDictionary*)filePart businessId:(NSString*)businessId onSuccess:(void (^)(Business *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) LocalAPI_AddResourceToBusiness:(NSDictionary*)filePart businessId:(NSString*)businessId onSuccess:(void (^)(Business *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock{
     NSString* url_ = @"/local-service/local/add-resource";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(businessId) [dict setObject:businessId forKey:@"businessId"];
@@ -300,7 +306,9 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];

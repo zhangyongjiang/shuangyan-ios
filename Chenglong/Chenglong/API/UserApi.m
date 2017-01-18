@@ -175,7 +175,7 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) UserAPI_UploadUserImage:(NSDictionary*)filePart onSuccess:(void (^)(MediaContent *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) UserAPI_UploadUserImage:(NSDictionary*)filePart onSuccess:(void (^)(MediaContent *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock{
     NSString* url_ = @"/zuul/user-service/user/upload-image";
     return [MyHTTPSessionManager upload:filePart parameters:nil toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSError *error;
@@ -187,7 +187,9 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];

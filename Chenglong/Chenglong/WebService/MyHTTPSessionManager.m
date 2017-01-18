@@ -1,5 +1,6 @@
 #import "MyHTTPSessionManager.h"
 #import "WebService.h"
+#import "MediaAttachment.h"
 
 static double nocacheTillSecond = 0;
 static double kDefaultRequestTimeOutInSecs = 30;
@@ -317,7 +318,12 @@ NSUInteger kDefaultMaxRetries = 3;
                 for (id data in dataArray ) {
                    if (IS_CLASS(data, NSData)) {
                         [formData appendPartWithFileData:data name:key fileName:@"file.jpeg" mimeType:@"image/jpeg"];
-                    }
+                   }else if ( IS_CLASS(data, MediaAttachment)) {
+                       MediaAttachment *attachment = (MediaAttachment*)data;
+                       if (attachment.media) {
+                           [formData appendPartWithFileData:attachment.media name:key fileName:@"file.jpeg" mimeType:@"image/jpeg"];
+                       }
+                   }
                 }
             }
         }
@@ -327,7 +333,8 @@ NSUInteger kDefaultMaxRetries = 3;
         }
         
     } success:^(NSURLSessionDataTask *operation, id responseObject) {
-        NSDictionary* dict = responseObject;
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
         NSNumber* obj = [dict objectForKey:@"success"];
         if(obj.intValue) {
             success(operation, [dict objectForKey:@"data"]);

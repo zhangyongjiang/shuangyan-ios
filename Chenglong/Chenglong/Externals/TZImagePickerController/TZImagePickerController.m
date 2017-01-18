@@ -31,10 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationBar.translucent = YES;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    [UIApplication sharedApplication].statusBarHidden = NO;
     
     if (iOS7Later) {
         self.navigationBar.barTintColor = [UIColor colorWithWhite:1.0 alpha:1.0];

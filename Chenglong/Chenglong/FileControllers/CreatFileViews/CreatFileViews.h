@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UITextField *tfTitle;
 @property (nonatomic, strong) UIPlaceHolderTextView *tvContent;
+@property (nonatomic, strong) UITextField *tfStartAge;
+@property (nonatomic, strong) UITextField *tfEndAge;
 @property (nonatomic, strong) CreatFileTypeView *chooseTypeView;
 
 @property (nonatomic, assign) FileMediaType mediaType;

@@ -29,6 +29,8 @@ NSString* const kCachedUserImgPath = @"CachedUserImgPath";
 NSString* const kAppLoginSuccessNotificationKey = @"kAppLoginSuccessNotificationKey";
 //获取me成功
 NSString* const kGetMeInfoSuccessNotificationKey = @"kGetMeInfoSuccessNotificationKey";
+//发布文件成功
+NSString* const kPublishFileSuccessNotificationKey = @"kPublishFileSuccessNotificationKey";
 
 static Global *_shared = nil;
 

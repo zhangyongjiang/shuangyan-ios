@@ -48,3 +48,5 @@ extern NSString* const kCachedUserImgPath;
 extern NSString* const kAppLoginSuccessNotificationKey;
 //获取me成功
 extern NSString* const kGetMeInfoSuccessNotificationKey;
+//发布文件成功
+extern NSString* const kPublishFileSuccessNotificationKey;

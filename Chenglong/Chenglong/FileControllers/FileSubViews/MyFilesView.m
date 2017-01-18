@@ -38,7 +38,19 @@
     
     _fileListArr = [NSMutableArray array];
     _selectedArr = [NSMutableArray array];
+    
     [self reloadTotalFileList:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publishFileSuccessEvent:) name:kPublishFileSuccessNotificationKey object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (_requestOperation) {
+        [_requestOperation cancel];
+        _requestOperation = nil;
+    }
 }
 
 - (void)resetFileDetailsList {
@@ -172,17 +184,17 @@
             [self presentFailureTips:@"文件标题不能为空"];
             return;
         }
-        Course *course = weakSelf.selectedArr[0];
+        CourseDetails *details = weakSelf.selectedArr[0];
         RenameRequest *request = [RenameRequest new];
-        request.courseId = course.id;
+        request.courseId = details.course.id;
         request.name = tf.text;
         [SVProgressHUD showWithStatus:@"修改中"];
         [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
             [SVProgressHUD dismiss];
             
-            [weakSelf.selectedArr removeObject:course];
-            NSInteger index = [weakSelf.fileListArr indexOfObject:course];
-            [weakSelf.fileListArr replaceObjectAtIndex:index withObject:resp];
+            [weakSelf.selectedArr removeObject:details];
+            NSInteger index = [weakSelf.fileListArr indexOfObject:details];
+            details.course = resp;
             [weakSelf.myFileTableView reloadIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
             
         } onError:^(APIError *err) {
@@ -194,6 +206,12 @@
     [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
         
     }];
+}
+
+- (void)publishFileSuccessEvent:(NSNotification *)noti
+{
+    [self resetFileDetailsList];
+    [self reloadTotalFileList:NO];
 }
 
 #pragma mark - UITableView delegate datasource
@@ -244,10 +262,35 @@
 //        return cell;
 //    }
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        CourseDetails *courseDetail = _fileListArr[indexPath.row];
+        WeakSelf(weakSelf)
+        [CourseApi CourseAPI_RemoveCourse:courseDetail.course.id onSuccess:^(Course *resp) {
+            
+            [weakSelf.fileListArr removeObjectAtIndex:indexPath.row];
+            
+            if (weakSelf.fileListArr.count <= 0) {
+                [tableView reloadData];
+            }else{
+                [tableView beginUpdates];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [tableView endUpdates];
+            }
+            
+        } onError:^(APIError *err) {
+            
+        }];
+        
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CourseDetails *detail = _fileListArr[indexPath.row];
-    return detail.course.isDir.boolValue ? 44 : 100.f;
+    return 44.f;
+//    CourseDetails *detail = _fileListArr[indexPath.row];
+//    return detail.course.isDir.boolValue ? 44 : 100.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

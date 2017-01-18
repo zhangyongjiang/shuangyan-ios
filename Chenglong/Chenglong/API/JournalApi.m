@@ -104,7 +104,7 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) JournalAPI_CreateJournal:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) JournalAPI_CreateJournal:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock{
     NSString* url_ = @"/zuul/journal-service/create";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(json) [dict setObject:json forKey:@"json"];
@@ -118,13 +118,15 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];
 }
 
-+(NSURLSessionDataTask*) JournalAPI_AddResourceToJournal:(NSDictionary*)filePart journalId:(NSString*)journalId onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
++(NSURLSessionDataTask*) JournalAPI_AddResourceToJournal:(NSDictionary*)filePart journalId:(NSString*)journalId onSuccess:(void (^)(Journal *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock{
     NSString* url_ = @"/zuul/journal-service/add-resource";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(journalId) [dict setObject:journalId forKey:@"journalId"];
@@ -138,7 +140,9 @@
             successBlock(resp);
         }
     } progress:^(NSProgress *progress) {
-        
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
     }];

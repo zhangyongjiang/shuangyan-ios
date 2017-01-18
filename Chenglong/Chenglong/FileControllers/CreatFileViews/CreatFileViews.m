@@ -63,6 +63,44 @@ static NSInteger kPhotoMaxNumber = 7;
     _tvContent.placeholder = @"内容简介";
     [self addSubview:_tvContent];
     
+    //年龄视图
+    UIView *ageContainView = [[UIView alloc] initWithFrame:CGRectMake(12, _tvContent.bottom + 12, SCREEN_BOUNDS_SIZE_WIDTH-24, 44.f)];
+    ageContainView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:ageContainView];
+    
+    UILabel *lbAgeDes = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 44.f)];
+    lbAgeDes.font = [UIFont systemFontOfSize:14];
+    lbAgeDes.textColor = [UIColor colorFromString:@"1a1a1a"];
+    lbAgeDes.text = @"年龄段";
+    lbAgeDes.textAlignment = NSTextAlignmentCenter;
+    [ageContainView addSubview:lbAgeDes];
+    
+    _tfStartAge = [[UITextField alloc] initWithFrame:CGRectMake(lbAgeDes.right, 7, 50, 30.f)];
+    _tfStartAge.font = [UIFont systemFontOfSize:14.f];
+    _tfStartAge.textAlignment = NSTextAlignmentCenter;
+    _tfStartAge.keyboardType = UIKeyboardTypeNumberPad;
+    _tfStartAge.textColor = [UIColor lightGrayColor];
+    _tfStartAge.backgroundColor = [UIColor clearColor];
+    _tfStartAge.layer.borderColor = [UIColor colorFromString:@"dedede"].CGColor;
+    _tfStartAge.layer.borderWidth = 1.f;
+    [ageContainView addSubview:_tfStartAge];
+    
+    UILabel *lbAgeLine = [[UILabel alloc] initWithFrame:CGRectMake(_tfStartAge.right, 0, 30, 44.f)];
+    lbAgeLine.font = [UIFont systemFontOfSize:14];
+    lbAgeLine.textColor = [UIColor colorFromString:@"dedede"];
+    lbAgeLine.text = @"-";
+    lbAgeLine.textAlignment = NSTextAlignmentCenter;
+    [ageContainView addSubview:lbAgeLine];
+    
+    _tfEndAge = [[UITextField alloc] initWithFrame:CGRectMake(lbAgeLine.right, 7, 50, 30.f)];
+    _tfEndAge.font = [UIFont systemFontOfSize:14.f];
+    _tfEndAge.textAlignment = NSTextAlignmentCenter;
+    _tfEndAge.textColor = [UIColor lightGrayColor];
+    _tfEndAge.backgroundColor = [UIColor clearColor];
+    _tfEndAge.layer.borderColor = [UIColor colorFromString:@"dedede"].CGColor;
+    _tfEndAge.layer.borderWidth = 1.f;
+    [ageContainView addSubview:_tfEndAge];
+    
     self.mediaType = FileMediaTypeNone;
     _mediaAttachmentDataSource = [[MediaAttachmentDataSource alloc] initWithOwner:self];
     _mediaAttachmentDataSource.photoMaxNum = kPhotoMaxNumber;
@@ -71,7 +109,7 @@ static NSInteger kPhotoMaxNumber = 7;
     self.mediaPicker.allowsEditing = NO;
     self.mediaPicker.delegate = self;
     
-    self.photoViews.frame = CGRectMake(0, _tvContent.bottom + 12, SCREEN_BOUNDS_SIZE_WIDTH, 150.f);
+    self.photoViews.frame = CGRectMake(0, ageContainView.bottom + 12, SCREEN_BOUNDS_SIZE_WIDTH, 150.f);
     self.photoViews.collection.delegate = self;
     self.photoViews.collection.dataSource = _mediaAttachmentDataSource;
     [self addSubview:self.photoViews];

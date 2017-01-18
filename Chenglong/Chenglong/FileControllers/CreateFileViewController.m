@@ -9,7 +9,7 @@
 #import "CreateFileViewController.h"
 #import "CreatFileViews.h"
 
-static CGFloat creatFileViewHeight = 360.f;
+static CGFloat creatFileViewHeight = 420.f;
 
 @interface CreateFileViewController ()
 
@@ -72,6 +72,22 @@ static CGFloat creatFileViewHeight = 360.f;
         [self presentFailureTips:@"标题不能为空"];
         return;
     }
+    
+    if ([NSString isEmpty:[self.creatFileViews.tfStartAge.text trim]]) {
+        [self presentFailureTips:@"开始年龄不能为空"];
+        return;
+    }
+    
+    if ([NSString isEmpty:[self.creatFileViews.tfEndAge.text trim]]) {
+        [self presentFailureTips:@"结束年龄不能为空"];
+        return;
+    }
+    
+    if ([self.creatFileViews.tfStartAge.text trim].integerValue > [self.creatFileViews.tfEndAge.text trim].integerValue) {
+        [self presentFailureTips:@"开始年龄不能大于结束年龄"];
+        return;
+    }
+    
     if ([NSString isEmpty:[self.creatFileViews.tvContent.text trim]] && self.creatFileViews.mediaAttachmentDataSource.attachments.count < 2) {
         [self presentFailureTips:@"内容和图片不能同时为空"];
         return;
@@ -79,16 +95,33 @@ static CGFloat creatFileViewHeight = 360.f;
     Course *course = [Course new];
     course.title = [self.creatFileViews.tfTitle.text trim];
     course.content = [self.creatFileViews.tvContent.text trim];
+    course.ageStart = @([self.creatFileViews.tfStartAge.text trim].integerValue);
+    course.ageEnd = @([self.creatFileViews.tfEndAge.text trim].integerValue);
+    WeakSelf(weakSelf)
     if (self.creatFileViews.mediaAttachmentDataSource.attachments.count < 2) {
         [SVProgressHUD showWithStatus:@"上传中"];
         [CourseApi CourseAPI_CreateCourseFile:course onSuccess:^(Course *resp) {
-            
+            [SVProgressHUD dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPublishFileSuccessNotificationKey object:nil];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
         } onError:^(APIError *err) {
-            
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
         }];
     }else{
-        
-//        [CourseApi CourseAPI_CreateCourseFileWithResources:<#(NSDictionary *)#> json:<#(NSString *)#> onSuccess:<#^(Course *resp)successBlock#> onError:<#^(APIError *err)errorBlock#>
+        [SVProgressHUD showWithStatus:@"上传中"];
+        [CourseApi CourseAPI_CreateCourseFileWithResources:@{@"file":self.creatFileViews.mediaAttachmentDataSource.attachments} json:[course toJson] onSuccess:^(Course *resp) {
+            [SVProgressHUD dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPublishFileSuccessNotificationKey object:nil];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        } onError:^(APIError *err) {
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        } progress:^(NSProgress *progress) {
+            if ( weakSelf.creatFileViews.mediaAttachmentDataSource.attachments.count > 1 ) {
+                [SVProgressHUD showUploadProgressWithStatus:@"上传中" progress:progress];
+            }
+        }];
     }
 }
 
