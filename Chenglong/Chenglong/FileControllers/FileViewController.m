@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"文件";
+    self.navigationItem.title = @"我的";
     
     _titleChooseArr = @[@"我的文件", @"全部文件"];
     
@@ -52,13 +52,13 @@
 - (void)setupSubViews
 {
     WeakSelf(weakSelf)
-    _fileTitleView = [FilesChooseTitleView loadFromNibWithFrame:CGRectMake(0, 0, 200, 42)];
-    _fileTitleView.tapTitleBlock = ^{
-        [weakSelf.view endEditing:YES];
-        [weakSelf.fileTitleView setupImgIconDirection:YES];
-        [weakSelf showMenuTableView];
-    };
-    self.navigationItem.titleView = _fileTitleView;
+//    _fileTitleView = [FilesChooseTitleView loadFromNibWithFrame:CGRectMake(0, 0, 200, 42)];
+//    _fileTitleView.tapTitleBlock = ^{
+//        [weakSelf.view endEditing:YES];
+//        [weakSelf.fileTitleView setupImgIconDirection:YES];
+//        [weakSelf showMenuTableView];
+//    };
+//    self.navigationItem.titleView = _fileTitleView;
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 40, 40);

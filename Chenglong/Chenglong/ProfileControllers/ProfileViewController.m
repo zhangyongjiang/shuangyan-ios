@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"我";
+    self.navigationItem.title = @"设置";
     self.view.backgroundColor = [UIColor kaishiColor:UIColorTypeBackgroundColor];
     
     self.titlesArr = @{@"0":@[@"我的头像"],@"1":@[@"修改密码",@"邀请朋友"],@"2":@[@"消息",@"消费和充值"],@"3":@[@"联系爸爸早教",@"关于爸爸早教"]};
