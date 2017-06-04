@@ -47,14 +47,12 @@
     
     
     FileViewController * file = [[FileViewController alloc] initWithNibName:nil bundle:nil];
-    SameCityViewController* city = [[SameCityViewController alloc] initWithNibName:nil bundle:nil];
     CommunityViewController* community = [[CommunityViewController alloc] initWithNibName:nil bundle:nil];
     ProfileViewController* profile = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
     
     currSelectViewController = file;
     
     [self setViewControllers:@[[[UINavigationController alloc] initWithRootViewController:file],
-                               [[UINavigationController alloc] initWithRootViewController:city],
                                [[UINavigationController alloc] initWithRootViewController:community],
                                [[UINavigationController alloc] initWithRootViewController:profile]
                                ]];
