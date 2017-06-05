@@ -295,8 +295,8 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) CourseAPI_ListUserCourses:(NSString*)userId page:(NSNumber*)page onSuccess:(void (^)(CourseDetails *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/list-user-courses";
++(NSURLSessionDataTask*) CourseAPI_ListUserCourses:(NSString*)userId page:(NSNumber*)page onSuccess:(void (^)(CourseDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/course-service/list-user-root-courses";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(userId) [dict setObject:userId forKey:@"userId"];
     if(page) [dict setObject:page forKey:@"page"];
@@ -305,7 +305,7 @@
 	               success:^(NSURLSessionDataTask *operation, id responseObject) {
 	                   ObjectMapper *mapper = [ObjectMapper mapper];
 	                   NSError *error;
-	                   CourseDetails* resp = [mapper mapObject:responseObject toClass:[CourseDetails class] withError:&error];
+	                   CourseDetailsList* resp = [mapper mapObject:responseObject toClass:[CourseDetailsList class] withError:&error];
 	                   if (error) {
 	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
 	                   } else { 

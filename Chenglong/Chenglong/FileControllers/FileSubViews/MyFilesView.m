@@ -75,7 +75,7 @@
     }
     self.loading = YES;
     WeakSelf(weakSelf)
-    self.requestOperation = [CourseApi CourseAPI_ListUserCourses:[Global loggedInUser].id page:@(_pageNum) onSuccess:^(CourseDetails *resp) {
+    self.requestOperation = [CourseApi CourseAPI_ListUserCourses:[Global loggedInUser].id page:@(_pageNum) onSuccess:^(CourseDetailsList *resp) {
         weakSelf.loading=NO;
         weakSelf.requestOperation = nil;
         [weakSelf insertFileList:resp.items];
@@ -234,7 +234,7 @@
     static NSString *cellIdenti = @"CourseFolderCell";
     CourseDetails *courseDetail = _fileListArr[indexPath.row];
     CourseFolderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenti];
-    cell.data = courseDetail;
+    cell.courseDetails = courseDetail;
     cell.btnFileSected.selected = [_selectedArr containsObject:courseDetail];
     WeakSelf(weakSelf)
     cell.btnSelectedBlock = ^{
