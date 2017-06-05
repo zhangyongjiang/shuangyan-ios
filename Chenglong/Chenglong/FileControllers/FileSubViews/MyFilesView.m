@@ -234,7 +234,8 @@
     static NSString *cellIdenti = @"CourseFolderCell";
     CourseDetails *courseDetail = _fileListArr[indexPath.row];
     CourseFolderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenti];
-    cell.courseDetails = courseDetail;
+    cell.data = courseDetail;
+    [cell dataDidChange];
     cell.btnFileSected.selected = [_selectedArr containsObject:courseDetail];
     WeakSelf(weakSelf)
     cell.btnSelectedBlock = ^{

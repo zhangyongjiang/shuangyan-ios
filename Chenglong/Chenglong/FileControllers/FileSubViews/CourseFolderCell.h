@@ -12,5 +12,4 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnFileSected;
 @property (nonatomic, copy) BlankBlock btnSelectedBlock;
-@property (strong, atomic) CourseDetails* courseDetails;
 @end
