@@ -72,6 +72,8 @@
     [self.view addSubview:_totalFileView];
     
     _myFileView = [MyFilesView loadFromNib];
+    _myFileView.currentDirId = self.currentDirId;
+    [_myFileView reload];
     _myFileView.lookOtherFileBlock = ^{
         [weakSelf handleTitleView:1];
     };

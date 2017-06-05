@@ -295,11 +295,12 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) CourseAPI_ListUserCourses:(NSString*)userId page:(NSNumber*)page onSuccess:(void (^)(CourseDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/list-user-root-courses";
++(NSURLSessionDataTask*) CourseAPI_ListUserCourses:(NSString*)userId currentDirId:(NSString*)currentDirId page:(NSNumber*)page onSuccess:(void (^)(CourseDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/course-service/ls";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(userId) [dict setObject:userId forKey:@"userId"];
     if(page) [dict setObject:page forKey:@"page"];
+    if(currentDirId) [dict setObject:currentDirId forKey:@"currentDirId"];
     return [[WebService getOperationManager] GET:url_
 	            parameters:dict
 	               success:^(NSURLSessionDataTask *operation, id responseObject) {

@@ -46,7 +46,7 @@
 
 +(NSURLSessionDataTask*) CourseAPI_Like:(NSString*)courseId onSuccess:(void (^)(CourseInfo *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
-+(NSURLSessionDataTask*) CourseAPI_ListUserCourses:(NSString*)userId page:(NSNumber*)page onSuccess:(void (^)(CourseDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
++(NSURLSessionDataTask*) CourseAPI_ListUserCourses:(NSString*)userId currentDirId:(NSString*)currentDirId page:(NSNumber*)page onSuccess:(void (^)(CourseDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(NSURLSessionDataTask*) CourseAPI_AddResourceToCourse:(NSDictionary*)filePart courseId:(NSString*)courseId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock;
 

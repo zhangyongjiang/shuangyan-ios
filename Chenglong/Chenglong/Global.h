@@ -50,3 +50,25 @@ extern NSString* const kAppLoginSuccessNotificationKey;
 extern NSString* const kGetMeInfoSuccessNotificationKey;
 //发布文件成功
 extern NSString* const kPublishFileSuccessNotificationKey;
+
+#define NotificationRefreshControl      @"NotificationRefreshControl"
+#define NotificationEndOfDisplay        @"NotificationEndOfDisplay"
+#define NotificationPushController      @"NotificationPushController"
+#define NotificationPresentController   @"NotificationPresentController"
+#define NotificationNewReview           @"NotificationNewReview"
+#define NotificationLogout              @"NotificationLogout"
+#define NotificationNoGuest             @"NotificationNoGuest"
+#define NotificationAlert               @"NotificationAlert"
+#define NotificationMeChanged           @"NotificationMeChanged"
+#define NotificationCartChanged         @"NotificationCartChanged"
+#define NotificationMsgChanged          @"NotificationMsgChanged"
+#define NotificationLangChanged         @"NotificationLangChanged"
+#define NotificationTextFieldFocused    @"NotificationTextFieldFocused"
+#define NotificationProductChanged      @"NotificationProductChanged"
+#define NotificationBackgroundImage     @"NotificationBackgroundImage"
+#define NotificationEditing             @"NotificationEditing"
+#define NotificationLabelTabChanged     @"NotificationLabelTabChanged"
+#define NotificationCouponChanged       @"NotificationCouponChanged"
+#define NotificationRadioValueChanged   @"NotificationRadioValueChanged"
+#define NotificationGalleryPageChanged  @"NotificationGalleryPageChanged"
+

@@ -10,4 +10,6 @@
 
 @interface FileViewController : ZaoJiaoBgViewController
 
+@property(strong, nonatomic) NSString* currentDirId;
+
 @end

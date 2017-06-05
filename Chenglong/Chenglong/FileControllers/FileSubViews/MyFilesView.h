@@ -14,9 +14,11 @@
 @property (nonatomic, strong) NSMutableArray *fileListArr;
 @property (nonatomic, strong) NSMutableArray *selectedArr;
 @property (nonatomic, copy) BlankBlock lookOtherFileBlock;
+@property(strong, nonatomic) NSString* currentDirId;
 
 
 - (void)creatFolderEvent:(UIButton *)btn;
 - (void)creatFileEvent:(UIButton *)btn;
 - (void)resetFolderName;
+- (void)reload;
 @end

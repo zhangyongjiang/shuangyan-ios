@@ -187,6 +187,8 @@
 		A364CCC91C94CBFA0075E65F /* ObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC2E1C94CBFA0075E65F /* ObjectMapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A364CCD01C94CBFA0075E65F /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC401C94CBFA0075E65F /* Data.m */; };
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
+		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
+		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
@@ -541,6 +543,10 @@
 		A364CC491C94CBFA0075E65F /* NSString+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Json.h"; sourceTree = "<group>"; };
 		A364CC4A1C94CBFA0075E65F /* NSString+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Json.m"; sourceTree = "<group>"; };
 		A364CC4B1C94CBFA0075E65F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
+		AD3D94D71EE5286100D2704B /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
+		AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Attach.h"; sourceTree = "<group>"; };
+		AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Attach.m"; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
@@ -1108,6 +1114,10 @@
 		A364CBF61C94CBFA0075E65F /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */,
+				AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */,
+				AD3D94D61EE5286100D2704B /* UIView+Position.h */,
+				AD3D94D71EE5286100D2704B /* UIView+Position.m */,
 				032911881E113D24000C1F5A /* UIView+Helper.h */,
 				032911891E113D24000C1F5A /* UIView+Helper.m */,
 				032911851E113D1F000C1F5A /* UINavigationBar+Awesome.h */,
@@ -1489,6 +1499,7 @@
 				0300497B1E0E5F61006EDC29 /* PhoneLoginRequest.m in Sources */,
 				0300496A1E0E5F60006EDC29 /* CourseList.m in Sources */,
 				032C96A21E2CA843001EFC29 /* MediaAttachmentCollectionViewCell.m in Sources */,
+				AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */,
 				030049821E0E5F61006EDC29 /* UserFriend.m in Sources */,
 				032C96131E21FFB8001EFC29 /* RemindBlankView.m in Sources */,
 				032911A01E114409000C1F5A /* CommunityViewController.m in Sources */,
@@ -1586,6 +1597,7 @@
 				0300495F1E0E5F60006EDC29 /* BusinessDetails.m in Sources */,
 				030049671E0E5F60006EDC29 /* CourseBuyRequest.m in Sources */,
 				032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */,
+				AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */,
 				032911B41E126C45000C1F5A /* LoginViewController.m in Sources */,
 				030048FF1E0E5D65006EDC29 /* TMCache.m in Sources */,
 				032911471E113B10000C1F5A /* NJKWebViewProgressView.m in Sources */,

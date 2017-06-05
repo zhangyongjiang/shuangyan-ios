@@ -12,6 +12,7 @@
 #import "CourseFolderCell.h"
 #import "CourseDetailCell.h"
 #import "CreateFileViewController.h"
+#import "FileViewController.h"
 
 @interface MyFilesView () <UITableViewDataSource,UITableViewDelegate>
 
@@ -58,6 +59,10 @@
     _pageNum = 0;
 }
 
+-(void)reload {
+    [self reloadTotalFileList:YES];
+}
+
 #pragma mark - Refresh
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
@@ -75,7 +80,7 @@
     }
     self.loading = YES;
     WeakSelf(weakSelf)
-    self.requestOperation = [CourseApi CourseAPI_ListUserCourses:[Global loggedInUser].id page:@(_pageNum) onSuccess:^(CourseDetailsList *resp) {
+    self.requestOperation = [CourseApi CourseAPI_ListUserCourses:[Global loggedInUser].id currentDirId:self.currentDirId page:@(_pageNum) onSuccess:^(CourseDetailsList *resp) {
         weakSelf.loading=NO;
         weakSelf.requestOperation = nil;
         [weakSelf insertFileList:resp.items];
@@ -295,7 +300,13 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    CourseDetails *courseDetail = _fileListArr[indexPath.row];
+    if([courseDetail.course.isDir intValue] == 1) {
+        FileViewController* controller = [[FileViewController alloc] init];
+        controller.currentDirId = courseDetail.course.id;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:controller, @"controller",nil]];
+    }
 }
 
 #pragma mark - handle data
