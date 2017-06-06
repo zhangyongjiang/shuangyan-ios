@@ -189,6 +189,11 @@
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
+		AD3D94ED1EE6767200D2704B /* EmptyFolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94EC1EE6767200D2704B /* EmptyFolderView.m */; };
+		AD3D94F01EE6772400D2704B /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94EF1EE6772400D2704B /* Page.m */; };
+		AD3D94F31EE677F900D2704B /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F21EE677F900D2704B /* BaseView.m */; };
+		AD3D94F61EE6790E00D2704B /* TableViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F51EE6790E00D2704B /* TableViewPage.m */; };
+		AD3D94F91EE679A000D2704B /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F81EE679A000D2704B /* UIColor+String.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
@@ -547,6 +552,16 @@
 		AD3D94D71EE5286100D2704B /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Attach.h"; sourceTree = "<group>"; };
 		AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Attach.m"; sourceTree = "<group>"; };
+		AD3D94EB1EE6767200D2704B /* EmptyFolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyFolderView.h; sourceTree = "<group>"; };
+		AD3D94EC1EE6767200D2704B /* EmptyFolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyFolderView.m; sourceTree = "<group>"; };
+		AD3D94EE1EE6772400D2704B /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
+		AD3D94EF1EE6772400D2704B /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		AD3D94F11EE677F900D2704B /* BaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
+		AD3D94F21EE677F900D2704B /* BaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
+		AD3D94F41EE6790E00D2704B /* TableViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewPage.h; sourceTree = "<group>"; };
+		AD3D94F51EE6790E00D2704B /* TableViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewPage.m; sourceTree = "<group>"; };
+		AD3D94F71EE679A000D2704B /* UIColor+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+String.h"; sourceTree = "<group>"; };
+		AD3D94F81EE679A000D2704B /* UIColor+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+String.m"; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
@@ -1034,6 +1049,7 @@
 		A354C1721C93ED9F00EE0DE5 /* Chenglong */ = {
 			isa = PBXGroup;
 			children = (
+				AD3D94DC1EE675E100D2704B /* Pages */,
 				0329114F1E113B85000C1F5A /* BaseClasses */,
 				ADEB6A9A1D9BEC1B0082253C /* WebService */,
 				ADEB6A511D9BEB140082253C /* API */,
@@ -1142,6 +1158,8 @@
 				0329116B1E113C83000C1F5A /* NSString+Util.m */,
 				032911671E113C72000C1F5A /* UIColor+Kaishi.h */,
 				032911681E113C72000C1F5A /* UIColor+Kaishi.m */,
+				AD3D94F71EE679A000D2704B /* UIColor+String.h */,
+				AD3D94F81EE679A000D2704B /* UIColor+String.m */,
 				0329115D1E113BC6000C1F5A /* UIView+Data.h */,
 				0329115E1E113BC6000C1F5A /* UIView+Data.m */,
 				032911531E113BA2000C1F5A /* NSObject+CurrentController.h */,
@@ -1206,6 +1224,109 @@
 				A364CC4A1C94CBFA0075E65F /* NSString+Json.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AD3D94DC1EE675E100D2704B /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				AD3D94F41EE6790E00D2704B /* TableViewPage.h */,
+				AD3D94F51EE6790E00D2704B /* TableViewPage.m */,
+				AD3D94EE1EE6772400D2704B /* Page.h */,
+				AD3D94EF1EE6772400D2704B /* Page.m */,
+				AD3D94DD1EE675E100D2704B /* Community */,
+				AD3D94E11EE675E100D2704B /* File */,
+				AD3D94E21EE675E100D2704B /* Local */,
+				AD3D94E51EE675E100D2704B /* RegisterProcess */,
+				AD3D94E61EE675E100D2704B /* Settings */,
+				AD3D94E71EE675E100D2704B /* Tutorial */,
+				AD3D94F11EE677F900D2704B /* BaseView.h */,
+				AD3D94F21EE677F900D2704B /* BaseView.m */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		AD3D94DD1EE675E100D2704B /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				AD3D94DE1EE675E100D2704B /* Create */,
+				AD3D94DF1EE675E100D2704B /* Details */,
+				AD3D94E01EE675E100D2704B /* List */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		AD3D94DE1EE675E100D2704B /* Create */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		AD3D94DF1EE675E100D2704B /* Details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		AD3D94E01EE675E100D2704B /* List */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		AD3D94E11EE675E100D2704B /* File */ = {
+			isa = PBXGroup;
+			children = (
+				AD3D94EB1EE6767200D2704B /* EmptyFolderView.h */,
+				AD3D94EC1EE6767200D2704B /* EmptyFolderView.m */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		AD3D94E21EE675E100D2704B /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				AD3D94E31EE675E100D2704B /* LocalPeople */,
+				AD3D94E41EE675E100D2704B /* LocalResource */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		AD3D94E31EE675E100D2704B /* LocalPeople */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocalPeople;
+			sourceTree = "<group>";
+		};
+		AD3D94E41EE675E100D2704B /* LocalResource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocalResource;
+			sourceTree = "<group>";
+		};
+		AD3D94E51EE675E100D2704B /* RegisterProcess */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RegisterProcess;
+			sourceTree = "<group>";
+		};
+		AD3D94E61EE675E100D2704B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		AD3D94E71EE675E100D2704B /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		ADEB6A511D9BEB140082253C /* API */ = {
@@ -1480,8 +1601,10 @@
 				032C960D1E1D2B90001EFC29 /* TotalFileHeaderView.m in Sources */,
 				0329119A1E1143ED000C1F5A /* FileViewController.m in Sources */,
 				032C96911E2CA31D001EFC29 /* TZAssetModel.m in Sources */,
+				AD3D94F61EE6790E00D2704B /* TableViewPage.m in Sources */,
 				030048F31E0E5D17006EDC29 /* Constants.m in Sources */,
 				030049911E0E68B4006EDC29 /* NSObject+Tips.m in Sources */,
+				AD3D94ED1EE6767200D2704B /* EmptyFolderView.m in Sources */,
 				030049631E0E5F60006EDC29 /* BusinessReviewList.m in Sources */,
 				032C96601E2C7689001EFC29 /* CreatFileTypeCell.m in Sources */,
 				A364CBE21C94CBCF0075E65F /* AppDelegate.m in Sources */,
@@ -1556,6 +1679,7 @@
 				030048FE1E0E5D65006EDC29 /* NSObject+TMCache.m in Sources */,
 				032911CD1E139FDD000C1F5A /* ResetPwdViewController.m in Sources */,
 				030049761E0E5F61006EDC29 /* JournalList.m in Sources */,
+				AD3D94F01EE6772400D2704B /* Page.m in Sources */,
 				0300496E1E0E5F60006EDC29 /* EventList.m in Sources */,
 				0300495E1E0E5F60006EDC29 /* Business.m in Sources */,
 				A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */,
@@ -1575,6 +1699,7 @@
 				0329116F1E113C8F000C1F5A /* NSObject+Kaishi.m in Sources */,
 				ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */,
 				0300496C1E0E5F60006EDC29 /* EmailRegisterRequest.m in Sources */,
+				AD3D94F31EE677F900D2704B /* BaseView.m in Sources */,
 				0335B3361E164D3C00A2A74B /* TotalFileView.m in Sources */,
 				030049721E0E5F60006EDC29 /* InviteRequest.m in Sources */,
 				032911D61E13E8D0000C1F5A /* UITextField+Util.m in Sources */,
@@ -1593,6 +1718,7 @@
 				032911751E113CBA000C1F5A /* SDImageCache+Thumbnail.m in Sources */,
 				030049651E0E5F60006EDC29 /* ChangePasswordRequest.m in Sources */,
 				030049901E0E68B4006EDC29 /* MBProgressHUD.m in Sources */,
+				AD3D94F91EE679A000D2704B /* UIColor+String.m in Sources */,
 				032911D11E139FEC000C1F5A /* ResetPwdView.m in Sources */,
 				0300495F1E0E5F60006EDC29 /* BusinessDetails.m in Sources */,
 				030049671E0E5F60006EDC29 /* CourseBuyRequest.m in Sources */,

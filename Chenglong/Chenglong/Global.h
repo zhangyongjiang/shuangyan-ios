@@ -11,6 +11,8 @@
 #import "UserDetails.h"
 #import "Constants.h"
 #import "NSObject+TMCache.h"
+#import "UIView+Position.h"
+#import "UIColor+String.h"
 
 static NSInteger max_second = 120;//验证码倒计时时间
 
