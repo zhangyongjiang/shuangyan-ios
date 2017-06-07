@@ -42,6 +42,8 @@
         c.currentDirId = cd.course.id;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
+    else {
+    }
 }
 
 -(void)setCourseDetailsList:(CourseDetailsList *)courseDetailsList {

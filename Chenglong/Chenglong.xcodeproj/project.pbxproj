@@ -197,6 +197,7 @@
 		AD3D94FC1EE6EF6200D2704B /* FileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94FB1EE6EF6200D2704B /* FileListPage.m */; };
 		AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */; };
 		AD3D95021EE6F3D500D2704B /* FileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D95011EE6F3D500D2704B /* FileListViewController.m */; };
+		AD3D95051EE7B5A700D2704B /* FileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D95041EE7B5A700D2704B /* FileDetailsViewController.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
@@ -571,6 +572,8 @@
 		AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		AD3D95001EE6F3D500D2704B /* FileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListViewController.h; sourceTree = "<group>"; };
 		AD3D95011EE6F3D500D2704B /* FileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListViewController.m; sourceTree = "<group>"; };
+		AD3D95031EE7B5A700D2704B /* FileDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDetailsViewController.h; sourceTree = "<group>"; };
+		AD3D95041EE7B5A700D2704B /* FileDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDetailsViewController.m; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
@@ -1296,6 +1299,8 @@
 				AD3D94FB1EE6EF6200D2704B /* FileListPage.m */,
 				AD3D95001EE6F3D500D2704B /* FileListViewController.h */,
 				AD3D95011EE6F3D500D2704B /* FileListViewController.m */,
+				AD3D95031EE7B5A700D2704B /* FileDetailsViewController.h */,
+				AD3D95041EE7B5A700D2704B /* FileDetailsViewController.m */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -1650,6 +1655,7 @@
 				032C965A1E2C7301001EFC29 /* CreatFileTypeView.m in Sources */,
 				0300496B1E0E5F60006EDC29 /* CourseMoveRequest.m in Sources */,
 				030049841E0E5F61006EDC29 /* UserList.m in Sources */,
+				AD3D95051EE7B5A700D2704B /* FileDetailsViewController.m in Sources */,
 				032911521E113B8B000C1F5A /* KSWebViewController.m in Sources */,
 				ADFEAB611DED6EBA00C0D703 /* CourseApi.m in Sources */,
 				0335B32B1E1538EC00A2A74B /* FilesChooseTitleView.m in Sources */,
