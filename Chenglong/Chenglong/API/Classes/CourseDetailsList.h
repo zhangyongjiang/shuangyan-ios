@@ -5,6 +5,7 @@
 
 @interface CourseDetailsList : Data
 
+@property(strong, nonatomic) CourseDetails* courseDetails;
 @property(strong, nonatomic) NSMutableArray* items;
 
 @end

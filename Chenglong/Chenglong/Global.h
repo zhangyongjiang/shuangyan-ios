@@ -14,6 +14,9 @@
 #import "UIView+Position.h"
 #import "UIColor+String.h"
 
+#import "UserApi.h"
+#import "CourseApi.h"
+
 static NSInteger max_second = 120;//验证码倒计时时间
 
 

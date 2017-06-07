@@ -194,6 +194,9 @@
 		AD3D94F31EE677F900D2704B /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F21EE677F900D2704B /* BaseView.m */; };
 		AD3D94F61EE6790E00D2704B /* TableViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F51EE6790E00D2704B /* TableViewPage.m */; };
 		AD3D94F91EE679A000D2704B /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F81EE679A000D2704B /* UIColor+String.m */; };
+		AD3D94FC1EE6EF6200D2704B /* FileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94FB1EE6EF6200D2704B /* FileListPage.m */; };
+		AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */; };
+		AD3D95021EE6F3D500D2704B /* FileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D95011EE6F3D500D2704B /* FileListViewController.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
@@ -562,6 +565,12 @@
 		AD3D94F51EE6790E00D2704B /* TableViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewPage.m; sourceTree = "<group>"; };
 		AD3D94F71EE679A000D2704B /* UIColor+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+String.h"; sourceTree = "<group>"; };
 		AD3D94F81EE679A000D2704B /* UIColor+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+String.m"; sourceTree = "<group>"; };
+		AD3D94FA1EE6EF6200D2704B /* FileListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListPage.h; sourceTree = "<group>"; };
+		AD3D94FB1EE6EF6200D2704B /* FileListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListPage.m; sourceTree = "<group>"; };
+		AD3D94FD1EE6F3B700D2704B /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		AD3D95001EE6F3D500D2704B /* FileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListViewController.h; sourceTree = "<group>"; };
+		AD3D95011EE6F3D500D2704B /* FileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListViewController.m; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
@@ -789,6 +798,8 @@
 				032C96551E2C67C1001EFC29 /* UIPlaceHolderTextView.h */,
 				032C96561E2C67C1001EFC29 /* UIPlaceHolderTextView.m */,
 				032C96A81E2CB007001EFC29 /* ImageCamera */,
+				AD3D94FD1EE6F3B700D2704B /* BaseViewController.h */,
+				AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */,
 			);
 			path = BaseClasses;
 			sourceTree = "<group>";
@@ -1281,6 +1292,10 @@
 			children = (
 				AD3D94EB1EE6767200D2704B /* EmptyFolderView.h */,
 				AD3D94EC1EE6767200D2704B /* EmptyFolderView.m */,
+				AD3D94FA1EE6EF6200D2704B /* FileListPage.h */,
+				AD3D94FB1EE6EF6200D2704B /* FileListPage.m */,
+				AD3D95001EE6F3D500D2704B /* FileListViewController.h */,
+				AD3D95011EE6F3D500D2704B /* FileListViewController.m */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -1693,12 +1708,14 @@
 				030049691E0E5F60006EDC29 /* CourseInfo.m in Sources */,
 				030049751E0E5F61006EDC29 /* JournalDetailsList.m in Sources */,
 				0335B3211E15340700A2A74B /* FileNoDataView.m in Sources */,
+				AD3D94FC1EE6EF6200D2704B /* FileListPage.m in Sources */,
 				0300495B1E0E5F60006EDC29 /* Account.m in Sources */,
 				032C96521E2C6642001EFC29 /* CreatFileViews.m in Sources */,
 				030049811E0E5F61006EDC29 /* UserDetailsList.m in Sources */,
 				0329116F1E113C8F000C1F5A /* NSObject+Kaishi.m in Sources */,
 				ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */,
 				0300496C1E0E5F60006EDC29 /* EmailRegisterRequest.m in Sources */,
+				AD3D95021EE6F3D500D2704B /* FileListViewController.m in Sources */,
 				AD3D94F31EE677F900D2704B /* BaseView.m in Sources */,
 				0335B3361E164D3C00A2A74B /* TotalFileView.m in Sources */,
 				030049721E0E5F60006EDC29 /* InviteRequest.m in Sources */,
@@ -1732,6 +1749,7 @@
 				032911A71E125716000C1F5A /* RegisterViewController.m in Sources */,
 				032C96931E2CA31D001EFC29 /* TZImagePickerController.m in Sources */,
 				030049711E0E5F60006EDC29 /* Invitation.m in Sources */,
+				AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */,
 				032C96961E2CA31D001EFC29 /* TZPhotoPreviewController.m in Sources */,
 				032C96A51E2CABA4001EFC29 /* FilePhotoViews.m in Sources */,
 				032C96B31E2CB007001EFC29 /* DVFullScreenMediaScrollView.m in Sources */,

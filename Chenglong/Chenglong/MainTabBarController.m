@@ -13,6 +13,7 @@
 #import "SameCityViewController.h"
 #import "CommunityViewController.h"
 #import "ProfileViewController.h"
+#import "FileListViewController.h"
 
 @interface MainTabBarController ()<UITabBarControllerDelegate>
 {
@@ -46,7 +47,9 @@
     self.delegate = self;
     
     
-    FileViewController * file = [[FileViewController alloc] initWithNibName:nil bundle:nil];
+//    FileViewController * file = [[FileViewController alloc] initWithNibName:nil bundle:nil];
+    FileListViewController* file = [[FileListViewController alloc] init];
+    
     CommunityViewController* community = [[CommunityViewController alloc] initWithNibName:nil bundle:nil];
     ProfileViewController* profile = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
     
