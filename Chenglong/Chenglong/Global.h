@@ -13,6 +13,7 @@
 #import "NSObject+TMCache.h"
 #import "UIView+Position.h"
 #import "UIColor+String.h"
+#import "FitLabel.h"
 
 #import "UserApi.h"
 #import "CourseApi.h"

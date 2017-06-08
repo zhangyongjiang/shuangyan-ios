@@ -199,6 +199,9 @@
 		AD3D95021EE6F3D500D2704B /* FileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D95011EE6F3D500D2704B /* FileListViewController.m */; };
 		AD3D95051EE7B5A700D2704B /* FileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D95041EE7B5A700D2704B /* FileDetailsViewController.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
+		AD59D8F11EE91188009C78D6 /* FileListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D8EE1EE91188009C78D6 /* FileListItemView.m */; };
+		AD59D8F21EE91188009C78D6 /* FileListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D8F01EE91188009C78D6 /* FileListTableViewCell.m */; };
+		AD59D8F51EE913F9009C78D6 /* FitLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D8F41EE913F9009C78D6 /* FitLabel.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -576,6 +579,12 @@
 		AD3D95041EE7B5A700D2704B /* FileDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDetailsViewController.m; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
+		AD59D8ED1EE91188009C78D6 /* FileListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListItemView.h; sourceTree = "<group>"; };
+		AD59D8EE1EE91188009C78D6 /* FileListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListItemView.m; sourceTree = "<group>"; };
+		AD59D8EF1EE91188009C78D6 /* FileListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListTableViewCell.h; sourceTree = "<group>"; };
+		AD59D8F01EE91188009C78D6 /* FileListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListTableViewCell.m; sourceTree = "<group>"; };
+		AD59D8F31EE913F9009C78D6 /* FitLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitLabel.h; sourceTree = "<group>"; };
+		AD59D8F41EE913F9009C78D6 /* FitLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitLabel.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -794,6 +803,8 @@
 		0329114F1E113B85000C1F5A /* BaseClasses */ = {
 			isa = PBXGroup;
 			children = (
+				AD59D8F31EE913F9009C78D6 /* FitLabel.h */,
+				AD59D8F41EE913F9009C78D6 /* FitLabel.m */,
 				032911501E113B8B000C1F5A /* KSWebViewController.h */,
 				032911511E113B8B000C1F5A /* KSWebViewController.m */,
 				0329118B1E113D87000C1F5A /* ZaoJiaoBgViewController.h */,
@@ -1293,6 +1304,10 @@
 		AD3D94E11EE675E100D2704B /* File */ = {
 			isa = PBXGroup;
 			children = (
+				AD59D8ED1EE91188009C78D6 /* FileListItemView.h */,
+				AD59D8EE1EE91188009C78D6 /* FileListItemView.m */,
+				AD59D8EF1EE91188009C78D6 /* FileListTableViewCell.h */,
+				AD59D8F01EE91188009C78D6 /* FileListTableViewCell.m */,
 				AD3D94EB1EE6767200D2704B /* EmptyFolderView.h */,
 				AD3D94EC1EE6767200D2704B /* EmptyFolderView.m */,
 				AD3D94FA1EE6EF6200D2704B /* FileListPage.h */,
@@ -1610,6 +1625,7 @@
 			files = (
 				032C96951E2CA31D001EFC29 /* TZPhotoPreviewCell.m in Sources */,
 				032C96B41E2CB007001EFC29 /* DVFullScreenMediaViewer.m in Sources */,
+				AD59D8F51EE913F9009C78D6 /* FitLabel.m in Sources */,
 				0300497F1E0E5F61006EDC29 /* User.m in Sources */,
 				0300496F1E0E5F60006EDC29 /* FriendRequest.m in Sources */,
 				0329116C1E113C83000C1F5A /* NSString+Util.m in Sources */,
@@ -1681,6 +1697,7 @@
 				ADFEAB7D1DED6EBA00C0D703 /* UserApi.m in Sources */,
 				030048F41E0E5D17006EDC29 /* Global.m in Sources */,
 				030049011E0E5D65006EDC29 /* TMMemoryCache.m in Sources */,
+				AD59D8F21EE91188009C78D6 /* FileListTableViewCell.m in Sources */,
 				032911461E113B10000C1F5A /* NJKWebViewProgress.m in Sources */,
 				0300495D1E0E5F60006EDC29 /* AdvertisingList.m in Sources */,
 				030049791E0E5F61006EDC29 /* MoneyFlowList.m in Sources */,
@@ -1710,6 +1727,7 @@
 				032911551E113BA2000C1F5A /* NSObject+CurrentController.m in Sources */,
 				032C96201E2208B6001EFC29 /* ProfileHeaderCell.m in Sources */,
 				032C96971E2CA31D001EFC29 /* TZVideoPlayerController.m in Sources */,
+				AD59D8F11EE91188009C78D6 /* FileListItemView.m in Sources */,
 				032C96901E2CA31D001EFC29 /* TZAssetCell.m in Sources */,
 				030049691E0E5F60006EDC29 /* CourseInfo.m in Sources */,
 				030049751E0E5F61006EDC29 /* JournalDetailsList.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "FileListPage.h"
 #import "FileListViewController.h"
+#import "FileListTableViewCell.h"
 
 #define FileListItemTableViewCellID @"FileListItemTableViewCellID"
 
@@ -15,7 +16,7 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:FileListItemTableViewCellID];
+    [_tableView registerClass:[FileListTableViewCell class] forCellReuseIdentifier:FileListItemTableViewCellID];
     return self;
 }
 
@@ -28,9 +29,10 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:FileListItemTableViewCellID];
+    FileListTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:FileListItemTableViewCellID];
     CourseDetails* item = [self.courseDetailsList.items objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.course.title;
+//    cell.textLabel.text = item.course.title;
+    cell.courseDetails = item;
     
     return cell;
 }
