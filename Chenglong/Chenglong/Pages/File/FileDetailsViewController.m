@@ -27,8 +27,18 @@
         MediaContent* mc = [self.courseDetails.course.resources objectAtIndex:0];
         if([mc.contentType hasPrefix:@"audio"]) {
             self.mp3Page.online = mc;
-            [self.mp3Page download];
-            [self.mp3Page play];
+            NSString* currdir = [[NSFileManager defaultManager] currentDirectoryPath];
+            self.mp3Page.offline = [NSString stringWithFormat:@"%@/%@", currdir, self.courseDetails.course.id];
+            if(![self.mp3Page downloaded]) {
+                [self.mp3Page downloadWithProgressBlock:^(CGFloat progress) {
+                    
+                } completionBlock:^(BOOL completed) {
+                    [self.mp3Page play];
+                }];
+            }
+            else {
+                [self.mp3Page play];
+            }
         }
     }
 }

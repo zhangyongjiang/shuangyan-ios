@@ -204,9 +204,8 @@
 		AD59D8FE1EEA51AB009C78D6 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D8FD1EEA51AB009C78D6 /* WebViewController.m */; };
 		AD59D9011EEA5849009C78D6 /* OfflineFilePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9001EEA5849009C78D6 /* OfflineFilePage.m */; };
 		AD59D9041EEA5C82009C78D6 /* MP3FilePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9031EEA5C82009C78D6 /* MP3FilePage.m */; };
-		AD59D90F1EEA6694009C78D6 /* MZDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD59D90A1EEA6694009C78D6 /* MZDownloadManager.swift */; };
-		AD59D9101EEA6694009C78D6 /* MZDownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD59D90B1EEA6694009C78D6 /* MZDownloadModel.swift */; };
-		AD59D9111EEA6694009C78D6 /* MZUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD59D90C1EEA6694009C78D6 /* MZUtility.swift */; };
+		AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */; };
+		AD59D9181EEADDC6009C78D6 /* TWRDownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -597,9 +596,10 @@
 		AD59D9001EEA5849009C78D6 /* OfflineFilePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineFilePage.m; sourceTree = "<group>"; };
 		AD59D9021EEA5C82009C78D6 /* MP3FilePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP3FilePage.h; sourceTree = "<group>"; };
 		AD59D9031EEA5C82009C78D6 /* MP3FilePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MP3FilePage.m; sourceTree = "<group>"; };
-		AD59D90A1EEA6694009C78D6 /* MZDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZDownloadManager.swift; sourceTree = "<group>"; };
-		AD59D90B1EEA6694009C78D6 /* MZDownloadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZDownloadModel.swift; sourceTree = "<group>"; };
-		AD59D90C1EEA6694009C78D6 /* MZUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZUtility.swift; sourceTree = "<group>"; };
+		AD59D9131EEADDC6009C78D6 /* TWRDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRDownloadManager.h; sourceTree = "<group>"; };
+		AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadManager.m; sourceTree = "<group>"; };
+		AD59D9151EEADDC6009C78D6 /* TWRDownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRDownloadObject.h; sourceTree = "<group>"; };
+		AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadObject.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1154,7 +1154,7 @@
 		A364CBF51C94CBFA0075E65F /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				AD59D9051EEA6694009C78D6 /* MZDownloadManager */,
+				AD59D9121EEADDC6009C78D6 /* TWRDownloadManager */,
 				032C96621E2CA31D001EFC29 /* TZImagePickerController */,
 				0335B3081E1508F800A2A74B /* PopMenuView */,
 				032911BB1E129694000C1F5A /* OtherClasses */,
@@ -1386,30 +1386,15 @@
 			path = Tutorial;
 			sourceTree = "<group>";
 		};
-		AD59D9051EEA6694009C78D6 /* MZDownloadManager */ = {
+		AD59D9121EEADDC6009C78D6 /* TWRDownloadManager */ = {
 			isa = PBXGroup;
 			children = (
-				AD59D9061EEA6694009C78D6 /* Assets */,
-				AD59D9081EEA6694009C78D6 /* Classes */,
+				AD59D9131EEADDC6009C78D6 /* TWRDownloadManager.h */,
+				AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */,
+				AD59D9151EEADDC6009C78D6 /* TWRDownloadObject.h */,
+				AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */,
 			);
-			path = MZDownloadManager;
-			sourceTree = "<group>";
-		};
-		AD59D9061EEA6694009C78D6 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		AD59D9081EEA6694009C78D6 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				AD59D90A1EEA6694009C78D6 /* MZDownloadManager.swift */,
-				AD59D90B1EEA6694009C78D6 /* MZDownloadModel.swift */,
-				AD59D90C1EEA6694009C78D6 /* MZUtility.swift */,
-			);
-			path = Classes;
+			path = TWRDownloadManager;
 			sourceTree = "<group>";
 		};
 		ADEB6A511D9BEB140082253C /* API */ = {
@@ -1521,6 +1506,11 @@
 				TargetAttributes = {
 					A354C16F1C93ED9F00EE0DE5 = {
 						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A354C18B1C93ED9F00EE0DE5 = {
 						CreatedOnToolsVersion = 7.2;
@@ -1711,6 +1701,7 @@
 				030049821E0E5F61006EDC29 /* UserFriend.m in Sources */,
 				032C96131E21FFB8001EFC29 /* RemindBlankView.m in Sources */,
 				032911A01E114409000C1F5A /* CommunityViewController.m in Sources */,
+				AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */,
 				032C96251E222C9A001EFC29 /* CourseFolderCell.m in Sources */,
 				032911811E113D0C000C1F5A /* UIImageView+Thumbnail.m in Sources */,
 				AD59D9011EEA5849009C78D6 /* OfflineFilePage.m in Sources */,
@@ -1751,7 +1742,6 @@
 				AD59D8F21EE91188009C78D6 /* FileListTableViewCell.m in Sources */,
 				032911461E113B10000C1F5A /* NJKWebViewProgress.m in Sources */,
 				0300495D1E0E5F60006EDC29 /* AdvertisingList.m in Sources */,
-				AD59D9101EEA6694009C78D6 /* MZDownloadModel.swift in Sources */,
 				030049791E0E5F61006EDC29 /* MoneyFlowList.m in Sources */,
 				0300497A1E0E5F61006EDC29 /* MoneyRequest.m in Sources */,
 				030049611E0E5F60006EDC29 /* BusinessList.m in Sources */,
@@ -1761,6 +1751,7 @@
 				ADFEAB731DED6EBA00C0D703 /* LocalApi.m in Sources */,
 				0300495C1E0E5F60006EDC29 /* Advertising.m in Sources */,
 				032911901E113EBF000C1F5A /* UILocalNotification+Kaishi.m in Sources */,
+				AD59D9181EEADDC6009C78D6 /* TWRDownloadObject.m in Sources */,
 				032C969F1E2CA824001EFC29 /* MediaAttachmentDataSource.m in Sources */,
 				A364CCC81C94CBFA0075E65F /* SimpleDateConverter.m in Sources */,
 				032C96981E2CA31D001EFC29 /* UIView+Layout.m in Sources */,
@@ -1806,7 +1797,6 @@
 				0329118A1E113D24000C1F5A /* UIView+Helper.m in Sources */,
 				0335B3101E1508F800A2A74B /* XTPopNormalView.m in Sources */,
 				0329115C1E113BC0000C1F5A /* TTTAttributedLabel.m in Sources */,
-				AD59D9111EEA6694009C78D6 /* MZUtility.swift in Sources */,
 				0329118D1E113D87000C1F5A /* ZaoJiaoBgViewController.m in Sources */,
 				030049801E0E5F61006EDC29 /* UserDetails.m in Sources */,
 				032911751E113CBA000C1F5A /* SDImageCache+Thumbnail.m in Sources */,
@@ -1826,7 +1816,6 @@
 				032911A71E125716000C1F5A /* RegisterViewController.m in Sources */,
 				032C96931E2CA31D001EFC29 /* TZImagePickerController.m in Sources */,
 				030049711E0E5F60006EDC29 /* Invitation.m in Sources */,
-				AD59D90F1EEA6694009C78D6 /* MZDownloadManager.swift in Sources */,
 				AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */,
 				032C96961E2CA31D001EFC29 /* TZPhotoPreviewController.m in Sources */,
 				032C96A51E2CABA4001EFC29 /* FilePhotoViews.m in Sources */,
@@ -1995,7 +1984,6 @@
 		A354C1A41C93ED9F00EE0DE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ChenglongTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2008,7 +1996,6 @@
 		A354C1A51C93ED9F00EE0DE5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ChenglongTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2021,7 +2008,6 @@
 		A354C1A71C93ED9F00EE0DE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = ChenglongUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoshin.ChenglongUITests;
@@ -2034,7 +2020,6 @@
 		A354C1A81C93ED9F00EE0DE5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = ChenglongUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoshin.ChenglongUITests;

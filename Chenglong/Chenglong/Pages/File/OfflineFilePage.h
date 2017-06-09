@@ -15,5 +15,7 @@
 
 -(BOOL)downloaded;
 -(void)download;
+-(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
+                  completionBlock:(void(^)(BOOL completed))completionBlock ;
 
 @end
