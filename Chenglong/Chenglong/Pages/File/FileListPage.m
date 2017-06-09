@@ -9,6 +9,8 @@
 #import "FileListPage.h"
 #import "FileListViewController.h"
 #import "FileListTableViewCell.h"
+#import "WebViewController.h"
+#import "FileDetailsViewController.h"
 
 #define FileListItemTableViewCellID @"FileListItemTableViewCellID"
 
@@ -45,6 +47,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
     else {
+        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
+        c.courseDetails = cd;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }
 

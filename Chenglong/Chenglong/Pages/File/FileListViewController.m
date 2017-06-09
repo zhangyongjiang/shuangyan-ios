@@ -7,10 +7,12 @@
 //
 
 #import "FileListViewController.h"
+#import "ObjectMapper.h"
 
 @interface FileListViewController ()
 
 @property(strong, nonatomic) FileListPage* page;
+@property(strong, nonatomic) NSString* dirPath;
 
 @end
 
@@ -25,6 +27,19 @@
     }
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"tab_btn_file_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_file_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     self.tabBarItem.imageInsets = UIEdgeInsetsMake(-4, 0, 4, 0);
+    
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    if(self.currentDirId == NULL) {
+        self.dirPath = NSHomeDirectory();
+        [filemgr changeCurrentDirectoryPath:self.dirPath];
+    }
+    else {
+        self.dirPath = [NSString stringWithFormat:@"%@/%@", [filemgr currentDirectoryPath], self.currentDirId];
+        if(![filemgr fileExistsAtPath:self.dirPath]) {
+            [filemgr createDirectoryAtPath:self.dirPath withIntermediateDirectories:FALSE attributes:nil error:nil];
+        }
+        [filemgr changeCurrentDirectoryPath:self.dirPath];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,41 +48,6 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSFileManager *filemgr = [NSFileManager defaultManager];
-    if(self.currentDirId == NULL) {
-        NSString* currPath = NSHomeDirectory();
-        if([filemgr changeCurrentDirectoryPath:currPath] == NO) {
-            NSLog(@"Cannot change current directory");
-        }
-        else {
-            NSLog(@"change current directory to HOME %@", currPath);
-        }
-    }
-    else {
-        NSString* currPath = [filemgr currentDirectoryPath];
-        NSRange range = [currPath rangeOfString:self.currentDirId];
-        if(range.location != NSNotFound) {
-            currPath = [currPath substringToIndex:(range.location + range.length)];
-            if([filemgr changeCurrentDirectoryPath:currPath] == NO) {
-                NSLog(@"Cannot change current directory to %@", currPath);
-            }
-            else {
-                NSLog(@"change current directory to %@", currPath);
-            }
-        }
-        else {
-            currPath = [NSString stringWithFormat:@"%@/%@", currPath, self.currentDirId];
-            if(![filemgr fileExistsAtPath:currPath]) {
-                [filemgr createDirectoryAtPath:currPath withIntermediateDirectories:FALSE attributes:nil error:nil];
-            }
-            if([filemgr changeCurrentDirectoryPath:currPath] == NO) {
-                NSLog(@"Cannot change current directory to %@", currPath);
-            }
-            else {
-                NSLog(@"change current directory to %@", currPath);
-            }
-        }
-    }
 }
 
 -(void)createPage {
@@ -82,6 +62,14 @@
             self.navigationItem.title = resp.courseDetails.course.title;
         }
         [self.page setCourseDetailsList:resp];
+
+//        if(self.currentDirId != NULL) {
+//            NSFileManager *filemgr = [NSFileManager defaultManager];
+//            NSString* currPath = [filemgr currentDirectoryPath];
+//            NSString* nodeFilePath = [NSString stringWithFormat:@"%@/.info", currPath];
+//            NSString* json = [resp.courseDetails toJson];
+//            [json writeToFile:nodeFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+//        }
     } onError:^(APIError *err) {
         
     }];

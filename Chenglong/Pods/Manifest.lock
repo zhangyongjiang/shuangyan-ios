@@ -43,7 +43,6 @@ DEPENDENCIES:
   - Lockbox (~> 2.1.0)
   - MJRefresh (~> 3.1.12)
   - PureLayout
-  - PureLayout (~> 2.0.6)
   - SDWebImage (~> 3.8.1)
   - SVProgressHUD (~> 2.0.3)
 
@@ -56,6 +55,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 012c1f46a7c89d0e2bda2569ce0d84a43fed61c2
+PODFILE CHECKSUM: 3f5d99313d272b0d6d361db0e908c2adf30b827a
 
 COCOAPODS: 1.1.1
