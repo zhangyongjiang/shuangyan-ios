@@ -18,18 +18,22 @@
 
 -(BOOL)downloaded {
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    if(![filemgr fileExistsAtPath:self.offline isDirectory:nil])
+    if(![filemgr fileExistsAtPath:self.offline isDirectory:nil]) {
+        NSLog(@"file doesn't exist %@", self.offline);
         return NO;
+    }
     unsigned long long fileSize = [[filemgr attributesOfItemAtPath:self.offline error:nil] fileSize];
     if(fileSize != [self.online.length longLongValue]) {
         NSLog(@"remove existing file %@", self.offline);
         [filemgr removeItemAtPath:self.offline error:nil];
         return NO;
     }
+    NSLog(@"file %@ exists with the same length %i", self.offline, (int)fileSize);
     return YES;
 }
 
 -(void)download {
+    NSLog(@"start to download file %@ ", self.offline);
     NSString* fileName = [self.offline lastPathComponent];
     NSString* dirName = [self.offline substringToIndex:fileName.length];
     [[TWRDownloadManager sharedManager] downloadFileForURL:self.online.url withName:fileName inDirectoryNamed:dirName progressBlock:^(CGFloat progress) {

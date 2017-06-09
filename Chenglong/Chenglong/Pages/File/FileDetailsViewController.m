@@ -25,6 +25,7 @@
     
     if(self.courseDetails.course.resources) {
         MediaContent* mc = [self.courseDetails.course.resources objectAtIndex:0];
+        NSLog(@"file media content %@", [mc toJson]);
         if([mc.contentType hasPrefix:@"audio"]) {
             self.mp3Page.online = mc;
             NSString* currdir = [[NSFileManager defaultManager] currentDirectoryPath];
