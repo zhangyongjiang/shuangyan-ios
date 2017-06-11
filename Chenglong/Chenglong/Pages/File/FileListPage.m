@@ -19,6 +19,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     [_tableView registerClass:[FileListTableViewCell class] forCellReuseIdentifier:FileListItemTableViewCellID];
+    
     return self;
 }
 
@@ -43,12 +44,14 @@
     CourseDetails* cd = [self.courseDetailsList.items objectAtIndex:indexPath.row];
     if(cd.course.isDir.intValue == 1) {
         FileListViewController* c = [[FileListViewController alloc] init];
-        c.currentDirId = cd.course.id;
+        c.currentCourseId = cd.course.id;
+        c.currentDirPath = [self.currentDirPath stringByAppendingFormat:@"/%@", cd.course.id];
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
     else {
         FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
         c.courseDetails = cd;
+        c.currentDirPath = self.currentDirPath;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }

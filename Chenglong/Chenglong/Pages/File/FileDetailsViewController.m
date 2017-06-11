@@ -30,8 +30,7 @@
         if([mc.contentType hasPrefix:@"audio"]) {
             LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
             lmc.mediaContent = mc;
-            NSString* currdir = [[NSFileManager defaultManager] currentDirectoryPath];
-            lmc.filePath = [NSString stringWithFormat:@"%@/%@", currdir, self.courseDetails.course.id];
+            lmc.filePath = [NSString stringWithFormat:@"%@/%@", self.currentDirPath, self.courseDetails.course.id];
             if(![lmc isDownloaded]) {
                 [lmc downloadWithProgressBlock:^(CGFloat progress) {
                     

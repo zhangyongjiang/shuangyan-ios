@@ -11,6 +11,7 @@
 
 @interface FileListViewController : BaseViewController
 
-@property(strong, nonatomic) NSString* currentDirId;
+@property(strong, nonatomic) NSString* currentCourseId;
+@property(strong, nonatomic) NSString* currentDirPath;
 
 @end

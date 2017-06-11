@@ -49,7 +49,8 @@
     
 //    FileViewController * file = [[FileViewController alloc] initWithNibName:nil bundle:nil];
     FileListViewController* file = [[FileListViewController alloc] init];
-    
+    file.currentDirPath = NSHomeDirectory();
+
     CommunityViewController* community = [[CommunityViewController alloc] initWithNibName:nil bundle:nil];
     ProfileViewController* profile = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
     

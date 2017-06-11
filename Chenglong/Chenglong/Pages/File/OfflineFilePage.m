@@ -36,6 +36,12 @@
     NSLog(@"start to download file %@ ", self.offline);
     NSString* fileName = [self.offline lastPathComponent];
     NSString* dirName = [self.offline substringToIndex:fileName.length];
+    
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    if(![filemgr fileExistsAtPath:dirName]) {
+        [filemgr createDirectoryAtPath:dirName withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
     [[TWRDownloadManager sharedManager] downloadFileForURL:self.online.url withName:fileName inDirectoryNamed:dirName progressBlock:^(CGFloat progress) {
         NSLog(@"progress %f", progress);
     } completionBlock:^(BOOL completed) {
@@ -45,11 +51,14 @@
 
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock {
-    NSString* currdir = [[NSFileManager defaultManager] currentDirectoryPath];
     NSString* fileName = [self.offline lastPathComponent];
     NSString* dirName = [self.offline substringToIndex:(self.offline.length - fileName.length)];
-    BOOL exist = [[NSFileManager defaultManager] fileExistsAtPath:dirName];
-    NSLog(@"%@\n\n%@\n\n%@\n\n%d", currdir, fileName, dirName, exist);
+    
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    if(![filemgr fileExistsAtPath:dirName]) {
+        [filemgr createDirectoryAtPath:dirName withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
     [[TWRDownloadManager sharedManager] downloadFileForURL:self.online.url withName:fileName inDirectoryNamed:dirName progressBlock:^(CGFloat progress) {
         NSLog(@"progress %f", progress);
         progressBlock(progress);

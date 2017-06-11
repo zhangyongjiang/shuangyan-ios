@@ -11,5 +11,7 @@
 @interface FileDetailsViewController : BaseViewController
 
 @property(strong, nonatomic) CourseDetails* courseDetails;
+@property(strong, nonatomic) NSString* currentDirPath;
+
 
 @end
