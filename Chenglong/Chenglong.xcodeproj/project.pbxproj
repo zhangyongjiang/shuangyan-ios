@@ -206,6 +206,9 @@
 		AD59D9041EEA5C82009C78D6 /* MP3FilePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9031EEA5C82009C78D6 /* MP3FilePage.m */; };
 		AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */; };
 		AD59D9181EEADDC6009C78D6 /* TWRDownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */; };
+		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
+		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
+		ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -600,6 +603,12 @@
 		AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadManager.m; sourceTree = "<group>"; };
 		AD59D9151EEADDC6009C78D6 /* TWRDownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRDownloadObject.h; sourceTree = "<group>"; };
 		AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadObject.m; sourceTree = "<group>"; };
+		ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConentView.h; sourceTree = "<group>"; };
+		ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaConentView.m; sourceTree = "<group>"; };
+		ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentImageView.h; sourceTree = "<group>"; };
+		ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentImageView.m; sourceTree = "<group>"; };
+		ADD117A01EED03B100EF6E04 /* LocalMediaContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMediaContent.h; sourceTree = "<group>"; };
+		ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMediaContent.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1091,6 +1100,7 @@
 		A354C1721C93ED9F00EE0DE5 /* Chenglong */ = {
 			isa = PBXGroup;
 			children = (
+				ADD117991EECFF3D00EF6E04 /* Views */,
 				AD3D94DC1EE675E100D2704B /* Pages */,
 				0329114F1E113B85000C1F5A /* BaseClasses */,
 				ADEB6A9A1D9BEC1B0082253C /* WebService */,
@@ -1265,6 +1275,8 @@
 				A364CC401C94CBFA0075E65F /* Data.m */,
 				A364CC491C94CBFA0075E65F /* NSString+Json.h */,
 				A364CC4A1C94CBFA0075E65F /* NSString+Json.m */,
+				ADD117A01EED03B100EF6E04 /* LocalMediaContent.h */,
+				ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1395,6 +1407,17 @@
 				AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */,
 			);
 			path = TWRDownloadManager;
+			sourceTree = "<group>";
+		};
+		ADD117991EECFF3D00EF6E04 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */,
+				ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */,
+				ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */,
+				ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		ADEB6A511D9BEB140082253C /* API */ = {
@@ -1661,6 +1684,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */,
 				032C96951E2CA31D001EFC29 /* TZPhotoPreviewCell.m in Sources */,
 				032C96B41E2CB007001EFC29 /* DVFullScreenMediaViewer.m in Sources */,
 				AD59D8F51EE913F9009C78D6 /* FitLabel.m in Sources */,
@@ -1793,6 +1817,7 @@
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
 				030049771E0E5F61006EDC29 /* MediaContent.m in Sources */,
+				ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */,
 				0300497C1E0E5F61006EDC29 /* PhoneRegisterRequest.m in Sources */,
 				0329118A1E113D24000C1F5A /* UIView+Helper.m in Sources */,
 				0335B3101E1508F800A2A74B /* XTPopNormalView.m in Sources */,
@@ -1825,6 +1850,7 @@
 				032C96B51E2CB007001EFC29 /* MediaPreviewView.m in Sources */,
 				030049731E0E5F60006EDC29 /* Journal.m in Sources */,
 				032911AF1E125CD7000C1F5A /* RegisterView.m in Sources */,
+				ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
