@@ -22,12 +22,14 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)mediaContent {
     [super setLocalMediaContent:mediaContent];
-    if([self isDownloaded]) {
-        [self showImage];
-    }
+    [self showImage];
 }
 
 -(void)showImage {
+    if(![self.localMediaContent isDownloaded]) {
+        NSLog(@"no downloaded yet");
+        return;
+    }
     UIImage* img = [UIImage imageWithContentsOfFile:self.localMediaContent.filePath];
     self.imgView.image = img;
 }

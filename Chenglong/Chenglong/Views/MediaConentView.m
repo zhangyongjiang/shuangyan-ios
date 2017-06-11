@@ -8,10 +8,19 @@
 
 #import "MediaConentView.h"
 
+@interface MediaConentView()
+
+@end
+
+
 @implementation MediaConentView
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    
+    self.metaInfoLabel = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, 60, 0, 0)];
+    self.metaInfoLabel.numberOfLines = -1;
+    [self addSubview:self.metaInfoLabel];
     
     return self;
 }
@@ -29,17 +38,10 @@
     return [mediaContent.contentType hasPrefix:@"application/pdf"];
 }
 
--(BOOL)downloaded {
-    NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString* filePath = self.localMediaContent.filePath;
-    if(![filemgr fileExistsAtPath:filePath isDirectory:nil]) {
-        return NO;
-    }
-    unsigned long long fileSize = [[filemgr attributesOfItemAtPath:filePath error:nil] fileSize];
-    if(fileSize != [self.localMediaContent.mediaContent.length longLongValue]) {
-        return NO;
-    }
-    return YES;
+-(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
+    _localMediaContent = localMediaContent;
+    NSString* meta = [NSString stringWithFormat:@"Name: %@\nType: %@\nLength: %@\nDownloaded: %i", self.localMediaContent.mediaContent.name, self.localMediaContent.mediaContent.contentType, self.localMediaContent.mediaContent.length, [localMediaContent isDownloaded]];
+    self.metaInfoLabel.text = meta;
 }
 
 @end

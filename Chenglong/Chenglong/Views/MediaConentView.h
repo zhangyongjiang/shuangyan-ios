@@ -11,6 +11,8 @@
 
 @interface MediaConentView : BaseView
 
+@property(strong, nonatomic) FitLabel* metaInfoLabel;
+
 @property(strong, nonatomic) LocalMediaContent* localMediaContent;
 
 +(BOOL) isImage:(MediaContent*)mediaContent;

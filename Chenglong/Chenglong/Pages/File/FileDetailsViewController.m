@@ -7,11 +7,11 @@
 //
 
 #import "FileDetailsViewController.h"
-#import "MP3FilePage.h"
+#import "MediaContentAudioView.h"
 
 @interface FileDetailsViewController ()
 
-@property(strong, nonatomic) MP3FilePage* mp3Page;
+@property(strong, nonatomic) MediaContentAudioView* mediaContentAudioView;
 
 @end
 
@@ -21,25 +21,26 @@
     [super viewDidLoad];
     self.title = self.courseDetails.course.title;
 
-    self.mp3Page = [[MP3FilePage alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.mp3Page];
+    self.mediaContentAudioView = [[MediaContentAudioView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.mediaContentAudioView];
     
     if(self.courseDetails.course.resources) {
         MediaContent* mc = [self.courseDetails.course.resources objectAtIndex:0];
         NSLog(@"file media content %@", [mc toJson]);
         if([mc.contentType hasPrefix:@"audio"]) {
-            self.mp3Page.online = mc;
+            LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
+            lmc.mediaContent = mc;
             NSString* currdir = [[NSFileManager defaultManager] currentDirectoryPath];
-            self.mp3Page.offline = [NSString stringWithFormat:@"%@/%@", currdir, self.courseDetails.course.id];
-            if(![self.mp3Page downloaded]) {
-                [self.mp3Page downloadWithProgressBlock:^(CGFloat progress) {
+            lmc.filePath = [NSString stringWithFormat:@"%@/%@", currdir, self.courseDetails.course.id];
+            if(![lmc isDownloaded]) {
+                [lmc downloadWithProgressBlock:^(CGFloat progress) {
                     
                 } completionBlock:^(BOOL completed) {
-                    [self.mp3Page play];
+                    self.mediaContentAudioView.localMediaContent = lmc;
                 }];
             }
             else {
-                [self.mp3Page play];
+                self.mediaContentAudioView.localMediaContent = lmc;
             }
         }
     }
