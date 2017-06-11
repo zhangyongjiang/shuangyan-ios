@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.courseDetails.course.title;
 
     self.mp3Page = [[MP3FilePage alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.mp3Page];
