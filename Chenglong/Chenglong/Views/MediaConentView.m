@@ -12,13 +12,9 @@
 #import "MediaContentVideoView.h"
 #import "MediaContentPdfView.h"
 #import "PureLayout.h"
-#import "TWRDownloadManager.h"
 
 @interface MediaConentView()
 
-@property(strong, nonatomic) FitLabel* metaInfoLabel;
-@property(strong, nonatomic) UIButton* btnDownload;
-@property(strong, nonatomic) UIButton* btnPlay;
 
 @end
 
@@ -28,7 +24,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.metaInfoLabel = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, 60, 0, 0)];
+    self.metaInfoLabel = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, Margin, 0, 0)];
     self.metaInfoLabel.numberOfLines = -1;
     [self addSubview:self.metaInfoLabel];
     
@@ -62,12 +58,11 @@
 }
 
 -(void)download {
-    [[TWRDownloadManager sharedManager] downloadFileForURL:self.localMediaContent.mediaContent.url withName:[self.localMediaContent getFileName] inDirectoryNamed:[self.localMediaContent getDirName] progressBlock:^(CGFloat progress) {
+    [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
         [self.btnDownload setTitle:[NSString stringWithFormat:@"download %f%", progress*100] forState:UIControlStateNormal];
     } completionBlock:^(BOOL completed) {
         [self.btnDownload setEnabled:NO];
-    } enableBackgroundMode:NO];
-
+    }];
 }
 
 +(BOOL)isImage:(MediaContent*)mediaContent {
@@ -98,6 +93,8 @@
     }
     else
         return nil;
+    view.width = [UIView screenWidth] - Margin*2;
+    view.height = [UIView screenWidth] - Margin*2;
     LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
     lmc.mediaContent = mediaContent;
     lmc.filePath = filePath;

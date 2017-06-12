@@ -26,12 +26,8 @@
 
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock {
-    NSString* currdir = [[NSFileManager defaultManager] currentDirectoryPath];
-    NSString* fileName = [self.filePath lastPathComponent];
-    NSString* dirName = [self.filePath substringToIndex:(self.filePath.length - fileName.length)];
-    BOOL exist = [[NSFileManager defaultManager] fileExistsAtPath:dirName];
-    NSLog(@"%@\n\n%@\n\n%@\n\n%d", currdir, fileName, dirName, exist);
-    [[TWRDownloadManager sharedManager] downloadFileForURL:self.mediaContent.url withName:fileName inDirectoryNamed:dirName progressBlock:^(CGFloat progress) {
+    [self createDirs];
+    [[TWRDownloadManager sharedManager] downloadFileForURL:self.mediaContent.url withName:[self getFileName] inDirectoryNamed:[self getDirName] progressBlock:^(CGFloat progress) {
         NSLog(@"progress %f", progress);
         progressBlock(progress);
     } completionBlock:^(BOOL completed) {
@@ -46,5 +42,12 @@
 
 -(NSString*)getDirName {
     return [self.filePath substringToIndex:(self.filePath.length - [self getFileName].length)];
+}
+
+-(void)createDirs {
+    NSFileManager* fm = [NSFileManager defaultManager];
+    if([fm fileExistsAtPath:[self getDirName]])
+        return;
+    [fm createDirectoryAtPath:[self getDirName] withIntermediateDirectories:YES attributes:nil error:nil];
 }
 @end

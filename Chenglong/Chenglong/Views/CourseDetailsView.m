@@ -45,12 +45,7 @@
     }
     self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
     
-    if(self.localCourseDetails.courseDetails.course.content) {
-        NSString* desc = [NSString stringWithFormat:@"Description: %@", self.localCourseDetails.courseDetails.course.content];
-        self.labelDesc.text = desc;
-    }
-    else
-        self.labelDesc.text = nil;
+    self.labelDesc.text = self.localCourseDetails.courseDetails.course.content;
     
     CGFloat w = [UIView screenWidth];
     CGFloat y = self.labelDesc.bottom + Margin;
