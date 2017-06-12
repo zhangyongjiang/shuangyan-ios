@@ -49,7 +49,7 @@
     self.labelDesc.text = desc;
     
     CGFloat w = [UIView screenWidth];
-    CGFloat h = 20;
+    CGFloat h = 400;
     CGFloat y = self.labelDesc.bottom + Margin;
     for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
         MediaConentView* view = [MediaConentView createViewForMediaContent:mc andFilePath:self.localCourseDetails.filePath];

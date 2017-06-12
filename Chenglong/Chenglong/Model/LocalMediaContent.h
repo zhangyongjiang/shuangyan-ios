@@ -16,5 +16,7 @@
 -(BOOL)isDownloaded;
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock ;
+-(NSString*)getFileName;
+-(NSString*)getDirName;
 
 @end

@@ -11,8 +11,6 @@
 
 @interface MediaConentView : BaseView
 
-@property(strong, nonatomic) FitLabel* metaInfoLabel;
-
 @property(strong, nonatomic) LocalMediaContent* localMediaContent;
 
 +(BOOL) isImage:(MediaContent*)mediaContent;
@@ -20,7 +18,5 @@
 +(BOOL) isVideo:(MediaContent*)mediaContent;
 +(BOOL) isPdf:(MediaContent*)mediaContent;
 +(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent  andFilePath:(NSString*) filePath;
-
--(BOOL) isDownloaded;
 
 @end

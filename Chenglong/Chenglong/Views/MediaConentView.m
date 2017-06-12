@@ -11,8 +11,13 @@
 #import "MediaContentAudioView.h"
 #import "MediaContentVideoView.h"
 #import "MediaContentPdfView.h"
+#import "PureLayout.h"
+#import "TWRDownloadManager.h"
 
 @interface MediaConentView()
+
+@property(strong, nonatomic) FitLabel* metaInfoLabel;
+@property(strong, nonatomic) UIButton* btnDownload;
 
 @end
 
@@ -26,7 +31,23 @@
     self.metaInfoLabel.numberOfLines = -1;
     [self addSubview:self.metaInfoLabel];
     
+    self.btnDownload = [[UIButton alloc] initWithFrame:CGRectMake(Margin, 200, 200, 50)];
+    [self.btnDownload setTitle:@"download" forState:UIControlStateNormal];
+    self.btnDownload.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:self.btnDownload];
+//    self.btnDownload.userInteractionEnabled = YES;
+    [self.btnDownload addTarget:self action:@selector(downloadNow) forControlEvents:UIControlEventTouchUpInside];
+    
     return self;
+}
+
+-(void)downloadNow {
+    [[TWRDownloadManager sharedManager] downloadFileForURL:self.localMediaContent.mediaContent.url withName:[self.localMediaContent getFileName] inDirectoryNamed:[self.localMediaContent getDirName] progressBlock:^(CGFloat progress) {
+        [self.btnDownload setTitle:[NSString stringWithFormat:@"download %f", progress] forState:UIControlStateNormal];
+    } completionBlock:^(BOOL completed) {
+//        [self.btnDownload setEnabled:NO];
+    } enableBackgroundMode:NO];
+
 }
 
 +(BOOL)isImage:(MediaContent*)mediaContent {
@@ -42,45 +63,35 @@
     return [mediaContent.contentType hasPrefix:@"application/pdf"];
 }
 +(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent andFilePath:(NSString*) filePath {
+    MediaConentView* view;
     if([MediaConentView isImage:mediaContent]) {
-        MediaContentImageView* view = [[MediaContentImageView alloc] init];
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-        lmc.mediaContent = mediaContent;
-        lmc.filePath = filePath;
-        view.localMediaContent = lmc;
-        return view;
+        view = [[MediaContentImageView alloc] init];
     }
-    if([MediaConentView isAudio:mediaContent]) {
-        MediaContentAudioView* view = [[MediaContentAudioView alloc] init];
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-        lmc.mediaContent = mediaContent;
-        lmc.filePath = filePath;
-        view.localMediaContent = lmc;
-        return view;
+    else if([MediaConentView isAudio:mediaContent]) {
+        view = [[MediaContentAudioView alloc] init];
     }
-    if([MediaConentView isVideo:mediaContent]) {
-        MediaContentVideoView* view = [[MediaContentVideoView alloc] init];
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-        lmc.mediaContent = mediaContent;
-        lmc.filePath = filePath;
-        view.localMediaContent = lmc;
-        return view;
+    else if([MediaConentView isVideo:mediaContent]) {
+        view = [[MediaContentVideoView alloc] init];
     }
-    if([MediaConentView isPdf:mediaContent]) {
-        MediaContentPdfView* view = [[MediaContentPdfView alloc] init];
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-        lmc.mediaContent = mediaContent;
-        lmc.filePath = filePath;
-        view.localMediaContent = lmc;
-        return view;
+    else if([MediaConentView isPdf:mediaContent]) {
+        view = [[MediaContentPdfView alloc] init];
     }
-    return nil;
+    else
+        return nil;
+    LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
+    lmc.mediaContent = mediaContent;
+    lmc.filePath = filePath;
+    view.localMediaContent = lmc;
+    view.backgroundColor = [UIColor colorFromHex:0xdddddd];
+    return view;
 }
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     _localMediaContent = localMediaContent;
     NSString* meta = [NSString stringWithFormat:@"Name: %@\nType: %@\nLength: %@\nDownloaded: %i", self.localMediaContent.mediaContent.name, self.localMediaContent.mediaContent.contentType, self.localMediaContent.mediaContent.length, [localMediaContent isDownloaded]];
     self.metaInfoLabel.text = meta;
+//    BOOL downloaded = [localMediaContent isDownloaded];
+//    [self.btnDownload setEnabled:!downloaded];
 }
 
 @end

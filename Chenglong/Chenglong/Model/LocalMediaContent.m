@@ -40,4 +40,11 @@
     
 }
 
+-(NSString*)getFileName {
+    return [self.filePath lastPathComponent];
+}
+
+-(NSString*)getDirName {
+    return [self.filePath substringToIndex:(self.filePath.length - [self getFileName].length)];
+}
 @end
