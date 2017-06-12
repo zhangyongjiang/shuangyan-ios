@@ -10,4 +10,6 @@
 
 @interface MediaContentPdfView : MediaConentView
 
+@property(strong, nonatomic)UIWebView* webView;
+
 @end
