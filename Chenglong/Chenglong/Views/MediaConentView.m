@@ -83,39 +83,27 @@
     return [mediaContent.contentType hasPrefix:@"application/pdf"];
 }
 +(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent andFilePath:(NSString*) filePath {
+    MediaConentView* view;
     if([MediaConentView isImage:mediaContent]) {
-        MediaContentImageView* view = [[MediaContentImageView alloc] init];
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-        lmc.mediaContent = mediaContent;
-        lmc.filePath = filePath;
-        view.localMediaContent = lmc;
-        return view;
+        view = [[MediaContentImageView alloc] init];
     }
-    if([MediaConentView isAudio:mediaContent]) {
-        MediaContentAudioView* view = [[MediaContentAudioView alloc] init];
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-        lmc.mediaContent = mediaContent;
-        lmc.filePath = filePath;
-        view.localMediaContent = lmc;
-        return view;
+    else if([MediaConentView isAudio:mediaContent]) {
+        view = [[MediaContentAudioView alloc] init];
     }
-    if([MediaConentView isVideo:mediaContent]) {
-        MediaContentVideoView* view = [[MediaContentVideoView alloc] init];
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-        lmc.mediaContent = mediaContent;
-        lmc.filePath = filePath;
-        view.localMediaContent = lmc;
-        return view;
+    else if([MediaConentView isVideo:mediaContent]) {
+        view = [[MediaContentVideoView alloc] init];
     }
-    if([MediaConentView isPdf:mediaContent]) {
-        MediaContentPdfView* view = [[MediaContentPdfView alloc] init];
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-        lmc.mediaContent = mediaContent;
-        lmc.filePath = filePath;
-        view.localMediaContent = lmc;
-        return view;
+    else if([MediaConentView isPdf:mediaContent]) {
+        view = [[MediaContentPdfView alloc] init];
     }
-    return nil;
+    else
+        return nil;
+    LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
+    lmc.mediaContent = mediaContent;
+    lmc.filePath = filePath;
+    view.localMediaContent = lmc;
+    view.backgroundColor = [UIColor colorFromHex:0xeeeeee];
+    return view;
 }
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
