@@ -8,10 +8,11 @@
 
 #import "FileDetailsViewController.h"
 #import "MediaContentAudioView.h"
+#import "CourseDetailsView.h"
 
 @interface FileDetailsViewController ()
 
-@property(strong, nonatomic) MediaContentAudioView* mediaContentAudioView;
+@property(strong, nonatomic) CourseDetailsView* courseDetailsView;
 
 @end
 
@@ -19,34 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.courseDetails.course.title;
+    self.title = self.localCourseDetails.courseDetails.course.title;
 
-    self.mediaContentAudioView = [[MediaContentAudioView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.mediaContentAudioView];
-    
-    if(self.courseDetails.course.resources) {
-        MediaContent* mc = [self.courseDetails.course.resources objectAtIndex:0];
-        NSLog(@"file media content %@", [mc toJson]);
-        if([mc.contentType hasPrefix:@"audio"]) {
-            LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-            lmc.mediaContent = mc;
-            lmc.filePath = [NSString stringWithFormat:@"%@/%@", self.currentDirPath, self.courseDetails.course.id];
-            if(![lmc isDownloaded]) {
-                [lmc downloadWithProgressBlock:^(CGFloat progress) {
-                    
-                } completionBlock:^(BOOL completed) {
-                    self.mediaContentAudioView.localMediaContent = lmc;
-                }];
-            }
-            else {
-                self.mediaContentAudioView.localMediaContent = lmc;
-            }
-        }
-    }
+    self.courseDetailsView = [[CourseDetailsView alloc] initWithFrame:self.view.bounds];
+    self.courseDetailsView.localCourseDetails = self.localCourseDetails;
+    [self.view addSubview:self.courseDetailsView];
 }
-
-- (void)didReceiveMemoryWarning {
-}
-
 
 @end

@@ -211,6 +211,9 @@
 		ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */; };
 		ADD117A51EED098400EF6E04 /* MediaContentAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */; };
 		ADD117A81EED12C600EF6E04 /* CourseDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A71EED12C600EF6E04 /* CourseDetailsView.m */; };
+		ADD117AB1EED951100EF6E04 /* MediaContentVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117AA1EED951100EF6E04 /* MediaContentVideoView.m */; };
+		ADD117AE1EED956700EF6E04 /* MediaContentPdfView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117AD1EED956700EF6E04 /* MediaContentPdfView.m */; };
+		ADD117B11EEDC8F900EF6E04 /* LocalCourseDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -615,6 +618,12 @@
 		ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentAudioView.m; sourceTree = "<group>"; };
 		ADD117A61EED12C600EF6E04 /* CourseDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsView.h; sourceTree = "<group>"; };
 		ADD117A71EED12C600EF6E04 /* CourseDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsView.m; sourceTree = "<group>"; };
+		ADD117A91EED951100EF6E04 /* MediaContentVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentVideoView.h; sourceTree = "<group>"; };
+		ADD117AA1EED951100EF6E04 /* MediaContentVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentVideoView.m; sourceTree = "<group>"; };
+		ADD117AC1EED956700EF6E04 /* MediaContentPdfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentPdfView.h; sourceTree = "<group>"; };
+		ADD117AD1EED956700EF6E04 /* MediaContentPdfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentPdfView.m; sourceTree = "<group>"; };
+		ADD117AF1EEDC8F900EF6E04 /* LocalCourseDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCourseDetails.h; sourceTree = "<group>"; };
+		ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCourseDetails.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1283,6 +1292,8 @@
 				A364CC4A1C94CBFA0075E65F /* NSString+Json.m */,
 				ADD117A01EED03B100EF6E04 /* LocalMediaContent.h */,
 				ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */,
+				ADD117AF1EEDC8F900EF6E04 /* LocalCourseDetails.h */,
+				ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1426,6 +1437,10 @@
 				ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */,
 				ADD117A61EED12C600EF6E04 /* CourseDetailsView.h */,
 				ADD117A71EED12C600EF6E04 /* CourseDetailsView.m */,
+				ADD117A91EED951100EF6E04 /* MediaContentVideoView.h */,
+				ADD117AA1EED951100EF6E04 /* MediaContentVideoView.m */,
+				ADD117AC1EED956700EF6E04 /* MediaContentPdfView.h */,
+				ADD117AD1EED956700EF6E04 /* MediaContentPdfView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1708,6 +1723,7 @@
 				0335B3121E1508F800A2A74B /* XTPopViewBase.m in Sources */,
 				AD59D8FE1EEA51AB009C78D6 /* WebViewController.m in Sources */,
 				032C960D1E1D2B90001EFC29 /* TotalFileHeaderView.m in Sources */,
+				ADD117AE1EED956700EF6E04 /* MediaContentPdfView.m in Sources */,
 				0329119A1E1143ED000C1F5A /* FileViewController.m in Sources */,
 				032C96911E2CA31D001EFC29 /* TZAssetModel.m in Sources */,
 				AD3D94F61EE6790E00D2704B /* TableViewPage.m in Sources */,
@@ -1798,9 +1814,11 @@
 				030049761E0E5F61006EDC29 /* JournalList.m in Sources */,
 				AD3D94F01EE6772400D2704B /* Page.m in Sources */,
 				0300496E1E0E5F60006EDC29 /* EventList.m in Sources */,
+				ADD117B11EEDC8F900EF6E04 /* LocalCourseDetails.m in Sources */,
 				0300495E1E0E5F60006EDC29 /* Business.m in Sources */,
 				A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */,
 				030049831E0E5F61006EDC29 /* UserInterest.m in Sources */,
+				ADD117AB1EED951100EF6E04 /* MediaContentVideoView.m in Sources */,
 				032911931E1142FD000C1F5A /* MainTabBarController.m in Sources */,
 				0329114D1E113B1C000C1F5A /* UINavigationController+BackButtonHandler.m in Sources */,
 				032911551E113BA2000C1F5A /* NSObject+CurrentController.m in Sources */,

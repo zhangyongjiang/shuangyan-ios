@@ -7,6 +7,10 @@
 //
 
 #import "MediaConentView.h"
+#import "MediaContentImageView.h"
+#import "MediaContentAudioView.h"
+#import "MediaContentVideoView.h"
+#import "MediaContentPdfView.h"
 
 @interface MediaConentView()
 
@@ -36,6 +40,41 @@
 }
 +(BOOL)isPdf:(MediaContent*)mediaContent {
     return [mediaContent.contentType hasPrefix:@"application/pdf"];
+}
++(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent andFilePath:(NSString*) filePath {
+    if([MediaConentView isImage:mediaContent]) {
+        MediaContentImageView* view = [[MediaContentImageView alloc] init];
+        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
+        lmc.mediaContent = mediaContent;
+        lmc.filePath = filePath;
+        view.localMediaContent = lmc;
+        return view;
+    }
+    if([MediaConentView isAudio:mediaContent]) {
+        MediaContentAudioView* view = [[MediaContentAudioView alloc] init];
+        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
+        lmc.mediaContent = mediaContent;
+        lmc.filePath = filePath;
+        view.localMediaContent = lmc;
+        return view;
+    }
+    if([MediaConentView isVideo:mediaContent]) {
+        MediaContentVideoView* view = [[MediaContentVideoView alloc] init];
+        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
+        lmc.mediaContent = mediaContent;
+        lmc.filePath = filePath;
+        view.localMediaContent = lmc;
+        return view;
+    }
+    if([MediaConentView isPdf:mediaContent]) {
+        MediaContentPdfView* view = [[MediaContentPdfView alloc] init];
+        LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
+        lmc.mediaContent = mediaContent;
+        lmc.filePath = filePath;
+        view.localMediaContent = lmc;
+        return view;
+    }
+    return nil;
 }
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {

@@ -19,6 +19,7 @@
 +(BOOL) isAudio:(MediaContent*)mediaContent;
 +(BOOL) isVideo:(MediaContent*)mediaContent;
 +(BOOL) isPdf:(MediaContent*)mediaContent;
++(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent  andFilePath:(NSString*) filePath;
 
 -(BOOL) isDownloaded;
 

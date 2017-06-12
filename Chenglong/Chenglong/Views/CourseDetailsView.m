@@ -7,6 +7,7 @@
 //
 
 #import "CourseDetailsView.h"
+#import "MediaConentView.h"
 
 @interface CourseDetailsView()
 
@@ -19,22 +20,46 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
-    self.labelDesc = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, Margin, 0, 0)];
-    self.labelDesc.numberOfLines = -1;
-    [self addSubview:self.labelDesc];
-    
-    self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
-    
+    [self setup];
     return self;
 }
 
--(void)setCourseDetails:(CourseDetails *)courseDetails {
+-(void)setup {
+    self.labelDesc = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, Margin, 0, 0)];
+    self.labelDesc.numberOfLines = -1;
+    [self addSubview:self.labelDesc];
+    self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
+}
+
+-(id)initWithFrame:(CGRect)frame andLocalCourseDetails:(LocalCourseDetails *)localCourseDetails {
+    self = [super initWithFrame:frame];
+    [self setup];
+    [self setLocalCourseDetails:localCourseDetails];
+    return self;
+}
+
+-(void)setLocalCourseDetails:(LocalCourseDetails *)localCourseDetails {
+    _localCourseDetails = localCourseDetails;
     for (UIView* view in self.mediaContentViews) {
         [view removeFromSuperview];
     }
     self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
     
+    NSString* desc = [NSString stringWithFormat:@"Description: %@", self.localCourseDetails.courseDetails.course.content];
+    self.labelDesc.text = desc;
+    
+    CGFloat w = [UIView screenWidth];
+    CGFloat h = 20;
+    CGFloat y = self.labelDesc.bottom + Margin;
+    for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
+        MediaConentView* view = [MediaConentView createViewForMediaContent:mc andFilePath:self.localCourseDetails.filePath];
+        if(view) {
+            view.frame = CGRectMake(Margin, y, w, h);
+            [self addSubview:view];
+            y = y + h + Margin;
+            [self.mediaContentViews addObject:view];
+        }
+    }
 }
 
 @end

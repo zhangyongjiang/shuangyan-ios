@@ -7,9 +7,13 @@
 //
 
 #import "BaseView.h"
+#import "Page.h"
+#import "LocalCourseDetails.h"
 
-@interface CourseDetailsView : BaseView
+@interface CourseDetailsView : Page
 
-@property(strong, nonatomic)CourseDetails* courseDetails;
+@property(strong, nonatomic)LocalCourseDetails* localCourseDetails;
+
+-(id)initWithFrame:(CGRect)frame andCourseDetails:(LocalCourseDetails*)localCourseDetails;
 
 @end

@@ -7,11 +7,11 @@
 //
 
 #import "BaseViewController.h"
+#import "LocalCourseDetails.h"
 
 @interface FileDetailsViewController : BaseViewController
 
-@property(strong, nonatomic) CourseDetails* courseDetails;
-@property(strong, nonatomic) NSString* currentDirPath;
+@property(strong, nonatomic) LocalCourseDetails* localCourseDetails;
 
 
 @end
