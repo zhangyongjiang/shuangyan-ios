@@ -25,7 +25,7 @@
 }
 
 -(void)play {
-    NSURL* url = [NSURL fileURLWithPath:self.offline];
+    NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [player play];
 }

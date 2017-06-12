@@ -7,11 +7,11 @@
 //
 
 #import "Page.h"
+#import "LocalMediaContent.h"
 
 @interface OfflineFilePage : Page
 
-@property(strong, nonatomic) MediaContent* online;
-@property(strong, nonatomic) NSString* offline;
+@property(strong, nonatomic) LocalMediaContent* localMediaContent;
 
 -(BOOL)downloaded;
 -(void)download;
