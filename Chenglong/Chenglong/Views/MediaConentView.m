@@ -105,7 +105,7 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     _localMediaContent = localMediaContent;
-    NSString* meta = [NSString stringWithFormat:@"Name: %@\nType: %@\nLength: %@\nDownloaded: %i", self.localMediaContent.mediaContent.name, self.localMediaContent.mediaContent.contentType, self.localMediaContent.mediaContent.length, [localMediaContent isDownloaded]];
+    NSString* meta = [NSString stringWithFormat:@"Name: %@\nType: %@\nLength: %@\nDownloaded: %i\n%@", self.localMediaContent.mediaContent.name, self.localMediaContent.mediaContent.contentType, self.localMediaContent.mediaContent.length, [localMediaContent isDownloaded], [self.localMediaContent.filePath lastPathComponent]];
     self.metaInfoLabel.text = meta;
     [self updateConstraints];
     BOOL downloaded = [localMediaContent isDownloaded];

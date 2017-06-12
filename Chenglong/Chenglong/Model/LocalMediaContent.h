@@ -18,6 +18,7 @@
                   completionBlock:(void(^)(BOOL completed))completionBlock ;
 -(NSString*)getFileName;
 -(NSString*)getDirName;
+-(NSString*)getFileExtension;
 -(void)createDirs;
 
 @end

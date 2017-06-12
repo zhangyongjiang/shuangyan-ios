@@ -50,4 +50,21 @@
         return;
     [fm createDirectoryAtPath:[self getDirName] withIntermediateDirectories:YES attributes:nil error:nil];
 }
+
+-(NSString*)getFileExtension {
+    NSString* originName = self.mediaContent.name;
+    if(originName == nil)
+        return nil;
+    
+    NSString* ext = [originName substringFromIndex:([originName indexOf:@"."]+1)];
+    return ext;
+}
+
+-(void)setFilePath:(NSString *)filePath {
+    _filePath = filePath;
+    int index = [filePath indexOf:@"."];
+    if(index != -1)
+        return;
+    _filePath = [filePath stringByAppendingFormat:@".%@", [self getFileExtension]];
+}
 @end

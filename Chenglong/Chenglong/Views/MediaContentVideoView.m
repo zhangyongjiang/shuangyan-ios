@@ -7,15 +7,40 @@
 //
 
 #import "MediaContentVideoView.h"
+#import <AVFoundation/AVFoundation.h>
+
+@interface MediaContentVideoView()
+{
+    AVPlayer* player;
+}
+@end
 
 @implementation MediaContentVideoView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    
+    return self;
 }
-*/
+
+-(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
+    [super setLocalMediaContent:localMediaContent];
+    [self play];
+}
+
+-(void)play {
+    if(![self.localMediaContent isDownloaded]) {
+        NSLog(@"no downloaded yet");
+        return;
+    }
+    NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
+    player = [[AVPlayer alloc] initWithURL:url];
+    AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:player];
+    layer.frame = CGRectMake(0, self.btnPlay.bottom+Margin, [UIView screenWidth], [UIView screenWidth]);
+    [self.layer addSublayer:layer];
+    layer.backgroundColor = [UIColor clearColor].CGColor;
+    [layer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [player play];
+}
 
 @end
