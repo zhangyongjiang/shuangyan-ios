@@ -25,10 +25,10 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     [super setLocalMediaContent:localMediaContent];
-    [self playAudio];
+    [self play];
 }
 
--(void)playAudio {
+-(void)play {
     if(![self.localMediaContent isDownloaded]) {
         NSLog(@"no downloaded yet");
         return;
