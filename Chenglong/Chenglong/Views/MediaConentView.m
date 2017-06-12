@@ -63,7 +63,7 @@
 
 -(void)download {
     [[TWRDownloadManager sharedManager] downloadFileForURL:self.localMediaContent.mediaContent.url withName:[self.localMediaContent getFileName] inDirectoryNamed:[self.localMediaContent getDirName] progressBlock:^(CGFloat progress) {
-        [self.btnDownload setTitle:[NSString stringWithFormat:@"download %f", progress] forState:UIControlStateNormal];
+        [self.btnDownload setTitle:[NSString stringWithFormat:@"download %f%", progress*100] forState:UIControlStateNormal];
     } completionBlock:^(BOOL completed) {
         [self.btnDownload setEnabled:NO];
     } enableBackgroundMode:NO];
