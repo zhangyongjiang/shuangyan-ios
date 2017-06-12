@@ -23,11 +23,6 @@
     return self;
 }
 
--(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
-    [super setLocalMediaContent:localMediaContent];
-    [self play];
-}
-
 -(void)play {
     if(![self.localMediaContent isDownloaded]) {
         NSLog(@"no downloaded yet");
@@ -39,7 +34,7 @@
     layer.frame = CGRectMake(0, self.btnPlay.bottom+Margin, [UIView screenWidth], [UIView screenWidth]);
     [self.layer addSublayer:layer];
     layer.backgroundColor = [UIColor clearColor].CGColor;
-    [layer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
     [player play];
 }
 
