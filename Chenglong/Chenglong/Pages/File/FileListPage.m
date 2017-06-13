@@ -88,4 +88,11 @@
     _courseDetailsList = courseDetailsList;
     [_tableView reloadData];
 }
+
+-(CourseDetails*)selected {
+    NSIndexPath* path = [_tableView indexPathForSelectedRow];
+    if(!path)
+        return nil;
+    return [self.courseDetailsList.items objectAtIndex:path.row];
+}
 @end

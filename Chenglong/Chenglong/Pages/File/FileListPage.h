@@ -14,4 +14,6 @@
 @property(strong, nonatomic) CourseDetailsList* courseDetailsList;
 @property(strong, nonatomic) NSString* filePath;
 
+-(CourseDetails*) selected;
+
 @end

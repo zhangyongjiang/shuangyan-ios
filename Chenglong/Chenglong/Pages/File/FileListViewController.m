@@ -122,22 +122,98 @@
 #pragma mark - menuView delegate
 - (void)selectIndexPathRow:(NSInteger )index view:(XTPopViewBase *)baseView
 {
-    if (baseView.tag == 10000) {
-//        [self handleTitleView:index];
-    }else{
         if (index == 0) {
             CreateFileViewController *file = [CreateFileViewController loadFromNib];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
             [self.navigationController presentViewController:nav animated:YES completion:nil];
         }
-//        else if(index == 1){
-//            //新建文件夹
-//            [self.myFileView creatFolderEvent:nil];
-//        }else if (index == 4){
-//            //改名
-//            [self.myFileView resetFolderName];
-//        }
-    }
+        else if(index == 1){
+            //新建文件夹
+            [self creatFolderEvent:nil];
+        }
+        else if (index == 4){
+            //改名
+            [self resetFolderName];
+        }
 }
 
+- (void)creatFolderEvent:(UIButton *)btn
+{
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [alert.textFields firstObject];
+        if ([NSString isEmpty:tf.text]) {
+            [self presentFailureTips:@"文件标题不能为空"];
+            return;
+        }
+        Course *course = [Course new];
+        course.title = tf.text;
+        course.parentCourseId = self.courseId;
+        [SVProgressHUD showWithStatus:@"创建中"];
+        [CourseApi CourseAPI_CreateCourseDir:course onSuccess:^(Course *resp) {
+            
+            [SVProgressHUD dismiss];
+            
+            [weakSelf refreshPage];
+            
+        } onError:^(APIError *err) {
+            
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
+
+- (void)resetFolderName
+{
+    CourseDetails* selected = [self.page selected];
+    if(!selected) {
+        [self presentFailureTips:@"请选择一个文件或者文件夹"];
+        return;
+    }
+    
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [alert.textFields firstObject];
+        if ([NSString isEmpty:tf.text]) {
+            [self presentFailureTips:@"文件标题不能为空"];
+            return;
+        }
+        RenameRequest *request = [RenameRequest new];
+        request.courseId = selected.course.id;
+        request.name = tf.text;
+        [SVProgressHUD showWithStatus:@"修改中"];
+        [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
+            [SVProgressHUD dismiss];
+            [self refreshPage];
+        } onError:^(APIError *err) {
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
 @end
