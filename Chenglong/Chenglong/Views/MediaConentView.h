@@ -13,9 +13,7 @@
 
 @property(strong, nonatomic) LocalMediaContent* localMediaContent;
 
-@property(strong, nonatomic) FitLabel* metaInfoLabel;
 @property(strong, nonatomic) UIButton* btnDownload;
-@property(strong, nonatomic) UIButton* btnPlay;
 
 +(BOOL) isImage:(MediaContent*)mediaContent;
 +(BOOL) isAudio:(MediaContent*)mediaContent;

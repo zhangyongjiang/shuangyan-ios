@@ -27,6 +27,11 @@
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock {
     [self createDirs];
+    
+    if([[TWRDownloadManager sharedManager] isFileDownloadingForUrl:self.mediaContent.url withProgressBlock:nil]) {
+        [[TWRDownloadManager sharedManager] cancelDownloadForUrl:self.mediaContent.url];
+    }
+    
     [[TWRDownloadManager sharedManager] downloadFileForURL:self.mediaContent.url withName:[self getFileName] inDirectoryNamed:[self getDirName] progressBlock:^(CGFloat progress) {
         NSLog(@"progress %f", progress);
         progressBlock(progress);

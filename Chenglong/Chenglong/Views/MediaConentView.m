@@ -24,30 +24,11 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.metaInfoLabel = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, Margin, 0, 0)];
-    self.metaInfoLabel.numberOfLines = -1;
-    [self addSubview:self.metaInfoLabel];
-    
-    self.btnDownload = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
-    [self.btnDownload setTitle:@"download" forState:UIControlStateNormal];
+    self.btnDownload = [[UIButton alloc] initWithFrame:CGRectMake(Margin, Margin, [UIView screenWidth]-2*Margin, 40)];
+    [self.btnDownload setTitle:@"Download" forState:UIControlStateNormal];
     self.btnDownload.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:self.btnDownload];
-    [self.btnDownload autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.metaInfoLabel];
-    [self.btnDownload autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.metaInfoLabel withOffset:Margin];
-    [self.btnDownload autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:Margin];
-    [self.btnDownload addTarget:self action:@selector(download) forControlEvents:UIControlEventTouchUpInside];
-    self.btnDownload.userInteractionEnabled = YES;
-    
-    self.btnPlay = [[UIButton alloc] initWithFrame:self.btnDownload.frame];
-    [self addSubview:self.btnPlay];
-    [self.btnPlay setTitle:@"play" forState:UIControlStateNormal];
-    self.btnPlay.backgroundColor = [UIColor lightGrayColor];
-    [self.btnPlay autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.btnDownload withOffset:Margin];
-
-    [self.btnPlay autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.metaInfoLabel];
-    [self.btnPlay autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:Margin];
-    
-    [self.btnPlay addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
     
     [self updateConstraints];
     
@@ -57,11 +38,21 @@
 -(void)play {
 }
 
+-(void)downloadOrPlay {
+    BOOL downloaded = [self.localMediaContent isDownloaded];
+    if(downloaded)
+        [self play];
+    else
+        [self download];
+}
+
 -(void)download {
     [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
-        [self.btnDownload setTitle:[NSString stringWithFormat:@"download %f%", progress*100] forState:UIControlStateNormal];
+        int downloaded = (int)(progress*100);
+        NSString* txt = [NSString stringWithFormat:@"Download %i%% of %@", downloaded, self.localMediaContent.mediaContent.length];
+        [self.btnDownload setTitle:txt forState:UIControlStateNormal];
     } completionBlock:^(BOOL completed) {
-        [self.btnDownload setEnabled:NO];
+        [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
         if (![MediaConentView isAudio:self.localMediaContent.mediaContent] &&
             ![MediaConentView isVideo:self.localMediaContent.mediaContent]) {
             [self play];
@@ -103,17 +94,21 @@
     lmc.mediaContent = mediaContent;
     lmc.filePath = filePath;
     view.localMediaContent = lmc;
-    view.backgroundColor = [UIColor colorFromHex:0xeeeeee];
     return view;
 }
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     _localMediaContent = localMediaContent;
-    NSString* meta = [NSString stringWithFormat:@"Name: %@\nType: %@\nLength: %@\nDownloaded: %i\n%@", self.localMediaContent.mediaContent.name, self.localMediaContent.mediaContent.contentType, self.localMediaContent.mediaContent.length, [localMediaContent isDownloaded], [self.localMediaContent.filePath lastPathComponent]];
-    self.metaInfoLabel.text = meta;
-    [self updateConstraints];
     BOOL downloaded = [localMediaContent isDownloaded];
-    [self.btnDownload setEnabled:!downloaded];
+    
+    if(downloaded) {
+        [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
+    }
+    else {
+        NSString* txt = [NSString stringWithFormat:@"Download 0%% of %@", localMediaContent.mediaContent.length];
+        [self.btnDownload setTitle:txt forState:UIControlStateNormal];
+    }
+    
     if (![MediaConentView isAudio:self.localMediaContent.mediaContent] &&
         ![MediaConentView isVideo:self.localMediaContent.mediaContent]) {
         [self play];

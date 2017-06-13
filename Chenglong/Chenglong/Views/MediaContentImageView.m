@@ -16,7 +16,7 @@
     self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenWidth])];
     [self.imgView setContentMode:UIViewContentModeScaleAspectFit];
     [self addSubview:self.imgView];
-    [self.imgView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.btnPlay withOffset:Margin];
+    [self.imgView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.btnDownload withOffset:Margin];
     
     return self;
 }

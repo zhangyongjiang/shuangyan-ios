@@ -31,7 +31,7 @@
     NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
     player = [[AVPlayer alloc] initWithURL:url];
     AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:player];
-    layer.frame = CGRectMake(0, self.btnPlay.bottom+Margin, [UIView screenWidth], [UIView screenWidth]);
+    layer.frame = CGRectMake(0, self.btnDownload.bottom+Margin, [UIView screenWidth], [UIView screenWidth]);
     [self.layer addSublayer:layer];
     layer.backgroundColor = [UIColor clearColor].CGColor;
     [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
