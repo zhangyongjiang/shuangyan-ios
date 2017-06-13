@@ -9,9 +9,10 @@
 #import "FileListViewController.h"
 #import "ObjectMapper.h"
 
-@interface FileListViewController ()
+@interface FileListViewController ()<SelectIndexPathDelegate>
 
 @property(strong, nonatomic) FileListPage* page;
+@property (nonatomic, strong) UIBarButtonItem *rightMenuItem;
 
 @end
 
@@ -19,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupSubViews];
     [self createPage];
 
     if(self.courseId == NULL) {
@@ -81,6 +83,59 @@
 -(NSString*)jsonFileName {
     NSString* fileName = [self.filePath stringByAppendingFormat:@"/%@.json", self.courseId];
     return fileName;
+}
+
+- (void)setupSubViews
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 40, 40);
+    [btn setImage:[UIImage imageNamed:@"nav_btn_more"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(rightItemEvent:) forControlEvents:UIControlEventTouchUpInside];
+    _rightMenuItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = _rightMenuItem;
+    
+}
+
+#pragma mark - 右侧item事件
+- (void)rightItemEvent:(UIButton *)btn
+{
+    //    NSArray *arr = @[@"新文件",@"新文件夹",@"购买",@"移动",@"播放",@"改名"];
+    //    NSArray *imgArr = @[@"file_item_newFile_icon",@"file_item_newfolder_icon",@"file_item_buy_icon",@"file_item_exchange_icon",@"file_item_play_icon",@"file_item_edit_icon"];
+    NSArray *arr = @[@"新文件",@"新文件夹",@"移动",@"播放",@"改名"];
+    NSArray *imgArr = @[@"file_item_newFile_icon",@"file_item_newfolder_icon",@"file_item_exchange_icon",@"file_item_play_icon",@"file_item_edit_icon"];
+    CGPoint point = CGPointMake(btn.frame.origin.x + btn.frame.size.width / 2, btn.frame.origin.y + btn.frame.size.height + 10);
+    XTPopTableView *_menuTableView = [[XTPopTableView alloc] initWithOrigin:point Width:150 Height:45*arr.count Type:XTTypeOfUpRight Color:[UIColor whiteColor]];
+    _menuTableView.backgroundColor = [UIColor colorWithWhite:0 alpha:.3f];
+    [_menuTableView.tableView setSeparatorColor:[UIColor colorFromString:@"dedede"]];
+    _menuTableView.dataArray = arr;
+    _menuTableView.images = imgArr;
+    _menuTableView.row_height = 45;
+    _menuTableView.delegate = self;
+    _menuTableView.fontSize = 14.f;
+    _menuTableView.textAlignment = NSTextAlignmentLeft;
+    _menuTableView.titleTextColor = [UIColor colorFromString:@"1a1a1a"];
+    _menuTableView.tag = 10001;
+    [_menuTableView popView];
+}
+
+#pragma mark - menuView delegate
+- (void)selectIndexPathRow:(NSInteger )index view:(XTPopViewBase *)baseView
+{
+    if (baseView.tag == 10000) {
+//        [self handleTitleView:index];
+    }else{
+//        if (index == 0) {
+//            CreateFileViewController *file = [CreateFileViewController loadFromNib];
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
+//            [self.navigationController presentViewController:nav animated:YES completion:nil];
+//        }else if(index == 1){
+//            //新建文件夹
+//            [self.myFileView creatFolderEvent:nil];
+//        }else if (index == 4){
+//            //改名
+//            [self.myFileView resetFolderName];
+//        }
+    }
 }
 
 @end
