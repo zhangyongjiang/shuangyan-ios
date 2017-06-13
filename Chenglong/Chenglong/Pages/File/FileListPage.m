@@ -44,15 +44,15 @@
     CourseDetails* cd = [self.courseDetailsList.items objectAtIndex:indexPath.row];
     if(cd.course.isDir.intValue == 1) {
         FileListViewController* c = [[FileListViewController alloc] init];
-        c.currentCourseId = cd.course.id;
-        c.currentDirPath = [self.currentDirPath stringByAppendingFormat:@"/%@", cd.course.id];
+        c.courseId = cd.course.id;
+        c.filePath = [self.filePath stringByAppendingFormat:@"/%@", cd.course.id];
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
     else {
         FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
         c.localCourseDetails = [[LocalCourseDetails alloc] init];
         c.localCourseDetails.courseDetails = cd;
-        c.localCourseDetails.filePath = [self.currentDirPath stringByAppendingFormat:@"/%@", cd.course.id];
+        c.localCourseDetails.filePath = [self.filePath stringByAppendingFormat:@"/%@", cd.course.id];
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }

@@ -62,6 +62,10 @@
         [self.btnDownload setTitle:[NSString stringWithFormat:@"download %f%", progress*100] forState:UIControlStateNormal];
     } completionBlock:^(BOOL completed) {
         [self.btnDownload setEnabled:NO];
+        if (![MediaConentView isAudio:self.localMediaContent.mediaContent] &&
+            ![MediaConentView isVideo:self.localMediaContent.mediaContent]) {
+            [self play];
+        }
     }];
 }
 
@@ -110,6 +114,10 @@
     [self updateConstraints];
     BOOL downloaded = [localMediaContent isDownloaded];
     [self.btnDownload setEnabled:!downloaded];
+    if (![MediaConentView isAudio:self.localMediaContent.mediaContent] &&
+        ![MediaConentView isVideo:self.localMediaContent.mediaContent]) {
+        [self play];
+    }
 }
 
 @end

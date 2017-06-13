@@ -12,6 +12,6 @@
 @interface FileListPage : TableViewPage
 
 @property(strong, nonatomic) CourseDetailsList* courseDetailsList;
-@property(strong, nonatomic) NSString* currentDirPath;
+@property(strong, nonatomic) NSString* filePath;
 
 @end

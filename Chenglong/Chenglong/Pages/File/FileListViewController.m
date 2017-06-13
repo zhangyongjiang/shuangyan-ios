@@ -21,7 +21,7 @@
     [super viewDidLoad];
     [self createPage];
 
-    if(self.currentCourseId == NULL) {
+    if(self.courseId == NULL) {
         self.navigationItem.title = @"我的";
     }
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"tab_btn_file_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_file_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -39,17 +39,21 @@
 
 -(void)createPage {
     self.page = [[FileListPage alloc] initWithFrame:self.view.bounds];
-    self.page.currentDirPath = self.currentDirPath;
+    self.page.filePath = self.filePath;
     [self.view addSubview:self.page];
     [self refreshPage];
 }
 
 -(void)refreshPage {
-    [CourseApi CourseAPI_ListUserCourses:NULL currentDirId:self.currentCourseId page:0 onSuccess:^(CourseDetailsList *resp) {
+    [CourseApi CourseAPI_ListUserCourses:NULL currentDirId:self.courseId page:0 onSuccess:^(CourseDetailsList *resp) {
         if(resp.courseDetails) {
             self.navigationItem.title = resp.courseDetails.course.title;
         }
         [self.page setCourseDetailsList:resp];
+        
+        NSString* json = [resp toJson];
+        NSString* fileName = [self.filePath stringByAppendingFormat:@"/%@.json", self.courseId];
+        [json writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:nil];
     } onError:^(APIError *err) {
         
     }];
