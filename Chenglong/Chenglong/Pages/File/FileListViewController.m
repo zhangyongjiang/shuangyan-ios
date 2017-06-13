@@ -8,6 +8,7 @@
 
 #import "FileListViewController.h"
 #import "ObjectMapper.h"
+#import "CreateFileViewController.h"
 
 @interface FileListViewController ()<SelectIndexPathDelegate>
 
@@ -124,11 +125,12 @@
     if (baseView.tag == 10000) {
 //        [self handleTitleView:index];
     }else{
-//        if (index == 0) {
-//            CreateFileViewController *file = [CreateFileViewController loadFromNib];
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
-//            [self.navigationController presentViewController:nav animated:YES completion:nil];
-//        }else if(index == 1){
+        if (index == 0) {
+            CreateFileViewController *file = [CreateFileViewController loadFromNib];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
+            [self.navigationController presentViewController:nav animated:YES completion:nil];
+        }
+//        else if(index == 1){
 //            //新建文件夹
 //            [self.myFileView creatFolderEvent:nil];
 //        }else if (index == 4){
