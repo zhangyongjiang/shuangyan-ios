@@ -41,7 +41,26 @@
     self.page = [[FileListPage alloc] initWithFrame:self.view.bounds];
     self.page.filePath = self.filePath;
     [self.view addSubview:self.page];
-    [self refreshPage];
+    
+    NSString* fileName = [self jsonFileName];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    if([fm fileExistsAtPath:fileName]){
+        NSData* data = [fm contentsAtPath:fileName];
+        NSError *error;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                             options:kNilOptions
+                                                               error:&error];
+        ObjectMapper* mapper = [ObjectMapper mapper];
+        CourseDetailsList* resp = [mapper mapObject:json toClass:[CourseDetailsList class] withError:&error];
+        if(error)
+            [self refreshPage];
+        else {
+            self.navigationItem.title = resp.courseDetails.course.title;
+            [self.page setCourseDetailsList:resp];
+        }
+    }
+    else
+        [self refreshPage];
 }
 
 -(void)refreshPage {
@@ -51,12 +70,17 @@
         }
         [self.page setCourseDetailsList:resp];
         
+        NSString* fileName = [self jsonFileName];
         NSString* json = [resp toJson];
-        NSString* fileName = [self.filePath stringByAppendingFormat:@"/%@.json", self.courseId];
         [json writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:nil];
     } onError:^(APIError *err) {
         
     }];
+}
+
+-(NSString*)jsonFileName {
+    NSString* fileName = [self.filePath stringByAppendingFormat:@"/%@.json", self.courseId];
+    return fileName;
 }
 
 @end

@@ -37,6 +37,8 @@
         value = [NSString jsonStringWithString:object];
     }else if([object isKindOfClass:[NSDictionary class]]){
         value = [NSString jsonStringWithDictionary:object];
+    }else if([object isKindOfClass:[NSNumber class]]){
+        value = [NSString jsonStringWithNumber:object];
     }else if([object isKindOfClass:[NSArray class]]){
         value = [NSString jsonStringWithArray:object];
     }
@@ -47,6 +49,9 @@
     return [NSString stringWithFormat:@"\"%@\"",
             [[string stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"] stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""]
             ];
+}
++(NSString *) jsonStringWithNumber:(NSNumber *) num{
+    return num.description;
 }
 +(NSString *) jsonStringWithArray:(NSArray *)array{
     NSMutableString *reString = [NSMutableString string];

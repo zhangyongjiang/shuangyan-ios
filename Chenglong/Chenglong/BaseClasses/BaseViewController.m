@@ -30,12 +30,20 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationPushController:) name:NotificationPushController object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRefreshControl:) name:NotificationRefreshControl object:nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)notificationRefreshControl:(NSNotification*)noti {
+    [self refreshPage];
+}
+
+-(void) refreshPage {
 }
 
 -(void)notificationPushController:(NSNotification*)noti {
