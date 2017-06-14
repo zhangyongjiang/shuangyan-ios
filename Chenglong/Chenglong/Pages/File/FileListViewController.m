@@ -31,12 +31,16 @@
 }
 
 -(void)addTopRightMenu {
-    NSMutableArray* arr = [NSMutableArray arrayWithObjects:
-                    [[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"],
-                    [[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"],
-                    [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
-                    [[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"],
-                    nil];
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    [arr addObject:[[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"]] ;
+                    
+    [arr addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
+    
+    if(self.courseId)
+        [arr addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
+     
+    [arr addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
+
     if(self.courseId != NULL)
         [arr addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
 
@@ -186,6 +190,18 @@
     else if ([cmd isEqualToString:@"改名"]){
         //改名
         [self resetFolderName];
+    }
+    else if ([cmd isEqualToString:@"删除"]) {
+        if(self.page.courseDetailsList.items.count>0) {
+            [self presentFailureTips:@"当前文件夹为空时才能删除"];
+            return;
+        }
+        [CourseApi CourseAPI_RemoveCourse:self.courseId onSuccess:^(Course *resp) {
+            [self presentFailureTips:@"删除成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } onError:^(APIError *err) {
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
     }
 
 }
