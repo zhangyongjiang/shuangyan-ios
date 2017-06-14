@@ -215,6 +215,8 @@
 		ADD117AE1EED956700EF6E04 /* MediaContentPdfView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117AD1EED956700EF6E04 /* MediaContentPdfView.m */; };
 		ADD117B11EEDC8F900EF6E04 /* LocalCourseDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */; };
 		ADD117B41EF0EBD400EF6E04 /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117B31EF0EBD400EF6E04 /* MenuItem.m */; };
+		ADD117B81EF17C5300EF6E04 /* file-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117B61EF17C5300EF6E04 /* file-128.png */; };
+		ADD117B91EF17C5300EF6E04 /* folder-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117B71EF17C5300EF6E04 /* folder-128.png */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -627,6 +629,8 @@
 		ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCourseDetails.m; sourceTree = "<group>"; };
 		ADD117B21EF0EBD400EF6E04 /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItem.h; sourceTree = "<group>"; };
 		ADD117B31EF0EBD400EF6E04 /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItem.m; sourceTree = "<group>"; };
+		ADD117B61EF17C5300EF6E04 /* file-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-128.png"; sourceTree = "<group>"; };
+		ADD117B71EF17C5300EF6E04 /* folder-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder-128.png"; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1118,6 +1122,7 @@
 		A354C1721C93ED9F00EE0DE5 /* Chenglong */ = {
 			isa = PBXGroup;
 			children = (
+				ADD117B51EF17C5300EF6E04 /* Resources */,
 				ADD117991EECFF3D00EF6E04 /* Views */,
 				AD3D94DC1EE675E100D2704B /* Pages */,
 				0329114F1E113B85000C1F5A /* BaseClasses */,
@@ -1450,6 +1455,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		ADD117B51EF17C5300EF6E04 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ADD117B61EF17C5300EF6E04 /* file-128.png */,
+				ADD117B71EF17C5300EF6E04 /* folder-128.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		ADEB6A511D9BEB140082253C /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -1626,12 +1640,14 @@
 				032911B11E125CDF000C1F5A /* RegisterView.xib in Resources */,
 				032C960F1E1D2B98001EFC29 /* TotalFileHeaderView.xib in Resources */,
 				032C96841E2CA31D001EFC29 /* MMVideoPreviewPlayHL@2x.png in Resources */,
+				ADD117B81EF17C5300EF6E04 /* file-128.png in Resources */,
 				032911B81E12705F000C1F5A /* LoginViewController.xib in Resources */,
 				0335B32D1E15390100A2A74B /* FilesChooseTitleView.xib in Resources */,
 				032911D31E139FF7000C1F5A /* ResetPwdView.xib in Resources */,
 				032C968C1E2CA31D001EFC29 /* TableViewArrow@2x.png in Resources */,
 				032C96161E220061001EFC29 /* bb-512.png in Resources */,
 				032C968B1E2CA31D001EFC29 /* photo_sel_photoPickerVc_pink@3x.png in Resources */,
+				ADD117B91EF17C5300EF6E04 /* folder-128.png in Resources */,
 				032C96891E2CA31D001EFC29 /* photo_number_icon@3x.png in Resources */,
 				0335B3051E15045000A2A74B /* Default-568h@2x.png in Resources */,
 				032C96871E2CA31D001EFC29 /* photo_def_photoPickerVc@3x.png in Resources */,

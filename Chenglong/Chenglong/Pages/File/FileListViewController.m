@@ -175,6 +175,7 @@
     [super topRightMenuItemClicked:cmd];
     if ([cmd isEqualToString:@"新文件"]) {
         CreateFileViewController *file = [CreateFileViewController loadFromNib];
+        file.parentCourseId = self.courseId;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
         [self.navigationController presentViewController:nav animated:YES completion:nil];
     }

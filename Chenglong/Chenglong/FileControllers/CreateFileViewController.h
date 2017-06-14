@@ -10,5 +10,6 @@
 
 @interface CreateFileViewController : ZaoJiaoBgViewController
 
+@property(strong,nonatomic)NSString* parentCourseId;
 
 @end

@@ -73,20 +73,20 @@ static CGFloat creatFileViewHeight = 420.f;
         return;
     }
     
-    if ([NSString isEmpty:[self.creatFileViews.tfStartAge.text trim]]) {
-        [self presentFailureTips:@"开始年龄不能为空"];
-        return;
-    }
-    
-    if ([NSString isEmpty:[self.creatFileViews.tfEndAge.text trim]]) {
-        [self presentFailureTips:@"结束年龄不能为空"];
-        return;
-    }
-    
-    if ([self.creatFileViews.tfStartAge.text trim].integerValue > [self.creatFileViews.tfEndAge.text trim].integerValue) {
-        [self presentFailureTips:@"开始年龄不能大于结束年龄"];
-        return;
-    }
+//    if ([NSString isEmpty:[self.creatFileViews.tfStartAge.text trim]]) {
+//        [self presentFailureTips:@"开始年龄不能为空"];
+//        return;
+//    }
+//    
+//    if ([NSString isEmpty:[self.creatFileViews.tfEndAge.text trim]]) {
+//        [self presentFailureTips:@"结束年龄不能为空"];
+//        return;
+//    }
+//    
+//    if ([self.creatFileViews.tfStartAge.text trim].integerValue > [self.creatFileViews.tfEndAge.text trim].integerValue) {
+//        [self presentFailureTips:@"开始年龄不能大于结束年龄"];
+//        return;
+//    }
     
     if ([NSString isEmpty:[self.creatFileViews.tvContent.text trim]] && self.creatFileViews.mediaAttachmentDataSource.attachments.count < 2) {
         [self presentFailureTips:@"内容和图片不能同时为空"];
@@ -95,6 +95,7 @@ static CGFloat creatFileViewHeight = 420.f;
     Course *course = [Course new];
     course.title = [self.creatFileViews.tfTitle.text trim];
     course.content = [self.creatFileViews.tvContent.text trim];
+    course.parentCourseId = self.parentCourseId;
     course.ageStart = @([self.creatFileViews.tfStartAge.text trim].integerValue);
     course.ageEnd = @([self.creatFileViews.tfEndAge.text trim].integerValue);
     WeakSelf(weakSelf)

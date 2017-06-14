@@ -30,4 +30,10 @@
     self.imgView.image = img;
 }
 
+-(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
+    [super setLocalMediaContent:localMediaContent];
+    if([localMediaContent isDownloaded])
+        self.btnDownload.hidden = YES;
+}
+
 @end

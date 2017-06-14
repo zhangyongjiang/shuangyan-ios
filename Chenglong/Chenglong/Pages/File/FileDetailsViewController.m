@@ -37,4 +37,49 @@
     [super addTopRightMenu:arr];
 }
 
+-(void)topRightMenuItemClicked:(NSString *)cmd {
+    [super topRightMenuItemClicked:cmd];
+    if ([cmd isEqualToString:@"删除"]) {
+    }
+    else if([cmd isEqualToString:@"播放"]){
+//        [self.courseDetailsView play];
+    }
+    else if ([cmd isEqualToString:@"改名"]){
+        [self changeName];
+    }
+}
+
+-(void)changeName {
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = weakSelf.localCourseDetails.courseDetails.course.title;
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [alert.textFields firstObject];
+        if ([NSString isEmpty:tf.text]) {
+            [self presentFailureTips:@"文件标题不能为空"];
+            return;
+        }
+        RenameRequest *request = [RenameRequest new];
+        request.courseId = weakSelf.localCourseDetails.courseDetails.course.id;
+        request.name = tf.text;
+        [SVProgressHUD showWithStatus:@"修改中"];
+        [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
+            [SVProgressHUD dismiss];
+            weakSelf.title = resp.title;
+        } onError:^(APIError *err) {
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
 @end
