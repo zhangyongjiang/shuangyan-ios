@@ -19,7 +19,7 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     self.view = [[FileListItemView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], FileListViewHeight)];
-    self.accessoryType = UITableViewCellAccessoryNone;
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [self.contentView addSubview:self.view];
     self.clipsToBounds = YES;
     return self;
