@@ -214,6 +214,7 @@
 		ADD117AB1EED951100EF6E04 /* MediaContentVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117AA1EED951100EF6E04 /* MediaContentVideoView.m */; };
 		ADD117AE1EED956700EF6E04 /* MediaContentPdfView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117AD1EED956700EF6E04 /* MediaContentPdfView.m */; };
 		ADD117B11EEDC8F900EF6E04 /* LocalCourseDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */; };
+		ADD117B41EF0EBD400EF6E04 /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117B31EF0EBD400EF6E04 /* MenuItem.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -624,6 +625,8 @@
 		ADD117AD1EED956700EF6E04 /* MediaContentPdfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentPdfView.m; sourceTree = "<group>"; };
 		ADD117AF1EEDC8F900EF6E04 /* LocalCourseDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCourseDetails.h; sourceTree = "<group>"; };
 		ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCourseDetails.m; sourceTree = "<group>"; };
+		ADD117B21EF0EBD400EF6E04 /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItem.h; sourceTree = "<group>"; };
+		ADD117B31EF0EBD400EF6E04 /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItem.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1294,6 +1297,8 @@
 				ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */,
 				ADD117AF1EEDC8F900EF6E04 /* LocalCourseDetails.h */,
 				ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */,
+				ADD117B21EF0EBD400EF6E04 /* MenuItem.h */,
+				ADD117B31EF0EBD400EF6E04 /* MenuItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1799,6 +1804,7 @@
 				030049611E0E5F60006EDC29 /* BusinessList.m in Sources */,
 				0335B3111E1508F800A2A74B /* XTPopTableView.m in Sources */,
 				AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */,
+				ADD117B41EF0EBD400EF6E04 /* MenuItem.m in Sources */,
 				0300499B1E0FB77E006EDC29 /* LoginView.m in Sources */,
 				ADFEAB731DED6EBA00C0D703 /* LocalApi.m in Sources */,
 				0300495C1E0E5F60006EDC29 /* Advertising.m in Sources */,

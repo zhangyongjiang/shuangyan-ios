@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuItem.h"
 
 @interface BaseViewController : UIViewController
+
+-(void)addTopRightMenu:(NSArray*)menuItems;
+-(void)topRightMenuItemClicked:(NSString*)cmd;
 
 @end

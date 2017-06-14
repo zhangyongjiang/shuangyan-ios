@@ -10,10 +10,9 @@
 #import "ObjectMapper.h"
 #import "CreateFileViewController.h"
 
-@interface FileListViewController ()<SelectIndexPathDelegate>
+@interface FileListViewController ()
 
 @property(strong, nonatomic) FileListPage* page;
-@property (nonatomic, strong) UIBarButtonItem *rightMenuItem;
 
 @end
 
@@ -21,15 +20,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupSubViews];
     [self createPage];
+    [self addTopRightMenu];
 
     if(self.courseId == NULL) {
         self.navigationItem.title = @"我的";
     }
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"tab_btn_file_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_file_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     self.tabBarItem.imageInsets = UIEdgeInsetsMake(-4, 0, 4, 0);
-    
+}
+
+-(void)addTopRightMenu {
+
+    NSArray* arr = [NSArray arrayWithObjects:
+                    [[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"],
+                    [[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"],
+                    [[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"],
+                    [[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"],
+                    [[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"],
+                    nil];
+
+    [super addTopRightMenu:arr];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,58 +97,7 @@
     return fileName;
 }
 
-- (void)setupSubViews
-{
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 40, 40);
-    [btn setImage:[UIImage imageNamed:@"nav_btn_more"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(rightItemEvent:) forControlEvents:UIControlEventTouchUpInside];
-    _rightMenuItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.rightBarButtonItem = _rightMenuItem;
-    
-}
-
-#pragma mark - 右侧item事件
-- (void)rightItemEvent:(UIButton *)btn
-{
-    //    NSArray *arr = @[@"新文件",@"新文件夹",@"购买",@"移动",@"播放",@"改名"];
-    //    NSArray *imgArr = @[@"file_item_newFile_icon",@"file_item_newfolder_icon",@"file_item_buy_icon",@"file_item_exchange_icon",@"file_item_play_icon",@"file_item_edit_icon"];
-    NSArray *arr = @[@"新文件",@"新文件夹",@"移动",@"播放",@"改名"];
-    NSArray *imgArr = @[@"file_item_newFile_icon",@"file_item_newfolder_icon",@"file_item_exchange_icon",@"file_item_play_icon",@"file_item_edit_icon"];
-    CGPoint point = CGPointMake(btn.frame.origin.x + btn.frame.size.width / 2, btn.frame.origin.y + btn.frame.size.height + 10);
-    XTPopTableView *_menuTableView = [[XTPopTableView alloc] initWithOrigin:point Width:150 Height:45*arr.count Type:XTTypeOfUpRight Color:[UIColor whiteColor]];
-    _menuTableView.backgroundColor = [UIColor colorWithWhite:0 alpha:.3f];
-    [_menuTableView.tableView setSeparatorColor:[UIColor colorFromString:@"dedede"]];
-    _menuTableView.dataArray = arr;
-    _menuTableView.images = imgArr;
-    _menuTableView.row_height = 45;
-    _menuTableView.delegate = self;
-    _menuTableView.fontSize = 14.f;
-    _menuTableView.textAlignment = NSTextAlignmentLeft;
-    _menuTableView.titleTextColor = [UIColor colorFromString:@"1a1a1a"];
-    _menuTableView.tag = 10001;
-    [_menuTableView popView];
-}
-
-#pragma mark - menuView delegate
-- (void)selectIndexPathRow:(NSInteger )index view:(XTPopViewBase *)baseView
-{
-        if (index == 0) {
-            CreateFileViewController *file = [CreateFileViewController loadFromNib];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
-            [self.navigationController presentViewController:nav animated:YES completion:nil];
-        }
-        else if(index == 1){
-            //新建文件夹
-            [self creatFolderEvent:nil];
-        }
-        else if (index == 4){
-            //改名
-            [self resetFolderName];
-        }
-}
-
-- (void)creatFolderEvent:(UIButton *)btn
+- (void)creatFolderEvent
 {
     WeakSelf(weakSelf)
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -216,4 +176,24 @@
         
     }];
 }
+
+-(void)topRightMenuItemClicked:(NSString *)cmd {
+    [super topRightMenuItemClicked:cmd];
+    if ([cmd isEqualToString:@"新文件"]) {
+        CreateFileViewController *file = [CreateFileViewController loadFromNib];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
+    }
+    else if([cmd isEqualToString:@"新文件夹"]){
+        //新建文件夹
+        [self creatFolderEvent];
+    }
+    else if ([cmd isEqualToString:@"改名"]){
+        //改名
+        [self resetFolderName];
+    }
+
+}
+
+
 @end
