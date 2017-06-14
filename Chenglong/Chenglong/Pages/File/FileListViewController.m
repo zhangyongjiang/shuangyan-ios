@@ -31,14 +31,14 @@
 }
 
 -(void)addTopRightMenu {
-
-    NSArray* arr = [NSArray arrayWithObjects:
+    NSMutableArray* arr = [NSMutableArray arrayWithObjects:
                     [[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"],
                     [[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"],
-                    [[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"],
+                    [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
                     [[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"],
-                    [[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"],
                     nil];
+    if(self.courseId != NULL)
+        [arr addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
 
     [super addTopRightMenu:arr];
 }
@@ -138,16 +138,10 @@
 
 - (void)resetFolderName
 {
-    CourseDetails* selected = [self.page selected];
-    if(!selected) {
-        [self presentFailureTips:@"请选择一个文件或者文件夹"];
-        return;
-    }
-    
     WeakSelf(weakSelf)
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        
+        textField.text = weakSelf.page.courseDetailsList.courseDetails.course.title;
     }];
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -160,7 +154,7 @@
             return;
         }
         RenameRequest *request = [RenameRequest new];
-        request.courseId = selected.course.id;
+        request.courseId = weakSelf.courseId;
         request.name = tf.text;
         [SVProgressHUD showWithStatus:@"修改中"];
         [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
