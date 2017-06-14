@@ -24,7 +24,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.btnDownload = [[UIButton alloc] initWithFrame:CGRectMake(Margin, Margin, [UIView screenWidth]-2*Margin, 40)];
+    self.btnDownload = [[UIButton alloc] initWithFrame:CGRectMake(Margin, 64, [UIView screenWidth]-2*Margin, 40)];
     [self.btnDownload setTitle:@"Download" forState:UIControlStateNormal];
     self.btnDownload.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:self.btnDownload];

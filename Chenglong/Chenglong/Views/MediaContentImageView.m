@@ -16,7 +16,6 @@
     self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenWidth])];
     [self.imgView setContentMode:UIViewContentModeScaleAspectFit];
     [self addSubview:self.imgView];
-    [self.imgView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.btnDownload withOffset:Margin];
     
     return self;
 }
@@ -26,6 +25,8 @@
         NSLog(@"no downloaded yet");
         return;
     }
+    self.imgView.y = 0;
+    self.imgView.height = [UIView screenHeight] - self.imgView.y;
     UIImage* img = [UIImage imageWithContentsOfFile:self.localMediaContent.filePath];
     self.imgView.image = img;
 }

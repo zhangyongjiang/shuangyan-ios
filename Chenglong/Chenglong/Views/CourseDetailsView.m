@@ -11,7 +11,6 @@
 
 @interface CourseDetailsView()
 
-@property(strong,nonatomic) FitLabel* labelDesc;
 @property(strong,nonatomic) NSMutableArray* mediaContentViews;
 
 @end
@@ -25,9 +24,6 @@
 }
 
 -(void)setup {
-    self.labelDesc = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, 60, 0, 0)];
-    self.labelDesc.numberOfLines = -1;
-    [self addSubview:self.labelDesc];
     self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
 }
 
@@ -45,11 +41,9 @@
     }
     self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
     
-    self.labelDesc.text = self.localCourseDetails.courseDetails.course.content;
-    
     CGFloat w = [UIView screenWidth];
-    CGFloat y = self.labelDesc.bottom + Margin;
-    CGFloat h = 400;
+    CGFloat y = Margin;
+    CGFloat h = [UIView screenHeight] - y;
     for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
         MediaConentView* view = [MediaConentView createViewForMediaContent:mc andFilePath:self.localCourseDetails.filePath];
         if(view) {

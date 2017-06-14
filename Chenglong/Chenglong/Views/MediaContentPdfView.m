@@ -25,6 +25,9 @@
         NSLog(@"no downloaded yet");
         return;
     }
+    
+    self.webView.y = 64;
+    self.webView.h = [UIView screenHeight] - self.webView.y;
     NSURL* url = [NSURL  fileURLWithPath:self.localMediaContent.filePath];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
