@@ -11,6 +11,7 @@
 @interface FileListItemView()
 
 @property(strong, nonatomic) UIImageView* iconView;
+@property(strong, nonatomic) UIImageView* iconLike;
 @property(strong, nonatomic) FitLabel* label;
 
 @end
@@ -23,15 +24,33 @@
     self.clipsToBounds = YES;
     self.layer.masksToBounds = YES;
     
-    self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 32, 32)];
+    self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(36, 0, 32, 32)];
     self.iconView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:self.iconView];
     
+    self.iconLike = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)];
+    self.iconLike.contentMode = UIViewContentModeScaleAspectFit;
+    self.iconLike.userInteractionEnabled = YES;
+    [self.iconLike addTarget:self action:@selector(likeUnlike)];
+    [self addSubview:self.iconLike];
+    
     self.label = [[FitLabel alloc] init];
-    self.label.x = 50;
+    self.label.x = 100;
     [self addSubview:self.label];
 
     return self;
+}
+
+-(void)likeUnlike {
+    NSLog(@"likeUnlike");
+    if(self.courseDetails.liked.intValue == 0) {
+        [CourseApi CourseAPI_Like:self.courseDetails.course.id onSuccess:^(CourseInfo *resp) {
+            self.courseDetails.liked = [NSNumber numberWithInt:1];
+            self.iconLike.image = [UIImage imageNamed:@"like-color-full"];
+        } onError:^(APIError *err) {
+            
+        }];
+    }
 }
 
 -(void)layoutSubviews {
@@ -47,5 +66,13 @@
         self.iconView.image = [UIImage imageNamed:@"folder-128"];
     else
         self.iconView.image = [UIImage imageNamed:@"file-128"];
+    
+    [self.iconLike vcenterInParent];
+    if(courseDetails.liked.intValue) {
+        self.iconLike.image = [UIImage imageNamed:@"like-color-full"];
+    }
+    else {
+        self.iconLike.image = [UIImage imageNamed:@"like-color"];
+    }
 }
 @end

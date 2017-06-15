@@ -217,6 +217,10 @@
 		ADD117B41EF0EBD400EF6E04 /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117B31EF0EBD400EF6E04 /* MenuItem.m */; };
 		ADD117B81EF17C5300EF6E04 /* file-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117B61EF17C5300EF6E04 /* file-128.png */; };
 		ADD117B91EF17C5300EF6E04 /* folder-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117B71EF17C5300EF6E04 /* folder-128.png */; };
+		ADD117BE1EF2546400EF6E04 /* like-color-full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BA1EF2546400EF6E04 /* like-color-full@2x.png */; };
+		ADD117BF1EF2546400EF6E04 /* like-color-full@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BB1EF2546400EF6E04 /* like-color-full@3x.png */; };
+		ADD117C01EF2546400EF6E04 /* like-color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BC1EF2546400EF6E04 /* like-color@2x.png */; };
+		ADD117C11EF2546400EF6E04 /* like-color@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BD1EF2546400EF6E04 /* like-color@3x.png */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -631,6 +635,10 @@
 		ADD117B31EF0EBD400EF6E04 /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItem.m; sourceTree = "<group>"; };
 		ADD117B61EF17C5300EF6E04 /* file-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-128.png"; sourceTree = "<group>"; };
 		ADD117B71EF17C5300EF6E04 /* folder-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder-128.png"; sourceTree = "<group>"; };
+		ADD117BA1EF2546400EF6E04 /* like-color-full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color-full@2x.png"; sourceTree = "<group>"; };
+		ADD117BB1EF2546400EF6E04 /* like-color-full@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color-full@3x.png"; sourceTree = "<group>"; };
+		ADD117BC1EF2546400EF6E04 /* like-color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color@2x.png"; sourceTree = "<group>"; };
+		ADD117BD1EF2546400EF6E04 /* like-color@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color@3x.png"; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1458,6 +1466,10 @@
 		ADD117B51EF17C5300EF6E04 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ADD117BA1EF2546400EF6E04 /* like-color-full@2x.png */,
+				ADD117BB1EF2546400EF6E04 /* like-color-full@3x.png */,
+				ADD117BC1EF2546400EF6E04 /* like-color@2x.png */,
+				ADD117BD1EF2546400EF6E04 /* like-color@3x.png */,
 				ADD117B61EF17C5300EF6E04 /* file-128.png */,
 				ADD117B71EF17C5300EF6E04 /* folder-128.png */,
 			);
@@ -1614,6 +1626,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD117C11EF2546400EF6E04 /* like-color@3x.png in Resources */,
 				032C96881E2CA31D001EFC29 /* photo_number_icon@2x.png in Resources */,
 				032C96861E2CA31D001EFC29 /* photo_def_photoPickerVc@2x.png in Resources */,
 				032C968E1E2CA31D001EFC29 /* TZAssetCell.xib in Resources */,
@@ -1647,8 +1660,10 @@
 				032C968C1E2CA31D001EFC29 /* TableViewArrow@2x.png in Resources */,
 				032C96161E220061001EFC29 /* bb-512.png in Resources */,
 				032C968B1E2CA31D001EFC29 /* photo_sel_photoPickerVc_pink@3x.png in Resources */,
+				ADD117BF1EF2546400EF6E04 /* like-color-full@3x.png in Resources */,
 				ADD117B91EF17C5300EF6E04 /* folder-128.png in Resources */,
 				032C96891E2CA31D001EFC29 /* photo_number_icon@3x.png in Resources */,
+				ADD117BE1EF2546400EF6E04 /* like-color-full@2x.png in Resources */,
 				0335B3051E15045000A2A74B /* Default-568h@2x.png in Resources */,
 				032C96871E2CA31D001EFC29 /* photo_def_photoPickerVc@3x.png in Resources */,
 				032911C31E129B77000C1F5A /* RegisterSuccessViewController.xib in Resources */,
@@ -1657,6 +1672,7 @@
 				0300499D1E0FB799006EDC29 /* LoginView.xib in Resources */,
 				032911BA1E127068000C1F5A /* RegisterViewController.xib in Resources */,
 				032C96831E2CA31D001EFC29 /* MMVideoPreviewPlay@2x.png in Resources */,
+				ADD117C01EF2546400EF6E04 /* like-color@2x.png in Resources */,
 				032C968D1E2CA31D001EFC29 /* TZAlbumCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
