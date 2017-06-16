@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
     
     self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenWidth])];
-    [self.imgView setContentMode:UIViewContentModeScaleAspectFill];
+    [self.imgView setContentMode:UIViewContentModeScaleAspectFit];
     [self addSubview:self.imgView];
     
     return self;
