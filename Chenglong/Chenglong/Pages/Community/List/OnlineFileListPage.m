@@ -20,6 +20,15 @@
     self = [super initWithFrame:frame];
     [_tableView registerClass:[OnlineFileListTableViewCell class] forCellReuseIdentifier:OnlineFileListItemTableViewCellID];
     
+    self.searchController = [[UISearchController alloc]initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    //    self.searchController.searchBar.showsCancelButton = NO;
+    //    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.frame = CGRectMake(0, 0, [UIView screenWidth], 44);
+    self.searchController.searchBar.placeholder = @"关键词";
+    _tableView.tableHeaderView = self.searchController.searchBar;
+    
     return self;
 }
 
@@ -66,4 +75,8 @@
         return nil;
     return [self.courseDetailsList.items objectAtIndex:path.row];
 }
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
+}
+
 @end
