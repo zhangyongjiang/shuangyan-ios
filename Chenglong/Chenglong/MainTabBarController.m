@@ -14,6 +14,7 @@
 #import "CommunityViewController.h"
 #import "ProfileViewController.h"
 #import "FileListViewController.h"
+#import "OnlineFileListViewController.h"
 
 @interface MainTabBarController ()<UITabBarControllerDelegate>
 {
@@ -51,7 +52,7 @@
     FileListViewController* file = [[FileListViewController alloc] init];
     file.filePath = NSHomeDirectory();
 
-    CommunityViewController* community = [[CommunityViewController alloc] initWithNibName:nil bundle:nil];
+    OnlineFileListViewController* community = [[OnlineFileListViewController alloc] initWithNibName:nil bundle:nil];
     ProfileViewController* profile = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
     
     currSelectViewController = file;

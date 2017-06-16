@@ -221,6 +221,10 @@
 		ADD117BF1EF2546400EF6E04 /* like-color-full@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BB1EF2546400EF6E04 /* like-color-full@3x.png */; };
 		ADD117C01EF2546400EF6E04 /* like-color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BC1EF2546400EF6E04 /* like-color@2x.png */; };
 		ADD117C11EF2546400EF6E04 /* like-color@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BD1EF2546400EF6E04 /* like-color@3x.png */; };
+		ADD117CA1EF3908500EF6E04 /* OnlineFileListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C31EF3908500EF6E04 /* OnlineFileListItemView.m */; };
+		ADD117CB1EF3908500EF6E04 /* OnlineFileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C51EF3908500EF6E04 /* OnlineFileListPage.m */; };
+		ADD117CC1EF3908500EF6E04 /* OnlineFileListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */; };
+		ADD117CD1EF3908500EF6E04 /* OnlineFileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -639,6 +643,14 @@
 		ADD117BB1EF2546400EF6E04 /* like-color-full@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color-full@3x.png"; sourceTree = "<group>"; };
 		ADD117BC1EF2546400EF6E04 /* like-color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color@2x.png"; sourceTree = "<group>"; };
 		ADD117BD1EF2546400EF6E04 /* like-color@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color@3x.png"; sourceTree = "<group>"; };
+		ADD117C21EF3908500EF6E04 /* OnlineFileListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListItemView.h; sourceTree = "<group>"; };
+		ADD117C31EF3908500EF6E04 /* OnlineFileListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListItemView.m; sourceTree = "<group>"; };
+		ADD117C41EF3908500EF6E04 /* OnlineFileListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListPage.h; sourceTree = "<group>"; };
+		ADD117C51EF3908500EF6E04 /* OnlineFileListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListPage.m; sourceTree = "<group>"; };
+		ADD117C61EF3908500EF6E04 /* OnlineFileListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListTableViewCell.h; sourceTree = "<group>"; };
+		ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListTableViewCell.m; sourceTree = "<group>"; };
+		ADD117C81EF3908500EF6E04 /* OnlineFileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListViewController.h; sourceTree = "<group>"; };
+		ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListViewController.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1362,6 +1374,14 @@
 		AD3D94E01EE675E100D2704B /* List */ = {
 			isa = PBXGroup;
 			children = (
+				ADD117C21EF3908500EF6E04 /* OnlineFileListItemView.h */,
+				ADD117C31EF3908500EF6E04 /* OnlineFileListItemView.m */,
+				ADD117C41EF3908500EF6E04 /* OnlineFileListPage.h */,
+				ADD117C51EF3908500EF6E04 /* OnlineFileListPage.m */,
+				ADD117C61EF3908500EF6E04 /* OnlineFileListTableViewCell.h */,
+				ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */,
+				ADD117C81EF3908500EF6E04 /* OnlineFileListViewController.h */,
+				ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1748,6 +1768,7 @@
 			files = (
 				ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */,
 				032C96951E2CA31D001EFC29 /* TZPhotoPreviewCell.m in Sources */,
+				ADD117CA1EF3908500EF6E04 /* OnlineFileListItemView.m in Sources */,
 				032C96B41E2CB007001EFC29 /* DVFullScreenMediaViewer.m in Sources */,
 				AD59D8F51EE913F9009C78D6 /* FitLabel.m in Sources */,
 				0300497F1E0E5F61006EDC29 /* User.m in Sources */,
@@ -1757,6 +1778,7 @@
 				032C961B1E2207E9001EFC29 /* ProfileUnitCell.m in Sources */,
 				032911871E113D1F000C1F5A /* UINavigationBar+Awesome.m in Sources */,
 				032C96B61E2CB007001EFC29 /* MediaPreviewViewController.m in Sources */,
+				ADD117CC1EF3908500EF6E04 /* OnlineFileListTableViewCell.m in Sources */,
 				0335B3121E1508F800A2A74B /* XTPopViewBase.m in Sources */,
 				AD59D8FE1EEA51AB009C78D6 /* WebViewController.m in Sources */,
 				032C960D1E1D2B90001EFC29 /* TotalFileHeaderView.m in Sources */,
@@ -1864,6 +1886,7 @@
 				032C96971E2CA31D001EFC29 /* TZVideoPlayerController.m in Sources */,
 				AD59D8F11EE91188009C78D6 /* FileListItemView.m in Sources */,
 				032C96901E2CA31D001EFC29 /* TZAssetCell.m in Sources */,
+				ADD117CB1EF3908500EF6E04 /* OnlineFileListPage.m in Sources */,
 				030049691E0E5F60006EDC29 /* CourseInfo.m in Sources */,
 				030049751E0E5F61006EDC29 /* JournalDetailsList.m in Sources */,
 				0335B3211E15340700A2A74B /* FileNoDataView.m in Sources */,
@@ -1906,6 +1929,7 @@
 				032911471E113B10000C1F5A /* NJKWebViewProgressView.m in Sources */,
 				032C96571E2C67C1001EFC29 /* UIPlaceHolderTextView.m in Sources */,
 				ADFEAB6F1DED6EBA00C0D703 /* JournalApi.m in Sources */,
+				ADD117CD1EF3908500EF6E04 /* OnlineFileListViewController.m in Sources */,
 				032911A71E125716000C1F5A /* RegisterViewController.m in Sources */,
 				032C96931E2CA31D001EFC29 /* TZImagePickerController.m in Sources */,
 				030049711E0E5F60006EDC29 /* Invitation.m in Sources */,
