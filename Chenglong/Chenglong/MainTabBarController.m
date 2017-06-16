@@ -52,7 +52,8 @@
     FileListViewController* file = [[FileListViewController alloc] init];
     file.filePath = NSHomeDirectory();
 
-    OnlineFileListViewController* community = [[OnlineFileListViewController alloc] initWithNibName:nil bundle:nil];
+    OnlineFileListViewController* community = [[OnlineFileListViewController alloc] init];
+    
     ProfileViewController* profile = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
     
     currSelectViewController = file;

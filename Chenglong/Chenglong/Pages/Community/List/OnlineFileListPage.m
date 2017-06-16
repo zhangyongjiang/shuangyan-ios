@@ -21,7 +21,6 @@
     [_tableView registerClass:[OnlineFileListTableViewCell class] forCellReuseIdentifier:OnlineFileListItemTableViewCellID];
     
     self.searchController = [[UISearchController alloc]initWithSearchResultsController:nil];
-    self.searchController.searchResultsUpdater = self;
     //    self.searchController.searchBar.showsCancelButton = NO;
     //    self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.dimsBackgroundDuringPresentation = NO;
@@ -74,9 +73,6 @@
     if(!path)
         return nil;
     return [self.courseDetailsList.items objectAtIndex:path.row];
-}
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
 }
 
 @end

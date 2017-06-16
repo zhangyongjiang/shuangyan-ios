@@ -11,8 +11,9 @@
 
 @interface CourseDetailsView()
 
-@property(strong,nonatomic) FitLabel* labelDesc;
+@property(strong,nonatomic) UILabel* labelDesc;
 @property(strong,nonatomic) NSMutableArray* mediaContentViews;
+@property(strong,nonatomic) UIScrollView* scrollView;
 
 @end
 
@@ -25,9 +26,13 @@
 }
 
 -(void)setup {
-    self.labelDesc = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, 64, 0, 0)];
-    self.labelDesc.numberOfLines = -1;
-    [self addSubview:self.labelDesc];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.frame];
+    [self addSubview:self.scrollView];
+    
+    self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, 64, [UIView screenWidth]-Margin*2, 0)];
+    self.labelDesc.numberOfLines = 0;
+    self.labelDesc.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.scrollView addSubview:self.labelDesc];
     self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
 }
 
@@ -46,8 +51,9 @@
     self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
     
     self.labelDesc.text = self.localCourseDetails.courseDetails.course.content;
+    [self.labelDesc sizeToFit];
     
-    CGFloat w = [UIView screenWidth];
+    CGFloat w = [UIView screenWidth]- Margin*2;
     CGFloat y = self.labelDesc.bottom + Margin;
     if(self.localCourseDetails.courseDetails.course.content==NULL)
         y = Margin;
@@ -56,11 +62,12 @@
         MediaConentView* view = [MediaConentView createViewForMediaContent:mc andFilePath:self.localCourseDetails.filePath];
         if(view) {
             view.frame = CGRectMake(0, y, w, h);
-            [self addSubview:view];
+            [self.scrollView addSubview:view];
             y = y + h + Margin;
             [self.mediaContentViews addObject:view];
         }
     }
+    self.scrollView.contentSize = CGSizeMake(self.width, y);
 }
 
 @end

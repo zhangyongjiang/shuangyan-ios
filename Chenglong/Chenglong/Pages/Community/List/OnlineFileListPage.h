@@ -9,7 +9,7 @@
 #import "TableViewPage.h"
 #import "CourseDetailsList.h"
 
-@interface OnlineFileListPage : TableViewPage<UISearchResultsUpdating>
+@interface OnlineFileListPage : TableViewPage
 
 @property(strong,nonatomic)UISearchController* searchController;
 @property(strong, nonatomic) CourseDetailsList* courseDetailsList;
