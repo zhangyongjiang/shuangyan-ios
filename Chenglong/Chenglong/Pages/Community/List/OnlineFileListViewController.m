@@ -13,6 +13,7 @@
 @interface OnlineFileListViewController () <UISearchResultsUpdating>
 
 @property(strong, nonatomic) OnlineFileListPage* page;
+@property(assign, nonatomic)int currentPage;
 
 @end
 
@@ -42,6 +43,7 @@
 }
 
 -(void)refreshPage {
+    self.currentPage = 0;
     [CourseApi CourseAPI_Search:nil age:nil page:nil onSuccess:^(CourseDetailsList *resp) {
         if(resp.courseDetails) {
             self.navigationItem.title = resp.courseDetails.course.title;
@@ -50,6 +52,19 @@
     } onError:^(APIError *err) {
         
     }];
+}
+
+-(void)nextPage {
+    if(![self hasNextPage:PageSize current:self.currentPage currentItems:self.page.courseDetailsList.items.count]) {
+        return;
+    }
+    self.currentPage++;
+    [CourseApi CourseAPI_Search:nil age:nil page:[NSNumber numberWithInt:self.currentPage] onSuccess:^(CourseDetailsList *resp) {
+        [self.page appendCourseDetailsList:resp];
+    } onError:^(APIError *err) {
+        
+    }];
+
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController{

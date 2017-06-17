@@ -71,6 +71,24 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationPushController:) name:NotificationPushController object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRefreshControl:) name:NotificationRefreshControl object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationEndOfDisplay:) name:NotificationEndOfDisplay object:nil];
+}
+
+-(void)notificationEndOfDisplay:(NSNotification*)noti {
+    UIView* subview = noti.object;
+    if([subview isSameViewOrChildOf:self.view]) {
+        [self nextPage];
+    }
+}
+
+-(void)nextPage {
+}
+
+-(BOOL)hasNextPage:(int)pageSize current:(int)currentPage currentItems:(NSInteger)currentItems {
+    if (currentItems%PageSize != 0 || currentPage*pageSize==currentItems) {
+        return NO;
+    }
+    return YES;
 }
 
 - (void) viewWillDisappear:(BOOL)animated {

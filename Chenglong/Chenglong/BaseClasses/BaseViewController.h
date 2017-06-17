@@ -13,5 +13,6 @@
 
 -(void)addTopRightMenu:(NSArray*)menuItems;
 -(void)topRightMenuItemClicked:(NSString*)cmd;
+-(BOOL)hasNextPage:(int)pageSize current:(int)currentPage currentItems:(NSInteger)currentItems;
 
 @end

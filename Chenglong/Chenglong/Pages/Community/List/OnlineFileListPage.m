@@ -40,6 +40,7 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self checkNextPageForTableView:tableView indexPath:indexPath];
     OnlineFileListTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:OnlineFileListItemTableViewCellID];
     CourseDetails* item = [self.courseDetailsList.items objectAtIndex:indexPath.row];
 //    cell.textLabel.text = item.course.title;
@@ -64,6 +65,11 @@
 
 -(void)setCourseDetailsList:(CourseDetailsList *)courseDetailsList {
     _courseDetailsList = courseDetailsList;
+    [_tableView reloadData];
+}
+
+-(void)appendCourseDetailsList:(CourseDetailsList *)next {
+    [self.courseDetailsList.items addObjectsFromArray:next.items];
     [_tableView reloadData];
 }
 

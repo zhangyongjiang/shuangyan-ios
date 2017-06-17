@@ -15,5 +15,6 @@
 @property(strong, nonatomic) CourseDetailsList* courseDetailsList;
 
 -(CourseDetails*) selected;
+-(void)appendCourseDetailsList:(CourseDetailsList*) next;
 
 @end
