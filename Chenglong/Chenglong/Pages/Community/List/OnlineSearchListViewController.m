@@ -6,18 +6,18 @@
 //  Copyright © 2017 Chenglong. All rights reserved.
 //
 
-#import "OnlineFileListViewController.h"
+#import "OnlineSearchListViewController.h"
 #import "ObjectMapper.h"
 #import "CreateFileViewController.h"
 
-@interface OnlineFileListViewController () <UISearchResultsUpdating>
+@interface OnlineSearchListViewController () <UISearchResultsUpdating>
 
-@property(strong, nonatomic) OnlineFileListPage* page;
+@property(strong, nonatomic) OnlineSearchListPage* page;
 @property(assign, nonatomic)int currentPage;
 
 @end
 
-@implementation OnlineFileListViewController
+@implementation OnlineSearchListViewController
 
 -(id)init {
     self = [super init];
@@ -38,7 +38,7 @@
 }
 
 -(void)createPage {
-    self.page = [[OnlineFileListPage alloc] initWithFrame:self.view.bounds];
+    self.page = [[OnlineSearchListPage alloc] initWithFrame:self.view.bounds];
     self.page.searchController.searchResultsUpdater = self;
     [self.view addSubview:self.page];
     

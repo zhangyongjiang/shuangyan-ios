@@ -14,7 +14,7 @@
 #import "CommunityViewController.h"
 #import "ProfileViewController.h"
 #import "FileListViewController.h"
-#import "OnlineFileListViewController.h"
+#import "OnlineSearchListViewController.h"
 
 @interface MainTabBarController ()<UITabBarControllerDelegate>
 {
@@ -52,7 +52,7 @@
     FileListViewController* file = [[FileListViewController alloc] init];
     file.filePath = NSHomeDirectory();
 
-    OnlineFileListViewController* community = [[OnlineFileListViewController alloc] init];
+    OnlineSearchListViewController* community = [[OnlineSearchListViewController alloc] init];
     
     ProfileViewController* profile = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
     

@@ -6,15 +6,15 @@
 //  Copyright © 2017 Chenglong. All rights reserved.
 //
 
-#import "OnlineFileListPage.h"
-#import "OnlineFileListViewController.h"
+#import "OnlineSearchListPage.h"
+#import "OnlineSearchListViewController.h"
 #import "OnlineFileListTableViewCell.h"
 #import "WebViewController.h"
 #import "OnlineFileDetailsViewController.h"
 
 #define OnlineFileListItemTableViewCellID @"OnlineFileListItemTableViewCellID"
 
-@implementation OnlineFileListPage
+@implementation OnlineSearchListPage
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -52,7 +52,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CourseDetails* cd = [self.courseDetailsList.items objectAtIndex:indexPath.row];
     if(cd.course.isDir.intValue == 1) {
-        OnlineFileListViewController* c = [[OnlineFileListViewController alloc] init];
+        OnlineSearchListViewController* c = [[OnlineSearchListViewController alloc] init];
         c.courseId = cd.course.id;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }

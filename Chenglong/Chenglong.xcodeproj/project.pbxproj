@@ -222,9 +222,9 @@
 		ADD117C01EF2546400EF6E04 /* like-color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BC1EF2546400EF6E04 /* like-color@2x.png */; };
 		ADD117C11EF2546400EF6E04 /* like-color@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BD1EF2546400EF6E04 /* like-color@3x.png */; };
 		ADD117CA1EF3908500EF6E04 /* OnlineFileListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C31EF3908500EF6E04 /* OnlineFileListItemView.m */; };
-		ADD117CB1EF3908500EF6E04 /* OnlineFileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C51EF3908500EF6E04 /* OnlineFileListPage.m */; };
+		ADD117CB1EF3908500EF6E04 /* OnlineSearchListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C51EF3908500EF6E04 /* OnlineSearchListPage.m */; };
 		ADD117CC1EF3908500EF6E04 /* OnlineFileListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */; };
-		ADD117CD1EF3908500EF6E04 /* OnlineFileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */; };
+		ADD117CD1EF3908500EF6E04 /* OnlineSearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C91EF3908500EF6E04 /* OnlineSearchListViewController.m */; };
 		ADD117D01EF4D84900EF6E04 /* OnlineCourseDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117CF1EF4D84900EF6E04 /* OnlineCourseDetailsView.m */; };
 		ADD117D31EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117D21EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m */; };
 		ADD117D61EF4F03900EF6E04 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117D51EF4F03900EF6E04 /* FileManager.m */; };
@@ -650,12 +650,12 @@
 		ADD117BD1EF2546400EF6E04 /* like-color@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color@3x.png"; sourceTree = "<group>"; };
 		ADD117C21EF3908500EF6E04 /* OnlineFileListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListItemView.h; sourceTree = "<group>"; };
 		ADD117C31EF3908500EF6E04 /* OnlineFileListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListItemView.m; sourceTree = "<group>"; };
-		ADD117C41EF3908500EF6E04 /* OnlineFileListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListPage.h; sourceTree = "<group>"; };
-		ADD117C51EF3908500EF6E04 /* OnlineFileListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListPage.m; sourceTree = "<group>"; };
+		ADD117C41EF3908500EF6E04 /* OnlineSearchListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineSearchListPage.h; sourceTree = "<group>"; };
+		ADD117C51EF3908500EF6E04 /* OnlineSearchListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineSearchListPage.m; sourceTree = "<group>"; };
 		ADD117C61EF3908500EF6E04 /* OnlineFileListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListTableViewCell.h; sourceTree = "<group>"; };
 		ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListTableViewCell.m; sourceTree = "<group>"; };
-		ADD117C81EF3908500EF6E04 /* OnlineFileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListViewController.h; sourceTree = "<group>"; };
-		ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListViewController.m; sourceTree = "<group>"; };
+		ADD117C81EF3908500EF6E04 /* OnlineSearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineSearchListViewController.h; sourceTree = "<group>"; };
+		ADD117C91EF3908500EF6E04 /* OnlineSearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineSearchListViewController.m; sourceTree = "<group>"; };
 		ADD117CE1EF4D84900EF6E04 /* OnlineCourseDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnlineCourseDetailsView.h; path = ../List/OnlineCourseDetailsView.h; sourceTree = "<group>"; };
 		ADD117CF1EF4D84900EF6E04 /* OnlineCourseDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnlineCourseDetailsView.m; path = ../List/OnlineCourseDetailsView.m; sourceTree = "<group>"; };
 		ADD117D11EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileDetailsViewController.h; sourceTree = "<group>"; };
@@ -1401,12 +1401,12 @@
 			children = (
 				ADD117C21EF3908500EF6E04 /* OnlineFileListItemView.h */,
 				ADD117C31EF3908500EF6E04 /* OnlineFileListItemView.m */,
-				ADD117C41EF3908500EF6E04 /* OnlineFileListPage.h */,
-				ADD117C51EF3908500EF6E04 /* OnlineFileListPage.m */,
+				ADD117C41EF3908500EF6E04 /* OnlineSearchListPage.h */,
+				ADD117C51EF3908500EF6E04 /* OnlineSearchListPage.m */,
 				ADD117C61EF3908500EF6E04 /* OnlineFileListTableViewCell.h */,
 				ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */,
-				ADD117C81EF3908500EF6E04 /* OnlineFileListViewController.h */,
-				ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */,
+				ADD117C81EF3908500EF6E04 /* OnlineSearchListViewController.h */,
+				ADD117C91EF3908500EF6E04 /* OnlineSearchListViewController.m */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1914,7 +1914,7 @@
 				032C96971E2CA31D001EFC29 /* TZVideoPlayerController.m in Sources */,
 				AD59D8F11EE91188009C78D6 /* FileListItemView.m in Sources */,
 				032C96901E2CA31D001EFC29 /* TZAssetCell.m in Sources */,
-				ADD117CB1EF3908500EF6E04 /* OnlineFileListPage.m in Sources */,
+				ADD117CB1EF3908500EF6E04 /* OnlineSearchListPage.m in Sources */,
 				030049691E0E5F60006EDC29 /* CourseInfo.m in Sources */,
 				030049751E0E5F61006EDC29 /* JournalDetailsList.m in Sources */,
 				0335B3211E15340700A2A74B /* FileNoDataView.m in Sources */,
@@ -1959,7 +1959,7 @@
 				032C96571E2C67C1001EFC29 /* UIPlaceHolderTextView.m in Sources */,
 				ADFEAB6F1DED6EBA00C0D703 /* JournalApi.m in Sources */,
 				ADD117D91EF4F86400EF6E04 /* OnlineCourseResourceView.m in Sources */,
-				ADD117CD1EF3908500EF6E04 /* OnlineFileListViewController.m in Sources */,
+				ADD117CD1EF3908500EF6E04 /* OnlineSearchListViewController.m in Sources */,
 				032911A71E125716000C1F5A /* RegisterViewController.m in Sources */,
 				032C96931E2CA31D001EFC29 /* TZImagePickerController.m in Sources */,
 				030049711E0E5F60006EDC29 /* Invitation.m in Sources */,

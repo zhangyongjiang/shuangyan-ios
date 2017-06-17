@@ -7,9 +7,9 @@
 //
 
 #import "BaseViewController.h"
-#import "OnlineFileListPage.h"
+#import "OnlineSearchListPage.h"
 
-@interface OnlineFileListViewController : BaseViewController
+@interface OnlineSearchListViewController : BaseViewController
 
 @property(strong, nonatomic) NSString* courseId;
 @property(strong, nonatomic) NSString* filePath;
