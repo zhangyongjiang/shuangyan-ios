@@ -227,6 +227,7 @@
 		ADD117CD1EF3908500EF6E04 /* OnlineFileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */; };
 		ADD117D01EF4D84900EF6E04 /* OnlineCourseDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117CF1EF4D84900EF6E04 /* OnlineCourseDetailsView.m */; };
 		ADD117D31EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117D21EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m */; };
+		ADD117D61EF4F03900EF6E04 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117D51EF4F03900EF6E04 /* FileManager.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -657,6 +658,8 @@
 		ADD117CF1EF4D84900EF6E04 /* OnlineCourseDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnlineCourseDetailsView.m; path = ../List/OnlineCourseDetailsView.m; sourceTree = "<group>"; };
 		ADD117D11EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileDetailsViewController.h; sourceTree = "<group>"; };
 		ADD117D21EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileDetailsViewController.m; sourceTree = "<group>"; };
+		ADD117D41EF4F03900EF6E04 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		ADD117D51EF4F03900EF6E04 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1330,6 +1333,8 @@
 				ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */,
 				ADD117B21EF0EBD400EF6E04 /* MenuItem.h */,
 				ADD117B31EF0EBD400EF6E04 /* MenuItem.m */,
+				ADD117D41EF4F03900EF6E04 /* FileManager.h */,
+				ADD117D51EF4F03900EF6E04 /* FileManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1919,6 +1924,7 @@
 				032911C21E129B77000C1F5A /* RegisterSuccessViewController.m in Sources */,
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
+				ADD117D61EF4F03900EF6E04 /* FileManager.m in Sources */,
 				030049771E0E5F61006EDC29 /* MediaContent.m in Sources */,
 				ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */,
 				0300497C1E0E5F61006EDC29 /* PhoneRegisterRequest.m in Sources */,
