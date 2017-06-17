@@ -10,7 +10,7 @@
 #import "OnlineFileListViewController.h"
 #import "OnlineFileListTableViewCell.h"
 #import "WebViewController.h"
-#import "FileDetailsViewController.h"
+#import "OnlineFileDetailsViewController.h"
 
 #define OnlineFileListItemTableViewCellID @"OnlineFileListItemTableViewCellID"
 
@@ -56,9 +56,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
     else {
-        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
-        c.localCourseDetails = [[LocalCourseDetails alloc] init];
-        c.localCourseDetails.courseDetails = cd;
+        OnlineFileDetailsViewController* c = [[OnlineFileDetailsViewController alloc] init];
+        c.courseDetails = cd;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }

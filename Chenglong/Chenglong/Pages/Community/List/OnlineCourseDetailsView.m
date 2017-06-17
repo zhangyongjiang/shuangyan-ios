@@ -7,12 +7,12 @@
 //
 
 #import "OnlineCourseDetailsView.h"
-#import "MediaConentView.h"
+#import "OnlineCourseResourceView.h"
 
 @interface OnlineCourseDetailsView()
 
+@property(strong,nonatomic) OnlineCourseResourceView* resourcesView;
 @property(strong,nonatomic) UILabel* labelDesc;
-@property(strong,nonatomic) NSMutableArray* mediaContentViews;
 @property(strong,nonatomic) UIScrollView* scrollView;
 
 @end
@@ -26,47 +26,35 @@
 }
 
 -(void)setup {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:self.frame];
+    self.resourcesView = [[OnlineCourseResourceView alloc] initWithFrame:CGRectMake(0, 64, [UIView screenWidth], [UIView screenWidth])];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.resourcesView.bottom, [UIView screenWidth], [UIView screenHeight]-self.resourcesView.bottom)];
     [self addSubview:self.scrollView];
     
     self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, 64, [UIView screenWidth]-Margin*2, 0)];
     self.labelDesc.numberOfLines = 0;
     self.labelDesc.lineBreakMode = NSLineBreakByWordWrapping;
     [self.scrollView addSubview:self.labelDesc];
-    self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
 }
 
--(id)initWithFrame:(CGRect)frame andLocalCourseDetails:(LocalCourseDetails *)localCourseDetails {
+-(id)initWithFrame:(CGRect)frame andCourseDetails:(CourseDetails *)courseDetails {
     self = [super initWithFrame:frame];
     [self setup];
-    [self setLocalCourseDetails:localCourseDetails];
+    [self setCourseDetails:courseDetails];
     return self;
 }
 
--(void)setLocalCourseDetails:(LocalCourseDetails *)localCourseDetails {
-    _localCourseDetails = localCourseDetails;
-    for (UIView* view in self.mediaContentViews) {
-        [view removeFromSuperview];
-    }
-    self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
+-(void)setCourseDetails:(CourseDetails *)courseDetails {
+    _courseDetails = courseDetails;
     
-    self.labelDesc.text = self.localCourseDetails.courseDetails.course.content;
+    self.resourcesView.courseResources = courseDetails.course.resources;
+    self.labelDesc.text = self.courseDetails.course.content;
     [self.labelDesc sizeToFit];
     
     CGFloat w = [UIView screenWidth]- Margin*2;
     CGFloat y = self.labelDesc.bottom + Margin;
-    if(self.localCourseDetails.courseDetails.course.content==NULL)
+    if(self.courseDetails.course.content==NULL)
         y = Margin;
     CGFloat h = [UIView screenHeight] - y;
-    for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
-        MediaConentView* view = [MediaConentView createViewForMediaContent:mc andFilePath:self.localCourseDetails.filePath];
-        if(view) {
-            view.frame = CGRectMake(0, y, w, h);
-            [self.scrollView addSubview:view];
-            y = y + h + Margin;
-            [self.mediaContentViews addObject:view];
-        }
-    }
     self.scrollView.contentSize = CGSizeMake(self.width, y);
 }
 

@@ -8,12 +8,12 @@
 
 #import "BaseView.h"
 #import "Page.h"
-#import "LocalCourseDetails.h"
+#import "CourseDetails.h"
 
 @interface OnlineCourseDetailsView : Page
 
-@property(strong, nonatomic)LocalCourseDetails* localCourseDetails;
+@property(strong, nonatomic)CourseDetails* courseDetails;
 
--(id)initWithFrame:(CGRect)frame andCourseDetails:(LocalCourseDetails*)localCourseDetails;
+-(id)initWithFrame:(CGRect)frame andCourseDetails:(CourseDetails*)courseDetails;
 
 @end

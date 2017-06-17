@@ -11,7 +11,7 @@
 
 @interface OnlineFileDetailsViewController : BaseViewController
 
-@property(strong, nonatomic) LocalCourseDetails* localCourseDetails;
+@property(strong, nonatomic) CourseDetails* courseDetails;
 
 
 @end
