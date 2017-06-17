@@ -225,6 +225,8 @@
 		ADD117CB1EF3908500EF6E04 /* OnlineFileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C51EF3908500EF6E04 /* OnlineFileListPage.m */; };
 		ADD117CC1EF3908500EF6E04 /* OnlineFileListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */; };
 		ADD117CD1EF3908500EF6E04 /* OnlineFileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */; };
+		ADD117D01EF4D84900EF6E04 /* OnlineCourseDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117CF1EF4D84900EF6E04 /* OnlineCourseDetailsView.m */; };
+		ADD117D31EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117D21EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -651,6 +653,10 @@
 		ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListTableViewCell.m; sourceTree = "<group>"; };
 		ADD117C81EF3908500EF6E04 /* OnlineFileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListViewController.h; sourceTree = "<group>"; };
 		ADD117C91EF3908500EF6E04 /* OnlineFileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListViewController.m; sourceTree = "<group>"; };
+		ADD117CE1EF4D84900EF6E04 /* OnlineCourseDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnlineCourseDetailsView.h; path = ../List/OnlineCourseDetailsView.h; sourceTree = "<group>"; };
+		ADD117CF1EF4D84900EF6E04 /* OnlineCourseDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnlineCourseDetailsView.m; path = ../List/OnlineCourseDetailsView.m; sourceTree = "<group>"; };
+		ADD117D11EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileDetailsViewController.h; sourceTree = "<group>"; };
+		ADD117D21EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileDetailsViewController.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1367,6 +1373,10 @@
 		AD3D94DF1EE675E100D2704B /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				ADD117CE1EF4D84900EF6E04 /* OnlineCourseDetailsView.h */,
+				ADD117CF1EF4D84900EF6E04 /* OnlineCourseDetailsView.m */,
+				ADD117D11EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.h */,
+				ADD117D21EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -1831,6 +1841,7 @@
 				AD59D9041EEA5C82009C78D6 /* MP3FilePage.m in Sources */,
 				0329117E1E113CEB000C1F5A /* UIImage+Kaishi.m in Sources */,
 				0329117B1E113CE0000C1F5A /* UIFont+Kaishi.m in Sources */,
+				ADD117D01EF4D84900EF6E04 /* OnlineCourseDetailsView.m in Sources */,
 				030049781E0E5F61006EDC29 /* MoneyFlow.m in Sources */,
 				0329115F1E113BC6000C1F5A /* UIView+Data.m in Sources */,
 				0300496D1E0E5F60006EDC29 /* Event.m in Sources */,
@@ -1868,6 +1879,7 @@
 				A364CCC81C94CBFA0075E65F /* SimpleDateConverter.m in Sources */,
 				032C96981E2CA31D001EFC29 /* UIView+Layout.m in Sources */,
 				0300497E1E0E5F61006EDC29 /* ResetPasswordRequest.m in Sources */,
+				ADD117D31EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m in Sources */,
 				030049861E0E5F61006EDC29 /* WechatLoginRequest.m in Sources */,
 				030048FE1E0E5D65006EDC29 /* NSObject+TMCache.m in Sources */,
 				032911CD1E139FDD000C1F5A /* ResetPwdViewController.m in Sources */,
