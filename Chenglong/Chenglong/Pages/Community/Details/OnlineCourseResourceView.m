@@ -19,6 +19,10 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     
+    self.layer.cornerRadius = 1;
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [[UIColor blueColor] CGColor];
+    
     self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
     [self addSubview:self.scrollView];
     self.scrollView.pagingEnabled = true;
@@ -50,6 +54,8 @@
         [self.imgViews addObject:imgView];
         [self.scrollView addSubview:imgView];
         [imgView addTarget:self action:@selector(imgClicked:)];
+        MediaContent* mc = [courseResources objectAtIndex:i];
+        [imgView sd_setImageWithURL:[NSURL URLWithString:mc.url]];
     }
     [self showPage:0];
     

@@ -26,10 +26,13 @@
 }
 
 -(void)setup {
-    self.resourcesView = [[OnlineCourseResourceView alloc] initWithFrame:CGRectMake(0, 64, [UIView screenWidth], [UIView screenWidth])];
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.resourcesView.bottom, [UIView screenWidth], [UIView screenHeight]-self.resourcesView.bottom)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenHeight])];
     [self addSubview:self.scrollView];
-    
+
+    self.resourcesView = [[OnlineCourseResourceView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenWidth]*3/4)];
+
+    [self.scrollView addSubview:self.resourcesView];
+
     self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, 64, [UIView screenWidth]-Margin*2, 0)];
     self.labelDesc.numberOfLines = 0;
     self.labelDesc.lineBreakMode = NSLineBreakByWordWrapping;
