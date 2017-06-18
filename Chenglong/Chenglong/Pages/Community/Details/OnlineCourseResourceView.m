@@ -19,10 +19,6 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     
-    self.layer.cornerRadius = 1;
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = [[UIColor blueColor] CGColor];
-    
     self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
     [self addSubview:self.scrollView];
     self.scrollView.pagingEnabled = true;

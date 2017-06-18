@@ -33,7 +33,7 @@
 
     [self.scrollView addSubview:self.resourcesView];
 
-    self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, 64, [UIView screenWidth]-Margin*2, 0)];
+    self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, self.resourcesView.bottom, [UIView screenWidth]-Margin*2, 0)];
     self.labelDesc.numberOfLines = 0;
     self.labelDesc.lineBreakMode = NSLineBreakByWordWrapping;
     [self.scrollView addSubview:self.labelDesc];
@@ -52,12 +52,7 @@
     self.resourcesView.courseResources = courseDetails.course.resources;
     self.labelDesc.text = self.courseDetails.course.content;
     [self.labelDesc sizeToFit];
-    
-    CGFloat w = [UIView screenWidth]- Margin*2;
     CGFloat y = self.labelDesc.bottom + Margin;
-    if(self.courseDetails.course.content==NULL)
-        y = Margin;
-    CGFloat h = [UIView screenHeight] - y;
     self.scrollView.contentSize = CGSizeMake(self.width, y);
 }
 
