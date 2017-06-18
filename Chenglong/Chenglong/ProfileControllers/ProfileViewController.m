@@ -10,6 +10,7 @@
 #import "ProfileUnitCell.h"
 #import "ProfileHeaderCell.h"
 #import "WebViewController.h"
+#import "ResetPwdViewController.h"
 
 @interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -161,9 +162,8 @@
     }else if (indexPath.section == 1){
         
         if ((long)indexPath.row == 0) {
-            
-            
-            
+            ResetPwdViewController *resetCon = [ResetPwdViewController loadFromNib];
+            [self.navigationController pushViewController:resetCon animated:YES];
         } else if ((long)indexPath.row == 1) {
             
             

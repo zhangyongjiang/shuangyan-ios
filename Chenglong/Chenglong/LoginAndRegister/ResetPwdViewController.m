@@ -23,7 +23,7 @@ static CGFloat registerViewHeight = 340.f;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.navigationItem.title = @"注册";
+    self.navigationItem.title = @"重置密码";
     
     [self configSubView];
     [self configItem];
