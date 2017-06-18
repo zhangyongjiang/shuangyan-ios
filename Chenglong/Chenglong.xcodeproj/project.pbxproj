@@ -236,6 +236,7 @@
 		ADD117E81EF61C2D00EF6E04 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E71EF61C2D00EF6E04 /* VideoView.m */; };
 		ADD117EB1EF61F6C00EF6E04 /* AudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117EA1EF61F6C00EF6E04 /* AudioView.m */; };
 		ADD117EE1EF623F100EF6E04 /* PdfView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117ED1EF623F100EF6E04 /* PdfView.m */; };
+		ADD117F11EF64E7B00EF6E04 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117F01EF64E7B00EF6E04 /* BaseNavigationController.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -684,6 +685,8 @@
 		ADD117EA1EF61F6C00EF6E04 /* AudioView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioView.m; sourceTree = "<group>"; };
 		ADD117EC1EF623F100EF6E04 /* PdfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfView.h; sourceTree = "<group>"; };
 		ADD117ED1EF623F100EF6E04 /* PdfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfView.m; sourceTree = "<group>"; };
+		ADD117EF1EF64E7B00EF6E04 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		ADD117F01EF64E7B00EF6E04 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1534,6 +1537,8 @@
 				ADD117EA1EF61F6C00EF6E04 /* AudioView.m */,
 				ADD117EC1EF623F100EF6E04 /* PdfView.h */,
 				ADD117ED1EF623F100EF6E04 /* PdfView.m */,
+				ADD117EF1EF64E7B00EF6E04 /* BaseNavigationController.h */,
+				ADD117F01EF64E7B00EF6E04 /* BaseNavigationController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1871,6 +1876,7 @@
 				032911A01E114409000C1F5A /* CommunityViewController.m in Sources */,
 				AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */,
 				032C96251E222C9A001EFC29 /* CourseFolderCell.m in Sources */,
+				ADD117F11EF64E7B00EF6E04 /* BaseNavigationController.m in Sources */,
 				032911811E113D0C000C1F5A /* UIImageView+Thumbnail.m in Sources */,
 				AD59D9011EEA5849009C78D6 /* OfflineFilePage.m in Sources */,
 				032C96921E2CA31D001EFC29 /* TZImageManager.m in Sources */,

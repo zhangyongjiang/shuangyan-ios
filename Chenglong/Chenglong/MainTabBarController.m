@@ -15,6 +15,7 @@
 #import "ProfileViewController.h"
 #import "FileListViewController.h"
 #import "OnlineSearchListViewController.h"
+#import "BaseNavigationController.h"
 
 @interface MainTabBarController ()<UITabBarControllerDelegate>
 {
@@ -58,9 +59,9 @@
     
     currSelectViewController = file;
     
-    [self setViewControllers:@[[[UINavigationController alloc] initWithRootViewController:file],
-                               [[UINavigationController alloc] initWithRootViewController:community],
-                               [[UINavigationController alloc] initWithRootViewController:profile]
+    [self setViewControllers:@[[[BaseNavigationController alloc] initWithRootViewController:file],
+                               [[BaseNavigationController alloc] initWithRootViewController:community],
+                               [[BaseNavigationController alloc] initWithRootViewController:profile]
                                ]];
     [self addObser];
     
