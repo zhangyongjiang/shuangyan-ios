@@ -232,6 +232,9 @@
 		ADD117DC1EF4F8FF00EF6E04 /* OnlineMediaContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117DB1EF4F8FF00EF6E04 /* OnlineMediaContentView.m */; };
 		ADD117DF1EF5BAC000EF6E04 /* OnlineFileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117DE1EF5BAC000EF6E04 /* OnlineFileListViewController.m */; };
 		ADD117E21EF5BB5500EF6E04 /* OnlineFileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E11EF5BB5500EF6E04 /* OnlineFileListPage.m */; };
+		ADD117E51EF6198300EF6E04 /* MediaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E41EF6198300EF6E04 /* MediaWebView.m */; };
+		ADD117E81EF61C2D00EF6E04 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E71EF61C2D00EF6E04 /* VideoView.m */; };
+		ADD117EB1EF61F6C00EF6E04 /* AudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117EA1EF61F6C00EF6E04 /* AudioView.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -672,6 +675,12 @@
 		ADD117DE1EF5BAC000EF6E04 /* OnlineFileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListViewController.m; sourceTree = "<group>"; };
 		ADD117E01EF5BB5500EF6E04 /* OnlineFileListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListPage.h; sourceTree = "<group>"; };
 		ADD117E11EF5BB5500EF6E04 /* OnlineFileListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListPage.m; sourceTree = "<group>"; };
+		ADD117E31EF6198300EF6E04 /* MediaWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaWebView.h; sourceTree = "<group>"; };
+		ADD117E41EF6198300EF6E04 /* MediaWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaWebView.m; sourceTree = "<group>"; };
+		ADD117E61EF61C2D00EF6E04 /* VideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
+		ADD117E71EF61C2D00EF6E04 /* VideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
+		ADD117E91EF61F6C00EF6E04 /* AudioView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioView.h; sourceTree = "<group>"; };
+		ADD117EA1EF61F6C00EF6E04 /* AudioView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioView.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1514,6 +1523,12 @@
 				ADD117AA1EED951100EF6E04 /* MediaContentVideoView.m */,
 				ADD117AC1EED956700EF6E04 /* MediaContentPdfView.h */,
 				ADD117AD1EED956700EF6E04 /* MediaContentPdfView.m */,
+				ADD117E31EF6198300EF6E04 /* MediaWebView.h */,
+				ADD117E41EF6198300EF6E04 /* MediaWebView.m */,
+				ADD117E61EF61C2D00EF6E04 /* VideoView.h */,
+				ADD117E71EF61C2D00EF6E04 /* VideoView.m */,
+				ADD117E91EF61F6C00EF6E04 /* AudioView.h */,
+				ADD117EA1EF61F6C00EF6E04 /* AudioView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1801,6 +1816,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD117E51EF6198300EF6E04 /* MediaWebView.m in Sources */,
 				ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */,
 				032C96951E2CA31D001EFC29 /* TZPhotoPreviewCell.m in Sources */,
 				ADD117CA1EF3908500EF6E04 /* OnlineFileListItemView.m in Sources */,
@@ -1966,6 +1982,7 @@
 				032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */,
 				AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */,
 				032911B41E126C45000C1F5A /* LoginViewController.m in Sources */,
+				ADD117E81EF61C2D00EF6E04 /* VideoView.m in Sources */,
 				030048FF1E0E5D65006EDC29 /* TMCache.m in Sources */,
 				032911471E113B10000C1F5A /* NJKWebViewProgressView.m in Sources */,
 				032C96571E2C67C1001EFC29 /* UIPlaceHolderTextView.m in Sources */,
@@ -1984,6 +2001,7 @@
 				032C96B51E2CB007001EFC29 /* MediaPreviewView.m in Sources */,
 				030049731E0E5F60006EDC29 /* Journal.m in Sources */,
 				032911AF1E125CD7000C1F5A /* RegisterView.m in Sources */,
+				ADD117EB1EF61F6C00EF6E04 /* AudioView.m in Sources */,
 				ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

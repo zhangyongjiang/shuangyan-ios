@@ -7,6 +7,8 @@
 //
 
 #import "OnlineCourseResourceView.h"
+#import "VideoView.h"
+#import "AudioView.h"
 
 @interface OnlineCourseResourceView()
 
@@ -45,13 +47,23 @@
     self.imgViews = [[NSMutableArray alloc] init];
     for (int i=0; i<courseResources.count; i++) {
         CGFloat x = i * self.width;
-        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, self.width, self.height)];
-        imgView.clipsToBounds = YES;
-        [self.imgViews addObject:imgView];
-        [self.scrollView addSubview:imgView];
-        [imgView addTarget:self action:@selector(imgClicked:)];
         MediaContent* mc = [courseResources objectAtIndex:i];
-        [imgView sd_setImageWithURL:[NSURL URLWithString:mc.url]];
+        if([mc.contentType hasPrefix:@"image"]) {
+            UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, self.width, self.height)];
+            imgView.clipsToBounds = YES;
+            [self.imgViews addObject:imgView];
+            [self.scrollView addSubview:imgView];
+            [imgView addTarget:self action:@selector(imgClicked:)];
+            [imgView sd_setImageWithURL:[NSURL URLWithString:mc.url]];
+        }
+        else if([mc.contentType hasPrefix:@"video"]) {
+            VideoView* vv = [[VideoView alloc] initWithFrame:CGRectMake(x, 0, self.width, self.height) andMediaContent:mc];
+            [self.scrollView addSubview:vv];
+        }
+        else if([mc.contentType hasPrefix:@"audio"]) {
+            AudioView* vv = [[AudioView alloc] initWithFrame:CGRectMake(x, 0, self.width, self.height) andMediaContent:mc];
+            [self.scrollView addSubview:vv];
+        }
     }
     [self showPage:0];
     

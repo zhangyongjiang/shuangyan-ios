@@ -50,6 +50,14 @@
     _courseDetails = courseDetails;
     
     self.resourcesView.courseResources = courseDetails.course.resources;
+    if(courseDetails.course.resources == NULL || courseDetails.course.resources.count == 0) {
+        self.resourcesView.height = 0;
+        self.labelDesc.y = 0;
+    }
+    else {
+        self.resourcesView.height = [UIView screenWidth]*3/4;
+        self.labelDesc.y = self.resourcesView.height;
+    }
     self.labelDesc.text = self.courseDetails.course.content;
     [self.labelDesc sizeToFit];
     CGFloat y = self.labelDesc.bottom + Margin;
