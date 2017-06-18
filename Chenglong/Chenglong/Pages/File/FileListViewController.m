@@ -64,7 +64,7 @@
     
     File* file = [[File alloc] initWithFullPath:[self jsonFileName]];
     if([file exists] && [[file lastModifiedTime] timeIntervalSinceNow]<3600){
-        NSData* data = [file getContent];
+        NSData* data = file.content;
         NSError *error;
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                              options:kNilOptions

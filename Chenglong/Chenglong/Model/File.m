@@ -68,8 +68,16 @@
     return [fm fileExistsAtPath:self.fullPath];
 }
 
--(NSData*)getContent {
+-(NSData*)content {
     NSFileManager* fm = [NSFileManager defaultManager];
     return [fm contentsAtPath:self.fullPath];
+}
+
+-(void)setContent:(NSData *)content {
+    [content writeToFile:self.fullPath atomically:YES];
+}
+
+-(void)writeStringContent:(NSString *)content {
+    [content writeToFile:self.fullPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 @end

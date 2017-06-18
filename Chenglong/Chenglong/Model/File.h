@@ -17,10 +17,11 @@
 -(long)length;
 -(NSDate*)lastModifiedTime;
 -(BOOL)exists;
--(NSData*)getContent;
+-(void)writeStringContent:(NSString*)content;
 
 @property(strong, nonatomic) NSString* dir;
 @property(strong, nonatomic) NSString* name;
 @property(strong, nonatomic) NSString* fullPath;
+@property(strong, nonatomic) NSData* content;
 
 @end
