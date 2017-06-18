@@ -73,6 +73,8 @@
 
 -(void) setup
 {
+    if(!webView)
+        [self createPage];
     [webView setAllowsInlineMediaPlayback:YES];
     [webView setMediaPlaybackRequiresUserAction:NO];
     if (_url) {

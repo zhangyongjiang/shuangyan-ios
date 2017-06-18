@@ -9,6 +9,7 @@
 #import "ProfileViewController.h"
 #import "ProfileUnitCell.h"
 #import "ProfileHeaderCell.h"
+#import "WebViewController.h"
 
 @interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -184,6 +185,18 @@
             
         }
         
+    }
+    else if (indexPath.section == 3){
+        if ((long)indexPath.row == 0) {
+            NSString* url = @"http://www.babazaojiao.com/?page_id=48";
+            WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"联系我们"];
+            [self.navigationController pushViewController:c animated:YES];
+        } else if ((long)indexPath.row == 1) {
+            NSString* url = @"http://www.babazaojiao.com/?page_id=49";
+            WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"关于我们"];
+            [self.navigationController pushViewController:c animated:YES];
+        }else if ((long)indexPath.row == 2) {
+        }
     }
 }
 
