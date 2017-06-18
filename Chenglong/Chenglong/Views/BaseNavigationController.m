@@ -24,17 +24,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    UIViewController *lastVC = nil;
-    if (self.viewControllers.count > 0) {
-        lastVC = self.viewControllers[self.viewControllers.count - 1];
-    }
-    if (lastVC != nil) {
-        lastVC.hidesBottomBarWhenPushed = YES;
-    }
-    [super pushViewController:viewController animated:YES];
-    if (self.viewControllers.count == 2) {
-        lastVC.hidesBottomBarWhenPushed = NO;
-    }
-}
+//- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+//    UIViewController *lastVC = nil;
+//    if (self.viewControllers.count > 0) {
+//        lastVC = self.viewControllers[self.viewControllers.count - 1];
+//    }
+//    if (lastVC != nil) {
+//        lastVC.hidesBottomBarWhenPushed = YES;
+//    }
+//    [super pushViewController:viewController animated:YES];
+//    if (self.viewControllers.count == 2) {
+//        lastVC.hidesBottomBarWhenPushed = NO;
+//    }
+//}
 @end
