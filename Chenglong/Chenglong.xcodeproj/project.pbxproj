@@ -230,6 +230,8 @@
 		ADD117D61EF4F03900EF6E04 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117D51EF4F03900EF6E04 /* FileManager.m */; };
 		ADD117D91EF4F86400EF6E04 /* OnlineCourseResourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117D81EF4F86400EF6E04 /* OnlineCourseResourceView.m */; };
 		ADD117DC1EF4F8FF00EF6E04 /* OnlineMediaContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117DB1EF4F8FF00EF6E04 /* OnlineMediaContentView.m */; };
+		ADD117DF1EF5BAC000EF6E04 /* OnlineFileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117DE1EF5BAC000EF6E04 /* OnlineFileListViewController.m */; };
+		ADD117E21EF5BB5500EF6E04 /* OnlineFileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E11EF5BB5500EF6E04 /* OnlineFileListPage.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -666,6 +668,10 @@
 		ADD117D81EF4F86400EF6E04 /* OnlineCourseResourceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCourseResourceView.m; sourceTree = "<group>"; };
 		ADD117DA1EF4F8FF00EF6E04 /* OnlineMediaContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMediaContentView.h; sourceTree = "<group>"; };
 		ADD117DB1EF4F8FF00EF6E04 /* OnlineMediaContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMediaContentView.m; sourceTree = "<group>"; };
+		ADD117DD1EF5BAC000EF6E04 /* OnlineFileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListViewController.h; sourceTree = "<group>"; };
+		ADD117DE1EF5BAC000EF6E04 /* OnlineFileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListViewController.m; sourceTree = "<group>"; };
+		ADD117E01EF5BB5500EF6E04 /* OnlineFileListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListPage.h; sourceTree = "<group>"; };
+		ADD117E11EF5BB5500EF6E04 /* OnlineFileListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListPage.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1399,6 +1405,10 @@
 		AD3D94E01EE675E100D2704B /* List */ = {
 			isa = PBXGroup;
 			children = (
+				ADD117E01EF5BB5500EF6E04 /* OnlineFileListPage.h */,
+				ADD117E11EF5BB5500EF6E04 /* OnlineFileListPage.m */,
+				ADD117DD1EF5BAC000EF6E04 /* OnlineFileListViewController.h */,
+				ADD117DE1EF5BAC000EF6E04 /* OnlineFileListViewController.m */,
 				ADD117C21EF3908500EF6E04 /* OnlineFileListItemView.h */,
 				ADD117C31EF3908500EF6E04 /* OnlineFileListItemView.m */,
 				ADD117C41EF3908500EF6E04 /* OnlineSearchListPage.h */,
@@ -1828,6 +1838,7 @@
 				ADD117DC1EF4F8FF00EF6E04 /* OnlineMediaContentView.m in Sources */,
 				032911781E113CCB000C1F5A /* SVProgressHUD+UploadProgress.m in Sources */,
 				030049641E0E5F60006EDC29 /* BusinessSummary.m in Sources */,
+				ADD117DF1EF5BAC000EF6E04 /* OnlineFileListViewController.m in Sources */,
 				A364CCC91C94CBFA0075E65F /* ObjectMapper.m in Sources */,
 				0300497B1E0E5F61006EDC29 /* PhoneLoginRequest.m in Sources */,
 				0300496A1E0E5F60006EDC29 /* CourseList.m in Sources */,
@@ -1843,6 +1854,7 @@
 				032C96921E2CA31D001EFC29 /* TZImageManager.m in Sources */,
 				030049001E0E5D65006EDC29 /* TMDiskCache.m in Sources */,
 				032C964D1E24DC8F001EFC29 /* CreateFileViewController.m in Sources */,
+				ADD117E21EF5BB5500EF6E04 /* OnlineFileListPage.m in Sources */,
 				030049681E0E5F60006EDC29 /* CourseDetails.m in Sources */,
 				032C965A1E2C7301001EFC29 /* CreatFileTypeView.m in Sources */,
 				0300496B1E0E5F60006EDC29 /* CourseMoveRequest.m in Sources */,

@@ -6,29 +6,20 @@
 //  Copyright © 2017 Chenglong. All rights reserved.
 //
 
-#import "OnlineSearchListPage.h"
-#import "OnlineSearchListViewController.h"
+#import "OnlineFileListPage.h"
+#import "OnlineFileListViewController.h"
 #import "OnlineFileListTableViewCell.h"
 #import "WebViewController.h"
 #import "OnlineFileDetailsViewController.h"
-#import "OnlineFileListViewController.h"
 
-#define OnlineFileListItemTableViewCellID @"OnlineSearchListItemTableViewCellID"
+#define OnlineFileListItemTableViewCellID @"OnlineFileListItemTableViewCellID"
 
-@implementation OnlineSearchListPage
+@implementation OnlineFileListPage
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     [_tableView registerClass:[OnlineFileListTableViewCell class] forCellReuseIdentifier:OnlineFileListItemTableViewCellID];
-    
-    self.searchController = [[UISearchController alloc]initWithSearchResultsController:nil];
-    //    self.searchController.searchBar.showsCancelButton = NO;
-    //    self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.searchController.searchBar.frame = CGRectMake(0, 0, [UIView screenWidth], 44);
-    self.searchController.searchBar.placeholder = @"关键词";
-    _tableView.tableHeaderView = self.searchController.searchBar;
-    
+        
     return self;
 }
 
@@ -66,11 +57,6 @@
 
 -(void)setCourseDetailsList:(CourseDetailsList *)courseDetailsList {
     _courseDetailsList = courseDetailsList;
-    [_tableView reloadData];
-}
-
--(void)appendCourseDetailsList:(CourseDetailsList *)next {
-    [self.courseDetailsList.items addObjectsFromArray:next.items];
     [_tableView reloadData];
 }
 
