@@ -82,7 +82,7 @@ NSUInteger kDefaultMaxRetries = 3;
     [self setDefaultJsonRequestSerializer];
     [self setAuthorizationToken];
     
-    //    NSLog(@"GET: %@ with data: %@", URLString, parameters);
+    NSLog(@"GET: %@ with data: %@", URLString, parameters);
     NSURLSessionDataTask *operation = [super GET:URLString parameters:parameters progress:nil
                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
                                              //                                               NSLog(@"GET SUCCESS: %@ with data: %@", URLString, parameters);
