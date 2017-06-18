@@ -17,6 +17,7 @@
 
 #import "UserApi.h"
 #import "CourseApi.h"
+#import "File.h"
 
 static NSInteger max_second = 120;//验证码倒计时时间
 

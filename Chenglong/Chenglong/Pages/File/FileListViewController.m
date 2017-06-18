@@ -9,6 +9,8 @@
 #import "FileListViewController.h"
 #import "ObjectMapper.h"
 #import "CreateFileViewController.h"
+#import "FileManager.h"
+#import "File.h"
 
 @interface FileListViewController ()
 
@@ -60,10 +62,9 @@
     self.page.filePath = self.filePath;
     [self.view addSubview:self.page];
     
-    NSString* fileName = [self jsonFileName];
-    NSFileManager* fm = [NSFileManager defaultManager];
-    if([fm fileExistsAtPath:fileName]){
-        NSData* data = [fm contentsAtPath:fileName];
+    File* file = [[File alloc] initWithFullPath:[self jsonFileName]];
+    if([file exists] && [[file lastModifiedTime] timeIntervalSinceNow]<3600){
+        NSData* data = [file getContent];
         NSError *error;
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                              options:kNilOptions
@@ -90,7 +91,13 @@
         
         NSString* fileName = [self jsonFileName];
         NSString* json = [resp toJson];
-        [json writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        NSError* err;
+        File* file = [[File alloc] initWithFullPath:fileName];
+        [file mkdirs];
+        BOOL success = [json writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:&err];
+        if(!success) {
+            NSLog(@"%@", err);
+        }
     } onError:^(APIError *err) {
         
     }];

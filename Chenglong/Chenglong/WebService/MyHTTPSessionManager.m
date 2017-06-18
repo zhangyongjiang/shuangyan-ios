@@ -83,8 +83,10 @@ NSUInteger kDefaultMaxRetries = 3;
     [self setAuthorizationToken];
     
     NSLog(@"GET: %@ with data: %@", URLString, parameters);
+    [SVProgressHUD show];
     NSURLSessionDataTask *operation = [super GET:URLString parameters:parameters progress:nil
                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
+                                             [SVProgressHUD dismiss];
                                              //                                               NSLog(@"GET SUCCESS: %@ with data: %@", URLString, parameters);
                                              NSDictionary* dict = responseObject;
                                              NSNumber* obj = [dict objectForKey:@"success"];
@@ -98,6 +100,7 @@ NSUInteger kDefaultMaxRetries = 3;
                                              }
                                          }
                                          failure:^(NSURLSessionDataTask *operation, NSError *error) {
+                                             [SVProgressHUD dismiss];
                                              //                                               NSLog(@"GET ERROR: %@ with data: %@. %@", URLString, parameters, error);
                                              APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
                                              failure(apiError);
@@ -182,7 +185,7 @@ NSUInteger kDefaultMaxRetries = 3;
     [self setDefaultJsonRequestSerializer];
     [self setAuthorizationToken];
     
-    //    NSLog(@"POST: %@ with data: %@", URLString, parameters);
+    NSLog(@"POST: %@ with data: %@", URLString, parameters);
     NSURLSessionDataTask *operation = [super POST:URLString parameters:parameters progress:nil
                                           success:^(NSURLSessionDataTask *operation, id responseObject) {
                                               NSLog(@"POST SUCCESS: %@ with data: %@", URLString, parameters);
@@ -226,8 +229,11 @@ NSUInteger kDefaultMaxRetries = 3;
     [self setDefaultJsonRequestSerializer];
     [self setAuthorizationToken];
     
+    NSLog(@"POST: %@ with data: %@", URLString, parameters);
+    [SVProgressHUD show];
     return [super POST:URLString parameters:parameters constructingBodyWithBlock:block progress:uploadProgress
                success:^(NSURLSessionDataTask *operation, id responseObject) {
+                   [SVProgressHUD dismiss];
                    NSDictionary* dict = responseObject;
                    NSNumber* obj = [dict objectForKey:@"success"];
                    if(obj.intValue) {
@@ -240,6 +246,7 @@ NSUInteger kDefaultMaxRetries = 3;
                    }
                }
                failure:^(NSURLSessionDataTask *operation, NSError *error) {
+                   [SVProgressHUD dismiss];
                    APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
                    failure(apiError);
                    [weakSelf logError:apiError operation:operation];
@@ -264,6 +271,7 @@ NSUInteger kDefaultMaxRetries = 3;
     [self setDefaultJsonRequestSerializer];
     [self setAuthorizationToken];
     
+    NSLog(@"DELETE: %@ with data: %@", URLString, parameters);
     NSURLSessionDataTask *operation = [super DELETE:URLString parameters:parameters
                                             success:^(NSURLSessionDataTask *operation, id responseObject) {
                                                 NSDictionary* dict = responseObject;
@@ -307,6 +315,7 @@ NSUInteger kDefaultMaxRetries = 3;
     [manager.requestSerializer setValue:version forHTTPHeaderField:@"_version"];
     
     [manager setAuthorizationToken];
+    NSLog(@"POST: %@ with data: %@", path, parameters);
     NSURLSessionDataTask* operation = [manager POST:path parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         for (NSString* key in [dataDic keyEnumerator]) {
             id obj = [dataDic objectForKey:key];
