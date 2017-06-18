@@ -9,6 +9,7 @@
 #import "OnlineCourseResourceView.h"
 #import "VideoView.h"
 #import "AudioView.h"
+#import "PdfView.h"
 
 @interface OnlineCourseResourceView()
 
@@ -51,6 +52,7 @@
         if([mc.contentType hasPrefix:@"image"]) {
             UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, self.width, self.height)];
             imgView.clipsToBounds = YES;
+            imgView.contentMode = UIViewContentModeScaleAspectFit;
             [self.imgViews addObject:imgView];
             [self.scrollView addSubview:imgView];
             [imgView addTarget:self action:@selector(imgClicked:)];
@@ -64,6 +66,10 @@
             AudioView* vv = [[AudioView alloc] initWithFrame:CGRectMake(x, 0, self.width, self.height) andMediaContent:mc];
             [self.scrollView addSubview:vv];
         }
+        else if([mc.contentType hasSuffix:@"pdf"]) {
+            PdfView* vv = [[PdfView alloc] initWithFrame:CGRectMake(x, 0, self.width, self.height) andMediaContent:mc];
+            [self.scrollView addSubview:vv];
+        }
     }
     [self showPage:0];
     
@@ -72,6 +78,7 @@
     if (courseResources.count<2) {
         self.pageControl.hidden = YES;
     }
+    self.pageControl.bottom = self.height - 90;
 }
 
 -(void)imgClicked:(UIGestureRecognizer *)gestureRecognizer {

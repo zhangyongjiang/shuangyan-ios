@@ -49,10 +49,13 @@
 -(void)setCourseDetails:(CourseDetails *)courseDetails {
     _courseDetails = courseDetails;
     
-    self.resourcesView.courseResources = courseDetails.course.resources;
     if(courseDetails.course.resources == NULL || courseDetails.course.resources.count == 0) {
         self.resourcesView.height = 0;
         self.labelDesc.y = 0;
+    }
+    else if (courseDetails.course.content == NULL) {
+        self.resourcesView.height = [UIView screenHeight];
+        self.labelDesc.y = self.resourcesView.height;
     }
     else {
         self.resourcesView.height = [UIView screenWidth]*3/4;
@@ -62,6 +65,9 @@
     [self.labelDesc sizeToFit];
     CGFloat y = self.labelDesc.bottom + Margin;
     self.scrollView.contentSize = CGSizeMake(self.width, y);
+    
+    self.resourcesView.scrollView.height = self.resourcesView.height;
+    self.resourcesView.courseResources = courseDetails.course.resources;
 }
 
 @end

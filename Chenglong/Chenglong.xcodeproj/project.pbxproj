@@ -235,6 +235,7 @@
 		ADD117E51EF6198300EF6E04 /* MediaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E41EF6198300EF6E04 /* MediaWebView.m */; };
 		ADD117E81EF61C2D00EF6E04 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E71EF61C2D00EF6E04 /* VideoView.m */; };
 		ADD117EB1EF61F6C00EF6E04 /* AudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117EA1EF61F6C00EF6E04 /* AudioView.m */; };
+		ADD117EE1EF623F100EF6E04 /* PdfView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117ED1EF623F100EF6E04 /* PdfView.m */; };
 		ADEB6AA11D9BEC1B0082253C /* APIError.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9C1D9BEC1B0082253C /* APIError.m */; };
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
@@ -681,6 +682,8 @@
 		ADD117E71EF61C2D00EF6E04 /* VideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
 		ADD117E91EF61F6C00EF6E04 /* AudioView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioView.h; sourceTree = "<group>"; };
 		ADD117EA1EF61F6C00EF6E04 /* AudioView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioView.m; sourceTree = "<group>"; };
+		ADD117EC1EF623F100EF6E04 /* PdfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfView.h; sourceTree = "<group>"; };
+		ADD117ED1EF623F100EF6E04 /* PdfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfView.m; sourceTree = "<group>"; };
 		ADEB6A9B1D9BEC1B0082253C /* APIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIError.h; sourceTree = "<group>"; };
 		ADEB6A9C1D9BEC1B0082253C /* APIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIError.m; sourceTree = "<group>"; };
 		ADEB6A9D1D9BEC1B0082253C /* MyHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1529,6 +1532,8 @@
 				ADD117E71EF61C2D00EF6E04 /* VideoView.m */,
 				ADD117E91EF61F6C00EF6E04 /* AudioView.h */,
 				ADD117EA1EF61F6C00EF6E04 /* AudioView.m */,
+				ADD117EC1EF623F100EF6E04 /* PdfView.h */,
+				ADD117ED1EF623F100EF6E04 /* PdfView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1829,6 +1834,7 @@
 				032C961B1E2207E9001EFC29 /* ProfileUnitCell.m in Sources */,
 				032911871E113D1F000C1F5A /* UINavigationBar+Awesome.m in Sources */,
 				032C96B61E2CB007001EFC29 /* MediaPreviewViewController.m in Sources */,
+				ADD117EE1EF623F100EF6E04 /* PdfView.m in Sources */,
 				ADD117CC1EF3908500EF6E04 /* OnlineFileListTableViewCell.m in Sources */,
 				0335B3121E1508F800A2A74B /* XTPopViewBase.m in Sources */,
 				AD59D8FE1EEA51AB009C78D6 /* WebViewController.m in Sources */,
