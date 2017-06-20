@@ -10,4 +10,8 @@
 
 @interface ProfileHeaderCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgHeader;
+@property (weak, nonatomic) IBOutlet UILabel *lbName;
+@property (weak, nonatomic) IBOutlet UILabel *lbScoreNum;
+
 @end

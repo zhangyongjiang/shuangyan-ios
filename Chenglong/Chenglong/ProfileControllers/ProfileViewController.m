@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UITableView *profileTableView;
 @property (nonatomic, strong) NSDictionary *titlesArr;
 @property (nonatomic, strong) NSDictionary *imgsArr;
+@property (nonatomic, strong) ProfileHeaderCell* headerCell;
 @end
 
 @implementation ProfileViewController
@@ -108,12 +109,54 @@
     return arr.count;
 }
 
+-(void)changeAvatar {
+    [self loadCameraOrPhotoLibraryWithDelegate:self allowEditing:NO];
+}
+
+-(void)changeName {
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改名字" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = @"";
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [alert.textFields firstObject];
+        if ([NSString isEmpty:tf.text]) {
+            [self presentFailureTips:@"名字不能为空"];
+            return;
+        }
+        User *request = [User new];
+        request.name = tf.text;
+        [SVProgressHUD showWithStatus:@"修改中"];
+        [UserApi UserAPI_Update:request onSuccess:^(User *resp) {
+            [SVProgressHUD dismiss];
+            weakSelf.headerCell.lbName.text = resp.name;
+        } onError:^(APIError *err) {
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"ProfileUnitCell";
     if (indexPath.section == 0) {
         cellIdentifier = @"ProfileHeaderCell";
         ProfileHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         cell.data = [Global loggedInUser];
+        if(self.headerCell == nil) {
+            self.headerCell = cell;
+            [self.headerCell.imgHeader addTarget:self action:@selector(changeAvatar)];
+            [self.headerCell.lbName addTarget:self action:@selector(changeName)];
+        }
         return cell;
     }else{
         
@@ -205,6 +248,26 @@
 - (void)getMeInfoSuccess:(NSNotification *)noti
 {
     [self.profileTableView reloadIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
+    if(!selectedImage)
+        selectedImage = info[UIImagePickerControllerOriginalImage];
+    NSData *imageData = UIImagePNGRepresentation(selectedImage);
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:imageData, @"file", nil];
+    [UserApi UserAPI_UploadUserImage:dict onSuccess:^(MediaContent *resp) {
+        NSLog(@"avatar changed");
+    } onError:^(APIError *err) {
+        NSLog(@"avatar not changed %@", err);
+    } progress:^(NSProgress *progress) {
+        NSLog(@"progress %@", progress);
+    }];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

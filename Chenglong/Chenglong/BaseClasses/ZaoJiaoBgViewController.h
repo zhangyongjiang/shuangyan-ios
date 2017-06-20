@@ -15,4 +15,6 @@
 
 //显示错误信息等
 - (void)alertShowWithMsg:(NSString *)msg;
+-(void)loadCameraOrPhotoLibraryWithDelegate:(id)delegate allowEditing:(BOOL)allowEditing;
+
 @end

@@ -9,7 +9,7 @@
 #import "ZaoJiaoBgViewController.h"
 #import "UIView+Position.h"
 
-@interface ZaoJiaoBgViewController ()
+@interface ZaoJiaoBgViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
 
@@ -86,4 +86,50 @@
         ALERT_VIEW(msg);
     }
 }
+
+-(void)loadCameraOrPhotoLibraryWithDelegate:(id)delegate allowEditing:(BOOL)allowEditing {
+    if ([UIAlertController class])
+    {
+        UIAlertController* alertCtrl = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:nil
+                                                                    preferredStyle:UIAlertControllerStyleActionSheet];
+        //Create an action
+        UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action)
+                                 {
+                                     UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+                                     imagePicker.delegate = delegate;
+                                     imagePicker.allowsEditing = allowEditing;
+                                     imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                     [self presentViewController:imagePicker animated:YES completion:nil];
+                                 }];
+        UIAlertAction *imageGallery = [UIAlertAction actionWithTitle:@"Image Gallery"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action)
+                                       {
+                                           UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+                                           imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                           imagePicker.delegate = delegate;
+                                           imagePicker.allowsEditing = allowEditing;
+                                           [self presentViewController:imagePicker animated:YES completion:nil];
+                                       }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:^(UIAlertAction *action)
+                                 {
+                                     [self dismissViewControllerAnimated:YES completion:nil];
+                                 }];
+        
+        
+        //Add action to alertCtrl
+        [alertCtrl addAction:camera];
+        [alertCtrl addAction:imageGallery];
+        [alertCtrl addAction:cancel];
+        [self presentViewController:alertCtrl animated:YES completion:^{
+        }];
+    }
+    
+}
+
 @end

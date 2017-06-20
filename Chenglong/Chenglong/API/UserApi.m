@@ -124,19 +124,37 @@
 +(NSURLSessionDataTask*) UserAPI_RegisterByEmail:(EmailRegisterRequest*)req onSuccess:(void (^)(User *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
     NSString* url_ = @"/user-service/user/register-by-email";
     return [[WebService getOperationManager] POST:url_
-	            parameters:[req toDictionary]
-	               success:^(NSURLSessionDataTask *operation, id responseObject) {
-	                   ObjectMapper *mapper = [ObjectMapper mapper];
-	                   NSError *error;
-	                   User* resp = [mapper mapObject:responseObject toClass:[User class] withError:&error];
-	                   if (error) {
-	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
-	                   } else { 
-	                       successBlock(resp);
-	                   }
-	               } apiError:^(APIError* error) {
-	                   errorBlock(error);
-	               }];
+                                       parameters:[req toDictionary]
+                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
+                                              ObjectMapper *mapper = [ObjectMapper mapper];
+                                              NSError *error;
+                                              User* resp = [mapper mapObject:responseObject toClass:[User class] withError:&error];
+                                              if (error) {
+                                                  errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+                                              } else {
+                                                  successBlock(resp);
+                                              }
+                                          } apiError:^(APIError* error) {
+                                              errorBlock(error);
+                                          }];
+}
+
++(NSURLSessionDataTask*) UserAPI_Update:(User*)req onSuccess:(void (^)(User *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/user-service/user/update";
+    return [[WebService getOperationManager] POST:url_
+                                       parameters:[req toDictionary]
+                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
+                                              ObjectMapper *mapper = [ObjectMapper mapper];
+                                              NSError *error;
+                                              User* resp = [mapper mapObject:responseObject toClass:[User class] withError:&error];
+                                              if (error) {
+                                                  errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+                                              } else {
+                                                  successBlock(resp);
+                                              }
+                                          } apiError:^(APIError* error) {
+                                              errorBlock(error);
+                                          }];
 }
 
 +(NSURLSessionDataTask*) UserAPI_RegisterByPhone:(PhoneRegisterRequest*)req onSuccess:(void (^)(User *resp))successBlock onError:(void (^)(APIError *err))errorBlock {

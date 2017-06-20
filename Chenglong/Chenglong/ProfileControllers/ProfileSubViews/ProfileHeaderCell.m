@@ -10,17 +10,14 @@
 
 @interface ProfileHeaderCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imgHeader;
-@property (weak, nonatomic) IBOutlet UILabel *lbName;
-@property (weak, nonatomic) IBOutlet UILabel *lbScoreNum;
-
 @end
 
 @implementation ProfileHeaderCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.imgHeader.userInteractionEnabled = YES;
+    self.lbName.userInteractionEnabled = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
