@@ -22,24 +22,32 @@
     self = [super init];
     self.name = name;
     self.dir = dir;
-    if([dir hasSuffix:@"/"])
-        self.fullPath = [NSString stringWithFormat:@"%@%@", dir, name];
+    if(name) {
+        if([dir hasSuffix:@"/"])
+            self.fullPath = [NSString stringWithFormat:@"%@%@", dir, name];
+        else
+            self.fullPath = [NSString stringWithFormat:@"%@/%@", dir, name];
+    }
     else
-        self.fullPath = [NSString stringWithFormat:@"%@/%@", dir, name];
+        self.fullPath = dir;
     return self;
 }
 
 -(NSString*)getExt {
-    int index = [self.name indexOf:@"."];
-    if(index == -1)
-        return NULL;
-    return [self.name substringFromIndex:(index+1)];
+    return [self.fullPath pathExtension];
+//    int index = [self.name indexOf:@"."];
+//    if(index == -1)
+//        return NULL;
+//    return [self.name substringFromIndex:(index+1)];
 }
 
 -(void)mkdirs {
     NSFileManager* fm = [NSFileManager defaultManager];
     NSError* err;
-    [fm createDirectoryAtPath:self.dir withIntermediateDirectories:YES attributes:NULL error:&err];
+    NSString* dir = self.dir;
+    if([self isDir])
+        dir = self.fullPath;
+    [fm createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:NULL error:&err];
     if(err) {
         NSLog(@"cannot create dir %@. Cause: %@", self.dir, err);
     }
@@ -65,7 +73,62 @@
 
 -(BOOL)exists {
     NSFileManager* fm = [NSFileManager defaultManager];
-    return [fm fileExistsAtPath:self.fullPath];
+    BOOL isDirectory;
+    return [fm fileExistsAtPath:self.fullPath isDirectory:&isDirectory];
+}
+
+-(BOOL)isDir {
+    NSFileManager* fm = [NSFileManager defaultManager];
+    BOOL isDirectory;
+    [fm fileExistsAtPath:self.fullPath isDirectory:&isDirectory];
+    return isDirectory;
+}
+
+-(BOOL)isFile {
+    NSFileManager* fm = [NSFileManager defaultManager];
+    BOOL isDirectory;
+    [fm fileExistsAtPath:self.fullPath isDirectory:&isDirectory];
+    return !isDirectory;
+}
+
+-(File*)parent {
+    NSArray* array = [self.fullPath pathComponents];
+    NSMutableArray* ma = [NSMutableArray arrayWithArray:array];
+    [ma removeObjectAtIndex:(array.count-1)];
+    NSString* parentPath = [NSString pathWithComponents:ma];
+    File* parent = [[File alloc] initWithFullPath:parentPath];
+    return parent;
+}
+
+-(NSMutableArray*)deepLs {
+    NSMutableArray* ma = [NSMutableArray new];
+    [self addAllChildrenToArray:ma];
+    return ma;
+}
+
+-(void)addAllChildrenToArray:(NSMutableArray*)array {
+    NSArray* items = [self ls];
+    for (File* child in items) {
+        if([child isFile]) {
+            [array addObject:child];
+        }
+        else {
+            [array addObjectsFromArray:[child deepLs]];
+        }
+    }
+}
+
+-(NSArray*)ls {
+    if(![self isDir])
+        return nil;
+    NSArray *directory = [[NSFileManager defaultManager] directoryContentsAtPath: self.fullPath];
+    NSMutableArray* array = [NSMutableArray new];
+    for (NSString *item in directory){
+        NSString *path = [self.fullPath stringByAppendingPathComponent:item];
+        File* f = [[File alloc] initWithFullPath:path];
+        [array addObject:f];
+    }
+    return array;
 }
 
 -(NSData*)content {

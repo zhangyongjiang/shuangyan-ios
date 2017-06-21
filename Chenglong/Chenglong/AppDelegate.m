@@ -20,7 +20,17 @@
 
 @implementation AppDelegate
 
+-(void)test {
+    File* f = [[File alloc] initWithFullPath:NSHomeDirectory()];
+    NSMutableArray* array = [f deepLs];
+    for (File* f in array) {
+        NSLog(@"%@", f.fullPath);
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+//    [self test];
     
     UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     window.backgroundColor = [UIColor whiteColor];

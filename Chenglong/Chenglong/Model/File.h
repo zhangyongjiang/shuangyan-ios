@@ -17,7 +17,13 @@
 -(long)length;
 -(NSDate*)lastModifiedTime;
 -(BOOL)exists;
+-(BOOL)isDir;
+-(BOOL)isFile;
 -(void)writeStringContent:(NSString*)content;
+-(NSArray*)ls;
+-(NSMutableArray*)deepLs;
+-(File*)next:(File*)top;
+-(File*)parent;
 
 @property(strong, nonatomic) NSString* dir;
 @property(strong, nonatomic) NSString* name;
