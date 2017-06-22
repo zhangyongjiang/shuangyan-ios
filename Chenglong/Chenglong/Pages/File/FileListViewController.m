@@ -104,7 +104,7 @@
 }
 
 -(NSString*)jsonFileName {
-    NSString* fileName = [self.filePath stringByAppendingFormat:@"/%@.json", self.courseId];
+    NSString* fileName = [self.filePath stringByAppendingFormat:@"/.json"];
     return fileName;
 }
 

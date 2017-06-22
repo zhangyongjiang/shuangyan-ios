@@ -186,6 +186,7 @@
 		A364CCC91C94CBFA0075E65F /* ObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC2E1C94CBFA0075E65F /* ObjectMapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A364CCD01C94CBFA0075E65F /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC401C94CBFA0075E65F /* Data.m */; };
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
+		AD318B361EFAC1110061E993 /* AutoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD318B351EFAC1110061E993 /* AutoPlayViewController.m */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
 		AD3D94ED1EE6767200D2704B /* EmptyFolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94EC1EE6767200D2704B /* EmptyFolderView.m */; };
@@ -592,6 +593,8 @@
 		A364CC491C94CBFA0075E65F /* NSString+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Json.h"; sourceTree = "<group>"; };
 		A364CC4A1C94CBFA0075E65F /* NSString+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Json.m"; sourceTree = "<group>"; };
 		A364CC4B1C94CBFA0075E65F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		AD318B341EFAC1110061E993 /* AutoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPlayViewController.h; sourceTree = "<group>"; };
+		AD318B351EFAC1110061E993 /* AutoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoPlayViewController.m; sourceTree = "<group>"; };
 		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
 		AD3D94D71EE5286100D2704B /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Attach.h"; sourceTree = "<group>"; };
@@ -1371,9 +1374,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		AD318B331EFAC0D80061E993 /* AutoPlay */ = {
+			isa = PBXGroup;
+			children = (
+				AD318B341EFAC1110061E993 /* AutoPlayViewController.h */,
+				AD318B351EFAC1110061E993 /* AutoPlayViewController.m */,
+			);
+			path = AutoPlay;
+			sourceTree = "<group>";
+		};
 		AD3D94DC1EE675E100D2704B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				AD318B331EFAC0D80061E993 /* AutoPlay */,
 				AD3D94F41EE6790E00D2704B /* TableViewPage.h */,
 				AD3D94F51EE6790E00D2704B /* TableViewPage.m */,
 				AD3D94EE1EE6772400D2704B /* Page.h */,
@@ -1926,6 +1939,7 @@
 				032911461E113B10000C1F5A /* NJKWebViewProgress.m in Sources */,
 				0300495D1E0E5F60006EDC29 /* AdvertisingList.m in Sources */,
 				030049791E0E5F61006EDC29 /* MoneyFlowList.m in Sources */,
+				AD318B361EFAC1110061E993 /* AutoPlayViewController.m in Sources */,
 				0300497A1E0E5F61006EDC29 /* MoneyRequest.m in Sources */,
 				030049611E0E5F60006EDC29 /* BusinessList.m in Sources */,
 				0335B3111E1508F800A2A74B /* XTPopTableView.m in Sources */,

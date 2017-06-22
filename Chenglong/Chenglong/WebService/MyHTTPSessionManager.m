@@ -321,7 +321,8 @@ NSUInteger kDefaultMaxRetries = 3;
             id obj = [dataDic objectForKey:key];
             if ( IS_CLASS(obj, NSData) ) {
                 NSData *data = [dataDic objectForKey:key];
-                [formData appendPartWithFileData:data name:key fileName:@"file.jpeg" mimeType:@"image/jpeg"];
+                NSString* filename = [dataDic objectForKey:@"filename"];
+                [formData appendPartWithFileData:data name:key fileName:filename mimeType:@"image/jpeg"];
             } else if ( IS_CLASS(obj, NSArray) ) {
                 NSArray* dataArray  = obj;
                 for (id data in dataArray ) {

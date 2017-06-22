@@ -11,6 +11,7 @@
 #import "ProfileHeaderCell.h"
 #import "WebViewController.h"
 #import "ResetPwdViewController.h"
+#import <Photos/Photos.h>
 
 @interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -252,10 +253,15 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
+    NSURL *refURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+    PHFetchResult *result = [PHAsset fetchAssetsWithALAssetURLs:@[refURL] options:nil];
+    NSString *filename = [[result firstObject] filename];
+    NSLog(@"filename %@", filename);
     if(!selectedImage)
         selectedImage = info[UIImagePickerControllerOriginalImage];
     NSData *imageData = UIImagePNGRepresentation(selectedImage);
-    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:imageData, @"file", nil];
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:imageData, @"file", nil];
+    [dict setObject:filename forKey:@"filename"];
     [UserApi UserAPI_UploadUserImage:dict onSuccess:^(MediaContent *resp) {
         NSLog(@"avatar changed");
     } onError:^(APIError *err) {
