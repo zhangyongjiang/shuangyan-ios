@@ -29,6 +29,9 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - Lockbox (2.1.0)
   - MJRefresh (3.1.12)
   - PureLayout (2.0.6)
@@ -40,6 +43,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - BlocksKit (~> 2.2.5)
+  - FMDB
   - Lockbox (~> 2.1.0)
   - MJRefresh (~> 3.1.12)
   - PureLayout
@@ -49,12 +53,13 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   Lockbox: 16442da35d9d4286966936763be728a931d589c3
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: af77f1a6b18aa25e00c54512bfa45e50b1890c00
+PODFILE CHECKSUM: 05e81142bc596a86d9cc2615724293566925020b
 
 COCOAPODS: 1.1.1

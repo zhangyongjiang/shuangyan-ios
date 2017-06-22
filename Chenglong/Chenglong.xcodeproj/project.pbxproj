@@ -187,6 +187,7 @@
 		A364CCD01C94CBFA0075E65F /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC401C94CBFA0075E65F /* Data.m */; };
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
 		AD318B361EFAC1110061E993 /* AutoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD318B351EFAC1110061E993 /* AutoPlayViewController.m */; };
+		AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD318B4F1EFBF9FD0061E993 /* Dbase.m */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
 		AD3D94ED1EE6767200D2704B /* EmptyFolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94EC1EE6767200D2704B /* EmptyFolderView.m */; };
@@ -595,6 +596,8 @@
 		A364CC4B1C94CBFA0075E65F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AD318B341EFAC1110061E993 /* AutoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPlayViewController.h; sourceTree = "<group>"; };
 		AD318B351EFAC1110061E993 /* AutoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoPlayViewController.m; sourceTree = "<group>"; };
+		AD318B4E1EFBF9FD0061E993 /* Dbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dbase.h; sourceTree = "<group>"; };
+		AD318B4F1EFBF9FD0061E993 /* Dbase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dbase.m; sourceTree = "<group>"; };
 		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
 		AD3D94D71EE5286100D2704B /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Attach.h"; sourceTree = "<group>"; };
@@ -1184,6 +1187,7 @@
 		A354C1721C93ED9F00EE0DE5 /* Chenglong */ = {
 			isa = PBXGroup;
 			children = (
+				AD318B4D1EFBF9FD0061E993 /* Dbase */,
 				ADD117B51EF17C5300EF6E04 /* Resources */,
 				ADD117991EECFF3D00EF6E04 /* Views */,
 				AD3D94DC1EE675E100D2704B /* Pages */,
@@ -1381,6 +1385,15 @@
 				AD318B351EFAC1110061E993 /* AutoPlayViewController.m */,
 			);
 			path = AutoPlay;
+			sourceTree = "<group>";
+		};
+		AD318B4D1EFBF9FD0061E993 /* Dbase */ = {
+			isa = PBXGroup;
+			children = (
+				AD318B4E1EFBF9FD0061E993 /* Dbase.h */,
+				AD318B4F1EFBF9FD0061E993 /* Dbase.m */,
+			);
+			path = Dbase;
 			sourceTree = "<group>";
 		};
 		AD3D94DC1EE675E100D2704B /* Pages */ = {
@@ -1973,6 +1986,7 @@
 				ADD117F41EF6FBC800EF6E04 /* File.m in Sources */,
 				032C96971E2CA31D001EFC29 /* TZVideoPlayerController.m in Sources */,
 				AD59D8F11EE91188009C78D6 /* FileListItemView.m in Sources */,
+				AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */,
 				032C96901E2CA31D001EFC29 /* TZAssetCell.m in Sources */,
 				ADD117CB1EF3908500EF6E04 /* OnlineSearchListPage.m in Sources */,
 				030049691E0E5F60006EDC29 /* CourseInfo.m in Sources */,
