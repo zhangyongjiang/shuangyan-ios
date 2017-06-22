@@ -10,6 +10,8 @@
 #import "WebService.h"
 #import "LoginViewController.h"
 #import "MainTabBarController.h"
+#import "Dbase.h"
+
 
 @interface AppDelegate ()
 {
@@ -31,6 +33,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 //    [self test];
+    [Dbase shared];
     
     UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     window.backgroundColor = [UIColor whiteColor];
