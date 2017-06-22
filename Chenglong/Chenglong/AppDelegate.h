@@ -11,6 +11,9 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+- (int)version;
 - (void)logout;
+
 @end
 

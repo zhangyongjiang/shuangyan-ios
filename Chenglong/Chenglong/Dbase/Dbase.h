@@ -12,5 +12,7 @@
 
 +(Dbase*)shared;
 
+-(CourseDetails*) getCourseDetailsById:(NSString*)cid;
+-(BOOL) save:(CourseDetails*)cd;
 
 @end
