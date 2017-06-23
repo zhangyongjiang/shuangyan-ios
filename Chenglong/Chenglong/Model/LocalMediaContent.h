@@ -13,6 +13,7 @@
 @property(strong,nonatomic) MediaContent* mediaContent;
 @property(strong, nonatomic)NSString* filePath;
 
+-(id)initWithMediaContent:(MediaContent*)mc;
 -(BOOL)isDownloaded;
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock ;

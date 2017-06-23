@@ -72,7 +72,7 @@
 +(BOOL)isPdf:(MediaContent*)mediaContent {
     return [mediaContent.contentType hasPrefix:@"application/pdf"];
 }
-+(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent andFilePath:(NSString*) filePath {
++(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent {
     MediaConentView* view;
     if([MediaConentView isImage:mediaContent]) {
         view = [[MediaContentImageView alloc] init];
@@ -90,9 +90,7 @@
         return nil;
     view.width = [UIView screenWidth] - Margin*2;
     view.height = [UIView screenWidth] - Margin*2;
-    LocalMediaContent* lmc = [[LocalMediaContent alloc] init];
-    lmc.mediaContent = mediaContent;
-    lmc.filePath = filePath;
+    LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mediaContent];
     view.localMediaContent = lmc;
     return view;
 }

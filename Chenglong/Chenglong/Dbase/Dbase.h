@@ -12,7 +12,20 @@
 
 +(Dbase*)shared;
 
--(CourseDetails*) getCourseDetailsById:(NSString*)cid;
--(BOOL) save:(CourseDetails*)cd;
+-(BOOL)saveList:(CourseDetailsList*)list;
+
+-(BOOL)save:(CourseDetails *)cd ;
+
+-(CourseDetails*)getCourseDetailsById:(NSString *)cid ;
+
+-(CourseDetails*)fromJsonString:(NSString*)jsonstr ;
+
+-(NSMutableArray*)getChildCourseDetails:(NSString*)parent ;
+
+-(NSMutableArray*)getCourseDetailsListByColumn:(NSString*)columnName andValue:(NSObject*)value ;
+
+-(CourseDetailsList*)getCourseDetailsList:(NSString*)cid;
+
+-(CourseDetailsList*)getUserRootCourseDetailsList:(NSString*)userId ;
 
 @end

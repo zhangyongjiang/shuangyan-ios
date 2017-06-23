@@ -131,6 +131,18 @@
     return array;
 }
 
++(NSString*)homeDir {
+    return NSHomeDirectory();
+}
+
++(NSString*)mediaHomeDir {
+    return [NSString stringWithFormat:@"%@/media", [File homeDir]];
+}
+
++(NSString*)dirForMediaContent:(MediaContent*) mc {
+    return [NSString stringWithFormat:@"%@/%@", [File mediaHomeDir], mc.path];
+}
+
 -(NSData*)content {
     NSFileManager* fm = [NSFileManager defaultManager];
     return [fm contentsAtPath:self.fullPath];

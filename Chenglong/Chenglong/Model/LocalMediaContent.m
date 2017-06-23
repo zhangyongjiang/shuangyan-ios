@@ -11,6 +11,13 @@
 
 @implementation LocalMediaContent
 
+-(id)initWithMediaContent:(MediaContent *)mc {
+    self = [super init];
+    self.mediaContent = mc;
+    self.filePath = [File dirForMediaContent:mc];
+    return self;
+}
+
 -(BOOL)isDownloaded {
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSString* filePath = self.filePath;

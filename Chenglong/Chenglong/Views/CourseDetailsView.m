@@ -59,8 +59,7 @@
         y = Margin;
     CGFloat h = [UIView screenHeight] - y;
     for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
-        NSString* filePath = [self.localCourseDetails.filePath stringByAppendingFormat:@".%@", [mc.path lastPathComponent]];
-        MediaConentView* view = [MediaConentView createViewForMediaContent:mc andFilePath:filePath];
+        MediaConentView* view = [MediaConentView createViewForMediaContent:mc];
         if(view) {
             view.frame = CGRectMake(0, y, w, h);
             [self.scrollView addSubview:view];
