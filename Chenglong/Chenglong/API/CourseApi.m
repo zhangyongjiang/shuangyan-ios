@@ -156,8 +156,8 @@
 	               }];
 }
 
-+(NSURLSessionDataTask*) CourseAPI_GetCourseDetails:(NSString*)courseId onSuccess:(void (^)(CourseDetails *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
-    NSString* url_ = @"/course-service/get-details/{courseId}";
++(NSURLSessionDataTask*) CourseAPI_GetCourseDetails:(NSString*)courseId onSuccess:(void (^)(CourseDetailsWithParent *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/course-service/{courseId}";
     NSString *replacecourseId = [courseId description];
     if(replacecourseId)
         url_ = [url_ stringByReplacingOccurrencesOfString:@"{courseId}" withString:replacecourseId];
@@ -166,7 +166,7 @@
 	               success:^(NSURLSessionDataTask *operation, id responseObject) {
 	                   ObjectMapper *mapper = [ObjectMapper mapper];
 	                   NSError *error;
-	                   CourseDetails* resp = [mapper mapObject:responseObject toClass:[CourseDetails class] withError:&error];
+	                   CourseDetailsWithParent* resp = [mapper mapObject:responseObject toClass:[CourseDetailsWithParent class] withError:&error];
 	                   if (error) {
 	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
 	                   } else { 

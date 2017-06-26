@@ -65,17 +65,22 @@
     File* file = [[File alloc] initWithFullPath:[self jsonFileName]];
     if([file exists] && [[file lastModifiedTime] timeIntervalSinceNow]<3600){
         NSData* data = file.content;
-        NSError *error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:kNilOptions
-                                                               error:&error];
-        ObjectMapper* mapper = [ObjectMapper mapper];
-        CourseDetailsList* resp = [mapper mapObject:json toClass:[CourseDetailsList class] withError:&error];
-        if(error)
+        if(!data) {
             [self refreshPage];
+        }
         else {
-            self.navigationItem.title = resp.courseDetails.course.title;
-            [self.page setCourseDetailsList:resp];
+            NSError *error;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:kNilOptions
+                                                                   error:&error];
+            ObjectMapper* mapper = [ObjectMapper mapper];
+            CourseDetailsList* resp = [mapper mapObject:json toClass:[CourseDetailsList class] withError:&error];
+            if(error)
+                [self refreshPage];
+            else {
+                self.navigationItem.title = resp.courseDetails.course.title;
+                [self.page setCourseDetailsList:resp];
+            }
         }
     }
     else

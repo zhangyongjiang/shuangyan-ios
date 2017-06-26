@@ -10,6 +10,7 @@
 #import "GenericResponse.h"
 #import "CourseBuyRequest.h"
 #import "CourseDetails.h"
+#import "CourseDetailsWithParent.h"
 #import "CourseInfo.h"
 #import "CourseMoveRequest.h"
 #import "RenameRequest.h"
@@ -32,7 +33,7 @@
 
 +(NSURLSessionDataTask*) CourseAPI_CreateCourseDir:(Course*)course onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
-+(NSURLSessionDataTask*) CourseAPI_GetCourseDetails:(NSString*)courseId onSuccess:(void (^)(CourseDetails *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
++(NSURLSessionDataTask*) CourseAPI_GetCourseDetails:(NSString*)courseId onSuccess:(void (^)(CourseDetailsWithParent *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(NSURLSessionDataTask*) CourseAPI_Unlike:(NSString*)courseId onSuccess:(void (^)(CourseInfo *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 

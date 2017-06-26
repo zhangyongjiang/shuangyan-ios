@@ -208,6 +208,10 @@
 		AD59D9041EEA5C82009C78D6 /* MP3FilePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9031EEA5C82009C78D6 /* MP3FilePage.m */; };
 		AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */; };
 		AD59D9181EEADDC6009C78D6 /* TWRDownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */; };
+		AD666CAF1F00BDA500D3F18E /* CourseDetailsWithParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CAE1F00BDA500D3F18E /* CourseDetailsWithParent.m */; };
+		AD666CB21F00BFD000D3F18E /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB11F00BFD000D3F18E /* UserView.m */; };
+		AD666CB51F00C49A00D3F18E /* CourseSummaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB41F00C49A00D3F18E /* CourseSummaryView.m */; };
+		AD666CB81F00C61800D3F18E /* CourseParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB71F00C61800D3F18E /* CourseParent.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
 		ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */; };
@@ -638,6 +642,14 @@
 		AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadManager.m; sourceTree = "<group>"; };
 		AD59D9151EEADDC6009C78D6 /* TWRDownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRDownloadObject.h; sourceTree = "<group>"; };
 		AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadObject.m; sourceTree = "<group>"; };
+		AD666CAD1F00BDA500D3F18E /* CourseDetailsWithParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsWithParent.h; sourceTree = "<group>"; };
+		AD666CAE1F00BDA500D3F18E /* CourseDetailsWithParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsWithParent.m; sourceTree = "<group>"; };
+		AD666CB01F00BFD000D3F18E /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
+		AD666CB11F00BFD000D3F18E /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
+		AD666CB31F00C49A00D3F18E /* CourseSummaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseSummaryView.h; sourceTree = "<group>"; };
+		AD666CB41F00C49A00D3F18E /* CourseSummaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseSummaryView.m; sourceTree = "<group>"; };
+		AD666CB61F00C61800D3F18E /* CourseParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseParent.h; sourceTree = "<group>"; };
+		AD666CB71F00C61800D3F18E /* CourseParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseParent.m; sourceTree = "<group>"; };
 		ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConentView.h; sourceTree = "<group>"; };
 		ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaConentView.m; sourceTree = "<group>"; };
 		ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentImageView.h; sourceTree = "<group>"; };
@@ -764,6 +776,10 @@
 				030049101E0E5F60006EDC29 /* BusinessList.m */,
 				030049111E0E5F60006EDC29 /* BusinessReview.h */,
 				030049121E0E5F60006EDC29 /* BusinessReview.m */,
+				AD666CB61F00C61800D3F18E /* CourseParent.h */,
+				AD666CB71F00C61800D3F18E /* CourseParent.m */,
+				AD666CAD1F00BDA500D3F18E /* CourseDetailsWithParent.h */,
+				AD666CAE1F00BDA500D3F18E /* CourseDetailsWithParent.m */,
 				030049131E0E5F60006EDC29 /* BusinessReviewList.h */,
 				030049141E0E5F60006EDC29 /* BusinessReviewList.m */,
 				030049151E0E5F60006EDC29 /* BusinessSummary.h */,
@@ -1570,6 +1586,10 @@
 				ADD117ED1EF623F100EF6E04 /* PdfView.m */,
 				ADD117EF1EF64E7B00EF6E04 /* BaseNavigationController.h */,
 				ADD117F01EF64E7B00EF6E04 /* BaseNavigationController.m */,
+				AD666CB01F00BFD000D3F18E /* UserView.h */,
+				AD666CB11F00BFD000D3F18E /* UserView.m */,
+				AD666CB31F00C49A00D3F18E /* CourseSummaryView.h */,
+				AD666CB41F00C49A00D3F18E /* CourseSummaryView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1931,6 +1951,7 @@
 				ADD117D01EF4D84900EF6E04 /* OnlineCourseDetailsView.m in Sources */,
 				030049781E0E5F61006EDC29 /* MoneyFlow.m in Sources */,
 				0329115F1E113BC6000C1F5A /* UIView+Data.m in Sources */,
+				AD666CB51F00C49A00D3F18E /* CourseSummaryView.m in Sources */,
 				0300496D1E0E5F60006EDC29 /* Event.m in Sources */,
 				032C96BA1E2CC525001EFC29 /* UIImagePickerController+Kaishi.m in Sources */,
 				ADD117A51EED098400EF6E04 /* MediaContentAudioView.m in Sources */,
@@ -1952,6 +1973,7 @@
 				032911461E113B10000C1F5A /* NJKWebViewProgress.m in Sources */,
 				0300495D1E0E5F60006EDC29 /* AdvertisingList.m in Sources */,
 				030049791E0E5F61006EDC29 /* MoneyFlowList.m in Sources */,
+				AD666CB21F00BFD000D3F18E /* UserView.m in Sources */,
 				AD318B361EFAC1110061E993 /* AutoPlayViewController.m in Sources */,
 				0300497A1E0E5F61006EDC29 /* MoneyRequest.m in Sources */,
 				030049611E0E5F60006EDC29 /* BusinessList.m in Sources */,
@@ -1979,6 +2001,7 @@
 				A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */,
 				030049831E0E5F61006EDC29 /* UserInterest.m in Sources */,
 				ADD117AB1EED951100EF6E04 /* MediaContentVideoView.m in Sources */,
+				AD666CB81F00C61800D3F18E /* CourseParent.m in Sources */,
 				032911931E1142FD000C1F5A /* MainTabBarController.m in Sources */,
 				0329114D1E113B1C000C1F5A /* UINavigationController+BackButtonHandler.m in Sources */,
 				032911551E113BA2000C1F5A /* NSObject+CurrentController.m in Sources */,
@@ -2008,6 +2031,7 @@
 				032C96941E2CA31D001EFC29 /* TZPhotoPickerController.m in Sources */,
 				032911C21E129B77000C1F5A /* RegisterSuccessViewController.m in Sources */,
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,
+				AD666CAF1F00BDA500D3F18E /* CourseDetailsWithParent.m in Sources */,
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
 				ADD117D61EF4F03900EF6E04 /* FileManager.m in Sources */,
 				030049771E0E5F61006EDC29 /* MediaContent.m in Sources */,

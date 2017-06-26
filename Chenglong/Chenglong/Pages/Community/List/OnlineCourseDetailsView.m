@@ -8,9 +8,13 @@
 
 #import "OnlineCourseDetailsView.h"
 #import "OnlineCourseResourceView.h"
+#import "UserView.h"
+#import "CourseSummaryView.h"
 
 @interface OnlineCourseDetailsView()
 
+@property(strong,nonatomic) UserSummaryView* userSummaryView;
+@property(strong,nonatomic) CourseSummaryView* courseSummaryView;
 @property(strong,nonatomic) OnlineCourseResourceView* resourcesView;
 @property(strong,nonatomic) UILabel* labelDesc;
 @property(strong,nonatomic) UIScrollView* scrollView;
@@ -29,7 +33,16 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenHeight])];
     [self addSubview:self.scrollView];
 
-    self.resourcesView = [[OnlineCourseResourceView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenWidth]*3/4)];
+    CGFloat y = 0;
+    self.userSummaryView = [[UserSummaryView alloc] initWithFrame:CGRectMake(0, y, self.width, 40)];
+    [self.scrollView addSubview:self.userSummaryView];
+    y = self.userSummaryView.bottom + Margin;
+    
+    self.courseSummaryView = [[CourseSummaryView alloc] initWithFrame:CGRectMake(0, y, self.width, 40)];
+    [self.scrollView addSubview:self.courseSummaryView];
+    y = self.courseSummaryView.bottom + Margin;
+
+    self.resourcesView = [[OnlineCourseResourceView alloc] initWithFrame:CGRectMake(0, y, [UIView screenWidth], [UIView screenWidth]*3/4)];
 
     [self.scrollView addSubview:self.resourcesView];
 
@@ -48,6 +61,9 @@
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails {
     _courseDetails = courseDetails;
+    
+    self.userSummaryView.user = courseDetails.user;
+    self.courseSummaryView.courseDetails = courseDetails;
     
     if(courseDetails.course.resources == NULL || courseDetails.course.resources.count == 0) {
         self.resourcesView.height = 0;
