@@ -264,10 +264,13 @@
     NSData *imageData = UIImagePNGRepresentation(selectedImage);
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:imageData, @"file", nil];
     [dict setObject:filename forKey:@"filename"];
+    [SVProgressHUD show];
     [UserApi UserAPI_UploadUserImage:dict onSuccess:^(MediaContent *resp) {
         NSLog(@"avatar changed");
-        [self.headerCell.imageView sd_setImageWithURL:[NSURL URLWithString:resp.url]];
+        [self.headerCell.imgHeader sd_setImageWithURL:[NSURL URLWithString:resp.url]];
+        [SVProgressHUD dismiss];
     } onError:^(APIError *err) {
+        [SVProgressHUD dismiss];
         NSLog(@"avatar not changed %@", err);
     } progress:^(NSProgress *progress) {
         NSLog(@"progress %@", progress);
