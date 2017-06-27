@@ -12,6 +12,7 @@
 #import "WebViewController.h"
 #import "ResetPwdViewController.h"
 #import <Photos/Photos.h>
+#import "UIImage+Kaishi.h"
 
 @interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -259,11 +260,13 @@
     NSLog(@"filename %@", filename);
     if(!selectedImage)
         selectedImage = info[UIImagePickerControllerOriginalImage];
+    selectedImage = [selectedImage resizeImageToWidth:200];
     NSData *imageData = UIImagePNGRepresentation(selectedImage);
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:imageData, @"file", nil];
     [dict setObject:filename forKey:@"filename"];
     [UserApi UserAPI_UploadUserImage:dict onSuccess:^(MediaContent *resp) {
         NSLog(@"avatar changed");
+        [self.headerCell.imageView sd_setImageWithURL:[NSURL URLWithString:resp.url]];
     } onError:^(APIError *err) {
         NSLog(@"avatar not changed %@", err);
     } progress:^(NSProgress *progress) {
