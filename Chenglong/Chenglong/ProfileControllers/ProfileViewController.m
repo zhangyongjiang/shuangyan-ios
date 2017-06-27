@@ -13,8 +13,9 @@
 #import "ResetPwdViewController.h"
 #import <Photos/Photos.h>
 #import "UIImage+Kaishi.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *profileTableView;
 @property (nonatomic, strong) NSDictionary *titlesArr;
@@ -39,8 +40,14 @@
     self.navigationItem.title = @"设置";
     self.view.backgroundColor = [UIColor kaishiColor:UIColorTypeBackgroundColor];
     
-    self.titlesArr = @{@"0":@[@"我的头像"],@"1":@[@"修改密码",@"邀请朋友"],@"2":@[@"消息",@"消费和充值"],@"3":@[@"联系爸爸早教",@"关于爸爸早教"]};
-    self.imgsArr = @{@"0":@[@""],@"1":@[@"profile_fixpwd_icon",@"profile_friend_icon"],@"2":@[@"profile_msg_icon",@"profile_pay_icon"],@"3":@[@"profile_phone_icon",@"profile_info_icon"]};
+    self.titlesArr = @{@"0":@[@"我的头像"]
+                       ,@"1":@[@"修改密码",@"邀请朋友"]
+                       ,@"2":@[@"充值",@"消费记录"]
+                       ,@"3":@[@"联系爸爸早教",@"关于爸爸早教",@"隐私条例",@"服务条款"]};
+    self.imgsArr = @{@"0":@[@""]
+                     ,@"1":@[@"profile_fixpwd_icon",@"profile_friend_icon"]
+                     ,@"2":@[@"profile_msg_icon",@"profile_pay_icon"]
+                     ,@"3":@[@"profile_phone_icon",@"profile_info_icon",@"profile_info_icon",@"profile_info_icon"]};
     
     [self configSubViews];
     
@@ -76,7 +83,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = [UIColor kaishiColor:UIColorTypeThemeSelected];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btn.frame = CGRectMake(SCREEN_BOUNDS_SIZE_WIDTH/2-100, 30, 200, 45);
+    btn.frame = CGRectMake(SCREEN_BOUNDS_SIZE_WIDTH/2-100, 15, 200, 45);
     [btn setTitle:@"退出登录" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(loginOut:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -221,10 +228,10 @@
        
         if ((long)indexPath.row == 0) {
             
-            
+            // 充值
             
         } else if ((long)indexPath.row == 1) {
-            
+            // 消费记录
             
         }else if ((long)indexPath.row == 2) {
             
@@ -233,9 +240,10 @@
     }
     else if (indexPath.section == 3){
         if ((long)indexPath.row == 0) {
-            NSString* url = @"http://www.babazaojiao.com/?page_id=48";
-            WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"联系我们"];
-            [self.navigationController pushViewController:c animated:YES];
+//            NSString* url = @"http://www.babazaojiao.com/?page_id=48";
+//            WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"联系我们"];
+//            [self.navigationController pushViewController:c animated:YES];
+            [self sendEmailTo:@"info@babazaojiao.com" withSubject:@"" body:@""];
         } else if ((long)indexPath.row == 1) {
             NSString* url = @"http://www.babazaojiao.com/?page_id=49";
             WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"关于我们"];
@@ -280,6 +288,38 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void) sendEmailTo:(NSString*)to withSubject:(NSString*)subject body:(NSString*)body {
+    if( [MFMailComposeViewController canSendMail] )
+    {
+        MFMailComposeViewController* mailController = [[MFMailComposeViewController alloc] init];
+        [mailController setSubject:subject];
+        [mailController setMessageBody:body isHTML:NO];
+        if( to.length )
+            [mailController setToRecipients:[NSArray arrayWithObject:to]];
+        
+        mailController.mailComposeDelegate = self;
+        mailController.navigationBar.tintColor = [UIColor colorFromString:@"nsred"];
+        
+        [self presentViewController:mailController animated:YES completion:^{
+            //            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }];
+    }
+    else
+    {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Email is not configured. Please check your settings and try again."
+                                                            message:nil
+                                                           delegate:self cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        alertView.tag = -1;
+        [alertView show];
+    }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

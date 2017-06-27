@@ -212,6 +212,9 @@
 		AD666CB21F00BFD000D3F18E /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB11F00BFD000D3F18E /* UserView.m */; };
 		AD666CB51F00C49A00D3F18E /* CourseSummaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB41F00C49A00D3F18E /* CourseSummaryView.m */; };
 		AD666CB81F00C61800D3F18E /* CourseParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB71F00C61800D3F18E /* CourseParent.m */; };
+		AD666CDB1F02961900D3F18E /* SpendingHistoryPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CDA1F02961900D3F18E /* SpendingHistoryPage.m */; };
+		AD666CDE1F02963100D3F18E /* SpendingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CDD1F02963100D3F18E /* SpendingHistoryViewController.m */; };
+		AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE01F02A1F500D3F18E /* MoneyAPI.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
 		ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */; };
@@ -650,6 +653,12 @@
 		AD666CB41F00C49A00D3F18E /* CourseSummaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseSummaryView.m; sourceTree = "<group>"; };
 		AD666CB61F00C61800D3F18E /* CourseParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseParent.h; sourceTree = "<group>"; };
 		AD666CB71F00C61800D3F18E /* CourseParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseParent.m; sourceTree = "<group>"; };
+		AD666CD91F02961900D3F18E /* SpendingHistoryPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendingHistoryPage.h; sourceTree = "<group>"; };
+		AD666CDA1F02961900D3F18E /* SpendingHistoryPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryPage.m; sourceTree = "<group>"; };
+		AD666CDC1F02963100D3F18E /* SpendingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendingHistoryViewController.h; sourceTree = "<group>"; };
+		AD666CDD1F02963100D3F18E /* SpendingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryViewController.m; sourceTree = "<group>"; };
+		AD666CDF1F02A1F500D3F18E /* MoneyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyAPI.h; sourceTree = "<group>"; };
+		AD666CE01F02A1F500D3F18E /* MoneyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyAPI.m; sourceTree = "<group>"; };
 		ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConentView.h; sourceTree = "<group>"; };
 		ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaConentView.m; sourceTree = "<group>"; };
 		ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentImageView.h; sourceTree = "<group>"; };
@@ -1415,6 +1424,7 @@
 		AD3D94DC1EE675E100D2704B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				AD666CD81F02961900D3F18E /* SpendingHistory */,
 				AD318B331EFAC0D80061E993 /* AutoPlay */,
 				AD3D94F41EE6790E00D2704B /* TableViewPage.h */,
 				AD3D94F51EE6790E00D2704B /* TableViewPage.m */,
@@ -1561,6 +1571,17 @@
 			path = TWRDownloadManager;
 			sourceTree = "<group>";
 		};
+		AD666CD81F02961900D3F18E /* SpendingHistory */ = {
+			isa = PBXGroup;
+			children = (
+				AD666CD91F02961900D3F18E /* SpendingHistoryPage.h */,
+				AD666CDA1F02961900D3F18E /* SpendingHistoryPage.m */,
+				AD666CDC1F02963100D3F18E /* SpendingHistoryViewController.h */,
+				AD666CDD1F02963100D3F18E /* SpendingHistoryViewController.m */,
+			);
+			path = SpendingHistory;
+			sourceTree = "<group>";
+		};
 		ADD117991EECFF3D00EF6E04 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1621,6 +1642,8 @@
 				ADFEAB291DED6EBA00C0D703 /* JournalApi.m */,
 				ADFEAB301DED6EBA00C0D703 /* LocalApi.h */,
 				ADFEAB311DED6EBA00C0D703 /* LocalApi.m */,
+				AD666CDF1F02A1F500D3F18E /* MoneyAPI.h */,
+				AD666CE01F02A1F500D3F18E /* MoneyAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1907,6 +1930,7 @@
 				A364CBE21C94CBCF0075E65F /* AppDelegate.m in Sources */,
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
 				0386EF5D1E0FC86D009A1DFE /* UIViewController+Nib.m in Sources */,
+				AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */,
 				032C96071E1D253E001EFC29 /* CourseDetailCell.m in Sources */,
 				030049601E0E5F60006EDC29 /* BusinessDetailsList.m in Sources */,
 				032911651E113BD0000C1F5A /* FDAlertView.m in Sources */,
@@ -1938,6 +1962,7 @@
 				032C965A1E2C7301001EFC29 /* CreatFileTypeView.m in Sources */,
 				0300496B1E0E5F60006EDC29 /* CourseMoveRequest.m in Sources */,
 				030049841E0E5F61006EDC29 /* UserList.m in Sources */,
+				AD666CDE1F02963100D3F18E /* SpendingHistoryViewController.m in Sources */,
 				AD3D95051EE7B5A700D2704B /* FileDetailsViewController.m in Sources */,
 				032911521E113B8B000C1F5A /* KSWebViewController.m in Sources */,
 				ADFEAB611DED6EBA00C0D703 /* CourseApi.m in Sources */,
@@ -1992,6 +2017,7 @@
 				ADD117D31EF4EF1A00EF6E04 /* OnlineFileDetailsViewController.m in Sources */,
 				030049861E0E5F61006EDC29 /* WechatLoginRequest.m in Sources */,
 				030048FE1E0E5D65006EDC29 /* NSObject+TMCache.m in Sources */,
+				AD666CDB1F02961900D3F18E /* SpendingHistoryPage.m in Sources */,
 				032911CD1E139FDD000C1F5A /* ResetPwdViewController.m in Sources */,
 				030049761E0E5F61006EDC29 /* JournalList.m in Sources */,
 				AD3D94F01EE6772400D2704B /* Page.m in Sources */,
