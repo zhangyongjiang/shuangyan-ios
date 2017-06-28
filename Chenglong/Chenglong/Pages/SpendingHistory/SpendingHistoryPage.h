@@ -10,4 +10,6 @@
 
 @interface SpendingHistoryPage : TableViewPage
 
+@property(strong,nonatomic)MoneyFlowList* moneyFlowList;
+
 @end

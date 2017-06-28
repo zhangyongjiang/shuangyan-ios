@@ -29,6 +29,12 @@
 - (NSDate*)endOfTheDay; // if the date is 12/31/2015 4:35:00PM, then the normalized version will be 12/31/2015 11:59:59PM
 - (NSDate*)trimDateToNow; // if the date is in the future, return current date.  If it's in the past, do nothing.
 
++(NSString*)toYmd:(NSNumber*)millisecconds;
++(NSString*)toYmdhm:(NSNumber*)millisecconds;
+
+-(NSString*)toYmd;
+-(NSString*)toYmdhm;
+
 @end
 
 extern const NSTimeInterval kOneMinuteInSecs;

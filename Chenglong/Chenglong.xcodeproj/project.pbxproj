@@ -215,6 +215,8 @@
 		AD666CDB1F02961900D3F18E /* SpendingHistoryPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CDA1F02961900D3F18E /* SpendingHistoryPage.m */; };
 		AD666CDE1F02963100D3F18E /* SpendingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CDD1F02963100D3F18E /* SpendingHistoryViewController.m */; };
 		AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE01F02A1F500D3F18E /* MoneyAPI.m */; };
+		AD666CE61F03F10000D3F18E /* SpendingHistoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE31F03F10000D3F18E /* SpendingHistoryItemView.m */; };
+		AD666CE71F03F10000D3F18E /* SpendingHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE51F03F10000D3F18E /* SpendingHistoryTableViewCell.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
 		ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */; };
@@ -659,6 +661,10 @@
 		AD666CDD1F02963100D3F18E /* SpendingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryViewController.m; sourceTree = "<group>"; };
 		AD666CDF1F02A1F500D3F18E /* MoneyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyAPI.h; sourceTree = "<group>"; };
 		AD666CE01F02A1F500D3F18E /* MoneyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyAPI.m; sourceTree = "<group>"; };
+		AD666CE21F03F10000D3F18E /* SpendingHistoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendingHistoryItemView.h; sourceTree = "<group>"; };
+		AD666CE31F03F10000D3F18E /* SpendingHistoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryItemView.m; sourceTree = "<group>"; };
+		AD666CE41F03F10000D3F18E /* SpendingHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendingHistoryTableViewCell.h; sourceTree = "<group>"; };
+		AD666CE51F03F10000D3F18E /* SpendingHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryTableViewCell.m; sourceTree = "<group>"; };
 		ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConentView.h; sourceTree = "<group>"; };
 		ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaConentView.m; sourceTree = "<group>"; };
 		ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentImageView.h; sourceTree = "<group>"; };
@@ -1574,6 +1580,10 @@
 		AD666CD81F02961900D3F18E /* SpendingHistory */ = {
 			isa = PBXGroup;
 			children = (
+				AD666CE21F03F10000D3F18E /* SpendingHistoryItemView.h */,
+				AD666CE31F03F10000D3F18E /* SpendingHistoryItemView.m */,
+				AD666CE41F03F10000D3F18E /* SpendingHistoryTableViewCell.h */,
+				AD666CE51F03F10000D3F18E /* SpendingHistoryTableViewCell.m */,
 				AD666CD91F02961900D3F18E /* SpendingHistoryPage.h */,
 				AD666CDA1F02961900D3F18E /* SpendingHistoryPage.m */,
 				AD666CDC1F02963100D3F18E /* SpendingHistoryViewController.h */,
@@ -2028,6 +2038,7 @@
 				030049831E0E5F61006EDC29 /* UserInterest.m in Sources */,
 				ADD117AB1EED951100EF6E04 /* MediaContentVideoView.m in Sources */,
 				AD666CB81F00C61800D3F18E /* CourseParent.m in Sources */,
+				AD666CE61F03F10000D3F18E /* SpendingHistoryItemView.m in Sources */,
 				032911931E1142FD000C1F5A /* MainTabBarController.m in Sources */,
 				0329114D1E113B1C000C1F5A /* UINavigationController+BackButtonHandler.m in Sources */,
 				032911551E113BA2000C1F5A /* NSObject+CurrentController.m in Sources */,
@@ -2074,6 +2085,7 @@
 				AD3D94F91EE679A000D2704B /* UIColor+String.m in Sources */,
 				032911D11E139FEC000C1F5A /* ResetPwdView.m in Sources */,
 				0300495F1E0E5F60006EDC29 /* BusinessDetails.m in Sources */,
+				AD666CE71F03F10000D3F18E /* SpendingHistoryTableViewCell.m in Sources */,
 				030049671E0E5F60006EDC29 /* CourseBuyRequest.m in Sources */,
 				032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */,
 				AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */,

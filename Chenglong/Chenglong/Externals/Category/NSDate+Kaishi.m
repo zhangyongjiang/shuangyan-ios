@@ -131,4 +131,29 @@ const NSTimeInterval kOneWeekInMilliSecs = 7 * 60 * 60 * 24 * 1000;
     }
 }
 
++(NSDate*)fromMilliseconds:(NSNumber *)millisecconds {
+    NSDate * date = [NSDate dateWithTimeIntervalSince1970:([millisecconds floatValue]/1000)];
+    return date;
+}
+
++(NSString*)toYmd:(NSNumber *)millisecconds {
+    return [[self fromMilliseconds:millisecconds] toYmd];
+}
+
++(NSString*)toYmdhm:(NSNumber *)millisecconds {
+    return [[self fromMilliseconds:millisecconds] toYmdhm];
+}
+
+-(NSString*)toYmd {
+    NSDateFormatter  * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM/dd/yyyy"];
+    return [formatter stringFromDate:self];
+}
+
+-(NSString*)toYmdhm {
+    NSDateFormatter  * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+    return [formatter stringFromDate:self];
+}
+
 @end

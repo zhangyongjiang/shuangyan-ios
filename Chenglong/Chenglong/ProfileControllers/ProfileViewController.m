@@ -14,6 +14,8 @@
 #import <Photos/Photos.h>
 #import "UIImage+Kaishi.h"
 #import <MessageUI/MessageUI.h>
+#import "SpendingHistoryViewController.h"
+
 
 @interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate>
 
@@ -232,6 +234,8 @@
             
         } else if ((long)indexPath.row == 1) {
             // 消费记录
+            SpendingHistoryViewController* c = [SpendingHistoryViewController new];
+            [self.navigationController pushViewController:c animated:YES];
             
         }else if ((long)indexPath.row == 2) {
             
