@@ -8,10 +8,11 @@
 
 #import "TableViewPage.h"
 #import "CourseDetailsList.h"
+#import "OnlineFileListHeaderView.h"
 
 @interface OnlineFileListPage : TableViewPage
 
-@property(strong, nonatomic) CourseDetailsList* courseDetailsList;
+@property(strong, nonatomic) CourseDetailsWithParent* courseDetailsWithParent;
 
 -(CourseDetails*) selected;
 

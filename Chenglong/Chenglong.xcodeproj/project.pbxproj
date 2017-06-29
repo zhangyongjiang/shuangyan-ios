@@ -217,6 +217,8 @@
 		AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE01F02A1F500D3F18E /* MoneyAPI.m */; };
 		AD666CE61F03F10000D3F18E /* SpendingHistoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE31F03F10000D3F18E /* SpendingHistoryItemView.m */; };
 		AD666CE71F03F10000D3F18E /* SpendingHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE51F03F10000D3F18E /* SpendingHistoryTableViewCell.m */; };
+		AD666CEA1F04CC3000D3F18E /* OnlineFileListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE91F04CC3000D3F18E /* OnlineFileListHeaderView.m */; };
+		AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CEC1F0536C300D3F18E /* CoursePathView.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
 		ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */; };
@@ -665,6 +667,10 @@
 		AD666CE31F03F10000D3F18E /* SpendingHistoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryItemView.m; sourceTree = "<group>"; };
 		AD666CE41F03F10000D3F18E /* SpendingHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendingHistoryTableViewCell.h; sourceTree = "<group>"; };
 		AD666CE51F03F10000D3F18E /* SpendingHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryTableViewCell.m; sourceTree = "<group>"; };
+		AD666CE81F04CC3000D3F18E /* OnlineFileListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListHeaderView.h; sourceTree = "<group>"; };
+		AD666CE91F04CC3000D3F18E /* OnlineFileListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFileListHeaderView.m; sourceTree = "<group>"; };
+		AD666CEB1F0536C300D3F18E /* CoursePathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursePathView.h; sourceTree = "<group>"; };
+		AD666CEC1F0536C300D3F18E /* CoursePathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursePathView.m; sourceTree = "<group>"; };
 		ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConentView.h; sourceTree = "<group>"; };
 		ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaConentView.m; sourceTree = "<group>"; };
 		ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentImageView.h; sourceTree = "<group>"; };
@@ -1495,6 +1501,8 @@
 				ADD117C71EF3908500EF6E04 /* OnlineFileListTableViewCell.m */,
 				ADD117C81EF3908500EF6E04 /* OnlineSearchListViewController.h */,
 				ADD117C91EF3908500EF6E04 /* OnlineSearchListViewController.m */,
+				AD666CE81F04CC3000D3F18E /* OnlineFileListHeaderView.h */,
+				AD666CE91F04CC3000D3F18E /* OnlineFileListHeaderView.m */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1621,6 +1629,8 @@
 				AD666CB11F00BFD000D3F18E /* UserView.m */,
 				AD666CB31F00C49A00D3F18E /* CourseSummaryView.h */,
 				AD666CB41F00C49A00D3F18E /* CourseSummaryView.m */,
+				AD666CEB1F0536C300D3F18E /* CoursePathView.h */,
+				AD666CEC1F0536C300D3F18E /* CoursePathView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1939,6 +1949,7 @@
 				032C96601E2C7689001EFC29 /* CreatFileTypeCell.m in Sources */,
 				A364CBE21C94CBCF0075E65F /* AppDelegate.m in Sources */,
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
+				AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */,
 				0386EF5D1E0FC86D009A1DFE /* UIViewController+Nib.m in Sources */,
 				AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */,
 				032C96071E1D253E001EFC29 /* CourseDetailCell.m in Sources */,
@@ -2046,6 +2057,7 @@
 				ADD117F41EF6FBC800EF6E04 /* File.m in Sources */,
 				032C96971E2CA31D001EFC29 /* TZVideoPlayerController.m in Sources */,
 				AD59D8F11EE91188009C78D6 /* FileListItemView.m in Sources */,
+				AD666CEA1F04CC3000D3F18E /* OnlineFileListHeaderView.m in Sources */,
 				AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */,
 				032C96901E2CA31D001EFC29 /* TZAssetCell.m in Sources */,
 				ADD117CB1EF3908500EF6E04 /* OnlineSearchListPage.m in Sources */,

@@ -31,13 +31,9 @@
 }
 
 -(void)refreshPage {
-    [CourseApi CourseAPI_ListUserCourses:NULL currentDirId:self.courseId page:nil onSuccess:^(CourseDetailsList *resp) {
-        if(resp.courseDetails) {
-            self.navigationItem.title = resp.courseDetails.course.title;
-        }
-        [self.page setCourseDetailsList:resp];
+    [CourseApi CourseAPI_GetCourseDetails:self.courseId onSuccess:^(CourseDetailsWithParent *resp) {
+        [self.page setCourseDetailsWithParent:resp];
     } onError:^(APIError *err) {
-        
     }];
 }
 

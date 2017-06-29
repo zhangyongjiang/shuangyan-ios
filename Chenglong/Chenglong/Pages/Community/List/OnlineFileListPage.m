@@ -19,7 +19,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     [_tableView registerClass:[OnlineFileListTableViewCell class] forCellReuseIdentifier:OnlineFileListItemTableViewCellID];
-        
+    
     return self;
 }
 
@@ -28,13 +28,13 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.courseDetailsList.items.count;
+    return self.courseDetailsWithParent.courseDetails.items.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self checkNextPageForTableView:tableView indexPath:indexPath];
     OnlineFileListTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:OnlineFileListItemTableViewCellID];
-    CourseDetails* item = [self.courseDetailsList.items objectAtIndex:indexPath.row];
+    CourseDetails* item = [self.courseDetailsWithParent.courseDetails.items objectAtIndex:indexPath.row];
 //    cell.textLabel.text = item.course.title;
     cell.courseDetails = item;
     
@@ -42,7 +42,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CourseDetails* cd = [self.courseDetailsList.items objectAtIndex:indexPath.row];
+    CourseDetails* cd = [self.courseDetailsWithParent.courseDetails.items objectAtIndex:indexPath.row];
     if(cd.course.isDir.intValue == 1) {
         OnlineFileListViewController* c = [[OnlineFileListViewController alloc] init];
         c.courseId = cd.course.id;
@@ -55,16 +55,11 @@
     }
 }
 
--(void)setCourseDetailsList:(CourseDetailsList *)courseDetailsList {
-    _courseDetailsList = courseDetailsList;
+-(void)setCourseDetailsWithParent:(CourseDetailsWithParent *)courseDetailsWithParent {
+    _courseDetailsWithParent = courseDetailsWithParent;
+    OnlineFileListHeaderView* headerView = [[OnlineFileListHeaderView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], 30) andCourseDetailsWithParent:courseDetailsWithParent];
+    _tableView.tableHeaderView = headerView;
     [_tableView reloadData];
-}
-
--(CourseDetails*)selected {
-    NSIndexPath* path = [_tableView indexPathForSelectedRow];
-    if(!path)
-        return nil;
-    return [self.courseDetailsList.items objectAtIndex:path.row];
 }
 
 @end
