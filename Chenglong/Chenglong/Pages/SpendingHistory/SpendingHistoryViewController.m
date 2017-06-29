@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"下载历史";
     self.page = [[SpendingHistoryPage alloc] initWithFrame:self.view.bounds];
     [self.view addSubview: self.page];
     [self refreshPage];

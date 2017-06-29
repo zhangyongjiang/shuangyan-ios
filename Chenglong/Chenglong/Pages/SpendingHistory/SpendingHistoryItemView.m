@@ -10,7 +10,6 @@
 
 @interface SpendingHistoryItemView()
 
-@property(strong, nonatomic) UIImageView* iconView;
 @property(strong, nonatomic) FitLabel* label;
 
 @end
@@ -23,12 +22,8 @@
     self.clipsToBounds = YES;
     self.layer.masksToBounds = YES;
     
-    self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 32, 32)];
-    self.iconView.contentMode = UIViewContentModeScaleAspectFit;
-    [self addSubview:self.iconView];
-    
     self.label = [[FitLabel alloc] init];
-    self.label.x = 44;
+    self.label.x = Margin;
     [self addSubview:self.label];
 
     return self;
@@ -37,11 +32,11 @@
 -(void)layoutSubviews {
     [super layoutSubviews];
     [self.label vcenterInParent];
-    [self.iconView vcenterInParent];
 }
 
 -(void)setMoneyFlow:(MoneyFlow *)moneyFlow {
     _moneyFlow = moneyFlow;
-    self.label.text = [NSString stringWithFormat:@"%@ %@", [NSDate toYmdhm:moneyFlow.created], moneyFlow.forType];
+    self.label.font = [UIFont fontWithName:@"STHeitiSC-Light" size:10.];
+    self.label.text = [NSString stringWithFormat:@"%@ %i bytes, 余额%@", [NSDate toYmdhm:moneyFlow.created], -moneyFlow.value.intValue, moneyFlow.balance];
 }
 @end

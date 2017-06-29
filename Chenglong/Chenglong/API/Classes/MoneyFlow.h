@@ -13,5 +13,6 @@
 @property(strong, nonatomic) NSNumber* value;
 @property(strong, nonatomic) NSString* note;
 @property(strong, nonatomic) NSString* counterpartId;
+@property(strong, nonatomic) NSNumber* balance;
 
 @end

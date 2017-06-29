@@ -36,6 +36,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self checkNextPageForTableView:tableView indexPath:indexPath];
     SpendingHistoryTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:SpendingHistoryTableViewCellID];
+    cell.accessoryType = UITableViewCellAccessoryNone;
     MoneyFlow* item = [self.moneyFlowList.items objectAtIndex:indexPath.row];
     //    cell.textLabel.text = item.course.title;
     cell.moneyFlow = item;
@@ -47,4 +48,7 @@
     MoneyFlow* cd = [self.moneyFlowList.items objectAtIndex:indexPath.row];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return SpendingHistoryViewHeight;
+}
 @end

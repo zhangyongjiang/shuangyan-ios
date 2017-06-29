@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define SpendingHistoryViewHeight 48
+#define SpendingHistoryViewHeight 32
 
 @interface SpendingHistoryItemView : UIView
 
