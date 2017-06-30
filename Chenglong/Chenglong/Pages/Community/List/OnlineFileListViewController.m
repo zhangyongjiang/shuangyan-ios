@@ -33,6 +33,7 @@
 -(void)refreshPage {
     [CourseApi CourseAPI_GetCourseDetails:self.courseId onSuccess:^(CourseDetailsWithParent *resp) {
         [self.page setCourseDetailsWithParent:resp];
+        self.title = resp.courseDetails.course.title;
     } onError:^(APIError *err) {
     }];
 }

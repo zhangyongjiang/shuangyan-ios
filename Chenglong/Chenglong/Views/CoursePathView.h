@@ -10,6 +10,6 @@
 
 @interface CoursePathView : BaseView
 
--(id)initWithFrame:(CGRect)frame andUser:(User*) user andCourseParent:(CourseParent*)courseParent;
+-(id)initWithFrame:(CGRect)frame andCourseDetailsWithParent:(CourseDetailsWithParent*)courseDetailsWithParent;
 
 @end

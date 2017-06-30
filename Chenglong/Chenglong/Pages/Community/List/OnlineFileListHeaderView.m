@@ -21,7 +21,7 @@
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor colorFromHex:0xeeeeee];
     
-    self.coursePathView = [[CoursePathView alloc] initWithFrame:self.bounds andUser:courseDetailsWithParent.courseDetails.user andCourseParent:courseDetailsWithParent.parent];
+    self.coursePathView = [[CoursePathView alloc] initWithFrame:self.bounds andCourseDetailsWithParent:courseDetailsWithParent];
     [self addSubview:self.coursePathView];
     self.height = self.coursePathView.height;
     return self;

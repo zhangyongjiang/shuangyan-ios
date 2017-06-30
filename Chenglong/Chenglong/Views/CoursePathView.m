@@ -9,22 +9,23 @@
 #import "CoursePathView.h"
 
 @interface CoursePathView()
-    @property(strong,nonatomic) User* user;
-    @property(strong,nonatomic) CourseParent* courseParent;
+@property(strong,nonatomic) CourseDetailsWithParent *courseDetailsWithParent;
 @end
 
 @implementation CoursePathView
 
--(id)initWithFrame:(CGRect)frame andUser:(User *)user andCourseParent:(CourseParent *)courseParent {
+-(id)initWithFrame:(CGRect)frame andCourseDetailsWithParent:(CourseDetailsWithParent *)courseDetailsWithParent {
     self = [super initWithFrame:frame];
-    self.user = user;
-    self.courseParent = courseParent;
+    self.courseDetailsWithParent = courseDetailsWithParent;
     
     FitLabel* userLabel = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, Margin, 0, 0)];
-    userLabel.text = [NSString stringWithFormat:@"上传者: %@", user.name];
+    userLabel.text = [NSString stringWithFormat:@"上传者: %@", courseDetailsWithParent.courseDetails.user.name];
     [self addSubview:userLabel];
     
-    CGFloat y = [self addParentLabel:courseParent atPositiony:userLabel.bottom];
+    CourseParent* cp = [CourseParent new];
+    cp.course = courseDetailsWithParent.courseDetails.course;
+    cp.parent = courseDetailsWithParent.parent;
+    CGFloat y = [self addParentLabel:cp atPositiony:userLabel.bottom];
     self.height = y;
     
     return self;
@@ -35,7 +36,7 @@
         y = [self addParentLabel:courseParent.parent atPositiony:y];
     }
     FitLabel* label = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, y, 0, 0)];
-    label.text = [NSString stringWithFormat:@"  -> %@", courseParent.course.title];
+    label.text = [NSString stringWithFormat:@"  -- %@", courseParent.course.title];
     [self addSubview:label];
     return label.bottom;
 }

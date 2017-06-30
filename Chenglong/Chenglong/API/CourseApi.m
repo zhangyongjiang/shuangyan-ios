@@ -5,6 +5,30 @@
 
 @implementation CourseApi
 
++(NSURLSessionDataTask*) CourseAPI_Copy:(NSString*)srcId dstId:(NSString*)dstId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/course-service/copy/{srcId}/{dstId}";
+    NSString *replacesrcId = [srcId description];
+    if(replacesrcId)
+        url_ = [url_ stringByReplacingOccurrencesOfString:@"{srcId}" withString:replacesrcId];
+    NSString *replacedstId = [dstId description];
+    if(replacedstId)
+        url_ = [url_ stringByReplacingOccurrencesOfString:@"{dstId}" withString:replacedstId];
+    return [[WebService getOperationManager] POST:url_
+                                       parameters:nil
+                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
+                                              ObjectMapper *mapper = [ObjectMapper mapper];
+                                              NSError *error;
+                                              Course* resp = [mapper mapObject:responseObject toClass:[Course class] withError:&error];
+                                              if (error) {
+                                                  errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+                                              } else {
+                                                  successBlock(resp);
+                                              }
+                                          } apiError:^(APIError* error) {
+                                              errorBlock(error);
+                                          }];
+}
+
 +(NSURLSessionDataTask*) CourseAPI_Search:(NSString*)keywords age:(NSNumber*)age page:(NSNumber*)page onSuccess:(void (^)(CourseDetailsList *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
     NSString* url_ = @"/course-service/search";
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
