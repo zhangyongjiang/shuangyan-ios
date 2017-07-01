@@ -22,4 +22,9 @@
 -(void)topRightMenuItemClicked:(NSString*)cmd;
 -(BOOL)hasNextPage:(int)pageSize current:(int)currentPage currentItems:(NSInteger)currentItems;
 
+-(UIBarButtonItem*)addNavRightButton:(NSString*)text target:(id)target action:(SEL)action;
+-(UIBarButtonItem*)addNavRightImgButton:(UIImage*)img target:(id)target action:(SEL)action;
+-(UIBarButtonItem*)addNavRightIconButton:(UIBarButtonSystemItem)sysItem target:(id)target action:(SEL)action;
+-(void)removeNavRightButton;
+
 @end

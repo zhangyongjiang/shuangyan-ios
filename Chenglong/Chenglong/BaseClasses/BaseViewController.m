@@ -205,7 +205,62 @@
         [self presentViewController:alertCtrl animated:YES completion:^{
         }];
     }
-    
+}
+
+-(UIBarButtonItem*)addNavRightButton:(NSString *)text target:(id)target action:(SEL)action {
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithTitle:text style:UIBarButtonItemStylePlain target:target action:action];
+    if (false) {
+        self.navigationItem.rightBarButtonItem = btn;
+        
+        self.navigationItem.rightBarButtonItem.target = target;
+        self.navigationItem.rightBarButtonItem.action = action;
+        
+        UIColor* color = [UIColor mainColor];
+//        if (self.transparentNavbar) {
+//            color = [UIColor whiteColor];
+//        }
+        NSDictionary *barButtonAppearanceDict = @{NSFontAttributeName : [UIFont fontWithName:@"GothamRounded-Light" size:15.0], NSForegroundColorAttributeName:color};
+        [btn setTitleTextAttributes:barButtonAppearanceDict forState:UIControlStateNormal];
+        NSDictionary* textAttributes = [NSDictionary dictionaryWithObject: color
+                                                                   forKey: NSForegroundColorAttributeName];
+        [btn setTitleTextAttributes:textAttributes forState:UIControlStateDisabled];
+        
+        return btn;
+    }
+    else {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0,0,80,24);
+        button.titleLabel.font = [UIFont fontWithName:@"GothamRounded-Light" size:15.0];
+        [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:text forState: UIControlStateNormal];
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [button setTitleColor:[UIColor mainColor] forState:UIControlStateNormal];
+//        if (self.transparentNavbar) {
+//            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        }
+        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        self.navigationItem.rightBarButtonItem = customBarItem;
+        return customBarItem;
+    }
+}
+
+-(UIBarButtonItem*)addNavRightImgButton:(UIImage *)img target:(id)target action:(SEL)action {
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStylePlain target:target action:action];
+    self.navigationItem.rightBarButtonItem = btn;
+    return btn;
+}
+
+-(UIBarButtonItem*)addNavRightIconButton:(UIBarButtonSystemItem)sysItem target:(id)target action:(SEL)action {
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:sysItem target:target action:action];
+    self.navigationItem.rightBarButtonItem = btn;
+    return btn;
+}
+
+-(void)removeNavRightButton {
+    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 38, 38)];
+    [rightButton setImage:nil forState:UIControlStateNormal];
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = btn;
 }
 
 @end
