@@ -53,10 +53,6 @@
     [super didReceiveMemoryWarning];
 }
 
--(void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
 -(void)createPage {
     self.page = [[FileListPage alloc] initWithFrame:self.view.bounds];
     self.page.filePath = self.filePath;

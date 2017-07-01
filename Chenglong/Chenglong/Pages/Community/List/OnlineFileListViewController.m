@@ -89,4 +89,27 @@
     [self.navigationController popToViewController:self animated:YES];
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSelected:) name:NotificationUserSelected object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseSelected:) name:NotificationCourseSelected object:NULL];
+}
+
+-(void)userSelected:(NSNotification*)noti {
+    UIView* subview = noti.object;
+    if([subview isSameViewOrChildOf:self.view]) {
+        NSString* userId = [noti.userInfo objectForKey:@"userId"];
+        NSLog(@"user selected %@", userId);
+    }
+}
+
+-(void)courseSelected:(NSNotification*)noti {
+    UIView* subview = noti.object;
+    if([subview isSameViewOrChildOf:self.view]) {
+        NSString* courseId = [noti.userInfo objectForKey:@"courseId"];
+        NSLog(@"course selected %@", courseId);
+    }
+}
+
+
 @end

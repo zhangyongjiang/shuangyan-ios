@@ -7,6 +7,7 @@
 //
 
 #import "CoursePathView.h"
+#import "CourseNameView.h"
 
 @interface CoursePathView()
 @property(strong,nonatomic) CourseDetailsWithParent *courseDetailsWithParent;
@@ -20,6 +21,7 @@
     
     FitLabel* userLabel = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, Margin, 0, 0)];
     userLabel.text = [NSString stringWithFormat:@"上传者: %@", courseDetailsWithParent.courseDetails.user.name];
+    [userLabel addTarget:self action:@selector(userSelected)];
     [self addSubview:userLabel];
     
     CourseParent* cp = [CourseParent new];
@@ -31,11 +33,16 @@
     return self;
 }
 
+-(void)userSelected {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationUserSelected object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.courseDetailsWithParent.courseDetails.user.id, @"userId", nil]];
+}
+
 -(CGFloat)addParentLabel:(CourseParent*)courseParent atPositiony:(CGFloat)y{
     if(courseParent.parent) {
         y = [self addParentLabel:courseParent.parent atPositiony:y];
     }
-    FitLabel* label = [[FitLabel alloc] initWithFrame:CGRectMake(Margin, y, 0, 0)];
+    CourseNameView* label = [[CourseNameView alloc] initWithFrame:CGRectMake(Margin, y, 0, 0)];
+    label.courseId = courseParent.course.id;
     label.text = [NSString stringWithFormat:@"  -- %@", courseParent.course.title];
     [self addSubview:label];
     return label.bottom;
