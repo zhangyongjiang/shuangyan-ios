@@ -11,7 +11,7 @@
 
 @interface OnlineFileDetailsViewController : BaseViewController
 
-@property(strong, nonatomic) CourseDetails* courseDetails;
+@property(strong, nonatomic) NSString* courseId;
 
 
 @end

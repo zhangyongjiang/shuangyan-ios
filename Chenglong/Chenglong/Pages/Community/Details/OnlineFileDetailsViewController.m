@@ -13,6 +13,7 @@
 @interface OnlineFileDetailsViewController ()
 
 @property(strong, nonatomic) OnlineCourseDetailsView* courseDetailsView;
+@property(strong, nonatomic) CourseDetailsWithParent* courseDetailsWithParent;
 
 @end
 
@@ -20,11 +21,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.courseDetails.course.title;
-
-    self.courseDetailsView = [[OnlineCourseDetailsView alloc] initWithFrame:self.view.bounds];
-    self.courseDetailsView.courseDetails = self.courseDetails;
-    [self.view addSubview:self.courseDetailsView];
 }
 
+-(void)refreshPage {
+    [CourseApi CourseAPI_GetCourseDetails:self.courseId onSuccess:^(CourseDetailsWithParent *resp) {
+        self.courseDetailsWithParent = resp;
+        self.courseDetailsView = [[OnlineCourseDetailsView alloc] initWithFrame:self.view.bounds];
+        self.courseDetailsView.courseDetails = resp.courseDetails;
+        [self.view addSubview:self.courseDetailsView];
+        self.title = resp.courseDetails.course.title;
+    } onError:^(APIError *err) {
+        
+    }];
+}
 @end

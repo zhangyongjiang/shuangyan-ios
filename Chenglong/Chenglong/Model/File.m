@@ -121,10 +121,11 @@
 -(NSArray*)ls {
     if(![self isDir])
         return nil;
-    NSArray *directory = [[NSFileManager defaultManager] directoryContentsAtPath: self.fullPath];
+    NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager] enumeratorAtPath:self.fullPath];
     NSMutableArray* array = [NSMutableArray new];
-    for (NSString *item in directory){
-        NSString *path = [self.fullPath stringByAppendingPathComponent:item];
+    NSString *filename;
+    while ((filename = [direnum nextObject] )) {
+        NSString *path = [self.fullPath stringByAppendingPathComponent:filename];
         File* f = [[File alloc] initWithFullPath:path];
         [array addObject:f];
     }

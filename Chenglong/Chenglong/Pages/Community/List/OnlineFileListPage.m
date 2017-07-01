@@ -50,7 +50,7 @@
     }
     else {
         OnlineFileDetailsViewController* c = [[OnlineFileDetailsViewController alloc] init];
-        c.courseDetails = cd;
+        c.courseId = cd.course.id;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }

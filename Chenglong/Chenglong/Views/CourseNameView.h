@@ -10,6 +10,6 @@
 
 @interface CourseNameView : FitLabel
 
-@property(strong, nonatomic)NSString* courseId;
+@property(strong, nonatomic)Course* course;
 
 @end

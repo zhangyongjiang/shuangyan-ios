@@ -17,6 +17,6 @@
 }
 
 -(void)courseSelected {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseSelected object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.courseId, @"courseId", nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseSelected object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.course, @"course", nil]];
 }
 @end

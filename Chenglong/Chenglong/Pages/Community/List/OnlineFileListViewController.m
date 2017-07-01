@@ -10,6 +10,7 @@
 #import "ObjectMapper.h"
 #import "CreateFileViewController.h"
 #import "CoursePickerViewController.h"
+#import "OnlineFileDetailsViewController.h"
 
 @interface OnlineFileListViewController () <CousePickerDelegate>
 
@@ -106,8 +107,18 @@
 -(void)courseSelected:(NSNotification*)noti {
     UIView* subview = noti.object;
     if([subview isSameViewOrChildOf:self.view]) {
-        NSString* courseId = [noti.userInfo objectForKey:@"courseId"];
-        NSLog(@"course selected %@", courseId);
+        Course* course = [noti.userInfo objectForKey:@"course"];
+        if([course.id isEqualToString:self.courseId])
+            return;
+        
+        if(course.isDir.intValue == 1) {
+            OnlineFileListViewController* c = [[OnlineFileListViewController alloc] init];
+            c.courseId = course.id;
+            [self.navigationController pushViewController:c animated:YES];
+        }
+        else {
+            OnlineFileDetailsViewController* c = [[OnlineFileDetailsViewController alloc] init];
+        }
     }
 }
 

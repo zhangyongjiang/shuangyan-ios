@@ -42,7 +42,7 @@
         y = [self addParentLabel:courseParent.parent atPositiony:y];
     }
     CourseNameView* label = [[CourseNameView alloc] initWithFrame:CGRectMake(Margin, y, 0, 0)];
-    label.courseId = courseParent.course.id;
+    label.course = courseParent.course;
     label.text = [NSString stringWithFormat:@"  -- %@", courseParent.course.title];
     [self addSubview:label];
     return label.bottom;
