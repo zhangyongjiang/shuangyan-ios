@@ -10,11 +10,11 @@
 #import "OnlineCourseResourceView.h"
 #import "UserView.h"
 #import "CourseSummaryView.h"
+#import "CoursePathView.h"
 
 @interface OnlineCourseDetailsView()
 
-@property(strong,nonatomic) UserSummaryView* userSummaryView;
-@property(strong,nonatomic) CourseSummaryView* courseSummaryView;
+@property(strong,nonatomic) CoursePathView* coursePathView;
 @property(strong,nonatomic) OnlineCourseResourceView* resourcesView;
 @property(strong,nonatomic) UILabel* labelDesc;
 @property(strong,nonatomic) UIScrollView* scrollView;
@@ -23,67 +23,44 @@
 
 @implementation OnlineCourseDetailsView
 
--(id)initWithFrame:(CGRect)frame {
+-(id)initWithFrame:(CGRect)frame andCourseDetailsWithParent:(CourseDetailsWithParent *)courseDetailsWithParent {
     self = [super initWithFrame:frame];
-    [self setup];
+    [self setCourseDetailsWithParent:courseDetailsWithParent];
     return self;
 }
 
--(void)setup {
+-(void)setCourseDetailsWithParent:(CourseDetailsWithParent *)courseDetailsWithParent {
+    _courseDetailsWithParent = courseDetailsWithParent;
+
+    if(self.scrollView) {
+        [self.scrollView rectForSubviews];
+    }
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenHeight])];
     [self addSubview:self.scrollView];
-
-    CGFloat y = 0;
-    self.userSummaryView = [[UserSummaryView alloc] initWithFrame:CGRectMake(0, y, self.width, 40)];
-    [self.scrollView addSubview:self.userSummaryView];
-    y = self.userSummaryView.bottom + Margin;
     
-    self.courseSummaryView = [[CourseSummaryView alloc] initWithFrame:CGRectMake(0, y, self.width, 40)];
-    [self.scrollView addSubview:self.courseSummaryView];
-    y = self.courseSummaryView.bottom + Margin;
+    CGFloat y = 0;
+    self.coursePathView = [[CoursePathView alloc] initWithFrame:CGRectMake(Margin, Margin, [UIView screenWidth], 40) andCourseDetailsWithParent:self.courseDetailsWithParent];
+    [self.scrollView addSubview:self.coursePathView];
+    y = self.coursePathView.bottom + Margin;
 
-    self.resourcesView = [[OnlineCourseResourceView alloc] initWithFrame:CGRectMake(0, y, [UIView screenWidth], [UIView screenWidth]*3/4)];
-
-    [self.scrollView addSubview:self.resourcesView];
-
-    self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, self.resourcesView.bottom, [UIView screenWidth]-Margin*2, 0)];
+    if(courseDetailsWithParent.courseDetails.course.resources == NULL || courseDetailsWithParent.courseDetails.course.resources.count == 0) {
+        self.resourcesView = [[OnlineCourseResourceView alloc] initWithFrame:CGRectMake(0, y, [UIView screenWidth], [UIView screenWidth]*3/4)];
+        self.resourcesView.scrollView.height = self.resourcesView.height;
+        self.resourcesView.courseResources = courseDetailsWithParent.courseDetails.course.resources;
+        [self.scrollView addSubview:self.resourcesView];
+        y = self.resourcesView.bottom + Margin;
+    }
+    
+    self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, y, [UIView screenWidth]-Margin*2, 0)];
     self.labelDesc.numberOfLines = 0;
     self.labelDesc.lineBreakMode = NSLineBreakByWordWrapping;
     [self.scrollView addSubview:self.labelDesc];
-}
-
--(id)initWithFrame:(CGRect)frame andCourseDetails:(CourseDetails *)courseDetails {
-    self = [super initWithFrame:frame];
-    [self setup];
-    [self setCourseDetails:courseDetails];
-    return self;
-}
-
--(void)setCourseDetails:(CourseDetails *)courseDetails {
-    _courseDetails = courseDetails;
-    
-    self.userSummaryView.user = courseDetails.user;
-    self.courseSummaryView.courseDetails = courseDetails;
-    
-    if(courseDetails.course.resources == NULL || courseDetails.course.resources.count == 0) {
-        self.resourcesView.height = 0;
-        self.labelDesc.y = 0;
-    }
-    else if (courseDetails.course.content == NULL) {
-        self.resourcesView.height = [UIView screenHeight];
-        self.labelDesc.y = self.resourcesView.height;
-    }
-    else {
-        self.resourcesView.height = [UIView screenWidth]*3/4;
-        self.labelDesc.y = self.resourcesView.height;
-    }
-    self.labelDesc.text = self.courseDetails.course.content;
+    self.labelDesc.text = self.courseDetailsWithParent.courseDetails.course.content;
     [self.labelDesc sizeToFit];
-    CGFloat y = self.labelDesc.bottom + Margin;
+    y = self.labelDesc.bottom + Margin;
+    
     self.scrollView.contentSize = CGSizeMake(self.width, y);
     
-    self.resourcesView.scrollView.height = self.resourcesView.height;
-    self.resourcesView.courseResources = courseDetails.course.resources;
 }
 
 @end

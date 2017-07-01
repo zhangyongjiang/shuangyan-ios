@@ -21,13 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self refreshPage];
 }
 
 -(void)refreshPage {
     [CourseApi CourseAPI_GetCourseDetails:self.courseId onSuccess:^(CourseDetailsWithParent *resp) {
         self.courseDetailsWithParent = resp;
         self.courseDetailsView = [[OnlineCourseDetailsView alloc] initWithFrame:self.view.bounds];
-        self.courseDetailsView.courseDetails = resp.courseDetails;
+        self.courseDetailsView.courseDetailsWithParent = resp;
         [self.view addSubview:self.courseDetailsView];
         self.title = resp.courseDetails.course.title;
     } onError:^(APIError *err) {

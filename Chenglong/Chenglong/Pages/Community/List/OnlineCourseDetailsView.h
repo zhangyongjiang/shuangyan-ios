@@ -12,8 +12,8 @@
 
 @interface OnlineCourseDetailsView : Page
 
-@property(strong, nonatomic)CourseDetails* courseDetails;
+@property(strong, nonatomic)CourseDetailsWithParent* courseDetailsWithParent;
 
--(id)initWithFrame:(CGRect)frame andCourseDetails:(CourseDetails*)courseDetails;
+-(id)initWithFrame:(CGRect)frame andCourseDetailsWithParent:(CourseDetailsWithParent*)courseDetailsWithParent;
 
 @end
