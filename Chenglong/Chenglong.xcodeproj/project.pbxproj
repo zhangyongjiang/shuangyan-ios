@@ -153,15 +153,10 @@
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7661F07D3CA000D0E1B /* CourseNameView.m */; };
 		AD49D7FD1F096CE5000D0E1B /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D76B1F096CE5000D0E1B /* CommunityViewController.m */; };
-		AD49D7FE1F096CE5000D0E1B /* FileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D76E1F096CE5000D0E1B /* FileDetailsViewController.m */; };
 		AD49D7FF1F096CE5000D0E1B /* OnlineCourseResourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */; };
 		AD49D8001F096CE5000D0E1B /* OnlineFileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7721F096CE5000D0E1B /* OnlineFileDetailsViewController.m */; };
 		AD49D8011F096CE5000D0E1B /* OnlineMediaContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7741F096CE5000D0E1B /* OnlineMediaContentView.m */; };
 		AD49D8021F096CE5000D0E1B /* EmptyFolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7761F096CE5000D0E1B /* EmptyFolderView.m */; };
-		AD49D8031F096CE5000D0E1B /* FileListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7791F096CE5000D0E1B /* FileListItemView.m */; };
-		AD49D8041F096CE5000D0E1B /* FileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D77B1F096CE5000D0E1B /* FileListPage.m */; };
-		AD49D8051F096CE5000D0E1B /* FileListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D77D1F096CE5000D0E1B /* FileListTableViewCell.m */; };
-		AD49D8061F096CE5000D0E1B /* FileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D77F1F096CE5000D0E1B /* FileListViewController.m */; };
 		AD49D8071F096CE5000D0E1B /* OnlineCourseDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7811F096CE5000D0E1B /* OnlineCourseDetailsView.m */; };
 		AD49D8081F096CE5000D0E1B /* OnlineFileListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7831F096CE5000D0E1B /* OnlineFileListHeaderView.m */; };
 		AD49D8091F096CE5000D0E1B /* OnlineFileListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7851F096CE5000D0E1B /* OnlineFileListItemView.m */; };
@@ -222,6 +217,11 @@
 		AD49D8401F096CE5000D0E1B /* SpendingHistoryPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7F81F096CE5000D0E1B /* SpendingHistoryPage.m */; };
 		AD49D8411F096CE5000D0E1B /* SpendingHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7FA1F096CE5000D0E1B /* SpendingHistoryTableViewCell.m */; };
 		AD49D8421F096CE5000D0E1B /* SpendingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7FC1F096CE5000D0E1B /* SpendingHistoryViewController.m */; };
+		AD49D8451F098622000D0E1B /* FileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D8441F098622000D0E1B /* FileDetailsViewController.m */; };
+		AD49D84E1F09869E000D0E1B /* FileListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D8471F09869E000D0E1B /* FileListItemView.m */; };
+		AD49D84F1F09869E000D0E1B /* FileListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D8491F09869E000D0E1B /* FileListPage.m */; };
+		AD49D8501F09869E000D0E1B /* FileListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D84B1F09869E000D0E1B /* FileListTableViewCell.m */; };
+		AD49D8511F09869E000D0E1B /* FileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D84D1F09869E000D0E1B /* FileListViewController.m */; };
 		AD59D8F51EE913F9009C78D6 /* FitLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D8F41EE913F9009C78D6 /* FitLabel.m */; };
 		AD59D8FE1EEA51AB009C78D6 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D8FD1EEA51AB009C78D6 /* WebViewController.m */; };
 		AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */; };
@@ -560,8 +560,6 @@
 		AD49D7661F07D3CA000D0E1B /* CourseNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseNameView.m; sourceTree = "<group>"; };
 		AD49D76A1F096CE5000D0E1B /* CommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityViewController.h; sourceTree = "<group>"; };
 		AD49D76B1F096CE5000D0E1B /* CommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityViewController.m; sourceTree = "<group>"; };
-		AD49D76D1F096CE5000D0E1B /* FileDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDetailsViewController.h; sourceTree = "<group>"; };
-		AD49D76E1F096CE5000D0E1B /* FileDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDetailsViewController.m; sourceTree = "<group>"; };
 		AD49D76F1F096CE5000D0E1B /* OnlineCourseResourceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineCourseResourceView.h; sourceTree = "<group>"; };
 		AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCourseResourceView.m; sourceTree = "<group>"; };
 		AD49D7711F096CE5000D0E1B /* OnlineFileDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileDetailsViewController.h; sourceTree = "<group>"; };
@@ -570,14 +568,6 @@
 		AD49D7741F096CE5000D0E1B /* OnlineMediaContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMediaContentView.m; sourceTree = "<group>"; };
 		AD49D7751F096CE5000D0E1B /* EmptyFolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyFolderView.h; sourceTree = "<group>"; };
 		AD49D7761F096CE5000D0E1B /* EmptyFolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyFolderView.m; sourceTree = "<group>"; };
-		AD49D7781F096CE5000D0E1B /* FileListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListItemView.h; sourceTree = "<group>"; };
-		AD49D7791F096CE5000D0E1B /* FileListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListItemView.m; sourceTree = "<group>"; };
-		AD49D77A1F096CE5000D0E1B /* FileListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListPage.h; sourceTree = "<group>"; };
-		AD49D77B1F096CE5000D0E1B /* FileListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListPage.m; sourceTree = "<group>"; };
-		AD49D77C1F096CE5000D0E1B /* FileListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListTableViewCell.h; sourceTree = "<group>"; };
-		AD49D77D1F096CE5000D0E1B /* FileListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListTableViewCell.m; sourceTree = "<group>"; };
-		AD49D77E1F096CE5000D0E1B /* FileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListViewController.h; sourceTree = "<group>"; };
-		AD49D77F1F096CE5000D0E1B /* FileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListViewController.m; sourceTree = "<group>"; };
 		AD49D7801F096CE5000D0E1B /* OnlineCourseDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineCourseDetailsView.h; sourceTree = "<group>"; };
 		AD49D7811F096CE5000D0E1B /* OnlineCourseDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCourseDetailsView.m; sourceTree = "<group>"; };
 		AD49D7821F096CE5000D0E1B /* OnlineFileListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileListHeaderView.h; sourceTree = "<group>"; };
@@ -680,6 +670,16 @@
 		AD49D7FA1F096CE5000D0E1B /* SpendingHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryTableViewCell.m; sourceTree = "<group>"; };
 		AD49D7FB1F096CE5000D0E1B /* SpendingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendingHistoryViewController.h; sourceTree = "<group>"; };
 		AD49D7FC1F096CE5000D0E1B /* SpendingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendingHistoryViewController.m; sourceTree = "<group>"; };
+		AD49D8431F098622000D0E1B /* FileDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDetailsViewController.h; sourceTree = "<group>"; };
+		AD49D8441F098622000D0E1B /* FileDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDetailsViewController.m; sourceTree = "<group>"; };
+		AD49D8461F09869E000D0E1B /* FileListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListItemView.h; sourceTree = "<group>"; };
+		AD49D8471F09869E000D0E1B /* FileListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListItemView.m; sourceTree = "<group>"; };
+		AD49D8481F09869E000D0E1B /* FileListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListPage.h; sourceTree = "<group>"; };
+		AD49D8491F09869E000D0E1B /* FileListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListPage.m; sourceTree = "<group>"; };
+		AD49D84A1F09869E000D0E1B /* FileListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListTableViewCell.h; sourceTree = "<group>"; };
+		AD49D84B1F09869E000D0E1B /* FileListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListTableViewCell.m; sourceTree = "<group>"; };
+		AD49D84C1F09869E000D0E1B /* FileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListViewController.h; sourceTree = "<group>"; };
+		AD49D84D1F09869E000D0E1B /* FileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListViewController.m; sourceTree = "<group>"; };
 		AD59D8F31EE913F9009C78D6 /* FitLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitLabel.h; sourceTree = "<group>"; };
 		AD59D8F41EE913F9009C78D6 /* FitLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitLabel.m; sourceTree = "<group>"; };
 		AD59D8FC1EEA51AB009C78D6 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -1348,8 +1348,6 @@
 		AD49D76C1F096CE5000D0E1B /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				AD49D76D1F096CE5000D0E1B /* FileDetailsViewController.h */,
-				AD49D76E1F096CE5000D0E1B /* FileDetailsViewController.m */,
 				AD49D76F1F096CE5000D0E1B /* OnlineCourseResourceView.h */,
 				AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */,
 				AD49D7711F096CE5000D0E1B /* OnlineFileDetailsViewController.h */,
@@ -1363,14 +1361,6 @@
 		AD49D7771F096CE5000D0E1B /* List */ = {
 			isa = PBXGroup;
 			children = (
-				AD49D7781F096CE5000D0E1B /* FileListItemView.h */,
-				AD49D7791F096CE5000D0E1B /* FileListItemView.m */,
-				AD49D77A1F096CE5000D0E1B /* FileListPage.h */,
-				AD49D77B1F096CE5000D0E1B /* FileListPage.m */,
-				AD49D77C1F096CE5000D0E1B /* FileListTableViewCell.h */,
-				AD49D77D1F096CE5000D0E1B /* FileListTableViewCell.m */,
-				AD49D77E1F096CE5000D0E1B /* FileListViewController.h */,
-				AD49D77F1F096CE5000D0E1B /* FileListViewController.m */,
 				AD49D7801F096CE5000D0E1B /* OnlineCourseDetailsView.h */,
 				AD49D7811F096CE5000D0E1B /* OnlineCourseDetailsView.m */,
 				AD49D7821F096CE5000D0E1B /* OnlineFileListHeaderView.h */,
@@ -1471,6 +1461,8 @@
 		AD49D7B41F096CE5000D0E1B /* details */ = {
 			isa = PBXGroup;
 			children = (
+				AD49D8431F098622000D0E1B /* FileDetailsViewController.h */,
+				AD49D8441F098622000D0E1B /* FileDetailsViewController.m */,
 			);
 			path = details;
 			sourceTree = "<group>";
@@ -1506,6 +1498,14 @@
 		AD49D7CD1F096CE5000D0E1B /* list */ = {
 			isa = PBXGroup;
 			children = (
+				AD49D8461F09869E000D0E1B /* FileListItemView.h */,
+				AD49D8471F09869E000D0E1B /* FileListItemView.m */,
+				AD49D8481F09869E000D0E1B /* FileListPage.h */,
+				AD49D8491F09869E000D0E1B /* FileListPage.m */,
+				AD49D84A1F09869E000D0E1B /* FileListTableViewCell.h */,
+				AD49D84B1F09869E000D0E1B /* FileListTableViewCell.m */,
+				AD49D84C1F09869E000D0E1B /* FileListViewController.h */,
+				AD49D84D1F09869E000D0E1B /* FileListViewController.m */,
 			);
 			path = list;
 			sourceTree = "<group>";
@@ -2037,6 +2037,7 @@
 				AD49D83F1F096CE5000D0E1B /* SpendingHistoryItemView.m in Sources */,
 				AD49D8121F096CE5000D0E1B /* OnlineDirListPage.m in Sources */,
 				AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */,
+				AD49D84F1F09869E000D0E1B /* FileListPage.m in Sources */,
 				030049821E0E5F61006EDC29 /* UserFriend.m in Sources */,
 				032C96131E21FFB8001EFC29 /* RemindBlankView.m in Sources */,
 				AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */,
@@ -2048,7 +2049,6 @@
 				030049681E0E5F60006EDC29 /* CourseDetails.m in Sources */,
 				0300496B1E0E5F60006EDC29 /* CourseMoveRequest.m in Sources */,
 				030049841E0E5F61006EDC29 /* UserList.m in Sources */,
-				AD49D7FE1F096CE5000D0E1B /* FileDetailsViewController.m in Sources */,
 				032911521E113B8B000C1F5A /* KSWebViewController.m in Sources */,
 				ADFEAB611DED6EBA00C0D703 /* CourseApi.m in Sources */,
 				030049661E0E5F60006EDC29 /* Course.m in Sources */,
@@ -2083,9 +2083,9 @@
 				030048F41E0E5D17006EDC29 /* Global.m in Sources */,
 				030049011E0E5D65006EDC29 /* TMMemoryCache.m in Sources */,
 				032911461E113B10000C1F5A /* NJKWebViewProgress.m in Sources */,
+				AD49D84E1F09869E000D0E1B /* FileListItemView.m in Sources */,
 				0300495D1E0E5F60006EDC29 /* AdvertisingList.m in Sources */,
 				030049791E0E5F61006EDC29 /* MoneyFlowList.m in Sources */,
-				AD49D8051F096CE5000D0E1B /* FileListTableViewCell.m in Sources */,
 				AD666CB21F00BFD000D3F18E /* UserView.m in Sources */,
 				0300497A1E0E5F61006EDC29 /* MoneyRequest.m in Sources */,
 				AD49D82A1F096CE5000D0E1B /* TotalFileHeaderView.m in Sources */,
@@ -2094,7 +2094,6 @@
 				0335B3111E1508F800A2A74B /* XTPopTableView.m in Sources */,
 				AD49D81B1F096CE5000D0E1B /* FilePhotoViews.m in Sources */,
 				AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */,
-				AD49D8031F096CE5000D0E1B /* FileListItemView.m in Sources */,
 				AD49D8161F096CE5000D0E1B /* CreatFileTypeCell.m in Sources */,
 				ADD117B41EF0EBD400EF6E04 /* MenuItem.m in Sources */,
 				ADFEAB731DED6EBA00C0D703 /* LocalApi.m in Sources */,
@@ -2110,10 +2109,10 @@
 				AD49D8071F096CE5000D0E1B /* OnlineCourseDetailsView.m in Sources */,
 				030049761E0E5F61006EDC29 /* JournalList.m in Sources */,
 				AD3D94F01EE6772400D2704B /* Page.m in Sources */,
+				AD49D8511F09869E000D0E1B /* FileListViewController.m in Sources */,
 				0300496E1E0E5F60006EDC29 /* EventList.m in Sources */,
 				ADD117B11EEDC8F900EF6E04 /* LocalCourseDetails.m in Sources */,
 				0300495E1E0E5F60006EDC29 /* Business.m in Sources */,
-				AD49D8061F096CE5000D0E1B /* FileListViewController.m in Sources */,
 				A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */,
 				030049831E0E5F61006EDC29 /* UserInterest.m in Sources */,
 				ADD117AB1EED951100EF6E04 /* MediaContentVideoView.m in Sources */,
@@ -2127,6 +2126,7 @@
 				AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */,
 				032C96901E2CA31D001EFC29 /* TZAssetCell.m in Sources */,
 				030049691E0E5F60006EDC29 /* CourseInfo.m in Sources */,
+				AD49D8451F098622000D0E1B /* FileDetailsViewController.m in Sources */,
 				030049751E0E5F61006EDC29 /* JournalDetailsList.m in Sources */,
 				0300495B1E0E5F60006EDC29 /* Account.m in Sources */,
 				AD49D82C1F096CE5000D0E1B /* TotalFileView.m in Sources */,
@@ -2145,6 +2145,7 @@
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
 				AD49D8401F096CE5000D0E1B /* SpendingHistoryPage.m in Sources */,
 				AD49D81F1F096CE5000D0E1B /* MediaAttachmentDataSource.m in Sources */,
+				AD49D8501F09869E000D0E1B /* FileListTableViewCell.m in Sources */,
 				ADD117D61EF4F03900EF6E04 /* FileManager.m in Sources */,
 				030049771E0E5F61006EDC29 /* MediaContent.m in Sources */,
 				AD49D8181F096CE5000D0E1B /* CreatFileTypeView.m in Sources */,
@@ -2152,7 +2153,6 @@
 				ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */,
 				0300497C1E0E5F61006EDC29 /* PhoneRegisterRequest.m in Sources */,
 				0329118A1E113D24000C1F5A /* UIView+Helper.m in Sources */,
-				AD49D8041F096CE5000D0E1B /* FileListPage.m in Sources */,
 				0335B3101E1508F800A2A74B /* XTPopNormalView.m in Sources */,
 				0329115C1E113BC0000C1F5A /* TTTAttributedLabel.m in Sources */,
 				AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */,

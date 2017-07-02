@@ -87,12 +87,10 @@
 -(void)setCourseDetailsList:(CourseDetailsList *)courseDetailsList {
     _courseDetailsList = courseDetailsList;
     [_tableView reloadData];
-    if(courseDetailsList.courseDetails == NULL) {
-        if(courseDetailsList.items.count == 0)
-            [self setEmptyPageText:@"你还没有创建任何文件或者文件夹"];
-        else
-            [self setEmptyPageText:NULL];
-    }
+    if(courseDetailsList.items.count == 0)
+        [self setEmptyPageText:@"空文件夹"];
+    else
+        [self setEmptyPageText:NULL];
 }
 
 -(CourseDetails*)selected {

@@ -254,11 +254,11 @@
             [self.navigationController pushViewController:c animated:YES];
         }else if ((long)indexPath.row == 2) {
             NSString* url = @"http://www.babazaojiao.com/?page_id=49";
-            WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"关于我们"];
+            WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"隐私条例"];
             [self.navigationController pushViewController:c animated:YES];
         }else if ((long)indexPath.row == 3) {
             NSString* url = @"http://www.babazaojiao.com/?page_id=49";
-            WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"关于我们"];
+            WebViewController* c = [[WebViewController alloc] initWithUrl:url andTitle:@"服务条款"];
             [self.navigationController pushViewController:c animated:YES];
         }
     }
