@@ -11,7 +11,7 @@
 #import "LoginViewController.h"
 #import "MainTabBarController.h"
 #import "Dbase.h"
-
+#import "BaseNavigationController.h"
 
 @interface AppDelegate ()
 {
@@ -64,7 +64,7 @@
     } else {
         
         LoginViewController* loginViewController = [[LoginViewController alloc] init];
-        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+        BaseNavigationController* navController = [[BaseNavigationController alloc] initWithRootViewController:loginViewController];
         self.window.rootViewController = navController;
     }
     
@@ -143,7 +143,7 @@
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDImageCache sharedImageCache] clearDisk];
     LoginViewController* loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
-    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    BaseNavigationController* navController = [[BaseNavigationController alloc] initWithRootViewController:loginViewController];
     self.window.rootViewController = navController;
 }
 - (void)onLoginSuccess:(NSNotification *)noti

@@ -11,6 +11,7 @@
 #import "CreateFileViewController.h"
 #import "FileManager.h"
 #import "File.h"
+#import "BaseNavigationController.h"
 
 @interface FileListViewController ()
 
@@ -26,7 +27,7 @@
     [self addTopRightMenu];
 
     if(self.courseId == NULL) {
-        self.navigationItem.title = @"我的";
+        self.navigationItem.title = @"我的文件";
     }
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"tab_btn_file_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_file_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     self.tabBarItem.imageInsets = UIEdgeInsetsMake(-4, 0, 4, 0);
@@ -188,7 +189,7 @@
     if ([cmd isEqualToString:@"新文件"]) {
         CreateFileViewController *file = [CreateFileViewController loadFromNib];
         file.parentCourseId = self.courseId;
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:file];
         [self.navigationController presentViewController:nav animated:YES completion:nil];
     }
     else if([cmd isEqualToString:@"新文件夹"]){

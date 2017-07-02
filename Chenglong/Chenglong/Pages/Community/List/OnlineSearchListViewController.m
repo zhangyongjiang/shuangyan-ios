@@ -14,6 +14,7 @@
 
 @property(strong, nonatomic) OnlineSearchListPage* page;
 @property(assign, nonatomic)int currentPage;
+@property(strong, nonatomic) NSString* keywords;
 
 @end
 
@@ -72,6 +73,13 @@
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
     NSString* keywords = self.page.searchController.searchBar.text;
+    if([keywords trim].length == 0)
+        keywords = NULL;
+    if(self.keywords == NULL && keywords == NULL)
+        return;
+    if(self.keywords != NULL && [self.keywords caseInsensitiveCompare:keywords] == NSOrderedSame)
+        return;
+    self.keywords = keywords;
     [CourseApi CourseAPI_Search:keywords age:nil page:nil onSuccess:^(CourseDetailsList *resp) {
         if(resp.courseDetails) {
             self.navigationItem.title = resp.courseDetails.course.title;

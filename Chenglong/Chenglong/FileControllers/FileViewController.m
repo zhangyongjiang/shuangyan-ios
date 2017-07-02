@@ -11,6 +11,7 @@
 #import "MyFilesView.h"
 #import "TotalFileView.h"
 #import "CreateFileViewController.h"
+#import "BaseNavigationController.h"
 
 @interface FileViewController ()<SelectIndexPathDelegate>
 
@@ -155,7 +156,7 @@
     }else{
         if (index == 0) {
             CreateFileViewController *file = [CreateFileViewController loadFromNib];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
+            BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:file];
             [self.navigationController presentViewController:nav animated:YES completion:nil];
         }else if(index == 1){
             //新建文件夹

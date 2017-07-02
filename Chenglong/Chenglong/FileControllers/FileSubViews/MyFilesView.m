@@ -13,6 +13,7 @@
 #import "CourseDetailCell.h"
 #import "CreateFileViewController.h"
 #import "FileViewController.h"
+#import "BaseNavigationController.h"
 
 @interface MyFilesView () <UITableViewDataSource,UITableViewDelegate>
 
@@ -117,7 +118,7 @@
 - (void)creatFileEvent:(UIButton *)btn
 {
     CreateFileViewController *file = [CreateFileViewController loadFromNib];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:file];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:file];
     [[self getCurrentNavController] presentViewController:nav animated:YES completion:nil];
 }
 - (void)creatFolderEvent:(UIButton *)btn

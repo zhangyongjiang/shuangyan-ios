@@ -26,6 +26,7 @@
 
 -(void)setEmptyPageText:(NSString *)text {
     UILabel* label = [[UILabel alloc] initWithFrame:self.bounds];
+    label.height = [UIView screenHeight]*0.8;
     label.width = label.width * 0.68;
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;

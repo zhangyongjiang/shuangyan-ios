@@ -37,4 +37,11 @@
 //        lastVC.hidesBottomBarWhenPushed = NO;
 //    }
 //}
+
+-(UIViewController*)popViewControllerAnimated:(BOOL)animated {
+    UIViewController* c = [super popViewControllerAnimated:animated];
+    if(c)
+       [[NSNotificationCenter defaultCenter] removeObserver:c];
+    return c;
+}
 @end

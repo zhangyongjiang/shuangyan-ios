@@ -43,7 +43,7 @@
     [self.scrollView addSubview:self.coursePathView];
     y = self.coursePathView.bottom + Margin;
 
-    if(courseDetailsWithParent.courseDetails.course.resources == NULL || courseDetailsWithParent.courseDetails.course.resources.count == 0) {
+    if(courseDetailsWithParent.courseDetails.course.resources != NULL || courseDetailsWithParent.courseDetails.course.resources.count > 0) {
         self.resourcesView = [[OnlineCourseResourceView alloc] initWithFrame:CGRectMake(0, y, [UIView screenWidth], [UIView screenWidth]*3/4)];
         self.resourcesView.scrollView.height = self.resourcesView.height;
         self.resourcesView.courseResources = courseDetailsWithParent.courseDetails.course.resources;
