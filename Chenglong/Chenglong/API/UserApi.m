@@ -374,14 +374,8 @@
     return [[WebService getOperationManager] POST:url_
 	            parameters:[req toDictionary]
 	               success:^(NSURLSessionDataTask *operation, id responseObject) {
-	                   ObjectMapper *mapper = [ObjectMapper mapper];
-	                   NSError *error;
-	                   GenericResponse* resp = [mapper mapObject:responseObject toClass:[GenericResponse class] withError:&error];
-	                   if (error) {
-	                       errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
-	                   } else { 
+	                   GenericResponse* resp = [GenericResponse new];
 	                       successBlock(resp);
-	                   }
 	               } apiError:^(APIError* error) {
 	                   errorBlock(error);
 	               }];

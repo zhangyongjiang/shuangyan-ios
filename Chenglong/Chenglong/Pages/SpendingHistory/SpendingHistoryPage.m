@@ -23,6 +23,11 @@
 -(void)setMoneyFlowList:(MoneyFlowList *)moneyFlowList {
     _moneyFlowList = moneyFlowList;
     [self reload];
+    if(moneyFlowList.items.count == 0) {
+        [self setEmptyPageText:@"没有历史记录"];
+    } else {
+        [self setEmptyPageText:@""];
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

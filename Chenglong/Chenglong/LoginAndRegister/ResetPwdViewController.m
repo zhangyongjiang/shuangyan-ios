@@ -89,12 +89,10 @@ static CGFloat registerViewHeight = 340.f;
     resetRequest.password = pwd;
     resetRequest.validationCode = @"160718";//通用验证码 160718
     WeakSelf(weakSelf)
-    [SVProgressHUD showWithStatus:@"重置中"];
     [UserApi UserAPI_ResetPassword:resetRequest onSuccess:^(GenericResponse *resp) {
-        [SVProgressHUD dismiss];
-        [weakSelf alertShowWithMsg:@"重置成功"];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [weakSelf presentMessageTips:@"密码修改成功"];
     } onError:^(APIError *err) {
-        [SVProgressHUD dismiss];
         [weakSelf alertShowWithMsg:err.errorMsg];
     }];
 }
