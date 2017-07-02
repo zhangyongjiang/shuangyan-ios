@@ -1316,9 +1316,9 @@
 		AD49D7681F096CE5000D0E1B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AD49D7691F096CE5000D0E1B /* community */,
-				AD49D7991F096CE5000D0E1B /* file */,
-				AD49D7CE1F096CE5000D0E1B /* local */,
+				AD49D7691F096CE5000D0E1B /* CommunityFiles */,
+				AD49D7991F096CE5000D0E1B /* MyFiles */,
+				AD49D7CE1F096CE5000D0E1B /* LocalResources */,
 				AD49D7D41F096CE5000D0E1B /* MainTabBarController.h */,
 				AD49D7D51F096CE5000D0E1B /* MainTabBarController.m */,
 				AD49D7D61F096CE5000D0E1B /* misc */,
@@ -1327,7 +1327,7 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		AD49D7691F096CE5000D0E1B /* community */ = {
+		AD49D7691F096CE5000D0E1B /* CommunityFiles */ = {
 			isa = PBXGroup;
 			children = (
 				AD49D76A1F096CE5000D0E1B /* CommunityViewController.h */,
@@ -1342,6 +1342,7 @@
 				AD49D7931F096CE5000D0E1B /* OfflineFilePage.m */,
 				AD49D7941F096CE5000D0E1B /* Picker */,
 			);
+			name = CommunityFiles;
 			path = community;
 			sourceTree = "<group>";
 		};
@@ -1392,7 +1393,7 @@
 			path = Picker;
 			sourceTree = "<group>";
 		};
-		AD49D7991F096CE5000D0E1B /* file */ = {
+		AD49D7991F096CE5000D0E1B /* MyFiles */ = {
 			isa = PBXGroup;
 			children = (
 				AD49D79A1F096CE5000D0E1B /* AutoPlay */,
@@ -1403,6 +1404,7 @@
 				AD49D7CC1F096CE5000D0E1B /* FileViewController.m */,
 				AD49D7CD1F096CE5000D0E1B /* list */,
 			);
+			name = MyFiles;
 			path = file;
 			sourceTree = "<group>";
 		};
@@ -1510,13 +1512,14 @@
 			path = list;
 			sourceTree = "<group>";
 		};
-		AD49D7CE1F096CE5000D0E1B /* local */ = {
+		AD49D7CE1F096CE5000D0E1B /* LocalResources */ = {
 			isa = PBXGroup;
 			children = (
 				AD49D7CF1F096CE5000D0E1B /* LocalPeople */,
 				AD49D7D01F096CE5000D0E1B /* LocalResource */,
 				AD49D7D11F096CE5000D0E1B /* SameCityControllers */,
 			);
+			name = LocalResources;
 			path = local;
 			sourceTree = "<group>";
 		};
