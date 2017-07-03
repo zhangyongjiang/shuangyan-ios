@@ -38,7 +38,7 @@
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"]] ;
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
-    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
+//    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
 
     [super addTopRightMenu:self.menuItems];
@@ -46,14 +46,15 @@
 
 -(void)displayData:(CourseDetailsList*)list {
     [self.page setCourseDetailsList:list];
+    [self enableMenuItem:@"改名" enable:(self.courseId!=NULL)];
+    [self enableMenuItem:@"删除" enable:(self.courseId!=NULL)];
     if(list.items.count == 0) {
-        [self enableMenuItem:@"删除" enable:NO];
-        [self enableMenuItem:@"播放" enable:NO];
-        [self enableMenuItem:@"改名" enable:NO];
-        WeakSelf(weakSelf)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100*NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-            [weakSelf popMenu];
-        });
+        if(self.courseId == NULL) {
+            WeakSelf(weakSelf)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100*NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+                [weakSelf popMenu];
+            });
+        }
     }
 }
 
@@ -212,15 +213,29 @@
             [self presentFailureTips:@"当前文件夹为空时才能删除"];
             return;
         }
+        [self removeCourse];
+    }
+
+}
+
+-(void)removeCourse {
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [CourseApi CourseAPI_RemoveCourse:self.courseId onSuccess:^(Course *resp) {
             [self presentFailureTips:@"删除成功"];
             [self.navigationController popViewControllerAnimated:YES];
         } onError:^(APIError *err) {
             ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
         }];
-    }
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
 
 }
-
-
 @end
