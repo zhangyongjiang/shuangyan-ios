@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
 
     self.imgView = [UIImageView new];
-    [self.imgView setContentMode:UIViewContentModeScaleAspectFit];
+    [self.imgView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:self.imgView];
     [self.imgView autoPinEdgesToSuperviewMargins];
     

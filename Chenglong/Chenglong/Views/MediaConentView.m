@@ -98,7 +98,7 @@
     view.clipsToBounds = YES;
     view.layer.cornerRadius = 5;
     view.layer.borderWidth = 1;
-    view.layer.borderColor = [UIColor blueColor].CGColor;
+    view.layer.borderColor = [UIColor colorFromRGB:0xeeeeee].CGColor;
     
     return view;
 }
