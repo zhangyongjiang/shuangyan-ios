@@ -9,6 +9,7 @@
 #import "FileDetailsViewController.h"
 #import "MediaContentAudioView.h"
 #import "CourseDetailsView.h"
+#import "CoursePickerViewController.h"
 
 @interface FileDetailsViewController ()
 
@@ -34,19 +35,71 @@
                            [[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"],
                            [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
                            nil];
+    self.menuItems = arr;
     [super addTopRightMenu:arr];
 }
 
 -(void)topRightMenuItemClicked:(NSString *)cmd {
     [super topRightMenuItemClicked:cmd];
     if ([cmd isEqualToString:@"删除"]) {
+        [self removeCourse];
     }
-    else if([cmd isEqualToString:@"播放"]){
-//        [self.courseDetailsView play];
+    else if([cmd isEqualToString:@"改名"]){
+        [self changeCourseName];
     }
-    else if ([cmd isEqualToString:@"改名"]){
-        [self changeName];
-    }
+}
+
+- (void)changeCourseName
+{
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = weakSelf.localCourseDetails.courseDetails.course.title;
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [alert.textFields firstObject];
+        if ([NSString isEmpty:tf.text]) {
+            [self presentFailureTips:@"文件标题不能为空"];
+            return;
+        }
+        RenameRequest *request = [RenameRequest new];
+        request.courseId = weakSelf.localCourseDetails.courseDetails.course.id;
+        request.name = tf.text;
+        [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
+            weakSelf.title = resp.title;
+        } onError:^(APIError *err) {
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
+
+-(void)removeCourse {
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [CourseApi CourseAPI_RemoveCourse:self.localCourseDetails.courseDetails.course.id onSuccess:^(Course *resp) {
+            [self presentFailureTips:@"删除成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } onError:^(APIError *err) {
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+    
 }
 
 -(void)changeName {
@@ -82,4 +135,6 @@
         
     }];
 }
+
+
 @end
