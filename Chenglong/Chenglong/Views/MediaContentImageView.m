@@ -12,11 +12,6 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-
-    self.imgView = [UIImageView new];
-    [self.imgView setContentMode:UIViewContentModeScaleToFill];
-    [self addSubview:self.imgView];
-    [self.imgView autoPinEdgesToSuperviewMargins];
     
     return self;
 }
@@ -26,6 +21,13 @@
         NSLog(@"no downloaded yet");
         return;
     }
+    if(self.imgView == NULL) {
+        self.imgView = [UIImageView new];
+        [self.imgView setContentMode:UIViewContentModeScaleToFill];
+        [self addSubview:self.imgView];
+        [self.imgView autoPinEdgesToSuperviewMargins];
+    }
+
     UIImage* img = [UIImage imageWithContentsOfFile:self.localMediaContent.filePath];
     self.imgView.image = img;
 }

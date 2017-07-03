@@ -13,10 +13,6 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 300, [UIView screenWidth], [UIView screenWidth])];
-    [self addSubview:self.webView];
-//    [self.webView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.btnPlay withOffset:Margin];
-    
     return self;
 }
 
@@ -25,9 +21,13 @@
         NSLog(@"no downloaded yet");
         return;
     }
-    
-    self.webView.y = 64;
-    self.webView.h = [UIView screenHeight] - self.webView.y;
+
+    if(self.webView == NULL) {
+        self.webView = [UIWebView new];
+        [self addSubview:self.webView];
+        [self.webView autoPinEdgesToSuperviewMargins];
+    }
+
     NSURL* url = [NSURL  fileURLWithPath:self.localMediaContent.filePath];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
