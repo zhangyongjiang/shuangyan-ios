@@ -38,12 +38,19 @@
 -(void)courseChangedNoti:(NSNotification*)noti {
     WeakSelf(weakSelf)
     Course* course = noti.object;
+    User* user = [Global loggedInUser];
+    BOOL refresh = NO;
     for (CourseDetails* cd in self.page.courseDetailsList.items) {
         if([cd.course.id isEqualToString:course.id]) {
-            [weakSelf refreshPage];
+            refresh = YES;
             break;
         }
     }
+    if(weakSelf.courseId == NULL && [user.id isEqualToString:course.userId] && course.parentCourseId == NULL) {
+        refresh = YES;
+    }
+    if(refresh)
+        [weakSelf refreshPage];
 }
 
 -(void)addTopRightMenu {

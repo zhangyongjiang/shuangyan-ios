@@ -103,7 +103,7 @@ static CGFloat creatFileViewHeight = 420.f;
         [SVProgressHUD showWithStatus:@"上传中"];
         [CourseApi CourseAPI_CreateCourseFile:course onSuccess:^(Course *resp) {
             [SVProgressHUD dismiss];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kPublishFileSuccessNotificationKey object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         } onError:^(APIError *err) {
             [SVProgressHUD dismiss];
@@ -113,7 +113,7 @@ static CGFloat creatFileViewHeight = 420.f;
         [SVProgressHUD showWithStatus:@"上传中"];
         [CourseApi CourseAPI_CreateCourseFileWithResources:@{@"file":self.creatFileViews.mediaAttachmentDataSource.attachments} json:[course toJson] onSuccess:^(Course *resp) {
             [SVProgressHUD dismiss];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kPublishFileSuccessNotificationKey object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         } onError:^(APIError *err) {
             [SVProgressHUD dismiss];

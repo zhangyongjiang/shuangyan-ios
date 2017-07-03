@@ -82,10 +82,6 @@
     }];
 }
 
--(void)cancel {
-    [self.navigationController popToViewController:self animated:YES];
-}
-
 -(void)userSelected:(NSNotification*)noti {
     UIView* subview = noti.object;
     if([subview isSameViewOrChildOf:self.view]) {

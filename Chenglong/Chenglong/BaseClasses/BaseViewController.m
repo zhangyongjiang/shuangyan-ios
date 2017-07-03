@@ -18,6 +18,12 @@
 
 @implementation BaseViewController
 
+-(id)init {
+    self = [super init];
+    self.menuItems  = [NSMutableArray arrayWithCapacity:0];
+    return self;
+}
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

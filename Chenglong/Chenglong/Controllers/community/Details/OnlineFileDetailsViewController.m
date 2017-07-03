@@ -9,11 +9,13 @@
 #import "OnlineFileDetailsViewController.h"
 #import "MediaContentAudioView.h"
 #import "OnlineCourseDetailsView.h"
+#import "CoursePickerViewController.h"
 
-@interface OnlineFileDetailsViewController ()
+@interface OnlineFileDetailsViewController ()<CousePickerDelegate>
 
 @property(strong, nonatomic) OnlineCourseDetailsView* courseDetailsView;
 @property(strong, nonatomic) CourseDetailsWithParent* courseDetailsWithParent;
+@property(strong, nonatomic) CoursePickerViewController* coursePickerViewController;
 
 @end
 
@@ -22,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refreshPage];
+    [self addTopRightMenu];
 }
 
 -(void)addTopRightMenu {
@@ -36,6 +39,9 @@
 -(void)topRightMenuItemClicked:(NSString *)cmd {
     [super topRightMenuItemClicked:cmd];
     if ([cmd isEqualToString:@"拷贝"]) {
+        self.coursePickerViewController = [[CoursePickerViewController alloc] init];
+        [self.navigationController pushViewController:self.coursePickerViewController animated:YES];
+        self.coursePickerViewController.delegate = self;
     }
     else if ([cmd isEqualToString:@"上传者"]){
     }
@@ -52,4 +58,16 @@
         
     }];
 }
+
+-(void)selectCourse:(NSString*)selected {
+    if(selected == NULL)
+        selected = @"~";
+    [self.navigationController popToViewController:self animated:YES];
+    [CourseApi CourseAPI_Copy:self.courseId dstId:selected onSuccess:^(Course *resp) {
+        [self alertShowWithMsg:@"Done"];
+    } onError:^(APIError *err) {
+        [self alertShowWithMsg:@"Error"];
+    }];
+}
+
 @end

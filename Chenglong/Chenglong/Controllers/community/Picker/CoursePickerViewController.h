@@ -12,7 +12,6 @@
 
 @optional
 -(void)selectCourse:(NSString*)courseId;
--(void)cancel;
 
 @end
 

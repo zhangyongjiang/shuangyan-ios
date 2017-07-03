@@ -49,6 +49,9 @@
 -(void)download {
     [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
         int downloaded = (int)(progress*100);
+        if(progress < 0) {
+            downloaded = -100. * progress / self.localMediaContent.mediaContent.length.floatValue;
+        }
         NSString* txt = [NSString stringWithFormat:@"Download %i%% of %@", downloaded, self.localMediaContent.mediaContent.length];
         [self.btnDownload setTitle:txt forState:UIControlStateNormal];
     } completionBlock:^(BOOL completed) {

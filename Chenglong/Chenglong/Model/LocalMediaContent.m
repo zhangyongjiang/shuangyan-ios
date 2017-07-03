@@ -34,7 +34,14 @@
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock {
     [self createDirs];
-    
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    NSString* filePath = self.filePath;
+    NSLog(@"Download from %@ to %@", self.mediaContent.url, self.filePath);
+    if([filemgr fileExistsAtPath:filePath isDirectory:nil]) {
+        NSLog(@"file exists. delete first. %@ ", self.filePath);
+        [filemgr removeItemAtPath:filePath error:nil];
+    }
+
     if([[TWRDownloadManager sharedManager] isFileDownloadingForUrl:self.mediaContent.url withProgressBlock:nil]) {
         [[TWRDownloadManager sharedManager] cancelDownloadForUrl:self.mediaContent.url];
     }
