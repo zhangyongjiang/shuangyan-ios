@@ -72,6 +72,8 @@
     cell.textLabel.numberOfLines = 0;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.textColor = self.titleTextColor;
+    if(![self.enabled[indexPath.row] boolValue])
+        cell.textLabel.textColor = [UIColor colorFromHex:0xaaaaaa];
     
     if (self.dataArray.count == 1) {
         self.tableView.bounces = NO;
@@ -83,7 +85,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(selectIndexPathRow:view:)]) {
-        [self.delegate selectIndexPathRow:indexPath.row view:self];
+        if([self.enabled[indexPath.row] boolValue])
+            [self.delegate selectIndexPathRow:indexPath.row view:self];
         [self removeFromSuperview];
     }
 }

@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIView *navBgView;
 @property (nonatomic, strong) UIView *shadowLineView;
+@property (strong, nonatomic) NSMutableArray* menuItems;
 
 //显示错误信息等
 - (void)alertShowWithMsg:(NSString *)msg;
@@ -20,6 +21,9 @@
 
 -(void)addTopRightMenu:(NSArray*)menuItems;
 -(void)topRightMenuItemClicked:(NSString*)cmd;
+-(void)popMenu;
+-(void)enableMenuItem:(NSString*)name enable:(BOOL)enable;
+
 -(BOOL)hasNextPage:(int)pageSize current:(int)currentPage currentItems:(NSInteger)currentItems;
 
 -(UIBarButtonItem*)addNavRightButton:(NSString*)text target:(id)target action:(SEL)action;

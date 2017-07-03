@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSArray           * _Nonnull dataArray;
 // images
 @property (nonatomic, strong) NSArray           * _Nonnull images;
+@property (nonatomic, strong) NSArray           * _Nonnull enabled;
 // height
 @property (nonatomic, assign) CGFloat           row_height;
 // font

@@ -12,7 +12,7 @@
 
 
 @property (nonatomic, strong) UIBarButtonItem *rightMenuItem;
-@property (nonatomic, strong) NSArray* menuItems;
+@property (nonatomic, strong) UIButton* btn;
 
 @end
 
@@ -20,23 +20,41 @@
 
 - (void)addTopRightMenu:(NSArray*)menuItems
 {
-    self.menuItems = menuItems;
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 40, 40);
     [btn setImage:[UIImage imageNamed:@"nav_btn_more"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(rightItemEvent:) forControlEvents:UIControlEventTouchUpInside];
     _rightMenuItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = _rightMenuItem;
+    self.btn = btn;
 }
 
 #pragma mark - 右侧item事件
-- (void)rightItemEvent:(UIButton *)btn
+- (void)rightItemEvent:(UIButton *)button
 {
+    [self popMenu];
+}
+
+-(void)enableMenuItem:(NSString*)name enable:(BOOL)enable {
+    if(!self.menuItems) return;
+    for (MenuItem* mi in self.menuItems) {
+        if([mi.text isEqualToString:name]) {
+            mi.enabled = [NSNumber numberWithBool:enable];
+            break;
+        }
+    }
+}
+
+-(void)popMenu
+{
+    UIButton* btn = self.btn;
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     NSMutableArray* imgArr = [[NSMutableArray alloc] init];
+    NSMutableArray* enabled = [[NSMutableArray alloc] init];
     for (MenuItem* mi in self.menuItems) {
         [arr addObject:mi.text];
         [imgArr addObject:mi.imgName];
+        [enabled addObject:mi.enabled];
     }
 
     CGPoint point = CGPointMake(btn.frame.origin.x + btn.frame.size.width / 2, btn.frame.origin.y + btn.frame.size.height + 10);
@@ -45,6 +63,7 @@
     [_menuTableView.tableView setSeparatorColor:[UIColor colorFromString:@"dedede"]];
     _menuTableView.dataArray = arr;
     _menuTableView.images = imgArr;
+    _menuTableView.enabled = enabled;
     _menuTableView.row_height = 45;
     _menuTableView.delegate = self;
     _menuTableView.fontSize = 14.f;

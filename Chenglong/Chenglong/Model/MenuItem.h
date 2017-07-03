@@ -12,6 +12,7 @@
 
 @property(strong, nonatomic) NSString* text;
 @property(strong, nonatomic) NSString* imgName;
+@property(strong, nonatomic) NSNumber* enabled;
 
 -(id)initWithText:(NSString*)text andImgName:(NSString*)imgName;
 

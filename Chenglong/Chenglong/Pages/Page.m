@@ -31,6 +31,7 @@
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.text = text;
+    label.textColor = [UIColor lightGrayColor];
     label.textAlignment = NSTextAlignmentCenter;
     [label sizeToFit];
     [self setEmptyPageView:label];
@@ -42,6 +43,7 @@
     _emptyView = view;
     [self addSubview:_emptyView];
     [_emptyView centerInParent];
+    _emptyView.y -= 80;
 }
 
 -(void)reload {

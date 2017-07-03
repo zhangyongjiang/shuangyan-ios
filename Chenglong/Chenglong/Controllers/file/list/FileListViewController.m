@@ -23,8 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createPage];
     [self addTopRightMenu];
+    [self createPage];
 
     if(self.courseId == NULL) {
         self.navigationItem.title = @"我的文件";
@@ -34,20 +34,27 @@
 }
 
 -(void)addTopRightMenu {
-    NSMutableArray* arr = [[NSMutableArray alloc] init];
-    [arr addObject:[[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"]] ;
-                    
-    [arr addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
-    
-    if(self.courseId)
-        [arr addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
-     
-    [arr addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
+    self.menuItems = [[NSMutableArray alloc] init];
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"]] ;
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
 
-    if(self.courseId != NULL)
-        [arr addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
+    [super addTopRightMenu:self.menuItems];
+}
 
-    [super addTopRightMenu:arr];
+-(void)displayData:(CourseDetailsList*)list {
+    [self.page setCourseDetailsList:list];
+    if(list.items.count == 0) {
+        [self enableMenuItem:@"删除" enable:NO];
+        [self enableMenuItem:@"播放" enable:NO];
+        [self enableMenuItem:@"改名" enable:NO];
+        WeakSelf(weakSelf)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100*NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+            [weakSelf popMenu];
+        });
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,7 +83,7 @@
                 [self refreshPage];
             else {
                 self.navigationItem.title = resp.courseDetails.course.title;
-                [self.page setCourseDetailsList:resp];
+                [self displayData:resp];
             }
         }
     }
@@ -89,7 +96,7 @@
         if(resp.courseDetails) {
             self.navigationItem.title = resp.courseDetails.course.title;
         }
-        [self.page setCourseDetailsList:resp];
+        [self displayData:resp];
         
         NSString* fileName = [self jsonFileName];
         NSString* json = [resp toJson];

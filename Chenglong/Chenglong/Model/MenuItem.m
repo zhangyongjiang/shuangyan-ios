@@ -14,6 +14,7 @@
     self = [super init];
     self.text = text;
     self.imgName = imgName;
+    self.enabled = [NSNumber numberWithBool:YES];
     return self;
 }
 
