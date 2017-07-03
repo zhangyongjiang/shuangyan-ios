@@ -68,4 +68,10 @@
     self.scrollView.contentSize = CGSizeMake(self.width, y+128);
 }
 
+-(void)downloadAll {
+    for (MediaConentView* mcv in self.mediaContentViews) {
+        [mcv downloadOrPlay];
+    }
+}
+
 @end

@@ -21,4 +21,6 @@
 +(BOOL) isPdf:(MediaContent*)mediaContent;
 +(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent;
 
+-(void)downloadOrPlay;
+
 @end

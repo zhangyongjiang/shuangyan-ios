@@ -22,11 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.localCourseDetails.courseDetails.course.title;
-    [self addTopRightMenu];
 
     self.courseDetailsView = [[CourseDetailsView alloc] initWithFrame:self.view.bounds];
     self.courseDetailsView.localCourseDetails = self.localCourseDetails;
     [self.view addSubview:self.courseDetailsView];
+    
+    [self addTopRightMenu];
 }
 
 -(void)addTopRightMenu {
@@ -34,10 +35,23 @@
                            [[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"],
                            [[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"],
                            [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
+                           [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
                            nil];
     self.menuItems = arr;
     [super addTopRightMenu:arr];
+    
+    [self enableMenuItem:@"下载全部" enable:![self isAllDownloaded]];
 }
+
+-(BOOL)isAllDownloaded {
+    for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
+        LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mc];
+        if(![lmc isDownloaded])
+            return NO;
+    }
+    return YES;
+}
+
 
 -(void)topRightMenuItemClicked:(NSString *)cmd {
     [super topRightMenuItemClicked:cmd];
@@ -46,6 +60,9 @@
     }
     else if([cmd isEqualToString:@"改名"]){
         [self changeCourseName];
+    }
+    else if([cmd isEqualToString:@"下载全部"]){
+        [self.courseDetailsView downloadAll];
     }
 }
 

@@ -15,5 +15,6 @@
 @property(strong, nonatomic)LocalCourseDetails* localCourseDetails;
 
 -(id)initWithFrame:(CGRect)frame andCourseDetails:(LocalCourseDetails*)localCourseDetails;
+-(void)downloadAll;
 
 @end
