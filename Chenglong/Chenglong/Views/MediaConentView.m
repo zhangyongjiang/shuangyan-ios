@@ -24,10 +24,12 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.btnDownload = [[UIButton alloc] initWithFrame:CGRectMake(Margin, Margin, [UIView screenWidth]-2*Margin, 40)];
+    self.btnDownload = [UIButton new];
     [self.btnDownload setTitle:@"Download" forState:UIControlStateNormal];
-    self.btnDownload.backgroundColor = [UIColor lightGrayColor];
+    self.btnDownload.backgroundColor = [UIColor mainColor];
     [self addSubview:self.btnDownload];
+    [self.btnDownload autoCenterInSuperview];
+    [self.btnDownload autoSetDimensionsToSize:CGSizeMake([UIView screenWidth]/1.5, 40.)];
     [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
     
     return self;

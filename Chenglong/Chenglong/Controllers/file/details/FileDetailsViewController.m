@@ -33,7 +33,6 @@
 -(void)addTopRightMenu {
     NSMutableArray* arr = [NSMutableArray arrayWithObjects:
                            [[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"],
-                           [[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"],
                            [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
                            [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
                            nil];
