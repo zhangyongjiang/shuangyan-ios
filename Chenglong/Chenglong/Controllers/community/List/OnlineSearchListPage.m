@@ -27,7 +27,7 @@
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.frame = CGRectMake(0, 0, [UIView screenWidth], 44);
     self.searchController.searchBar.placeholder = @"关键词";
-//    _tableView.tableHeaderView = self.searchController.searchBar;
+    _tableView.tableHeaderView = self.searchController.searchBar;
     
     return self;
 }

@@ -38,7 +38,7 @@
 -(void)enableMenuItem:(NSString*)name enable:(BOOL)enable {
     if(!self.menuItems) return;
     for (MenuItem* mi in self.menuItems) {
-        if([mi.text isEqualToString:name]) {
+        if([mi.text containsString:name]) {
             mi.enabled = [NSNumber numberWithBool:enable];
             break;
         }

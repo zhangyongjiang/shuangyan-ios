@@ -28,36 +28,23 @@
 }
 
 -(void)addTopRightMenu {
-    NSMutableArray* arr = [[NSMutableArray alloc] init];
-    [arr addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_newFile_icon"]] ;
-    
-    [arr addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
-    
-    if(self.courseId)
-        [arr addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
-    
-    [arr addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
-    
-    if(self.courseId != NULL)
-        [arr addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
+    self.menuItems = [[NSMutableArray alloc] init];
+    NSMutableArray* arr = self.menuItems;
+    [arr addObject:[[MenuItem alloc] initWithText:@"上传者" andImgName:@"file_search_age_icon"] ];
+    [arr addObject:[[MenuItem alloc] initWithText:@"拷贝到..." andImgName:@"file_item_newFile_icon"]] ;
     
     [super addTopRightMenu:arr];
 }
 
 -(void)topRightMenuItemClicked:(NSString *)cmd {
     [super topRightMenuItemClicked:cmd];
-    if ([cmd isEqualToString:@"拷贝"]) {
+    if ([cmd hasPrefix:@"拷贝"]) {
         self.coursePickerViewController = [[CoursePickerViewController alloc] init];
         [self.navigationController pushViewController:self.coursePickerViewController animated:YES];
         self.coursePickerViewController.delegate = self;
     }
-    else if([cmd isEqualToString:@"新文件夹"]){
+    else if([cmd isEqualToString:@"上传者"]){
     }
-    else if ([cmd isEqualToString:@"改名"]){
-    }
-    else if ([cmd isEqualToString:@"删除"]) {
-    }
-    
 }
 
 -(void)createPage {
@@ -71,6 +58,12 @@
     [CourseApi CourseAPI_GetCourseDetails:self.courseId onSuccess:^(CourseDetailsWithParent *resp) {
         [self.page setCourseDetailsWithParent:resp];
         self.title = resp.courseDetails.course.title;
+        User* user = [Global loggedInUser];
+        if(resp.courseDetails.items.count == 0 || [resp.courseDetails.user.id isEqualToString:user.id])
+            [self enableMenuItem:@"拷贝" enable:NO];
+        else {
+            
+        }
     } onError:^(APIError *err) {
     }];
 }

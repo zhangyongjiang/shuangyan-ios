@@ -21,6 +21,8 @@
     [super viewDidLoad];
     [self addNavRightButton:@"Done" target:self action:@selector(courseSelected)];
     [self createPage];
+    if(self.courseId == NULL)
+        self.title = @"根目录";
 }
 
 -(void)createPage {
@@ -42,6 +44,8 @@
             }
         }
         resp.items = dironly;
+        if(dironly.count == 0)
+            [self.page setEmptyPageText:@"空文件夹"];
         [self.page setCourseDetailsList:resp];
     } onError:^(APIError *err) {
         

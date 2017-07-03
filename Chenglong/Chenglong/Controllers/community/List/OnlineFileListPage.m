@@ -58,8 +58,10 @@
 -(void)setCourseDetailsWithParent:(CourseDetailsWithParent *)courseDetailsWithParent {
     _courseDetailsWithParent = courseDetailsWithParent;
     OnlineFileListHeaderView* headerView = [[OnlineFileListHeaderView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], 30) andCourseDetailsWithParent:courseDetailsWithParent];
-    _tableView.tableHeaderView = headerView;
+//    _tableView.tableHeaderView = headerView;
     [_tableView reloadData];
+    if(courseDetailsWithParent.courseDetails.items.count == 0)
+        [self setEmptyPageText:@"空文件夹"];
 }
 
 @end
