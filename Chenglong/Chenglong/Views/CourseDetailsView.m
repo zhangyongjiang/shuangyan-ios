@@ -65,7 +65,7 @@
             [self.mediaContentViews addObject:view];
         }
     }
-    self.scrollView.contentSize = CGSizeMake(self.width, y);
+    self.scrollView.contentSize = CGSizeMake(self.width, y+128);
 }
 
 @end
