@@ -90,6 +90,7 @@
     UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [CourseApi CourseAPI_RemoveCourse:self.localCourseDetails.courseDetails.course.id onSuccess:^(Course *resp) {
             [self presentFailureTips:@"删除成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
             [self.navigationController popViewControllerAnimated:YES];
         } onError:^(APIError *err) {
             ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
@@ -121,12 +122,10 @@
         RenameRequest *request = [RenameRequest new];
         request.courseId = weakSelf.localCourseDetails.courseDetails.course.id;
         request.name = tf.text;
-        [SVProgressHUD showWithStatus:@"修改中"];
         [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
-            [SVProgressHUD dismiss];
             weakSelf.title = resp.title;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
         } onError:^(APIError *err) {
-            [SVProgressHUD dismiss];
             ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
         }];
     }];

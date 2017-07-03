@@ -82,6 +82,8 @@ extern NSString* const kPublishFileSuccessNotificationKey;
 #define NotificationGalleryPageChanged  @"NotificationGalleryPageChanged"
 #define NotificationUserSelected        @"NotificationUserSelected"
 #define NotificationCourseSelected      @"NotificationCourseSelected"
+#define NotificationCourseChanged       @"NotificationCourseChanged"
+
 
 #define Margin  15
 
