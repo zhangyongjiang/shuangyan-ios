@@ -29,7 +29,7 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.frame];
     [self addSubview:self.scrollView];
     
-    self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, 64, [UIView screenWidth]-Margin*2, 0)];
+    self.labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(Margin, 0, [UIView screenWidth]-Margin*2, 0)];
     self.labelDesc.numberOfLines = 0;
     self.labelDesc.lineBreakMode = NSLineBreakByWordWrapping;
     [self.scrollView addSubview:self.labelDesc];
@@ -53,17 +53,15 @@
     self.labelDesc.text = self.localCourseDetails.courseDetails.course.content;
     [self.labelDesc sizeToFit];
     
-    CGFloat w = [UIView screenWidth]- Margin*2;
-    CGFloat y = self.labelDesc.bottom + Margin;
-    if(self.localCourseDetails.courseDetails.course.content==NULL)
-        y = Margin;
-    CGFloat h = [UIView screenHeight] - y;
+    CGFloat y = self.labelDesc.bottom;
+    if(y>0.1)
+        y += Margin;
     for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
         MediaConentView* view = [MediaConentView createViewForMediaContent:mc];
         if(view) {
-            view.frame = CGRectMake(0, y, w, h);
+            view.y = y;
             [self.scrollView addSubview:view];
-            y = y + h + Margin;
+            y = y + view.height + Margin;
             [self.mediaContentViews addObject:view];
         }
     }

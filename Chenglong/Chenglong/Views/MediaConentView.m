@@ -24,13 +24,11 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.btnDownload = [[UIButton alloc] initWithFrame:CGRectMake(Margin, 64, [UIView screenWidth]-2*Margin, 40)];
+    self.btnDownload = [[UIButton alloc] initWithFrame:CGRectMake(Margin, Margin, [UIView screenWidth]-2*Margin, 40)];
     [self.btnDownload setTitle:@"Download" forState:UIControlStateNormal];
     self.btnDownload.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:self.btnDownload];
     [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self updateConstraints];
     
     return self;
 }
@@ -91,10 +89,17 @@
     }
     else
         return nil;
-    view.width = [UIView screenWidth] - Margin*2;
-    view.height = [UIView screenWidth] - Margin*2;
+    view.width = [UIView screenWidth];
+    view.height = [UIView screenWidth];
     LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mediaContent];
     view.localMediaContent = lmc;
+    
+    view.backgroundColor = [UIColor colorFromRGB:0xeeeeee];
+    view.clipsToBounds = YES;
+    view.layer.cornerRadius = 5;
+    view.layer.borderWidth = 1;
+    view.layer.borderColor = [UIColor blueColor].CGColor;
+    
     return view;
 }
 
