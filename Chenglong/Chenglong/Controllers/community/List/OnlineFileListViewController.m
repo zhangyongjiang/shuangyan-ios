@@ -25,6 +25,9 @@
     [super viewDidLoad];
     [self createPage];
     [self addTopRightMenu];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSelected:) name:NotificationUserSelected object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseSelected:) name:NotificationCourseSelected object:NULL];
 }
 
 -(void)addTopRightMenu {
@@ -81,12 +84,6 @@
 
 -(void)cancel {
     [self.navigationController popToViewController:self animated:YES];
-}
-
--(void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSelected:) name:NotificationUserSelected object:NULL];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseSelected:) name:NotificationCourseSelected object:NULL];
 }
 
 -(void)userSelected:(NSNotification*)noti {

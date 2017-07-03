@@ -31,6 +31,19 @@
     }
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"tab_btn_file_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_file_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     self.tabBarItem.imageInsets = UIEdgeInsetsMake(-4, 0, 4, 0);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseChangedNoti:) name:NotificationCourseChanged object:NULL];
+}
+
+-(void)courseChangedNoti:(NSNotification*)noti {
+    WeakSelf(weakSelf)
+    Course* course = noti.object;
+    for (CourseDetails* cd in self.page.courseDetailsList.items) {
+        if([cd.course.id isEqualToString:course.id]) {
+            [weakSelf refreshPage];
+            break;
+        }
+    }
 }
 
 -(void)addTopRightMenu {
@@ -177,12 +190,10 @@
         RenameRequest *request = [RenameRequest new];
         request.courseId = weakSelf.courseId;
         request.name = tf.text;
-        [SVProgressHUD showWithStatus:@"修改中"];
         [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
-            [SVProgressHUD dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
             [self refreshPage];
         } onError:^(APIError *err) {
-            [SVProgressHUD dismiss];
             ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
         }];
     }];
@@ -228,6 +239,7 @@
         [CourseApi CourseAPI_RemoveCourse:self.courseId onSuccess:^(Course *resp) {
             [self presentFailureTips:@"删除成功"];
             [self.navigationController popViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
         } onError:^(APIError *err) {
             ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
         }];

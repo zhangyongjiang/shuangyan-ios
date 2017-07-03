@@ -53,7 +53,7 @@
     
     [self configSubViews];
     
-    [self addobser];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMeInfoSuccess:) name:kGetMeInfoSuccessNotificationKey object:nil];
 }
 
 - (void)updateViewConstraints
@@ -101,11 +101,6 @@
 {
     AppDelegate *app = kAppDelegate;
     [app logout];
-}
-
-- (void)addobser
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMeInfoSuccess:) name:kGetMeInfoSuccessNotificationKey object:nil];
 }
 
 #pragma mark UITableViewDataSource

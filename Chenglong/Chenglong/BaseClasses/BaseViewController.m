@@ -18,6 +18,11 @@
 
 @implementation BaseViewController
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)addTopRightMenu:(NSArray*)menuItems
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -79,15 +84,32 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:_navBgView];
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    //作为导航栏的背景
+    _navBgView = [UIView newAutoLayoutView];
+    _navBgView.backgroundColor = [UIColor kaishiColor:UIColorTypeBarBackground];
+    [self.view addSubview:_navBgView];
+    _shadowLineView = [UIView newAutoLayoutView];
+    _shadowLineView.backgroundColor = [UIColor kaishiColor:UIColorTypeTableSeparateColor];
+    [_navBgView addSubview:_shadowLineView];
+    
+    [self.view setNeedsUpdateConstraints];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationPushController:) name:NotificationPushController object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRefreshControl:) name:NotificationRefreshControl object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationEndOfDisplay:) name:NotificationEndOfDisplay object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.view bringSubviewToFront:_navBgView];
 }
 
 -(void)notificationEndOfDisplay:(NSNotification*)noti {
@@ -110,7 +132,6 @@
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)notificationRefreshControl:(NSNotification*)noti {
@@ -140,24 +161,6 @@
 -(void)topRightMenuItemClicked:(NSString*)cmd {
 }
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    //作为导航栏的背景
-    _navBgView = [UIView newAutoLayoutView];
-    _navBgView.backgroundColor = [UIColor kaishiColor:UIColorTypeBarBackground];
-    [self.view addSubview:_navBgView];
-    _shadowLineView = [UIView newAutoLayoutView];
-    _shadowLineView.backgroundColor = [UIColor kaishiColor:UIColorTypeTableSeparateColor];
-    [_navBgView addSubview:_shadowLineView];
-    
-    [self.view setNeedsUpdateConstraints];
-}
 
 - (void)updateViewConstraints
 {
