@@ -12,6 +12,7 @@
 @interface MediaContentAudioView()
 {
     AVAudioPlayer *player;
+    BOOL playing;
 }
 @end
 
@@ -19,8 +20,17 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
+    [self addTarget:self action:@selector(clicked)];
     return self;
+}
+
+-(void)clicked {
+    NSLog(@"clicked");
+    if(playing)
+        [player pause];
+    else
+        [player play];
+    playing = !playing;
 }
 
 -(void)play {
@@ -28,9 +38,14 @@
         NSLog(@"no downloaded yet");
         return;
     }
-    NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
-    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-    [player play];
+    if(!player) {
+        NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        [player play];
+        playing = YES;
+        self.btnDownload.hidden = YES;
+        return;
+    }
 }
 
 @end

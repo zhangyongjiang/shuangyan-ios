@@ -12,6 +12,7 @@
 @interface MediaContentVideoView()
 {
     AVPlayer* player;
+    BOOL playing;
 }
 @end
 
@@ -19,8 +20,17 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
+    [self addTarget:self action:@selector(clicked)];
     return self;
+}
+
+-(void)clicked {
+    NSLog(@"clicked");
+    if(playing)
+        [player pause];
+    else
+        [player play];
+    playing = !playing;
 }
 
 -(void)play {
@@ -28,12 +38,15 @@
         NSLog(@"no downloaded yet");
         return;
     }
+    self.btnDownload.hidden = YES;
+    playing = YES;
+    
     NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
     player = [[AVPlayer alloc] initWithURL:url];
     AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:player];
     layer.frame = self.bounds;
     [self.layer addSublayer:layer];
-//    layer.backgroundColor = [UIColor clearColor].CGColor;
+    layer.backgroundColor = [UIColor clearColor].CGColor;
     [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
     [player play];
 }
