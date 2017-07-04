@@ -83,7 +83,9 @@
 }
 
 -(void)createPage {
-    self.page = [[FileListPage alloc] initWithFrame:self.view.bounds];
+    CGRect frame = self.view.bounds;
+    frame.size.height -= 64;
+    self.page = [[FileListPage alloc] initWithFrame:frame];
     self.page.filePath = self.filePath;
     [self.view addSubview:self.page];
     

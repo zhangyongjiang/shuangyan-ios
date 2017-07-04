@@ -302,8 +302,14 @@ typedef enum {
     
     // Set the value for the property
     // TODO: Add check for the type of the target property matching the value set?
-      if (targetPropertyValue) {
-          [target setValue:targetPropertyValue forKey:[NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding]];
+      @try {
+          if (targetPropertyValue) {
+              [target setValue:targetPropertyValue forKey:[NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding]];
+          }
+      } @catch (NSException *exception) {
+          NSLog(@"!!!!!!!!! exception %@", exception);
+      } @finally {
+          
       }
   }
   

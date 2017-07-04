@@ -186,6 +186,7 @@ NSUInteger kDefaultMaxRetries = 3;
     [self setAuthorizationToken];
     
     NSLog(@"POST: %@ with data: %@", URLString, parameters);
+    [SVProgressHUD show];
     NSURLSessionDataTask *operation = [super POST:URLString parameters:parameters progress:nil
                                           success:^(NSURLSessionDataTask *operation, id responseObject) {
                                               NSLog(@"POST SUCCESS: %@ with data: %@", URLString, parameters);
@@ -199,12 +200,14 @@ NSUInteger kDefaultMaxRetries = 3;
                                                   failure(apiError);
                                                   [self logError:apiError operation:operation];
                                               }
+                                              [SVProgressHUD dismiss];
                                           }
                                           failure:^(NSURLSessionDataTask *operation, NSError *error) {
                                               //                                                NSLog(@"POST ERROR: %@ with data: %@. %@", URLString, parameters, error);
                                               APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
                                               failure(apiError);
                                               [weakSelf logError:apiError operation:operation];
+                                              [SVProgressHUD dismiss];
                                           }];
     return operation;
 }

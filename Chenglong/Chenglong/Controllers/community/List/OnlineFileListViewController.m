@@ -58,6 +58,7 @@
 
 -(void)createPage {
     self.page = [[OnlineFileListPage alloc] initWithFrame:self.view.bounds];
+    self.page.height -= 64;
     [self.view addSubview:self.page];
     
     [self refreshPage];

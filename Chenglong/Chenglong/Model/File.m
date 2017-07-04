@@ -80,15 +80,15 @@
 -(BOOL)isDir {
     NSFileManager* fm = [NSFileManager defaultManager];
     BOOL isDirectory;
-    [fm fileExistsAtPath:self.fullPath isDirectory:&isDirectory];
-    return isDirectory;
+    BOOL exist = [fm fileExistsAtPath:self.fullPath isDirectory:&isDirectory];
+    return exist ? isDirectory : NO;
 }
 
 -(BOOL)isFile {
     NSFileManager* fm = [NSFileManager defaultManager];
     BOOL isDirectory;
-    [fm fileExistsAtPath:self.fullPath isDirectory:&isDirectory];
-    return !isDirectory;
+    BOOL exist = [fm fileExistsAtPath:self.fullPath isDirectory:&isDirectory];
+    return exist ? !isDirectory : NO;
 }
 
 -(File*)parent {
