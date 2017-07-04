@@ -21,11 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.localCourseDetails.courseDetails.course.title;
+    self.title = self.courseDetails.course.title;
 
     WeakSelf(weakSelf)
     self.courseDetailsView = [[CourseDetailsView alloc] initWithFrame:self.view.bounds];
-    self.courseDetailsView.localCourseDetails = self.localCourseDetails;
+    self.courseDetailsView.courseDetails = self.courseDetails;
     [self.view addSubview:self.courseDetailsView];
     [self.courseDetailsView addRemoveResourceHandler:^(LocalMediaContent *localMediaContent) {
         [weakSelf removeResource:localMediaContent];
@@ -42,19 +42,19 @@
     [alert addAction:actionCancel];
     UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         Course* c = [Course new];
-        c.id = self.courseDetailsView.localCourseDetails.courseDetails.course.id;
+        c.id = self.courseDetailsView.courseDetails.course.id;
         c.resources = [NSMutableArray new];
         [c.resources addObject:lmc.mediaContent];
         [CourseApi CourseAPI_RemoveResources:c onSuccess:^(Course *resp) {
             [weakSelf presentFailureTips:@"删除成功"];
             int i =0;
-            for (MediaContent* mc in self.courseDetailsView.localCourseDetails.courseDetails.course.resources) {
+            for (MediaContent* mc in self.courseDetailsView.courseDetails.course.resources) {
                 if([mc.path isEqualToString:lmc.mediaContent.path]) {
-                    [self.courseDetailsView.localCourseDetails.courseDetails.course.resources removeObjectAtIndex:i];
+                    [self.courseDetailsView.courseDetails.course.resources removeObjectAtIndex:i];
                 }
                 i++;
             }
-            self.courseDetailsView.localCourseDetails = self.courseDetailsView.localCourseDetails;
+            self.courseDetailsView.courseDetails = self.courseDetailsView.courseDetails;
         } onError:^(APIError *err) {
         }];
     }];
@@ -78,7 +78,7 @@
 }
 
 -(BOOL)isAllDownloaded {
-    for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
+    for (MediaContent* mc in self.courseDetails.course.resources) {
         LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mc];
         if(![lmc isDownloaded])
             return NO;
@@ -117,7 +117,7 @@
     WeakSelf(weakSelf)
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.text = weakSelf.localCourseDetails.courseDetails.course.title;
+        textField.text = weakSelf.courseDetails.course.title;
     }];
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -130,7 +130,7 @@
             return;
         }
         RenameRequest *request = [RenameRequest new];
-        request.courseId = weakSelf.localCourseDetails.courseDetails.course.id;
+        request.courseId = weakSelf.courseDetails.course.id;
         request.name = tf.text;
         [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
             weakSelf.title = resp.title;
@@ -151,7 +151,7 @@
     }];
     [alert addAction:actionCancel];
     UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [CourseApi CourseAPI_RemoveCourse:self.localCourseDetails.courseDetails.course.id onSuccess:^(Course *resp) {
+        [CourseApi CourseAPI_RemoveCourse:self.courseDetails.course.id onSuccess:^(Course *resp) {
             [self presentFailureTips:@"删除成功"];
             [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
             [self.navigationController popViewControllerAnimated:YES];
@@ -170,7 +170,7 @@
     WeakSelf(weakSelf)
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.text = weakSelf.localCourseDetails.courseDetails.course.title;
+        textField.text = weakSelf.courseDetails.course.title;
     }];
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -183,7 +183,7 @@
             return;
         }
         RenameRequest *request = [RenameRequest new];
-        request.courseId = weakSelf.localCourseDetails.courseDetails.course.id;
+        request.courseId = weakSelf.courseDetails.course.id;
         request.name = tf.text;
         [CourseApi CourseAPI_RenameCourse:request onSuccess:^(Course *resp) {
             weakSelf.title = resp.title;
@@ -203,10 +203,10 @@
     NSData* data = UIImageJPEGRepresentation(chosenImage, [Config shared].defaultImageQuality);
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:data, @"file", @"test.jpeg", @"filename", nil];
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    [CourseApi CourseAPI_AddResourceToCourse:dict courseId:self.localCourseDetails.courseDetails.course.id onSuccess:^(Course *resp) {
+    [CourseApi CourseAPI_AddResourceToCourse:dict courseId:self.courseDetails.course.id onSuccess:^(Course *resp) {
         [self presentFailureTips:@"上传成功"];
-        self.localCourseDetails.courseDetails.course.resources = resp.resources;
-        self.courseDetailsView.localCourseDetails = self.localCourseDetails;
+        self.courseDetails.course.resources = resp.resources;
+        self.courseDetailsView.courseDetails = self.courseDetails;
     } onError:^(APIError *err) {
         [self presentFailureTips:@"上传失败"];
     } progress:^(NSProgress *progress) {

@@ -39,28 +39,28 @@
     self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
 }
 
--(id)initWithFrame:(CGRect)frame andLocalCourseDetails:(LocalCourseDetails *)localCourseDetails {
+-(id)initWithFrame:(CGRect)frame andCourseDetails:(CourseDetails *)courseDetails {
     self = [super initWithFrame:frame];
     [self setup];
-    [self setLocalCourseDetails:localCourseDetails];
+    [self setCourseDetails:courseDetails];
     return self;
 }
 
--(void)setLocalCourseDetails:(LocalCourseDetails *)localCourseDetails {
-    _localCourseDetails = localCourseDetails;
+-(void)setCourseDetails:(CourseDetails *)courseDetails {
+    _courseDetails = courseDetails;
     for (UIView* view in self.mediaContentViews) {
         [view removeFromSuperview];
     }
     self.mediaContentViews = [NSMutableArray arrayWithCapacity:0];
     
-    self.labelDesc.text = self.localCourseDetails.courseDetails.course.content;
+    self.labelDesc.text = self.courseDetails.course.content;
     [self.labelDesc sizeToFit];
     
     CGFloat y = self.labelDesc.bottom;
     if(y>0.1)
         y += Margin;
     WeakSelf(weakSelf)
-    for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
+    for (MediaContent* mc in self.courseDetails.course.resources) {
         MediaConentView* view = [MediaConentView createViewForMediaContent:mc];
         if(view) {
             view.y = y;

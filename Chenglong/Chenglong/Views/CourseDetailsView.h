@@ -15,9 +15,9 @@ typedef void(^DeleteCourseResourceCallback)(LocalMediaContent* localMediaContent
 
 @interface CourseDetailsView : Page
 
-@property(strong, nonatomic)LocalCourseDetails* localCourseDetails;
+@property(strong, nonatomic)CourseDetails* courseDetails;
 
--(id)initWithFrame:(CGRect)frame andCourseDetails:(LocalCourseDetails*)localCourseDetails;
+-(id)initWithFrame:(CGRect)frame andCourseDetails:(CourseDetails*)courseDetails;
 -(void)downloadAll;
 -(void)addRemoveResourceHandler:(DeleteCourseResourceCallback)deleteCallback;
 

@@ -12,6 +12,5 @@
 @interface LocalCourseDetails : NSObject
 
 @property(strong, nonatomic)CourseDetails* courseDetails;
-@property(strong, nonatomic)NSString* filePath;
 
 @end

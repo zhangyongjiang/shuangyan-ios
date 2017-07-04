@@ -7,11 +7,9 @@
 //
 
 #import "BaseViewController.h"
-#import "LocalCourseDetails.h"
+#import "FileDetailsViewController.h"
 
-@interface OnlineFileDetailsViewController : BaseViewController
-
-@property(strong, nonatomic) NSString* courseId;
+@interface OnlineFileDetailsViewController : FileDetailsViewController
 
 
 @end

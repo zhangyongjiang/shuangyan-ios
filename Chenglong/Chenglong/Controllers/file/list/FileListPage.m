@@ -77,9 +77,7 @@
     }
     else {
         FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
-        c.localCourseDetails = [[LocalCourseDetails alloc] init];
-        c.localCourseDetails.courseDetails = cd;
-        c.localCourseDetails.filePath = [self.filePath stringByAppendingFormat:@"/%@", cd.course.id];
+        c.courseDetails = cd;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }
