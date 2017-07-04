@@ -28,7 +28,7 @@
     self = [super initWithFrame:frame];
     
     self.btnDownload = [UIButton new];
-    [self.btnDownload setTitle:@"Download" forState:UIControlStateNormal];
+    [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];
     self.btnDownload.backgroundColor = [UIColor mainColor];
     [self addSubview:self.btnDownload];
     [self.btnDownload autoCenterInSuperview];
@@ -42,6 +42,7 @@
     [self.btnRemove autoSetDimensionsToSize:CGSizeMake(44, 44)];
     [self.btnRemove autoPinEdgeToSuperviewEdge:ALEdgeTop];
     [self.btnRemove autoPinEdgeToSuperviewEdge:ALEdgeRight];
+    self.btnRemove.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
     [self.btnRemove addTarget:self action:@selector(removeResource)];
     
     return self;
@@ -69,7 +70,7 @@
         if(progress < 0) {
             downloaded = -100. * progress / self.localMediaContent.mediaContent.length.floatValue;
         }
-        NSString* txt = [NSString stringWithFormat:@"Download %i%% of %@", downloaded, self.localMediaContent.mediaContent.length];
+        NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.localMediaContent.mediaContent.length];
         [self.btnDownload setTitle:txt forState:UIControlStateNormal];
     } completionBlock:^(BOOL completed) {
         [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
@@ -130,7 +131,7 @@
         [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
     }
     else {
-        NSString* txt = [NSString stringWithFormat:@"Download 0%% of %@", localMediaContent.mediaContent.length];
+        NSString* txt = [NSString stringWithFormat:@"下载 0%% of %@", localMediaContent.mediaContent.length];
         [self.btnDownload setTitle:txt forState:UIControlStateNormal];
     }
     

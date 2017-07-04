@@ -20,17 +20,7 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    [self addTarget:self action:@selector(clicked)];
     return self;
-}
-
--(void)clicked {
-    NSLog(@"clicked");
-    if(playing)
-        [player pause];
-    else
-        [player play];
-    playing = !playing;
 }
 
 -(void)play {
@@ -42,10 +32,19 @@
         NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
         [player play];
+        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         playing = YES;
-        self.btnDownload.hidden = YES;
         return;
     }
+    if(playing) {
+        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
+        [player pause];
+    }
+    else {
+        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+        [player play];
+    }
+    playing = !playing;
 }
 
 @end

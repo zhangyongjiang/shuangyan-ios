@@ -35,22 +35,32 @@
 }
 
 -(void)removeResource:(LocalMediaContent*)lmc {
-    Course* c = [Course new];
-    c.id = self.courseDetailsView.localCourseDetails.courseDetails.course.id;
-    c.resources = [NSMutableArray new];
-    [c.resources addObject:lmc.mediaContent];
     WeakSelf(weakSelf)
-    [CourseApi CourseAPI_RemoveResources:c onSuccess:^(Course *resp) {
-        [weakSelf presentFailureTips:@"删除成功"];
-        int i =0;
-        for (MediaContent* mc in self.courseDetailsView.localCourseDetails.courseDetails.course.resources) {
-            if([mc.path isEqualToString:lmc.mediaContent.path]) {
-                [self.courseDetailsView.localCourseDetails.courseDetails.course.resources removeObjectAtIndex:i];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        Course* c = [Course new];
+        c.id = self.courseDetailsView.localCourseDetails.courseDetails.course.id;
+        c.resources = [NSMutableArray new];
+        [c.resources addObject:lmc.mediaContent];
+        [CourseApi CourseAPI_RemoveResources:c onSuccess:^(Course *resp) {
+            [weakSelf presentFailureTips:@"删除成功"];
+            int i =0;
+            for (MediaContent* mc in self.courseDetailsView.localCourseDetails.courseDetails.course.resources) {
+                if([mc.path isEqualToString:lmc.mediaContent.path]) {
+                    [self.courseDetailsView.localCourseDetails.courseDetails.course.resources removeObjectAtIndex:i];
+                }
+                i++;
             }
-            i++;
-        }
-        self.courseDetailsView.localCourseDetails = self.courseDetailsView.localCourseDetails;
-    } onError:^(APIError *err) {
+            self.courseDetailsView.localCourseDetails = self.courseDetailsView.localCourseDetails;
+        } onError:^(APIError *err) {
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
     }];
 }
 
@@ -204,5 +214,9 @@
     }];
 }
 
-
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 @end
