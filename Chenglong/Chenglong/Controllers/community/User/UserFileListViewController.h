@@ -12,6 +12,7 @@
 
 @interface UserFileListViewController : BaseViewController
 
-@property(strong, nonatomic) NSString* courseId;
+@property(strong, nonatomic) NSString* userId;
+@property(strong, nonatomic) User* user;
 
 @end

@@ -11,6 +11,7 @@
 #import "CreateFileViewController.h"
 #import "CoursePickerViewController.h"
 #import "OnlineFileDetailsViewController.h"
+#import "UserFileListViewController.h"
 
 @interface OnlineFileListViewController () <CousePickerDelegate>
 
@@ -47,6 +48,11 @@
         self.coursePickerViewController.delegate = self;
     }
     else if([cmd isEqualToString:@"上传者"]){
+        NSString* userId = self.page.courseDetailsWithParent.courseDetails.user.id;
+        UserFileListViewController* c = [UserFileListViewController new];
+        c.userId = userId;
+        c.user = self.page.courseDetailsWithParent.courseDetails.user;
+        [self.navigationController pushViewController:c animated:YES];
     }
 }
 
@@ -86,7 +92,9 @@
     UIView* subview = noti.object;
     if([subview isSameViewOrChildOf:self.view]) {
         NSString* userId = [noti.userInfo objectForKey:@"userId"];
-        NSLog(@"user selected %@", userId);
+        UserFileListViewController* c = [UserFileListViewController new];
+        c.userId = userId;
+        [self.navigationController pushViewController:c animated:YES];
     }
 }
 

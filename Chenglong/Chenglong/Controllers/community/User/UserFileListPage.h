@@ -11,7 +11,7 @@
 
 @interface UserFileListPage : TableViewPage
 
-@property(strong, nonatomic) CourseDetailsWithParent* courseDetailsWithParent;
+@property(strong, nonatomic) CourseDetailsList* courseDetailsList;
 
 -(CourseDetails*) selected;
 

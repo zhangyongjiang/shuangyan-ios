@@ -11,6 +11,7 @@
 #import "UserFileListTableViewCell.h"
 #import "WebViewController.h"
 #import "OnlineFileDetailsViewController.h"
+#import "OnlineFileListViewController.h"
 
 #define UserFileListItemTableViewCellID @"UserFileListItemTableViewCellID"
 
@@ -28,13 +29,13 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.courseDetailsWithParent.courseDetails.items.count;
+    return self.courseDetailsList.items.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self checkNextPageForTableView:tableView indexPath:indexPath];
     UserFileListTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:UserFileListItemTableViewCellID];
-    CourseDetails* item = [self.courseDetailsWithParent.courseDetails.items objectAtIndex:indexPath.row];
+    CourseDetails* item = [self.courseDetailsList.items objectAtIndex:indexPath.row];
 //    cell.textLabel.text = item.course.title;
     cell.courseDetails = item;
     
@@ -42,9 +43,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CourseDetails* cd = [self.courseDetailsWithParent.courseDetails.items objectAtIndex:indexPath.row];
+    CourseDetails* cd = [self.courseDetailsList.items objectAtIndex:indexPath.row];
     if(cd.course.isDir.intValue == 1) {
-        UserFileListViewController* c = [[UserFileListViewController alloc] init];
+        OnlineFileListViewController* c = [[OnlineFileListViewController alloc] init];
         c.courseId = cd.course.id;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
@@ -55,10 +56,10 @@
     }
 }
 
--(void)setCourseDetailsWithParent:(CourseDetailsWithParent *)courseDetailsWithParent {
-    _courseDetailsWithParent = courseDetailsWithParent;
+-(void)setCourseDetailsList:(CourseDetailsList *)courseDetailsList {
+    _courseDetailsList = courseDetailsList;
     [_tableView reloadData];
-    if(courseDetailsWithParent.courseDetails.items.count == 0)
+    if(courseDetailsList.items.count == 0)
         [self setEmptyPageText:@"空文件夹"];
 }
 
