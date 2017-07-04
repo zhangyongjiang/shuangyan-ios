@@ -11,7 +11,6 @@
 #import "MainTabBarController.h"
 #import "FileViewController.h"
 #import "SameCityViewController.h"
-#import "CommunityViewController.h"
 #import "ProfileViewController.h"
 #import "FileListViewController.h"
 #import "OnlineSearchListViewController.h"

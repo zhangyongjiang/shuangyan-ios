@@ -152,7 +152,6 @@
 		AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7661F07D3CA000D0E1B /* CourseNameView.m */; };
-		AD49D7FD1F096CE5000D0E1B /* CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D76B1F096CE5000D0E1B /* CommunityViewController.m */; };
 		AD49D7FF1F096CE5000D0E1B /* OnlineCourseResourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */; };
 		AD49D8001F096CE5000D0E1B /* OnlineFileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7721F096CE5000D0E1B /* OnlineFileDetailsViewController.m */; };
 		AD49D8011F096CE5000D0E1B /* OnlineMediaContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7741F096CE5000D0E1B /* OnlineMediaContentView.m */; };
@@ -559,8 +558,6 @@
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		AD49D7651F07D3CA000D0E1B /* CourseNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseNameView.h; sourceTree = "<group>"; };
 		AD49D7661F07D3CA000D0E1B /* CourseNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseNameView.m; sourceTree = "<group>"; };
-		AD49D76A1F096CE5000D0E1B /* CommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityViewController.h; sourceTree = "<group>"; };
-		AD49D76B1F096CE5000D0E1B /* CommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityViewController.m; sourceTree = "<group>"; };
 		AD49D76F1F096CE5000D0E1B /* OnlineCourseResourceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineCourseResourceView.h; sourceTree = "<group>"; };
 		AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCourseResourceView.m; sourceTree = "<group>"; };
 		AD49D7711F096CE5000D0E1B /* OnlineFileDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFileDetailsViewController.h; sourceTree = "<group>"; };
@@ -1334,8 +1331,6 @@
 			isa = PBXGroup;
 			children = (
 				AD49D86F1F0BD86C000D0E1B /* User */,
-				AD49D76A1F096CE5000D0E1B /* CommunityViewController.h */,
-				AD49D76B1F096CE5000D0E1B /* CommunityViewController.m */,
 				AD49D76C1F096CE5000D0E1B /* Details */,
 				AD49D7771F096CE5000D0E1B /* List */,
 				AD49D7941F096CE5000D0E1B /* Picker */,
@@ -2084,7 +2079,6 @@
 				ADD117A81EED12C600EF6E04 /* CourseDetailsView.m in Sources */,
 				030049741E0E5F60006EDC29 /* JournalDetails.m in Sources */,
 				AD49D81D1F096CE5000D0E1B /* MediaAttachment.m in Sources */,
-				AD49D7FD1F096CE5000D0E1B /* CommunityViewController.m in Sources */,
 				AD49D8351F096CE5000D0E1B /* ResetPwdView.m in Sources */,
 				0335B33E1E1654C600A2A74B /* UITableView+Util.m in Sources */,
 				A364CCD01C94CBFA0075E65F /* Data.m in Sources */,
