@@ -11,7 +11,7 @@
 #import "CourseDetailsView.h"
 #import "CoursePickerViewController.h"
 
-@interface FileDetailsViewController ()
+@interface FileDetailsViewController () <UIImagePickerControllerDelegate>
 
 @property(strong, nonatomic) CourseDetailsView* courseDetailsView;
 
@@ -58,6 +58,7 @@
     NSMutableArray* arr = [NSMutableArray arrayWithObjects:
                            [[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"],
                            [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
+                           [[MenuItem alloc] initWithText:@"上传" andImgName:@"file_item_exchange_icon"],
                            [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
                            nil];
     self.menuItems = arr;
@@ -84,9 +85,21 @@
     else if([cmd isEqualToString:@"改名"]){
         [self changeCourseName];
     }
+    else if([cmd isEqualToString:@"上传"]){
+        [self upload];
+    }
     else if([cmd isEqualToString:@"下载全部"]){
         [self.courseDetailsView downloadAll];
     }
+}
+
+-(void)upload {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (void)changeCourseName
@@ -171,6 +184,20 @@
     }];
     [alert addAction:actionSure];
     [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    NSData* data = UIImageJPEGRepresentation(chosenImage, [Config shared].defaultImageQuality);
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:data, @"file", @"test.jpeg", @"filename", nil];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [CourseApi CourseAPI_AddResourceToCourse:dict courseId:self.localCourseDetails.courseDetails.course.id onSuccess:^(Course *resp) {
+        
+    } onError:^(APIError *err) {
+        
+    } progress:^(NSProgress *progress) {
         
     }];
 }
