@@ -9,10 +9,11 @@
 #import "BaseView.h"
 #import "LocalMediaContent.h"
 
+typedef void(^DeleteCallback)(LocalMediaContent* localMediaContent);
+
 @interface MediaConentView : BaseView
 
 @property(strong, nonatomic) LocalMediaContent* localMediaContent;
-
 @property(strong, nonatomic) UIButton* btnDownload;
 
 +(BOOL) isImage:(MediaContent*)mediaContent;
@@ -22,5 +23,6 @@
 +(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent;
 
 -(void)downloadOrPlay;
+-(void)addRemoveHandler:(DeleteCallback)deleteCallback;
 
 @end

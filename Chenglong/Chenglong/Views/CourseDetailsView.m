@@ -10,6 +10,9 @@
 #import "MediaConentView.h"
 
 @interface CourseDetailsView()
+{
+    DeleteCourseResourceCallback deleteCallback;
+}
 
 @property(strong,nonatomic) UILabel* labelDesc;
 @property(strong,nonatomic) NSMutableArray* mediaContentViews;
@@ -56,6 +59,7 @@
     CGFloat y = self.labelDesc.bottom;
     if(y>0.1)
         y += Margin;
+    WeakSelf(weakSelf)
     for (MediaContent* mc in self.localCourseDetails.courseDetails.course.resources) {
         MediaConentView* view = [MediaConentView createViewForMediaContent:mc];
         if(view) {
@@ -63,15 +67,27 @@
             [self.scrollView addSubview:view];
             y = y + view.height + Margin;
             [self.mediaContentViews addObject:view];
+            [view addRemoveHandler:^(LocalMediaContent* mediaContent) {
+                [weakSelf removeResource:mediaContent];
+            }];
         }
     }
     self.scrollView.contentSize = CGSizeMake(self.width, y+128);
+}
+
+-(void)removeResource:(LocalMediaContent*)mc {
+    if(deleteCallback)
+        deleteCallback(mc);
 }
 
 -(void)downloadAll {
     for (MediaConentView* mcv in self.mediaContentViews) {
         [mcv downloadOrPlay];
     }
+}
+
+-(void)addRemoveResourceHandler:(DeleteCourseResourceCallback)callback {
+    deleteCallback = callback;
 }
 
 @end

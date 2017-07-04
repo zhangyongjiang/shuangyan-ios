@@ -23,11 +23,35 @@
     [super viewDidLoad];
     self.title = self.localCourseDetails.courseDetails.course.title;
 
+    WeakSelf(weakSelf)
     self.courseDetailsView = [[CourseDetailsView alloc] initWithFrame:self.view.bounds];
     self.courseDetailsView.localCourseDetails = self.localCourseDetails;
     [self.view addSubview:self.courseDetailsView];
+    [self.courseDetailsView addRemoveResourceHandler:^(LocalMediaContent *localMediaContent) {
+        [weakSelf removeResource:localMediaContent];
+    }];
     
     [self addTopRightMenu];
+}
+
+-(void)removeResource:(LocalMediaContent*)lmc {
+    Course* c = [Course new];
+    c.id = self.courseDetailsView.localCourseDetails.courseDetails.course.id;
+    c.resources = [NSMutableArray new];
+    [c.resources addObject:lmc.mediaContent];
+    WeakSelf(weakSelf)
+    [CourseApi CourseAPI_RemoveResources:c onSuccess:^(Course *resp) {
+        [weakSelf presentFailureTips:@"删除成功"];
+        int i =0;
+        for (MediaContent* mc in self.courseDetailsView.localCourseDetails.courseDetails.course.resources) {
+            if([mc.path isEqualToString:lmc.mediaContent.path]) {
+                [self.courseDetailsView.localCourseDetails.courseDetails.course.resources removeObjectAtIndex:i];
+            }
+            i++;
+        }
+        self.courseDetailsView.localCourseDetails = self.courseDetailsView.localCourseDetails;
+    } onError:^(APIError *err) {
+    }];
 }
 
 -(void)addTopRightMenu {
