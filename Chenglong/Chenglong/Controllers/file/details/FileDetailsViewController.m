@@ -96,7 +96,7 @@
 -(void)upload {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-    picker.allowsEditing = YES;
+//    picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:picker animated:YES completion:NULL];
@@ -194,9 +194,11 @@
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:data, @"file", @"test.jpeg", @"filename", nil];
     [picker dismissViewControllerAnimated:YES completion:NULL];
     [CourseApi CourseAPI_AddResourceToCourse:dict courseId:self.localCourseDetails.courseDetails.course.id onSuccess:^(Course *resp) {
-        
+        [self presentFailureTips:@"上传成功"];
+        self.localCourseDetails.courseDetails.course.resources = resp.resources;
+        self.courseDetailsView.localCourseDetails = self.localCourseDetails;
     } onError:^(APIError *err) {
-        
+        [self presentFailureTips:@"上传失败"];
     } progress:^(NSProgress *progress) {
         
     }];
