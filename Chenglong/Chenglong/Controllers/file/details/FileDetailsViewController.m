@@ -10,6 +10,7 @@
 #import "MediaContentAudioView.h"
 #import "CourseDetailsView.h"
 #import "CoursePickerViewController.h"
+#import "MediaViewController.h"
 
 @interface FileDetailsViewController () <UIImagePickerControllerDelegate>
 
@@ -70,6 +71,7 @@
                            [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
                            [[MenuItem alloc] initWithText:@"上传" andImgName:@"file_item_exchange_icon"],
                            [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
+                           [[MenuItem alloc] initWithText:@"全屏" andImgName:@"file_item_exchange_icon"],
                            nil];
     self.menuItems = arr;
     [super addTopRightMenu:arr];
@@ -95,6 +97,13 @@
     else if([cmd isEqualToString:@"改名"]){
         [self changeCourseName];
     }
+    else if([cmd isEqualToString:@"全屏"]){
+        MediaViewController* c = [MediaViewController new];
+        c.mediaContents = self.courseDetails.course.resources;
+        [self.navigationController presentViewController:c animated:YES completion:^{
+            
+        }];
+    }
     else if([cmd isEqualToString:@"上传"]){
         [self upload];
     }
@@ -106,7 +115,7 @@
 -(void)upload {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-//    picker.allowsEditing = YES;
+    picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:picker animated:YES completion:NULL];
@@ -208,6 +217,7 @@
         self.courseDetails.course.resources = resp.resources;
         self.courseDetailsView.courseDetails = self.courseDetails;
     } onError:^(APIError *err) {
+        NSLog(@"上传失败\n%@", err);
         [self presentFailureTips:@"上传失败"];
     } progress:^(NSProgress *progress) {
         

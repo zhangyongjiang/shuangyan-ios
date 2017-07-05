@@ -7,12 +7,12 @@
 //
 
 #import "MediaContentImageView.h"
+#import "ImageViewController.h"
 
 @implementation MediaContentImageView
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
     return self;
 }
 
@@ -23,13 +23,33 @@
     }
     if(self.imgView == NULL) {
         self.imgView = [UIImageView new];
-        [self.imgView setContentMode:UIViewContentModeScaleToFill];
+        [self.imgView setContentMode:UIViewContentModeScaleAspectFill];
         [self addSubview:self.imgView];
-        [self.imgView autoPinEdgesToSuperviewMargins];
+//        [self.imgView autoPinEdgesToSuperviewMargins];
     }
 
     UIImage* img = [UIImage imageWithContentsOfFile:self.localMediaContent.filePath];
     self.imgView.image = img;
+    [self layoutSubviews];
+}
+
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    UIImage* img = self.imgView.image;
+    if(img == NULL)
+        return;
+    if(img.size.width/img.size.height > self.width/self.height) {
+        CGFloat w = self.width;
+        CGFloat h = w * img.size.height / img.size.width;
+        CGFloat y = (self.height - h)/2.;
+        self.imgView.frame = CGRectMake(0, y, w, h);
+    }
+    else {
+        CGFloat h = self.height;
+        CGFloat w = h * img.size.width / img.size.height;
+        CGFloat x = (self.width - w)/2.;
+        self.imgView.frame = CGRectMake(x, 0, w, h);
+    }
 }
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {

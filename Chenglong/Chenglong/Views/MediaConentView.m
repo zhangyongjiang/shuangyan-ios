@@ -17,7 +17,6 @@
 {
     DeleteCallback deleteCallback;
 }
-@property(strong,nonatomic)UIImageView* btnRemove;
 
 @end
 
@@ -114,11 +113,12 @@
     LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mediaContent];
     view.localMediaContent = lmc;
     
+    view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     view.backgroundColor = [UIColor colorFromRGB:0xeeeeee];
     view.clipsToBounds = YES;
-    view.layer.cornerRadius = 5;
-    view.layer.borderWidth = 1;
-    view.layer.borderColor = [UIColor colorFromRGB:0xeeeeee].CGColor;
+//    view.layer.cornerRadius = 5;
+//    view.layer.borderWidth = 1;
+//    view.layer.borderColor = [UIColor colorFromRGB:0xeeeeee].CGColor;
     
     return view;
 }

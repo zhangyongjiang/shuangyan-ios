@@ -108,9 +108,20 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationPushController:) name:NotificationPushController object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationPresentController:) name:NotificationPresentController object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRefreshControl:) name:NotificationRefreshControl object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationEndOfDisplay:) name:NotificationEndOfDisplay object:nil];
 }
+
+-(void)notificationPresentController:(NSNotification*)noti {
+    UIView* subview = noti.object;
+    if([subview isSameViewOrChildOf:self.view]) {
+        UIViewController* controller = [noti.userInfo objectForKey:@"controller"];
+        [self.navigationController presentViewController:controller animated:YES completion:^{
+        }];
+    }
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
