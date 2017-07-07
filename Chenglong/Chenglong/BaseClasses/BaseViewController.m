@@ -92,6 +92,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -301,5 +302,6 @@
     UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = btn;
 }
+
 
 @end

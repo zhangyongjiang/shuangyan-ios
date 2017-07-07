@@ -292,4 +292,9 @@
     }];
 
 }
+
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    self.page.size = size;
+}
+
 @end

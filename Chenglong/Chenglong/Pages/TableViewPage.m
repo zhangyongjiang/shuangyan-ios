@@ -20,6 +20,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     _tableView = [[UITableView alloc] initWithFrame:frame];
+    
     [self setup];
     return self;
 }
@@ -42,6 +43,7 @@
 //    _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     [self addSubview:_tableView];
+    [_tableView autoPinEdgesToSuperviewMargins];
     
     _refreshControl = [[UIRefreshControl alloc] init];
 //    _refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
