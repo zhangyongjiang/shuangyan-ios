@@ -22,12 +22,12 @@
 @implementation OnlineFileDetailsViewController
 
 -(void)addTopRightMenu {
-//    NSMutableArray* arr = [NSMutableArray arrayWithObjects:
-//                           [[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_newFile_icon"],
-//                           [[MenuItem alloc] initWithText:@"上传者" andImgName:@"file_search_age_icon"],
-//                           nil];
-//    self.menuItems = arr;
-//    [super addTopRightMenu:arr];
+    NSMutableArray* arr = [NSMutableArray arrayWithObjects:
+                           [[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_newFile_icon"],
+                           [[MenuItem alloc] initWithText:@"上传者" andImgName:@"file_search_age_icon"],
+                           nil];
+    self.menuItems = arr;
+    [super addTopRightMenu:arr];
 }
 
 -(void)topRightMenuItemClicked:(NSString *)cmd {
