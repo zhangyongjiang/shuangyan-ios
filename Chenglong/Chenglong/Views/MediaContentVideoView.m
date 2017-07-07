@@ -12,6 +12,7 @@
 @interface MediaContentVideoView()
 {
     AVPlayer* player;
+    AVPlayerLayer *layer;
     BOOL playing;
 }
 @end
@@ -43,12 +44,17 @@
     
     NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
     player = [[AVPlayer alloc] initWithURL:url];
-    AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:player];
+    layer = [AVPlayerLayer playerLayerWithPlayer:player];
     layer.frame = self.bounds;
     [self.layer addSublayer:layer];
     layer.backgroundColor = [UIColor clearColor].CGColor;
     [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
     [player play];
+}
+
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    layer.frame = self.bounds;
 }
 
 @end

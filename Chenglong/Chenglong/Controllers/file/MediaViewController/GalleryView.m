@@ -19,9 +19,11 @@
 
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
+    self.backgroundColor = [UIColor blackColor];
     self.contentMode = UIViewContentModeScaleAspectFill;
 
     self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
+    self.scrollView.backgroundColor = [UIColor blackColor];
     [self addSubview:self.scrollView];
     self.scrollView.pagingEnabled = true;
     self.scrollView.scrollsToTop = false;
@@ -78,5 +80,16 @@
     }
     self.pageControl.currentPage = index;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRadioValueChanged object:self];
+}
+
+-(void)layoutSubviews {
+    self.scrollView.width = self.width;
+    self.scrollView.height = self.height;
+    int x = 0;
+    for (MediaConentView* view in self.mediaViews) {
+        CGRect f = CGRectMake(x, 0, self.width, self.height);
+        view.frame = f;
+        x += self.width;
+    }
 }
 @end

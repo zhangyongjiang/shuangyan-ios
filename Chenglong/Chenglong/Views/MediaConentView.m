@@ -25,6 +25,7 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    self.backgroundColor = [UIColor blackColor];
     
     self.btnDownload = [UIButton new];
     [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];

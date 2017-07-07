@@ -133,7 +133,10 @@
 }
 
 +(NSString*)homeDir {
-    return NSHomeDirectory();
+//    return NSHomeDirectory();
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    return documentsPath;
 }
 
 +(NSString*)mediaHomeDir {

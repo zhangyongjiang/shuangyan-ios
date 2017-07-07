@@ -19,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
     self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
     self.galleryView.mediaContents = self.mediaContents;
     [self.view addSubview:self.galleryView];
@@ -40,4 +41,10 @@
     }];
 }
 
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    self.view.width = size.width;
+    self.view.height = size.height;
+    self.galleryView.width = size.width;
+    self.galleryView.height = size.height;
+}
 @end

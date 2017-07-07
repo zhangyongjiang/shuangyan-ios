@@ -12,16 +12,21 @@
 #import "FileManager.h"
 #import "File.h"
 #import "BaseNavigationController.h"
+#import "LocalMediaContent.h"
 
 @interface FileListViewController ()
 
 @property(strong, nonatomic) FileListPage* page;
+@property(strong, nonatomic) NSMutableArray* downloadList;
+@property(assign, nonatomic) int currentDownload;
 
 @end
 
 @implementation FileListViewController
 
 - (void)viewDidLoad {
+    self.currentDownload = 0;
+    self.downloadList = [NSMutableArray new];
     [super viewDidLoad];
     [self addTopRightMenu];
     [self createPage];
@@ -60,6 +65,7 @@
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
 //    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"]],
 
     [super addTopRightMenu:self.menuItems];
 }
@@ -228,6 +234,9 @@
         //改名
         [self resetFolderName];
     }
+    else if ([cmd isEqualToString:@"下载全部"]){
+        [self downloadAll];
+    }
     else if ([cmd isEqualToString:@"删除"]) {
         if(self.page.courseDetailsList.items.count>0) {
             [self presentFailureTips:@"当前文件夹为空时才能删除"];
@@ -235,7 +244,31 @@
         }
         [self removeCourse];
     }
+}
 
+-(void)downloadAll {
+    for (CourseDetails* cd in self.page.courseDetailsList.items) {
+        if(!cd.course.resources)
+            continue;
+        [self.downloadList addObjectsFromArray:cd.course.resources];
+    }
+    [self downloadOne];
+}
+
+-(void)downloadOne {
+    if(self.currentDownload >= self.downloadList.count)
+        return;
+    MediaContent* mc = [self.downloadList objectAtIndex:self.currentDownload];
+    WeakSelf(weakSelf)
+    NSLog(@"download %@", mc.path);
+        LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mc];
+        [lmc downloadWithProgressBlock:^(CGFloat progress) {
+            NSLog(@"download %f", progress);
+        } completionBlock:^(BOOL completed) {
+            NSLog(@"download complete");
+            self.currentDownload++;
+            [weakSelf downloadOne];
+        }];
 }
 
 -(void)removeCourse {

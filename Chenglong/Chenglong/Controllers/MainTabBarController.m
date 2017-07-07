@@ -50,7 +50,11 @@
     
 //    FileViewController * file = [[FileViewController alloc] initWithNibName:nil bundle:nil];
     FileListViewController* file = [[FileListViewController alloc] init];
-    file.filePath = NSHomeDirectory();
+
+    //    file.filePath = NSHomeDirectory();
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    file.filePath = documentsPath;
 
     OnlineSearchListViewController* community = [[OnlineSearchListViewController alloc] init];
     

@@ -23,7 +23,11 @@
 @implementation AppDelegate
 
 -(void)test {
-    File* f = [[File alloc] initWithFullPath:NSHomeDirectory()];
+//    NSString* homedir = NSHomeDirectory();
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *homedir = [paths objectAtIndex:0];
+
+    File* f = [[File alloc] initWithFullPath:homedir];
     NSMutableArray* array = [f deepLs];
     for (File* f in array) {
         NSLog(@"%@", f.fullPath);
