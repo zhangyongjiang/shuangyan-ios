@@ -30,6 +30,7 @@
     self.page.delegate = self.delegate;
     [self.view addSubview:self.page];    
     [self refreshPage];
+    [self.page autoPinEdgesToSuperviewMargins];
 }
 
 -(void)refreshPage {

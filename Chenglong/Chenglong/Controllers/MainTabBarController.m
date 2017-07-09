@@ -58,7 +58,7 @@
 
     OnlineSearchListViewController* community = [[OnlineSearchListViewController alloc] init];
     
-    ProfileViewController* profile = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
+    ProfileViewController* profile = [[ProfileViewController alloc] init];
     
     currSelectViewController = file;
     

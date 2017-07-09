@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "Page.h"
 
 @interface BaseViewController () <SelectIndexPathDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -93,7 +94,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     

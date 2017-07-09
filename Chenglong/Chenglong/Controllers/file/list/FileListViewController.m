@@ -13,8 +13,9 @@
 #import "File.h"
 #import "BaseNavigationController.h"
 #import "LocalMediaContent.h"
+#import "CoursePickerViewController.h"
 
-@interface FileListViewController ()
+@interface FileListViewController () <CousePickerDelegate>
 
 @property(strong, nonatomic) FileListPage* page;
 @property(strong, nonatomic) NSMutableArray* downloadList;
@@ -65,6 +66,7 @@
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
 //    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_move_icon"]];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"]],
 
     [super addTopRightMenu:self.menuItems];
@@ -237,6 +239,9 @@
     else if ([cmd isEqualToString:@"下载全部"]){
         [self downloadAll];
     }
+    else if ([cmd isEqualToString:@"移动"]){
+        [self move];
+    }
     else if ([cmd isEqualToString:@"删除"]) {
         if(self.page.courseDetailsList.items.count>0) {
             [self presentFailureTips:@"当前文件夹为空时才能删除"];
@@ -244,6 +249,26 @@
         }
         [self removeCourse];
     }
+}
+
+-(void)move {
+    CoursePickerViewController* c = [CoursePickerViewController new];
+    c.delegate = self;
+    [self.navigationController pushViewController:c animated:YES];
+}
+
+-(void)selectCourse:(NSString *)courseId {
+    CourseMoveRequest* req = [CourseMoveRequest new];
+    req.courseId = self.courseId;
+    req.targetParentCourseId = courseId;
+    WeakSelf(weakSelf)
+    [CourseApi CourseAPI_MoveCourse:req onSuccess:^(Course *resp) {
+        [weakSelf presentFailureTips:@"移动成功"];
+        [weakSelf.navigationController popToViewController:weakSelf animated:YES];
+    } onError:^(APIError *err) {
+        [weakSelf presentFailureTips:@"移动失败"];
+        [weakSelf.navigationController popToViewController:weakSelf animated:YES];
+    }];
 }
 
 -(void)downloadAll {

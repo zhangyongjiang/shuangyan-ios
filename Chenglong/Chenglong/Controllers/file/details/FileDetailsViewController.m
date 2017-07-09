@@ -12,7 +12,7 @@
 #import "CoursePickerViewController.h"
 #import "MediaViewController.h"
 
-@interface FileDetailsViewController () <UIImagePickerControllerDelegate>
+@interface FileDetailsViewController () <UIImagePickerControllerDelegate, CousePickerDelegate>
 
 @property(strong, nonatomic) CourseDetailsView* courseDetailsView;
 
@@ -48,12 +48,12 @@
         [c.resources addObject:lmc.mediaContent];
         [CourseApi CourseAPI_RemoveResources:c onSuccess:^(Course *resp) {
             [weakSelf presentFailureTips:@"删除成功"];
-            int i =0;
-            for (MediaContent* mc in self.courseDetailsView.courseDetails.course.resources) {
+            for (int i=0; i<self.courseDetailsView.courseDetails.course.resources.count; i++) {
+                MediaContent* mc = [self.courseDetailsView.courseDetails.course.resources objectAtIndex:i];
                 if([mc.path isEqualToString:lmc.mediaContent.path]) {
                     [self.courseDetailsView.courseDetails.course.resources removeObjectAtIndex:i];
+                    break;
                 }
-                i++;
             }
             self.courseDetailsView.courseDetails = self.courseDetailsView.courseDetails;
         } onError:^(APIError *err) {
@@ -72,6 +72,7 @@
                            [[MenuItem alloc] initWithText:@"上传" andImgName:@"file_item_exchange_icon"],
                            [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
                            [[MenuItem alloc] initWithText:@"全屏" andImgName:@"file_item_exchange_icon"],
+                           [[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_move_icon"],
                            nil];
     self.menuItems = arr;
     [super addTopRightMenu:arr];
@@ -107,9 +108,32 @@
     else if([cmd isEqualToString:@"上传"]){
         [self upload];
     }
+    else if([cmd isEqualToString:@"移动"]){
+        [self move];
+    }
     else if([cmd isEqualToString:@"下载全部"]){
         [self.courseDetailsView downloadAll];
     }
+}
+
+-(void)move {
+    CoursePickerViewController* c = [CoursePickerViewController new];
+    c.delegate = self;
+    [self.navigationController pushViewController:c animated:YES];
+}
+
+-(void)selectCourse:(NSString *)courseId {
+    CourseMoveRequest* req = [CourseMoveRequest new];
+    req.courseId = self.courseDetails.course.id;
+    req.targetParentCourseId = courseId;
+    WeakSelf(weakSelf)
+    [CourseApi CourseAPI_MoveCourse:req onSuccess:^(Course *resp) {
+        [weakSelf presentFailureTips:@"移动成功"];
+        [weakSelf.navigationController popToViewController:weakSelf animated:YES];
+    } onError:^(APIError *err) {
+        [weakSelf presentFailureTips:@"移动失败"];
+        [weakSelf.navigationController popToViewController:weakSelf animated:YES];
+    }];
 }
 
 -(void)upload {
