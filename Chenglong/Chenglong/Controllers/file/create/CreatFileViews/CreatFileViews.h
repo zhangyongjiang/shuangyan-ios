@@ -12,6 +12,7 @@
 #import "MediaAttachment.h"
 #import "DVFullScreenMediaViewer.h"
 #import "MediaAttachmentDataSource.h"
+#import "MediaContent.h"
 
 @interface CreatFileViews : UIView
 
@@ -27,4 +28,7 @@
 @property (nonatomic, strong) TZImagePickerController *imagePicker;
 @property (nonatomic, strong) UIImagePickerController *mediaPicker;
 @property (nonatomic, strong) DVFullScreenMediaViewer *fullScreen;
+
+@property (nonatomic, strong) CourseDetails* courseDetails;
+
 @end

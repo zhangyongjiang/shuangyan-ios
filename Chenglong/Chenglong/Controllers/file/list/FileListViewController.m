@@ -9,6 +9,7 @@
 #import "FileListViewController.h"
 #import "ObjectMapper.h"
 #import "CreateFileViewController.h"
+#import "UpdateFileViewController.h"
 #import "FileManager.h"
 #import "File.h"
 #import "BaseNavigationController.h"
@@ -67,7 +68,7 @@
 //    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_move_icon"]];
-    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"]],
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_download_icon"]],
 
     [super addTopRightMenu:self.menuItems];
 }
@@ -187,7 +188,15 @@
     }];
 }
 
-- (void)resetFolderName
+-(void)resetFolderName
+{
+    UpdateFileViewController *file = [[UpdateFileViewController alloc] initWithNibName:@"CreateFileViewController" bundle:nil];
+    file.courseDetails = self.page.courseDetailsList.courseDetails;
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:file];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)resetFolderNameDirectly
 {
     WeakSelf(weakSelf)
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];

@@ -24,12 +24,11 @@
 }
 
 -(void)play {
+    NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
     if(![self.localMediaContent isDownloaded]) {
-        NSLog(@"no downloaded yet");
-        return;
+        url = [NSURL URLWithString:self.localMediaContent.mediaContent.url];
     }
     if(!player) {
-        NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
         [player play];
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];

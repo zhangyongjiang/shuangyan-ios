@@ -142,6 +142,7 @@
 		A364CCC91C94CBFA0075E65F /* ObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC2E1C94CBFA0075E65F /* ObjectMapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A364CCD01C94CBFA0075E65F /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC401C94CBFA0075E65F /* Data.m */; };
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
+		AD2A7BE11F1265D00016B51E /* UpdateFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */; };
 		AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD318B4F1EFBF9FD0061E993 /* Dbase.m */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
@@ -542,6 +543,8 @@
 		A364CC491C94CBFA0075E65F /* NSString+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Json.h"; sourceTree = "<group>"; };
 		A364CC4A1C94CBFA0075E65F /* NSString+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Json.m"; sourceTree = "<group>"; };
 		A364CC4B1C94CBFA0075E65F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		AD2A7BDF1F1265D00016B51E /* UpdateFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateFileViewController.h; sourceTree = "<group>"; };
+		AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateFileViewController.m; sourceTree = "<group>"; };
 		AD318B4E1EFBF9FD0061E993 /* Dbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dbase.h; sourceTree = "<group>"; };
 		AD318B4F1EFBF9FD0061E993 /* Dbase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dbase.m; sourceTree = "<group>"; };
 		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
@@ -1303,6 +1306,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		AD2A7BDE1F1265D00016B51E /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				AD2A7BDF1F1265D00016B51E /* UpdateFileViewController.h */,
+				AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
 		AD318B4D1EFBF9FD0061E993 /* Dbase */ = {
 			isa = PBXGroup;
 			children = (
@@ -1401,6 +1413,7 @@
 		AD49D7991F096CE5000D0E1B /* MyFiles */ = {
 			isa = PBXGroup;
 			children = (
+				AD2A7BDE1F1265D00016B51E /* Update */,
 				AD49D87C1F0C5133000D0E1B /* MediaViewController */,
 				AD49D79A1F096CE5000D0E1B /* AutoPlay */,
 				AD49D79D1F096CE5000D0E1B /* create */,
@@ -2126,6 +2139,7 @@
 				030048F41E0E5D17006EDC29 /* Global.m in Sources */,
 				030049011E0E5D65006EDC29 /* TMMemoryCache.m in Sources */,
 				032911461E113B10000C1F5A /* NJKWebViewProgress.m in Sources */,
+				AD2A7BE11F1265D00016B51E /* UpdateFileViewController.m in Sources */,
 				AD49D84E1F09869E000D0E1B /* FileListItemView.m in Sources */,
 				0300495D1E0E5F60006EDC29 /* AdvertisingList.m in Sources */,
 				030049791E0E5F61006EDC29 /* MoneyFlowList.m in Sources */,

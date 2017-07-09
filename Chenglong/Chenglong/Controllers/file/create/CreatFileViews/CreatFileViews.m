@@ -301,4 +301,18 @@ static NSInteger kPhotoMaxNumber = 7;
     return _photoViews;
 }
 
+-(void)setCourseDetails:(CourseDetails *)courseDetails {
+    _courseDetails = courseDetails;
+    _tfTitle.text = courseDetails.course.title;
+    _tvContent.text = courseDetails.course.content;
+    for (MediaContent* mc in courseDetails.course.resources) {
+        if([mc.contentType hasPrefix:@"image"]) {
+            MediaAttachment *newAttachment = [[MediaAttachment alloc] init];
+            newAttachment.type = FileMediaTypePhoto;
+            newAttachment.url = [NSURL URLWithString:mc.url];
+            [self.mediaAttachmentDataSource.attachments insertObject:newAttachment atIndex:self.mediaAttachmentDataSource.attachments.count - 1];
+        }
+    }
+    [self.photoViews.collection reloadData];
+}
 @end
