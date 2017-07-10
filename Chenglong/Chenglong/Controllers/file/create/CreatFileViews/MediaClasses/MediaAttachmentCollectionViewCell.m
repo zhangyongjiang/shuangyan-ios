@@ -68,10 +68,8 @@
         self.imageView.image = attachment.coverPhoto;
         
     } else if (attachment.url) {
-        [SDWebImageDownloader.sharedDownloader setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
-                                     forHTTPHeaderField:@"Accept"];
         [self.imageView sd_setImageWithURL:attachment.url placeholderImage:[UIImage imageNamed:@"header_default_img"]
-                        options:(SDWebImageProgressiveDownload & SDWebImageDownloaderHandleCookies)
+                        options:(SDWebImageHandleCookies)
                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if(error)
                 NSLog(@"img download failed %@ for url %@", error, imageURL);
