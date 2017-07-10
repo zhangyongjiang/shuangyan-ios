@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface UpdateFileViewController : ZaoJiaoBgViewController
+@interface UpdateFileViewController : BaseViewController
 
 @property(strong,nonatomic)CourseDetails* courseDetails;
 

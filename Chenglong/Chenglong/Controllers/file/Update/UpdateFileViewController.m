@@ -30,8 +30,26 @@ static CGFloat creatFileViewHeight = 420.f;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHidden:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaDeleteButtonTapped:) name:@"JournalAttachmentDeleteButtonTapped" object:nil];
     
     self.creatFileViews.courseDetails = self.courseDetails;
+}
+
+- (void)mediaDeleteButtonTapped:(NSNotification *)noti
+{
+    MediaAttachment *attachment = noti.object;
+    if(!attachment.url)
+        return;
+    Course* course = [Course new];
+    course.id = self.courseDetails.course.id;
+    MediaContent* mc = [MediaContent new];
+    mc.url = attachment.url.absoluteString;
+    course.resources = [NSMutableArray arrayWithObject:mc];
+    [CourseApi CourseAPI_RemoveResources:course onSuccess:^(Course *resp) {
+        [self presentSuccessTips:@"Removed"];
+    } onError:^(APIError *err) {
+        [self presentFailureTips:@"Failed"];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
