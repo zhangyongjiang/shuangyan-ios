@@ -11,6 +11,8 @@
 #import "CourseDetailsView.h"
 #import "CoursePickerViewController.h"
 #import "MediaViewController.h"
+#import "BaseNavigationController.h"
+#import "UpdateFileViewController.h"
 
 @interface FileDetailsViewController () <UIImagePickerControllerDelegate, CousePickerDelegate>
 
@@ -67,7 +69,7 @@
 
 -(void)addTopRightMenu {
     NSMutableArray* arr = [NSMutableArray arrayWithObjects:
-                           [[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"],
+                           [[MenuItem alloc] initWithText:@"修改" andImgName:@"file_item_edit_icon"],
                            [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
                            [[MenuItem alloc] initWithText:@"上传" andImgName:@"file_item_exchange_icon"],
                            [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
@@ -95,8 +97,8 @@
     if ([cmd isEqualToString:@"删除"]) {
         [self removeCourse];
     }
-    else if([cmd isEqualToString:@"改名"]){
-        [self changeCourseName];
+    else if([cmd isEqualToString:@"修改"]){
+        [self showUpdateCourse];
     }
     else if([cmd isEqualToString:@"全屏"]){
         MediaViewController* c = [MediaViewController new];
@@ -143,6 +145,14 @@
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:picker animated:YES completion:NULL];
+}
+
+-(void)showUpdateCourse
+{
+    UpdateFileViewController *file = [[UpdateFileViewController alloc] initWithNibName:@"CreateFileViewController" bundle:nil];
+    file.courseDetails = self.courseDetails;
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:file];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)changeCourseName
