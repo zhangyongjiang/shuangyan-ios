@@ -42,10 +42,18 @@ static CGFloat creatFileViewHeight = 420.f;
         return;
     Course* course = [Course new];
     course.id = self.courseDetails.course.id;
-    MediaContent* mc = [MediaContent new];
+    __block MediaContent* mc = [MediaContent new];
     mc.url = attachment.url.absoluteString;
     course.resources = [NSMutableArray arrayWithObject:mc];
+    WeakSelf(weakSelf)
     [CourseApi CourseAPI_RemoveResources:course onSuccess:^(Course *resp) {
+        for (int i=0; i< weakSelf.courseDetails.course.resources.count; i++) {
+            MediaContent* existing = [weakSelf.courseDetails.course.resources objectAtIndex:i];
+            if([existing.url isEqualToString:mc.url]) {
+                [weakSelf.courseDetails.course.resources removeObjectAtIndex:i];
+                break;
+            }
+        }
         [self presentSuccessTips:@"Removed"];
     } onError:^(APIError *err) {
         [self presentFailureTips:@"Failed"];
@@ -112,6 +120,37 @@ static CGFloat creatFileViewHeight = 420.f;
         return;
     }
     Course *course = [Course new];
+    course.id = self.courseDetails.course.id;
+    course.title = self.creatFileViews.tfTitle.text;
+    course.content = self.creatFileViews.tvContent.text;
+    WeakSelf(weakSelf)
+    if (self.creatFileViews.mediaAttachmentDataSource.attachments.count < 2) {
+        [SVProgressHUD showWithStatus:@"上传中"];
+        [CourseApi CourseAPI_UpdateCourse:course onSuccess:^(Course *resp) {
+            [SVProgressHUD dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        } onError:^(APIError *err) {
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }else{
+        [SVProgressHUD showWithStatus:@"上传中"];
+        [CourseApi CourseAPI_UpdateCourseWithResources:@{@"file":self.creatFileViews.mediaAttachmentDataSource.attachments} json:[course toJson] onSuccess:^(Course *resp) {
+            [SVProgressHUD dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        } onError:^(APIError *err) {
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        } progress:^(NSProgress *progress) {
+            if ( weakSelf.creatFileViews.mediaAttachmentDataSource.attachments.count > 1 ) {
+                [SVProgressHUD showUploadProgressWithStatus:@"上传中" progress:progress];
+            }
+        }];
+    }
+    
+    
 }
 
 #pragma mark - 键盘

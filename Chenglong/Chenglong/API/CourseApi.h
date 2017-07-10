@@ -53,5 +53,5 @@
 
 +(NSURLSessionDataTask*) CourseAPI_AddResourceToCourse:(NSDictionary*)filePart courseId:(NSString*)courseId onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock;
 
-
++(NSURLSessionDataTask*) CourseAPI_UpdateCourseWithResources:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock ;
 @end

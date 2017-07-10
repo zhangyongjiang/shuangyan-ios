@@ -244,6 +244,28 @@
     }];
 }
 
++(NSURLSessionDataTask*) CourseAPI_UpdateCourseWithResources:(NSDictionary*)filePart json:(NSString*)json onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock progress:(void (^)(NSProgress *progress))progressBlock {
+    NSString* url_ = @"/zuul/course-service/update-with-resources";
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    if(json) [dict setObject:json forKey:@"json"];
+    return [MyHTTPSessionManager upload:filePart parameters:dict toPath:url_ success:^(NSURLSessionDataTask *operation, id responseObject) {
+        ObjectMapper *mapper = [ObjectMapper mapper];
+        NSError *error;
+        Course* resp = [mapper mapObject:responseObject toClass:[Course class] withError:&error];
+        if (error) {
+            errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+        } else {
+            successBlock(resp);
+        }
+    } progress:^(NSProgress *progress) {
+        if ( progressBlock != nil && progress ) {
+            progressBlock(progress);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+    }];
+}
+
 +(NSURLSessionDataTask*) CourseAPI_MoveCourse:(CourseMoveRequest*)req onSuccess:(void (^)(Course *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
     NSString* url_ = @"/course-service/move";
     return [[WebService getOperationManager] POST:url_
