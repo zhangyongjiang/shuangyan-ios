@@ -75,7 +75,6 @@ typedef void(^BlankBlock)(void);
 #import "UIView+Helper.h"
 #import "SDiPhoneVersion.h"
 #import "UINavigationBar+Awesome.h"
-#import "ZaoJiaoBgViewController.h"
 #import "UCActionSheet.h"
 #import "FDAlertView.h"
 #import "XTPopView.h"

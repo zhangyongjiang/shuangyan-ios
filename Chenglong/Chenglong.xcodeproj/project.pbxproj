@@ -83,7 +83,6 @@
 		032911811E113D0C000C1F5A /* UIImageView+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911801E113D0C000C1F5A /* UIImageView+Thumbnail.m */; };
 		032911871E113D1F000C1F5A /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911861E113D1F000C1F5A /* UINavigationBar+Awesome.m */; };
 		0329118A1E113D24000C1F5A /* UIView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911891E113D24000C1F5A /* UIView+Helper.m */; };
-		0329118D1E113D87000C1F5A /* ZaoJiaoBgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0329118C1E113D87000C1F5A /* ZaoJiaoBgViewController.m */; };
 		032911901E113EBF000C1F5A /* UILocalNotification+Kaishi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0329118F1E113EBF000C1F5A /* UILocalNotification+Kaishi.m */; };
 		032911A31E114413000C1F5A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911A21E114413000C1F5A /* ProfileViewController.m */; };
 		032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 032911BD1E1296A8000C1F5A /* SecondCountdown.m */; };
@@ -440,8 +439,6 @@
 		032911861E113D1F000C1F5A /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		032911881E113D24000C1F5A /* UIView+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Helper.h"; sourceTree = "<group>"; };
 		032911891E113D24000C1F5A /* UIView+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Helper.m"; sourceTree = "<group>"; };
-		0329118B1E113D87000C1F5A /* ZaoJiaoBgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZaoJiaoBgViewController.h; sourceTree = "<group>"; };
-		0329118C1E113D87000C1F5A /* ZaoJiaoBgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZaoJiaoBgViewController.m; sourceTree = "<group>"; };
 		0329118E1E113EBF000C1F5A /* UILocalNotification+Kaishi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILocalNotification+Kaishi.h"; sourceTree = "<group>"; };
 		0329118F1E113EBF000C1F5A /* UILocalNotification+Kaishi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILocalNotification+Kaishi.m"; sourceTree = "<group>"; };
 		032911A11E114413000C1F5A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -945,8 +942,6 @@
 				AD59D8F41EE913F9009C78D6 /* FitLabel.m */,
 				032911501E113B8B000C1F5A /* KSWebViewController.h */,
 				032911511E113B8B000C1F5A /* KSWebViewController.m */,
-				0329118B1E113D87000C1F5A /* ZaoJiaoBgViewController.h */,
-				0329118C1E113D87000C1F5A /* ZaoJiaoBgViewController.m */,
 				032C96551E2C67C1001EFC29 /* UIPlaceHolderTextView.h */,
 				032C96561E2C67C1001EFC29 /* UIPlaceHolderTextView.m */,
 				032C96A81E2CB007001EFC29 /* ImageCamera */,
@@ -2214,7 +2209,6 @@
 				0335B3101E1508F800A2A74B /* XTPopNormalView.m in Sources */,
 				0329115C1E113BC0000C1F5A /* TTTAttributedLabel.m in Sources */,
 				AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */,
-				0329118D1E113D87000C1F5A /* ZaoJiaoBgViewController.m in Sources */,
 				AD49D80C1F096CE5000D0E1B /* OnlineFileListViewController.m in Sources */,
 				030049801E0E5F61006EDC29 /* UserDetails.m in Sources */,
 				032911751E113CBA000C1F5A /* SDImageCache+Thumbnail.m in Sources */,

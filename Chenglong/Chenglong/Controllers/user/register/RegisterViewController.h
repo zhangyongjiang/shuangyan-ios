@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Chenglong. All rights reserved.
 //
 
-#import "ZaoJiaoBgViewController.h"
+#import "BaseViewController.h"
 
-@interface RegisterViewController : ZaoJiaoBgViewController
+@interface RegisterViewController : BaseViewController
 
 
 @end

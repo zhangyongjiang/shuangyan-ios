@@ -8,9 +8,10 @@
 
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 typedef void (^CloseBlock)(void);
-@interface KSWebViewController : ZaoJiaoBgViewController
+@interface KSWebViewController : BaseViewController
 
 @property (nonatomic, assign) BOOL isPush;
 @property (nonatomic, strong) NSString * url;

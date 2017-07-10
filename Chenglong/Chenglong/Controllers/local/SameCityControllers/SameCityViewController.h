@@ -6,8 +6,8 @@
 //  Copyright © 2016年 Chenglong. All rights reserved.
 //
 
-#import "ZaoJiaoBgViewController.h"
+#import "BaseViewController.h"
 
-@interface SameCityViewController : ZaoJiaoBgViewController
+@interface SameCityViewController : BaseViewController
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface CreateFileViewController : ZaoJiaoBgViewController
+@interface CreateFileViewController : BaseViewController
 
 @property(strong,nonatomic)NSString* parentCourseId;
 

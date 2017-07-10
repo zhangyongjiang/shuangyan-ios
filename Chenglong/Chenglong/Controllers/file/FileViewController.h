@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Chenglong. All rights reserved.
 //
 
-#import "ZaoJiaoBgViewController.h"
+#import "BaseViewController.h"
 
-@interface FileViewController : ZaoJiaoBgViewController
+@interface FileViewController : BaseViewController
 
 @property(strong, nonatomic) NSString* currentDirId;
 
