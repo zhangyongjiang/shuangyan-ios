@@ -9,6 +9,7 @@
 #import "GalleryView.h"
 #import "MediaConentView.h"
 #import "MediaContentAudioView.h"
+#import "MediaContentVideoView.h"
 
 @interface GalleryView()
 {
@@ -44,6 +45,16 @@
     [self addSubview:self.pageControl];
     
     return self;
+}
+
+-(void)dealloc
+{
+    for(MediaConentView* view in self.mediaViews) {
+        [view removeFromSuperview];
+    }
+    
+    [timer invalidate];
+    timer = nil;
 }
 
 -(void)setMediaContents:(NSArray *)mediaContents {
@@ -84,6 +95,8 @@
     if (index<0 || index >= self.mediaContents.count) {
         return;
     }
+    UIView* view = [self.mediaViews objectAtIndex:index];
+    [self.scrollView setContentOffset:CGPointMake(view.x, 0)];
     self.pageControl.currentPage = index;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRadioValueChanged object:self];
 }
@@ -103,27 +116,15 @@
 {
     if(self.mediaContents.count == 0)
         return;
-    while (currentPlay < self.mediaContents.count) {
-        MediaContent* mc = [self.mediaContents objectAtIndex:currentPlay];
-        if([mc.contentType hasPrefix:@"audio"]) {
-            break;
-        }
-        currentPlay++;
-    }
-    if(currentPlay >= self.mediaContents.count)
-        return;
     [self showPage:currentPlay];
     MediaContentAudioView* view = [self.mediaViews objectAtIndex:currentPlay];
     [view play];
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
+    WeakSelf(weakSelf)
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
 }
 
 -(void)checkPlayerStatus
 {
-    MediaContent* mc = [self.mediaContents objectAtIndex:currentPlay];
-    if(![mc.contentType hasPrefix:@"audio"]) {
-        return;
-    }
     MediaContentAudioView* view = [self.mediaViews objectAtIndex:currentPlay];
     if([view isPlaying]) {
         return;
@@ -134,5 +135,22 @@
     [self showPage:currentPlay];
     view = [self.mediaViews objectAtIndex:currentPlay];
     [view play];
+}
+
+-(void)stop
+{
+    [timer invalidate];
+    timer = nil;
+    for(int i=0; i<self.mediaContents.count; i++) {
+        MediaContent* mc = [self.mediaContents objectAtIndex:i];
+        if([mc.contentType hasPrefix:@"audio"]) {
+            MediaContentAudioView* view = [self.mediaViews objectAtIndex:i];
+            [view stop];
+        }
+        else if([mc.contentType hasPrefix:@"video"]) {
+            MediaContentVideoView* view = [self.mediaViews objectAtIndex:i];
+            [view stop];
+        }
+    }
 }
 @end

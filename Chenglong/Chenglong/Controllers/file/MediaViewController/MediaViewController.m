@@ -38,6 +38,9 @@
 -(void)cancelPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
     }];
+    [self.galleryView stop];
+    [self.galleryView removeFromSuperview];
+    self.galleryView = nil;
 }
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {

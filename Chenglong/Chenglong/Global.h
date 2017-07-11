@@ -20,6 +20,7 @@
 #import "File.h"
 #import "Dbase.h"
 #import "NSDate+Kaishi.h"
+#import "MediaContent+Local.h"
 
 static NSInteger max_second = 120;//验证码倒计时时间
 

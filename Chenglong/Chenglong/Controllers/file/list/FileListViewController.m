@@ -267,11 +267,20 @@
 
 -(void)play
 {
-    MediaViewController* c = [MediaViewController new];
     NSMutableArray* mediaContents = [NSMutableArray arrayWithCapacity:0];
     for (CourseDetails* cd in self.page.courseDetailsList.items) {
-        [mediaContents addObjectsFromArray:cd.course.resources];
+        for (MediaContent* mc in cd.course.resources) {
+            if([mc.contentType hasPrefix:@"audio"] || [mc.contentType hasPrefix:@"video"]) {
+                if([mc isDownloaded])
+                    [mediaContents addObject:mc];
+            }
+        }
     }
+    if (mediaContents.count == 0) {
+        [self presentFailureTips:@"先下载"];
+        return;
+    }
+    MediaViewController* c = [MediaViewController new];
     c.mediaContents = mediaContents;
     [self.navigationController presentViewController:c animated:YES completion:^{
         NSLog(@"completed");

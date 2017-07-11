@@ -51,7 +51,8 @@
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         playing = YES;
         
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
+        WeakSelf(weakSelf)
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
 
         return;
     }

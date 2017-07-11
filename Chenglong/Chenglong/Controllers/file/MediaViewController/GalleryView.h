@@ -20,5 +20,6 @@
 -(id)initWithFrame:(CGRect)frame;
 -(void)showPage:(int)pageNumber;
 -(void)play;
+-(void)stop;
 
 @end

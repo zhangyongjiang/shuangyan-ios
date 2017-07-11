@@ -25,6 +25,11 @@
     return self;
 }
 
+-(void)dealloc {
+    [player pause];
+    player = nil;
+}
+
 -(void)clicked {
     NSLog(@"clicked");
     if(playing)
@@ -55,6 +60,10 @@
 -(void)layoutSubviews {
     [super layoutSubviews];
     layer.frame = self.bounds;
+}
+
+-(BOOL)isPlaying {
+    return playing;
 }
 
 @end
