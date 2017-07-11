@@ -67,7 +67,8 @@
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
 //    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"] ];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
-    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_move_icon"]];
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
+    [self.menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"]];
     [self.menuItems addObject:[[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_download_icon"]],
 
     [super addTopRightMenu:self.menuItems];
@@ -251,6 +252,9 @@
     else if ([cmd isEqualToString:@"移动"]){
         [self move];
     }
+    else if ([cmd isEqualToString:@"播放"]){
+        [self play];
+    }
     else if ([cmd isEqualToString:@"删除"]) {
         if(self.page.courseDetailsList.items.count>0) {
             [self presentFailureTips:@"当前文件夹为空时才能删除"];
@@ -258,6 +262,11 @@
         }
         [self removeCourse];
     }
+}
+
+-(void)play
+{
+    
 }
 
 -(void)move {

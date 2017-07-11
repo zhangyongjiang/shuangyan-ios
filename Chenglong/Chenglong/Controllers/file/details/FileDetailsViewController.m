@@ -74,7 +74,7 @@
                            [[MenuItem alloc] initWithText:@"上传" andImgName:@"file_item_exchange_icon"],
                            [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
                            [[MenuItem alloc] initWithText:@"全屏" andImgName:@"file_item_exchange_icon"],
-                           [[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_move_icon"],
+                           [[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"],
                            nil];
     self.menuItems = arr;
     [super addTopRightMenu:arr];
