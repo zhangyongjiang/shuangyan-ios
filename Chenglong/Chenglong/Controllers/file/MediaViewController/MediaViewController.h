@@ -12,4 +12,6 @@
 
 @property(strong,nonatomic)NSArray* mediaContents;
 
+-(void)play;
+
 @end

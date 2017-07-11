@@ -23,7 +23,11 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     slider = [UISlider new];
+    slider.userInteractionEnabled = YES;
+    [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+
     [self addSubview:slider];
+    
     return self;
 }
 
@@ -69,7 +73,13 @@
     float progress = current / total;
     if (current < 0.0001) {
         player.currentTime = 0;
-        [player play];
+        if(self.repeat) {
+            [player play];
+            playing = YES;
+        }
+        else {
+            playing = NO;
+        }
     }
     slider.value = player.currentTime;
 }
@@ -87,5 +97,14 @@
     slider.width = self.width * 0.75f;
     slider.bottom = self.height - Margin;
     slider.x = self.width * 0.125f;
+}
+
+-(void)sliderValueChanged:(UISlider *)sender {
+    player.currentTime = sender.value;
+}
+
+-(BOOL)isPlaying
+{
+    return [player isPlaying];
 }
 @end

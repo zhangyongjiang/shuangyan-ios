@@ -8,8 +8,13 @@
 
 #import "GalleryView.h"
 #import "MediaConentView.h"
+#import "MediaContentAudioView.h"
 
 @interface GalleryView()
+{
+    int currentPlay;
+    NSTimer* timer;
+}
 
 @property(strong,nonatomic)NSMutableArray* mediaViews;
 
@@ -19,6 +24,7 @@
 
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
+    currentPlay = 0;
     self.backgroundColor = [UIColor blackColor];
     self.contentMode = UIViewContentModeScaleAspectFill;
 
@@ -91,5 +97,42 @@
         view.frame = f;
         x += self.width;
     }
+}
+
+-(void)play
+{
+    if(self.mediaContents.count == 0)
+        return;
+    while (currentPlay < self.mediaContents.count) {
+        MediaContent* mc = [self.mediaContents objectAtIndex:currentPlay];
+        if([mc.contentType hasPrefix:@"audio"]) {
+            break;
+        }
+        currentPlay++;
+    }
+    if(currentPlay >= self.mediaContents.count)
+        return;
+    [self showPage:currentPlay];
+    MediaContentAudioView* view = [self.mediaViews objectAtIndex:currentPlay];
+    [view play];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
+}
+
+-(void)checkPlayerStatus
+{
+    MediaContent* mc = [self.mediaContents objectAtIndex:currentPlay];
+    if(![mc.contentType hasPrefix:@"audio"]) {
+        return;
+    }
+    MediaContentAudioView* view = [self.mediaViews objectAtIndex:currentPlay];
+    if([view isPlaying]) {
+        return;
+    }
+    currentPlay++;
+    if(currentPlay >= self.mediaContents.count)
+        currentPlay = 0;
+    [self showPage:currentPlay];
+    view = [self.mediaViews objectAtIndex:currentPlay];
+    [view play];
 }
 @end

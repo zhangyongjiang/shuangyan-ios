@@ -18,5 +18,7 @@
 @property(strong,nonatomic)NSArray* mediaContents;
 
 -(id)initWithFrame:(CGRect)frame;
+-(void)showPage:(int)pageNumber;
+-(void)play;
 
 @end

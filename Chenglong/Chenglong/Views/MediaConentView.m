@@ -36,21 +36,26 @@
     [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnRemove = [UIImageView new];
-//    [self addSubview:self.btnRemove];
-//    self.btnRemove.layer.zPosition = 1000;
-//    self.btnRemove.image = [UIImage imageNamed:@"file_media_delete"];
-//    [self.btnRemove autoSetDimensionsToSize:CGSizeMake(44, 44)];
-//    [self.btnRemove autoPinEdgeToSuperviewEdge:ALEdgeTop];
-//    [self.btnRemove autoPinEdgeToSuperviewEdge:ALEdgeRight];
-//    self.btnRemove.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
-//    [self.btnRemove addTarget:self action:@selector(removeResource)];
+    [self addSubview:self.btnRemove];
+    self.btnRemove.layer.zPosition = 1000;
+    self.btnRemove.image = [UIImage imageNamed:@"file_love_icon_sel"];
+    [self.btnRemove autoSetDimensionsToSize:CGSizeMake(44, 44)];
+    [self.btnRemove autoPinEdgeToSuperviewEdge:ALEdgeTop];
+    [self.btnRemove autoPinEdgeToSuperviewEdge:ALEdgeRight];
+    self.btnRemove.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
+    [self.btnRemove addTarget:self action:@selector(removeResource)];
     
     return self;
 }
 
 -(void)removeResource {
-    if(deleteCallback)
-        deleteCallback(self.localMediaContent);
+    self.repeat = !self.repeat;
+    if(self.repeat)
+        self.btnRemove.image = [UIImage imageNamed:@"file_love_icon_sel"];
+    else
+        self.btnRemove.image = [UIImage imageNamed:@"file_love_icon"];
+//    if(deleteCallback)
+//        deleteCallback(self.localMediaContent);
 }
 
 -(void)play {

@@ -10,7 +10,6 @@
 #import "GalleryView.h"
 
 @interface MediaViewController ()
-
 @property(strong, nonatomic)GalleryView* galleryView;
 
 @end
@@ -46,5 +45,10 @@
     self.view.height = size.height;
     self.galleryView.width = size.width;
     self.galleryView.height = size.height;
+}
+
+-(void)play
+{
+    [self.galleryView play];
 }
 @end

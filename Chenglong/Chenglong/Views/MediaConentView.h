@@ -16,6 +16,7 @@ typedef void(^DeleteCallback)(LocalMediaContent* localMediaContent);
 @property(strong, nonatomic) LocalMediaContent* localMediaContent;
 @property(strong, nonatomic) UIButton* btnDownload;
 @property(strong,nonatomic)UIImageView* btnRemove;
+@property(assign, nonatomic) BOOL repeat;
 
 +(BOOL) isImage:(MediaContent*)mediaContent;
 +(BOOL) isAudio:(MediaContent*)mediaContent;

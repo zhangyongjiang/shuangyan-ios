@@ -10,4 +10,7 @@
 
 @interface MediaContentAudioView : MediaConentView
 
+-(BOOL)isPlaying;
+-(void)play;
+
 @end

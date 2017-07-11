@@ -15,6 +15,7 @@
 #import "BaseNavigationController.h"
 #import "LocalMediaContent.h"
 #import "CoursePickerViewController.h"
+#import "MediaViewController.h"
 
 @interface FileListViewController () <CousePickerDelegate>
 
@@ -266,7 +267,16 @@
 
 -(void)play
 {
-    
+    MediaViewController* c = [MediaViewController new];
+    NSMutableArray* mediaContents = [NSMutableArray arrayWithCapacity:0];
+    for (CourseDetails* cd in self.page.courseDetailsList.items) {
+        [mediaContents addObjectsFromArray:cd.course.resources];
+    }
+    c.mediaContents = mediaContents;
+    [self.navigationController presentViewController:c animated:YES completion:^{
+        NSLog(@"completed");
+        [c play];
+    }];
 }
 
 -(void)move {
