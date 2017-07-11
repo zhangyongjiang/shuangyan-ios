@@ -28,6 +28,14 @@
     return self;
 }
 
+-(void)dealloc
+{
+    for (MediaConentView* view in self.mediaContentViews) {
+        [view removeFromSuperview];
+        [view stop];
+    }
+}
+
 -(void)setup {
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.frame];
     [self addSubview:self.scrollView];

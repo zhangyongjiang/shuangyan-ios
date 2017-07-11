@@ -31,6 +31,8 @@
 {
     [timer invalidate];
     timer = nil;
+    [player stop];
+    player = nil;
 }
 
 -(void)play {
@@ -65,12 +67,19 @@
     float total = player.duration;
     float current = player.currentTime;
     float progress = current / total;
-    NSLog(@"total %f current %f progress %f", total, current, progress);
     if (current < 0.0001) {
         player.currentTime = 0;
         [player play];
     }
     slider.value = player.currentTime;
+}
+
+-(void)stop
+{
+    [player stop];
+    player = nil;
+    [timer invalidate];
+    timer = nil;
 }
 
 -(void)layoutSubviews {

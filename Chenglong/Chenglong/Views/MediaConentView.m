@@ -146,4 +146,5 @@
     deleteCallback = callback;
 }
 
+-(void)stop{}
 @end
