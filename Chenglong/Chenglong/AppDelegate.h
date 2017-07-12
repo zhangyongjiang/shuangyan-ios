@@ -15,5 +15,7 @@
 - (int)version;
 - (void)logout;
 
++(AppDelegate*)appDelegate;
+
 @end
 

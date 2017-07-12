@@ -143,6 +143,8 @@
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
 		AD2A7BE11F1265D00016B51E /* UpdateFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */; };
 		AD2A7BE71F1537ED0016B51E /* MediaContent+Local.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE61F1537ED0016B51E /* MediaContent+Local.m */; };
+		AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */; };
+		AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEE1F15E7D30016B51E /* PlayTask.m */; };
 		AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD318B4F1EFBF9FD0061E993 /* Dbase.m */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
@@ -545,6 +547,10 @@
 		AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateFileViewController.m; sourceTree = "<group>"; };
 		AD2A7BE51F1537ED0016B51E /* MediaContent+Local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MediaContent+Local.h"; sourceTree = "<group>"; };
 		AD2A7BE61F1537ED0016B51E /* MediaContent+Local.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MediaContent+Local.m"; sourceTree = "<group>"; };
+		AD2A7BEA1F15E6700016B51E /* MediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayer.h; sourceTree = "<group>"; };
+		AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayer.m; sourceTree = "<group>"; };
+		AD2A7BED1F15E7D30016B51E /* PlayTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayTask.h; sourceTree = "<group>"; };
+		AD2A7BEE1F15E7D30016B51E /* PlayTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayTask.m; sourceTree = "<group>"; };
 		AD318B4E1EFBF9FD0061E993 /* Dbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dbase.h; sourceTree = "<group>"; };
 		AD318B4F1EFBF9FD0061E993 /* Dbase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dbase.m; sourceTree = "<group>"; };
 		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
@@ -1302,6 +1308,10 @@
 				ADD117D51EF4F03900EF6E04 /* FileManager.m */,
 				ADD117F21EF6FBC800EF6E04 /* File.h */,
 				ADD117F31EF6FBC800EF6E04 /* File.m */,
+				AD2A7BEA1F15E6700016B51E /* MediaPlayer.h */,
+				AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */,
+				AD2A7BED1F15E7D30016B51E /* PlayTask.h */,
+				AD2A7BEE1F15E7D30016B51E /* PlayTask.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2057,6 +2067,7 @@
 				032C96B61E2CB007001EFC29 /* MediaPreviewViewController.m in Sources */,
 				AD49D80D1F096CE5000D0E1B /* OnlineSearchListPage.m in Sources */,
 				AD49D8221F096CE5000D0E1B /* CourseFolderCell.m in Sources */,
+				AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */,
 				ADD117EE1EF623F100EF6E04 /* PdfView.m in Sources */,
 				0335B3121E1508F800A2A74B /* XTPopViewBase.m in Sources */,
 				AD49D8821F0C5133000D0E1B /* ScaleImgViewController.m in Sources */,
@@ -2074,6 +2085,7 @@
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
 				AD49D81E1F096CE5000D0E1B /* MediaAttachmentCollectionViewCell.m in Sources */,
 				AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */,
+				AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */,
 				AD49D8261F096CE5000D0E1B /* FilesChooseTitleView.m in Sources */,
 				AD49D81A1F096CE5000D0E1B /* CreatFileViews.m in Sources */,
 				0386EF5D1E0FC86D009A1DFE /* UIViewController+Nib.m in Sources */,

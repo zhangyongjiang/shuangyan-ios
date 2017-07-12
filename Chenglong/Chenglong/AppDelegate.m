@@ -167,4 +167,8 @@
     self.window.rootViewController = tabBarController;
 }
 
++(AppDelegate*)appDelegate {
+    AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    return del;
+}
 @end
