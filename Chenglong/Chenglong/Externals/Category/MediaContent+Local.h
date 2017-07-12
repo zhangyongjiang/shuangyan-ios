@@ -11,5 +11,7 @@
 @interface MediaContent (Local)
 
 -(BOOL)isDownloaded;
+-(NSString*)localFilePath;
+-(NSURL*)localUrl;
 
 @end

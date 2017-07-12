@@ -16,4 +16,11 @@
     return [[[LocalMediaContent alloc] initWithMediaContent:self] isDownloaded];
 }
 
+-(NSString*)localFilePath {
+    return [File dirForMediaContent:self];
+}
+
+-(NSURL*)localUrl {
+    return [NSURL fileURLWithPath:[self localFilePath]];
+}
 @end
