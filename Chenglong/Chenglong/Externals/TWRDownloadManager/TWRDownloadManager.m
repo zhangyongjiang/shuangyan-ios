@@ -34,6 +34,8 @@
     if (self) {
         // Default session
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        configuration.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage;
+        configuration.HTTPShouldSetCookies = YES;
         self.session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
         
         // Background session
