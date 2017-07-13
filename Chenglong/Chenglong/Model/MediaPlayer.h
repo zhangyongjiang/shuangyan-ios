@@ -14,8 +14,15 @@
 +(MediaPlayer*)shared;
 
 @property(assign, nonatomic)BOOL repeat;
+@property(assign, nonatomic)CGFloat currentTime;
 
 -(void)addPlayTask:(PlayTask*)task;
+
 -(void)play;
+-(void)pause;
+-(void)stop;
+-(BOOL)isPlaying;
+
+-(CGFloat)currentTaskDuration;
 
 @end
