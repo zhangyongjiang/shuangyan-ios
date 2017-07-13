@@ -11,7 +11,7 @@
 
 @interface MediaContentAudioView()
 {
-    AVAudioPlayer *player;
+    MediaPlayer *player;
     BOOL playing;
     NSTimer* timer;
     UISlider* slider;
@@ -45,9 +45,12 @@
         url = [NSURL URLWithString:self.localMediaContent.mediaContent.url];
     }
     if(!player) {
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        player = [MediaPlayer shared];
+        PlayTask* task = [[PlayTask alloc] init];
+        task.mediaContent = self.localMediaContent.mediaContent;
+        [player addPlayTask:task];
         [player play];
-        slider.maximumValue = player.duration;
+        slider.maximumValue = [player currentTaskDuration];
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         playing = YES;
         
@@ -69,8 +72,8 @@
 
 -(void)checkPlayerStatus
 {
-    float total = player.duration;
-    float current = player.currentTime;
+    float total = [player currentTaskDuration];
+    float current = [player currentTime];
     float progress = current / total;
     if (current < 0.0001) {
         player.currentTime = 0;
