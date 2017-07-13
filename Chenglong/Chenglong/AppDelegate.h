@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -14,6 +15,8 @@
 
 - (int)version;
 - (void)logout;
+- (AVPlayer*)sharedPlayer;
+-(void)addPlayerToView:(UIView*)view;
 
 +(AppDelegate*)appDelegate;
 
