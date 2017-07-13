@@ -11,6 +11,8 @@
 
 @interface MediaContentVideoView()
 {
+    AVPlayer* player;
+    AVPlayerLayer *layer;
     BOOL playing;
 }
 @end
@@ -20,20 +22,40 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     [self addTarget:self action:@selector(clicked)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
     return self;
+}
+
+-(void)background:(NSNotification*)noti {
+    [layer removeFromSuperlayer];
+    layer = nil;
+    [player play];
+}
+
+-(void)foreground:(NSNotification*)noti {
+    if(layer) return;
+    layer = [AVPlayerLayer playerLayerWithPlayer:player];
+    layer.frame = self.bounds;
+    [self.layer addSublayer:layer];
+    layer.backgroundColor = [UIColor clearColor].CGColor;
+    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
 }
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[AppDelegate appDelegate].sharedPlayer pause];
+    [player pause];
+    player = nil;
 }
 
 -(void)clicked {
     NSLog(@"clicked");
     if(playing)
-        [[AppDelegate appDelegate].sharedPlayer pause];
+        [player pause];
     else
-        [[AppDelegate appDelegate].sharedPlayer play];
+        [player play];
     playing = !playing;
 }
 
@@ -46,14 +68,18 @@
     playing = YES;
     
     NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
-    AVPlayerItem *item = [AVPlayerItem playerItemWithURL:url];
-    [[AppDelegate appDelegate] addPlayerToView:self];
-    [[AppDelegate appDelegate].sharedPlayer replaceCurrentItemWithPlayerItem:item];
-    [[AppDelegate appDelegate].sharedPlayer play];
+    player = [[AVPlayer alloc] initWithURL:url];
+    layer = [AVPlayerLayer playerLayerWithPlayer:player];
+    layer.frame = self.bounds;
+    [self.layer addSublayer:layer];
+    layer.backgroundColor = [UIColor clearColor].CGColor;
+    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    [player play];
 }
 
 -(void)layoutSubviews {
     [super layoutSubviews];
+    layer.frame = self.bounds;
 }
 
 -(BOOL)isPlaying {

@@ -18,31 +18,22 @@
 @interface AppDelegate ()
 {
     BOOL isFirstUseApp;
-    AVPlayer* player;
-    AVPlayerLayer* avPlayerLayer;
 }
-
-@property(weak, nonatomic)UIView* viewForPlayer;
 
 @end
 
 @implementation AppDelegate
 
--(AVPlayer*)sharedPlayer {
-    if(player) return player;
-    player = [[AVPlayer alloc] init];
-    return player;
-}
+-(void)test {
+//    NSString* homedir = NSHomeDirectory();
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *homedir = [paths objectAtIndex:0];
 
--(void)addPlayerToView:(UIView*)view {
-    self.viewForPlayer = view;
-    AVPlayerLayer* layer = [AVPlayerLayer playerLayerWithPlayer:player];
-    layer.frame = view.bounds;
-    [view.layer addSublayer:layer];
-    layer.backgroundColor = [UIColor clearColor].CGColor;
-    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
-    layer.frame = view.bounds;
-    avPlayerLayer = layer;
+    File* f = [[File alloc] initWithFullPath:homedir];
+    NSMutableArray* array = [f deepLs];
+    for (File* f in array) {
+        NSLog(@"%@", f.fullPath);
+    }
 }
 
 -(void)runOnBackend
@@ -51,29 +42,12 @@
     NSError *activationErr  = nil;
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:&setCategoryErr];
     [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-}
-
--(void)background:(NSNotification*)noti {
-    [avPlayerLayer removeFromSuperlayer];
-    avPlayerLayer = nil;
-    [player play];
-}
-
--(void)foreground:(NSNotification*)noti {
-    if(avPlayerLayer) return;
-    avPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
-    avPlayerLayer.frame = self.viewForPlayer.bounds;
-    [self.viewForPlayer.layer addSublayer:avPlayerLayer];
-    avPlayerLayer.backgroundColor = [UIColor clearColor].CGColor;
-    [avPlayerLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    [self sharedPlayer];
+    
+//    [self test];
+//    [Dbase shared];
     [self runOnBackend];
     
     UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
