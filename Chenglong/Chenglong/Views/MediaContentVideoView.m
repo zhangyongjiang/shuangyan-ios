@@ -52,6 +52,11 @@
     [[AppDelegate appDelegate].sharedPlayer play];
 }
 
+-(void)pause {
+    [[AppDelegate appDelegate].sharedPlayer pause];
+    playing = NO;
+}
+
 -(void)layoutSubviews {
     [super layoutSubviews];
     [[AppDelegate appDelegate] addPlayerToView:self];
@@ -59,7 +64,9 @@
 
 -(BOOL)isPlaying {
     AVPlayer* player = [AppDelegate appDelegate].sharedPlayer;
-    return (player.rate != 0) && (player.error == nil);
+    BOOL _playing = (player.rate != 0) && (player.error == nil);
+    NSLog(@"video is playing %i", _playing);
+    return _playing;
 }
 
 @end

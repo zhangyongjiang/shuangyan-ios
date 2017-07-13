@@ -20,6 +20,7 @@
     BOOL isFirstUseApp;
     AVPlayer* player;
     AVPlayerLayer* avPlayerLayer;
+    BOOL backgroundMode;
 }
 
 @property(weak, nonatomic)UIView* viewForPlayer;
@@ -35,20 +36,23 @@
 }
 
 -(void)addPlayerToView:(UIView*)view {
+    NSLog(@"addPlayerToView %@", view);
     if(view == self.viewForPlayer) {
         avPlayerLayer.frame = view.bounds;
         return;
     }
-    [player seekToTime:CMTimeMake(0, player.currentItem.asset.duration.timescale)
-            toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
     self.viewForPlayer = view;
-    AVPlayerLayer* layer = [AVPlayerLayer playerLayerWithPlayer:player];
-    layer.frame = view.bounds;
-    [view.layer addSublayer:layer];
-    layer.backgroundColor = [UIColor clearColor].CGColor;
-    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
-    layer.frame = view.bounds;
-    avPlayerLayer = layer;
+//    [player seekToTime:CMTimeMake(0, player.currentItem.asset.duration.timescale)
+//            toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+    if(!backgroundMode) {
+        AVPlayerLayer* layer = [AVPlayerLayer playerLayerWithPlayer:player];
+        layer.frame = view.bounds;
+        [view.layer addSublayer:layer];
+        layer.backgroundColor = [UIColor clearColor].CGColor;
+        [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
+        layer.frame = view.bounds;
+        avPlayerLayer = layer;
+    }
 }
 
 -(void)runOnBackend
@@ -63,11 +67,17 @@
 }
 
 -(void)background:(NSNotification*)noti {
+    backgroundMode = YES;
     [avPlayerLayer removeFromSuperlayer];
     avPlayerLayer = nil;
+    
+    BOOL _playing = (player.rate != 0) && (player.error == nil);
+    NSLog(@"background. video is playing %i", _playing);
 }
 
 -(void)foreground:(NSNotification*)noti {
+    NSLog(@"foreground");
+    backgroundMode = NO;
     if(avPlayerLayer) return;
     avPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
     avPlayerLayer.frame = self.viewForPlayer.bounds;
