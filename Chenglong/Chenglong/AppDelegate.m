@@ -35,6 +35,12 @@
 }
 
 -(void)addPlayerToView:(UIView*)view {
+    if(view == self.viewForPlayer) {
+        avPlayerLayer.frame = view.bounds;
+        return;
+    }
+    [player seekToTime:CMTimeMake(0, player.currentItem.asset.duration.timescale)
+            toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
     self.viewForPlayer = view;
     AVPlayerLayer* layer = [AVPlayerLayer playerLayerWithPlayer:player];
     layer.frame = view.bounds;

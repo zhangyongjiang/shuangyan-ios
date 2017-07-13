@@ -54,10 +54,12 @@
 
 -(void)layoutSubviews {
     [super layoutSubviews];
+    [[AppDelegate appDelegate] addPlayerToView:self];
 }
 
 -(BOOL)isPlaying {
-    return playing;
+    AVPlayer* player = [AppDelegate appDelegate].sharedPlayer;
+    return (player.rate != 0) && (player.error == nil);
 }
 
 @end
