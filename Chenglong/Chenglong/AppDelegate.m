@@ -65,7 +65,6 @@
 -(void)background:(NSNotification*)noti {
     [avPlayerLayer removeFromSuperlayer];
     avPlayerLayer = nil;
-    [player play];
 }
 
 -(void)foreground:(NSNotification*)noti {

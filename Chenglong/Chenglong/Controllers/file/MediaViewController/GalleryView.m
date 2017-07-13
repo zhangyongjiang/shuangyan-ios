@@ -117,24 +117,52 @@
     if(self.mediaContents.count == 0)
         return;
     [self showPage:currentPlay];
-    MediaContentAudioView* view = [self.mediaViews objectAtIndex:currentPlay];
-    [view play];
+    MediaConentView* view = [self.mediaViews objectAtIndex:currentPlay];
+    MediaContent* mc = view.localMediaContent.mediaContent;
+    if([mc.contentType hasPrefix:@"audio"]) {
+        MediaContentAudioView* aview = (MediaContentAudioView*)view;
+        [aview play];
+    }
+    if([mc.contentType hasPrefix:@"video"]) {
+        MediaContentVideoView* aview = (MediaContentVideoView*)view;
+        [aview play];
+    }
+    
     WeakSelf(weakSelf)
     timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
 }
 
 -(void)checkPlayerStatus
 {
-    MediaContentAudioView* view = [self.mediaViews objectAtIndex:currentPlay];
-    if([view isPlaying]) {
-        return;
+    MediaConentView* view = [self.mediaViews objectAtIndex:currentPlay];
+    MediaContent* mc = view.localMediaContent.mediaContent;
+    if([mc.contentType hasPrefix:@"audio"]) {
+        MediaContentAudioView* aview = (MediaContentAudioView*)view;
+        if([aview isPlaying]) {
+            return;
+        }
     }
+    if([mc.contentType hasPrefix:@"video"]) {
+        MediaContentVideoView* aview = (MediaContentVideoView*)view;
+        if([aview isPlaying]) {
+            return;
+        }
+    }
+    
     currentPlay++;
     if(currentPlay >= self.mediaContents.count)
         currentPlay = 0;
     [self showPage:currentPlay];
     view = [self.mediaViews objectAtIndex:currentPlay];
-    [view play];
+    mc = view.localMediaContent.mediaContent;
+    if([mc.contentType hasPrefix:@"audio"]) {
+        MediaContentAudioView* aview = (MediaContentAudioView*)view;
+        [aview play];
+    }
+    if([mc.contentType hasPrefix:@"video"]) {
+        MediaContentVideoView* aview = (MediaContentVideoView*)view;
+        [aview play];
+    }
 }
 
 -(void)stop
