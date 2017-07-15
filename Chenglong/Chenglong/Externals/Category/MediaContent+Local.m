@@ -20,7 +20,10 @@
     return [File dirForMediaContent:self];
 }
 
--(NSURL*)localUrl {
-    return [NSURL fileURLWithPath:[self localFilePath]];
+-(NSURL*)playUrl {
+    if([self isDownloaded])
+        return [NSURL fileURLWithPath:[self localFilePath]];
+    else
+        return [NSURL URLWithString:self.url];
 }
 @end

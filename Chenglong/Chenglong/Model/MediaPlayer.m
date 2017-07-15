@@ -49,13 +49,13 @@ MediaPlayer* gMediaPlayer;
     if([task isAudioTask]) {
         NSError* err;
         if(!self.avAudioPlayer) {
-            self.avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[task.mediaContent localUrl] error:&err];
+            self.avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[task.mediaContent playUrl] error:&err];
         }
         if(!self.avAudioPlayer.playing)
            [self.avAudioPlayer play];
     }
     else if([task isVideoTask]) {
-        self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent localUrl]];
+        self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
     }
 }
 
@@ -66,7 +66,7 @@ MediaPlayer* gMediaPlayer;
         [self.avAudioPlayer pause];
     }
     else if([task isVideoTask]) {
-        self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent localUrl]];
+        self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
     }
 }
 

@@ -83,7 +83,7 @@
 }
 
 -(BOOL)isPlaying {
-    return playing;
+    return (player.rate != 0) && (player.error == nil);
 }
 
 @end

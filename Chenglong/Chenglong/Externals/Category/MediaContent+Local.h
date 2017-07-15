@@ -12,6 +12,6 @@
 
 -(BOOL)isDownloaded;
 -(NSString*)localFilePath;
--(NSURL*)localUrl;
+-(NSURL*)playUrl;
 
 @end
