@@ -7,13 +7,12 @@
 //
 
 #import "BaseView.h"
-#import "LocalMediaContent.h"
 
-typedef void(^DeleteCallback)(LocalMediaContent* localMediaContent);
+typedef void(^DeleteCallback)(MediaContent* MediaContent);
 
 @interface MediaConentView : BaseView
 
-@property(strong, nonatomic) LocalMediaContent* localMediaContent;
+@property(strong, nonatomic) MediaContent* mediaContent;
 @property(strong, nonatomic) UIButton* btnDownload;
 @property(strong,nonatomic)UIImageView* btnRemove;
 @property(assign, nonatomic) BOOL repeat;

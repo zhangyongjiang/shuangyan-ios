@@ -13,7 +13,6 @@
 #import "FileManager.h"
 #import "File.h"
 #import "BaseNavigationController.h"
-#import "LocalMediaContent.h"
 #import "CoursePickerViewController.h"
 #import "MediaViewController.h"
 
@@ -323,8 +322,7 @@
     MediaContent* mc = [self.downloadList objectAtIndex:self.currentDownload];
     WeakSelf(weakSelf)
     NSLog(@"download %@", mc.path);
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mc];
-        [lmc downloadWithProgressBlock:^(CGFloat progress) {
+        [mc downloadWithProgressBlock:^(CGFloat progress) {
             NSLog(@"download %f", progress);
         } completionBlock:^(BOOL completed) {
             NSLog(@"download complete");

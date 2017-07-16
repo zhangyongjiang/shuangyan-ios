@@ -9,9 +9,8 @@
 #import "BaseView.h"
 #import "Page.h"
 #import "LocalCourseDetails.h"
-#import "LocalMediaContent.h"
 
-typedef void(^DeleteCourseResourceCallback)(LocalMediaContent* localMediaContent);
+typedef void(^DeleteCourseResourceCallback)(MediaContent* localMediaContent);
 
 @interface CourseDetailsView : Page
 

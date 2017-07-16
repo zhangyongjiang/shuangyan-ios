@@ -30,14 +30,14 @@
     self.courseDetailsView = [[CourseDetailsView alloc] initWithFrame:self.view.bounds];
     self.courseDetailsView.courseDetails = self.courseDetails;
     [self.view addSubview:self.courseDetailsView];
-    [self.courseDetailsView addRemoveResourceHandler:^(LocalMediaContent *localMediaContent) {
+    [self.courseDetailsView addRemoveResourceHandler:^(MediaContent *localMediaContent) {
         [weakSelf removeResource:localMediaContent];
     }];
     
     [self addTopRightMenu];
 }
 
--(void)removeResource:(LocalMediaContent*)lmc {
+-(void)removeResource:(MediaContent*)lmc {
     WeakSelf(weakSelf)
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除？" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -47,12 +47,12 @@
         Course* c = [Course new];
         c.id = self.courseDetailsView.courseDetails.course.id;
         c.resources = [NSMutableArray new];
-        [c.resources addObject:lmc.mediaContent];
+        [c.resources addObject:lmc];
         [CourseApi CourseAPI_RemoveResources:c onSuccess:^(Course *resp) {
             [weakSelf presentFailureTips:@"删除成功"];
             for (int i=0; i<self.courseDetailsView.courseDetails.course.resources.count; i++) {
                 MediaContent* mc = [self.courseDetailsView.courseDetails.course.resources objectAtIndex:i];
-                if([mc.path isEqualToString:lmc.mediaContent.path]) {
+                if([mc.path isEqualToString:lmc.path]) {
                     [self.courseDetailsView.courseDetails.course.resources removeObjectAtIndex:i];
                     break;
                 }
@@ -84,8 +84,7 @@
 
 -(BOOL)isAllDownloaded {
     for (MediaContent* mc in self.courseDetails.course.resources) {
-        LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mc];
-        if(![lmc isDownloaded])
+        if(![mc isDownloaded])
             return NO;
     }
     return YES;

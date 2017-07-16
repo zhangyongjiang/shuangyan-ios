@@ -62,7 +62,7 @@
 }
 
 -(void)downloadOrPlay {
-    BOOL downloaded = [self.localMediaContent isDownloaded];
+    BOOL downloaded = [self.mediaContent isDownloaded];
     if(downloaded)
         [self play];
     else
@@ -70,17 +70,17 @@
 }
 
 -(void)download {
-    [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
+    [self.mediaContent downloadWithProgressBlock:^(CGFloat progress) {
         int downloaded = (int)(progress*100);
         if(progress < 0) {
-            downloaded = -100. * progress / self.localMediaContent.mediaContent.length.floatValue;
+            downloaded = -100. * progress / self.mediaContent.length.floatValue;
         }
-        NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.localMediaContent.mediaContent.length];
+        NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.mediaContent.length];
         [self.btnDownload setTitle:txt forState:UIControlStateNormal];
     } completionBlock:^(BOOL completed) {
         [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
-        if (![MediaConentView isAudio:self.localMediaContent.mediaContent] &&
-            ![MediaConentView isVideo:self.localMediaContent.mediaContent]) {
+        if (![MediaConentView isAudio:self.mediaContent] &&
+            ![MediaConentView isVideo:self.mediaContent]) {
             [self play];
         }
     }];
@@ -116,8 +116,7 @@
         return nil;
     view.width = [UIView screenWidth];
     view.height = [UIView screenWidth];
-    LocalMediaContent* lmc = [[LocalMediaContent alloc] initWithMediaContent:mediaContent];
-    view.localMediaContent = lmc;
+    view.mediaContent = mediaContent;
     
     view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     view.backgroundColor = [UIColor colorFromRGB:0xeeeeee];
@@ -129,20 +128,20 @@
     return view;
 }
 
--(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
-    _localMediaContent = localMediaContent;
+-(void)setMediaContent:(MediaContent *)localMediaContent {
+    _mediaContent = localMediaContent;
     BOOL downloaded = [localMediaContent isDownloaded];
     
     if(downloaded) {
         [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
     }
     else {
-        NSString* txt = [NSString stringWithFormat:@"下载 0%% of %@", localMediaContent.mediaContent.length];
+        NSString* txt = [NSString stringWithFormat:@"下载 0%% of %@", localMediaContent.length];
         [self.btnDownload setTitle:txt forState:UIControlStateNormal];
     }
     
-    if (![MediaConentView isAudio:self.localMediaContent.mediaContent] &&
-        ![MediaConentView isVideo:self.localMediaContent.mediaContent]) {
+    if (![MediaConentView isAudio:self.mediaContent] &&
+        ![MediaConentView isVideo:self.mediaContent]) {
         [self play];
     }
 }

@@ -40,14 +40,14 @@
 }
 
 -(void)play {
-    NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
-    if(![self.localMediaContent isDownloaded]) {
-        url = [NSURL URLWithString:self.localMediaContent.mediaContent.url];
+    NSURL* url = [NSURL fileURLWithPath:self.mediaContent.filePath];
+    if(![self.mediaContent isDownloaded]) {
+        url = [NSURL URLWithString:self.mediaContent.url];
     }
     if(!player) {
         player = [MediaPlayer shared];
         PlayTask* task = [[PlayTask alloc] init];
-        task.mediaContent = self.localMediaContent.mediaContent;
+        task.mediaContent = self.mediaContent;
         [player addPlayTask:task];
         [player play];
         slider.maximumValue = [player currentTaskDuration];

@@ -17,7 +17,7 @@
 }
 
 -(void)play {
-    if(![self.localMediaContent isDownloaded]) {
+    if(![self.mediaContent isDownloaded]) {
         NSLog(@"no downloaded yet");
         return;
     }
@@ -28,7 +28,7 @@
         [self.webView autoPinEdgesToSuperviewMargins];
     }
 
-    NSURL* url = [NSURL  fileURLWithPath:self.localMediaContent.filePath];
+    NSURL* url = [NSURL  fileURLWithPath:self.mediaContent.filePath];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 

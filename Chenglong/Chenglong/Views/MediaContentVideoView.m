@@ -60,14 +60,14 @@
 }
 
 -(void)play {
-    if(![self.localMediaContent isDownloaded]) {
+    if(![self.mediaContent isDownloaded]) {
         NSLog(@"no downloaded yet");
         return;
     }
     self.btnDownload.hidden = YES;
     playing = YES;
     
-    NSURL* url = [NSURL fileURLWithPath:self.localMediaContent.filePath];
+    NSURL* url = [NSURL fileURLWithPath:self.mediaContent.filePath];
     player = [[AVPlayer alloc] initWithURL:url];
     layer = [AVPlayerLayer playerLayerWithPlayer:player];
     layer.frame = self.bounds;

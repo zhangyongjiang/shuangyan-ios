@@ -241,7 +241,6 @@
 		AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CEC1F0536C300D3F18E /* CoursePathView.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
-		ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */; };
 		ADD117A51EED098400EF6E04 /* MediaContentAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */; };
 		ADD117A81EED12C600EF6E04 /* CourseDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A71EED12C600EF6E04 /* CourseDetailsView.m */; };
 		ADD117AB1EED951100EF6E04 /* MediaContentVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117AA1EED951100EF6E04 /* MediaContentVideoView.m */; };
@@ -725,8 +724,6 @@
 		ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaConentView.m; sourceTree = "<group>"; };
 		ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentImageView.h; sourceTree = "<group>"; };
 		ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentImageView.m; sourceTree = "<group>"; };
-		ADD117A01EED03B100EF6E04 /* LocalMediaContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMediaContent.h; sourceTree = "<group>"; };
-		ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMediaContent.m; sourceTree = "<group>"; };
 		ADD117A31EED098400EF6E04 /* MediaContentAudioView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentAudioView.h; sourceTree = "<group>"; };
 		ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentAudioView.m; sourceTree = "<group>"; };
 		ADD117A61EED12C600EF6E04 /* CourseDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsView.h; sourceTree = "<group>"; };
@@ -1298,8 +1295,6 @@
 				A364CC401C94CBFA0075E65F /* Data.m */,
 				A364CC491C94CBFA0075E65F /* NSString+Json.h */,
 				A364CC4A1C94CBFA0075E65F /* NSString+Json.m */,
-				ADD117A01EED03B100EF6E04 /* LocalMediaContent.h */,
-				ADD117A11EED03B100EF6E04 /* LocalMediaContent.m */,
 				ADD117AF1EEDC8F900EF6E04 /* LocalCourseDetails.h */,
 				ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */,
 				ADD117B21EF0EBD400EF6E04 /* MenuItem.h */,
@@ -2049,7 +2044,6 @@
 				AD49D8001F096CE5000D0E1B /* OnlineFileDetailsViewController.m in Sources */,
 				AD49D8331F096CE5000D0E1B /* RegisterView.m in Sources */,
 				ADD117E51EF6198300EF6E04 /* MediaWebView.m in Sources */,
-				ADD117A21EED03B100EF6E04 /* LocalMediaContent.m in Sources */,
 				032C96951E2CA31D001EFC29 /* TZPhotoPreviewCell.m in Sources */,
 				032C96B41E2CB007001EFC29 /* DVFullScreenMediaViewer.m in Sources */,
 				AD49D8201F096CE5000D0E1B /* CourseDetailCell.m in Sources */,

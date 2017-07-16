@@ -75,7 +75,7 @@
             [self.scrollView addSubview:view];
             y = y + view.height + Margin;
             [self.mediaContentViews addObject:view];
-            [view addRemoveHandler:^(LocalMediaContent* mediaContent) {
+            [view addRemoveHandler:^(MediaContent* mediaContent) {
                 [weakSelf removeResource:mediaContent];
             }];
         }
@@ -83,7 +83,7 @@
     self.scrollView.contentSize = CGSizeMake(self.width, y+128);
 }
 
--(void)removeResource:(LocalMediaContent*)mc {
+-(void)removeResource:(MediaContent*)mc {
     if(deleteCallback)
         deleteCallback(mc);
 }
