@@ -351,6 +351,24 @@
 	               }];
 }
 
++(NSURLSessionDataTask*) UserAPI_Oauth2PhoneLogin:(PhoneLoginRequest*)req onSuccess:(void (^)(TokenedUser *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/user-service/user/oauth2-phone-login";
+    return [[WebService getOperationManager] POST:url_
+                                       parameters:[req toDictionary]
+                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
+                                              ObjectMapper *mapper = [ObjectMapper mapper];
+                                              NSError *error;
+                                              TokenedUser* resp = [mapper mapObject:responseObject toClass:[TokenedUser class] withError:&error];
+                                              if (error) {
+                                                  errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+                                              } else {
+                                                  successBlock(resp);
+                                              }
+                                          } apiError:^(APIError* error) {
+                                              errorBlock(error);
+                                          }];
+}
+
 +(NSURLSessionDataTask*) UserAPI_ChangePassword:(ChangePasswordRequest*)req onSuccess:(void (^)(GenericResponse *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
     NSString* url_ = @"/user-service/user/change-password";
     return [[WebService getOperationManager] POST:url_

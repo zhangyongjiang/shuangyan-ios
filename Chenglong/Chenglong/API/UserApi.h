@@ -21,6 +21,7 @@
 #import "UserInterest.h"
 #import "UserList.h"
 #import "InviteRequest.h"
+#import "TokenedUser.h"
 
 @interface UserApi : NSObject
 
@@ -59,6 +60,8 @@
 +(NSURLSessionDataTask*) UserAPI_WechatRegisterUser:(WechatLoginRequest*)req onSuccess:(void (^)(User *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(NSURLSessionDataTask*) UserAPI_PhoneLogin:(PhoneLoginRequest*)req onSuccess:(void (^)(User *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
+
++(NSURLSessionDataTask*) UserAPI_Oauth2PhoneLogin:(PhoneLoginRequest*)req onSuccess:(void (^)(TokenedUser *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 
 +(NSURLSessionDataTask*) UserAPI_ChangePassword:(ChangePasswordRequest*)req onSuccess:(void (^)(GenericResponse *resp))successBlock onError:(void (^)(APIError *err))errorBlock;
 

@@ -239,6 +239,9 @@
 		AD666CB81F00C61800D3F18E /* CourseParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB71F00C61800D3F18E /* CourseParent.m */; };
 		AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE01F02A1F500D3F18E /* MoneyAPI.m */; };
 		AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CEC1F0536C300D3F18E /* CoursePathView.m */; };
+		AD8949531F23E8CC00C024F8 /* OauthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949501F23E8CC00C024F8 /* OauthToken.m */; };
+		AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949521F23E8CC00C024F8 /* TokenedUser.m */; };
+		AD965AFE1F1E442C005CE723 /* MySearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD965AFD1F1E442C005CE723 /* MySearchController.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
 		ADD117A51EED098400EF6E04 /* MediaContentAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */; };
@@ -720,6 +723,12 @@
 		AD666CE01F02A1F500D3F18E /* MoneyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyAPI.m; sourceTree = "<group>"; };
 		AD666CEB1F0536C300D3F18E /* CoursePathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursePathView.h; sourceTree = "<group>"; };
 		AD666CEC1F0536C300D3F18E /* CoursePathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursePathView.m; sourceTree = "<group>"; };
+		AD89494F1F23E8CC00C024F8 /* OauthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OauthToken.h; sourceTree = "<group>"; };
+		AD8949501F23E8CC00C024F8 /* OauthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OauthToken.m; sourceTree = "<group>"; };
+		AD8949511F23E8CC00C024F8 /* TokenedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenedUser.h; sourceTree = "<group>"; };
+		AD8949521F23E8CC00C024F8 /* TokenedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenedUser.m; sourceTree = "<group>"; };
+		AD965AFC1F1E442C005CE723 /* MySearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchController.h; sourceTree = "<group>"; };
+		AD965AFD1F1E442C005CE723 /* MySearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchController.m; sourceTree = "<group>"; };
 		ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConentView.h; sourceTree = "<group>"; };
 		ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaConentView.m; sourceTree = "<group>"; };
 		ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentImageView.h; sourceTree = "<group>"; };
@@ -806,6 +815,10 @@
 		030049021E0E5ED9006EDC29 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AD89494F1F23E8CC00C024F8 /* OauthToken.h */,
+				AD8949501F23E8CC00C024F8 /* OauthToken.m */,
+				AD8949511F23E8CC00C024F8 /* TokenedUser.h */,
+				AD8949521F23E8CC00C024F8 /* TokenedUser.m */,
 				AD454ACF1E22271D006731CE /* CourseDetailsList.h */,
 				AD454AD01E22271D006731CE /* CourseDetailsList.m */,
 				030049031E0E5F60006EDC29 /* Account.h */,
@@ -1751,6 +1764,8 @@
 				AD666CEC1F0536C300D3F18E /* CoursePathView.m */,
 				AD49D7651F07D3CA000D0E1B /* CourseNameView.h */,
 				AD49D7661F07D3CA000D0E1B /* CourseNameView.m */,
+				AD965AFC1F1E442C005CE723 /* MySearchController.h */,
+				AD965AFD1F1E442C005CE723 /* MySearchController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2070,6 +2085,7 @@
 				032C96911E2CA31D001EFC29 /* TZAssetModel.m in Sources */,
 				AD3D94F61EE6790E00D2704B /* TableViewPage.m in Sources */,
 				030048F31E0E5D17006EDC29 /* Constants.m in Sources */,
+				AD8949531F23E8CC00C024F8 /* OauthToken.m in Sources */,
 				AD49D8081F096CE5000D0E1B /* OnlineFileListHeaderView.m in Sources */,
 				030049911E0E68B4006EDC29 /* NSObject+Tips.m in Sources */,
 				030049631E0E5F60006EDC29 /* BusinessReviewList.m in Sources */,
@@ -2093,6 +2109,7 @@
 				032911781E113CCB000C1F5A /* SVProgressHUD+UploadProgress.m in Sources */,
 				030049641E0E5F60006EDC29 /* BusinessSummary.m in Sources */,
 				A364CCC91C94CBFA0075E65F /* ObjectMapper.m in Sources */,
+				AD965AFE1F1E442C005CE723 /* MySearchController.m in Sources */,
 				0300497B1E0E5F61006EDC29 /* PhoneLoginRequest.m in Sources */,
 				0300496A1E0E5F60006EDC29 /* CourseList.m in Sources */,
 				AD49D8811F0C5133000D0E1B /* ImageViewController.m in Sources */,
@@ -2208,6 +2225,7 @@
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,
 				AD666CAF1F00BDA500D3F18E /* CourseDetailsWithParent.m in Sources */,
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
+				AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */,
 				AD49D8401F096CE5000D0E1B /* SpendingHistoryPage.m in Sources */,
 				AD49D81F1F096CE5000D0E1B /* MediaAttachmentDataSource.m in Sources */,
 				AD49D8501F09869E000D0E1B /* FileListTableViewCell.m in Sources */,

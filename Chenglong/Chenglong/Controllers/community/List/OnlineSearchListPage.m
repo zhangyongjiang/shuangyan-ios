@@ -12,6 +12,7 @@
 #import "WebViewController.h"
 #import "OnlineFileDetailsViewController.h"
 #import "OnlineFileListViewController.h"
+#import "MySearchController.h"
 
 #define OnlineFileListItemTableViewCellID @"OnlineSearchListItemTableViewCellID"
 
@@ -21,7 +22,7 @@
     self = [super initWithFrame:frame];
     [_tableView registerClass:[OnlineFileListTableViewCell class] forCellReuseIdentifier:OnlineFileListItemTableViewCellID];
     
-    self.searchController = [[UISearchController alloc]initWithSearchResultsController:nil];
+    self.searchController = [[MySearchController alloc]initWithSearchResultsController:nil];
     //    self.searchController.searchBar.showsCancelButton = NO;
     //    self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.dimsBackgroundDuringPresentation = NO;
