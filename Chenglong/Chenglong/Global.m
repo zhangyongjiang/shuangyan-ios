@@ -82,6 +82,7 @@ static Global *_shared = nil;
         [User tm_removeObjectForKey:kCacheUserModel];
         [WebService removeAllCookies];
     }
+    [Lockbox setString:nil forKey:kOauthTokenKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }

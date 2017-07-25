@@ -362,6 +362,7 @@
                                               if (error) {
                                                   errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
                                               } else {
+                                                  [Lockbox setString:resp.token.accessToken forKey:kOauthTokenKey];
                                                   successBlock(resp);
                                               }
                                           } apiError:^(APIError* error) {

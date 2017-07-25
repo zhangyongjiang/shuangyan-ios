@@ -84,11 +84,11 @@ static CGFloat loginViewHeight = 450.f;
     
     [SVProgressHUD showWithStatus:@"登录中"];
     WeakSelf(weakSelf)
-    [UserApi UserAPI_PhoneLogin:loginRequest onSuccess:^(User *resp) {
+    [UserApi UserAPI_Oauth2PhoneLogin:loginRequest onSuccess:^(TokenedUser *resp) {
         
         [SVProgressHUD dismiss];
         
-        [Global setLoggedInUser:resp];
+        [Global setLoggedInUser:resp.user];
         [[NSNotificationCenter defaultCenter] postNotificationName:kAppLoginSuccessNotificationKey object:resp];
         
     } onError:^(APIError *err) {
