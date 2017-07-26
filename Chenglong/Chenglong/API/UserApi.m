@@ -362,7 +362,8 @@
                                               if (error) {
                                                   errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
                                               } else {
-                                                  [Lockbox setString:resp.token.accessToken forKey:kOauthTokenKey];
+                                                  NSString* token = [NSString stringWithFormat:@"%@ %@", resp.token.tokenType, resp.token.accessToken];
+                                                  [Lockbox setString:token forKey:kOauthTokenKey];
                                                   successBlock(resp);
                                               }
                                           } apiError:^(APIError* error) {
