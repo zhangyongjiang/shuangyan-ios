@@ -69,7 +69,10 @@
     if (![self fileDownloadCompletedForUrl:urlString]) {
         NSLog(@"File is downloading!");
     } else if (![self fileExistsWithName:fileName inDirectory:directory]) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        NSString* token = [Lockbox stringForKey:kOauthTokenKey];
+        [request setValue:token forHTTPHeaderField:@"Authorization"];
+        
         NSURLSessionDownloadTask *downloadTask;
         if (backgroundMode) {
             downloadTask = [self.backgroundSession downloadTaskWithRequest:request];
