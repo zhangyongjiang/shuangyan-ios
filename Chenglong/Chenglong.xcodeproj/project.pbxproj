@@ -241,6 +241,10 @@
 		AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CEC1F0536C300D3F18E /* CoursePathView.m */; };
 		AD8949531F23E8CC00C024F8 /* OauthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949501F23E8CC00C024F8 /* OauthToken.m */; };
 		AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949521F23E8CC00C024F8 /* TokenedUser.m */; };
+		AD8949591F28F23400C024F8 /* CourseTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949581F28F23400C024F8 /* CourseTreeViewController.m */; };
+		AD89495C1F28F3B000C024F8 /* CourseTreePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD89495B1F28F3B000C024F8 /* CourseTreePage.m */; };
+		AD8949611F28FAD100C024F8 /* RADataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD89495E1F28FAD100C024F8 /* RADataObject.m */; };
+		AD8949621F28FAD100C024F8 /* RATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949601F28FAD100C024F8 /* RATableViewCell.m */; };
 		AD965AFE1F1E442C005CE723 /* MySearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD965AFD1F1E442C005CE723 /* MySearchController.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
@@ -727,6 +731,14 @@
 		AD8949501F23E8CC00C024F8 /* OauthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OauthToken.m; sourceTree = "<group>"; };
 		AD8949511F23E8CC00C024F8 /* TokenedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenedUser.h; sourceTree = "<group>"; };
 		AD8949521F23E8CC00C024F8 /* TokenedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenedUser.m; sourceTree = "<group>"; };
+		AD8949571F28F23400C024F8 /* CourseTreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseTreeViewController.h; sourceTree = "<group>"; };
+		AD8949581F28F23400C024F8 /* CourseTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseTreeViewController.m; sourceTree = "<group>"; };
+		AD89495A1F28F3B000C024F8 /* CourseTreePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseTreePage.h; sourceTree = "<group>"; };
+		AD89495B1F28F3B000C024F8 /* CourseTreePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseTreePage.m; sourceTree = "<group>"; };
+		AD89495D1F28FAD100C024F8 /* RADataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RADataObject.h; sourceTree = "<group>"; };
+		AD89495E1F28FAD100C024F8 /* RADataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RADataObject.m; sourceTree = "<group>"; };
+		AD89495F1F28FAD100C024F8 /* RATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RATableViewCell.h; sourceTree = "<group>"; };
+		AD8949601F28FAD100C024F8 /* RATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RATableViewCell.m; sourceTree = "<group>"; };
 		AD965AFC1F1E442C005CE723 /* MySearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchController.h; sourceTree = "<group>"; };
 		AD965AFD1F1E442C005CE723 /* MySearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchController.m; sourceTree = "<group>"; };
 		ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConentView.h; sourceTree = "<group>"; };
@@ -1358,6 +1370,7 @@
 		AD49D7681F096CE5000D0E1B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD8949561F28F21300C024F8 /* CourseTreeViewController */,
 				AD49D7691F096CE5000D0E1B /* CommunityFiles */,
 				AD49D7991F096CE5000D0E1B /* MyFiles */,
 				AD49D7CE1F096CE5000D0E1B /* LocalResources */,
@@ -1729,6 +1742,21 @@
 				AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */,
 			);
 			path = TWRDownloadManager;
+			sourceTree = "<group>";
+		};
+		AD8949561F28F21300C024F8 /* CourseTreeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AD89495D1F28FAD100C024F8 /* RADataObject.h */,
+				AD89495E1F28FAD100C024F8 /* RADataObject.m */,
+				AD89495F1F28FAD100C024F8 /* RATableViewCell.h */,
+				AD8949601F28FAD100C024F8 /* RATableViewCell.m */,
+				AD8949571F28F23400C024F8 /* CourseTreeViewController.h */,
+				AD8949581F28F23400C024F8 /* CourseTreeViewController.m */,
+				AD89495A1F28F3B000C024F8 /* CourseTreePage.h */,
+				AD89495B1F28F3B000C024F8 /* CourseTreePage.m */,
+			);
+			path = CourseTreeViewController;
 			sourceTree = "<group>";
 		};
 		ADD117991EECFF3D00EF6E04 /* Views */ = {
@@ -2125,6 +2153,7 @@
 				032C96921E2CA31D001EFC29 /* TZImageManager.m in Sources */,
 				030049001E0E5D65006EDC29 /* TMDiskCache.m in Sources */,
 				AD49D80B1F096CE5000D0E1B /* OnlineFileListTableViewCell.m in Sources */,
+				AD8949591F28F23400C024F8 /* CourseTreeViewController.m in Sources */,
 				030049681E0E5F60006EDC29 /* CourseDetails.m in Sources */,
 				0300496B1E0E5F60006EDC29 /* CourseMoveRequest.m in Sources */,
 				030049841E0E5F61006EDC29 /* UserList.m in Sources */,
@@ -2145,6 +2174,7 @@
 				AD49D8241F096CE5000D0E1B /* FileNoDataView.m in Sources */,
 				ADD117A51EED098400EF6E04 /* MediaContentAudioView.m in Sources */,
 				ADD117A81EED12C600EF6E04 /* CourseDetailsView.m in Sources */,
+				AD89495C1F28F3B000C024F8 /* CourseTreePage.m in Sources */,
 				030049741E0E5F60006EDC29 /* JournalDetails.m in Sources */,
 				AD49D81D1F096CE5000D0E1B /* MediaAttachment.m in Sources */,
 				AD49D8351F096CE5000D0E1B /* ResetPwdView.m in Sources */,
@@ -2225,6 +2255,7 @@
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,
 				AD666CAF1F00BDA500D3F18E /* CourseDetailsWithParent.m in Sources */,
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
+				AD8949611F28FAD100C024F8 /* RADataObject.m in Sources */,
 				AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */,
 				AD49D8401F096CE5000D0E1B /* SpendingHistoryPage.m in Sources */,
 				AD49D81F1F096CE5000D0E1B /* MediaAttachmentDataSource.m in Sources */,
@@ -2249,6 +2280,7 @@
 				AD49D8091F096CE5000D0E1B /* OnlineFileListItemView.m in Sources */,
 				0300495F1E0E5F60006EDC29 /* BusinessDetails.m in Sources */,
 				030049671E0E5F60006EDC29 /* CourseBuyRequest.m in Sources */,
+				AD8949621F28FAD100C024F8 /* RATableViewCell.m in Sources */,
 				032911BE1E1296A8000C1F5A /* SecondCountdown.m in Sources */,
 				AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */,
 				ADD117E81EF61C2D00EF6E04 /* VideoView.m in Sources */,

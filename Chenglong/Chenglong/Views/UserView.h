@@ -8,6 +8,8 @@
 
 #import "BaseView.h"
 
+#define UserSummaryViewHeight 40
+
 @interface UserSummaryView : BaseView
 
 @property(strong, nonatomic) User* user;

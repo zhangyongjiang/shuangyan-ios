@@ -33,7 +33,7 @@
     _courseDetailsWithParent = courseDetailsWithParent;
 
     if(self.scrollView) {
-        [self.scrollView rectForSubviews];
+        [self.scrollView removeFromSuperview];
     }
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenHeight])];
     [self addSubview:self.scrollView];
