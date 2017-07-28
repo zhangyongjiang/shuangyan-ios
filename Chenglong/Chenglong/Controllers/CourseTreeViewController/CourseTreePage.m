@@ -136,5 +136,8 @@
     
 }
 
-
+-(void)setCourseDetails:(CourseDetails *)courseDetails {
+    _courseDetails = courseDetails;
+    [self.treeView reloadData];
+}
 @end

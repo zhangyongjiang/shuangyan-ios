@@ -19,6 +19,14 @@
     [super viewDidLoad];
     self.page = [[CourseTreePage alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.page];
+    [self refreshPage];
 }
 
+-(void)refreshPage {
+    [CourseApi CourseAPI_ListUserCourseTree:self.userId onSuccess:^(CourseDetails *resp) {
+        
+    } onError:^(APIError *err) {
+        
+    }];
+}
 @end

@@ -11,6 +11,8 @@
 
 @interface CourseTreeViewController : BaseViewController
 
+@property (strong, nonatomic) NSString* userId;
+
 @property (strong, nonatomic) CourseTreePage* page;
 
 @end

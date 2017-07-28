@@ -385,5 +385,24 @@
     }];
 }
 
++(NSURLSessionDataTask*) CourseAPI_ListUserCourseTree:(NSString*)userId onSuccess:(void (^)(CourseDetails *resp))successBlock onError:(void (^)(APIError *err))errorBlock {
+    NSString* url_ = @"/course-service/tree";
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    if(userId) [dict setObject:userId forKey:@"userId"];
+    return [[WebService getOperationManager] GET:url_
+                                      parameters:dict
+                                         success:^(NSURLSessionDataTask *operation, id responseObject) {
+                                             ObjectMapper *mapper = [ObjectMapper mapper];
+                                             NSError *error;
+                                             CourseDetails* resp = [mapper mapObject:responseObject toClass:[CourseDetails class] withError:&error];
+                                             if (error) {
+                                                 errorBlock([[APIError alloc] initWithOperation:operation andError:error]);
+                                             } else {
+                                                 successBlock(resp);
+                                             }
+                                         } apiError:^(APIError* error) {
+                                             errorBlock(error);
+                                         }];
+}
 
 @end
