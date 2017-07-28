@@ -36,8 +36,6 @@
     if(self.courseId == NULL) {
         self.navigationItem.title = @"我的文件";
     }
-    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"tab_btn_file_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_file_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    self.tabBarItem.imageInsets = UIEdgeInsetsMake(-4, 0, 4, 0);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseChangedNoti:) name:NotificationCourseChanged object:NULL];
 }

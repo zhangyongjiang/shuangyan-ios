@@ -22,8 +22,6 @@
 
 -(id)init {
     self = [super init];
-    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"共享" image:[[UIImage imageNamed:@"tab_btn_community_norl"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_community_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    self.tabBarItem.imageInsets = UIEdgeInsetsMake(-4, 0, 4, 0);
     return self;
 }
 

@@ -245,6 +245,9 @@
 		AD89495C1F28F3B000C024F8 /* CourseTreePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD89495B1F28F3B000C024F8 /* CourseTreePage.m */; };
 		AD8949611F28FAD100C024F8 /* RADataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD89495E1F28FAD100C024F8 /* RADataObject.m */; };
 		AD8949621F28FAD100C024F8 /* RATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949601F28FAD100C024F8 /* RATableViewCell.m */; };
+		AD8949651F2BFAE900C024F8 /* MyFileNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949641F2BFAE900C024F8 /* MyFileNavigationController.m */; };
+		AD8949681F2BFBA000C024F8 /* CommunityNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949671F2BFBA000C024F8 /* CommunityNavigationController.m */; };
+		AD89496B1F2BFD8F00C024F8 /* ProfileNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD89496A1F2BFD8F00C024F8 /* ProfileNavigationController.m */; };
 		AD965AFE1F1E442C005CE723 /* MySearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD965AFD1F1E442C005CE723 /* MySearchController.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
@@ -739,6 +742,12 @@
 		AD89495E1F28FAD100C024F8 /* RADataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RADataObject.m; sourceTree = "<group>"; };
 		AD89495F1F28FAD100C024F8 /* RATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RATableViewCell.h; sourceTree = "<group>"; };
 		AD8949601F28FAD100C024F8 /* RATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RATableViewCell.m; sourceTree = "<group>"; };
+		AD8949631F2BFAE900C024F8 /* MyFileNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFileNavigationController.h; sourceTree = "<group>"; };
+		AD8949641F2BFAE900C024F8 /* MyFileNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFileNavigationController.m; sourceTree = "<group>"; };
+		AD8949661F2BFBA000C024F8 /* CommunityNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityNavigationController.h; sourceTree = "<group>"; };
+		AD8949671F2BFBA000C024F8 /* CommunityNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityNavigationController.m; sourceTree = "<group>"; };
+		AD8949691F2BFD8F00C024F8 /* ProfileNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileNavigationController.h; sourceTree = "<group>"; };
+		AD89496A1F2BFD8F00C024F8 /* ProfileNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileNavigationController.m; sourceTree = "<group>"; };
 		AD965AFC1F1E442C005CE723 /* MySearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchController.h; sourceTree = "<group>"; };
 		AD965AFD1F1E442C005CE723 /* MySearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchController.m; sourceTree = "<group>"; };
 		ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConentView.h; sourceTree = "<group>"; };
@@ -1378,6 +1387,12 @@
 				AD49D7D51F096CE5000D0E1B /* MainTabBarController.m */,
 				AD49D7D61F096CE5000D0E1B /* misc */,
 				AD49D7DA1F096CE5000D0E1B /* user */,
+				AD8949631F2BFAE900C024F8 /* MyFileNavigationController.h */,
+				AD8949641F2BFAE900C024F8 /* MyFileNavigationController.m */,
+				AD8949661F2BFBA000C024F8 /* CommunityNavigationController.h */,
+				AD8949671F2BFBA000C024F8 /* CommunityNavigationController.m */,
+				AD8949691F2BFD8F00C024F8 /* ProfileNavigationController.h */,
+				AD89496A1F2BFD8F00C024F8 /* ProfileNavigationController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2112,6 +2127,7 @@
 				ADD117AE1EED956700EF6E04 /* MediaContentPdfView.m in Sources */,
 				032C96911E2CA31D001EFC29 /* TZAssetModel.m in Sources */,
 				AD3D94F61EE6790E00D2704B /* TableViewPage.m in Sources */,
+				AD8949651F2BFAE900C024F8 /* MyFileNavigationController.m in Sources */,
 				030048F31E0E5D17006EDC29 /* Constants.m in Sources */,
 				AD8949531F23E8CC00C024F8 /* OauthToken.m in Sources */,
 				AD49D8081F096CE5000D0E1B /* OnlineFileListHeaderView.m in Sources */,
@@ -2201,6 +2217,7 @@
 				0300497A1E0E5F61006EDC29 /* MoneyRequest.m in Sources */,
 				AD49D82A1F096CE5000D0E1B /* TotalFileHeaderView.m in Sources */,
 				030049611E0E5F60006EDC29 /* BusinessList.m in Sources */,
+				AD89496B1F2BFD8F00C024F8 /* ProfileNavigationController.m in Sources */,
 				AD49D87B1F0BD86C000D0E1B /* UserFileListViewController.m in Sources */,
 				0335B3111E1508F800A2A74B /* XTPopTableView.m in Sources */,
 				AD49D81B1F096CE5000D0E1B /* FilePhotoViews.m in Sources */,
@@ -2292,6 +2309,7 @@
 				032C96931E2CA31D001EFC29 /* TZImagePickerController.m in Sources */,
 				030049711E0E5F60006EDC29 /* Invitation.m in Sources */,
 				AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */,
+				AD8949681F2BFBA000C024F8 /* CommunityNavigationController.m in Sources */,
 				AD49D8881F0CB3B2000D0E1B /* MediaViewController.m in Sources */,
 				032C96961E2CA31D001EFC29 /* TZPhotoPreviewController.m in Sources */,
 				032C96B31E2CB007001EFC29 /* DVFullScreenMediaScrollView.m in Sources */,

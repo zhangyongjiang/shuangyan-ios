@@ -16,11 +16,13 @@
 #import "OnlineSearchListViewController.h"
 #import "BaseNavigationController.h"
 #import "CourseTreeViewController.h"
+#import "MyFileNavigationController.h"
+#import "CommunityNavigationController.h"
+#import "ProfileNavigationController.h"
 
 
 @interface MainTabBarController ()<UITabBarControllerDelegate>
 {
-    UIViewController * currSelectViewController;
 }
 
 @property (nonatomic, assign) BOOL firstViewDidAppear;
@@ -49,23 +51,9 @@
     self.tabBar.translucent = NO;
     self.delegate = self;
     
-    
-    FileListViewController* file = [[FileListViewController alloc] init];
-
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    file.filePath = documentsPath;
-
-    OnlineSearchListViewController* community = [[OnlineSearchListViewController alloc] init];
-    
-    ProfileViewController* profile = [[ProfileViewController alloc] init];
-    currSelectViewController = file;
-    
-    CourseTreeViewController* treec = [CourseTreeViewController new];
-    
-    [self setViewControllers:@[[[BaseNavigationController alloc] initWithRootViewController:file],
-                               [[BaseNavigationController alloc] initWithRootViewController:community],
-                               [[BaseNavigationController alloc] initWithRootViewController:treec]
+    [self setViewControllers:@[[MyFileNavigationController new],
+                               [CommunityNavigationController new],
+                               [ProfileNavigationController new]
                                ]];
     [self addObser];
     
