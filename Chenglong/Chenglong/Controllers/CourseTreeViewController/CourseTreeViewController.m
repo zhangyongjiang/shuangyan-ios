@@ -24,9 +24,9 @@
 
 -(void)refreshPage {
     [CourseApi CourseAPI_ListUserCourseTree:self.userId onSuccess:^(CourseDetails *resp) {
-        
+        self.page.courseDetails = resp;
     } onError:^(APIError *err) {
-        
+        ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
     }];
 }
 @end

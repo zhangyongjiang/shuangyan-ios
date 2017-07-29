@@ -8,6 +8,7 @@
 
 #import "MyFileNavigationController.h"
 #import "FileListViewController.h"
+#import "CourseTreeViewController.h"
 
 @interface MyFileNavigationController ()
 
@@ -18,11 +19,13 @@
 -(id)init {
     self = [super init];
     
-    FileListViewController* file = [[FileListViewController alloc] init];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    file.filePath = documentsPath;
-    self.viewControllers = [NSArray arrayWithObject:file];
+//    FileListViewController* file = [[FileListViewController alloc] init];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsPath = [paths objectAtIndex:0];
+//    file.filePath = documentsPath;
+//    self.viewControllers = [NSArray arrayWithObject:file];
+    
+    self.viewControllers = [NSArray arrayWithObject:[CourseTreeViewController new]];
     
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[[UIImage imageNamed:@"tab_btn_file_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_file_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     self.tabBarItem.imageInsets = UIEdgeInsetsMake(-4, 0, 4, 0);

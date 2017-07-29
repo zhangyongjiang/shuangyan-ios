@@ -243,7 +243,6 @@
 		AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949521F23E8CC00C024F8 /* TokenedUser.m */; };
 		AD8949591F28F23400C024F8 /* CourseTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949581F28F23400C024F8 /* CourseTreeViewController.m */; };
 		AD89495C1F28F3B000C024F8 /* CourseTreePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD89495B1F28F3B000C024F8 /* CourseTreePage.m */; };
-		AD8949611F28FAD100C024F8 /* RADataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD89495E1F28FAD100C024F8 /* RADataObject.m */; };
 		AD8949621F28FAD100C024F8 /* RATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949601F28FAD100C024F8 /* RATableViewCell.m */; };
 		AD8949651F2BFAE900C024F8 /* MyFileNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949641F2BFAE900C024F8 /* MyFileNavigationController.m */; };
 		AD8949681F2BFBA000C024F8 /* CommunityNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949671F2BFBA000C024F8 /* CommunityNavigationController.m */; };
@@ -738,8 +737,6 @@
 		AD8949581F28F23400C024F8 /* CourseTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseTreeViewController.m; sourceTree = "<group>"; };
 		AD89495A1F28F3B000C024F8 /* CourseTreePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseTreePage.h; sourceTree = "<group>"; };
 		AD89495B1F28F3B000C024F8 /* CourseTreePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseTreePage.m; sourceTree = "<group>"; };
-		AD89495D1F28FAD100C024F8 /* RADataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RADataObject.h; sourceTree = "<group>"; };
-		AD89495E1F28FAD100C024F8 /* RADataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RADataObject.m; sourceTree = "<group>"; };
 		AD89495F1F28FAD100C024F8 /* RATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RATableViewCell.h; sourceTree = "<group>"; };
 		AD8949601F28FAD100C024F8 /* RATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RATableViewCell.m; sourceTree = "<group>"; };
 		AD8949631F2BFAE900C024F8 /* MyFileNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFileNavigationController.h; sourceTree = "<group>"; };
@@ -1762,8 +1759,6 @@
 		AD8949561F28F21300C024F8 /* CourseTreeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				AD89495D1F28FAD100C024F8 /* RADataObject.h */,
-				AD89495E1F28FAD100C024F8 /* RADataObject.m */,
 				AD89495F1F28FAD100C024F8 /* RATableViewCell.h */,
 				AD8949601F28FAD100C024F8 /* RATableViewCell.m */,
 				AD8949571F28F23400C024F8 /* CourseTreeViewController.h */,
@@ -2272,7 +2267,6 @@
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,
 				AD666CAF1F00BDA500D3F18E /* CourseDetailsWithParent.m in Sources */,
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
-				AD8949611F28FAD100C024F8 /* RADataObject.m in Sources */,
 				AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */,
 				AD49D8401F096CE5000D0E1B /* SpendingHistoryPage.m in Sources */,
 				AD49D81F1F096CE5000D0E1B /* MediaAttachmentDataSource.m in Sources */,

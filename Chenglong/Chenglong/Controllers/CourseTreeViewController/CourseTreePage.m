@@ -7,12 +7,9 @@
 //
 
 #import "CourseTreePage.h"
-#import "RADataObject.h"
 #import "RATableViewCell.h"
 
 @interface CourseTreePage() <RATreeViewDelegate, RATreeViewDataSource>
-
-@property (strong, nonatomic) NSArray *data;
 
 @end
 
@@ -34,9 +31,6 @@
     
     [self addSubview:self.treeView];
     
-    [self loadData];
-    [self.treeView reloadData];
-    
     return self;
 }
 
@@ -55,26 +49,26 @@
 
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(id)item
 {
-    RADataObject *dataObject = item;
+    CourseDetails *dataObject = item;
     
     NSInteger level = [self.treeView levelForCellForItem:item];
-    NSInteger numberOfChildren = [dataObject.children count];
+    NSInteger numberOfChildren = [dataObject.items count];
     NSString *detailText = [NSString localizedStringWithFormat:@"Number of children %@", [@(numberOfChildren) stringValue]];
     BOOL expanded = [self.treeView isCellForItemExpanded:item];
     
     RATableViewCell *cell = [self.treeView dequeueReusableCellWithIdentifier:NSStringFromClass([RATableViewCell class])];
-    [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded];
+    [cell setupWithTitle:dataObject.course.title detailText:detailText level:level additionButtonHidden:!expanded];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     __weak typeof(self) weakSelf = self;
     cell.additionButtonTapAction = ^(id sender){
-        if (![weakSelf.treeView isCellForItemExpanded:dataObject] || weakSelf.treeView.isEditing) {
-            return;
-        }
-        RADataObject *newDataObject = [[RADataObject alloc] initWithName:@"Added value" children:@[]];
-        [dataObject addChild:newDataObject];
-        [weakSelf.treeView insertItemsAtIndexes:[NSIndexSet indexSetWithIndex:0] inParent:dataObject withAnimation:RATreeViewRowAnimationLeft];
-        [weakSelf.treeView reloadRowsForItems:@[dataObject] withRowAnimation:RATreeViewRowAnimationNone];
+//        if (![weakSelf.treeView isCellForItemExpanded:dataObject] || weakSelf.treeView.isEditing) {
+//            return;
+//        }
+//        CourseDetails *newDataObject = [[CourseDetails alloc] initWithName:@"Added value" children:@[]];
+//        [dataObject addChild:newDataObject];
+//        [weakSelf.treeView insertItemsAtIndexes:[NSIndexSet indexSetWithIndex:0] inParent:dataObject withAnimation:RATreeViewRowAnimationLeft];
+//        [weakSelf.treeView reloadRowsForItems:@[dataObject] withRowAnimation:RATreeViewRowAnimationNone];
     };
     
     return cell;
@@ -83,58 +77,23 @@
 - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(id)item
 {
     if (item == nil) {
-        return [self.data count];
+        return [self.courseDetails.items count];
     }
     
-    RADataObject *data = item;
-    return [data.children count];
+    CourseDetails *data = item;
+    return [data.items count];
 }
 
 - (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(id)item
 {
-    RADataObject *data = item;
+    CourseDetails *data = item;
     if (item == nil) {
-        return [self.data objectAtIndex:index];
+        return [self.courseDetails.items objectAtIndex:index];
     }
     
-    return data.children[index];
+    return data.items[index];
 }
 
-
-- (void)loadData
-{
-    RADataObject *phone1 = [RADataObject dataObjectWithName:@"Phone 1" children:nil];
-    RADataObject *phone2 = [RADataObject dataObjectWithName:@"Phone 2" children:nil];
-    RADataObject *phone3 = [RADataObject dataObjectWithName:@"Phone 3" children:nil];
-    RADataObject *phone4 = [RADataObject dataObjectWithName:@"Phone 4" children:nil];
-    
-    RADataObject *phone = [RADataObject dataObjectWithName:@"Phones"
-                                                  children:[NSArray arrayWithObjects:phone1, phone2, phone3, phone4, nil]];
-    
-    RADataObject *notebook1 = [RADataObject dataObjectWithName:@"Notebook 1" children:nil];
-    RADataObject *notebook2 = [RADataObject dataObjectWithName:@"Notebook 2" children:nil];
-    
-    RADataObject *computer1 = [RADataObject dataObjectWithName:@"Computer 1"
-                                                      children:[NSArray arrayWithObjects:notebook1, notebook2, nil]];
-    RADataObject *computer2 = [RADataObject dataObjectWithName:@"Computer 2" children:nil];
-    RADataObject *computer3 = [RADataObject dataObjectWithName:@"Computer 3" children:nil];
-    
-    RADataObject *computer = [RADataObject dataObjectWithName:@"Computers"
-                                                     children:[NSArray arrayWithObjects:computer1, computer2, computer3, nil]];
-    RADataObject *car = [RADataObject dataObjectWithName:@"Cars" children:nil];
-    RADataObject *bike = [RADataObject dataObjectWithName:@"Bikes" children:nil];
-    RADataObject *house = [RADataObject dataObjectWithName:@"Houses" children:nil];
-    RADataObject *flats = [RADataObject dataObjectWithName:@"Flats" children:nil];
-    RADataObject *motorbike = [RADataObject dataObjectWithName:@"Motorbikes" children:nil];
-    RADataObject *drinks = [RADataObject dataObjectWithName:@"Drinks" children:nil];
-    RADataObject *food = [RADataObject dataObjectWithName:@"Food" children:nil];
-    RADataObject *sweets = [RADataObject dataObjectWithName:@"Sweets" children:nil];
-    RADataObject *watches = [RADataObject dataObjectWithName:@"Watches" children:nil];
-    RADataObject *walls = [RADataObject dataObjectWithName:@"Walls" children:nil];
-    
-    self.data = [NSArray arrayWithObjects:phone, computer, car, bike, house, flats, motorbike, drinks, food, sweets, watches, walls, nil];
-    
-}
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails {
     _courseDetails = courseDetails;
