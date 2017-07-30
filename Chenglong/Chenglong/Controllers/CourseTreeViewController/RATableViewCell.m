@@ -24,18 +24,24 @@
 
 @interface RATableViewCell ()
 
-@property (strong, nonatomic) FitLabel *detailedLabel;
-@property (strong, nonatomic) FitLabel *customTitleLabel;
-@property (strong, nonatomic) UIButton *additionButton;
 
 @end
 
 @implementation RATableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
     self.customTitleLabel = [FitLabel new];
     [self addSubview:self.customTitleLabel];
+    
+    self.collapseButton = [[UIButton alloc] initWithFrame:CGRectMake(Margin, 30, 20, 20)];
+    [self.collapseButton setTitle:@"<<" forState:UIControlStateNormal];
+    [self.collapseButton addTarget:self action:@selector(collapseButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.collapseButton.backgroundColor = [UIColor redColor];
+    [self addSubview:self.collapseButton];
+    
     return self;
 }
 
@@ -100,9 +106,16 @@
 
 - (IBAction)additionButtonTapped:(id)sender
 {
-  if (self.additionButtonTapAction) {
-    self.additionButtonTapAction(sender);
-  }
+    if (self.additionButtonTapAction) {
+        self.additionButtonTapAction(sender);
+    }
+}
+
+- (void)collapseButtonTapped:(id)sender
+{
+    if (self.collapseButtonTapAction) {
+        self.collapseButtonTapAction(sender);
+    }
 }
 
 @end

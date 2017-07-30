@@ -46,6 +46,23 @@
 //    }
 //}
 
+-(CourseDetails*) getParentOfItem:(CourseDetails*) item
+{
+    return [self searchParent:self.courseDetails forItem:item];
+}
+
+-(CourseDetails*) searchParent:(CourseDetails*) parent forItem:(CourseDetails*) item
+{
+    for (CourseDetails* child in parent.items) {
+        if([child.course.id isEqualToString:item.course.id])
+            return parent;
+        CourseDetails* found = [self searchParent:child forItem:item];
+        if (found)
+            return found;
+    }
+    return nil;
+}
+
 
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(id)item
 {
@@ -69,6 +86,12 @@
 //        [dataObject addChild:newDataObject];
 //        [weakSelf.treeView insertItemsAtIndexes:[NSIndexSet indexSetWithIndex:0] inParent:dataObject withAnimation:RATreeViewRowAnimationLeft];
 //        [weakSelf.treeView reloadRowsForItems:@[dataObject] withRowAnimation:RATreeViewRowAnimationNone];
+    };
+    
+    cell.collapseButtonTapAction = ^(id sender) {
+        CourseDetails* parent = [weakSelf getParentOfItem:dataObject];
+        if(parent)
+            [weakSelf.treeView collapseRowForItem:parent];
     };
     
     return cell;
