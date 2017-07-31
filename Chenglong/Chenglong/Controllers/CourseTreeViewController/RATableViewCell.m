@@ -126,8 +126,6 @@
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails {
     _courseDetails = courseDetails;
-    if(courseDetails.course.parentCourseId == nil) {
-        self.collapseButton.hidden = YES;
-    }
+    self.collapseButton.hidden = (courseDetails.course.parentCourseId == nil);
 }
 @end
