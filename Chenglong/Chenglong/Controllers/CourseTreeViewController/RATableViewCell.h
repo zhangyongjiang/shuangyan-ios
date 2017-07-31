@@ -22,6 +22,8 @@
 
 @interface RATableViewCell : UITableViewCell
 
+@property(strong, nonatomic)CourseDetails* courseDetails;
+
 @property (strong, nonatomic) FitLabel *detailedLabel;
 @property (strong, nonatomic) FitLabel *customTitleLabel;
 @property (strong, nonatomic) UIButton *additionButton;

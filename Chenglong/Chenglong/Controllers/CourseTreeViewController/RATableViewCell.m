@@ -37,10 +37,14 @@
     [self addSubview:self.customTitleLabel];
     
     self.collapseButton = [[UIButton alloc] initWithFrame:CGRectMake(Margin, 30, 20, 20)];
-    [self.collapseButton setTitle:@"<<" forState:UIControlStateNormal];
+//    [self.collapseButton setTitle:@"<<" forState:UIControlStateNormal];
+    [self.collapseButton setBackgroundImage:[UIImage imageNamed:@"file_item_up_icon"] forState:UIControlStateNormal];
     [self.collapseButton addTarget:self action:@selector(collapseButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    self.collapseButton.backgroundColor = [UIColor redColor];
+//    self.collapseButton.backgroundColor = [UIColor redColor];
     [self addSubview:self.collapseButton];
+    [self.collapseButton autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+//    [self.collapseButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:Margin];
+    [self.collapseButton autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customTitleLabel withOffset:-Margin/2.];
     
     return self;
 }
@@ -61,6 +65,7 @@
   self.customTitleLabel.text = title;
   self.detailedLabel.text = detailText;
   self.additionButtonHidden = additionButtonHidden;
+    [self.customTitleLabel vcenterInParent];
   
   if (level == 0) {
     self.detailTextLabel.textColor = [UIColor blackColor];
@@ -83,6 +88,7 @@
   CGRect detailsFrame = self.detailedLabel.frame;
   detailsFrame.origin.x = left;
   self.detailedLabel.frame = detailsFrame;
+    [self.detailedLabel vcenterInParent];
 }
 
 
@@ -118,4 +124,10 @@
     }
 }
 
+-(void)setCourseDetails:(CourseDetails *)courseDetails {
+    _courseDetails = courseDetails;
+    if(courseDetails.course.parentCourseId == nil) {
+        self.collapseButton.hidden = YES;
+    }
+}
 @end

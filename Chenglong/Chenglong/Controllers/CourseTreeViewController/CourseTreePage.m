@@ -76,6 +76,7 @@
     RATableViewCell *cell = [self.treeView dequeueReusableCellWithIdentifier:NSStringFromClass([RATableViewCell class])];
     [cell setupWithTitle:dataObject.course.title detailText:detailText level:level additionButtonHidden:!expanded];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.courseDetails = item;
     
     __weak typeof(self) weakSelf = self;
     cell.additionButtonTapAction = ^(id sender){
