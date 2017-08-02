@@ -17,5 +17,6 @@
 @property(strong, nonatomic) UserSummaryView* userSummaryView;
 @property(strong, nonatomic) RATreeView *treeView;
 @property(strong, nonatomic) CourseDetails* courseDetails;
+@property(strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end

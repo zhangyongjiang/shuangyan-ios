@@ -29,6 +29,9 @@
     self.treeView.delegate = self;
     self.treeView.dataSource = self;
     
+    self.refreshControl = [UIRefreshControl new];
+    [self.treeView.scrollView addSubview:self.refreshControl];
+
     [self addSubview:self.treeView];
     
     return self;

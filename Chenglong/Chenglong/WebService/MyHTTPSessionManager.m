@@ -86,7 +86,6 @@ NSUInteger kDefaultMaxRetries = 3;
     [SVProgressHUD show];
     NSURLSessionDataTask *operation = [super GET:URLString parameters:parameters progress:nil
                                          success:^(NSURLSessionDataTask *operation, id responseObject) {
-                                             [SVProgressHUD dismiss];
                                              //                                               NSLog(@"GET SUCCESS: %@ with data: %@", URLString, parameters);
                                              NSDictionary* dict = responseObject;
                                              NSNumber* obj = [dict objectForKey:@"success"];
@@ -98,13 +97,14 @@ NSUInteger kDefaultMaxRetries = 3;
                                                  failure(apiError);
                                                  [self logError:apiError operation:operation];
                                              }
+                                             [SVProgressHUD dismiss];
                                          }
                                          failure:^(NSURLSessionDataTask *operation, NSError *error) {
-                                             [SVProgressHUD dismiss];
                                              //                                               NSLog(@"GET ERROR: %@ with data: %@. %@", URLString, parameters, error);
                                              APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
                                              failure(apiError);
                                              [self logError:apiError operation:operation];
+                                             [SVProgressHUD dismiss];
                                          }];
     
     return operation;

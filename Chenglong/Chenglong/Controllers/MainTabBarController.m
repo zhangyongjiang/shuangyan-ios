@@ -45,7 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadLoggedInUser];
+//    [self loadLoggedInUser];
 
     self.tabBar.accessibilityLabel = @"MainTabBar";
     self.tabBar.translucent = NO;

@@ -18,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = [[CourseTreePage alloc] initWithFrame:self.view.bounds];
+    
+    [self.page.refreshControl addTarget:self action:@selector(refreshPage) forControlEvents:UIControlEventValueChanged];
+    
     [self.view addSubview:self.page];
     [self refreshPage];
 }
@@ -25,8 +28,10 @@
 -(void)refreshPage {
     [CourseApi CourseAPI_ListUserCourseTree:self.userId onSuccess:^(CourseDetails *resp) {
         self.page.courseDetails = resp;
+        [self.page.refreshControl endRefreshing];
     } onError:^(APIError *err) {
         ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        [self.page.refreshControl endRefreshing];
     }];
 }
 @end
