@@ -83,6 +83,7 @@
   
   CGRect titleFrame = self.customTitleLabel.frame;
   titleFrame.origin.x = left;
+    titleFrame.size.width = [UIView screenWidth] - left - Margin*2;
   self.customTitleLabel.frame = titleFrame;
   
   CGRect detailsFrame = self.detailedLabel.frame;

@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = [[CourseTreePage alloc] initWithFrame:self.view.bounds];
+    self.page.height -= 108;
     
     [self.page.refreshControl addTarget:self action:@selector(refreshPage) forControlEvents:UIControlEventValueChanged];
     

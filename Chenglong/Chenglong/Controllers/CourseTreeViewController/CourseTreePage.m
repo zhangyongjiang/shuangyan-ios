@@ -37,17 +37,19 @@
     return self;
 }
 
-//-(void)layoutSubviews {
-//    [super layoutSubviews];
-//    if(self.showUser) {
-//        self.userSummaryView.hidden = NO;
-//        self.treeView.height = self.height - self.userSummaryView.height;
-//    }
-//    else {
-//        self.userSummaryView.hidden = YES;
-//        self.treeView.height = self.height;
-//    }
-//}
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    if(self.showUser) {
+        self.userSummaryView.hidden = NO;
+        self.treeView.height = self.height - self.userSummaryView.height;
+        self.treeView.y = self.userSummaryView.bottom;
+    }
+    else {
+        self.userSummaryView.hidden = YES;
+        self.treeView.height = self.height;
+        self.treeView.y = 0;
+    }
+}
 
 -(CourseDetails*) getParentOfItem:(CourseDetails*) item
 {
@@ -80,6 +82,13 @@
     [cell setupWithTitle:dataObject.course.title detailText:detailText level:level additionButtonHidden:!expanded];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.courseDetails = item;
+    
+    if(!dataObject.course.isDir.integerValue) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     __weak typeof(self) weakSelf = self;
     cell.additionButtonTapAction = ^(id sender){
