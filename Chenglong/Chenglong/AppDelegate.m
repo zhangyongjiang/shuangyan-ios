@@ -141,9 +141,9 @@
     UIImage* image = [[UIImage imageNamed:@"nav_btn_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(0, image.size.width, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     // general progress view
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
-    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+//    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+//    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     
 }
 

@@ -36,15 +36,15 @@
     self.customTitleLabel = [FitLabel new];
     [self addSubview:self.customTitleLabel];
     
-    self.collapseButton = [[UIButton alloc] initWithFrame:CGRectMake(Margin, 30, 20, 20)];
+    self.collapseButton = [[UIButton alloc] initWithFrame:CGRectMake(Margin, 0, 30, 30)];
 //    [self.collapseButton setTitle:@"<<" forState:UIControlStateNormal];
     [self.collapseButton setBackgroundImage:[UIImage imageNamed:@"file_item_up_icon"] forState:UIControlStateNormal];
     [self.collapseButton addTarget:self action:@selector(collapseButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 //    self.collapseButton.backgroundColor = [UIColor redColor];
     [self addSubview:self.collapseButton];
-    [self.collapseButton autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+//    [self.collapseButton autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
 //    [self.collapseButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:Margin];
-    [self.collapseButton autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customTitleLabel withOffset:-Margin/2.];
+//    [self.collapseButton autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customTitleLabel withOffset:-Margin/2.];
     
     return self;
 }
@@ -79,12 +79,15 @@
 //    self.backgroundColor = UIColorFromRGB(0xE0F8D8);
 //  }
   
-  CGFloat left = 11 + 20 * level;
+  CGFloat left = 11 + 30 * level;
   
   CGRect titleFrame = self.customTitleLabel.frame;
   titleFrame.origin.x = left;
     titleFrame.size.width = [UIView screenWidth] - left - Margin*2;
   self.customTitleLabel.frame = titleFrame;
+    
+    [self.collapseButton vcenterInParent];
+    self.collapseButton.x = self.customTitleLabel.left - self.collapseButton.width;
   
   CGRect detailsFrame = self.detailedLabel.frame;
   detailsFrame.origin.x = left;
