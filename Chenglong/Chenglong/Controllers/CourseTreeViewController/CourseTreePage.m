@@ -80,7 +80,7 @@
     
     RATableViewCell *cell = [self.treeView dequeueReusableCellWithIdentifier:NSStringFromClass([RATableViewCell class])];
     [cell setupWithTitle:dataObject.course.title detailText:detailText level:level additionButtonHidden:!expanded];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     cell.courseDetails = item;
     
     if(!dataObject.course.isDir.integerValue) {
@@ -103,8 +103,10 @@
     
     cell.collapseButtonTapAction = ^(id sender) {
         CourseDetails* parent = [weakSelf getParentOfItem:dataObject];
-        if(parent)
+        if(parent) {
             [weakSelf.treeView collapseRowForItem:parent];
+            [treeView selectRowForItem:parent animated:YES scrollPosition:RATreeViewScrollPositionNone];
+        }
     };
     
     return cell;

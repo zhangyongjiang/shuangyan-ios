@@ -71,13 +71,13 @@
     self.detailTextLabel.textColor = [UIColor blackColor];
   }
   
-  if (level == 0) {
-    self.backgroundColor = UIColorFromRGB(0xF7F7F7);
-  } else if (level == 1) {
-    self.backgroundColor = UIColorFromRGB(0xD1EEFC);
-  } else if (level >= 2) {
-    self.backgroundColor = UIColorFromRGB(0xE0F8D8);
-  }
+//  if (level == 0) {
+//    self.backgroundColor = UIColorFromRGB(0xF7F7F7);
+//  } else if (level == 1) {
+//    self.backgroundColor = UIColorFromRGB(0xD1EEFC);
+//  } else if (level >= 2) {
+//    self.backgroundColor = UIColorFromRGB(0xE0F8D8);
+//  }
   
   CGFloat left = 11 + 20 * level;
   
