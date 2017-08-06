@@ -23,7 +23,7 @@
     
     self.treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, self.userSummaryView.bottom, [UIView screenWidth], self.height - self.userSummaryView.bottom)];
     self.treeView.treeFooterView = [UIView new];
-    self.treeView.separatorStyle = RATreeViewCellSeparatorStyleSingleLine;
+    self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
     [self.treeView registerClass:[RATableViewCell class] forCellReuseIdentifier:NSStringFromClass([RATableViewCell class])];
     
     self.treeView.delegate = self;
@@ -74,14 +74,11 @@
     CourseDetails *dataObject = item;
     
     NSInteger level = [self.treeView levelForCellForItem:item];
-    NSInteger numberOfChildren = [dataObject.items count];
-    NSString *detailText = [NSString localizedStringWithFormat:@"Number of children %@", [@(numberOfChildren) stringValue]];
     BOOL expanded = [self.treeView isCellForItemExpanded:item];
     
     RATableViewCell *cell = [self.treeView dequeueReusableCellWithIdentifier:NSStringFromClass([RATableViewCell class])];
-    [cell setupWithTitle:dataObject.course.title detailText:detailText level:level additionButtonHidden:!expanded];
+    [cell setupWithCourseDetails:dataObject level:level expanded:expanded];
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    cell.courseDetails = item;
     
     if(!dataObject.course.isDir.integerValue) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -104,12 +101,36 @@
     cell.collapseButtonTapAction = ^(id sender) {
         CourseDetails* parent = [weakSelf getParentOfItem:dataObject];
         if(parent) {
-            [weakSelf.treeView collapseRowForItem:parent];
-            [treeView selectRowForItem:parent animated:YES scrollPosition:RATreeViewScrollPositionNone];
+//            [weakSelf.treeView collapseRowForItem:parent];
+//            [treeView selectRowForItem:parent animated:YES scrollPosition:RATreeViewScrollPositionNone];
         }
     };
     
     return cell;
+}
+
+-(BOOL)treeView:(RATreeView *)treeView shouldExpandRowForItem:(id)item
+{
+    CourseDetails *data = item;
+    RATableViewCell *cell = [treeView cellForItem:data];
+    NSInteger level = [self.treeView levelForCellForItem:item];
+    BOOL expanded = [self.treeView isCellForItemExpanded:item];
+    [cell setupWithCourseDetails:data level:level expanded:YES];
+    return YES;
+}
+
+-(BOOL)treeView:(RATreeView *)treeView shouldCollapaseRowForItem:(id)item
+{
+    CourseDetails *data = item;
+    CourseDetails *parent = [self getParentOfItem:data];
+    if(parent == NULL)
+        return false;
+    
+    RATableViewCell *cell = [treeView cellForItem:data];
+    NSInteger level = [self.treeView levelForCellForItem:item];
+    BOOL expanded = [self.treeView isCellForItemExpanded:item];
+    [cell setupWithCourseDetails:data level:level expanded:NO];
+    return YES;
 }
 
 - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(id)item
@@ -136,5 +157,6 @@
 -(void)setCourseDetails:(CourseDetails *)courseDetails {
     _courseDetails = courseDetails;
     [self.treeView reloadData];
+    [self.treeView expandRowForItem:[courseDetails.items objectAtIndex:0]];
 }
 @end

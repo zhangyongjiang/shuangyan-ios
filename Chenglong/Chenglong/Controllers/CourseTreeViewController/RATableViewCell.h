@@ -22,7 +22,6 @@
 
 @interface RATableViewCell : UITableViewCell
 
-@property(strong, nonatomic)CourseDetails* courseDetails;
 
 @property (strong, nonatomic) FitLabel *detailedLabel;
 @property (strong, nonatomic) FitLabel *customTitleLabel;
@@ -33,7 +32,7 @@
 @property (nonatomic, copy) void (^collapseButtonTapAction)(id sender);
 @property (nonatomic) BOOL additionButtonHidden;
 
-- (void)setupWithTitle:(NSString *)title detailText:(NSString *)detailText level:(NSInteger)level additionButtonHidden:(BOOL)additionButtonHidden;
+- (void)setupWithCourseDetails:(CourseDetails *)title level:(NSInteger)level expanded:(BOOL)expanded;
 - (void)setAdditionButtonHidden:(BOOL)additionButtonHidden animated:(BOOL)animated;
 
 @end

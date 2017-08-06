@@ -28,7 +28,14 @@
 
 -(void)refreshPage {
     [CourseApi CourseAPI_ListUserCourseTree:self.userId onSuccess:^(CourseDetails *resp) {
-        self.page.courseDetails = resp;
+        CourseDetails* root = [CourseDetails new];
+        root.course = [Course new];
+        root.course.isDir = [NSNumber numberWithInteger:1];
+        root.course.title = @"我的文件";
+        root.items = resp.items;
+        CourseDetails* container = [CourseDetails new];
+        container.items = [NSMutableArray arrayWithObject:root];
+        self.page.courseDetails = container;
         [self.page.refreshControl endRefreshing];
     } onError:^(APIError *err) {
         ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);

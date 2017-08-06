@@ -273,6 +273,7 @@
 		ADEB6AA21D9BEC1B0082253C /* MyHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6A9E1D9BEC1B0082253C /* MyHTTPSessionManager.m */; };
 		ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6AA01D9BEC1B0082253C /* WebService.m */; };
 		ADEB6B991D9D6BB20082253C /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6B981D9D6BB20082253C /* Config.m */; };
+		ADEEC3701F3691920078B75E /* CourseDetails+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEEC36F1F3691920078B75E /* CourseDetails+Utils.m */; };
 		ADFEAB5E1DED6EBA00C0D703 /* CalendarApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB071DED6EBA00C0D703 /* CalendarApi.m */; };
 		ADFEAB611DED6EBA00C0D703 /* CourseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB0D1DED6EBA00C0D703 /* CourseApi.m */; };
 		ADFEAB6F1DED6EBA00C0D703 /* JournalApi.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFEAB291DED6EBA00C0D703 /* JournalApi.m */; };
@@ -791,6 +792,8 @@
 		ADEB6AA01D9BEC1B0082253C /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		ADEB6B971D9D6BB20082253C /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		ADEB6B981D9D6BB20082253C /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		ADEEC36E1F3691920078B75E /* CourseDetails+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CourseDetails+Utils.h"; sourceTree = "<group>"; };
+		ADEEC36F1F3691920078B75E /* CourseDetails+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CourseDetails+Utils.m"; sourceTree = "<group>"; };
 		ADFEAB061DED6EBA00C0D703 /* CalendarApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarApi.h; sourceTree = "<group>"; };
 		ADFEAB071DED6EBA00C0D703 /* CalendarApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarApi.m; sourceTree = "<group>"; };
 		ADFEAB0C1DED6EBA00C0D703 /* CourseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseApi.h; sourceTree = "<group>"; };
@@ -1280,6 +1283,8 @@
 				032C96B91E2CC525001EFC29 /* UIImagePickerController+Kaishi.m */,
 				AD2A7BE51F1537ED0016B51E /* MediaContent+Local.h */,
 				AD2A7BE61F1537ED0016B51E /* MediaContent+Local.m */,
+				ADEEC36E1F3691920078B75E /* CourseDetails+Utils.h */,
+				ADEEC36F1F3691920078B75E /* CourseDetails+Utils.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2311,6 +2316,7 @@
 				032911661E113BD0000C1F5A /* UCActionSheet.m in Sources */,
 				A354C1751C93ED9F00EE0DE5 /* main.m in Sources */,
 				032C96B51E2CB007001EFC29 /* MediaPreviewView.m in Sources */,
+				ADEEC3701F3691920078B75E /* CourseDetails+Utils.m in Sources */,
 				030049731E0E5F60006EDC29 /* Journal.m in Sources */,
 				ADD117EB1EF61F6C00EF6E04 /* AudioView.m in Sources */,
 				ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */,
