@@ -8,6 +8,7 @@
 
 #import "CourseTreePage.h"
 #import "RATableViewCell.h"
+#import "FileDetailsViewController.h"
 
 @interface CourseTreePage() <RATreeViewDelegate, RATreeViewDataSource>
 
@@ -18,10 +19,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.userSummaryView = [[UserSummaryView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], UserSummaryViewHeight)];
-    [self addSubview:self.userSummaryView];
-    
-    self.treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, self.userSummaryView.bottom, [UIView screenWidth], self.height - self.userSummaryView.bottom)];
+    self.treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], self.height)];
     self.treeView.treeFooterView = [UIView new];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
     [self.treeView registerClass:[RATableViewCell class] forCellReuseIdentifier:NSStringFromClass([RATableViewCell class])];
@@ -35,20 +33,6 @@
     [self addSubview:self.treeView];
     
     return self;
-}
-
--(void)layoutSubviews {
-    [super layoutSubviews];
-    if(self.showUser) {
-        self.userSummaryView.hidden = NO;
-        self.treeView.height = self.height - self.userSummaryView.height;
-        self.treeView.y = self.userSummaryView.bottom;
-    }
-    else {
-        self.userSummaryView.hidden = YES;
-        self.treeView.height = self.height;
-        self.treeView.y = 0;
-    }
 }
 
 -(CourseDetails*) getParentOfItem:(CourseDetails*) item
@@ -153,10 +137,20 @@
     return data.items[index];
 }
 
+-(void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item
+{
+    CourseDetails *cd = item;
+    if(![cd isDirectory]) {
+        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
+        c.courseDetails = cd;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+    }
+}
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails {
     _courseDetails = courseDetails;
+    CourseDetails* root = [courseDetails.items objectAtIndex:0];
     [self.treeView reloadData];
-    [self.treeView expandRowForItem:[courseDetails.items objectAtIndex:0]];
+    [self.treeView expandRowForItem:root];
 }
 @end

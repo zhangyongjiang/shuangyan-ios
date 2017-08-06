@@ -10,6 +10,7 @@
 #import "MediaContentAudioView.h"
 #import "OnlineCourseDetailsView.h"
 #import "CoursePickerViewController.h"
+#import "CourseTreeViewController.h"
 
 @interface OnlineFileDetailsViewController ()<CousePickerDelegate>
 
@@ -38,6 +39,9 @@
         self.coursePickerViewController.delegate = self;
     }
     else if ([cmd isEqualToString:@"上传者"]){
+        CourseTreeViewController* controller = [CourseTreeViewController new];
+        controller.userId = self.courseDetails.course.userId;
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

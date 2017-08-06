@@ -17,8 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.page = [[CourseTreePage alloc] initWithFrame:self.view.bounds];
-    self.page.height -= 108;
+    CGRect rect = self.view.bounds;
+    rect.size.height = rect.size.height - 108;
+    self.page = [[CourseTreePage alloc] initWithFrame:rect];
+    if(self.userId == nil || [Global isLoginUser:self.userId]){
+        self.title = @"我的文件";
+    }
+    else {
+        self.title = @"用户文件";
+    }
     
     [self.page.refreshControl addTarget:self action:@selector(refreshPage) forControlEvents:UIControlEventValueChanged];
     
@@ -28,13 +35,16 @@
 
 -(void)refreshPage {
     [CourseApi CourseAPI_ListUserCourseTree:self.userId onSuccess:^(CourseDetails *resp) {
-        CourseDetails* root = [CourseDetails new];
-        root.course = [Course new];
-        root.course.isDir = [NSNumber numberWithInteger:1];
-        root.course.title = @"我的文件";
-        root.items = resp.items;
+        resp.course = [Course new];
+        resp.course.isDir = [NSNumber numberWithInteger:1];
+        
+        if(self.userId == NULL || [Global isLoginUser:self.userId])
+            resp.course.title = [NSString stringWithFormat:@"我的文件"];
+        else
+            resp.course.title = [NSString stringWithFormat:@"%@的文件", resp.user.name];
+        
         CourseDetails* container = [CourseDetails new];
-        container.items = [NSMutableArray arrayWithObject:root];
+        container.items = [NSMutableArray arrayWithObject:resp];
         self.page.courseDetails = container;
         [self.page.refreshControl endRefreshing];
     } onError:^(APIError *err) {

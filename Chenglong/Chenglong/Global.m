@@ -54,6 +54,10 @@ static Global *_shared = nil;
     return _shared;
 }
 
++(BOOL)isLoginUser:(NSString *)userId
+{
+    return [userId isEqualToString:[Global loggedInUser].id];
+}
 
 + (User*)loggedInUser {
     User *user = [User tm_objectForKey:kCacheUserModel];

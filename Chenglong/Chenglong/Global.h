@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, FileMediaType) {
 @interface Global : NSObject
 
 + (User*)loggedInUser;
++ (BOOL)isLoginUser:(NSString*)userId;
 + (void)setLoggedInUser:(User*)user;
 
 + (NSString*)versionString;
