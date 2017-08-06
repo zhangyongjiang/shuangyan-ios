@@ -13,6 +13,7 @@
 #import "OnlineFileDetailsViewController.h"
 #import "OnlineFileListViewController.h"
 #import "MySearchController.h"
+#import "CourseTreeViewController.h"
 
 #define OnlineFileListItemTableViewCellID @"OnlineSearchListItemTableViewCellID"
 
@@ -54,8 +55,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CourseDetails* cd = [self.courseDetailsList.items objectAtIndex:indexPath.row];
     if(cd.course.isDir.intValue == 1) {
-        OnlineFileListViewController* c = [[OnlineFileListViewController alloc] init];
-        c.courseId = cd.course.id;
+        CourseTreeViewController* c = [CourseTreeViewController new];
+        c.userId = cd.course.userId;
+        c.selectedCourseId = cd.course.id;
+        
+//        OnlineFileListViewController* c = [[OnlineFileListViewController alloc] init];
+//        c.courseId = cd.course.id;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
     else {

@@ -37,6 +37,7 @@
     [self addSubview:self.customTitleLabel];
     
     self.collapseButton = [[UIButton alloc] initWithFrame:CGRectMake(Margin, 0, 20, 20)];
+    self.collapseButton.userInteractionEnabled = NO;
     //    [self.collapseButton setTitle:@"<<" forState:UIControlStateNormal];
     [self.collapseButton setBackgroundImage:[UIImage imageNamed:@"file_item_up_icon"] forState:UIControlStateNormal];
     [self.collapseButton addTarget:self action:@selector(collapseButtonTapped:) forControlEvents:UIControlEventTouchUpInside];

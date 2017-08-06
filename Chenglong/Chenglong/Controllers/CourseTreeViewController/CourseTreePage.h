@@ -16,4 +16,5 @@
 @property(strong, nonatomic) CourseDetails* courseDetails;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 
+-(void)selectCourse:(NSString*)courseId;
 @end

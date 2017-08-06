@@ -52,6 +52,18 @@
     return nil;
 }
 
+-(CourseDetails*) searchCourse:(NSString*)courseId inTree:(CourseDetails*) top
+{
+    if([courseId isEqualToString:top.course.id])
+        return top;
+    for (CourseDetails* child in top.items) {
+        CourseDetails* found = [self searchCourse:courseId inTree:child];
+        if(found != NULL)
+            return found;
+    }
+    return NULL;
+}
+
 
 - (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(id)item
 {
@@ -152,5 +164,20 @@
     CourseDetails* root = [courseDetails.items objectAtIndex:0];
     [self.treeView reloadData];
     [self.treeView expandRowForItem:root];
+}
+
+-(void)selectCourse:(NSString *)courseId
+{
+    if(courseId == NULL)
+        return;
+    CourseDetails* item = [self searchCourse:courseId inTree:self.courseDetails];
+    if(item == NULL)
+        return;
+    CourseDetails* parent = [self getParentOfItem:item];
+    while(parent != NULL) {
+        [self.treeView expandRowForItem:parent];
+        parent = [self getParentOfItem:parent];
+    };
+    [self.treeView selectRowForItem:item animated:YES scrollPosition:RATreeViewScrollPositionMiddle];
 }
 @end

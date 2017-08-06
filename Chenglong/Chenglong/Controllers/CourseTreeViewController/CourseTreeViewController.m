@@ -47,6 +47,7 @@
         container.items = [NSMutableArray arrayWithObject:resp];
         self.page.courseDetails = container;
         [self.page.refreshControl endRefreshing];
+            [self.page selectCourse:self.selectedCourseId];
     } onError:^(APIError *err) {
         ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
         [self.page.refreshControl endRefreshing];
