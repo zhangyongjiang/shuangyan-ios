@@ -31,4 +31,6 @@
 -(UIBarButtonItem*)addNavRightIconButton:(UIBarButtonSystemItem)sysItem target:(id)target action:(SEL)action;
 -(void)removeNavRightButton;
 
+-(BOOL)isSameViewController:(UIViewController*)c;
+
 @end

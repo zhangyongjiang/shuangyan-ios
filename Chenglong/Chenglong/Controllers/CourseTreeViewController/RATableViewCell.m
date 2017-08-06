@@ -95,7 +95,7 @@
     self.customTitleLabel.frame = titleFrame;
     
     [self.collapseButton vcenterInParent];
-    self.collapseButton.x = self.customTitleLabel.left - self.collapseButton.width;
+    self.collapseButton.x = self.customTitleLabel.left - self.collapseButton.width - 3;
     
     CGRect detailsFrame = self.detailedLabel.frame;
     detailsFrame.origin.x = left;

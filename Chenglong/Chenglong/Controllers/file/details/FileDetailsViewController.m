@@ -13,10 +13,13 @@
 #import "MediaViewController.h"
 #import "BaseNavigationController.h"
 #import "UpdateFileViewController.h"
+#import "CourseTreeViewController.h"
+#import "CoursePickerViewController.h"
 
 @interface FileDetailsViewController () <UIImagePickerControllerDelegate, CousePickerDelegate>
 
 @property(strong, nonatomic) CourseDetailsView* courseDetailsView;
+@property(strong, nonatomic) CoursePickerViewController* coursePickerViewController;
 
 @end
 
@@ -25,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.courseDetails.course.title;
-
+    
     WeakSelf(weakSelf)
     self.courseDetailsView = [[CourseDetailsView alloc] initWithFrame:self.view.bounds];
     self.courseDetailsView.courseDetails = self.courseDetails;
@@ -68,18 +71,28 @@
 }
 
 -(void)addTopRightMenu {
-    NSMutableArray* arr = [NSMutableArray arrayWithObjects:
-                           [[MenuItem alloc] initWithText:@"修改" andImgName:@"file_item_edit_icon"],
-                           [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
-                           [[MenuItem alloc] initWithText:@"上传" andImgName:@"file_item_exchange_icon"],
-                           [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
-                           [[MenuItem alloc] initWithText:@"全屏" andImgName:@"file_item_exchange_icon"],
-                           [[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"],
-                           nil];
-    self.menuItems = arr;
-    [super addTopRightMenu:arr];
-    
-    [self enableMenuItem:@"下载全部" enable:![self isAllDownloaded]];
+    if([Global isLoginUser:self.courseDetails.course.userId]) {
+        NSMutableArray* arr = [NSMutableArray arrayWithObjects:
+                               [[MenuItem alloc] initWithText:@"修改" andImgName:@"file_item_edit_icon"],
+                               [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
+                               [[MenuItem alloc] initWithText:@"上传" andImgName:@"file_item_exchange_icon"],
+                               [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
+                               [[MenuItem alloc] initWithText:@"全屏" andImgName:@"file_item_exchange_icon"],
+                               [[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"],
+                               nil];
+        self.menuItems = arr;
+        [super addTopRightMenu:arr];
+        
+        [self enableMenuItem:@"下载全部" enable:![self isAllDownloaded]];
+    }
+    else {
+        NSMutableArray* arr = [NSMutableArray arrayWithObjects:
+                               [[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_newFile_icon"],
+                               [[MenuItem alloc] initWithText:@"上传者" andImgName:@"file_search_age_icon"],
+                               nil];
+        self.menuItems = arr;
+        [super addTopRightMenu:arr];
+    }
 }
 
 -(BOOL)isAllDownloaded {
@@ -114,6 +127,16 @@
     }
     else if([cmd isEqualToString:@"下载全部"]){
         [self.courseDetailsView downloadAll];
+    }
+    else if ([cmd isEqualToString:@"拷贝"]) {
+        self.coursePickerViewController = [[CoursePickerViewController alloc] init];
+        [self.navigationController pushViewController:self.coursePickerViewController animated:YES];
+        self.coursePickerViewController.delegate = self;
+    }
+    else if ([cmd isEqualToString:@"上传者"]){
+        CourseTreeViewController* controller = [CourseTreeViewController new];
+        controller.userId = self.courseDetails.course.userId;
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

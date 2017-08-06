@@ -7,6 +7,7 @@
 //
 
 #import "BaseNavigationController.h"
+#import "BaseViewController.h"
 
 @interface BaseNavigationController ()
 
@@ -24,24 +25,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-//    UIViewController *lastVC = nil;
-//    if (self.viewControllers.count > 0) {
-//        lastVC = self.viewControllers[self.viewControllers.count - 1];
-//    }
-//    if (lastVC != nil) {
-//        lastVC.hidesBottomBarWhenPushed = YES;
-//    }
-//    [super pushViewController:viewController animated:YES];
-//    if (self.viewControllers.count == 2) {
-//        lastVC.hidesBottomBarWhenPushed = NO;
-//    }
-//}
 
 -(UIViewController*)popViewControllerAnimated:(BOOL)animated {
     UIViewController* c = [super popViewControllerAnimated:animated];
     if(c)
        [[NSNotificationCenter defaultCenter] removeObserver:c];
     return c;
+}
+
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    for (UIViewController* c in self.viewControllers) {
+        if([c isKindOfClass:[BaseViewController class]]) {
+            BaseViewController* bvc = c;
+            if([bvc isSameViewController:viewController]) {
+                [self popToViewController:c animated:YES];
+                return;
+            }
+        }
+    }
+    [super pushViewController:viewController animated:animated];
 }
 @end

@@ -49,7 +49,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
     else {
-        OnlineFileDetailsViewController* c = [[OnlineFileDetailsViewController alloc] init];
+        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
         c.courseDetails = cd;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }

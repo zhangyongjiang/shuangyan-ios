@@ -303,5 +303,8 @@
     self.navigationItem.rightBarButtonItem = btn;
 }
 
-
+-(BOOL)isSameViewController:(UIViewController*)c
+{
+    return NO;
+}
 @end

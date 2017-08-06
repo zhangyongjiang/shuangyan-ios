@@ -52,4 +52,27 @@
         [self.page.refreshControl endRefreshing];
     }];
 }
+
+-(BOOL)isSameViewController:(UIViewController*)c
+{
+    if(![c isKindOfClass:[CourseTreeViewController class]]) {
+        return NO;
+    }
+    CourseTreeViewController* ctc = c;
+    if(self.userId == NULL && ctc.userId == NULL)
+        return YES;
+    if(self.userId != NULL && ctc.userId == NULL) {
+        if([Global isLoginUser:self.userId])
+            return YES;
+        else
+            return NO;
+    }
+    if(self.userId == NULL && ctc.userId != NULL) {
+        if([Global isLoginUser:ctc.userId])
+            return YES;
+        else
+            return NO;
+    }
+    return [self.userId isEqualToString:ctc.userId];
+}
 @end
