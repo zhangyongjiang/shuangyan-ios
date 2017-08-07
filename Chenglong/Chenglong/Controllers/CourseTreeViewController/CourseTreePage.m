@@ -178,6 +178,7 @@
         [self.treeView expandRowForItem:parent];
         parent = [self getParentOfItem:parent];
     };
+    [self.treeView expandRowForItem:item];
     [self.treeView selectRowForItem:item animated:YES scrollPosition:RATreeViewScrollPositionMiddle];
 }
 @end
