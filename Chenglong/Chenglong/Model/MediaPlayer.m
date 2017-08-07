@@ -47,12 +47,29 @@ MediaPlayer* gMediaPlayer;
 
     PlayTask* task = [self.tasks objectAtIndex:0];
     if([task isAudioTask]) {
-        NSError* err;
-        if(!self.avAudioPlayer) {
-            self.avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[task.mediaContent playUrl] error:&err];
+        BOOL useAvplayer = NO;
+        if(!useAvplayer) {
+            NSError* err;
+            if(!self.avAudioPlayer) {
+                self.avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[task.mediaContent playUrl] error:&err];
+            }
+            if(!self.avAudioPlayer.playing)
+                [self.avAudioPlayer play];
         }
-        if(!self.avAudioPlayer.playing)
-           [self.avAudioPlayer play];
+        else {
+            if([task.mediaContent isDownloaded]) {
+                self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
+            }
+            else {
+                NSMutableDictionary * headers = [NSMutableDictionary dictionary];
+                NSString* token = [Lockbox stringForKey:kOauthTokenKey];
+                [headers setObject:token forKey:@"Authorization"];
+                AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
+                AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
+                self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
+            }
+            [self.avplayer play];
+        }
     }
     else if([task isVideoTask]) {
         if([task.mediaContent isDownloaded]) {
@@ -65,8 +82,8 @@ MediaPlayer* gMediaPlayer;
             AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
             AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
             self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
-
         }
+        [self.avplayer play];
     }
 }
 
