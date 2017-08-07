@@ -55,7 +55,18 @@ MediaPlayer* gMediaPlayer;
            [self.avAudioPlayer play];
     }
     else if([task isVideoTask]) {
-        self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
+        if([task.mediaContent isDownloaded]) {
+            self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
+        }
+        else {
+            NSMutableDictionary * headers = [NSMutableDictionary dictionary];
+            NSString* token = [Lockbox stringForKey:kOauthTokenKey];
+            [headers setObject:token forKey:@"Authorization"];
+            AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
+            AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
+            self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
+
+        }
     }
 }
 
