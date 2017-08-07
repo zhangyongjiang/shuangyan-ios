@@ -66,9 +66,21 @@
     }
     self.btnDownload.hidden = YES;
     playing = YES;
-    
-    NSURL* url = [NSURL fileURLWithPath:self.mediaContent.filePath];
-    player = [[AVPlayer alloc] initWithURL:url];
+
+    if([self.mediaContent isDownloaded])
+    {
+        NSURL* url = [NSURL fileURLWithPath:self.mediaContent.filePath];
+        player = [[AVPlayer alloc] initWithURL:url];
+    }
+    else {
+        NSMutableDictionary * headers = [NSMutableDictionary dictionary];
+        NSString* token = [Lockbox stringForKey:kOauthTokenKey];
+        [headers setObject:token forKey:@"Authorization"];
+        AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[self.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
+        AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
+        player = [[AVPlayer alloc] initWithPlayerItem:item];
+    }
+
     layer = [AVPlayerLayer playerLayerWithPlayer:player];
     layer.frame = self.bounds;
     [self.layer addSublayer:layer];
