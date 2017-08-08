@@ -11,5 +11,6 @@ pod 'PureLayout'
 pod 'FMDB'
 #pod 'TWRDownloadManager'
 pod "RATreeView", "~> 2.1.2"
+pod 'VIMediaCache'
 
 end

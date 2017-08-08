@@ -40,6 +40,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SVProgressHUD (2.0.3)
+  - VIMediaCache (0.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - RATreeView (~> 2.1.2)
   - SDWebImage (~> 3.8)
   - SVProgressHUD (~> 2.0.3)
+  - VIMediaCache
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -62,7 +64,8 @@ SPEC CHECKSUMS:
   RATreeView: 380cde0090cfde21dc6ac29137f49d3b768fdd28
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  VIMediaCache: 02c03af2adf2526eddc8ee3b06e41f26e9546f38
 
-PODFILE CHECKSUM: f23d5fbb87638aa17b7a087b36e1f5f57dae969f
+PODFILE CHECKSUM: b600797c69a061b268325ab9332e7d364f1bccc4
 
 COCOAPODS: 1.1.1

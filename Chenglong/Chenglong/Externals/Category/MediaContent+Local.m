@@ -16,10 +16,17 @@
 }
 
 -(NSURL*)playUrl {
-    if([self isDownloaded])
+    if([self isDownloaded]) {
         return [NSURL fileURLWithPath:[self localFilePath]];
-    else
-        return [NSURL URLWithString:self.url];
+    }
+    else {
+        NSString* token = [Lockbox stringForKey:kOauthTokenKey];
+        token = [token substringFromIndex:7];
+        NSString* url = [NSString stringWithFormat:@"%@?accessToken=%@", self.url, token];
+        if([self.url containsString:@"?"])
+            url = [NSString stringWithFormat:@"%@&accessToken=%@", self.url, token];
+        return [NSURL URLWithString:url];
+    }
 }
 
 -(BOOL)isDownloaded {

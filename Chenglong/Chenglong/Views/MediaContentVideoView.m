@@ -8,12 +8,14 @@
 
 #import "MediaContentVideoView.h"
 #import <AVFoundation/AVFoundation.h>
+#import "VIResourceLoaderManager.h"
 
 @interface MediaContentVideoView()
 {
     AVPlayer* player;
     AVPlayerLayer *layer;
     BOOL playing;
+    VIResourceLoaderManager *viResourceLoaderManager;
 }
 @end
 
@@ -60,10 +62,10 @@
 }
 
 -(void)play {
-    if(![self.mediaContent isDownloaded]) {
-        NSLog(@"no downloaded yet");
-        return;
-    }
+//    if(![self.mediaContent isDownloaded]) {
+//        NSLog(@"no downloaded yet");
+//        return;
+//    }
     self.btnDownload.hidden = YES;
     playing = YES;
 
@@ -73,12 +75,18 @@
         player = [[AVPlayer alloc] initWithURL:url];
     }
     else {
+//        VIResourceLoaderManager *resourceLoaderManager = [VIResourceLoaderManager new];
+//        viResourceLoaderManager = resourceLoaderManager;
+//        AVPlayerItem *playerItem = [resourceLoaderManager playerItemWithURL:[self.mediaContent playUrl]];
+//        player = [AVPlayer playerWithPlayerItem:playerItem];
+        
         NSMutableDictionary * headers = [NSMutableDictionary dictionary];
         NSString* token = [Lockbox stringForKey:kOauthTokenKey];
         [headers setObject:token forKey:@"Authorization"];
         AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[self.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
         AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
         player = [[AVPlayer alloc] initWithPlayerItem:item];
+        
         if([[UIDevice currentDevice] systemVersion].intValue>=10){
             player.automaticallyWaitsToMinimizeStalling = NO;
         }
