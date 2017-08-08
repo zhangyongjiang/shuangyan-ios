@@ -15,6 +15,7 @@
 @property (strong, nonatomic) AVAudioPlayer* avAudioPlayer;
 @property (strong, nonatomic) NSMutableArray* tasks;
 @property (assign, nonatomic) int current;
+@property (assign, nonatomic) BOOL useAvplayerForAudio;
 
 @end
 
@@ -47,8 +48,7 @@ MediaPlayer* gMediaPlayer;
 
     PlayTask* task = [self.tasks objectAtIndex:0];
     if([task isAudioTask]) {
-        BOOL useAvplayer = NO;
-        if(!useAvplayer) {
+        if(!self.useAvplayerForAudio) {
             NSError* err;
             if(!self.avAudioPlayer) {
                 self.avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[task.mediaContent playUrl] error:&err];
@@ -67,6 +67,9 @@ MediaPlayer* gMediaPlayer;
                 AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
                 AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
                 self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
+            }
+            if([[UIDevice currentDevice] systemVersion].intValue>=10){
+                self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
             }
             [self.avplayer play];
         }
@@ -142,9 +145,22 @@ MediaPlayer* gMediaPlayer;
 -(BOOL)isPlaying {
     PlayTask* task = [self.tasks objectAtIndex:0];
     if([task isAudioTask]) {
-        return self.avAudioPlayer.playing;
+        if(!self.useAvplayerForAudio)
+            return self.avAudioPlayer.playing;
+        else {
+            if([[UIDevice currentDevice] systemVersion].intValue>=10){
+                return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
+            }else{
+                return self.avplayer.rate==1;
+            }
+        }
     }
     else if([task isVideoTask]) {
+        if([[UIDevice currentDevice] systemVersion].intValue>=10){
+            return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
+        }else{
+            return self.avplayer.rate==1;
+        }
     }
     return NO;
 }
