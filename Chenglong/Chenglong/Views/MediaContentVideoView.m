@@ -79,6 +79,9 @@
         AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[self.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
         AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
         player = [[AVPlayer alloc] initWithPlayerItem:item];
+        if([[UIDevice currentDevice] systemVersion].intValue>=10){
+            player.automaticallyWaitsToMinimizeStalling = NO;
+        }
     }
 
     layer = [AVPlayerLayer playerLayerWithPlayer:player];
