@@ -12,7 +12,6 @@
 @interface MediaPlayer()
 
 @property (strong, nonatomic) AVPlayer* avplayer;
-@property (strong, nonatomic) AVAudioPlayer* avAudioPlayer;
 @property (strong, nonatomic) NSMutableArray* tasks;
 @property (assign, nonatomic) int current;
 
@@ -44,112 +43,54 @@ MediaPlayer* gMediaPlayer;
 -(void)play {
     if(self.tasks.count == 0)
         return;
-
+    
     PlayTask* task = [self.tasks objectAtIndex:0];
-    if([task isAudioTask]) {
-            if([task.mediaContent isDownloaded]) {
-                self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
-            }
-            else {
-                NSMutableDictionary * headers = [NSMutableDictionary dictionary];
-                NSString* token = [Lockbox stringForKey:kOauthTokenKey];
-                [headers setObject:token forKey:@"Authorization"];
-                AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
-                AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
-                self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
-            }
-            if([[UIDevice currentDevice] systemVersion].intValue>=10){
-                self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
-            }
-            [self.avplayer play];
+    if([task.mediaContent isDownloaded]) {
+        self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
     }
-    else if([task isVideoTask]) {
-        if([task.mediaContent isDownloaded]) {
-            self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
-        }
-        else {
-            NSMutableDictionary * headers = [NSMutableDictionary dictionary];
-            NSString* token = [Lockbox stringForKey:kOauthTokenKey];
-            [headers setObject:token forKey:@"Authorization"];
-            AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
-            AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
-            self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
-            if([[UIDevice currentDevice] systemVersion].intValue>=10){
-                self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
-            }
-        }
-        [self.avplayer play];
+    else {
+        NSMutableDictionary * headers = [NSMutableDictionary dictionary];
+        NSString* token = [Lockbox stringForKey:kOauthTokenKey];
+        [headers setObject:token forKey:@"Authorization"];
+        AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
+        AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
+        self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
     }
+    if([[UIDevice currentDevice] systemVersion].intValue>=10){
+        self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
+    }
+    [self.avplayer play];
 }
 
 -(void)pause
 {
     PlayTask* task = [self.tasks objectAtIndex:0];
-    if([task isAudioTask]) {
-        [self.avAudioPlayer pause];
-    }
-    else if([task isVideoTask]) {
-        self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
-    }
+    self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
 }
 
 -(void)stop
 {
-    [self.avAudioPlayer stop];
-    self.avAudioPlayer = nil;
-    
     [self.avplayer pause];
     self.avplayer = nil;
     
 }
 
 -(CGFloat)currentTaskDuration {
-    PlayTask* task = [self.tasks objectAtIndex:0];
-    if([task isAudioTask]) {
-        return self.avAudioPlayer.duration;
-    }
-    else if([task isVideoTask]) {
-        return self.avplayer.currentItem.asset.duration.value / self.avplayer.currentItem.asset.duration.timescale;
-    }
-    return 0.;
+    return self.avplayer.currentItem.asset.duration.value / self.avplayer.currentItem.asset.duration.timescale;
 }
 
 -(CGFloat)currentTime {
-    PlayTask* task = [self.tasks objectAtIndex:0];
-    if([task isAudioTask]) {
-        return self.avAudioPlayer.currentTime;
-    }
-    else if([task isVideoTask]) {
-        return 0;
-    }
     return 0.;
 }
 
 -(void)setCurrentTime:(CGFloat)currentTime {
-    PlayTask* task = [self.tasks objectAtIndex:0];
-    if([task isAudioTask]) {
-        self.avAudioPlayer.currentTime = currentTime;
-    }
-    else if([task isVideoTask]) {
-    }
 }
 
 -(BOOL)isPlaying {
-    PlayTask* task = [self.tasks objectAtIndex:0];
-    if([task isAudioTask]) {
-            if([[UIDevice currentDevice] systemVersion].intValue>=10){
-                return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
-            }else{
-                return self.avplayer.rate==1;
-            }
+    if([[UIDevice currentDevice] systemVersion].intValue>=10){
+        return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
+    }else{
+        return self.avplayer.rate==1;
     }
-    else if([task isVideoTask]) {
-        if([[UIDevice currentDevice] systemVersion].intValue>=10){
-            return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
-        }else{
-            return self.avplayer.rate==1;
-        }
-    }
-    return NO;
 }
 @end
