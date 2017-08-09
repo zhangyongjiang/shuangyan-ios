@@ -22,9 +22,9 @@
     else {
         NSString* token = [Lockbox stringForKey:kOauthTokenKey];
         token = [token substringFromIndex:7];
-        NSString* url = [NSString stringWithFormat:@"%@?accessToken=%@", self.url, token];
+        NSString* url = [NSString stringWithFormat:@"%@?access_token=%@", self.url, token];
         if([self.url containsString:@"?"])
-            url = [NSString stringWithFormat:@"%@&accessToken=%@", self.url, token];
+            url = [NSString stringWithFormat:@"%@&access_token=%@", self.url, token];
         return [NSURL URLWithString:url];
     }
 }

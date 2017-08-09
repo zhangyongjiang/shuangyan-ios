@@ -80,11 +80,7 @@
 //        AVPlayerItem *playerItem = [resourceLoaderManager playerItemWithURL:[self.mediaContent playUrl]];
 //        player = [AVPlayer playerWithPlayerItem:playerItem];
         
-        NSMutableDictionary * headers = [NSMutableDictionary dictionary];
-        NSString* token = [Lockbox stringForKey:kOauthTokenKey];
-        [headers setObject:token forKey:@"Authorization"];
-        AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[self.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
-        AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
+        AVPlayerItem * item = [AVPlayerItem playerItemWithURL:[self.mediaContent playUrl]];
         player = [[AVPlayer alloc] initWithPlayerItem:item];
         
         if([[UIDevice currentDevice] systemVersion].intValue>=10){

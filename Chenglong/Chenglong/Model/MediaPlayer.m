@@ -35,6 +35,7 @@ MediaPlayer* gMediaPlayer;
     self = [super init];
     gMediaPlayer = self;
     self.tasks = [NSMutableArray new];
+    self.useAvplayerForAudio = YES;
     return self;
 }
 
@@ -85,6 +86,9 @@ MediaPlayer* gMediaPlayer;
             AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
             AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
             self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
+            if([[UIDevice currentDevice] systemVersion].intValue>=10){
+                self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
+            }
         }
         [self.avplayer play];
     }
