@@ -40,10 +40,6 @@
 }
 
 -(void)play {
-    NSURL* url = [NSURL fileURLWithPath:self.mediaContent.filePath];
-    if(![self.mediaContent isDownloaded]) {
-        url = [NSURL URLWithString:self.mediaContent.url];
-    }
     if(!player) {
         player = [MediaPlayer shared];
         PlayTask* task = [[PlayTask alloc] init];

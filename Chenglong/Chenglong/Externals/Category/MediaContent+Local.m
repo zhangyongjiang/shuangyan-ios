@@ -17,14 +17,18 @@
 
 -(NSURL*)playUrl {
     if([self isDownloaded]) {
+        NSLog(@"playUrl: %@", [self localFilePath]);
         return [NSURL fileURLWithPath:[self localFilePath]];
     }
     else {
         NSString* token = [Lockbox stringForKey:kOauthTokenKey];
         token = [token substringFromIndex:7];
-        NSString* url = [NSString stringWithFormat:@"%@?access_token=%@", self.url, token];
+        NSString* url = NULL;
         if([self.url containsString:@"?"])
             url = [NSString stringWithFormat:@"%@&access_token=%@", self.url, token];
+        else
+            url = [NSString stringWithFormat:@"%@?access_token=%@", self.url, token];
+        NSLog(@"playUrl: %@", url);
         return [NSURL URLWithString:url];
     }
 }

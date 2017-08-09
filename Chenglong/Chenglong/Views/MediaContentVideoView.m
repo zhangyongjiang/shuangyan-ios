@@ -8,14 +8,12 @@
 
 #import "MediaContentVideoView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "VIResourceLoaderManager.h"
 
 @interface MediaContentVideoView()
 {
     AVPlayer* player;
     AVPlayerLayer *layer;
     BOOL playing;
-    VIResourceLoaderManager *viResourceLoaderManager;
 }
 @end
 
@@ -75,11 +73,6 @@
         player = [[AVPlayer alloc] initWithURL:url];
     }
     else {
-//        VIResourceLoaderManager *resourceLoaderManager = [VIResourceLoaderManager new];
-//        viResourceLoaderManager = resourceLoaderManager;
-//        AVPlayerItem *playerItem = [resourceLoaderManager playerItemWithURL:[self.mediaContent playUrl]];
-//        player = [AVPlayer playerWithPlayerItem:playerItem];
-        
         AVPlayerItem * item = [AVPlayerItem playerItemWithURL:[self.mediaContent playUrl]];
         player = [[AVPlayer alloc] initWithPlayerItem:item];
         
@@ -102,7 +95,11 @@
 }
 
 -(BOOL)isPlaying {
-    return (player.rate != 0) && (player.error == nil);
+    if([[UIDevice currentDevice] systemVersion].intValue>=10){
+        return player.timeControlStatus == AVPlayerTimeControlStatusPlaying;
+    }else{
+        return player.rate==1;
+    }
 }
 
 @end
