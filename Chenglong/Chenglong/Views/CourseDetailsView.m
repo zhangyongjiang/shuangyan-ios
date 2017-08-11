@@ -32,7 +32,7 @@
 {
     for (MediaConentView* view in self.mediaContentViews) {
         [view removeFromSuperview];
-        [view stop];
+        [view destroy];
     }
 }
 

@@ -139,7 +139,7 @@
             NSLog(@"%@", err);
         }
     } onError:^(APIError *err) {
-        
+        ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
     }];
 }
 

@@ -71,6 +71,9 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(void)setCurrentTime:(CGFloat)currentTime {
+    int32_t timeScale = self.avplayer.currentItem.asset.duration.timescale;
+    CMTime seektime=CMTimeMakeWithSeconds(currentTime, timeScale);
+    [self.avplayer seekToTime:seektime];
 }
 
 -(BOOL)isPlaying {

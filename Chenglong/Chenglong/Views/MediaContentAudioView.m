@@ -32,6 +32,11 @@
 
 -(void)dealloc
 {
+    [self destroy];
+}
+
+-(void)destroy
+{
     [timer invalidate];
     timer = nil;
     [player stop];
@@ -58,6 +63,11 @@
         [player pause];
     }
     else {
+        float total = [player currentTaskDuration];
+        float current = [player currentTime];
+        if((total-current)<0.001) {
+            [player setCurrentTime:0];
+        }
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         [player play];
     }
@@ -65,27 +75,18 @@
 
 -(void)checkPlayerStatus
 {
-    if(![player isPlaying])
-        return;
     float total = [player currentTaskDuration];
     float current = [player currentTime];
     float progress = current / total;
-    if (current < 0.0001) {
-        player.currentTime = 0;
-        if(self.repeat) {
-            [player play];
+    slider.value = player.currentTime;
+    if(![player isPlaying]) {
+        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
+        if((total-current)<0.001) {
+            [player setCurrentTime:0];
         }
     }
-    slider.value = player.currentTime;
 }
 
--(void)stop
-{
-    [player stop];
-    player = nil;
-    [timer invalidate];
-    timer = nil;
-}
 
 -(void)layoutSubviews {
     [super layoutSubviews];

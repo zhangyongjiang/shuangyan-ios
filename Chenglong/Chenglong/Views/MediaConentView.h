@@ -26,5 +26,6 @@ typedef void(^DeleteCallback)(MediaContent* MediaContent);
 -(void)downloadOrPlay;
 -(void)addRemoveHandler:(DeleteCallback)deleteCallback;
 -(void)stop;
+-(void)destroy;
 
 @end
