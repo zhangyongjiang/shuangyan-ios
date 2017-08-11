@@ -14,7 +14,6 @@
 {
     MediaPlayer* player;
     AVPlayerLayer *layer;
-    BOOL playing;
 }
 @end
 
@@ -53,11 +52,10 @@
 
 -(void)clicked {
     NSLog(@"clicked");
-    if(playing)
+    if([player isPlaying])
         [player pause];
     else
         [player play];
-    playing = !playing;
 }
 
 -(void)play {
@@ -71,11 +69,15 @@
         task.mediaContent = self.mediaContent;
         [player addPlayTask:task];
         [player play];
+        layer = [AVPlayerLayer playerLayerWithPlayer:player.avplayer];
+        layer.frame = self.bounds;
+        [self.layer addSublayer:layer];
+        layer.backgroundColor = [UIColor clearColor].CGColor;
+        [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
-        playing = YES;
         return;
     }
-    if(playing) {
+    if([player isPlaying]) {
         [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
         [player pause];
     }
@@ -83,19 +85,13 @@
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         [player play];
     }
-    playing = !playing;
-
-    layer = [AVPlayerLayer playerLayerWithPlayer:player.avplayer];
-    layer.frame = self.bounds;
-    [self.layer addSublayer:layer];
-    layer.backgroundColor = [UIColor clearColor].CGColor;
-    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
-    [player play];
 }
 
--(void)layoutSubviews {
-    [super layoutSubviews];
-    layer.frame = self.bounds;
+-(void)destroy
+{
+    [player stop];
+    [player removeTask:self.mediaContent];
+    player = nil;
 }
 
 -(BOOL)isPlaying {

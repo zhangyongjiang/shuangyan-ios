@@ -61,6 +61,10 @@
 -(void)play {
 }
 
+-(void)destroy{
+    
+}
+
 -(void)downloadOrPlay {
     BOOL downloaded = [self.mediaContent isDownloaded];
     if(downloaded)
