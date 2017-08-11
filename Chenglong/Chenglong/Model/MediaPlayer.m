@@ -7,11 +7,9 @@
 //
 
 #import "MediaPlayer.h"
-#import <AVFoundation/AVFoundation.h>
 
 @interface MediaPlayer()
 
-@property (strong, nonatomic) AVPlayer* avplayer;
 @property (strong, nonatomic) NSMutableArray* tasks;
 @property (assign, nonatomic) int current;
 
@@ -45,34 +43,23 @@ MediaPlayer* gMediaPlayer;
         return;
     
     PlayTask* task = [self.tasks objectAtIndex:0];
-    if([task.mediaContent isDownloaded]) {
+    if(self.avplayer == nil) {
         self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
-    }
-    else {
-        NSMutableDictionary * headers = [NSMutableDictionary dictionary];
-        NSString* token = [Lockbox stringForKey:kOauthTokenKey];
-        [headers setObject:token forKey:@"Authorization"];
-        AVURLAsset * asset = [AVURLAsset URLAssetWithURL:[task.mediaContent playUrl] options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
-        AVPlayerItem * item = [AVPlayerItem playerItemWithAsset:asset];
-        self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
-    }
-    if([[UIDevice currentDevice] systemVersion].intValue>=10){
-        self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
+        if([[UIDevice currentDevice] systemVersion].intValue>=10){
+            self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
+        }
     }
     [self.avplayer play];
 }
 
 -(void)pause
 {
-    PlayTask* task = [self.tasks objectAtIndex:0];
-    self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
+    [self.avplayer pause];
 }
 
 -(void)stop
 {
     [self.avplayer pause];
-    self.avplayer = nil;
-    
 }
 
 -(CGFloat)currentTaskDuration {
@@ -80,7 +67,7 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(CGFloat)currentTime {
-    return 0.;
+    return self.avplayer.currentTime.value / self.avplayer.currentTime.timescale;
 }
 
 -(void)setCurrentTime:(CGFloat)currentTime {

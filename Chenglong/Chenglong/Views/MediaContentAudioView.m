@@ -12,7 +12,6 @@
 @interface MediaContentAudioView()
 {
     MediaPlayer *player;
-    BOOL playing;
     NSTimer* timer;
     UISlider* slider;
 }
@@ -48,14 +47,13 @@
         [player play];
         slider.maximumValue = [player currentTaskDuration];
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
-        playing = YES;
         
         WeakSelf(weakSelf)
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
 
         return;
     }
-    if(playing) {
+    if([player isPlaying]) {
         [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
         [player pause];
     }
@@ -63,11 +61,12 @@
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         [player play];
     }
-    playing = !playing;
 }
 
 -(void)checkPlayerStatus
 {
+    if(![player isPlaying])
+        return;
     float total = [player currentTaskDuration];
     float current = [player currentTime];
     float progress = current / total;
@@ -75,10 +74,6 @@
         player.currentTime = 0;
         if(self.repeat) {
             [player play];
-            playing = YES;
-        }
-        else {
-            playing = NO;
         }
     }
     slider.value = player.currentTime;

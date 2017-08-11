@@ -8,10 +8,11 @@
 
 #import "MediaContentVideoView.h"
 #import <AVFoundation/AVFoundation.h>
+#import "MediaPlayer.h"
 
 @interface MediaContentVideoView()
 {
-    AVPlayer* player;
+    MediaPlayer* player;
     AVPlayerLayer *layer;
     BOOL playing;
 }
@@ -37,7 +38,7 @@
 
 -(void)foreground:(NSNotification*)noti {
     if(layer) return;
-    layer = [AVPlayerLayer playerLayerWithPlayer:player];
+    layer = [AVPlayerLayer playerLayerWithPlayer:player.avplayer];
     layer.frame = self.bounds;
     [self.layer addSublayer:layer];
     layer.backgroundColor = [UIColor clearColor].CGColor;
@@ -64,24 +65,27 @@
 //        NSLog(@"no downloaded yet");
 //        return;
 //    }
-    self.btnDownload.hidden = YES;
-    playing = YES;
-
-    if([self.mediaContent isDownloaded])
-    {
-        NSURL* url = [NSURL fileURLWithPath:self.mediaContent.filePath];
-        player = [[AVPlayer alloc] initWithURL:url];
+    if(!player) {
+        player = [MediaPlayer shared];
+        PlayTask* task = [[PlayTask alloc] init];
+        task.mediaContent = self.mediaContent;
+        [player addPlayTask:task];
+        [player play];
+        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+        playing = YES;
+        return;
+    }
+    if(playing) {
+        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
+        [player pause];
     }
     else {
-        AVPlayerItem * item = [AVPlayerItem playerItemWithURL:[self.mediaContent playUrl]];
-        player = [[AVPlayer alloc] initWithPlayerItem:item];
-        
-        if([[UIDevice currentDevice] systemVersion].intValue>=10){
-            player.automaticallyWaitsToMinimizeStalling = NO;
-        }
+        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+        [player play];
     }
+    playing = !playing;
 
-    layer = [AVPlayerLayer playerLayerWithPlayer:player];
+    layer = [AVPlayerLayer playerLayerWithPlayer:player.avplayer];
     layer.frame = self.bounds;
     [self.layer addSublayer:layer];
     layer.backgroundColor = [UIColor clearColor].CGColor;
@@ -95,11 +99,7 @@
 }
 
 -(BOOL)isPlaying {
-    if([[UIDevice currentDevice] systemVersion].intValue>=10){
-        return player.timeControlStatus == AVPlayerTimeControlStatusPlaying;
-    }else{
-        return player.rate==1;
-    }
+    return [player isPlaying];
 }
 
 @end

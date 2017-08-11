@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayTask.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface MediaPlayer : NSObject
 
@@ -15,6 +16,7 @@
 
 @property(assign, nonatomic)BOOL repeat;
 @property(assign, nonatomic)CGFloat currentTime;
+@property (strong, nonatomic) AVPlayer* avplayer;
 
 -(void)addPlayTask:(PlayTask*)task;
 
