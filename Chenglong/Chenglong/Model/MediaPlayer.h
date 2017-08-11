@@ -22,8 +22,10 @@
 
 -(void)play;
 -(void)pause;
+-(void)resume;
 -(void)stop;
 -(BOOL)isPlaying;
+-(void)removeTask:(MediaContent*)mc;
 
 -(CGFloat)currentTaskDuration;
 

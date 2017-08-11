@@ -40,6 +40,7 @@
     [timer invalidate];
     timer = nil;
     [player stop];
+    [player removeTask:self.mediaContent];
     player = nil;
 }
 

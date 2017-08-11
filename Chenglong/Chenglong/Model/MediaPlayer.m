@@ -31,18 +31,21 @@ MediaPlayer* gMediaPlayer;
     self = [super init];
     gMediaPlayer = self;
     self.tasks = [NSMutableArray new];
+    self.current = 0;
     return self;
 }
 
 -(void)addPlayTask:(PlayTask *)task {
     [self.tasks addObject:task];
+    if(self.current == -1)
+        self.current = 0;
 }
 
 -(void)play {
     if(self.tasks.count == 0)
         return;
     
-    PlayTask* task = [self.tasks objectAtIndex:0];
+    PlayTask* task = [self.tasks objectAtIndex:self.current];
     if(self.avplayer == nil) {
         self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
         if([[UIDevice currentDevice] systemVersion].intValue>=10){
@@ -52,9 +55,38 @@ MediaPlayer* gMediaPlayer;
     [self.avplayer play];
 }
 
+-(void)resume
+{
+    [self.avplayer play];
+}
+
 -(void)pause
 {
     [self.avplayer pause];
+}
+
+-(void)removeTask:(MediaContent *)mc
+{
+    for (int i=0; i<self.tasks.count; i++) {
+        PlayTask* task = [self.tasks objectAtIndex:0];
+        if([task.mediaContent.url isEqualToString:mc.url]) {
+            [self.tasks removeObjectAtIndex:i];
+            if(i==self.current) {
+                [self.avplayer pause];
+                self.current ++;
+                if(self.current >= self.tasks.count) {
+                    self.avplayer = nil;
+                    self.current = -1;
+                }
+                else {
+                    task = [self.tasks objectAtIndex:self.current];
+                    AVPlayerItem* item = [AVPlayerItem playerItemWithURL:[task.mediaContent playUrl]];
+                    [self.avplayer replaceCurrentItemWithPlayerItem:item];
+                }
+            }
+            break;
+        }
+    }
 }
 
 -(void)stop
