@@ -98,4 +98,13 @@
     return [player isPlaying];
 }
 
+-(void)test
+{
+    AVAsset *asset = [AVAsset assetWithURL:[self.mediaContent playUrl]];
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+    CMTime time = CMTimeMake(1, 1);
+    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
+    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
+}
 @end
