@@ -119,6 +119,13 @@
         enableBackgroundMode:backgroundMode];
 }
 
+- (void)downloadFileForMediaContent:(MediaContent*)mediaContent
+             progressBlock:(void(^)(CGFloat progress))progressBlock
+           completionBlock:(void(^)(BOOL completed))completionBlock
+      enableBackgroundMode:(BOOL)backgroundMode {
+    [self downloadFileForURL:mediaContent.url withName:[mediaContent getFileName] inDirectoryNamed:[mediaContent getDirName] progressBlock:progressBlock completionBlock:completionBlock enableBackgroundMode:backgroundMode];
+}
+
 - (void)downloadFileForURL:(NSString *)urlString
                   withName:(NSString *)fileName
           inDirectoryNamed:(NSString *)directory
@@ -293,6 +300,12 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
                          completionBlock:nil];
 }
 
+- (BOOL)isFileDownloadingForMediaContent:(MediaContent*)mediaContent
+              withProgressBlock:(void(^)(CGFloat progress))block
+                completionBlock:(void(^)(BOOL completed))completionBlock {
+    return [self isFileDownloadingForUrl:mediaContent.url withProgressBlock:block completionBlock:completionBlock];
+}
+
 - (BOOL)isFileDownloadingForUrl:(NSString *)fileIdentifier
               withProgressBlock:(void(^)(CGFloat progress))block
                 completionBlock:(void(^)(BOOL completed))completionBlock {
@@ -420,6 +433,10 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
             }
         }
     }];
+}
+
+- (BOOL)fileDownloadCompletedForMediaContent:(MediaContent *)mediaContent {
+    return [self fileDownloadCompletedForUrl:mediaContent.url];
 }
 
 @end

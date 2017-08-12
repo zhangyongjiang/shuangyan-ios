@@ -7,12 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MediaContent.h"
 
 @interface TWRDownloadManager : NSObject
 
 @property (nonatomic, strong) void(^backgroundTransferCompletionHandler)();
 
 + (instancetype)sharedManager;
+
+- (BOOL)fileDownloadCompletedForMediaContent:(MediaContent *)mediaContent;
+
+- (void)downloadFileForMediaContent:(MediaContent*)mediaContent
+                      progressBlock:(void(^)(CGFloat progress))progressBlock
+                    completionBlock:(void(^)(BOOL completed))completionBlock
+               enableBackgroundMode:(BOOL)backgroundMode;
+
+- (BOOL)isFileDownloadingForMediaContent:(MediaContent*)mediaContent
+                       withProgressBlock:(void(^)(CGFloat progress))block
+                         completionBlock:(void(^)(BOOL completed))completionBlock;
 
 - (void)downloadFileForURL:(NSString *)url
                   withName:(NSString *)fileName

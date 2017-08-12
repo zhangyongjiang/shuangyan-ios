@@ -56,25 +56,31 @@
 
 -(BOOL)isDownloading
 {
-    return ![[TWRDownloadManager sharedManager] fileDownloadCompletedForUrl:self.url];
+    return ![[TWRDownloadManager sharedManager] fileDownloadCompletedForMediaContent:self];
+}
+
+-(void)deleteLocalFile
+{
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    [filemgr removeItemAtPath:self.localFilePath error:nil];
 }
 
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock {
     [self createDirs];
-    NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString* filePath = self.localFilePath;
     NSLog(@"Download from %@ to %@", self.url, self.localFilePath);
-    if([filemgr fileExistsAtPath:filePath isDirectory:nil]) {
+    
+    if([self isDownloading]) {
+        [[TWRDownloadManager sharedManager] isFileDownloadingForMediaContent:self withProgressBlock:progressBlock completionBlock:completionBlock];
+        return;
+    }
+
+    if([self localFileExists]) {
         NSLog(@"file exists. delete first. %@ ", self.localFilePath);
-        [filemgr removeItemAtPath:filePath error:nil];
+        [self deleteLocalFile];
     }
-    
-    if([[TWRDownloadManager sharedManager] isFileDownloadingForUrl:self.url withProgressBlock:nil]) {
-        [[TWRDownloadManager sharedManager] cancelDownloadForUrl:self.url];
-    }
-    
-    [[TWRDownloadManager sharedManager] downloadFileForURL:self.url withName:[self getFileName] inDirectoryNamed:[self getDirName] progressBlock:^(CGFloat progress) {
+
+    [[TWRDownloadManager sharedManager] downloadFileForMediaContent:self progressBlock:^(CGFloat progress) {
         NSLog(@"progress %f", progress);
         progressBlock(progress);
     } completionBlock:^(BOOL completed) {
