@@ -26,7 +26,6 @@
 -(File*)parent;
 +(NSString*)homeDir;
 +(NSString*)mediaHomeDir;
-+(NSString*)dirForMediaContent:(MediaContent*)mc;
 
 @property(strong, nonatomic) NSString* dir;
 @property(strong, nonatomic) NSString* name;
