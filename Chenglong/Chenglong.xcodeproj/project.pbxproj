@@ -262,7 +262,6 @@
 		ADD117BF1EF2546400EF6E04 /* like-color-full@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BB1EF2546400EF6E04 /* like-color-full@3x.png */; };
 		ADD117C01EF2546400EF6E04 /* like-color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BC1EF2546400EF6E04 /* like-color@2x.png */; };
 		ADD117C11EF2546400EF6E04 /* like-color@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD117BD1EF2546400EF6E04 /* like-color@3x.png */; };
-		ADD117D61EF4F03900EF6E04 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117D51EF4F03900EF6E04 /* FileManager.m */; };
 		ADD117E51EF6198300EF6E04 /* MediaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E41EF6198300EF6E04 /* MediaWebView.m */; };
 		ADD117E81EF61C2D00EF6E04 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117E71EF61C2D00EF6E04 /* VideoView.m */; };
 		ADD117EB1EF61F6C00EF6E04 /* AudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117EA1EF61F6C00EF6E04 /* AudioView.m */; };
@@ -770,8 +769,6 @@
 		ADD117BB1EF2546400EF6E04 /* like-color-full@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color-full@3x.png"; sourceTree = "<group>"; };
 		ADD117BC1EF2546400EF6E04 /* like-color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color@2x.png"; sourceTree = "<group>"; };
 		ADD117BD1EF2546400EF6E04 /* like-color@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color@3x.png"; sourceTree = "<group>"; };
-		ADD117D41EF4F03900EF6E04 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
-		ADD117D51EF4F03900EF6E04 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		ADD117E31EF6198300EF6E04 /* MediaWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaWebView.h; sourceTree = "<group>"; };
 		ADD117E41EF6198300EF6E04 /* MediaWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaWebView.m; sourceTree = "<group>"; };
 		ADD117E61EF61C2D00EF6E04 /* VideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
@@ -1335,8 +1332,6 @@
 				ADD117B01EEDC8F900EF6E04 /* LocalCourseDetails.m */,
 				ADD117B21EF0EBD400EF6E04 /* MenuItem.h */,
 				ADD117B31EF0EBD400EF6E04 /* MenuItem.m */,
-				ADD117D41EF4F03900EF6E04 /* FileManager.h */,
-				ADD117D51EF4F03900EF6E04 /* FileManager.m */,
 				ADD117F21EF6FBC800EF6E04 /* File.h */,
 				ADD117F31EF6FBC800EF6E04 /* File.m */,
 				AD2A7BEA1F15E6700016B51E /* MediaPlayer.h */,
@@ -2276,7 +2271,6 @@
 				AD49D8401F096CE5000D0E1B /* SpendingHistoryPage.m in Sources */,
 				AD49D81F1F096CE5000D0E1B /* MediaAttachmentDataSource.m in Sources */,
 				AD49D8501F09869E000D0E1B /* FileListTableViewCell.m in Sources */,
-				ADD117D61EF4F03900EF6E04 /* FileManager.m in Sources */,
 				030049771E0E5F61006EDC29 /* MediaContent.m in Sources */,
 				AD49D8181F096CE5000D0E1B /* CreatFileTypeView.m in Sources */,
 				AD49D80A1F096CE5000D0E1B /* OnlineFileListPage.m in Sources */,

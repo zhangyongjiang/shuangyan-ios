@@ -32,7 +32,7 @@
 
 -(BOOL)isDownloaded {
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString* filePath = self.filePath;
+    NSString* filePath = self.localFilePath;
     if(![filemgr fileExistsAtPath:filePath isDirectory:nil]) {
         return NO;
     }
@@ -46,7 +46,7 @@
 -(long)currentLocalFileLength
 {
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString* filePath = self.filePath;
+    NSString* filePath = self.localFilePath;
     if(![filemgr fileExistsAtPath:filePath isDirectory:nil]) {
         return 0;
     }
@@ -63,10 +63,10 @@
                   completionBlock:(void(^)(BOOL completed))completionBlock {
     [self createDirs];
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString* filePath = self.filePath;
-    NSLog(@"Download from %@ to %@", self.url, self.filePath);
+    NSString* filePath = self.localFilePath;
+    NSLog(@"Download from %@ to %@", self.url, self.localFilePath);
     if([filemgr fileExistsAtPath:filePath isDirectory:nil]) {
-        NSLog(@"file exists. delete first. %@ ", self.filePath);
+        NSLog(@"file exists. delete first. %@ ", self.localFilePath);
         [filemgr removeItemAtPath:filePath error:nil];
     }
     
@@ -84,11 +84,11 @@
 }
 
 -(NSString*)getFileName {
-    return [self.filePath lastPathComponent];
+    return [self.localFilePath lastPathComponent];
 }
 
 -(NSString*)getDirName {
-    return [self.filePath substringToIndex:(self.filePath.length - [self getFileName].length)];
+    return [self.localFilePath substringToIndex:(self.localFilePath.length - [self getFileName].length)];
 }
 
 -(void)createDirs {
@@ -107,7 +107,7 @@
     return ext;
 }
 
--(NSString*)filePath {
+-(NSString*)localFilePath {
     return [NSString stringWithFormat:@"%@/%@", [File mediaHomeDir], self.path];
 }
 
@@ -115,6 +115,6 @@
 {
     NSFileManager* fm = [NSFileManager defaultManager];
     BOOL isDirectory;
-    return [fm fileExistsAtPath:[self filePath] isDirectory:&isDirectory];
+    return [fm fileExistsAtPath:[self localFilePath] isDirectory:&isDirectory];
 }
 @end

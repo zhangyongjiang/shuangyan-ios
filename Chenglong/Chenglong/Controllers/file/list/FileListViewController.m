@@ -10,7 +10,6 @@
 #import "ObjectMapper.h"
 #import "CreateFileViewController.h"
 #import "UpdateFileViewController.h"
-#import "FileManager.h"
 #import "File.h"
 #import "BaseNavigationController.h"
 #import "CoursePickerViewController.h"

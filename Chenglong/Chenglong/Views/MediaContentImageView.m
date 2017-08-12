@@ -29,7 +29,7 @@
 //        [self.imgView autoPinEdgesToSuperviewMargins];
     }
 
-    UIImage* img = [UIImage imageWithContentsOfFile:self.mediaContent.filePath];
+    UIImage* img = [UIImage imageWithContentsOfFile:self.mediaContent.localFilePath];
     self.imgView.image = img;
     [self layoutSubviews];
 }

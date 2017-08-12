@@ -28,7 +28,7 @@
         [self.webView autoPinEdgesToSuperviewMargins];
     }
 
-    NSURL* url = [NSURL  fileURLWithPath:self.mediaContent.filePath];
+    NSURL* url = [NSURL  fileURLWithPath:self.mediaContent.localFilePath];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
