@@ -10,9 +10,8 @@
 
 @interface MediaContent (Local)
 
-@property(strong, nonatomic)NSString* filePath;
-
 -(BOOL)isDownloaded;
+-(long)currentLocalFileLength;
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock ;
 -(NSString*)getFileName;
@@ -21,6 +20,7 @@
 -(void)createDirs;
 
 -(NSString*)localFilePath;
+-(BOOL)localFileExists;
 -(NSURL*)playUrl;
 
 @end

@@ -11,9 +11,6 @@
 
 @implementation MediaContent (Local)
 
--(NSString*)localFilePath {
-    return [File dirForMediaContent:self];
-}
 
 -(NSURL*)playUrl {
     if([self isDownloaded]) {
@@ -44,6 +41,22 @@
         return NO;
     }
     return YES;
+}
+
+-(long)currentLocalFileLength
+{
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    NSString* filePath = self.filePath;
+    if(![filemgr fileExistsAtPath:filePath isDirectory:nil]) {
+        return 0;
+    }
+    unsigned long long fileSize = [[filemgr attributesOfItemAtPath:filePath error:nil] fileSize];
+    return fileSize;
+}
+
+-(BOOL)isDownloading
+{
+    return ![[TWRDownloadManager sharedManager] fileDownloadCompletedForUrl:self.url];
 }
 
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
@@ -95,6 +108,13 @@
 }
 
 -(NSString*)filePath {
-    return [File dirForMediaContent:self];
+    return [NSString stringWithFormat:@"%@/%@", [File mediaHomeDir], self.path];
+}
+
+-(BOOL)localFileExists
+{
+    NSFileManager* fm = [NSFileManager defaultManager];
+    BOOL isDirectory;
+    return [fm fileExistsAtPath:[self filePath] isDirectory:&isDirectory];
 }
 @end
