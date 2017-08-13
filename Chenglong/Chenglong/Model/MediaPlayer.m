@@ -47,7 +47,7 @@ MediaPlayer* gMediaPlayer;
     
     PlayTask* task = [self.tasks objectAtIndex:self.current];
     if(self.avplayer == nil) {
-        self.avplayer = [[AVPlayer alloc] initWithURL:[task.mediaContent playUrl]];
+        self.avplayer = [[AVPlayer alloc] initWithURL:[task.localMediaContent playUrl]];
         if([[UIDevice currentDevice] systemVersion].intValue>=10){
             self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
         }
@@ -65,11 +65,11 @@ MediaPlayer* gMediaPlayer;
     [self.avplayer pause];
 }
 
--(void)removeTask:(MediaContent *)mc
+-(void)removeTask:(LocalMediaContent *)mc
 {
     for (int i=0; i<self.tasks.count; i++) {
         PlayTask* task = [self.tasks objectAtIndex:0];
-        if([task.mediaContent.url isEqualToString:mc.url]) {
+        if([task.localMediaContent.url isEqualToString:mc.url]) {
             [self.tasks removeObjectAtIndex:i];
             if(i==self.current) {
                 [self.avplayer pause];
@@ -80,7 +80,7 @@ MediaPlayer* gMediaPlayer;
                 }
                 else {
                     task = [self.tasks objectAtIndex:self.current];
-                    AVPlayerItem* item = [AVPlayerItem playerItemWithURL:[task.mediaContent playUrl]];
+                    AVPlayerItem* item = [AVPlayerItem playerItemWithURL:[task.localMediaContent playUrl]];
                     [self.avplayer replaceCurrentItemWithPlayerItem:item];
                 }
             }

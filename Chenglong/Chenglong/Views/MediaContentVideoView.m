@@ -66,7 +66,7 @@
     if(!player) {
         player = [MediaPlayer shared];
         PlayTask* task = [[PlayTask alloc] init];
-        task.mediaContent = self.mediaContent;
+        task.localMediaContent = self.localMediaContent;
         [player addPlayTask:task];
         [player play];
         layer = [AVPlayerLayer playerLayerWithPlayer:player.avplayer];
@@ -90,7 +90,7 @@
 -(void)destroy
 {
     [player stop];
-    [player removeTask:self.mediaContent];
+    [player removeTask:self.localMediaContent];
     player = nil;
 }
 
@@ -100,7 +100,7 @@
 
 -(void)test
 {
-    AVAsset *asset = [AVAsset assetWithURL:[self.mediaContent playUrl]];
+    AVAsset *asset = [AVAsset assetWithURL:[self.localMediaContent playUrl]];
     AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
     CMTime time = CMTimeMake(1, 1);
     CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];

@@ -265,7 +265,7 @@
 {
     NSMutableArray* mediaContents = [NSMutableArray arrayWithCapacity:0];
     for (CourseDetails* cd in self.page.courseDetailsList.items) {
-        for (MediaContent* mc in cd.course.resources) {
+        for (LocalMediaContent* mc in cd.course.resources) {
             if([mc.contentType hasPrefix:@"audio"] || [mc.contentType hasPrefix:@"video"]) {
                 if([mc isDownloaded])
                     [mediaContents addObject:mc];
@@ -316,7 +316,7 @@
 -(void)downloadOne {
     if(self.currentDownload >= self.downloadList.count)
         return;
-    MediaContent* mc = [self.downloadList objectAtIndex:self.currentDownload];
+    LocalMediaContent* mc = [self.downloadList objectAtIndex:self.currentDownload];
     WeakSelf(weakSelf)
     NSLog(@"download %@", mc.path);
         [mc downloadWithProgressBlock:^(CGFloat progress) {

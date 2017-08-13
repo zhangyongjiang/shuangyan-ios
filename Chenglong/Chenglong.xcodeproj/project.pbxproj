@@ -142,7 +142,6 @@
 		A364CCD01C94CBFA0075E65F /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC401C94CBFA0075E65F /* Data.m */; };
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
 		AD2A7BE11F1265D00016B51E /* UpdateFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */; };
-		AD2A7BE71F1537ED0016B51E /* MediaContent+Local.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE61F1537ED0016B51E /* MediaContent+Local.m */; };
 		AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */; };
 		AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEE1F15E7D30016B51E /* PlayTask.m */; };
 		AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD318B4F1EFBF9FD0061E993 /* Dbase.m */; };
@@ -239,6 +238,7 @@
 		AD666CB81F00C61800D3F18E /* CourseParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB71F00C61800D3F18E /* CourseParent.m */; };
 		AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE01F02A1F500D3F18E /* MoneyAPI.m */; };
 		AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CEC1F0536C300D3F18E /* CoursePathView.m */; };
+		AD7E882E1F410D7F00B8CBE3 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E882D1F410D7F00B8CBE3 /* LocalMediaContent.m */; };
 		AD8949531F23E8CC00C024F8 /* OauthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949501F23E8CC00C024F8 /* OauthToken.m */; };
 		AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949521F23E8CC00C024F8 /* TokenedUser.m */; };
 		AD8949591F28F23400C024F8 /* CourseTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949581F28F23400C024F8 /* CourseTreeViewController.m */; };
@@ -553,8 +553,6 @@
 		A364CC4B1C94CBFA0075E65F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AD2A7BDF1F1265D00016B51E /* UpdateFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateFileViewController.h; sourceTree = "<group>"; };
 		AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateFileViewController.m; sourceTree = "<group>"; };
-		AD2A7BE51F1537ED0016B51E /* MediaContent+Local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MediaContent+Local.h"; sourceTree = "<group>"; };
-		AD2A7BE61F1537ED0016B51E /* MediaContent+Local.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MediaContent+Local.m"; sourceTree = "<group>"; };
 		AD2A7BEA1F15E6700016B51E /* MediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayer.h; sourceTree = "<group>"; };
 		AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayer.m; sourceTree = "<group>"; };
 		AD2A7BED1F15E7D30016B51E /* PlayTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayTask.h; sourceTree = "<group>"; };
@@ -729,6 +727,8 @@
 		AD666CE01F02A1F500D3F18E /* MoneyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyAPI.m; sourceTree = "<group>"; };
 		AD666CEB1F0536C300D3F18E /* CoursePathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursePathView.h; sourceTree = "<group>"; };
 		AD666CEC1F0536C300D3F18E /* CoursePathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursePathView.m; sourceTree = "<group>"; };
+		AD7E882C1F410D7F00B8CBE3 /* LocalMediaContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMediaContent.h; sourceTree = "<group>"; };
+		AD7E882D1F410D7F00B8CBE3 /* LocalMediaContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMediaContent.m; sourceTree = "<group>"; };
 		AD89494F1F23E8CC00C024F8 /* OauthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OauthToken.h; sourceTree = "<group>"; };
 		AD8949501F23E8CC00C024F8 /* OauthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OauthToken.m; sourceTree = "<group>"; };
 		AD8949511F23E8CC00C024F8 /* TokenedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenedUser.h; sourceTree = "<group>"; };
@@ -1278,8 +1278,6 @@
 				0329115B1E113BC0000C1F5A /* TTTAttributedLabel.m */,
 				032C96B81E2CC525001EFC29 /* UIImagePickerController+Kaishi.h */,
 				032C96B91E2CC525001EFC29 /* UIImagePickerController+Kaishi.m */,
-				AD2A7BE51F1537ED0016B51E /* MediaContent+Local.h */,
-				AD2A7BE61F1537ED0016B51E /* MediaContent+Local.m */,
 				ADEEC36E1F3691920078B75E /* CourseDetails+Utils.h */,
 				ADEEC36F1F3691920078B75E /* CourseDetails+Utils.m */,
 			);
@@ -1338,6 +1336,8 @@
 				AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */,
 				AD2A7BED1F15E7D30016B51E /* PlayTask.h */,
 				AD2A7BEE1F15E7D30016B51E /* PlayTask.m */,
+				AD7E882C1F410D7F00B8CBE3 /* LocalMediaContent.h */,
+				AD7E882D1F410D7F00B8CBE3 /* LocalMediaContent.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2128,7 +2128,6 @@
 				AD49D8081F096CE5000D0E1B /* OnlineFileListHeaderView.m in Sources */,
 				030049911E0E68B4006EDC29 /* NSObject+Tips.m in Sources */,
 				030049631E0E5F60006EDC29 /* BusinessReviewList.m in Sources */,
-				AD2A7BE71F1537ED0016B51E /* MediaContent+Local.m in Sources */,
 				AD49D80E1F096CE5000D0E1B /* OnlineSearchListViewController.m in Sources */,
 				A364CBE21C94CBCF0075E65F /* AppDelegate.m in Sources */,
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
@@ -2310,6 +2309,7 @@
 				032911661E113BD0000C1F5A /* UCActionSheet.m in Sources */,
 				A354C1751C93ED9F00EE0DE5 /* main.m in Sources */,
 				032C96B51E2CB007001EFC29 /* MediaPreviewView.m in Sources */,
+				AD7E882E1F410D7F00B8CBE3 /* LocalMediaContent.m in Sources */,
 				ADEEC3701F3691920078B75E /* CourseDetails+Utils.m in Sources */,
 				030049731E0E5F60006EDC29 /* Journal.m in Sources */,
 				ADD117EB1EF61F6C00EF6E04 /* AudioView.m in Sources */,

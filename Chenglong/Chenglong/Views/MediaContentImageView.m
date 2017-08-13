@@ -18,7 +18,7 @@
 }
 
 -(void)play {
-    if(![self.mediaContent isDownloaded]) {
+    if(![self.localMediaContent isDownloaded]) {
         NSLog(@"no downloaded yet");
         return;
     }
@@ -29,7 +29,7 @@
 //        [self.imgView autoPinEdgesToSuperviewMargins];
     }
 
-    UIImage* img = [UIImage imageWithContentsOfFile:self.mediaContent.localFilePath];
+    UIImage* img = [UIImage imageWithContentsOfFile:self.localMediaContent.localFilePath];
     self.imgView.image = img;
     [self layoutSubviews];
 }
@@ -53,8 +53,8 @@
     }
 }
 
--(void)setMediaContent:(MediaContent *)mediaContent {
-    [super setMediaContent:mediaContent];
+-(void)setLocalMediaContent:(LocalMediaContent *)mediaContent {
+    [super setLocalMediaContent:mediaContent];
     if([mediaContent isDownloaded])
         self.btnDownload.hidden = YES;
 }

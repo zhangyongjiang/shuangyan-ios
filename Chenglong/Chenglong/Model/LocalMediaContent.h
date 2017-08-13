@@ -1,14 +1,14 @@
 //
-//  MediaContent+Local.h
+//  LocalMediaContent.h
 //  Chenglong
 //
-//  Created by Kevin Zhang (BCG DV) on 7/11/17.
+//  Created by Kevin Zhang (BCG DV) on 8/13/17.
 //  Copyright © 2017 Chenglong. All rights reserved.
 //
 
 #import "MediaContent.h"
 
-@interface MediaContent (Local)
+@interface LocalMediaContent : MediaContent
 
 -(BOOL)isDownloaded;
 -(long)currentLocalFileLength;

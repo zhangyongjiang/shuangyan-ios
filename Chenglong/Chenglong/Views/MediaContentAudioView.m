@@ -40,7 +40,7 @@
     [timer invalidate];
     timer = nil;
     [player stop];
-    [player removeTask:self.mediaContent];
+    [player removeTask:self.localMediaContent];
     player = nil;
 }
 
@@ -48,7 +48,7 @@
     if(!player) {
         player = [MediaPlayer shared];
         PlayTask* task = [[PlayTask alloc] init];
-        task.mediaContent = self.mediaContent;
+        task.localMediaContent = self.localMediaContent;
         [player addPlayTask:task];
         [player play];
         slider.maximumValue = [player currentTaskDuration];

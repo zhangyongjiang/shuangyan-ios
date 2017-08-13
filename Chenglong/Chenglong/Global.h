@@ -20,7 +20,7 @@
 #import "File.h"
 #import "Dbase.h"
 #import "NSDate+Kaishi.h"
-#import "MediaContent+Local.h"
+#import "LocalMediaContent.h"
 #import "AppDelegate.h"
 #import "MediaPlayer.h"
 #import "CourseDetails+Utils.h"

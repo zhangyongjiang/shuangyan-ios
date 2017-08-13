@@ -119,7 +119,7 @@
         enableBackgroundMode:backgroundMode];
 }
 
-- (void)downloadFileForMediaContent:(MediaContent*)mediaContent
+- (void)downloadFileForLocalMediaContent:(LocalMediaContent*)mediaContent
              progressBlock:(void(^)(CGFloat progress))progressBlock
            completionBlock:(void(^)(BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
@@ -300,7 +300,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
                          completionBlock:nil];
 }
 
-- (BOOL)isFileDownloadingForMediaContent:(MediaContent*)mediaContent
+- (BOOL)isFileDownloadingForLocalMediaContent:(LocalMediaContent*)mediaContent
               withProgressBlock:(void(^)(CGFloat progress))block
                 completionBlock:(void(^)(BOOL completed))completionBlock {
     return [self isFileDownloadingForUrl:mediaContent.url withProgressBlock:block completionBlock:completionBlock];
@@ -435,7 +435,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     }];
 }
 
-- (BOOL)fileDownloadCompletedForMediaContent:(MediaContent *)mediaContent {
+- (BOOL)fileDownloadCompletedForLocalMediaContent:(LocalMediaContent *)mediaContent {
     return [self fileDownloadCompletedForUrl:mediaContent.url];
 }
 

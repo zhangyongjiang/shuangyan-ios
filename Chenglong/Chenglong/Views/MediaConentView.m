@@ -66,7 +66,7 @@
 }
 
 -(void)downloadOrPlay {
-    BOOL downloaded = [self.mediaContent isDownloaded];
+    BOOL downloaded = [self.localMediaContent isDownloaded];
     if(downloaded)
         [self play];
     else
@@ -74,7 +74,7 @@
 }
 
 -(void)download {
-    [self.mediaContent downloadWithProgressBlock:^(CGFloat progress) {
+    [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
         [self downloadInProgress:progress];
     } completionBlock:^(BOOL completed) {
         [self downloadCompleted];
@@ -85,52 +85,52 @@
 {
     int downloaded = (int)(progress*100);
     if(progress < 0) {
-        downloaded = -100. * progress / self.mediaContent.length.floatValue;
+        downloaded = -100. * progress / self.localMediaContent.length.floatValue;
     }
-    NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.mediaContent.length];
+    NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.localMediaContent.length];
     [self.btnDownload setTitle:txt forState:UIControlStateNormal];
 }
 
 -(void)downloadCompleted
 {
     [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
-    if (![MediaConentView isAudio:self.mediaContent] &&
-        ![MediaConentView isVideo:self.mediaContent]) {
+    if (![MediaConentView isAudio:self.localMediaContent] &&
+        ![MediaConentView isVideo:self.localMediaContent]) {
         [self play];
     }
 }
 
-+(BOOL)isImage:(MediaContent*)mediaContent {
-    return [mediaContent.contentType hasPrefix:@"image"];
++(BOOL)isImage:(LocalMediaContent*)localMediaContent {
+    return [localMediaContent.contentType hasPrefix:@"image"];
 }
-+(BOOL)isAudio:(MediaContent*)mediaContent {
-    return [mediaContent.contentType hasPrefix:@"audio"];
++(BOOL)isAudio:(LocalMediaContent*)localMediaContent {
+    return [localMediaContent.contentType hasPrefix:@"audio"];
 }
-+(BOOL)isVideo:(MediaContent*)mediaContent {
-    return [mediaContent.contentType hasPrefix:@"video"];
++(BOOL)isVideo:(LocalMediaContent*)localMediaContent {
+    return [localMediaContent.contentType hasPrefix:@"video"];
 }
-+(BOOL)isPdf:(MediaContent*)mediaContent {
-    return [mediaContent.contentType hasPrefix:@"application/pdf"];
++(BOOL)isPdf:(LocalMediaContent*)localMediaContent {
+    return [localMediaContent.contentType hasPrefix:@"application/pdf"];
 }
-+(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent {
++(MediaConentView*) createViewForMediaContent:(LocalMediaContent*)localMediaContent {
     MediaConentView* view;
-    if([MediaConentView isImage:mediaContent]) {
+    if([MediaConentView isImage:localMediaContent]) {
         view = [[MediaContentImageView alloc] init];
     }
-    else if([MediaConentView isAudio:mediaContent]) {
+    else if([MediaConentView isAudio:localMediaContent]) {
         view = [[MediaContentAudioView alloc] init];
     }
-    else if([MediaConentView isVideo:mediaContent]) {
+    else if([MediaConentView isVideo:localMediaContent]) {
         view = [[MediaContentVideoView alloc] init];
     }
-    else if([MediaConentView isPdf:mediaContent]) {
+    else if([MediaConentView isPdf:localMediaContent]) {
         view = [[MediaContentPdfView alloc] init];
     }
     else
         return nil;
     view.width = [UIView screenWidth];
     view.height = [UIView screenWidth];
-    view.mediaContent = mediaContent;
+    view.localMediaContent = localMediaContent;
     
     view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     view.backgroundColor = [UIColor colorFromRGB:0xeeeeee];
@@ -142,8 +142,8 @@
     return view;
 }
 
--(void)setMediaContent:(MediaContent *)localMediaContent {
-    _mediaContent = localMediaContent;
+-(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
+    _localMediaContent = localMediaContent;
     BOOL downloaded = [localMediaContent isDownloaded];
     
     if(downloaded) {
@@ -152,15 +152,15 @@
     else {
         NSString* txt = [NSString stringWithFormat:@"下载 0%% of %@", localMediaContent.length];
         [self.btnDownload setTitle:txt forState:UIControlStateNormal];
-        [self.mediaContent isDownloadingProgressBlock:^(CGFloat progress) {
+        [self.localMediaContent isDownloadingProgressBlock:^(CGFloat progress) {
             [self downloadInProgress:progress];
         } completionBlock:^(BOOL completed) {
             [self downloadCompleted];
         }];
     }
     
-    if (![MediaConentView isAudio:self.mediaContent] &&
-        ![MediaConentView isVideo:self.mediaContent]) {
+    if (![MediaConentView isAudio:self.localMediaContent] &&
+        ![MediaConentView isVideo:self.localMediaContent]) {
         [self play];
     }
 }

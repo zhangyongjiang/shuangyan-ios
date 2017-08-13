@@ -1,16 +1,15 @@
 //
-//  MediaContent+Local.m
+//  LocalMediaContent.m
 //  Chenglong
 //
-//  Created by Kevin Zhang (BCG DV) on 7/11/17.
+//  Created by Kevin Zhang (BCG DV) on 8/13/17.
 //  Copyright © 2017 Chenglong. All rights reserved.
 //
 
-#import "MediaContent+Local.h"
+#import "LocalMediaContent.h"
 #import "TWRDownloadManager.h"
 
-@implementation MediaContent (Local)
-
+@implementation LocalMediaContent
 
 -(NSURL*)playUrl {
     if([self isDownloaded]) {
@@ -55,13 +54,13 @@
 }
 
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
-                  completionBlock:(void(^)(BOOL completed))completionBlock {
+                   completionBlock:(void(^)(BOOL completed))completionBlock {
     return [[TWRDownloadManager sharedManager] isFileDownloadingForUrl:self.url withProgressBlock:progressBlock completionBlock:completionBlock];
 }
 
 -(BOOL)isDownloading
 {
-    return ![[TWRDownloadManager sharedManager] fileDownloadCompletedForMediaContent:self];
+    return ![[TWRDownloadManager sharedManager] fileDownloadCompletedForLocalMediaContent:self];
 }
 
 -(void)deleteLocalFile
@@ -76,16 +75,16 @@
     NSLog(@"Download from %@ to %@", self.url, self.localFilePath);
     
     if([self isDownloading]) {
-        [[TWRDownloadManager sharedManager] isFileDownloadingForMediaContent:self withProgressBlock:progressBlock completionBlock:completionBlock];
+        [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContent:self withProgressBlock:progressBlock completionBlock:completionBlock];
         return;
     }
-
+    
     if([self localFileExists]) {
         NSLog(@"file exists. delete first. %@ ", self.localFilePath);
         [self deleteLocalFile];
     }
-
-    [[TWRDownloadManager sharedManager] downloadFileForMediaContent:self progressBlock:^(CGFloat progress) {
+    
+    [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContent:self progressBlock:^(CGFloat progress) {
         NSLog(@"progress %f", progress);
         progressBlock(progress);
     } completionBlock:^(BOOL completed) {
@@ -128,4 +127,5 @@
     BOOL isDirectory;
     return [fm fileExistsAtPath:[self localFilePath] isDirectory:&isDirectory];
 }
+
 @end

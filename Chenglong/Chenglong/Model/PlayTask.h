@@ -10,7 +10,7 @@
 
 @interface PlayTask : NSObject
 
-@property(strong, nonatomic)MediaContent* mediaContent;
+@property(strong, nonatomic)LocalMediaContent* localMediaContent;
 @property(assign, nonatomic)BOOL repeat;
 
 -(BOOL)isAudioTask;

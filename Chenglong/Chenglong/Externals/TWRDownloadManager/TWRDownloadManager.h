@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MediaContent.h"
+#import "LocalMediaContent.h"
 
 @interface TWRDownloadManager : NSObject
 
@@ -15,14 +15,14 @@
 
 + (instancetype)sharedManager;
 
-- (BOOL)fileDownloadCompletedForMediaContent:(MediaContent *)mediaContent;
+- (BOOL)fileDownloadCompletedForLocalMediaContent:(LocalMediaContent *)mediaContent;
 
-- (void)downloadFileForMediaContent:(MediaContent*)mediaContent
+- (void)downloadFileForLocalMediaContent:(LocalMediaContent*)mediaContent
                       progressBlock:(void(^)(CGFloat progress))progressBlock
                     completionBlock:(void(^)(BOOL completed))completionBlock
                enableBackgroundMode:(BOOL)backgroundMode;
 
-- (BOOL)isFileDownloadingForMediaContent:(MediaContent*)mediaContent
+- (BOOL)isFileDownloadingForLocalMediaContent:(LocalMediaContent*)mediaContent
                        withProgressBlock:(void(^)(CGFloat progress))block
                          completionBlock:(void(^)(BOOL completed))completionBlock;
 

@@ -96,7 +96,7 @@
 }
 
 -(BOOL)isAllDownloaded {
-    for (MediaContent* mc in self.courseDetails.course.resources) {
+    for (LocalMediaContent* mc in self.courseDetails.course.resources) {
         if(![mc isDownloaded])
             return NO;
     }

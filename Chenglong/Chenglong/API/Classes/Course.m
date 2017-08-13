@@ -5,6 +5,6 @@
 
 @implementation Course
 
-MapClassToArray(MediaContent, resources);
+MapClassToArray(LocalMediaContent, resources);
 
 @end

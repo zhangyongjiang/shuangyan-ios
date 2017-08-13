@@ -8,20 +8,20 @@
 
 #import "BaseView.h"
 
-typedef void(^DeleteCallback)(MediaContent* MediaContent);
+typedef void(^DeleteCallback)(LocalMediaContent* MediaContent);
 
 @interface MediaConentView : BaseView
 
-@property(strong, nonatomic) MediaContent* mediaContent;
+@property(strong, nonatomic) LocalMediaContent* localMediaContent;
 @property(strong, nonatomic) UIButton* btnDownload;
 @property(strong,nonatomic)UIImageView* btnRemove;
 @property(assign, nonatomic) BOOL repeat;
 
-+(BOOL) isImage:(MediaContent*)mediaContent;
-+(BOOL) isAudio:(MediaContent*)mediaContent;
-+(BOOL) isVideo:(MediaContent*)mediaContent;
-+(BOOL) isPdf:(MediaContent*)mediaContent;
-+(MediaConentView*) createViewForMediaContent:(MediaContent*)mediaContent;
++(BOOL) isImage:(LocalMediaContent*)localMediaContent;
++(BOOL) isAudio:(LocalMediaContent*)localMediaContent;
++(BOOL) isVideo:(LocalMediaContent*)localMediaContent;
++(BOOL) isPdf:(LocalMediaContent*)localMediaContent;
++(MediaConentView*) createViewForMediaContent:(LocalMediaContent*)localMediaContent;
 
 -(void)downloadOrPlay;
 -(void)addRemoveHandler:(DeleteCallback)deleteCallback;
