@@ -23,4 +23,7 @@
 -(BOOL)localFileExists;
 -(NSURL*)playUrl;
 
+-(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
+                   completionBlock:(void(^)(BOOL completed))completionBlock;
+
 @end

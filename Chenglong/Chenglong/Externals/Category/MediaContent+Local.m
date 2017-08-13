@@ -54,6 +54,11 @@
     return fileSize;
 }
 
+-(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
+                  completionBlock:(void(^)(BOOL completed))completionBlock {
+    return [[TWRDownloadManager sharedManager] isFileDownloadingForUrl:self.url withProgressBlock:progressBlock completionBlock:completionBlock];
+}
+
 -(BOOL)isDownloading
 {
     return ![[TWRDownloadManager sharedManager] fileDownloadCompletedForMediaContent:self];

@@ -75,19 +75,29 @@
 
 -(void)download {
     [self.mediaContent downloadWithProgressBlock:^(CGFloat progress) {
-        int downloaded = (int)(progress*100);
-        if(progress < 0) {
-            downloaded = -100. * progress / self.mediaContent.length.floatValue;
-        }
-        NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.mediaContent.length];
-        [self.btnDownload setTitle:txt forState:UIControlStateNormal];
+        [self downloadInProgress:progress];
     } completionBlock:^(BOOL completed) {
-        [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
-        if (![MediaConentView isAudio:self.mediaContent] &&
-            ![MediaConentView isVideo:self.mediaContent]) {
-            [self play];
-        }
+        [self downloadCompleted];
     }];
+}
+
+-(void)downloadInProgress:(CGFloat)progress
+{
+    int downloaded = (int)(progress*100);
+    if(progress < 0) {
+        downloaded = -100. * progress / self.mediaContent.length.floatValue;
+    }
+    NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.mediaContent.length];
+    [self.btnDownload setTitle:txt forState:UIControlStateNormal];
+}
+
+-(void)downloadCompleted
+{
+    [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
+    if (![MediaConentView isAudio:self.mediaContent] &&
+        ![MediaConentView isVideo:self.mediaContent]) {
+        [self play];
+    }
 }
 
 +(BOOL)isImage:(MediaContent*)mediaContent {
@@ -142,6 +152,11 @@
     else {
         NSString* txt = [NSString stringWithFormat:@"下载 0%% of %@", localMediaContent.length];
         [self.btnDownload setTitle:txt forState:UIControlStateNormal];
+        [self.mediaContent isDownloadingProgressBlock:^(CGFloat progress) {
+            [self downloadInProgress:progress];
+        } completionBlock:^(BOOL completed) {
+            [self downloadCompleted];
+        }];
     }
     
     if (![MediaConentView isAudio:self.mediaContent] &&
