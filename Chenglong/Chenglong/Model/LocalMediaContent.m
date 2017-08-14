@@ -301,13 +301,15 @@
         long shardStartOffset = shardIndex * self.shardSize;
         long offsetInData = offset - shardStartOffset;
         long length = data.length - offsetInData;
+        if(length > dataRequest.requestedLength)
+            length = dataRequest.requestedLength;
         
         NSData *dataAvailable = [data subdataWithRange:NSMakeRange(offsetInData, length)];
         [dataRequest respondWithData:dataAvailable];
-//        [loadingRequest finishLoading];
+        [loadingRequest finishLoading];
     }
     
-    return NO;
+    return YES;
 }
 
 -(void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest
