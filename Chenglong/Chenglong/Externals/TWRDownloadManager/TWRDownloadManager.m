@@ -84,7 +84,7 @@
     NSDictionary* dict = [TWRDownloadManager queryParametersFromURL:urlString];
     NSString* soffset = [dict objectForKey:@"offset"];
     NSString* slength = [dict objectForKey:@"length"];
-    NSString* range = [NSString stringWithFormat:@"bytes=%@-%d", soffset, (slength.intValue-1)];
+    NSString* range = [NSString stringWithFormat:@"bytes=%@-%d", soffset, (soffset.intValue + slength.intValue-1)];
     
     if (![self fileDownloadCompletedForUrl:urlString]) {
         NSLog(@"File is downloading!");

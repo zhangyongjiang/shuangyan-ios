@@ -54,6 +54,8 @@
 -(NSString*)url {
     int offset = self.shard * self.localMediaContent.shardSize;
     int length = self.localMediaContent.shardSize;
+    if((offset + length)>self.localMediaContent.length.intValue)
+        length = self.localMediaContent.length.intValue - offset;
     if([self.localMediaContent.url containsString:@"?"])
         return [NSString stringWithFormat:@"%@&offset=%d&length=%d", self.localMediaContent.url, offset, length];
     else
@@ -65,6 +67,12 @@
     if(self.shard<(self.localMediaContent.numOfShards-1))
         return self.localMediaContent.shardSize;
     return self.localMediaContent.length.intValue - self.shard * self.localMediaContent.shardSize;
+}
+
+-(void)deleteFile
+{
+    File* f = [[File alloc] initWithFullPath:self.localFilePath];
+    [f remove];
 }
 
 @end

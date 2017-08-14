@@ -22,5 +22,6 @@
 -(NSString*)fileName;
 -(NSString*)dirName;
 -(int)expectedDownloadSize;
+-(void)deleteFile;
 
 @end

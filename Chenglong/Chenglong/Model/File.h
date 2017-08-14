@@ -24,6 +24,7 @@
 -(NSMutableArray*)deepLs;
 -(File*)next:(File*)top;
 -(File*)parent;
+-(void)remove;
 +(NSString*)homeDir;
 +(NSString*)mediaHomeDir;
 

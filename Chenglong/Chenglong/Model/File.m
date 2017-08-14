@@ -155,4 +155,10 @@
 -(void)writeStringContent:(NSString *)content {
     [content writeToFile:self.fullPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
+
+-(void)remove
+{
+    NSFileManager* fm = [NSFileManager defaultManager];
+    [fm removeItemAtPath:self.fullPath error:nil];
+}
 @end

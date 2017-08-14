@@ -15,6 +15,7 @@
 -(id)init
 {
     self = [super init];
+    self.shardSize = 64*1024*4;
     self.shards = [NSMutableDictionary new];
     self.progressBlock = nil;
     self.completionBlock = nil;
@@ -116,7 +117,7 @@
             self.completionBlock(completed);
     }
     else {
-        
+        [self downloadWithProgressBlock:self.progressBlock completionBlock:self.completionBlock];
     }
 }
 
@@ -135,7 +136,6 @@
     }
     
     [self createDirs];
-    NSLog(@"Download from %@ to %@", self.url, self.localFilePath);
 
     int i=0;
     for(; i<self.numOfShards; i++) {
@@ -149,20 +149,21 @@
             [shard.localMediaContent downloadCompleted:completed forShard:shard];
         }];
         if(downloading) {
+            NSLog(@"download ongoing for shard %d and url %@", i, shard.url);
             self.progressBlock = progressBlock;
             self.completionBlock = completionBlock;
             return;
         }
         
+        NSLog(@"start download for shard %d and url %@", i, shard.url);
+        self.progressBlock = progressBlock;
+        self.completionBlock = completionBlock;
+        [shard deleteFile];
         [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:shard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
-            NSLog(@"progress %f", progress);
             [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
             [shard.localMediaContent downloadCompleted:completed forShard:shard];
-            NSLog(@"completed");
         } enableBackgroundMode:YES];
-        self.progressBlock = progressBlock;
-        self.completionBlock = completionBlock;
         break;
     }
 }
