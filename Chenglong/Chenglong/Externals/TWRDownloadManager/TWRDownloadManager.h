@@ -24,6 +24,8 @@
                        withProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))block
                          completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock;
 
+- (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*) mediaContent;
+
 - (void)cancelAllDownloads;
 
 /**

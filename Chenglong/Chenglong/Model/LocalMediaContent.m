@@ -297,18 +297,45 @@
         long long offset = dataRequest.requestedOffset;
         int shardIndex = offset / self.shardSize;
         LocalMediaContentShard* shard = [self getShard:shardIndex];
-        NSData* data = [NSData dataWithContentsOfFile:shard.localFilePath];
-        long shardStartOffset = shardIndex * self.shardSize;
-        long offsetInData = offset - shardStartOffset;
-        long length = data.length - offsetInData;
-        if(length > dataRequest.requestedLength)
-            length = dataRequest.requestedLength;
-        
-        NSData *dataAvailable = [data subdataWithRange:NSMakeRange(offsetInData, length)];
-        [dataRequest respondWithData:dataAvailable];
+        if(!shard.isDownloaded) {
+            BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard];
+            if(!downloading) {
+                [self createDirs];
+                [shard deleteFile];
+                [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:shard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+                    NSLog(@"downloading shard %d with progress %f", shard.shard, progress);
+                } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+                    NSLog(@"finished downloading shard %d ", shard.shard);
+                } enableBackgroundMode:YES];
+            }
+        }
+        else {
+            NSData* data = [NSData dataWithContentsOfFile:shard.localFilePath];
+            long shardStartOffset = shardIndex * self.shardSize;
+            long offsetInData = offset - shardStartOffset;
+            long length = data.length - offsetInData;
+            if(length > dataRequest.requestedLength)
+                length = dataRequest.requestedLength;
+            
+            NSData *dataAvailable = [data subdataWithRange:NSMakeRange(offsetInData, length)];
+            [dataRequest respondWithData:dataAvailable];
+            
+            shardIndex++;
+            if(shardIndex < self.numOfShards) {
+                LocalMediaContentShard* nextShard = [self getShard:shardIndex];
+                BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:nextShard];
+                if(!downloading) {
+                    [nextShard deleteFile];
+                    [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:nextShard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+                        NSLog(@"downloading shard %d with progress %f", shard.shard, progress);
+                    } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+                        NSLog(@"finished downloading shard %d ", shard.shard);
+                    } enableBackgroundMode:YES];
+                }
+            }
+        }
         [loadingRequest finishLoading];
     }
-    
     return YES;
 }
 

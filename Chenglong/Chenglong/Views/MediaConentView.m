@@ -66,11 +66,11 @@
 }
 
 -(void)downloadOrPlay {
-    BOOL downloaded = [self.localMediaContent isDownloaded];
-    if(downloaded)
+//    BOOL downloaded = [self.localMediaContent isDownloaded];
+//    if(downloaded)
         [self play];
-    else
-        [self download];
+//    else
+//        [self download];
 }
 
 -(void)download {

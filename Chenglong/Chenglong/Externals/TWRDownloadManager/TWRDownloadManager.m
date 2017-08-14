@@ -157,7 +157,7 @@
         download.shard = mediaContent;
     }
     else {
-        NSLog(@"wrong");
+        NSLog(@"wrong-------------------------");
     }
 }
 
@@ -340,6 +340,11 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     return [self isFileDownloadingForUrl:fileIdentifier
                        withProgressBlock:block
                          completionBlock:nil];
+}
+
+- (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*) mediaContent {
+    TWRDownloadObject *download = [self.downloads objectForKey:mediaContent.url];
+    return download != NULL;
 }
 
 - (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
