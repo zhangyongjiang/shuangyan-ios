@@ -8,7 +8,14 @@
 
 #import "MediaContent.h"
 
+typedef void(^ProgressCallback)(CGFloat progress);
+typedef void(^CompletionCallback)(BOOL completed);
+
 @interface LocalMediaContent : MediaContent
+
+@property(assign, nonatomic)int shardSize;
+@property(assign, nonatomic)ProgressCallback progressBlock;
+@property(assign, nonatomic)CompletionCallback completionBlock;
 
 -(BOOL)isDownloaded;
 -(long)currentLocalFileLength;
@@ -26,4 +33,6 @@
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
                    completionBlock:(void(^)(BOOL completed))completionBlock;
 
+-(BOOL)isSingleShard;
+-(int)numOfShards;
 @end

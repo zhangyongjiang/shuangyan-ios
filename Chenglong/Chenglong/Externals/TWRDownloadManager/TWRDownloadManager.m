@@ -54,24 +54,43 @@
 
 #pragma mark - Downloading... 
 
-- (void)downloadFileForURL:(NSString *)urlString
++(NSDictionary<NSString *, NSString *> *)queryParametersFromURL:(NSString *)url {
+    NSURLComponents *urlComponents = [NSURLComponents componentsWithString:url];
+    NSMutableDictionary<NSString *, NSString *> *queryParams = [NSMutableDictionary<NSString *, NSString *> new];
+    for (NSURLQueryItem *queryItem in [urlComponents queryItems]) {
+        if (queryItem.value == nil) {
+            continue;
+        }
+        [queryParams setObject:queryItem.value forKey:queryItem.name];
+    }
+    return queryParams;
+}
+
+- (BOOL)downloadFileForURL:(NSString *)urlString
                   withName:(NSString *)fileName
           inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-             remainingTime:(void(^)(NSUInteger seconds))remainingTimeBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
+             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+             remainingTime:(void(^)(LocalMediaContentShard* shard, NSUInteger seconds))remainingTimeBlock
+           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
     NSURL *url = [NSURL URLWithString:urlString];
     if (!fileName) {
         fileName = [urlString lastPathComponent];
     }
+
+    NSDictionary* dict = [TWRDownloadManager queryParametersFromURL:urlString];
+    NSString* soffset = [dict objectForKey:@"offset"];
+    NSString* slength = [dict objectForKey:@"length"];
+    NSString* range = [NSString stringWithFormat:@"bytes=%@-%d", soffset, (slength.intValue-1)];
     
     if (![self fileDownloadCompletedForUrl:urlString]) {
         NSLog(@"File is downloading!");
+        return NO;
     } else if (![self fileExistsWithName:fileName inDirectory:directory]) {
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         NSString* token = [Lockbox stringForKey:kOauthTokenKey];
         [request setValue:token forHTTPHeaderField:@"Authorization"];
+        [request setValue:range forHTTPHeaderField:@"Range"];
         
         NSURLSessionDownloadTask *downloadTask;
         if (backgroundMode) {
@@ -85,16 +104,18 @@
         downloadObject.directoryName = directory;
         [self.downloads addEntriesFromDictionary:@{urlString:downloadObject}];
         [downloadTask resume];
+        return YES;
     } else {
         NSLog(@"File already exists!");
+        return NO;
     }
 }
 
 - (void)downloadFileForURL:(NSString *)url
           inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-             remainingTime:(void(^)(NSUInteger seconds))remainingTimeBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
+             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+             remainingTime:(void(^)(LocalMediaContentShard* shard, NSUInteger seconds))remainingTimeBlock
+           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
     [self downloadFileForURL:url
                     withName:[url lastPathComponent]
@@ -106,9 +127,9 @@
 }
 
 - (void)downloadFileForURL:(NSString *)url
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-             remainingTime:(void(^)(NSUInteger seconds))remainingTimeBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
+             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+             remainingTime:(void(^)(LocalMediaContentShard* shard, NSUInteger seconds))remainingTimeBlock
+           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
     [self downloadFileForURL:url
                     withName:[url lastPathComponent]
@@ -119,18 +140,23 @@
         enableBackgroundMode:backgroundMode];
 }
 
-- (void)downloadFileForLocalMediaContent:(LocalMediaContent*)mediaContent
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
+- (void)downloadFileForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
+             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
-    [self downloadFileForURL:mediaContent.url withName:[mediaContent getFileName] inDirectoryNamed:[mediaContent getDirName] progressBlock:progressBlock completionBlock:completionBlock enableBackgroundMode:backgroundMode];
+    NSString* url = mediaContent.url;
+    [self downloadFileForURL:url withName:[mediaContent fileName] inDirectoryNamed:[mediaContent dirName] progressBlock:progressBlock completionBlock:completionBlock enableBackgroundMode:backgroundMode];
+    TWRDownloadObject *download = [self.downloads objectForKey:url];
+    if (download) {
+        download.shard = mediaContent;
+    }
 }
 
 - (void)downloadFileForURL:(NSString *)urlString
                   withName:(NSString *)fileName
           inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
+             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
     [self downloadFileForURL:urlString
                    withName:fileName
@@ -143,8 +169,8 @@
 
 - (void)downloadFileForURL:(NSString *)urlString
           inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
+             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
     // if no file name was provided, use the last path component of the URL as its name
     [self downloadFileForURL:urlString
@@ -156,8 +182,8 @@
 }
 
 - (void)downloadFileForURL:(NSString *)urlString
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
+             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
     [self downloadFileForURL:urlString
             inDirectoryNamed:nil
@@ -172,7 +198,7 @@
         [download.downloadTask cancel];
         [self.downloads removeObjectForKey:fileIdentifier];
         if (download.completionBlock) {
-            download.completionBlock(NO);
+            download.completionBlock(download.shard, NO);
         }
     }
     if (self.downloads.count == 0) {
@@ -184,7 +210,7 @@
 - (void)cancelAllDownloads {
     [self.downloads enumerateKeysAndObjectsUsingBlock:^(id key, TWRDownloadObject *download, BOOL *stop) {
         if (download.completionBlock) {
-            download.completionBlock(NO);
+            download.completionBlock(download.shard, NO);
         }
         [download.downloadTask cancel];
         [self.downloads removeObjectForKey:key];
@@ -212,14 +238,14 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     if (download.progressBlock) {
         CGFloat progress = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            download.progressBlock(progress);
+            download.progressBlock(download.shard, progress);
         });
     }
     
     CGFloat remainingTime = [self remainingTimeForDownload:download bytesTransferred:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
     if (download.remainingTimeBlock) {
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            download.remainingTimeBlock((NSUInteger)remainingTime);
+            download.remainingTimeBlock(download.shard, (NSUInteger)remainingTime);
         });
     }
 }
@@ -256,7 +282,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     
     if (download.completionBlock) {
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            download.completionBlock(YES);
+            download.completionBlock(download.shard, YES);
         });
     }
     
@@ -294,21 +320,21 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
 }
 
 - (BOOL)isFileDownloadingForUrl:(NSString *)fileIdentifier
-              withProgressBlock:(void(^)(CGFloat progress))block {
+              withProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))block {
     return [self isFileDownloadingForUrl:fileIdentifier
                        withProgressBlock:block
                          completionBlock:nil];
 }
 
-- (BOOL)isFileDownloadingForLocalMediaContent:(LocalMediaContent*)mediaContent
-              withProgressBlock:(void(^)(CGFloat progress))block
-                completionBlock:(void(^)(BOOL completed))completionBlock {
+- (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
+              withProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))block
+                completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock {
     return [self isFileDownloadingForUrl:mediaContent.url withProgressBlock:block completionBlock:completionBlock];
 }
 
 - (BOOL)isFileDownloadingForUrl:(NSString *)fileIdentifier
-              withProgressBlock:(void(^)(CGFloat progress))block
-                completionBlock:(void(^)(BOOL completed))completionBlock {
+              withProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))block
+                completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock {
     BOOL retValue = NO;
     TWRDownloadObject *download = [self.downloads objectForKey:fileIdentifier];
     if (download) {
@@ -433,10 +459,6 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
             }
         }
     }];
-}
-
-- (BOOL)fileDownloadCompletedForLocalMediaContent:(LocalMediaContent *)mediaContent {
-    return [self fileDownloadCompletedForUrl:mediaContent.url];
 }
 
 @end

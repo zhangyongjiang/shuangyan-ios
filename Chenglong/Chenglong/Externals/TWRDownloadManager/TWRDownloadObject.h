@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LocalMediaContentShard.h"
 
-typedef void(^TWRDownloadRemainingTimeBlock)(NSUInteger seconds);
-typedef void(^TWRDownloadProgressBlock)(CGFloat progress);
-typedef void(^TWRDownloadCompletionBlock)(BOOL completed);
+typedef void(^TWRDownloadRemainingTimeBlock)(LocalMediaContentShard* shard, NSUInteger seconds);
+typedef void(^TWRDownloadProgressBlock)(LocalMediaContentShard* shard, CGFloat progress);
+typedef void(^TWRDownloadCompletionBlock)(LocalMediaContentShard* shard, BOOL completed);
 
 @interface TWRDownloadObject : NSObject
 
@@ -22,6 +23,7 @@ typedef void(^TWRDownloadCompletionBlock)(BOOL completed);
 @property (copy, nonatomic) NSString *fileName;
 @property (copy, nonatomic) NSString *directoryName;
 @property (copy, nonatomic) NSDate *startDate;
+@property (strong, nonatomic) LocalMediaContentShard* shard;
 
 - (instancetype)initWithDownloadTask:(NSURLSessionDownloadTask *)downloadTask
                        progressBlock:(TWRDownloadProgressBlock)progressBlock

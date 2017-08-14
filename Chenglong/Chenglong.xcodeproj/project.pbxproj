@@ -239,6 +239,8 @@
 		AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE01F02A1F500D3F18E /* MoneyAPI.m */; };
 		AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CEC1F0536C300D3F18E /* CoursePathView.m */; };
 		AD7E882E1F410D7F00B8CBE3 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E882D1F410D7F00B8CBE3 /* LocalMediaContent.m */; };
+		AD7E88311F41168900B8CBE3 /* MediaContentDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E88301F41168900B8CBE3 /* MediaContentDownloader.m */; };
+		AD7E88341F41581000B8CBE3 /* LocalMediaContentShard.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E88331F41581000B8CBE3 /* LocalMediaContentShard.m */; };
 		AD8949531F23E8CC00C024F8 /* OauthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949501F23E8CC00C024F8 /* OauthToken.m */; };
 		AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949521F23E8CC00C024F8 /* TokenedUser.m */; };
 		AD8949591F28F23400C024F8 /* CourseTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949581F28F23400C024F8 /* CourseTreeViewController.m */; };
@@ -729,6 +731,10 @@
 		AD666CEC1F0536C300D3F18E /* CoursePathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursePathView.m; sourceTree = "<group>"; };
 		AD7E882C1F410D7F00B8CBE3 /* LocalMediaContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMediaContent.h; sourceTree = "<group>"; };
 		AD7E882D1F410D7F00B8CBE3 /* LocalMediaContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMediaContent.m; sourceTree = "<group>"; };
+		AD7E882F1F41168900B8CBE3 /* MediaContentDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentDownloader.h; sourceTree = "<group>"; };
+		AD7E88301F41168900B8CBE3 /* MediaContentDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentDownloader.m; sourceTree = "<group>"; };
+		AD7E88321F41581000B8CBE3 /* LocalMediaContentShard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMediaContentShard.h; sourceTree = "<group>"; };
+		AD7E88331F41581000B8CBE3 /* LocalMediaContentShard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMediaContentShard.m; sourceTree = "<group>"; };
 		AD89494F1F23E8CC00C024F8 /* OauthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OauthToken.h; sourceTree = "<group>"; };
 		AD8949501F23E8CC00C024F8 /* OauthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OauthToken.m; sourceTree = "<group>"; };
 		AD8949511F23E8CC00C024F8 /* TokenedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenedUser.h; sourceTree = "<group>"; };
@@ -1338,6 +1344,10 @@
 				AD2A7BEE1F15E7D30016B51E /* PlayTask.m */,
 				AD7E882C1F410D7F00B8CBE3 /* LocalMediaContent.h */,
 				AD7E882D1F410D7F00B8CBE3 /* LocalMediaContent.m */,
+				AD7E882F1F41168900B8CBE3 /* MediaContentDownloader.h */,
+				AD7E88301F41168900B8CBE3 /* MediaContentDownloader.m */,
+				AD7E88321F41581000B8CBE3 /* LocalMediaContentShard.h */,
+				AD7E88331F41581000B8CBE3 /* LocalMediaContentShard.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2227,6 +2237,7 @@
 				0300497E1E0E5F61006EDC29 /* ResetPasswordRequest.m in Sources */,
 				030049861E0E5F61006EDC29 /* WechatLoginRequest.m in Sources */,
 				030048FE1E0E5D65006EDC29 /* NSObject+TMCache.m in Sources */,
+				AD7E88311F41168900B8CBE3 /* MediaContentDownloader.m in Sources */,
 				AD49D8141F096CE5000D0E1B /* CreateFileViewController.m in Sources */,
 				AD49D8071F096CE5000D0E1B /* OnlineCourseDetailsView.m in Sources */,
 				030049761E0E5F61006EDC29 /* JournalList.m in Sources */,
@@ -2260,6 +2271,7 @@
 				0300496C1E0E5F60006EDC29 /* EmailRegisterRequest.m in Sources */,
 				AD3D94F31EE677F900D2704B /* BaseView.m in Sources */,
 				030049721E0E5F60006EDC29 /* InviteRequest.m in Sources */,
+				AD7E88341F41581000B8CBE3 /* LocalMediaContentShard.m in Sources */,
 				032911D61E13E8D0000C1F5A /* UITextField+Util.m in Sources */,
 				032911591E113BA8000C1F5A /* SDiPhoneVersion.m in Sources */,
 				032C96941E2CA31D001EFC29 /* TZPhotoPickerController.m in Sources */,

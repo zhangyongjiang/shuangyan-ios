@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LocalMediaContent.h"
+#import "LocalMediaContentShard.h"
 
 @interface TWRDownloadManager : NSObject
 
@@ -15,17 +15,25 @@
 
 + (instancetype)sharedManager;
 
-- (BOOL)fileDownloadCompletedForLocalMediaContent:(LocalMediaContent *)mediaContent;
-
-- (void)downloadFileForLocalMediaContent:(LocalMediaContent*)mediaContent
-                      progressBlock:(void(^)(CGFloat progress))progressBlock
-                    completionBlock:(void(^)(BOOL completed))completionBlock
+- (void)downloadFileForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
+                      progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+                    completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
                enableBackgroundMode:(BOOL)backgroundMode;
 
-- (BOOL)isFileDownloadingForLocalMediaContent:(LocalMediaContent*)mediaContent
-                       withProgressBlock:(void(^)(CGFloat progress))block
-                         completionBlock:(void(^)(BOOL completed))completionBlock;
+- (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
+                       withProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))block
+                         completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock;
 
+- (void)cancelAllDownloads;
+
+/**
+ *  This method helps checking which downloads are currently ongoing.
+ *
+ *  @return an NSArray of NSString with the URLs of the currently downloading files.
+ */
+- (NSArray *)currentDownloads;
+
+/*
 - (void)downloadFileForURL:(NSString *)url
                   withName:(NSString *)fileName
           inDirectoryNamed:(NSString *)directory
@@ -67,7 +75,6 @@
            completionBlock:(void(^)(BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode;
 
-- (void)cancelAllDownloads;
 - (void)cancelDownloadForUrl:(NSString *)fileIdentifier;
 
 - (BOOL)fileDownloadCompletedForUrl:(NSString *)fileIdentifier;
@@ -86,12 +93,6 @@
 - (BOOL)deleteFileForUrl:(NSString *)urlString inDirectory:(NSString *)directoryName;
 - (BOOL)deleteFileWithName:(NSString *)fileName;
 - (BOOL)deleteFileWithName:(NSString *)fileName inDirectory:(NSString *)directoryName;
-
-/**
- *  This method helps checking which downloads are currently ongoing.
- *
- *  @return an NSArray of NSString with the URLs of the currently downloading files.
- */
-- (NSArray *)currentDownloads;
+*/
 
 @end
