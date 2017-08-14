@@ -20,6 +20,7 @@
         self.progressBlock = progressBlock;
         self.remainingTimeBlock = remainingTimeBlock;
         self.completionBlock = completionBlock;
+        self.shard = NULL;
     }
     return self;
 }

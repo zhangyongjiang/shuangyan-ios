@@ -76,6 +76,9 @@
     NSURL *url = [NSURL URLWithString:urlString];
     if (!fileName) {
         fileName = [urlString lastPathComponent];
+        if(!fileName) {
+            NSLog(@"wrong");
+        }
     }
 
     NSDictionary* dict = [TWRDownloadManager queryParametersFromURL:urlString];
@@ -101,6 +104,9 @@
         TWRDownloadObject *downloadObject = [[TWRDownloadObject alloc] initWithDownloadTask:downloadTask progressBlock:progressBlock remainingTime:remainingTimeBlock completionBlock:completionBlock];
         downloadObject.startDate = [NSDate date];
         downloadObject.fileName = fileName;
+        if(!fileName) {
+            NSLog(@"wrong");
+        }
         downloadObject.directoryName = directory;
         [self.downloads addEntriesFromDictionary:@{urlString:downloadObject}];
         [downloadTask resume];
@@ -149,6 +155,9 @@
     TWRDownloadObject *download = [self.downloads objectForKey:url];
     if (download) {
         download.shard = mediaContent;
+    }
+    else {
+        NSLog(@"wrong");
     }
 }
 
@@ -235,6 +244,9 @@
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     NSString *fileIdentifier = downloadTask.originalRequest.URL.absoluteString;
     TWRDownloadObject *download = [self.downloads objectForKey:fileIdentifier];
+    if(!download) {
+        NSLog(@"nil download object for url %@", fileIdentifier);
+    }
     if (download.progressBlock) {
         CGFloat progress = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
         dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -258,6 +270,10 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     
     NSString *fileIdentifier = downloadTask.originalRequest.URL.absoluteString;
     TWRDownloadObject *download = [self.downloads objectForKey:fileIdentifier];
+    if(!download) {
+        NSLog(@"download is nil for url %@", location);
+        return;
+    }
     
     if (download.directoryName) {
         if(![download.directoryName hasPrefix:@"/"]) {

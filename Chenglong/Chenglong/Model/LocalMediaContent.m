@@ -12,6 +12,15 @@
 
 @implementation LocalMediaContent
 
+-(id)init
+{
+    self = [super init];
+    self.shards = [NSMutableDictionary new];
+    self.progressBlock = nil;
+    self.completionBlock = nil;
+    return self;
+}
+
 -(NSURL*)playUrl {
     if([self isDownloaded]) {
         NSLog(@"playUrl: %@", [self localFilePath]);
@@ -30,9 +39,20 @@
     }
 }
 
+-(LocalMediaContentShard*)getShard:(int)shard
+{
+    NSNumber* num = [NSNumber numberWithInt:shard];
+    LocalMediaContentShard* value = [self.shards objectForKey:num];
+    if(value == NULL) {
+        value = [[LocalMediaContentShard alloc] initWithLocalMediaContent:self andShard:shard];
+        [self.shards setObject:value forKey:num];
+    }
+    return value;
+}
+
 -(BOOL)isDownloaded {
     for(int i=0; i<self.numOfShards; i++) {
-        LocalMediaContentShard* shard = [[LocalMediaContentShard alloc] initWithLocalMediaContent:self andShard:i];
+        LocalMediaContentShard* shard = [self getShard:i];
         if(![shard isDownloaded])
             return NO;
     }
@@ -54,7 +74,7 @@
                    completionBlock:(void(^)(BOOL completed))completionBlock
 {
     for(int i=0; i<self.numOfShards; i++) {
-        LocalMediaContentShard* shard = [[LocalMediaContentShard alloc] initWithLocalMediaContent:self andShard:i];
+        LocalMediaContentShard* shard = [self getShard:i];
         if([[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
             [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard* shard, BOOL completed) {
@@ -71,13 +91,13 @@
 -(void)downloadProgress:(CGFloat)progress forShard:(LocalMediaContentShard*)shard
 {
     if(progress<0) {
-        if(shard.localMediaContent.progressBlock) {
-            shard.localMediaContent.progressBlock(-shard.shard*self.shardSize+progress);
+        if(self.progressBlock != NULL) {
+            self.progressBlock(-shard.shard*self.shardSize+progress);
         }
     }
     else {
-        if(shard.localMediaContent.progressBlock) {
-            shard.localMediaContent.progressBlock((progress*shard.expectedDownloadSize+shard.shard*self.shardSize)/self.length.intValue);
+        if(self.progressBlock != NULL) {
+            self.progressBlock((progress*shard.expectedDownloadSize+shard.shard*self.shardSize)/self.length.intValue);
         }
     }
 }
@@ -86,13 +106,13 @@
 {
     NSLog(@"shard %d completed %d", shard.shard, completed);
     if(!completed) {
-        if(self.completionBlock)
+        if(self.completionBlock != NULL)
             self.completionBlock(completed);
         return;
     }
     
     if(shard.shard == (self.numOfShards-1)) {
-        if(self.completionBlock)
+        if(self.completionBlock != NULL)
             self.completionBlock(completed);
     }
     else {
@@ -119,24 +139,27 @@
 
     int i=0;
     for(; i<self.numOfShards; i++) {
-        LocalMediaContentShard* shard = [[LocalMediaContentShard alloc] initWithLocalMediaContent:self andShard:i];
+        LocalMediaContentShard* shard = [self getShard:i];
         if(shard.isDownloaded)
             continue;
         
-        if([[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
+        BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
             [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard* shard, BOOL completed) {
             [shard.localMediaContent downloadCompleted:completed forShard:shard];
-        }]) {
+        }];
+        if(downloading) {
             self.progressBlock = progressBlock;
             self.completionBlock = completionBlock;
             return;
         }
         
         [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:shard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            NSLog(@"progress %f", progress);
             [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
             [shard.localMediaContent downloadCompleted:completed forShard:shard];
+            NSLog(@"completed");
         } enableBackgroundMode:YES];
         self.progressBlock = progressBlock;
         self.completionBlock = completionBlock;
@@ -181,10 +204,13 @@
 
 -(int)shardSize
 {
-    if(_shardSize == 0)
-        return self.length.intValue;
-    else
-        return _shardSize;
+    if(_shardSize == 0) {
+        _shardSize = self.length.intValue;
+    }
+    if(_shardSize == 0) {
+        NSLog(@"wrong shard size");
+    }
+    return _shardSize;
 }
 
 -(int)numOfShards
