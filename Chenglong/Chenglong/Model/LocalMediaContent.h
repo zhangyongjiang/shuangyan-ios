@@ -31,6 +31,7 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(NSString*)localFilePath;
 -(BOOL)localFileExists;
 -(NSURL*)playUrl;
+-(CMTime)duration;
 
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
                    completionBlock:(void(^)(BOOL completed))completionBlock;

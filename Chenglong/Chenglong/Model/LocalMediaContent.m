@@ -320,4 +320,10 @@
 -(void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)authenticationChallenge {
     NSLog(@"didCancelAuthenticationChallenge");
 }
+
+-(CMTime)duration
+{
+    LocalMediaContentShard* shard0 = [self getShard:0];
+    return shard0.duration;
+}
 @end

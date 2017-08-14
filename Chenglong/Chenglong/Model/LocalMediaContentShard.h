@@ -23,5 +23,7 @@
 -(NSString*)dirName;
 -(int)expectedDownloadSize;
 -(void)deleteFile;
+-(CMTime)duration;
+
 
 @end
