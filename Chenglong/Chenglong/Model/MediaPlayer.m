@@ -47,7 +47,17 @@ MediaPlayer* gMediaPlayer;
     
     PlayTask* task = [self.tasks objectAtIndex:self.current];
     if(self.avplayer == nil) {
-        self.avplayer = [[AVPlayer alloc] initWithURL:[task.localMediaContent playUrl]];
+        if(false) {
+            self.avplayer = [[AVPlayer alloc] initWithURL:[task.localMediaContent playUrl]];
+        }
+        else {
+            NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
+            AVURLAsset* asset = [AVURLAsset assetWithURL:url];
+            [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
+            AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset];
+            self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
+        }
+        
         if([[UIDevice currentDevice] systemVersion].intValue>=10){
             self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
         }

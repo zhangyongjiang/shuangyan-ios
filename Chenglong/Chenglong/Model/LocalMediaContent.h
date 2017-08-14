@@ -7,11 +7,12 @@
 //
 
 #import "MediaContent.h"
+#import <AVFoundation/AVFoundation.h>
 
 typedef void(^ProgressCallback)(CGFloat progress);
 typedef void(^CompletionCallback)(BOOL completed);
 
-@interface LocalMediaContent : MediaContent
+@interface LocalMediaContent : MediaContent <AVAssetResourceLoaderDelegate>
 
 @property(assign, nonatomic)int shardSize;
 @property(copy, nonatomic)ProgressCallback progressBlock;

@@ -51,11 +51,11 @@
         task.localMediaContent = self.localMediaContent;
         [player addPlayTask:task];
         [player play];
-        slider.maximumValue = [player currentTaskDuration];
+//        slider.maximumValue = [player currentTaskDuration];
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         
         WeakSelf(weakSelf)
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
+//        timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
 
         return;
     }

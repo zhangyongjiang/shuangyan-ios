@@ -24,7 +24,6 @@
 
 -(NSURL*)playUrl {
     if([self isDownloaded]) {
-        NSLog(@"playUrl: %@", [self localFilePath]);
         return [NSURL fileURLWithPath:[self localFilePath]];
     }
     else {
@@ -35,7 +34,6 @@
             url = [NSString stringWithFormat:@"%@&access_token=%@", self.url, token];
         else
             url = [NSString stringWithFormat:@"%@?access_token=%@", self.url, token];
-        NSLog(@"playUrl: %@", url);
         return [NSURL URLWithString:url];
     }
 }
@@ -125,6 +123,11 @@
 {
     NSFileManager *filemgr = [NSFileManager defaultManager];
     [filemgr removeItemAtPath:self.localFilePath error:nil];
+    
+    for(int i=0; i<self.numOfShards; i++) {
+        LocalMediaContentShard* shard = [self getShard:i];
+        [shard deleteFile];
+    }
 }
 
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
@@ -196,6 +199,38 @@
     return [NSString stringWithFormat:@"%@/%@", [File mediaHomeDir], self.path];
 }
 
+-(NSString*)localMetaFilePath {
+    return [NSString stringWithFormat:@"%@.json", self.localFilePath];
+}
+-(void)saveMeta {
+    NSString* json = [self toJson];
+    [json writeToFile:[self localMetaFilePath] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
++(LocalMediaContent*)loadMediaContent {
+//    File* file = [[File alloc] initWithFullPath:[self jsonFileName]];
+//    if([file exists] && [[file lastModifiedTime] timeIntervalSinceNow]<3600){
+//        NSData* data = file.content;
+//        if(!data) {
+//            [self refreshPage];
+//        }
+//        else {
+//            NSError *error;
+//            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+//                                                                 options:kNilOptions
+//                                                                   error:&error];
+//            ObjectMapper* mapper = [ObjectMapper mapper];
+//            CourseDetailsList* resp = [mapper mapObject:json toClass:[CourseDetailsList class] withError:&error];
+//            if(error)
+//                [self refreshPage];
+//            else {
+//                self.navigationItem.title = resp.courseDetails.course.title;
+//                [self displayData:resp];
+//            }
+//        }
+//    }
+    return NULL;
+}
+
 -(BOOL)localFileExists
 {
     NSFileManager* fm = [NSFileManager defaultManager];
@@ -225,5 +260,62 @@
 -(BOOL)isSingleShard
 {
     return self.numOfShards == 1;
+}
+
+-(BOOL) resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForResponseToAuthenticationChallenge:(NSURLAuthenticationChallenge *)authenticationChallenge
+{
+    NSLog(@"shouldWaitForResponseToAuthenticationChallenge");
+    return NO;
+}
+
+-(BOOL)resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForRenewalOfRequestedResource:(AVAssetResourceRenewalRequest *)renewalRequest
+{
+    NSLog(@"shouldWaitForRenewalOfRequestedResource");
+    return NO;
+}
+
+- (BOOL) resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest
+{
+    AVAssetResourceLoadingDataRequest* dataRequest = loadingRequest.dataRequest;
+    AVAssetResourceLoadingContentInformationRequest* contentRequest = loadingRequest.contentInformationRequest;
+    
+    NSLog(@"requesting data %lld %ld", dataRequest.requestedOffset, dataRequest.requestedLength);
+    
+    //handle content request
+    if (contentRequest)
+    {
+        NSString *mimeType = self.contentType;
+        CFStringRef contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)(mimeType), NULL);
+        contentRequest.contentType = CFBridgingRelease(contentType);
+        contentRequest.contentLength = self.length.longLongValue;
+        contentRequest.byteRangeAccessSupported = YES;
+    }
+    
+    //handle data request
+    if (dataRequest)
+    {
+        long long offset = dataRequest.requestedOffset;
+        int shardIndex = offset / self.shardSize;
+        LocalMediaContentShard* shard = [self getShard:shardIndex];
+        NSData* data = [NSData dataWithContentsOfFile:shard.localFilePath];
+        long shardStartOffset = shardIndex * self.shardSize;
+        long offsetInData = offset - shardStartOffset;
+        long length = data.length - offsetInData;
+        
+        NSData *dataAvailable = [data subdataWithRange:NSMakeRange(offsetInData, length)];
+        [dataRequest respondWithData:dataAvailable];
+//        [loadingRequest finishLoading];
+    }
+    
+    return NO;
+}
+
+-(void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest
+{
+    NSLog(@"didCancelLoadingRequest");
+}
+
+-(void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)authenticationChallenge {
+    NSLog(@"didCancelAuthenticationChallenge");
 }
 @end

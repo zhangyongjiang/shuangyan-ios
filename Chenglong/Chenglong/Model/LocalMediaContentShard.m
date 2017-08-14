@@ -23,7 +23,12 @@
 {
     NSString* shardFilePath = [self localFilePath];
     File* f = [[File alloc] initWithFullPath:shardFilePath];
-    return f.exists && (f.length == self.localMediaContent.shardSize);
+    if(!f.exists)
+        return NO;
+    if(self.shard != (self.localMediaContent.numOfShards-1))
+        return (f.length == self.localMediaContent.shardSize);
+    else
+        return f.length == (self.localMediaContent.length.intValue - self.shard*self.localMediaContent.shardSize);
 }
 
 -(NSString*)localFilePath {
