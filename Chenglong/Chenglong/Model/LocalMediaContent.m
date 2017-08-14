@@ -31,14 +31,10 @@
 }
 
 -(BOOL)isDownloaded {
-    NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString* filePath = self.localFilePath;
-    if(![filemgr fileExistsAtPath:filePath isDirectory:nil]) {
-        return NO;
-    }
-    unsigned long long fileSize = [[filemgr attributesOfItemAtPath:filePath error:nil] fileSize];
-    if(fileSize != [self.length longLongValue]) {
-        return NO;
+    for(int i=0; i<self.numOfShards; i++) {
+        LocalMediaContentShard* shard = [[LocalMediaContentShard alloc] initWithLocalMediaContent:self andShard:i];
+        if(![shard isDownloaded])
+            return NO;
     }
     return YES;
 }
@@ -57,13 +53,12 @@
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
                    completionBlock:(void(^)(BOOL completed))completionBlock
 {
-    WeakSelf(weakSelf)
     for(int i=0; i<self.numOfShards; i++) {
         LocalMediaContentShard* shard = [[LocalMediaContentShard alloc] initWithLocalMediaContent:self andShard:i];
         if([[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
-            [weakSelf downloadProgress:progress forShard:shard];
+            [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard* shard, BOOL completed) {
-            [weakSelf downloadCompleted:completed forShard:shard];
+            [shard.localMediaContent downloadCompleted:completed forShard:shard];
         }]) {
             self.progressBlock = progressBlock;
             self.completionBlock = completionBlock;
@@ -76,19 +71,20 @@
 -(void)downloadProgress:(CGFloat)progress forShard:(LocalMediaContentShard*)shard
 {
     if(progress<0) {
-        if(self.progressBlock) {
-            self.progressBlock(-shard.shard*self.shardSize+progress);
+        if(shard.localMediaContent.progressBlock) {
+            shard.localMediaContent.progressBlock(-shard.shard*self.shardSize+progress);
         }
     }
     else {
-        if(self.progressBlock) {
-            self.progressBlock((progress*shard.expectedDownloadSize+shard.shard*self.shardSize)/self.length.intValue);
+        if(shard.localMediaContent.progressBlock) {
+            shard.localMediaContent.progressBlock((progress*shard.expectedDownloadSize+shard.shard*self.shardSize)/self.length.intValue);
         }
     }
 }
 
 -(void)downloadCompleted:(BOOL)completed forShard:(LocalMediaContentShard*)shard
 {
+    NSLog(@"shard %d completed %d", shard.shard, completed);
     if(!completed) {
         if(self.completionBlock)
             self.completionBlock(completed);
@@ -121,16 +117,16 @@
     [self createDirs];
     NSLog(@"Download from %@ to %@", self.url, self.localFilePath);
 
-    WeakSelf(weakSelf)
-    for(int i=0; i<self.numOfShards; i++) {
+    int i=0;
+    for(; i<self.numOfShards; i++) {
         LocalMediaContentShard* shard = [[LocalMediaContentShard alloc] initWithLocalMediaContent:self andShard:i];
         if(shard.isDownloaded)
             continue;
         
         if([[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
-            [weakSelf downloadProgress:progress forShard:shard];
+            [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard* shard, BOOL completed) {
-            [weakSelf downloadCompleted:completed forShard:shard];
+            [shard.localMediaContent downloadCompleted:completed forShard:shard];
         }]) {
             self.progressBlock = progressBlock;
             self.completionBlock = completionBlock;
@@ -138,10 +134,12 @@
         }
         
         [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:shard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
-            [weakSelf downloadProgress:progress forShard:shard];
+            [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
-            [weakSelf downloadCompleted:completed forShard:shard];
+            [shard.localMediaContent downloadCompleted:completed forShard:shard];
         } enableBackgroundMode:YES];
+        self.progressBlock = progressBlock;
+        self.completionBlock = completionBlock;
         break;
     }
 }
@@ -184,7 +182,7 @@
 -(int)shardSize
 {
     if(_shardSize == 0)
-        return self.length;
+        return self.length.intValue;
     else
         return _shardSize;
 }

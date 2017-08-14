@@ -19,17 +19,6 @@
     return self;
 }
 
--(void)download
-{
-    if([self isDownloaded])
-        return;
-    [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:self progressBlock:^(CGFloat progress) {
-        
-    } completionBlock:^(BOOL completed) {
-        
-    } enableBackgroundMode:YES];
-}
-
 -(BOOL)isDownloaded
 {
     NSString* shardFilePath = [self localFilePath];
@@ -65,10 +54,10 @@
 -(NSString*)url {
     int offset = self.shard * self.localMediaContent.shardSize;
     int length = self.localMediaContent.shardSize;
-    if([self.url containsString:@"?"])
-        return [NSString stringWithFormat:@"%@&offset=%d&length=%d", self.url, offset, length];
+    if([self.localMediaContent.url containsString:@"?"])
+        return [NSString stringWithFormat:@"%@&offset=%d&length=%d", self.localMediaContent.url, offset, length];
     else
-        return [NSString stringWithFormat:@"%@?offset=%d&length=%d", self.url, offset, length];
+        return [NSString stringWithFormat:@"%@?offset=%d&length=%d", self.localMediaContent.url, offset, length];
 }
 
 -(int)expectedDownloadSize
