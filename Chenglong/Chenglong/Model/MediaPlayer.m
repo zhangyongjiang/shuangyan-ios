@@ -80,8 +80,8 @@ MediaPlayer* gMediaPlayer;
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", mc.localFilePath]];
     AVURLAsset* asset = [AVURLAsset assetWithURL:url];
     [asset.resourceLoader setDelegate:mc queue:dispatch_get_main_queue()];
-//    NSArray *keys = @[@"playable"];
-    AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset /*automaticallyLoadedAssetKeys:keys*/];
+    NSArray *keys = @[@"playable", @"tracks",@"duration" ];
+    AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset automaticallyLoadedAssetKeys:keys];
     return item;
 }
 
@@ -110,7 +110,7 @@ MediaPlayer* gMediaPlayer;
                 }
                 else {
                     task = [self.tasks objectAtIndex:self.current];
-                    AVPlayerItem* item = [AVPlayerItem playerItemWithURL:[task.localMediaContent playUrl]];
+                    AVPlayerItem* item = [self getPlayItemForMediaContent:task.localMediaContent];
 //                    [self.avplayer replaceCurrentItemWithPlayerItem:item];
                     [self.avplayer insertItem:item afterItem:nil];
                 }
