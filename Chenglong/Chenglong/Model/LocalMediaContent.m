@@ -130,6 +130,33 @@
     }
 }
 
+-(void) downloadShard:(int)shardIndex WithProgressBlock:(void(^)(CGFloat progress))progressBlock
+                  completionBlock:(void(^)(BOOL completed))completionBlock {
+    LocalMediaContentShard* shard = [self getShard:shardIndex];
+    if(shard.isDownloaded) {
+        if(completionBlock)
+            completionBlock(YES);
+        return;
+    }
+
+    BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
+        progressBlock(progress);
+    } completionBlock:^(LocalMediaContentShard* shard, BOOL completed) {
+        completionBlock(completed);
+    }];
+    if(downloading) {
+        return;
+    }
+
+    [self createDirs];
+    [shard deleteFile];
+    [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:shard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+        progressBlock(progress);
+    } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+        completionBlock(completed);
+    } enableBackgroundMode:YES];
+}
+
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock {
     if([self isDownloaded]) {
@@ -320,9 +347,10 @@
             NSData *dataAvailable = [data subdataWithRange:NSMakeRange(offsetInData, length)];
             [dataRequest respondWithData:dataAvailable];
             
-            shardIndex++;
-            if(shardIndex < self.numOfShards) {
+            for(shardIndex++;shardIndex < self.numOfShards;shardIndex++) {
                 LocalMediaContentShard* nextShard = [self getShard:shardIndex];
+                if(nextShard.isDownloaded)
+                    continue;
                 BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:nextShard];
                 if(!downloading) {
                     [nextShard deleteFile];
@@ -331,6 +359,7 @@
                     } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
                         NSLog(@"finished downloading shard %d ", shard.shard);
                     } enableBackgroundMode:YES];
+                    break;
                 }
             }
         }

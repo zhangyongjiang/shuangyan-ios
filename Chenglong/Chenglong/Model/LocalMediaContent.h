@@ -23,6 +23,8 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(long)currentLocalFileLength;
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock ;
+-(void) downloadShard:(int)shardIndex WithProgressBlock:(void(^)(CGFloat progress))progressBlock
+      completionBlock:(void(^)(BOOL completed))completionBlock;
 -(NSString*)getFileName;
 -(NSString*)getDirName;
 -(NSString*)getFileExtension;
@@ -38,4 +40,6 @@ typedef void(^CompletionCallback)(BOOL completed);
 
 -(BOOL)isSingleShard;
 -(int)numOfShards;
+-(id)getShard:(int)shard;
+
 @end

@@ -12,6 +12,7 @@
 #import "MediaContentVideoView.h"
 #import "MediaContentPdfView.h"
 #import "PureLayout.h"
+#import "LocalMediaContentShard.h"
 
 @interface MediaConentView()
 {
@@ -66,11 +67,23 @@
 }
 
 -(void)downloadOrPlay {
-//    BOOL downloaded = [self.localMediaContent isDownloaded];
-//    if(downloaded)
+    BOOL downloaded = [self.localMediaContent isDownloaded];
+    if(downloaded)
         [self play];
-//    else
-//        [self download];
+    else {
+        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
+        if(shard.isDownloaded) {
+            [self play];
+        }
+        else {
+            WeakSelf(weakSelf)
+            [self.localMediaContent downloadShard:0 WithProgressBlock:^(CGFloat progress) {
+                NSLog(@"loading...");
+            } completionBlock:^(BOOL completed) {
+                [weakSelf play];
+            }];
+        }
+    }
 }
 
 -(void)download {
