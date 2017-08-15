@@ -65,14 +65,10 @@
 //    }
     if(!player) {
         player = [MediaPlayer shared];
+        player.attachedView = self;
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
-        layer = [AVPlayerLayer playerLayerWithPlayer:player.avplayer];
-        layer.frame = self.bounds;
-        [self.layer addSublayer:layer];
-        layer.backgroundColor = [UIColor clearColor].CGColor;
-        [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         return;
     }

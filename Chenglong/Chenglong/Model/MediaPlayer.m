@@ -44,13 +44,7 @@ MediaPlayer* gMediaPlayer;
 -(void)playTask:(PlayTask *)task {
     [self.tasks addObject:task];
     self.current = self.tasks.count - 1;
-    if(self.avplayer == nil) {
-        [self createPlayer];
-        [self.avplayer play];
-    }
-    else {
-        task = [self.tasks objectAtIndex:self.current];
-        
+    
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
         AVURLAsset* asset = [AVURLAsset assetWithURL:url];
         [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
@@ -67,32 +61,27 @@ MediaPlayer* gMediaPlayer;
              }
              
              AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
-             dispatch_async(dispatch_get_main_queue(), ^ {
-                 [self.avplayer replaceCurrentItemWithPlayerItem:item];
-                 [self.avplayer play];
-             });
+             if(self.avplayer == nil) {
+                 dispatch_async(dispatch_get_main_queue(), ^ {
+                     self.avplayer = [[AVQueuePlayer alloc] initWithPlayerItem:item];
+                     [self setAttachedView:self.attachedView];
+                     if([[UIDevice currentDevice] systemVersion].intValue>=10){
+                         self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
+                     }
+                     [self.avplayer play];
+                 });
+             }
+             else {
+                 dispatch_async(dispatch_get_main_queue(), ^ {
+                     [self.avplayer replaceCurrentItemWithPlayerItem:item];
+                     [self.avplayer play];
+                 });
+             }
          }];
-    }
 }
 
 -(void)play {
-    if(self.tasks.count == 0)
-        return;
-    [self createPlayer];
     [self.avplayer play];
-}
-
--(void)createPlayer
-{
-    if(self.avplayer == nil) {
-        PlayTask* task = [self.tasks objectAtIndex:self.current];
-            AVPlayerItem* item = [self getPlayItemForMediaContent:task.localMediaContent];
-            self.avplayer = [[AVQueuePlayer alloc] initWithPlayerItem:item];
-        
-        if([[UIDevice currentDevice] systemVersion].intValue>=10){
-            self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
-        }
-    }
 }
 
 -(AVPlayerItem*)getPlayItemForMediaContent:(LocalMediaContent*)mc
@@ -167,5 +156,14 @@ MediaPlayer* gMediaPlayer;
     }else{
         return self.avplayer.rate==1;
     }
+}
+
+-(void)setAttachedView:(UIView *)attachedView {
+    _attachedView = attachedView;
+    AVPlayerLayer* layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
+    layer.frame = attachedView.bounds;
+    [attachedView.layer addSublayer:layer];
+    layer.backgroundColor = [UIColor clearColor].CGColor;
+    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
 }
 @end

@@ -307,7 +307,7 @@
     AVAssetResourceLoadingDataRequest* dataRequest = loadingRequest.dataRequest;
     AVAssetResourceLoadingContentInformationRequest* contentRequest = loadingRequest.contentInformationRequest;
     
-//    NSLog(@"requesting data %lld %ld", dataRequest.requestedOffset, dataRequest.requestedLength);
+    NSLog(@"requesting data %lld %ld", dataRequest.requestedOffset, dataRequest.requestedLength);
     
     //handle content request
     if (contentRequest)

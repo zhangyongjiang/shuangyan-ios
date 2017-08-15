@@ -76,16 +76,37 @@
             [self play];
         }
         else {
-            WeakSelf(weakSelf)
-            [SVProgressHUD showWithStatus:@"loading..."];
-            [self.localMediaContent downloadShard:0 WithProgressBlock:^(CGFloat progress) {
-                NSLog(@"loading...");
-            } completionBlock:^(BOOL completed) {
-                [weakSelf play];
-                [SVProgressHUD dismiss];
-            }];
+            if([MediaConentView isAudio:self.localMediaContent]) {
+                [SVProgressHUD showWithStatus:@"loading..."];
+                [self preloadAndPlay:1];
+            }
+            else if([MediaConentView isVideo:self.localMediaContent]) {
+                [SVProgressHUD showWithStatus:@"loading..."];
+                [self preloadAndPlay:4];
+            }
+            else
+                [self play];
         }
     }
+}
+
+-(void)preloadAndPlay:(int)numOfShards {
+    __block int minShards = numOfShards;
+    WeakSelf(weakSelf)
+    [self.localMediaContent downloadShard:(minShards-1) WithProgressBlock:^(CGFloat progress) {
+        NSLog(@"loading %d %f .... ", minShards, progress);
+    } completionBlock:^(BOOL completed) {
+        minShards--;
+        if(minShards<=0) {
+            [SVProgressHUD dismiss];
+            dispatch_async(dispatch_get_main_queue(), ^ {
+                [weakSelf play];
+            });
+        }
+        else {
+            [weakSelf preloadAndPlay:minShards];
+        }
+    }];
 }
 
 -(void)download {
