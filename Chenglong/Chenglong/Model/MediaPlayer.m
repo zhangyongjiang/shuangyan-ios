@@ -46,13 +46,33 @@ MediaPlayer* gMediaPlayer;
     self.current = self.tasks.count - 1;
     if(self.avplayer == nil) {
         [self createPlayer];
+        [self.avplayer play];
     }
     else {
         task = [self.tasks objectAtIndex:self.current];
-        AVPlayerItem* item = [self getPlayItemForMediaContent:task.localMediaContent];
-        [self.avplayer insertItem:item afterItem:nil];
+        
+        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
+        AVURLAsset* asset = [AVURLAsset assetWithURL:url];
+        [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
+        NSArray *keys = @[@"playable", @"tracks",@"duration" ];
+        [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^()
+         {
+             // make sure everything downloaded properly
+             for (NSString *thisKey in keys) {
+                 NSError *error = nil;
+                 AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&error];
+                 if (keyStatus == AVKeyValueStatusFailed) {
+                     return ;
+                 }
+             }
+             
+             AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+             dispatch_async(dispatch_get_main_queue(), ^ {
+                 [self.avplayer replaceCurrentItemWithPlayerItem:item];
+                 [self.avplayer play];
+             });
+         }];
     }
-    [self.avplayer play];
 }
 
 -(void)play {
@@ -80,6 +100,8 @@ MediaPlayer* gMediaPlayer;
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", mc.localFilePath]];
     AVURLAsset* asset = [AVURLAsset assetWithURL:url];
     [asset.resourceLoader setDelegate:mc queue:dispatch_get_main_queue()];
+    
+//    AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset];
     NSArray *keys = @[@"playable", @"tracks",@"duration" ];
     AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset automaticallyLoadedAssetKeys:keys];
     return item;
@@ -105,14 +127,14 @@ MediaPlayer* gMediaPlayer;
                 [self.avplayer pause];
                 self.current ++;
                 if(self.current >= self.tasks.count) {
-                    self.avplayer = nil;
+//                    self.avplayer = nil;
                     self.current = -1;
                 }
                 else {
                     task = [self.tasks objectAtIndex:self.current];
                     AVPlayerItem* item = [self getPlayItemForMediaContent:task.localMediaContent];
-//                    [self.avplayer replaceCurrentItemWithPlayerItem:item];
-                    [self.avplayer insertItem:item afterItem:nil];
+                    [self.avplayer replaceCurrentItemWithPlayerItem:item];
+//                    [self.avplayer insertItem:item afterItem:nil];
                 }
             }
             break;
