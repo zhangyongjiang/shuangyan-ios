@@ -16,7 +16,7 @@
 
 @property(assign, nonatomic)BOOL repeat;
 @property(assign, nonatomic)CGFloat currentTime;
-@property (strong, nonatomic) AVPlayer* avplayer;
+@property (strong, nonatomic) AVQueuePlayer* avplayer;
 
 -(void)addPlayTask:(PlayTask*)task;
 -(void)playTask:(PlayTask *)task;
