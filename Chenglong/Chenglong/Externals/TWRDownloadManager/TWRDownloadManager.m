@@ -227,6 +227,11 @@
     [self cleanTmpDirectory];
 }
 
+-(int)currentNumOfDownloads
+{
+    return self.downloads.count;
+}
+
 - (NSArray *)currentDownloads {
     NSMutableArray *currentDownloads = [NSMutableArray new];
     [self.downloads enumerateKeysAndObjectsUsingBlock:^(id key, TWRDownloadObject *download, BOOL *stop) {

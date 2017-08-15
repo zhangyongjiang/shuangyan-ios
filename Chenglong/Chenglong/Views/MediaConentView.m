@@ -77,10 +77,12 @@
         }
         else {
             WeakSelf(weakSelf)
+            [SVProgressHUD showWithStatus:@"loading..."];
             [self.localMediaContent downloadShard:0 WithProgressBlock:^(CGFloat progress) {
                 NSLog(@"loading...");
             } completionBlock:^(BOOL completed) {
                 [weakSelf play];
+                [SVProgressHUD dismiss];
             }];
         }
     }

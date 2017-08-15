@@ -49,8 +49,7 @@
         player = [MediaPlayer shared];
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
-        [player addPlayTask:task];
-        [player play];
+        [player playTask:task];
         CMTime t = self.localMediaContent.duration;
         slider.maximumValue = t.value / t.timescale;
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];

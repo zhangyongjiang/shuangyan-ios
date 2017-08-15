@@ -67,8 +67,7 @@
         player = [MediaPlayer shared];
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
-        [player addPlayTask:task];
-        [player play];
+        [player playTask:task];
         layer = [AVPlayerLayer playerLayerWithPlayer:player.avplayer];
         layer.frame = self.bounds;
         [self.layer addSublayer:layer];

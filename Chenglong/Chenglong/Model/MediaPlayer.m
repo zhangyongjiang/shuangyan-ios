@@ -41,20 +41,36 @@ MediaPlayer* gMediaPlayer;
         self.current = 0;
 }
 
+-(void)playTask:(PlayTask *)task {
+    [self.tasks addObject:task];
+    self.current = self.tasks.count - 1;
+    if(self.avplayer == nil) {
+        [self createPlayer];
+    }
+    else {
+        task = [self.tasks objectAtIndex:self.current];
+        AVPlayerItem* item = [self getPlayItemForMediaContent:task.localMediaContent];
+        [self.avplayer replaceCurrentItemWithPlayerItem:item];
+    }
+    [self.avplayer play];
+}
+
 -(void)play {
     if(self.tasks.count == 0)
         return;
-    
-    PlayTask* task = [self.tasks objectAtIndex:self.current];
+    [self createPlayer];
+    [self.avplayer play];
+}
+
+-(void)createPlayer
+{
     if(self.avplayer == nil) {
+        PlayTask* task = [self.tasks objectAtIndex:self.current];
         if(false) {
             self.avplayer = [[AVPlayer alloc] initWithURL:[task.localMediaContent playUrl]];
         }
         else {
-            NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
-            AVURLAsset* asset = [AVURLAsset assetWithURL:url];
-            [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
-            AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset];
+            AVPlayerItem* item = [self getPlayItemForMediaContent:task.localMediaContent];
             self.avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
         }
         
@@ -62,7 +78,16 @@ MediaPlayer* gMediaPlayer;
             self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
         }
     }
-    [self.avplayer play];
+}
+
+-(AVPlayerItem*)getPlayItemForMediaContent:(LocalMediaContent*)mc
+{
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", mc.localFilePath]];
+    AVURLAsset* asset = [AVURLAsset assetWithURL:url];
+    [asset.resourceLoader setDelegate:mc queue:dispatch_get_main_queue()];
+//    NSArray *keys = @[@"playable"];
+    AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset /*automaticallyLoadedAssetKeys:keys*/];
+    return item;
 }
 
 -(void)resume

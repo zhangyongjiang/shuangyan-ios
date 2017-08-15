@@ -35,6 +35,8 @@
  */
 - (NSArray *)currentDownloads;
 
+- (int)currentNumOfDownloads;
+
 /*
 - (void)downloadFileForURL:(NSString *)url
                   withName:(NSString *)fileName

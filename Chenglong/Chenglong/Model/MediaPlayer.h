@@ -19,7 +19,7 @@
 @property (strong, nonatomic) AVPlayer* avplayer;
 
 -(void)addPlayTask:(PlayTask*)task;
-
+-(void)playTask:(PlayTask *)task;
 -(void)play;
 -(void)pause;
 -(void)resume;
