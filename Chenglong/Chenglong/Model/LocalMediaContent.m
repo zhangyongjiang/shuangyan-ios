@@ -66,7 +66,9 @@
 {
     for(int i=0; i<self.numOfShards; i++) {
         LocalMediaContentShard* shard = [self getShard:i];
-        if([[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
+        if([[TWRDownloadManager sharedManager] isFileDownloadingForObject:shard
+                                                                  withUrl:shard.url
+                                                        withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
             [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard* shard, BOOL completed) {
             [shard.localMediaContent downloadCompleted:completed forShard:shard];
@@ -131,7 +133,7 @@
         return;
     }
 
-    BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
+    BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForObject:shard withUrl:shard.url withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
         progressBlock(progress);
     } completionBlock:^(LocalMediaContentShard* shard, BOOL completed) {
         completionBlock(completed);
@@ -164,7 +166,7 @@
         if(shard.isDownloaded)
             continue;
         
-        BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
+        BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForObject:shard withUrl:shard.url withProgressBlock:^(LocalMediaContentShard* shard, CGFloat progress) {
             [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard* shard, BOOL completed) {
             [shard.localMediaContent downloadCompleted:completed forShard:shard];

@@ -15,9 +15,10 @@
 
 + (instancetype)sharedManager;
 
-- (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
-                       withProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))block
-                         completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock;
+- (BOOL)isFileDownloadingForObject:(id)object
+                           withUrl:(NSString*)url
+                       withProgressBlock:(void(^)(id object, CGFloat progress))block
+                         completionBlock:(void(^)(id object, BOOL completed))completionBlock;
 
 - (BOOL)isFileDownloadingForUrl:(NSString*)url;
 
@@ -36,7 +37,7 @@
                       withURL:(NSString *)urlString
                      withName:(NSString *)fileName
              inDirectoryNamed:(NSString *)directory
-                progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
-              completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
+                progressBlock:(void(^)(id object, CGFloat progress))progressBlock
+              completionBlock:(void(^)(id object, BOOL completed))completionBlock
          enableBackgroundMode:(BOOL)backgroundMode;
 @end

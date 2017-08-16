@@ -320,10 +320,11 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     return download != NULL;
 }
 
-- (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
-              withProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))block
-                completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock {
-    return [self isFileDownloadingForUrl:mediaContent.url withProgressBlock:block completionBlock:completionBlock];
+- (BOOL)isFileDownloadingForObject:(id)object
+                           withUrl:(NSString*)url
+                 withProgressBlock:(void(^)(id object, CGFloat progress))block
+                completionBlock:(void(^)(id object, BOOL completed))completionBlock {
+    return [self isFileDownloadingForUrl:url withProgressBlock:block completionBlock:completionBlock];
 }
 
 - (BOOL)isFileDownloadingForUrl:(NSString *)fileIdentifier
