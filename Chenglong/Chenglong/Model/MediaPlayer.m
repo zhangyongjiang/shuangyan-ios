@@ -142,17 +142,16 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(CGFloat)currentTaskDuration {
-    @try {
-        return self.avplayer.currentItem.asset.duration.value / self.avplayer.currentItem.asset.duration.timescale;
-    } @catch (NSException *exception) {
-        NSLog(@"exception: %@", exception);
-    } @finally {
-        return 0;
-    }
+    PlayTask* task = [self.tasks objectAtIndex:self.current];
+    CMTime t = task.localMediaContent.duration;
+    return t.value / t.timescale;
 }
 
 -(CGFloat)currentTime {
-    return self.avplayer.currentTime.value / self.avplayer.currentTime.timescale;
+    if(self.avplayer.currentTime.timescale != 0)
+        return self.avplayer.currentTime.value / self.avplayer.currentTime.timescale;
+    else
+        return 0;
 }
 
 -(void)setCurrentTime:(CGFloat)currentTime {
