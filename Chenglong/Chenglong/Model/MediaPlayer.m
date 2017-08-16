@@ -61,6 +61,8 @@ MediaPlayer* gMediaPlayer;
              }
              
              AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+             PlayTask* task = [self.tasks objectAtIndex:self.current];
+             task.item = item;
              if(self.avplayer == nil) {
                  dispatch_async(dispatch_get_main_queue(), ^ {
                      self.avplayer = [[AVQueuePlayer alloc] initWithPlayerItem:item];
@@ -74,6 +76,7 @@ MediaPlayer* gMediaPlayer;
              else {
                  dispatch_async(dispatch_get_main_queue(), ^ {
                      [self.avplayer replaceCurrentItemWithPlayerItem:item];
+                     [self setAttachedView:self.attachedView];
                      [self.avplayer play];
                  });
              }
@@ -112,6 +115,7 @@ MediaPlayer* gMediaPlayer;
         PlayTask* task = [self.tasks objectAtIndex:0];
         if([task.localMediaContent.url isEqualToString:mc.url]) {
             [self.tasks removeObjectAtIndex:i];
+            [self.avplayer removeItem:task.item];
             if(i==self.current) {
                 [self.avplayer pause];
                 self.current ++;
@@ -122,6 +126,7 @@ MediaPlayer* gMediaPlayer;
                 else {
                     task = [self.tasks objectAtIndex:self.current];
                     AVPlayerItem* item = [self getPlayItemForMediaContent:task.localMediaContent];
+                    task.item = item;
                     [self.avplayer replaceCurrentItemWithPlayerItem:item];
 //                    [self.avplayer insertItem:item afterItem:nil];
                 }
