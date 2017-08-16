@@ -358,7 +358,7 @@
         }
         else {
 //            NSLog(@"shard %d is available", shardIndex);
-            NSData* data = [NSData dataWithContentsOfFile:shard.localFilePath];
+            NSData* data = [shard data];
             long shardStartOffset = shardIndex * self.shardSize;
             long offsetInData = offset - shardStartOffset;
             long length = data.length - offsetInData;

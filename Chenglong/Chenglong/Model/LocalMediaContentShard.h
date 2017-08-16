@@ -18,12 +18,15 @@
 
 -(NSString*)url;
 -(BOOL)isDownloaded;
--(NSString*)localFilePath;
--(NSString*)fileName;
--(NSString*)dirName;
 -(int)expectedDownloadSize;
 -(void)deleteFile;
 -(CMTime)duration;
+-(NSData*)data;
+-(NSString*)fileName;
+-(NSString*)dirName;
 
+//- (void)downloadWithProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+//                              completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
+//                         enableBackgroundMode:(BOOL)backgroundMode;
 
 @end

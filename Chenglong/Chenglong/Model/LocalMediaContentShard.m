@@ -88,4 +88,8 @@
     return duration;
 }
 
+-(NSData*)data {
+    return [NSData dataWithContentsOfFile:self.localFilePath];
+}
+
 @end
