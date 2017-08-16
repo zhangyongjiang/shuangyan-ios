@@ -82,7 +82,7 @@
             }
             else if([MediaConentView isVideo:self.localMediaContent]) {
                 [SVProgressHUD showWithStatus:@"loading..."];
-                [self preloadAndPlay:4];
+                [self preloadAndPlay:12];
             }
             else
                 [self play];
@@ -92,21 +92,28 @@
 
 -(void)preloadAndPlay:(int)numOfShards {
     __block int minShards = numOfShards;
-    WeakSelf(weakSelf)
-    [self.localMediaContent downloadShard:(minShards-1) WithProgressBlock:^(CGFloat progress) {
-        NSLog(@"loading %d %f .... ", minShards, progress);
-    } completionBlock:^(BOOL completed) {
-        minShards--;
-        if(minShards<=0) {
-            [SVProgressHUD dismiss];
-            dispatch_async(dispatch_get_main_queue(), ^ {
-                [weakSelf play];
-            });
+    __block int currentDownloading = 0;
+    for(; currentDownloading<numOfShards;currentDownloading++) {
+        LocalMediaContentShard* shard = [self.localMediaContent getShard:currentDownloading];
+        if(shard.isDownloaded) {
+            if(currentDownloading!=(numOfShards-1))
+                continue;
+            else {
+                [SVProgressHUD dismiss];
+                dispatch_async(dispatch_get_main_queue(), ^ {
+                    [self play];
+                });
+                break;
+            }
         }
-        else {
+        WeakSelf(weakSelf)
+        [self.localMediaContent downloadShard:currentDownloading WithProgressBlock:^(CGFloat progress) {
+            NSLog(@"loading %d %f .... ", currentDownloading, progress);
+        } completionBlock:^(BOOL completed) {
             [weakSelf preloadAndPlay:minShards];
-        }
-    }];
+        }];
+        break;
+    }
 }
 
 -(void)download {
@@ -186,7 +193,10 @@
         [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
     }
     else {
-        NSString* txt = [NSString stringWithFormat:@"下载 0%% of %@", localMediaContent.length];
+        CGFloat progress = 0.;
+        if(localMediaContent.length.floatValue>1)
+            progress = ((CGFloat)localMediaContent.currentLocalFileLength) /localMediaContent.length.floatValue * 100.;
+        NSString* txt = [NSString stringWithFormat:@"下载 %.2f%% of %@", progress, localMediaContent.length];
         [self.btnDownload setTitle:txt forState:UIControlStateNormal];
         [self.localMediaContent isDownloadingProgressBlock:^(CGFloat progress) {
             [self downloadInProgress:progress];

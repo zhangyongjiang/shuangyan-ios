@@ -66,18 +66,18 @@ MediaPlayer* gMediaPlayer;
              if(self.avplayer == nil) {
                  dispatch_async(dispatch_get_main_queue(), ^ {
                      self.avplayer = [[AVQueuePlayer alloc] initWithPlayerItem:item];
-                     [self setAttachedView:self.attachedView];
                      if([[UIDevice currentDevice] systemVersion].intValue>=10){
                          self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
                      }
                      [self.avplayer play];
+                     [self setAttachedView:self.attachedView];
                  });
              }
              else {
                  dispatch_async(dispatch_get_main_queue(), ^ {
                      [self.avplayer replaceCurrentItemWithPlayerItem:item];
-                     [self setAttachedView:self.attachedView];
                      [self.avplayer play];
+                     [self setAttachedView:self.attachedView];
                  });
              }
          }];
@@ -142,7 +142,13 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(CGFloat)currentTaskDuration {
-    return self.avplayer.currentItem.asset.duration.value / self.avplayer.currentItem.asset.duration.timescale;
+    @try {
+        return self.avplayer.currentItem.asset.duration.value / self.avplayer.currentItem.asset.duration.timescale;
+    } @catch (NSException *exception) {
+        NSLog(@"exception: %@", exception);
+    } @finally {
+        return 0;
+    }
 }
 
 -(CGFloat)currentTime {

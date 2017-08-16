@@ -9,6 +9,12 @@
 #import "LocalMediaContent.h"
 #import "TWRDownloadManager.h"
 
+@interface LocalMediaContent()
+{
+    BOOL downloadCancelled;
+}
+
+@end
 
 @implementation LocalMediaContent
 
@@ -20,6 +26,7 @@
     self.shards = [NSMutableDictionary new];
     self.progressBlock = nil;
     self.completionBlock = nil;
+    downloadCancelled = NO;
     return self;
 }
 
@@ -61,13 +68,24 @@
 
 -(long)currentLocalFileLength
 {
-    NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString* filePath = self.localFilePath;
-    if(![filemgr fileExistsAtPath:filePath isDirectory:nil]) {
-        return 0;
+    if(false) {
+        NSFileManager *filemgr = [NSFileManager defaultManager];
+        NSString* filePath = self.localFilePath;
+        if(![filemgr fileExistsAtPath:filePath isDirectory:nil]) {
+            return 0;
+        }
+        unsigned long long fileSize = [[filemgr attributesOfItemAtPath:filePath error:nil] fileSize];
+        return fileSize;
     }
-    unsigned long long fileSize = [[filemgr attributesOfItemAtPath:filePath error:nil] fileSize];
-    return fileSize;
+    else {
+        long total = 0;
+        for(int i=0; i<self.numOfShards; i++) {
+            LocalMediaContentShard* shard = [self getShard:i];
+            if(shard.isDownloaded)
+                total += shard.expectedDownloadSize;
+        }
+        return total;
+    }
 }
 
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
@@ -307,7 +325,7 @@
     AVAssetResourceLoadingDataRequest* dataRequest = loadingRequest.dataRequest;
     AVAssetResourceLoadingContentInformationRequest* contentRequest = loadingRequest.contentInformationRequest;
     
-    NSLog(@"requesting data %lld %ld", dataRequest.requestedOffset, dataRequest.requestedLength);
+    NSLog(@"requesting  %ld bytes at offset %lld/%lld  ", dataRequest.requestedLength, dataRequest.requestedOffset, self.length.longLongValue);
     
     //handle content request
     if (contentRequest)
@@ -379,6 +397,7 @@
 -(void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest
 {
     NSLog(@"didCancelLoadingRequest");
+    downloadCancelled = YES;
 }
 
 -(void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)authenticationChallenge {
