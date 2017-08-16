@@ -30,22 +30,6 @@
     return self;
 }
 
--(NSURL*)playUrl {
-    if([self isDownloaded]) {
-        return [NSURL fileURLWithPath:[self localFilePath]];
-    }
-    else {
-        NSString* token = [Lockbox stringForKey:kOauthTokenKey];
-        token = [token substringFromIndex:7];
-        NSString* url = NULL;
-        if([self.url containsString:@"?"])
-            url = [NSString stringWithFormat:@"%@&access_token=%@", self.url, token];
-        else
-            url = [NSString stringWithFormat:@"%@?access_token=%@", self.url, token];
-        return [NSURL URLWithString:url];
-    }
-}
-
 -(LocalMediaContentShard*)getShard:(int)shard
 {
     NSNumber* num = [NSNumber numberWithInt:shard];
@@ -68,24 +52,13 @@
 
 -(long)currentLocalFileLength
 {
-    if(false) {
-        NSFileManager *filemgr = [NSFileManager defaultManager];
-        NSString* filePath = self.localFilePath;
-        if(![filemgr fileExistsAtPath:filePath isDirectory:nil]) {
-            return 0;
-        }
-        unsigned long long fileSize = [[filemgr attributesOfItemAtPath:filePath error:nil] fileSize];
-        return fileSize;
+    long total = 0;
+    for(int i=0; i<self.numOfShards; i++) {
+        LocalMediaContentShard* shard = [self getShard:i];
+        if(shard.isDownloaded)
+            total += shard.expectedDownloadSize;
     }
-    else {
-        long total = 0;
-        for(int i=0; i<self.numOfShards; i++) {
-            LocalMediaContentShard* shard = [self getShard:i];
-            if(shard.isDownloaded)
-                total += shard.expectedDownloadSize;
-        }
-        return total;
-    }
+    return total;
 }
 
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
@@ -342,8 +315,7 @@
         int shardIndex = offset / self.shardSize;
         LocalMediaContentShard* shard = [self getShard:shardIndex];
         if(!shard.isDownloaded) {
-            BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:shard];
-            if(!downloading) {
+            if(!shard.isDownloading) {
                 NSLog(@"start downloading shard %d ", shardIndex);
                 [self createDirs];
                 [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
@@ -371,8 +343,7 @@
                     NSLog(@" shard %d downloaded already", shardIndex);
                     continue;
                 }
-                BOOL downloading = [[TWRDownloadManager sharedManager] isFileDownloadingForLocalMediaContentShard:nextShard];
-                if(!downloading) {
+                if(!nextShard.isDownloading) {
                     if([TWRDownloadManager sharedManager].currentNumOfDownloads>1)
                         break;
                     NSLog(@"start downloading shard %d ", shardIndex);

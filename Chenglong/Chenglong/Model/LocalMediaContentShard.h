@@ -18,6 +18,7 @@
 
 -(NSString*)url;
 -(BOOL)isDownloaded;
+-(BOOL)isDownloading;
 -(int)expectedDownloadSize;
 -(void)deleteFile;
 -(CMTime)duration;

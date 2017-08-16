@@ -315,8 +315,8 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
                          completionBlock:nil];
 }
 
-- (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*) mediaContent {
-    TWRDownloadObject *download = [self.downloads objectForKey:mediaContent.url];
+- (BOOL)isFileDownloadingForUrl:(NSString*)url {
+    TWRDownloadObject *download = [self.downloads objectForKey:url];
     return download != NULL;
 }
 

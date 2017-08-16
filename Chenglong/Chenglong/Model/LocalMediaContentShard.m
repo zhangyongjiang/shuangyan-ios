@@ -31,6 +31,11 @@
         return f.length == (self.localMediaContent.length.intValue - self.shard*self.localMediaContent.shardSize);
 }
 
+-(BOOL)isDownloading
+{
+    return [[TWRDownloadManager sharedManager] isFileDownloadingForUrl:self.url];
+}
+
 -(NSString*)localFilePath {
     NSString* fname = self.localMediaContent.localFilePath;
     if([fname containsString:@"."]) {
