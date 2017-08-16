@@ -168,8 +168,7 @@
     }
 
     [self createDirs];
-    [shard deleteFile];
-    [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:shard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+    [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
         progressBlock(progress);
     } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
         completionBlock(completed);
@@ -207,8 +206,7 @@
         NSLog(@"start download for shard %d and url %@", i, shard.url);
         self.progressBlock = progressBlock;
         self.completionBlock = completionBlock;
-        [shard deleteFile];
-        [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:shard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+        [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
             [shard.localMediaContent downloadProgress:progress forShard:shard];
         } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
             [shard.localMediaContent downloadCompleted:completed forShard:shard];
@@ -348,8 +346,7 @@
             if(!downloading) {
                 NSLog(@"start downloading shard %d ", shardIndex);
                 [self createDirs];
-                [shard deleteFile];
-                [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:shard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+                [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
 //                    NSLog(@"downloading shard %d with progress %f", shard.shard, progress);
                 } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
                     NSLog(@"finished downloading shard %d ", shard.shard);
@@ -379,8 +376,7 @@
                     if([TWRDownloadManager sharedManager].currentNumOfDownloads>1)
                         break;
                     NSLog(@"start downloading shard %d ", shardIndex);
-                    [nextShard deleteFile];
-                    [[TWRDownloadManager sharedManager] downloadFileForLocalMediaContentShard:nextShard progressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+                    [nextShard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
 //                        NSLog(@"downloading shard %d with progress %f", shard.shard, progress);
                     } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
                         NSLog(@"finished downloading shard %d ", shard.shard);

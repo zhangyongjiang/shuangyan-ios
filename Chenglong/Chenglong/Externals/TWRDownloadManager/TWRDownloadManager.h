@@ -15,11 +15,6 @@
 
 + (instancetype)sharedManager;
 
-- (void)downloadFileForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
-                      progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
-                    completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
-               enableBackgroundMode:(BOOL)backgroundMode;
-
 - (BOOL)isFileDownloadingForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
                        withProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))block
                          completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock;
@@ -37,66 +32,11 @@
 
 - (int)currentNumOfDownloads;
 
-/*
-- (void)downloadFileForURL:(NSString *)url
-                  withName:(NSString *)fileName
-          inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode;
-
-- (void)downloadFileForURL:(NSString *)url
-          inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode;
-
-- (void)downloadFileForURL:(NSString *)url
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode;
-
-#pragma mark - Download with estimated time
-
-- (void)downloadFileForURL:(NSString *)url
-                  withName:(NSString *)fileName
-          inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-             remainingTime:(void(^)(NSUInteger seconds))remainingTimeBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode;
-
-- (void)downloadFileForURL:(NSString *)url
-          inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-             remainingTime:(void(^)(NSUInteger seconds))remainingTimeBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode;
-
-- (void)downloadFileForURL:(NSString *)url
-             progressBlock:(void(^)(CGFloat progress))progressBlock
-             remainingTime:(void(^)(NSUInteger seconds))remainingTimeBlock
-           completionBlock:(void(^)(BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode;
-
-- (void)cancelDownloadForUrl:(NSString *)fileIdentifier;
-
-- (BOOL)fileDownloadCompletedForUrl:(NSString *)fileIdentifier;
-- (BOOL)isFileDownloadingForUrl:(NSString *)url withProgressBlock:(void(^)(CGFloat progress))block;
-- (BOOL)isFileDownloadingForUrl:(NSString *)url withProgressBlock:(void(^)(CGFloat progress))block completionBlock:(void(^)(BOOL completed))completionBlock;
-
-- (NSString *)localPathForFile:(NSString *)fileIdentifier;
-- (NSString *)localPathForFile:(NSString *)fileIdentifier inDirectory:(NSString *)directoryName;
-
-- (BOOL)fileExistsForUrl:(NSString *)urlString;
-- (BOOL)fileExistsForUrl:(NSString *)urlString inDirectory:(NSString *)directoryName;
-- (BOOL)fileExistsWithName:(NSString *)fileName;
-- (BOOL)fileExistsWithName:(NSString *)fileName inDirectory:(NSString *)directoryName;
-
-- (BOOL)deleteFileForUrl:(NSString *)urlString;
-- (BOOL)deleteFileForUrl:(NSString *)urlString inDirectory:(NSString *)directoryName;
-- (BOOL)deleteFileWithName:(NSString *)fileName;
-- (BOOL)deleteFileWithName:(NSString *)fileName inDirectory:(NSString *)directoryName;
-*/
-
+- (void)downloadFileForObject:(id)obj
+                      withURL:(NSString *)urlString
+                     withName:(NSString *)fileName
+             inDirectoryNamed:(NSString *)directory
+                progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
+              completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
+         enableBackgroundMode:(BOOL)backgroundMode;
 @end

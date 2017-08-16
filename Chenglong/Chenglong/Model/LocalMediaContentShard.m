@@ -92,4 +92,8 @@
     return [NSData dataWithContentsOfFile:self.localFilePath];
 }
 
+-(void)downloadWithProgressBlock:(void (^)(LocalMediaContentShard *, CGFloat))progressBlock completionBlock:(void (^)(LocalMediaContentShard *, BOOL))completionBlock enableBackgroundMode:(BOOL)backgroundMode {
+    [self deleteFile];
+    [[TWRDownloadManager sharedManager] downloadFileForObject:self withURL:self.url withName:[self fileName] inDirectoryNamed:[self dirName] progressBlock:progressBlock completionBlock:completionBlock enableBackgroundMode:backgroundMode];
+}
 @end

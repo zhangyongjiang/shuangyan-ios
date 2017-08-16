@@ -146,14 +146,6 @@
         enableBackgroundMode:backgroundMode];
 }
 
-- (void)downloadFileForLocalMediaContentShard:(LocalMediaContentShard*)mediaContent
-             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
-           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode {
-    NSString* url = mediaContent.url;
-    [self downloadFileForObject:mediaContent withURL:url withName:[mediaContent fileName] inDirectoryNamed:[mediaContent dirName] progressBlock:progressBlock completionBlock:completionBlock enableBackgroundMode:backgroundMode];
-}
-
 - (void)downloadFileForObject:(id)obj
                     withURL:(NSString *)urlString
                   withName:(NSString *)fileName
