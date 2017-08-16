@@ -151,17 +151,11 @@
            completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
     NSString* url = mediaContent.url;
-    [self downloadFileForURL:url withName:[mediaContent fileName] inDirectoryNamed:[mediaContent dirName] progressBlock:progressBlock completionBlock:completionBlock enableBackgroundMode:backgroundMode];
-    TWRDownloadObject *download = [self.downloads objectForKey:url];
-    if (download) {
-        download.shard = mediaContent;
-    }
-    else {
-        NSLog(@"wrong-------------------------");
-    }
+    [self downloadFileForObject:mediaContent withURL:url withName:[mediaContent fileName] inDirectoryNamed:[mediaContent dirName] progressBlock:progressBlock completionBlock:completionBlock enableBackgroundMode:backgroundMode];
 }
 
-- (void)downloadFileForURL:(NSString *)urlString
+- (void)downloadFileForObject:(id)obj
+                    withURL:(NSString *)urlString
                   withName:(NSString *)fileName
           inDirectoryNamed:(NSString *)directory
              progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
@@ -174,31 +168,13 @@
               remainingTime:nil
             completionBlock:completionBlock
         enableBackgroundMode:backgroundMode];
-}
-
-- (void)downloadFileForURL:(NSString *)urlString
-          inDirectoryNamed:(NSString *)directory
-             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
-           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode {
-    // if no file name was provided, use the last path component of the URL as its name
-    [self downloadFileForURL:urlString
-                    withName:[urlString lastPathComponent]
-            inDirectoryNamed:directory
-               progressBlock:progressBlock
-             completionBlock:completionBlock
-        enableBackgroundMode:backgroundMode];
-}
-
-- (void)downloadFileForURL:(NSString *)urlString
-             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
-           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
-      enableBackgroundMode:(BOOL)backgroundMode {
-    [self downloadFileForURL:urlString
-            inDirectoryNamed:nil
-               progressBlock:progressBlock
-             completionBlock:completionBlock
-        enableBackgroundMode:backgroundMode];
+    TWRDownloadObject *download = [self.downloads objectForKey:urlString];
+    if (download) {
+        download.shard = obj;
+    }
+    else {
+        NSLog(@"wrong-------------------------");
+    }
 }
 
 - (void)cancelDownloadForUrl:(NSString *)fileIdentifier {
