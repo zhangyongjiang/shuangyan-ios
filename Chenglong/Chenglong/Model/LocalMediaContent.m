@@ -293,6 +293,29 @@
     return NO;
 }
 
+-(NSData*)getDataFromOffset:(long)offset withLength:(long)requestedLength
+{
+    NSMutableData* data = [NSMutableData dataWithCapacity:requestedLength];
+    while(requestedLength > 0) {
+        int shardIndex = offset / self.shardSize;
+        LocalMediaContentShard* shard = [self getShard:shardIndex];
+        if(!shard.isDownloaded)
+            break;
+        NSData* shardData = [shard data];
+        
+        long offsetInData = offset - shardIndex * self.shardSize;
+        long length = shardData.length - offsetInData;
+        if(length > requestedLength)
+            length = requestedLength;
+        
+        NSData *dataAvailable = [shardData subdataWithRange:NSMakeRange(offsetInData, length)];
+        [data appendData:dataAvailable];
+        requestedLength -= length;
+        offset += length;
+    }
+    return data;
+}
+
 - (BOOL) resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest
 {
     AVAssetResourceLoadingDataRequest* dataRequest = loadingRequest.dataRequest;
@@ -329,15 +352,8 @@
         }
         else {
 //            NSLog(@"shard %d is available", shardIndex);
-            NSData* data = [shard data];
-            long shardStartOffset = shardIndex * self.shardSize;
-            long offsetInData = offset - shardStartOffset;
-            long length = data.length - offsetInData;
-            if(length > dataRequest.requestedLength)
-                length = dataRequest.requestedLength;
-            
-            NSData *dataAvailable = [data subdataWithRange:NSMakeRange(offsetInData, length)];
-            [dataRequest respondWithData:dataAvailable];
+            NSData* data = [self getDataFromOffset:offset withLength:dataRequest.requestedLength];
+            [dataRequest respondWithData:data];
             
             for(shardIndex++;shardIndex < self.numOfShards;shardIndex++) {
                 LocalMediaContentShard* nextShard = [self getShard:shardIndex];

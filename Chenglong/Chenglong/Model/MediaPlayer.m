@@ -56,6 +56,7 @@ MediaPlayer* gMediaPlayer;
                  NSError *error = nil;
                  AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&error];
                  if (keyStatus == AVKeyValueStatusFailed) {
+                     NSLog(@"AVKeyValueStatusFailed for key %@", thisKey);
                      return ;
                  }
              }
