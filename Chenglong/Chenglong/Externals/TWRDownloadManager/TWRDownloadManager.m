@@ -7,7 +7,6 @@
 //
 
 #import "TWRDownloadManager.h"
-#import "TWRDownloadObject.h"
 
 @interface TWRDownloadManager () <NSURLSessionDelegate, NSURLSessionDownloadDelegate>
 
@@ -146,7 +145,7 @@
         enableBackgroundMode:backgroundMode];
 }
 
-- (void)downloadFileForObject:(id)obj
+- (void)downloadFileForObject:(id<DownloaderDelegate>)obj
                     withURL:(NSString *)urlString
                   withName:(NSString *)fileName
           inDirectoryNamed:(NSString *)directory
@@ -162,7 +161,7 @@
         enableBackgroundMode:backgroundMode];
     TWRDownloadObject *download = [self.downloads objectForKey:urlString];
     if (download) {
-        download.shard = obj;
+        download.delegate = obj;
     }
     else {
         NSLog(@"wrong-------------------------");
@@ -175,7 +174,7 @@
         [download.downloadTask cancel];
         [self.downloads removeObjectForKey:fileIdentifier];
         if (download.completionBlock) {
-            download.completionBlock(download.shard, NO);
+            download.completionBlock(download.delegate, NO);
         }
     }
     if (self.downloads.count == 0) {
@@ -187,7 +186,7 @@
 - (void)cancelAllDownloads {
     [self.downloads enumerateKeysAndObjectsUsingBlock:^(id key, TWRDownloadObject *download, BOOL *stop) {
         if (download.completionBlock) {
-            download.completionBlock(download.shard, NO);
+            download.completionBlock(download.delegate, NO);
         }
         [download.downloadTask cancel];
         [self.downloads removeObjectForKey:key];
@@ -223,14 +222,14 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     if (download.progressBlock) {
         CGFloat progress = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            download.progressBlock(download.shard, progress);
+            download.progressBlock(download.delegate, progress);
         });
     }
     
     CGFloat remainingTime = [self remainingTimeForDownload:download bytesTransferred:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
     if (download.remainingTimeBlock) {
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            download.remainingTimeBlock(download.shard, (NSUInteger)remainingTime);
+            download.remainingTimeBlock(download.delegate, (NSUInteger)remainingTime);
         });
     }
 }
@@ -250,20 +249,11 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     
             destinationLocation = [NSURL fileURLWithPath:download.directoryName];
             destinationLocation = [destinationLocation URLByAppendingPathComponent:download.fileName];
-    
-    // Move downloaded item from tmp directory to te caches directory
-    // (not synced with user's iCloud documents)
-    [[NSFileManager defaultManager] moveItemAtURL:location
-                                            toURL:destinationLocation
-                                            error:&error];
-    if (error) {
-        NSLog(@"ERROR: %@", error);
-    }
+
+    [download.delegate copyDownloadedFile:location withObject:download.delegate];
     
     if (download.completionBlock) {
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            download.completionBlock(download.shard, YES);
-        });
+        download.completionBlock(download.delegate, YES);
     }
     
     // remove object from the download

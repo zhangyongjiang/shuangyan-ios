@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LocalMediaContentShard.h"
+#import "TWRDownloadObject.h"
+
 
 @interface TWRDownloadManager : NSObject
 
@@ -15,7 +16,7 @@
 
 + (instancetype)sharedManager;
 
-- (BOOL)isFileDownloadingForObject:(id)object
+- (BOOL)isFileDownloadingForObject:(id<DownloaderDelegate>)object
                            withUrl:(NSString*)url
                        withProgressBlock:(void(^)(id object, CGFloat progress))block
                          completionBlock:(void(^)(id object, BOOL completed))completionBlock;
@@ -33,7 +34,7 @@
 
 - (int)currentNumOfDownloads;
 
-- (void)downloadFileForObject:(id)obj
+- (void)downloadFileForObject:(id<DownloaderDelegate>)obj
                       withURL:(NSString *)urlString
                      withName:(NSString *)fileName
              inDirectoryNamed:(NSString *)directory

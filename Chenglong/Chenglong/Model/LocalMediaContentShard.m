@@ -9,7 +9,7 @@
 #import "LocalMediaContentShard.h"
 #import "TWRDownloadManager.h"
 
-@interface LocalMediaContentShard()
+@interface LocalMediaContentShard() <DownloaderDelegate>
 
 @property(copy, nonatomic)void (^progressCallback)(LocalMediaContentShard *, CGFloat) ;
 @property(copy, nonatomic)void (^completionCallback)(LocalMediaContentShard *, BOOL) ;
@@ -32,7 +32,7 @@
     File* f = [[File alloc] initWithFullPath:parentFilePath];
     if(!f.exists)
         return NO;
-    return f.length>(self.offset+self.expectedDownloadSize);
+    return f.length>=(self.offset+self.expectedDownloadSize);
 }
 
 -(BOOL)isInShard
@@ -146,5 +146,37 @@
     if(self.completionCallback != NULL) {
         self.completionCallback(self, completed);
     }
+}
+
+-(void)copyDownloadedFile:(NSURL *)location withObject:(id)object {
+    NSLog(@"save shard %i to location %@", self.shard, self.localFilePath);
+    NSError* error;
+    [[NSFileManager defaultManager] moveItemAtURL:location
+                                            toURL:[NSURL fileURLWithPath:self.localFilePath]
+                                            error:&error];
+    if (error) {
+        NSLog(@"ERROR: %@", error);
+        return;
+    }
+    
+    NSString* parentPath = self.localMediaContent.localFilePath;
+    File* file = [[File alloc] initWithFullPath:parentPath];
+    if(file.exists ) {
+        if(file.length != self.offset) {
+            NSLog(@"current shard is not the next one at %@", self.localMediaContent.localFilePath);
+            return;
+        }
+    }
+    else {
+        [[NSFileManager defaultManager] createFileAtPath:parentPath contents:nil attributes:nil];
+    }
+    NSLog(@"append shard %i data to %@ at offset %ld", self.shard, parentPath, self.offset);
+    NSData* content = [NSData dataWithContentsOfFile:self.localFilePath];
+    NSFileHandle*  fileHandle = [NSFileHandle fileHandleForWritingAtPath:parentPath];
+    [fileHandle seekToFileOffset:self.offset];
+    [fileHandle writeData:content];
+    [fileHandle closeFile];
+    
+    [self deleteFile];
 }
 @end

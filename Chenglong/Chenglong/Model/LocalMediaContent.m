@@ -78,6 +78,8 @@
         LocalMediaContentShard* shard = [self getShard:i];
         if(shard.isDownloaded)
             total += shard.expectedDownloadSize;
+        else
+            break;
     }
     return total;
 }
@@ -342,7 +344,7 @@
     AVAssetResourceLoadingDataRequest* dataRequest = loadingRequest.dataRequest;
     AVAssetResourceLoadingContentInformationRequest* contentRequest = loadingRequest.contentInformationRequest;
     
-    NSLog(@"requesting  %ld bytes at offset %lld/%lld  ", dataRequest.requestedLength, dataRequest.requestedOffset, self.length.longLongValue);
+//    NSLog(@"requesting  %ld bytes at offset %lld/%lld  ", dataRequest.requestedLength, dataRequest.requestedOffset, self.length.longLongValue);
     
     //handle content request
     if (contentRequest)
