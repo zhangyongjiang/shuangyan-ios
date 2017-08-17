@@ -179,8 +179,8 @@
         }
     }
     if (self.downloads.count == 0) {
-        [self cleanTmpDirectory];
-        
+//        [self cleanTmpDirectory];
+//        
     }
 }
 
@@ -192,7 +192,7 @@
         [download.downloadTask cancel];
         [self.downloads removeObjectForKey:key];
     }];
-    [self cleanTmpDirectory];
+//    [self cleanTmpDirectory];
 }
 
 -(int)currentNumOfDownloads
@@ -248,17 +248,8 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
         return;
     }
     
-    if (download.directoryName) {
-        if(![download.directoryName hasPrefix:@"/"]) {
-            destinationLocation = [[[self cachesDirectoryUrlPath] URLByAppendingPathComponent:download.directoryName] URLByAppendingPathComponent:download.fileName];
-        }
-        else {
             destinationLocation = [NSURL fileURLWithPath:download.directoryName];
             destinationLocation = [destinationLocation URLByAppendingPathComponent:download.fileName];
-        }
-    } else {
-        destinationLocation = [[self cachesDirectoryUrlPath] URLByAppendingPathComponent:download.fileName];
-    }
     
     // Move downloaded item from tmp directory to te caches directory
     // (not synced with user's iCloud documents)
@@ -290,13 +281,6 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
 }
 
 #pragma mark - File Management
-
-- (NSURL *)cachesDirectoryUrlPath {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *cachesDirectory = [paths objectAtIndex:0];
-    NSURL *cachesDirectoryUrl = [NSURL fileURLWithPath:cachesDirectory];
-    return cachesDirectoryUrl;
-}
 
 - (BOOL)fileDownloadCompletedForUrl:(NSString *)fileIdentifier {
     BOOL retValue = YES;
@@ -378,55 +362,6 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
 
 - (BOOL)fileExistsWithName:(NSString *)fileName {
     return [self fileExistsWithName:fileName inDirectory:nil];
-}
-
-#pragma mark File deletion
-
-- (BOOL)deleteFileForUrl:(NSString *)urlString {
-    return [self deleteFileForUrl:urlString inDirectory:nil];
-}
-
-- (BOOL)deleteFileForUrl:(NSString *)urlString inDirectory:(NSString *)directoryName {
-    return [self deleteFileWithName:[urlString lastPathComponent] inDirectory:directoryName];
-}
-
-- (BOOL)deleteFileWithName:(NSString *)fileName {
-    return [self deleteFileWithName:fileName inDirectory:nil];
-}
-
-- (BOOL)deleteFileWithName:(NSString *)fileName
-               inDirectory:(NSString *)directoryName {
-    BOOL deleted = NO;
-    
-    NSError *error;
-    NSURL *fileLocation;
-    if (directoryName) {
-        fileLocation = [[[self cachesDirectoryUrlPath] URLByAppendingPathComponent:directoryName] URLByAppendingPathComponent:fileName];
-    } else {
-        fileLocation = [[self cachesDirectoryUrlPath] URLByAppendingPathComponent:fileName];
-    }
-    
-    
-    // Move downloaded item from tmp directory to te caches directory
-    // (not synced with user's iCloud documents)
-    [[NSFileManager defaultManager] removeItemAtURL:fileLocation error:&error];
-    
-    if (error) {
-        deleted = NO;
-        NSLog(@"Error deleting file: %@", error);
-    } else {
-        deleted = YES;
-    }
-    return deleted;
-}
-
-#pragma mark - Clean tmp directory
-
-- (void)cleanTmpDirectory {
-    NSArray* tmpDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:NSTemporaryDirectory() error:NULL];
-    for (NSString *file in tmpDirectory) {
-        [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file] error:NULL];
-    }
 }
 
 #pragma mark - Background download
