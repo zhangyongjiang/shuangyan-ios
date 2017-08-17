@@ -20,6 +20,7 @@
 -(BOOL)isDownloaded;
 -(BOOL)isDownloading;
 -(int)expectedDownloadSize;
+-(long)offset;
 -(void)deleteFile;
 -(CMTime)duration;
 -(NSData*)data;

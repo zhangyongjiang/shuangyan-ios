@@ -9,6 +9,13 @@
 #import "LocalMediaContentShard.h"
 #import "TWRDownloadManager.h"
 
+@interface LocalMediaContentShard()
+
+@property(copy, nonatomic)void (^progressCallback)(LocalMediaContentShard *, CGFloat) ;
+@property(copy, nonatomic)void (^completionCallback)(LocalMediaContentShard *, BOOL) ;
+
+@end
+
 @implementation LocalMediaContentShard
 
 -(id)initWithLocalMediaContent:(LocalMediaContent *)localMediaContent andShard:(int)shard
@@ -19,7 +26,16 @@
     return self;
 }
 
--(BOOL)isDownloaded
+-(BOOL)isInParent
+{
+    NSString* parentFilePath = self.localMediaContent.localFilePath;
+    File* f = [[File alloc] initWithFullPath:parentFilePath];
+    if(!f.exists)
+        return NO;
+    return f.length>(self.offset+self.expectedDownloadSize);
+}
+
+-(BOOL)isInShard
 {
     NSString* shardFilePath = [self localFilePath];
     File* f = [[File alloc] initWithFullPath:shardFilePath];
@@ -29,6 +45,14 @@
         return (f.length == self.localMediaContent.shardSize);
     else
         return f.length == (self.localMediaContent.length.intValue - self.shard*self.localMediaContent.shardSize);
+}
+
+-(BOOL)isDownloaded
+{
+    BOOL inparent = self.isInParent;
+    if(inparent)
+        return YES;
+    return self.isInShard;
 }
 
 -(BOOL)isDownloading
@@ -72,6 +96,10 @@
         return [NSString stringWithFormat:@"%@?offset=%d&length=%d", self.localMediaContent.url, offset, length];
 }
 
+-(long)offset {
+    return self.shard * self.localMediaContent.shardSize;
+}
+
 -(int)expectedDownloadSize
 {
     if(self.shard<(self.localMediaContent.numOfShards-1))
@@ -94,11 +122,29 @@
 }
 
 -(NSData*)data {
-    return [NSData dataWithContentsOfFile:self.localFilePath];
+    if(self.isInShard)
+        return [NSData dataWithContentsOfFile:self.localFilePath];
+    else if(self.isInParent) {
+        NSFileHandle*  fileHandle = [NSFileHandle fileHandleForReadingAtPath:self.localMediaContent.localFilePath];
+        [fileHandle seekToFileOffset:self.offset];
+        NSData *data = [fileHandle readDataOfLength:self.expectedDownloadSize];
+        return data;
+    }
+    return NULL;
 }
 
 -(void)downloadWithProgressBlock:(void (^)(LocalMediaContentShard *, CGFloat))progressBlock completionBlock:(void (^)(LocalMediaContentShard *, BOOL))completionBlock enableBackgroundMode:(BOOL)backgroundMode {
     [self deleteFile];
-    [[TWRDownloadManager sharedManager] downloadFileForObject:self withURL:self.url withName:[self fileName] inDirectoryNamed:[self dirName] progressBlock:progressBlock completionBlock:completionBlock enableBackgroundMode:backgroundMode];
+    self.completionCallback = completionBlock;
+    WeakSelf(weakSelf)
+    [[TWRDownloadManager sharedManager] downloadFileForObject:self withURL:self.url withName:[self fileName] inDirectoryNamed:[self dirName] progressBlock:progressBlock completionBlock:^(id object, BOOL completed) {
+        [weakSelf downloadCompleted:completed];
+    } enableBackgroundMode:backgroundMode];
+}
+
+-(void)downloadCompleted:(BOOL)completed {
+    if(self.completionCallback != NULL) {
+        self.completionCallback(self, completed);
+    }
 }
 @end
