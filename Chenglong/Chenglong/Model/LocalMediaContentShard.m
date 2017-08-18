@@ -56,6 +56,8 @@
     if(inshard) {
         NSString* parentFilePath = self.localMediaContent.localFilePath;
         File* f = [[File alloc] initWithFullPath:parentFilePath];
+        if(!f.exists)
+            [[NSFileManager defaultManager] createFileAtPath:parentFilePath contents:nil attributes:nil];
         if(f.length == self.shard*self.localMediaContent.shardSize) {
             NSData* content = [NSData dataWithContentsOfFile:self.localFilePath];
             NSFileHandle*  fileHandle = [NSFileHandle fileHandleForWritingAtPath:parentFilePath];

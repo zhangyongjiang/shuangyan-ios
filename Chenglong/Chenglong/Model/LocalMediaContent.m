@@ -42,32 +42,13 @@
 }
 
 -(BOOL)isDownloaded {
-    NSString* parentFilePath = self.localFilePath;
-    File* f = [[File alloc] initWithFullPath:parentFilePath];
-    NSFileHandle* fhandler;
-    long currentLength = 0;
-    fhandler = [NSFileHandle fileHandleForWritingAtPath:self.localFilePath];
-    if(f.exists) {
-        if(f.length==self.length.longLongValue)
-            return YES;
-        currentLength = (f.length / self.shardSize) * self.shardSize;
-        [fhandler seekToFileOffset:currentLength];
-    } else {
-        [self createDirs];
-    }
-
     int i=0;
     for(; i<self.numOfShards; i++) {
         LocalMediaContentShard* shard = [self getShard:i];
         if(![shard isDownloaded]) {
             break;
         }
-        if(shard.offset == currentLength) {
-            [fhandler writeData:shard.data];
-            currentLength += shard.expectedDownloadSize;
-        }
     }
-    [fhandler closeFile];
     return i==self.numOfShards;
 }
 
