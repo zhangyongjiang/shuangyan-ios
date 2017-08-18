@@ -122,18 +122,6 @@ MediaPlayer* gMediaPlayer;
     [self.avplayer play];
 }
 
--(AVPlayerItem*)getPlayItemForMediaContent:(LocalMediaContent*)mc
-{
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", mc.localFilePath]];
-    AVURLAsset* asset = [AVURLAsset assetWithURL:url];
-    [asset.resourceLoader setDelegate:mc queue:dispatch_get_main_queue()];
-    
-//    AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset];
-    NSArray *keys = @[@"playable", @"tracks",@"duration" ];
-    AVPlayerItem* item = [[AVPlayerItem alloc] initWithAsset:asset automaticallyLoadedAssetKeys:keys];
-    return item;
-}
-
 -(void)resume
 {
     [self.avplayer play];
@@ -160,10 +148,39 @@ MediaPlayer* gMediaPlayer;
                 }
                 else {
                     task = [self.tasks objectAtIndex:self.current];
-                    AVPlayerItem* item = [self getPlayItemForMediaContent:task.localMediaContent];
-                    task.item = item;
-                    [self.avplayer replaceCurrentItemWithPlayerItem:item];
-//                    [self.avplayer insertItem:item afterItem:nil];
+                    
+                    NSString* ustr = task.localMediaContent.url;
+                    NSURL* url = NULL;
+                    if([ustr containsString:@"aliyuncs.com"])
+                        url = [NSURL URLWithString:ustr];
+                    else
+                        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@&access_token=%@", ustr, AppDelegate.userAccessToken]];
+                    NSLog(@"play content at %@", url);
+                    
+                    AVURLAsset* asset = [AVURLAsset assetWithURL:url];
+                    //        [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
+                    NSArray *keys = @[@"playable", @"tracks",@"duration" ];
+                    [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^()
+                     {
+                         // make sure everything downloaded properly
+                         for (NSString *thisKey in keys) {
+                             NSError *error = nil;
+                             AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&error];
+                             if (keyStatus == AVKeyValueStatusFailed) {
+                                 NSLog(@"AVKeyValueStatusFailed for key %@", thisKey);
+                                 return ;
+                             }
+                         }
+                         
+                         AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+                         PlayTask* task = [self.tasks objectAtIndex:self.current];
+                         task.item = item;
+                         
+                         [self.avplayer replaceCurrentItemWithPlayerItem:item];
+                         //                    [self.avplayer insertItem:item afterItem:nil];
+                     }];
+
+                    
                 }
             }
             break;
