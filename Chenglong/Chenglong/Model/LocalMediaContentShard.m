@@ -52,7 +52,20 @@
     BOOL inparent = self.isInParent;
     if(inparent)
         return YES;
-    return self.isInShard;
+    BOOL inshard = self.isInShard;
+    if(inshard) {
+        NSString* parentFilePath = self.localMediaContent.localFilePath;
+        File* f = [[File alloc] initWithFullPath:parentFilePath];
+        if(f.length == self.shard*self.localMediaContent.shardSize) {
+            NSData* content = [NSData dataWithContentsOfFile:self.localFilePath];
+            NSFileHandle*  fileHandle = [NSFileHandle fileHandleForWritingAtPath:parentFilePath];
+            [fileHandle seekToFileOffset:self.offset];
+            [fileHandle writeData:content];
+            [fileHandle closeFile];
+            [self deleteFile];
+        }
+    }
+    return inshard;
 }
 
 -(BOOL)isDownloading
