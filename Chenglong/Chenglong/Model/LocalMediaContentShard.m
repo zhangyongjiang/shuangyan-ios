@@ -126,14 +126,6 @@
     [f remove];
 }
 
--(CMTime)duration
-{
-    NSURL *sourceMovieURL = [NSURL fileURLWithPath:self.localFilePath];
-    AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
-    CMTime duration = sourceAsset.duration;
-    return duration;
-}
-
 -(NSData*)data {
     if(self.isInShard)
         return [NSData dataWithContentsOfFile:self.localFilePath];

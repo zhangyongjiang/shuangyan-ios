@@ -71,22 +71,29 @@
     if(downloaded)
         [self play];
     else {
-        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
-        if(shard.isDownloaded) {
-            [self play];
-        }
-        else {
             if([MediaConentView isAudio:self.localMediaContent]) {
-                [SVProgressHUD showWithStatus:@"loading..."];
-                [self preloadAndPlay:1];
+                LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
+                if(shard.isDownloaded) {
+                    [self play];
+                }
+                else {
+                    [SVProgressHUD showWithStatus:@"loading..."];
+                    [self preloadAndPlay:1];
+                }
             }
             else if([MediaConentView isVideo:self.localMediaContent]) {
-                [SVProgressHUD showWithStatus:@"loading..."];
-                [self preloadAndPlay:12];
+                int predownloadsForVideo = 13;
+                LocalMediaContentShard* shard = [self.localMediaContent getShard:(predownloadsForVideo-1)];
+                if(shard.isDownloaded) {
+                    [self play];
+                }
+                else {
+                    [SVProgressHUD showWithStatus:@"loading..."];
+                    [self preloadAndPlay:predownloadsForVideo];
+                }
             }
             else
                 [self play];
-        }
     }
 }
 

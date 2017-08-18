@@ -45,6 +45,7 @@ MediaPlayer* gMediaPlayer;
     [self.tasks addObject:task];
     self.current = self.tasks.count - 1;
     
+    if(true) {
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
         AVURLAsset* asset = [AVURLAsset assetWithURL:url];
         [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
@@ -82,6 +83,29 @@ MediaPlayer* gMediaPlayer;
                  });
              }
          }];
+    } else {
+        PlayTask* task = [self.tasks objectAtIndex:self.current];
+        NSURL* url = [NSURL fileURLWithPath:task.localMediaContent.localFilePath];
+        AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL:url];
+        task.item = item;
+        if(self.avplayer == nil) {
+            dispatch_async(dispatch_get_main_queue(), ^ {
+                self.avplayer = [[AVQueuePlayer alloc] initWithPlayerItem:item];
+                if([[UIDevice currentDevice] systemVersion].intValue>=10){
+                    self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
+                }
+                [self.avplayer play];
+                [self setAttachedView:self.attachedView];
+            });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^ {
+                [self.avplayer replaceCurrentItemWithPlayerItem:item];
+                [self.avplayer play];
+                [self setAttachedView:self.attachedView];
+            });
+        }
+    }
 }
 
 -(void)play {

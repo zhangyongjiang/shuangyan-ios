@@ -370,11 +370,12 @@
 //                    NSLog(@"downloading shard %d with progress %f", shard.shard, progress);
                 } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
                     NSLog(@"finished downloading shard %d ", shard.shard);
-                } enableBackgroundMode:YES];
+                } enableBackgroundMode:NO];
             }
         }
-        else {
-//            NSLog(@"shard %d is available", shardIndex);
+        
+        if(shard.isDownloaded) {
+            NSLog(@"shard %d is available", shardIndex);
             NSData* data = [self getDataFromOffset:offset withLength:dataRequest.requestedLength];
             [dataRequest respondWithData:data];
             
@@ -414,7 +415,9 @@
 
 -(CMTime)duration
 {
-    LocalMediaContentShard* shard0 = [self getShard:0];
-    return shard0.duration;
+    NSURL *sourceMovieURL = [NSURL fileURLWithPath:self.localFilePath];
+    AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
+    CMTime duration = sourceAsset.duration;
+    return duration;
 }
 @end

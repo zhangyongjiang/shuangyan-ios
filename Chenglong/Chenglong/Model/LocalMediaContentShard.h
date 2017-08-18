@@ -22,7 +22,6 @@
 -(int)expectedDownloadSize;
 -(long)offset;
 -(void)deleteFile;
--(CMTime)duration;
 -(NSData*)data;
 
 - (void)downloadWithProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
