@@ -36,8 +36,6 @@
 
 - (void)downloadFileForObject:(id<DownloaderDelegate>)obj
                       withURL:(NSString *)urlString
-                     withName:(NSString *)fileName
-             inDirectoryNamed:(NSString *)directory
                 progressBlock:(void(^)(id object, CGFloat progress))progressBlock
               completionBlock:(void(^)(id object, BOOL completed))completionBlock
          enableBackgroundMode:(BOOL)backgroundMode;

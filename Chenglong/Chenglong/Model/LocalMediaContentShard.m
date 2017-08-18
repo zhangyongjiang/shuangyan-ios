@@ -137,7 +137,7 @@
     [self deleteFile];
     self.completionCallback = completionBlock;
     WeakSelf(weakSelf)
-    [[TWRDownloadManager sharedManager] downloadFileForObject:self withURL:self.url withName:[self fileName] inDirectoryNamed:[self dirName] progressBlock:progressBlock completionBlock:^(id object, BOOL completed) {
+    [[TWRDownloadManager sharedManager] downloadFileForObject:self withURL:self.url progressBlock:progressBlock completionBlock:^(id object, BOOL completed) {
         [weakSelf downloadCompleted:completed];
     } enableBackgroundMode:backgroundMode];
 }
