@@ -171,4 +171,16 @@
     AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
     return del;
 }
+
++ (NSString*)userAccessToken {
+    NSString* token = [Lockbox stringForKey:kOauthTokenKey];
+    
+    if ( token.length > 0 ) {
+        int index = [token indexOf:@" "];
+        return index >= 0 ? [token substringFromIndex:(index+1)] : token;
+    } else {
+        return NULL;
+    }
+}
+
 @end

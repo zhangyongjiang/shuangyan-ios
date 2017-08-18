@@ -16,6 +16,7 @@
 - (void)logout;
 
 +(AppDelegate*)appDelegate;
++(NSString*)userAccessToken;
 
 @end
 

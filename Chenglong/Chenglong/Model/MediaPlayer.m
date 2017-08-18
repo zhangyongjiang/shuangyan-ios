@@ -46,9 +46,19 @@ MediaPlayer* gMediaPlayer;
     self.current = self.tasks.count - 1;
     
     if(true) {
-        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
+//        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
+//        NSURL* url = [NSURL URLWithString:@"http://bbzjprivate.oss-cn-shanghai.aliyuncs.com/ALIYUNPRIVATE/58/de/53/32c8a9446a912ccdd3e823e767.mp4"];
+//        NSURL* url = [NSURL URLWithString:@"http://api.babazaojiao.com/user-service/download?path=/ALIYUNPRIVATE/2b/80/7d/fb6ee74638be0c159651858663.mp4&access_token=8294036c-90ec-41a7-92ab-3cfe94849c5f"];
+        NSString* ustr = task.localMediaContent.url;
+        NSURL* url = NULL;
+        if([ustr containsString:@"aliyuncs.com"])
+            url = [NSURL URLWithString:ustr];
+        else
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@&access_token=%@", ustr, AppDelegate.userAccessToken]];
+        NSLog(@"play content at %@", url);
+        
         AVURLAsset* asset = [AVURLAsset assetWithURL:url];
-        [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
+//        [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
         NSArray *keys = @[@"playable", @"tracks",@"duration" ];
         [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^()
          {
