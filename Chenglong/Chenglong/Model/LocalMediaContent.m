@@ -21,8 +21,8 @@
 -(id)init
 {
     self = [super init];
-//    self.shardSize = 1048576;
-    self.shardSize = 524288;
+    self.shardSize = 1048576;
+//    self.shardSize = 524288;
     self.shards = [NSMutableDictionary new];
     self.progressBlock = nil;
     self.completionBlock = nil;
@@ -229,30 +229,6 @@
     NSString* json = [self toJson];
     [json writeToFile:[self localMetaFilePath] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
-+(LocalMediaContent*)loadMediaContent {
-//    File* file = [[File alloc] initWithFullPath:[self jsonFileName]];
-//    if([file exists] && [[file lastModifiedTime] timeIntervalSinceNow]<3600){
-//        NSData* data = file.content;
-//        if(!data) {
-//            [self refreshPage];
-//        }
-//        else {
-//            NSError *error;
-//            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-//                                                                 options:kNilOptions
-//                                                                   error:&error];
-//            ObjectMapper* mapper = [ObjectMapper mapper];
-//            CourseDetailsList* resp = [mapper mapObject:json toClass:[CourseDetailsList class] withError:&error];
-//            if(error)
-//                [self refreshPage];
-//            else {
-//                self.navigationItem.title = resp.courseDetails.course.title;
-//                [self displayData:resp];
-//            }
-//        }
-//    }
-    return NULL;
-}
 
 -(BOOL)localFileExists
 {
@@ -297,27 +273,35 @@
     return NO;
 }
 
--(NSData*)getDataFromOffset:(long)offset withLength:(long)requestedLength
+-(NSData*)downloadNowForDataAtOffset:(long)offset length:(long)length
 {
-    NSMutableData* data = [NSMutableData dataWithCapacity:requestedLength];
-    while(requestedLength > 0) {
-        int shardIndex = offset / self.shardSize;
-        LocalMediaContentShard* shard = [self getShard:shardIndex];
-        if(!shard.isDownloaded)
-            break;
-        NSData* shardData = [shard data];
-        
-        long offsetInData = offset - shardIndex * self.shardSize;
-        long length = shardData.length - offsetInData;
-        if(length > requestedLength)
-            length = requestedLength;
-        
-        NSData *dataAvailable = [shardData subdataWithRange:NSMakeRange(offsetInData, length)];
-        [data appendData:dataAvailable];
-        requestedLength -= length;
-        offset += length;
+    long startShardIndex = offset / self.shardSize;
+    long endShardIndex = (offset + length) / self.shardSize;
+    if(endShardIndex - startShardIndex > 1)
+        endShardIndex = startShardIndex;
+    for(int i=startShardIndex; i<=endShardIndex; i++) {
+        LocalMediaContentShard* shard = [self getShard:i];
+        if(shard.isDownloaded)
+            continue;
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+            [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+                NSLog(@"shard %d download completed %i", shard.shard, completed);
+                dispatch_semaphore_signal(sema);
+            } enableBackgroundMode:YES];
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
-    return data;
+    NSMutableData* data = [NSMutableData new];
+    for(int i=startShardIndex; i<=endShardIndex; i++) {
+        LocalMediaContentShard* shard = [self getShard:i];
+        if(!shard.isDownloaded) {
+            break;
+        }
+        [data appendData:shard.data];
+    }
+    if((data.length-(offset-startShardIndex*self.shardSize))<length)
+        length = data.length-(offset-startShardIndex*self.shardSize);
+    return [data subdataWithRange:NSMakeRange(offset-startShardIndex*self.shardSize, length)];
 }
 
 - (BOOL) resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest
@@ -340,44 +324,11 @@
     //handle data request
     if (dataRequest)
     {
-        long long offset = dataRequest.requestedOffset;
-        int shardIndex = offset / self.shardSize;
-        LocalMediaContentShard* shard = [self getShard:shardIndex];
-        if(!shard.isDownloaded) {
-            if(!shard.isDownloading) {
-                NSLog(@"start downloading shard %d ", shardIndex);
-                [self createDirs];
-                [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
-//                    NSLog(@"downloading shard %d with progress %f", shard.shard, progress);
-                } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
-                    NSLog(@"finished downloading shard %d ", shard.shard);
-                } enableBackgroundMode:NO];
-            }
-        }
-        
-        if(shard.isDownloaded) {
-            NSLog(@"shard %d is available", shardIndex);
-            NSData* data = [self getDataFromOffset:offset withLength:dataRequest.requestedLength];
+        NSData* data = [self downloadNowForDataAtOffset:dataRequest.requestedOffset length:dataRequest.requestedLength];
+        if(data) {
             [dataRequest respondWithData:data];
-            
-            for(shardIndex++;shardIndex < self.numOfShards;shardIndex++) {
-                LocalMediaContentShard* nextShard = [self getShard:shardIndex];
-                if(nextShard.isDownloaded) {
-                    NSLog(@" shard %d downloaded already", shardIndex);
-                    continue;
-                }
-                if(!nextShard.isDownloading) {
-                    if([TWRDownloadManager sharedManager].currentNumOfDownloads>1)
-                        break;
-                    NSLog(@"start downloading shard %d ", shardIndex);
-                    [nextShard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
-//                        NSLog(@"downloading shard %d with progress %f", shard.shard, progress);
-                    } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
-                        NSLog(@"finished downloading shard %d ", shard.shard);
-                    } enableBackgroundMode:YES];
-                    break;
-                }
-            }
+        } else {
+            NSLog(@"no data served");
         }
         [loadingRequest finishLoading];
     }

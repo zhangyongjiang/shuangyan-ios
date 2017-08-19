@@ -158,6 +158,8 @@
 -(void)copyDownloadedFile:(NSURL *)location withObject:(id)object {
     NSLog(@"save shard %i to location %@", self.shard, self.localFilePath);
     NSError* error;
+    File* f = [[File alloc] initWithFullPath:self.localFilePath];
+    [f mkdirs];
     [[NSFileManager defaultManager] moveItemAtURL:location
                                             toURL:[NSURL fileURLWithPath:self.localFilePath]
                                             error:&error];

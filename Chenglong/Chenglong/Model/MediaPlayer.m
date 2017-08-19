@@ -47,15 +47,18 @@ MediaPlayer* gMediaPlayer;
 
     NSString* ustr = task.localMediaContent.url;
     NSURL* url = NULL;
-    BOOL useResourceLoader = NO;
-    if(task.localMediaContent.isDownloaded)
-        url = [NSURL fileURLWithPath:task.localMediaContent.localFilePath];
-    else if([ustr containsString:@"aliyuncs.com"])
-        url = [NSURL URLWithString:ustr];
-    else if(!useResourceLoader)
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@&access_token=%@", ustr, AppDelegate.userAccessToken]];
-    else
+    BOOL useResourceLoader = YES;
+    if(useResourceLoader) {
         url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
+    }
+    else {
+        if(task.localMediaContent.isDownloaded)
+            url = [NSURL fileURLWithPath:task.localMediaContent.localFilePath];
+        else if([ustr containsString:@"aliyuncs.com"])
+            url = [NSURL URLWithString:ustr];
+        else
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@&access_token=%@", ustr, AppDelegate.userAccessToken]];
+    }
     NSLog(@"play content at %@", url);
 
         AVURLAsset* asset = [AVURLAsset assetWithURL:url];
