@@ -242,6 +242,7 @@
 		AD7E88311F41168900B8CBE3 /* MediaContentDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E88301F41168900B8CBE3 /* MediaContentDownloader.m */; };
 		AD7E88341F41581000B8CBE3 /* LocalMediaContentShard.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E88331F41581000B8CBE3 /* LocalMediaContentShard.m */; };
 		AD81B5001F421D480020FF31 /* CourseResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD81B4FF1F421D480020FF31 /* CourseResourceManager.m */; };
+		AD81B5061F4910DA0020FF31 /* LocalMediaContentShardGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = AD81B5051F4910DA0020FF31 /* LocalMediaContentShardGroup.m */; };
 		AD8949531F23E8CC00C024F8 /* OauthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949501F23E8CC00C024F8 /* OauthToken.m */; };
 		AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949521F23E8CC00C024F8 /* TokenedUser.m */; };
 		AD8949591F28F23400C024F8 /* CourseTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8949581F28F23400C024F8 /* CourseTreeViewController.m */; };
@@ -738,6 +739,8 @@
 		AD7E88331F41581000B8CBE3 /* LocalMediaContentShard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMediaContentShard.m; sourceTree = "<group>"; };
 		AD81B4FE1F421D480020FF31 /* CourseResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseResourceManager.h; sourceTree = "<group>"; };
 		AD81B4FF1F421D480020FF31 /* CourseResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseResourceManager.m; sourceTree = "<group>"; };
+		AD81B5041F4910DA0020FF31 /* LocalMediaContentShardGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMediaContentShardGroup.h; sourceTree = "<group>"; };
+		AD81B5051F4910DA0020FF31 /* LocalMediaContentShardGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMediaContentShardGroup.m; sourceTree = "<group>"; };
 		AD89494F1F23E8CC00C024F8 /* OauthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OauthToken.h; sourceTree = "<group>"; };
 		AD8949501F23E8CC00C024F8 /* OauthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OauthToken.m; sourceTree = "<group>"; };
 		AD8949511F23E8CC00C024F8 /* TokenedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenedUser.h; sourceTree = "<group>"; };
@@ -1353,6 +1356,8 @@
 				AD7E88331F41581000B8CBE3 /* LocalMediaContentShard.m */,
 				AD81B4FE1F421D480020FF31 /* CourseResourceManager.h */,
 				AD81B4FF1F421D480020FF31 /* CourseResourceManager.m */,
+				AD81B5041F4910DA0020FF31 /* LocalMediaContentShardGroup.h */,
+				AD81B5051F4910DA0020FF31 /* LocalMediaContentShardGroup.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2172,6 +2177,7 @@
 				AD49D84F1F09869E000D0E1B /* FileListPage.m in Sources */,
 				030049821E0E5F61006EDC29 /* UserFriend.m in Sources */,
 				032C96131E21FFB8001EFC29 /* RemindBlankView.m in Sources */,
+				AD81B5061F4910DA0020FF31 /* LocalMediaContentShardGroup.m in Sources */,
 				AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */,
 				ADD117F11EF64E7B00EF6E04 /* BaseNavigationController.m in Sources */,
 				032911811E113D0C000C1F5A /* UIImageView+Thumbnail.m in Sources */,
