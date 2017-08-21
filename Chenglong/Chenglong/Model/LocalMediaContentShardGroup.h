@@ -11,7 +11,7 @@
 
 @interface LocalMediaContentShardGroup : NSObject
 
--(id)initWithShards:(NSArray<LocalMediaContentShard*>*)shards;
--(void)download;
+-(id)initWithShards:(NSMutableArray<LocalMediaContentShard*>*)shards;
+-(void)downloadWithCompletionBlock:(CompletionCallback)completionBlock;
 
 @end

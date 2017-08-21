@@ -13,6 +13,7 @@
 #import "MediaContentPdfView.h"
 #import "PureLayout.h"
 #import "LocalMediaContentShard.h"
+#import "LocalMediaContentShardGroup.h"
 
 @interface MediaConentView()
 {
@@ -67,7 +68,38 @@
 }
 
 -(void)downloadOrPlay {
+    [self play];
+    return;
+    
+    if ([MediaConentView isAudio:self.localMediaContent]) {
+        [SVProgressHUD showWithStatus:@"loading..."];
+        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
+        [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            
+        } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+            [SVProgressHUD dismiss];
+            dispatch_async(dispatch_get_main_queue(), ^ {
+                [self play];
+            });
+        } enableBackgroundMode:YES];
+    }
+    else if ([MediaConentView isVideo:self.localMediaContent]) {
+        [SVProgressHUD showWithStatus:@"loading..."];
+        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
+        LocalMediaContentShard* shard1 = [self.localMediaContent getShard:1];
+        LocalMediaContentShard* shardLast = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];
+        NSMutableArray* array = [NSMutableArray arrayWithObjects:shard, shard1, shardLast, nil];
+        LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
+        [group downloadWithCompletionBlock:^(BOOL completed) {
+            [SVProgressHUD dismiss];
+            dispatch_async(dispatch_get_main_queue(), ^ {
+                [self play];
+            });
+        }];
+    }
+    else  {
         [self play];
+    }
 }
 
 -(void)preloadAndPlay:(int)numOfShards {

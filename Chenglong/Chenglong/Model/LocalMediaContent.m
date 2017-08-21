@@ -283,13 +283,14 @@
         LocalMediaContentShard* shard = [self getShard:i];
         if(shard.isDownloaded)
             continue;
-        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-            [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
-            } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
-                NSLog(@"shard %d download completed %i", shard.shard, completed);
-                dispatch_semaphore_signal(sema);
-            } enableBackgroundMode:YES];
-        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        [shard directDownload];
+//        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+//            [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+//            } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+//                NSLog(@"shard %d download completed %i", shard.shard, completed);
+//                dispatch_semaphore_signal(sema);
+//            } enableBackgroundMode:YES];
+//        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
     NSMutableData* data = [NSMutableData new];
     for(int i=startShardIndex; i<=endShardIndex; i++) {

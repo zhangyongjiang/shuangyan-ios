@@ -105,10 +105,15 @@
     int length = self.localMediaContent.shardSize;
     if((offset + length)>self.localMediaContent.length.intValue)
         length = self.localMediaContent.length.intValue - offset;
+    NSString* url = NULL;
     if([self.localMediaContent.url containsString:@"?"])
-        return [NSString stringWithFormat:@"%@&offset=%d&length=%d", self.localMediaContent.url, offset, length];
+        url = [NSString stringWithFormat:@"%@&offset=%d&length=%d", self.localMediaContent.url, offset, length];
     else
-        return [NSString stringWithFormat:@"%@?offset=%d&length=%d", self.localMediaContent.url, offset, length];
+        url = [NSString stringWithFormat:@"%@?offset=%d&length=%d", self.localMediaContent.url, offset, length];
+
+    if(![url containsString:@"aliyuncs.com"])
+        url = [NSString stringWithFormat:@"%@&access_token=%@", url, AppDelegate.userAccessToken];
+    return url;
 }
 
 -(long)offset {
@@ -140,6 +145,12 @@
     return NULL;
 }
 
+-(void)directDownload
+{
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.url]];
+    [self copyDownloadedFile:NULL orData:data withObject:self];
+}
+
 -(void)downloadWithProgressBlock:(void (^)(LocalMediaContentShard *, CGFloat))progressBlock completionBlock:(void (^)(LocalMediaContentShard *, BOOL))completionBlock enableBackgroundMode:(BOOL)backgroundMode {
     [self deleteFile];
     self.completionCallback = completionBlock;
@@ -155,17 +166,34 @@
     }
 }
 
+
 -(void)copyDownloadedFile:(NSURL *)location withObject:(id)object {
+    [self copyDownloadedFile:location orData:NULL withObject:object];
+}
+
+-(void)copyDownloadedFile:(NSURL *)location orData:(NSData*)data withObject:(id)object {
     NSLog(@"save shard %i to location %@", self.shard, self.localFilePath);
-    NSError* error;
+    
     File* f = [[File alloc] initWithFullPath:self.localFilePath];
     [f mkdirs];
-    [[NSFileManager defaultManager] moveItemAtURL:location
-                                            toURL:[NSURL fileURLWithPath:self.localFilePath]
-                                            error:&error];
-    if (error) {
-        NSLog(@"ERROR: %@", error);
-        return;
+    if(location) {
+        NSError* error;
+        [[NSFileManager defaultManager] moveItemAtURL:location
+                                                toURL:[NSURL fileURLWithPath:self.localFilePath]
+                                                error:&error];
+        if (error) {
+            NSLog(@"ERROR: %@", error);
+            return;
+        }
+    }
+    else if (data) {
+        if(!f.exists) {
+            [f remove];
+        }
+        [[NSFileManager defaultManager] createFileAtPath:self.localFilePath contents:data attributes:nil];
+    }
+    else {
+        NSLog(@"ERROR!!!!");
     }
     
     NSString* parentPath = self.localMediaContent.localFilePath;
@@ -179,7 +207,7 @@
     else {
         [[NSFileManager defaultManager] createFileAtPath:parentPath contents:nil attributes:nil];
     }
-    NSLog(@"append shard %i data to %@ at offset %ld", self.shard, parentPath, self.offset);
+    NSLog(@"append shard %i/%i data to %@ at offset %ld", self.shard, self.localMediaContent.numOfShards, parentPath, self.offset);
     NSData* content = [NSData dataWithContentsOfFile:self.localFilePath];
     NSFileHandle*  fileHandle = [NSFileHandle fileHandleForWritingAtPath:parentPath];
     [fileHandle seekToFileOffset:self.offset];

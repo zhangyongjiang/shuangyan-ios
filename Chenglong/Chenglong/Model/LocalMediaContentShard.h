@@ -24,6 +24,7 @@
 -(void)deleteFile;
 -(NSData*)data;
 
+-(void)directDownload;
 - (void)downloadWithProgressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
                               completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
                          enableBackgroundMode:(BOOL)backgroundMode;
