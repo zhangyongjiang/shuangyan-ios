@@ -98,7 +98,7 @@
             [self play];
         } else {
             [SVProgressHUD showWithStatus:@"loading..."];
-            LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
+            __block LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
             [group downloadWithCompletionBlock:^(BOOL completed) {
                 [SVProgressHUD dismiss];
                 dispatch_async(dispatch_get_main_queue(), ^ {
