@@ -68,8 +68,8 @@
 }
 
 -(void)downloadOrPlay {
-    [self play];
-    return;
+//    [self play];
+//    return;
     
     if ([MediaConentView isAudio:self.localMediaContent]) {
         [SVProgressHUD showWithStatus:@"loading..."];
@@ -84,18 +84,28 @@
         } enableBackgroundMode:YES];
     }
     else if ([MediaConentView isVideo:self.localMediaContent]) {
-        [SVProgressHUD showWithStatus:@"loading..."];
         LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
         LocalMediaContentShard* shard1 = [self.localMediaContent getShard:1];
         LocalMediaContentShard* shardLast = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];
-        NSMutableArray* array = [NSMutableArray arrayWithObjects:shard, shard1, shardLast, nil];
-        LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
-        [group downloadWithCompletionBlock:^(BOOL completed) {
-            [SVProgressHUD dismiss];
-            dispatch_async(dispatch_get_main_queue(), ^ {
-                [self play];
-            });
-        }];
+        NSMutableArray* array = [NSMutableArray new];
+        if(!shard.isDownloaded)
+            [array addObject:shard];
+        if(!shard1.isDownloaded)
+            [array addObject:shard1];
+        if(!shardLast.isDownloaded)
+            [array addObject:shardLast];
+        if(array.count==0) {
+            [self play];
+        } else {
+            [SVProgressHUD showWithStatus:@"loading..."];
+            LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
+            [group downloadWithCompletionBlock:^(BOOL completed) {
+                [SVProgressHUD dismiss];
+                dispatch_async(dispatch_get_main_queue(), ^ {
+                    [self play];
+                });
+            }];
+        }
     }
     else  {
         [self play];
