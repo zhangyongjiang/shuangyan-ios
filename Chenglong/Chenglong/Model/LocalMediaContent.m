@@ -21,7 +21,7 @@
 -(id)init
 {
     self = [super init];
-    self.shardSize = 65536*4; // big number will cause UI freeze
+    self.shardSize = 65536*8; // big number will cause UI freeze
     self.shards = [NSMutableDictionary new];
     self.progressBlock = nil;
     self.completionBlock = nil;

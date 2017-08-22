@@ -86,12 +86,15 @@
     else if ([MediaConentView isVideo:self.localMediaContent]) {
         LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
         LocalMediaContentShard* shard1 = [self.localMediaContent getShard:1];
+        LocalMediaContentShard* shard2 = [self.localMediaContent getShard:2];
         LocalMediaContentShard* shardLast = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];
         NSMutableArray* array = [NSMutableArray new];
         if(!shard.isDownloaded)
             [array addObject:shard];
         if(!shard1.isDownloaded)
             [array addObject:shard1];
+        if(!shard2.isDownloaded)
+            [array addObject:shard2];
         if(!shardLast.isDownloaded)
             [array addObject:shardLast];
         if(array.count==0) {
