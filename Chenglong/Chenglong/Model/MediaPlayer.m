@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) NSMutableArray* tasks;
 @property (assign, nonatomic) int current;
+@property (strong, nonatomic) AVPlayerLayer* layer;
+
 
 @end
 
@@ -83,6 +85,8 @@ MediaPlayer* gMediaPlayer;
              if(self.avplayer == nil) {
                  dispatch_async(dispatch_get_main_queue(), ^ {
                      self.avplayer = [[AVQueuePlayer alloc] initWithPlayerItem:item];
+                     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
+
                      if([[UIDevice currentDevice] systemVersion].intValue>=10){
                          self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
                      }
@@ -167,10 +171,10 @@ MediaPlayer* gMediaPlayer;
 
 -(void)setAttachedView:(UIView *)attachedView {
     _attachedView = attachedView;
-    AVPlayerLayer* layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
-    layer.frame = attachedView.bounds;
-    [attachedView.layer addSublayer:layer];
-    layer.backgroundColor = [UIColor clearColor].CGColor;
-    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    [self.layer removeFromSuperlayer];
+    self.layer.frame = attachedView.bounds;
+    [attachedView.layer addSublayer:self.layer];
+    self.layer.backgroundColor = [UIColor clearColor].CGColor;
+    [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
 }
 @end
