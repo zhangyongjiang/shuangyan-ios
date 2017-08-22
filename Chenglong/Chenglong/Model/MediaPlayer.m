@@ -7,6 +7,7 @@
 //
 
 #import "MediaPlayer.h"
+#import "TWRDownloadManager.h"
 
 @interface MediaPlayer()
 
@@ -62,7 +63,7 @@ MediaPlayer* gMediaPlayer;
     NSLog(@"play content at %@", url);
 
         AVURLAsset* asset = [AVURLAsset assetWithURL:url];
-        [asset.resourceLoader setDelegate:task.localMediaContent queue:dispatch_get_main_queue()];
+        [asset.resourceLoader setDelegate:task.localMediaContent queue:TWRDownloadManager.queue];
         NSArray *keys = @[@"playable", @"tracks",@"duration" ];
         [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^()
          {

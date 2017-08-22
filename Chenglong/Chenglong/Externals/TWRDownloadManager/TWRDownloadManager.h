@@ -15,6 +15,7 @@
 @property (nonatomic, strong) void(^backgroundTransferCompletionHandler)();
 
 + (instancetype)sharedManager;
++ (dispatch_queue_t) queue;
 
 - (BOOL)isFileDownloadingForObject:(id<DownloaderDelegate>)object
                            withUrl:(NSString*)url
@@ -24,6 +25,7 @@
 - (BOOL)isFileDownloadingForUrl:(NSString*)url;
 
 - (void)cancelAllDownloads;
+
 
 /**
  *  This method helps checking which downloads are currently ongoing.

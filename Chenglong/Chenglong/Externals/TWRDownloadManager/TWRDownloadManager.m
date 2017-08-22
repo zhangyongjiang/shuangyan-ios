@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSession *backgroundSession;
 @property (strong, nonatomic) NSMutableDictionary *downloads;
+@property (SDDispatchQueueSetterSementics, nonatomic) dispatch_queue_t downloadQueue;
 
 @end
 
@@ -26,6 +27,10 @@
     });
     
     return _sharedManager;
+}
+
++(dispatch_queue_t)queue {
+    return [TWRDownloadManager sharedManager].downloadQueue;
 }
 
 - (instancetype)init {
@@ -47,6 +52,7 @@
         self.backgroundSession = [NSURLSession sessionWithConfiguration:backgroundConfiguration delegate:self delegateQueue:nil];
         
         self.downloads = [NSMutableDictionary new];
+        self.downloadQueue = dispatch_queue_create("com.babazaojiao.downloader", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -171,16 +177,12 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     }
     if (download.progressBlock) {
         CGFloat progress = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
             download.progressBlock(download.delegate, progress);
-        });
     }
     
     CGFloat remainingTime = [self remainingTimeForDownload:download bytesTransferred:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
     if (download.remainingTimeBlock) {
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
             download.remainingTimeBlock(download.delegate, (NSUInteger)remainingTime);
-        });
     }
 }
 

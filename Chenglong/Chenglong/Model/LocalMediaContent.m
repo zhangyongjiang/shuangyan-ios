@@ -21,7 +21,7 @@
 -(id)init
 {
     self = [super init];
-    self.shardSize = 65536*2; // big number will cause UI freeze
+    self.shardSize = 65536*4; // big number will cause UI freeze
     self.shards = [NSMutableDictionary new];
     self.progressBlock = nil;
     self.completionBlock = nil;
@@ -278,18 +278,19 @@
     long endShardIndex = (offset + length) / self.shardSize;
     if(endShardIndex - startShardIndex > 1)
         endShardIndex = startShardIndex;
+    NSLog(@"downloadNowForDataAtOffset startShard %ld endShard %ld offset %ld length %ld", startShardIndex, endShardIndex, offset, length);
     for(int i=startShardIndex; i<=endShardIndex; i++) {
         LocalMediaContentShard* shard = [self getShard:i];
         if(shard.isDownloaded)
             continue;
-        [shard directDownload];
-//        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-//            [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
-//            } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
-//                NSLog(@"shard %d download completed %i", shard.shard, completed);
-//                dispatch_semaphore_signal(sema);
-//            } enableBackgroundMode:YES];
-//        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//        [shard directDownload];
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+            [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+                NSLog(@"shard %d download completed %i", shard.shard, completed);
+                dispatch_semaphore_signal(sema);
+            } enableBackgroundMode:YES];
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
     NSMutableData* data = [NSMutableData new];
     for(int i=startShardIndex; i<=endShardIndex; i++) {
