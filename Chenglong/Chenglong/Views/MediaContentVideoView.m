@@ -78,6 +78,7 @@
     }
     else {
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+        [player setAttachedView:self];
         [player play];
     }
 }
