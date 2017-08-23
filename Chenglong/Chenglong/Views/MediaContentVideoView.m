@@ -93,4 +93,11 @@
     return [player isPlaying];
 }
 
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    if(self.isPlaying) {
+        [player setAttachedView:self];
+    }
+}
+
 @end
