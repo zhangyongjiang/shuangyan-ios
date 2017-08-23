@@ -67,7 +67,6 @@
     for (int i=0; i<mediaContents.count; i++) {
         CGFloat x = i * self.width;
         MediaConentView* view = [MediaConentView createViewForMediaContent:[mediaContents objectAtIndex:i]];
-        view.btnRemove.hidden = YES;
         view.frame = CGRectMake(x, 0, self.width, self.height);
         view.clipsToBounds = YES;
         [self.mediaViews addObject:view];
@@ -92,11 +91,11 @@
 }
 
 -(void)showPage:(int)index {
-    if (index<0 || index >= self.mediaContents.count) {
+    if (index<0 || index >= self.mediaContents.count || self.pageControl.currentPage == index) {
         return;
     }
     UIView* view = [self.mediaViews objectAtIndex:index];
-    [self.scrollView setContentOffset:CGPointMake(view.x, 0)];
+    [self.scrollView scrollRectToVisible:CGRectMake(view.x, 0, view.width, view.height) animated:YES];
     self.pageControl.currentPage = index;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRadioValueChanged object:self];
 }
