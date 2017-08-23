@@ -24,10 +24,10 @@
     self.galleryView.mediaContents = self.mediaContents;
     [self.view addSubview:self.galleryView];
     
-    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 100, 40)];
-    btn.backgroundColor = [UIColor colorFromRGB:0xa0a0a0];
+    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 60, 40)];
+    btn.backgroundColor = [UIColor colorFromRGBA:0xa0a0a080];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn setTitle:@"Cancel" forState:UIControlStateNormal];
+    [btn setTitle:@"关闭" forState:UIControlStateNormal];
     btn.layer.borderColor = [UIColor blackColor].CGColor;
     btn.layer.borderWidth = 0.5;
     btn.layer.cornerRadius = btn.height / 2.;
@@ -53,5 +53,10 @@
 -(void)play
 {
     [self.galleryView play];
+}
+
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 @end
