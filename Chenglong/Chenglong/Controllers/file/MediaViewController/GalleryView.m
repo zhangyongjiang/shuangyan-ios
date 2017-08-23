@@ -116,7 +116,7 @@
     if(self.mediaContents.count == 0)
         return;
     [self showPage:currentPlay];
-    MediaContentAudioView* view = [self.mediaViews objectAtIndex:currentPlay];
+    MediaConentView* view = [self.mediaViews objectAtIndex:currentPlay];
     [view play];
     WeakSelf(weakSelf)
     timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
@@ -141,15 +141,8 @@
     [timer invalidate];
     timer = nil;
     for(int i=0; i<self.mediaContents.count; i++) {
-        MediaContent* mc = [self.mediaContents objectAtIndex:i];
-        if([mc.contentType hasPrefix:@"audio"]) {
-            MediaContentAudioView* view = [self.mediaViews objectAtIndex:i];
-            [view stop];
-        }
-        else if([mc.contentType hasPrefix:@"video"]) {
-            MediaContentVideoView* view = [self.mediaViews objectAtIndex:i];
-            [view stop];
-        }
+        MediaConentView* view = [self.mediaViews objectAtIndex:i];
+        [view stop];
     }
 }
 @end
