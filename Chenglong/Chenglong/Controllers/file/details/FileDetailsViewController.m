@@ -75,6 +75,7 @@
         NSMutableArray* arr = [NSMutableArray arrayWithObjects:
                                [[MenuItem alloc] initWithText:@"修改" andImgName:@"file_item_edit_icon"],
                                [[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"],
+                               [[MenuItem alloc] initWithText:@"删除下载" andImgName:@"file_item_remove_icon"],
                                [[MenuItem alloc] initWithText:@"上传" andImgName:@"file_item_exchange_icon"],
                                [[MenuItem alloc] initWithText:@"下载全部" andImgName:@"file_item_exchange_icon"],
                                [[MenuItem alloc] initWithText:@"全屏" andImgName:@"file_item_exchange_icon"],
@@ -103,11 +104,22 @@
     return YES;
 }
 
+-(void)removeDownloads
+{
+    for (LocalMediaContent* mc in self.courseDetails.course.resources) {
+        File* f = [[File alloc] initWithFullPath:mc.localFilePath];
+        [f remove];
+    }
+}
+
 
 -(void)topRightMenuItemClicked:(NSString *)cmd {
     [super topRightMenuItemClicked:cmd];
     if ([cmd isEqualToString:@"删除"]) {
         [self removeCourse];
+    }
+    if ([cmd isEqualToString:@"删除下载"]) {
+        [self removeDownloads];
     }
     else if([cmd isEqualToString:@"修改"]){
         [self showUpdateCourse];

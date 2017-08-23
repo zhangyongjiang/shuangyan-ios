@@ -17,19 +17,30 @@
 }
 
 -(void)play {
+    WeakSelf(weakSelf)
     if(![self.localMediaContent isDownloaded]) {
-        NSLog(@"no downloaded yet");
+        [SVProgressHUD showWithStatus:@"loading ..."];
+        [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
+            [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"loading %f ... ", progress]];
+        } completionBlock:^(BOOL completed) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf loadFromLocal];
+                [SVProgressHUD dismiss];
+            });
+        }];
         return;
     }
+    [self loadFromLocal];
+}
 
+-(void)loadFromLocal {
     if(self.webView == NULL) {
         self.webView = [UIWebView new];
         [self addSubview:self.webView];
         [self.webView autoPinEdgesToSuperviewMargins];
     }
-
+    
     NSURL* url = [NSURL  fileURLWithPath:self.localMediaContent.localFilePath];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
-
 @end

@@ -19,16 +19,30 @@
 
 -(void)play {
     if(![self.localMediaContent isDownloaded]) {
-        NSLog(@"no downloaded yet");
+        WeakSelf(weakSelf)
+        [SVProgressHUD showWithStatus:@"loading ..."];
+        [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
+            [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"loading %0.2f%% ... ", progress*100.]];
+        } completionBlock:^(BOOL completed) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf loadFromLocal];
+                [SVProgressHUD dismiss];
+            });
+        }];
         return;
     }
+    [self loadFromLocal];
+}
+
+-(void)loadFromLocal
+{
     if(self.imgView == NULL) {
         self.imgView = [UIImageView new];
         [self.imgView setContentMode:UIViewContentModeScaleAspectFill];
         [self addSubview:self.imgView];
-//        [self.imgView autoPinEdgesToSuperviewMargins];
+        //        [self.imgView autoPinEdgesToSuperviewMargins];
     }
-
+    
     UIImage* img = [UIImage imageWithContentsOfFile:self.localMediaContent.localFilePath];
     self.imgView.image = img;
     [self layoutSubviews];
