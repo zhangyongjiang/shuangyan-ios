@@ -114,8 +114,15 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     [super setLocalMediaContent:localMediaContent];
-    [localMediaContent getPlaceholderImageForVideo:^(UIImage *image) {
-        self.thumbnailImgView.image = image;
-    }];
+    [SVProgressHUD show];
+    [localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
+    } completionBlock:^(BOOL completed) {
+        [localMediaContent getPlaceholderImageForVideo:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.thumbnailImgView.image = image;
+                [SVProgressHUD dismiss];
+            });
+        }];
+    } forShards:0,1,localMediaContent.numOfShards-1,-1];
 }
 @end

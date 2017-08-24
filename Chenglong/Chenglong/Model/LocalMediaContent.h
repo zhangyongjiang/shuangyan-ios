@@ -37,7 +37,7 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
                    completionBlock:(void(^)(BOOL completed))completionBlock;
 
--(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
+-(id) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock
                         forShards:(int)shard, ...;
 

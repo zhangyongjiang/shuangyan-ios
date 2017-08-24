@@ -24,12 +24,21 @@
 
 -(void)downloadWithCompletionBlock:(CompletionCallback)completionBlock
 {
+    while(self.shards.count>0) {
+        LocalMediaContentShard* shard = [self.shards objectAtIndex:0];
+        if(shard.isDownloaded)
+            [self.shards removeObjectAtIndex:0];
+        else
+            break;
+    }
     if(self.shards.count == 0) {
+        if(completionBlock != NULL) {
+            completionBlock(YES);
+        }
         return;
     }
     __block CompletionCallback block = completionBlock;
     LocalMediaContentShard* shard = [self.shards objectAtIndex:0];
-    [self.shards removeObjectAtIndex:0];
     [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
         
     } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
@@ -40,12 +49,7 @@
             }
             return;
         }
-        if(self.shards.count == 0) {
-            if(block != NULL) {
-                block(completed);
-            }
-        }
-        else {
+        if(self.shards.count != 0) {
             [self downloadWithCompletionBlock:block];
         }
     } enableBackgroundMode:YES];

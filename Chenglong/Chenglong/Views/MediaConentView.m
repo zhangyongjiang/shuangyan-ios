@@ -75,17 +75,17 @@
         } enableBackgroundMode:YES];
     }
     else if ([MediaConentView isVideo:self.localMediaContent]) {
-        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
-        LocalMediaContentShard* shard1 = [self.localMediaContent getShard:1];
-        LocalMediaContentShard* shard2 = [self.localMediaContent getShard:2];
-        LocalMediaContentShard* shardLast = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];
         NSMutableArray* array = [NSMutableArray new];
+        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
         if(!shard.isDownloaded)
             [array addObject:shard];
-        if(!shard1.isDownloaded)
-            [array addObject:shard1];
-        if(!shard2.isDownloaded)
-            [array addObject:shard2];
+        LocalMediaContentShard* shard1 = [self.localMediaContent getShard:1];
+                if(!shard1.isDownloaded)
+                    [array addObject:shard1];
+//        LocalMediaContentShard* shard2 = [self.localMediaContent getShard:2];
+        //        if(!shard2.isDownloaded)
+        //            [array addObject:shard2];
+        LocalMediaContentShard* shardLast = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];        
         if(!shardLast.isDownloaded)
             [array addObject:shardLast];
         if(array.count==0) {
@@ -95,6 +95,7 @@
             __block LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
             [group downloadWithCompletionBlock:^(BOOL completed) {
                 [SVProgressHUD dismiss];
+                NSLog(@"%@", group);
                 dispatch_async(dispatch_get_main_queue(), ^ {
                     [self play];
                 });

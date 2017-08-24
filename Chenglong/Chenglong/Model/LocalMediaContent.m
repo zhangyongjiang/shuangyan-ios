@@ -156,7 +156,7 @@
     } enableBackgroundMode:YES];
 }
 
--(void)downloadWithProgressBlock:(void (^)(CGFloat))progressBlock completionBlock:(void (^)(BOOL))completionBlock forShards:(int)shard, ...
+-(LocalMediaContentShardGroup*)downloadWithProgressBlock:(void (^)(CGFloat))progressBlock completionBlock:(void (^)(BOOL))completionBlock forShards:(int)shard, ...
 {
     NSMutableArray<LocalMediaContentShard*>* shards = [NSMutableArray new];
     va_list args;   va_start(args, shard);
@@ -167,6 +167,7 @@
     
     LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:shards];
     [group downloadWithCompletionBlock:completionBlock];
+    return group;
 }
 
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
