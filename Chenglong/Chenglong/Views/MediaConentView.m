@@ -29,7 +29,7 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor whiteColor];
     
     self.btnDownload = [UIButton new];
     [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];
@@ -193,7 +193,6 @@
     view.localMediaContent = localMediaContent;
     
     view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
-    view.backgroundColor = [UIColor colorFromRGB:0xeeeeee];
     view.clipsToBounds = YES;
 //    view.layer.cornerRadius = 5;
 //    view.layer.borderWidth = 1;

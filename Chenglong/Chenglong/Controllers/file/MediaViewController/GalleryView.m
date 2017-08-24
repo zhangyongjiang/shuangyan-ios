@@ -26,11 +26,11 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     currentPlay = 0;
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor whiteColor];
     self.contentMode = UIViewContentModeScaleAspectFill;
 
     self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
-    self.scrollView.backgroundColor = [UIColor blackColor];
+    self.scrollView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.scrollView];
     self.scrollView.pagingEnabled = true;
     self.scrollView.scrollsToTop = false;
@@ -67,7 +67,6 @@
     for (int i=0; i<mediaContents.count; i++) {
         CGFloat x = i * self.width;
         MediaConentView* view = [MediaConentView createViewForMediaContent:[mediaContents objectAtIndex:i]];
-        view.backgroundColor = [UIColor blackColor];
         view.frame = CGRectMake(x, 0, self.width, self.height);
         view.clipsToBounds = YES;
         [self.mediaViews addObject:view];
