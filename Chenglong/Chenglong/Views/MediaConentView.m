@@ -31,17 +31,17 @@
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor blackColor];
     
-//    self.btnDownload = [UIButton new];
-//    [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];
-//    self.btnDownload.backgroundColor = [UIColor mainColor];
-//    [self addSubview:self.btnDownload];
-//    [self.btnDownload autoCenterInSuperview];
-//    [self.btnDownload autoSetDimensionsToSize:CGSizeMake([UIView screenWidth]/1.5, 40.)];
-//    [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
+    self.btnDownload = [UIButton new];
+    [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];
+    self.btnDownload.backgroundColor = [UIColor mainColor];
+    [self addSubview:self.btnDownload];
+    [self.btnDownload autoCenterInSuperview];
+    [self.btnDownload autoSetDimensionsToSize:CGSizeMake([UIView screenWidth]/1.5, 40.)];
+    [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
     
-    self.controlView = [[PlayerControlView alloc] initWithFrame:self.bounds];
-    [self addSubview:self.controlView];
-    [self.controlView autoPinEdgesToSuperviewMargins];
+//    self.controlView = [[PlayerControlView alloc] initWithFrame:self.bounds];
+//    [self addSubview:self.controlView];
+//    [self.controlView autoPinEdgesToSuperviewMargins];
     
     return self;
 }

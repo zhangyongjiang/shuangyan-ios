@@ -32,7 +32,19 @@
     File* f = [[File alloc] initWithFullPath:parentFilePath];
     if(!f.exists)
         return NO;
-    return f.length>=(self.offset+self.expectedDownloadSize);
+    BOOL enough = (f.length>=(self.offset+self.expectedDownloadSize));
+    if(!enough)
+        return NO;
+    int len = 10;
+    NSData* data = [f getDataAtOffset:self.offset length:len];
+    if(!enough || data.length < len)
+        return NO;
+    uint8_t* buff = data.bytes;
+    int total=0;
+    for(int i=0; i<len; i++) {
+        total += buff[i];
+    }
+    return total!=45;
 }
 
 -(BOOL)isInShard
@@ -198,15 +210,23 @@
     
     NSString* parentPath = self.localMediaContent.localFilePath;
     File* file = [[File alloc] initWithFullPath:parentPath];
-    if(file.exists ) {
-        if(file.length != self.offset) {
-            NSLog(@"current shard is not the next one at %@", self.localMediaContent.localFilePath);
-            return;
+    if(!file.exists ) {
+        [file createFile];
+    }
+    if(file.length < self.offset) {
+        long len = self.offset - file.length;
+        uint8_t *bytes = malloc(sizeof(uint8_t) * len);
+        for(int i=0; i<len; i++) {
+            *(bytes+i) = i%10;
         }
+        NSData* data = [NSData dataWithBytes:bytes length:len];
+        NSFileHandle*  fileHandle = [NSFileHandle fileHandleForWritingAtPath:parentPath];
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:data];
+        [fileHandle closeFile];
+        free(bytes);
     }
-    else {
-        [[NSFileManager defaultManager] createFileAtPath:parentPath contents:nil attributes:nil];
-    }
+    
     NSLog(@"append shard %i/%i data to %@ at offset %ld", self.shard, self.localMediaContent.numOfShards, parentPath, self.offset);
     NSData* content = [NSData dataWithContentsOfFile:self.localFilePath];
     NSFileHandle*  fileHandle = [NSFileHandle fileHandleForWritingAtPath:parentPath];

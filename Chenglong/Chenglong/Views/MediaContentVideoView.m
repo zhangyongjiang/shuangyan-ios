@@ -25,7 +25,7 @@
     self = [super initWithFrame:frame];
     
     self.thumbnailImgView = [[UIImageView alloc] initWithFrame:self.bounds];
-    self.thumbnailImgView.contentMode = UIViewContentModeCenter;
+    self.thumbnailImgView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:self.thumbnailImgView];
     [self.thumbnailImgView autoPinEdgesToSuperviewMargins];
     

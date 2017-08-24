@@ -161,4 +161,18 @@
     NSFileManager* fm = [NSFileManager defaultManager];
     [fm removeItemAtPath:self.fullPath error:nil];
 }
+
+-(void)createFile
+{
+    [[NSFileManager defaultManager] createFileAtPath:self.fullPath contents:nil attributes:nil];
+}
+
+-(NSData *)getDataAtOffset:(long)offset length:(int)len
+{
+    NSFileHandle*  fileHandle = [NSFileHandle fileHandleForReadingAtPath:self.fullPath];
+    [fileHandle seekToFileOffset:offset];
+    NSData *data = [fileHandle readDataOfLength:len];
+    return data;
+
+}
 @end

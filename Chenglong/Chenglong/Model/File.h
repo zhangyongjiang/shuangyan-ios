@@ -27,6 +27,8 @@
 -(void)remove;
 +(NSString*)homeDir;
 +(NSString*)mediaHomeDir;
+-(void)createFile;
+-(NSData *)getDataAtOffset:(long)offset length:(int)len;
 
 @property(strong, nonatomic) NSString* dir;
 @property(strong, nonatomic) NSString* name;
