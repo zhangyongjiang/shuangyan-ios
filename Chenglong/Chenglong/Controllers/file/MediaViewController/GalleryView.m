@@ -39,7 +39,7 @@
     self.scrollView.delegate = self;
     
     self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, frame.size.height*0.90, frame.size.width, 50*[UIView scale])];
-    self.pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor colorFromString:@"nsred"];
 
     [self addSubview:self.pageControl];
@@ -67,6 +67,7 @@
     for (int i=0; i<mediaContents.count; i++) {
         CGFloat x = i * self.width;
         MediaConentView* view = [MediaConentView createViewForMediaContent:[mediaContents objectAtIndex:i]];
+        view.backgroundColor = [UIColor blackColor];
         view.frame = CGRectMake(x, 0, self.width, self.height);
         view.clipsToBounds = YES;
         [self.mediaViews addObject:view];

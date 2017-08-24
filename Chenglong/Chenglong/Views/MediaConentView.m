@@ -14,11 +14,13 @@
 #import "PureLayout.h"
 #import "LocalMediaContentShard.h"
 #import "LocalMediaContentShardGroup.h"
+#import "PlayerControlView.h"
 
 @interface MediaConentView()
 {
     DeleteCallback deleteCallback;
 }
+@property(strong,nonatomic)PlayerControlView* controlView;
 
 @end
 
@@ -29,15 +31,24 @@
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor blackColor];
     
-    self.btnDownload = [UIButton new];
-    [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];
-    self.btnDownload.backgroundColor = [UIColor mainColor];
-    [self addSubview:self.btnDownload];
-    [self.btnDownload autoCenterInSuperview];
-    [self.btnDownload autoSetDimensionsToSize:CGSizeMake([UIView screenWidth]/1.5, 40.)];
-    [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
+//    self.btnDownload = [UIButton new];
+//    [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];
+//    self.btnDownload.backgroundColor = [UIColor mainColor];
+//    [self addSubview:self.btnDownload];
+//    [self.btnDownload autoCenterInSuperview];
+//    [self.btnDownload autoSetDimensionsToSize:CGSizeMake([UIView screenWidth]/1.5, 40.)];
+//    [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.controlView = [[PlayerControlView alloc] initWithFrame:self.bounds];
+    [self addSubview:self.controlView];
+    [self.controlView autoPinEdgesToSuperviewMargins];
     
     return self;
+}
+
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    self.controlView.frame = self.bounds;
 }
 
 -(void)play {

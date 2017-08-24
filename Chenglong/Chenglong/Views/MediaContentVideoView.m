@@ -15,12 +15,19 @@
     MediaPlayer* player;
     AVPlayerLayer *layer;
 }
+
+@property(strong,nonatomic)UIImageView* thumbnailImgView;
 @end
 
 @implementation MediaContentVideoView
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    
+    self.thumbnailImgView = [[UIImageView alloc] initWithFrame:self.bounds];
+    [self addSubview:self.thumbnailImgView];
+    [self.thumbnailImgView autoPinEdgesToSuperviewMargins];
+    
     [self addTarget:self action:@selector(clicked)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -101,4 +108,8 @@
     }
 }
 
+-(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
+    [super setLocalMediaContent:localMediaContent];
+//    self.thumbnailImgView.image = [localMediaContent getPlaceholderImageForVideo];
+}
 @end

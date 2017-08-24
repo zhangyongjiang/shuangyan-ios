@@ -355,4 +355,33 @@
     CMTime duration = sourceAsset.duration;
     return duration;
 }
+
++(UIImage *)getPlaceholderImageFromVideo:(NSURL *)url {
+    AVAsset *asset = [AVAsset assetWithURL:url];
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    CMTime time = [asset duration];
+    time.value = 0;
+    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
+    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    return thumbnail;
+}
+
+-(UIImage *)getPlaceholderImageForVideo {
+    NSURL *url = [NSURL fileURLWithPath:self.localFilePath];
+    UIImage *thumbnail = [LocalMediaContent getPlaceholderImageFromVideo:url];
+    if(thumbnail == NULL) {
+        url = [NSURL URLWithString:self.urlWithToken];
+        thumbnail = [LocalMediaContent getPlaceholderImageFromVideo:url];
+    }
+    
+    return thumbnail;
+}
+
+-(NSString*)urlWithToken {
+    NSString* url = self.url;
+    if(![url containsString:@"aliyuncs.com"])
+        url = [NSString stringWithFormat:@"%@&access_token=%@", url, AppDelegate.userAccessToken];
+    return url;
+}
 @end
