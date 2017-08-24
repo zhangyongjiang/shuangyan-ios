@@ -8,6 +8,7 @@
 
 #import "LocalMediaContent.h"
 #import "TWRDownloadManager.h"
+#import "LocalMediaContentShardGroup.h"
 
 @interface LocalMediaContent()
 {
@@ -153,6 +154,19 @@
     } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
         completionBlock(completed);
     } enableBackgroundMode:YES];
+}
+
+-(void)downloadWithProgressBlock:(void (^)(CGFloat))progressBlock completionBlock:(void (^)(BOOL))completionBlock forShards:(int)shard, ...
+{
+    NSMutableArray<LocalMediaContentShard*>* shards = [NSMutableArray new];
+    va_list args;   va_start(args, shard);
+    for (int arg = shard;  arg != -1; arg = va_arg( args, int)) {
+        [shards addObject:[self getShard:arg]];
+    }
+    va_end(args);
+    
+    LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:shards];
+    [group downloadWithCompletionBlock:completionBlock];
 }
 
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
@@ -367,15 +381,16 @@
     return thumbnail;
 }
 
--(UIImage *)getPlaceholderImageForVideo {
+-(void)getPlaceholderImageForVideo:(void(^)(UIImage* image))completionBlock {
     NSURL *url = [NSURL fileURLWithPath:self.localFilePath];
     UIImage *thumbnail = [LocalMediaContent getPlaceholderImageFromVideo:url];
     if(thumbnail == NULL) {
         url = [NSURL URLWithString:self.urlWithToken];
         thumbnail = [LocalMediaContent getPlaceholderImageFromVideo:url];
     }
-    
-    return thumbnail;
+    else {
+        completionBlock(thumbnail);
+    }
 }
 
 -(NSString*)urlWithToken {

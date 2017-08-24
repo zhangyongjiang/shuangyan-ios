@@ -37,10 +37,15 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
                    completionBlock:(void(^)(BOOL completed))completionBlock;
 
+-(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
+                  completionBlock:(void(^)(BOOL completed))completionBlock
+                        forShards:(int)shard, ...;
+
+
 -(BOOL)isSingleShard;
 -(int)numOfShards;
 -(id)getShard:(int)shard;
 -(NSString*)urlWithToken;
--(UIImage *)getPlaceholderImageForVideo;
+-(void)getPlaceholderImageForVideo:(void(^)(UIImage* image))completionBlock;
 
 @end

@@ -25,6 +25,7 @@
     self = [super initWithFrame:frame];
     
     self.thumbnailImgView = [[UIImageView alloc] initWithFrame:self.bounds];
+    self.thumbnailImgView.contentMode = UIViewContentModeCenter;
     [self addSubview:self.thumbnailImgView];
     [self.thumbnailImgView autoPinEdgesToSuperviewMargins];
     
@@ -59,7 +60,9 @@
 
 -(void)clicked {
     NSLog(@"clicked");
-    if([player isPlaying])
+    if(!player)
+        [self play];
+    else if([player isPlaying])
         [player pause];
     else
         [player play];
@@ -77,6 +80,7 @@
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
         [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+        self.thumbnailImgView.hidden = YES;
         return;
     }
     if([player isPlaying]) {
@@ -110,6 +114,8 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     [super setLocalMediaContent:localMediaContent];
-//    self.thumbnailImgView.image = [localMediaContent getPlaceholderImageForVideo];
+    [localMediaContent getPlaceholderImageForVideo:^(UIImage *image) {
+        self.thumbnailImgView.image = image;
+    }];
 }
 @end
