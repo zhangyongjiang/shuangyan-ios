@@ -382,16 +382,10 @@
     return thumbnail;
 }
 
--(void)getPlaceholderImageForVideo:(void(^)(UIImage* image))completionBlock {
+-(UIImage *)getPlaceholderImageForVideo{
     NSURL *url = [NSURL fileURLWithPath:self.localFilePath];
     UIImage *thumbnail = [LocalMediaContent getPlaceholderImageFromVideo:url];
-//    if(thumbnail == NULL) {
-//        url = [NSURL URLWithString:self.urlWithToken];
-//        thumbnail = [LocalMediaContent getPlaceholderImageFromVideo:url];
-//    }
-//    else {
-        completionBlock(thumbnail);
-//    }
+    return thumbnail;
 }
 
 -(NSString*)urlWithToken {

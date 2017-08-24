@@ -9,6 +9,7 @@
 #import "MediaContentVideoView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MediaPlayer.h"
+#import "LocalMediaContentShard.h"
 
 @interface MediaContentVideoView()
 {
@@ -114,15 +115,96 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     [super setLocalMediaContent:localMediaContent];
-    [SVProgressHUD show];
-    [localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
-    } completionBlock:^(BOOL completed) {
-        [localMediaContent getPlaceholderImageForVideo:^(UIImage *image) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.thumbnailImgView.image = image;
-                [SVProgressHUD dismiss];
-            });
-        }];
-    } forShards:0,1,localMediaContent.numOfShards-1,-1];
+    [self showVideoCoverImage];
+//    [SVProgressHUD show];
+//    __block LocalMediaContent * blockMediaContent = localMediaContent;
+//    WeakSelf(weakSelf)
+//    [localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
+//    } completionBlock:^(BOOL completed) {
+//        [blockMediaContent getPlaceholderImageForVideo:^(UIImage *image) {
+//            if(image) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    weakSelf.thumbnailImgView.image = image;
+//                    [SVProgressHUD dismiss];
+//                });
+//            }
+//            else {
+//                [blockMediaContent downloadWithProgressBlock:^(CGFloat progress) {
+//                } completionBlock:^(BOOL completed) {
+//                    [blockMediaContent getPlaceholderImageForVideo:^(UIImage *image) {
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            weakSelf.thumbnailImgView.image = image;
+//                            [SVProgressHUD dismiss];
+//                        });
+//                    }];
+//                } forShards:2,-1];
+//            }
+//        }];
+//    } forShards:0,1,blockMediaContent.numOfShards-1,-1];
+}
+
+-(void)showVideoCoverImage
+{
+    WeakSelf(weakSelf)
+    
+    LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
+    if(!shard.isDownloaded) {
+        [SVProgressHUD show];
+        [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            
+        } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+            [weakSelf showVideoCoverImage];
+        } enableBackgroundMode:YES];
+        return;
+    }
+    
+    shard = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];
+    if(!shard.isDownloaded) {
+        [SVProgressHUD show];
+        [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            
+        } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+            [weakSelf showVideoCoverImage];
+        } enableBackgroundMode:YES];
+        return;
+    }
+    
+    UIImage *image = [self.localMediaContent getPlaceholderImageForVideo];
+    if(image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.thumbnailImgView.image = image;
+            [SVProgressHUD dismiss];
+        });
+        return;
+    }
+
+    shard = [self.localMediaContent getShard:self.localMediaContent.numOfShards-2];
+    if(!shard.isDownloaded) {
+        [SVProgressHUD show];
+        [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            
+        } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+            [weakSelf showVideoCoverImage];
+        } enableBackgroundMode:YES];
+        return;
+    }
+
+    int maxShard = self.localMediaContent.numOfShards-1;
+    for(int i=1; i<maxShard;i++) {
+        shard = [self.localMediaContent getShard:i];
+        if(shard.isDownloaded) {
+            continue;
+        }
+        else {
+            [SVProgressHUD show];
+            [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+                
+            } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+                [weakSelf showVideoCoverImage];
+            } enableBackgroundMode:YES];
+            return;
+        }
+    }
+    [SVProgressHUD dismiss];
 }
 @end

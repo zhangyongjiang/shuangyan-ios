@@ -46,6 +46,6 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(int)numOfShards;
 -(id)getShard:(int)shard;
 -(NSString*)urlWithToken;
--(void)getPlaceholderImageForVideo:(void(^)(UIImage* image))completionBlock;
+-(UIImage *)getPlaceholderImageForVideo;
 
 @end
