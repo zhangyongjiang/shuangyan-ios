@@ -27,8 +27,6 @@
 -(void)stop;
 -(BOOL)isPlaying;
 -(void)removeTask:(LocalMediaContent*)mc;
--(void)background;
--(void)foreground;
 
 -(CGFloat)currentTaskDuration;
 

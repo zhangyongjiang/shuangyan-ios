@@ -35,6 +35,10 @@ MediaPlayer* gMediaPlayer;
     gMediaPlayer = self;
     self.tasks = [NSMutableArray new];
     self.current = 0;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+
     return self;
 }
 
@@ -178,13 +182,13 @@ MediaPlayer* gMediaPlayer;
     [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
 }
 
--(void)background
+-(void)background:(NSNotification*)noti
 {
     [self.layer removeFromSuperlayer];
     self.layer = nil;
 }
 
--(void)foreground
+-(void)foreground:(NSNotification*)noti 
 {
     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];    
     [self.attachedView.layer addSublayer:self.layer];

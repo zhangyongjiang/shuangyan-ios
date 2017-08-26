@@ -32,18 +32,7 @@
     
     [self addTarget:self action:@selector(clicked)];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-    
     return self;
-}
-
--(void)background:(NSNotification*)noti {
-    [player background];
-}
-
--(void)foreground:(NSNotification*)noti {
-    [player foreground];
 }
 
 -(void)dealloc {
