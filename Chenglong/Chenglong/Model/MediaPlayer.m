@@ -36,6 +36,12 @@ MediaPlayer* gMediaPlayer;
     self.tasks = [NSMutableArray new];
     self.current = 0;
     
+    self.avplayer = [[AVQueuePlayer alloc] init];
+    self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
+    if([[UIDevice currentDevice] systemVersion].intValue>=10){
+        self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
+    }
+    
     self.slider = [UISlider new];
     self.slider.userInteractionEnabled = YES;
     [self.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -91,25 +97,11 @@ MediaPlayer* gMediaPlayer;
              [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
              PlayTask* task = [self.tasks objectAtIndex:self.current];
              task.item = item;
-             if(self.avplayer == nil) {
-                 dispatch_async(dispatch_get_main_queue(), ^ {
-                     self.avplayer = [[AVQueuePlayer alloc] initWithPlayerItem:item];
-                     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
-
-                     if([[UIDevice currentDevice] systemVersion].intValue>=10){
-                         self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
-                     }
-                     [self.avplayer play];
-                     [self setAttachedView:self.attachedView];
-                 });
-             }
-             else {
-                 dispatch_async(dispatch_get_main_queue(), ^ {
-                     [self.avplayer replaceCurrentItemWithPlayerItem:item];
-                     [self.avplayer play];
-                     [self setAttachedView:self.attachedView];
-                 });
-             }
+             dispatch_async(dispatch_get_main_queue(), ^ {
+                 [self.avplayer replaceCurrentItemWithPlayerItem:item];
+                 [self.avplayer play];
+                 [self setAttachedView:self.attachedView];
+             });
          }];
 }
 
@@ -187,9 +179,9 @@ MediaPlayer* gMediaPlayer;
     [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
     
     [self.slider removeFromSuperview];
-    self.slider.width = attachedView.width * 0.75f;
+    self.slider.width = attachedView.width * 0.8f;
     self.slider.bottom = attachedView.height - Margin;
-    self.slider.x = attachedView.width * 0.125f;
+    self.slider.x = attachedView.width * 0.1f;
     [attachedView addSubview:self.slider];
 }
 
