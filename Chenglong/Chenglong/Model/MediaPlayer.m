@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSMutableArray* tasks;
 @property (assign, nonatomic) int current;
 @property (strong, nonatomic) AVPlayerLayer* layer;
-
+@property (strong, nonatomic) UISlider* slider;
 
 @end
 
@@ -35,6 +35,10 @@ MediaPlayer* gMediaPlayer;
     gMediaPlayer = self;
     self.tasks = [NSMutableArray new];
     self.current = 0;
+    
+    self.slider = [UISlider new];
+    self.slider.userInteractionEnabled = YES;
+    [self.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -84,6 +88,7 @@ MediaPlayer* gMediaPlayer;
              }
              
              AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
              PlayTask* task = [self.tasks objectAtIndex:self.current];
              task.item = item;
              if(self.avplayer == nil) {
@@ -180,6 +185,12 @@ MediaPlayer* gMediaPlayer;
     [attachedView.layer addSublayer:self.layer];
     self.layer.backgroundColor = [UIColor clearColor].CGColor;
     [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    
+    [self.slider removeFromSuperview];
+    self.slider.width = attachedView.width * 0.75f;
+    self.slider.bottom = attachedView.height - Margin;
+    self.slider.x = attachedView.width * 0.125f;
+    [attachedView addSubview:self.slider];
 }
 
 -(void)background:(NSNotification*)noti
@@ -188,7 +199,7 @@ MediaPlayer* gMediaPlayer;
     self.layer = nil;
 }
 
--(void)foreground:(NSNotification*)noti 
+-(void)foreground:(NSNotification*)noti
 {
     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];    
     [self.attachedView.layer addSublayer:self.layer];
@@ -196,4 +207,15 @@ MediaPlayer* gMediaPlayer;
     self.layer.backgroundColor = [UIColor clearColor].CGColor;
     [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
 }
+
+-(void)playerDidFinishPlaying:(NSNotification*)noti
+{
+    [self setCurrentTime:1];
+    [self play];
+}
+
+-(void)sliderValueChanged:(UISlider *)sender {
+    [self setCurrentTime:sender.value];
+}
+
 @end

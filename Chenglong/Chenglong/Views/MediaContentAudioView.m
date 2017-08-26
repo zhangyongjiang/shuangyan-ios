@@ -13,7 +13,6 @@
 {
     MediaPlayer *player;
     NSTimer* timer;
-    UISlider* slider;
 }
 @end
 
@@ -21,12 +20,6 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    slider = [UISlider new];
-    slider.userInteractionEnabled = YES;
-    [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-
-    [self addSubview:slider];
-    
     return self;
 }
 
@@ -50,8 +43,6 @@
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
-        CMTime t = self.localMediaContent.duration;
-        slider.maximumValue = t.value / t.timescale;
 //        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         
         WeakSelf(weakSelf)
@@ -79,25 +70,12 @@
     float total = [player currentTaskDuration];
     float current = [player currentTime];
     float progress = current / total;
-    slider.value = player.currentTime;
     if(![player isPlaying]) {
 //        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
         if((total-current)<0.001) {
             [player setCurrentTime:0];
         }
     }
-}
-
-
--(void)layoutSubviews {
-    [super layoutSubviews];
-    slider.width = self.width * 0.75f;
-    slider.bottom = self.height - Margin;
-    slider.x = self.width * 0.125f;
-}
-
--(void)sliderValueChanged:(UISlider *)sender {
-    player.currentTime = sender.value;
 }
 
 -(BOOL)isPlaying
