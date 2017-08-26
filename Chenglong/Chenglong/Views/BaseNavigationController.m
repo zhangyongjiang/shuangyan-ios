@@ -28,8 +28,10 @@
 
 -(UIViewController*)popViewControllerAnimated:(BOOL)animated {
     UIViewController* c = [super popViewControllerAnimated:animated];
-    if(c)
+    if(c) {
+        [SVProgressHUD dismiss];
        [[NSNotificationCenter defaultCenter] removeObserver:c];
+    }
     return c;
 }
 

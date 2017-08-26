@@ -52,7 +52,7 @@
         [player playTask:task];
         CMTime t = self.localMediaContent.duration;
         slider.maximumValue = t.value / t.timescale;
-        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+//        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         
         WeakSelf(weakSelf)
         timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
@@ -60,7 +60,7 @@
         return;
     }
     if([player isPlaying]) {
-        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
+//        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
         [player pause];
     }
     else {
@@ -69,7 +69,7 @@
         if((total-current)<0.001) {
             [player setCurrentTime:0];
         }
-        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+//        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         [player play];
     }
 }
@@ -81,7 +81,7 @@
     float progress = current / total;
     slider.value = player.currentTime;
     if(![player isPlaying]) {
-        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
+//        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
         if((total-current)<0.001) {
             [player setCurrentTime:0];
         }

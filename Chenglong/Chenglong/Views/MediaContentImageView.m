@@ -69,8 +69,8 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)mediaContent {
     [super setLocalMediaContent:mediaContent];
-    if([mediaContent isDownloaded])
-        self.btnDownload.hidden = YES;
+//    if([mediaContent isDownloaded])
+//        self.btnDownload.hidden = YES;
 }
 
 @end

@@ -31,13 +31,13 @@
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor whiteColor];
     
-    self.btnDownload = [UIButton new];
-    [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];
-    self.btnDownload.backgroundColor = [UIColor mainColor];
-    [self addSubview:self.btnDownload];
-    [self.btnDownload autoCenterInSuperview];
-    [self.btnDownload autoSetDimensionsToSize:CGSizeMake([UIView screenWidth]/1.5, 40.)];
-    [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
+//    self.btnDownload = [UIButton new];
+//    [self.btnDownload setTitle:@"下载" forState:UIControlStateNormal];
+//    self.btnDownload.backgroundColor = [UIColor mainColor];
+//    [self addSubview:self.btnDownload];
+//    [self.btnDownload autoCenterInSuperview];
+//    [self.btnDownload autoSetDimensionsToSize:CGSizeMake([UIView screenWidth]/1.5, 40.)];
+//    [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
     
 //    self.controlView = [[PlayerControlView alloc] initWithFrame:self.bounds];
 //    [self addSubview:self.controlView];
@@ -79,9 +79,9 @@
         LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
         if(!shard.isDownloaded)
             [array addObject:shard];
-        LocalMediaContentShard* shard1 = [self.localMediaContent getShard:1];
-                if(!shard1.isDownloaded)
-                    [array addObject:shard1];
+//        LocalMediaContentShard* shard1 = [self.localMediaContent getShard:1];
+//                if(!shard1.isDownloaded)
+//                    [array addObject:shard1];
 //        LocalMediaContentShard* shard2 = [self.localMediaContent getShard:2];
         //        if(!shard2.isDownloaded)
         //            [array addObject:shard2];
@@ -148,12 +148,12 @@
         downloaded = -100. * progress / self.localMediaContent.length.floatValue;
     }
     NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.localMediaContent.length];
-    [self.btnDownload setTitle:txt forState:UIControlStateNormal];
+//    [self.btnDownload setTitle:txt forState:UIControlStateNormal];
 }
 
 -(void)downloadCompleted
 {
-    [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
+//    [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
     if (![MediaConentView isAudio:self.localMediaContent] &&
         ![MediaConentView isVideo:self.localMediaContent]) {
         [self play];
@@ -206,14 +206,14 @@
     BOOL downloaded = [localMediaContent isDownloaded];
     
     if(downloaded) {
-        [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
+//        [self.btnDownload setTitle:@"Play" forState:UIControlStateNormal];
     }
     else {
         CGFloat progress = 0.;
         if(localMediaContent.length.floatValue>1)
             progress = ((CGFloat)localMediaContent.currentLocalFileLength) /localMediaContent.length.floatValue * 100.;
         NSString* txt = [NSString stringWithFormat:@"下载 %.2f%% of %@", progress, localMediaContent.length];
-        [self.btnDownload setTitle:txt forState:UIControlStateNormal];
+//        [self.btnDownload setTitle:txt forState:UIControlStateNormal];
         [self.localMediaContent isDownloadingProgressBlock:^(CGFloat progress) {
             [self downloadInProgress:progress];
         } completionBlock:^(BOOL completed) {

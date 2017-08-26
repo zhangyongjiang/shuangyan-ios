@@ -80,16 +80,16 @@
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
-        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+//        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         self.thumbnailImgView.hidden = YES;
         return;
     }
     if([player isPlaying]) {
-        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
+//        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
         [player pause];
     }
     else {
-        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+//        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         [player setAttachedView:self];
         [player play];
     }
@@ -172,8 +172,12 @@
     UIImage *image = [self.localMediaContent getPlaceholderImageForVideo];
     if(image) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            weakSelf.thumbnailImgView.image = image;
+//            weakSelf.thumbnailImgView.image = image;
+            [weakSelf play];
             [SVProgressHUD dismiss];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+                [player pause];
+            });
         });
         return;
     }

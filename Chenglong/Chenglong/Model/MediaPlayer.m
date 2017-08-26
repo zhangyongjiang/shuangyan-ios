@@ -177,4 +177,5 @@ MediaPlayer* gMediaPlayer;
     self.layer.backgroundColor = [UIColor clearColor].CGColor;
     [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
 }
+
 @end
