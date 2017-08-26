@@ -39,9 +39,10 @@
 //    [self.btnDownload autoSetDimensionsToSize:CGSizeMake([UIView screenWidth]/1.5, 40.)];
 //    [self.btnDownload addTarget:self action:@selector(downloadOrPlay) forControlEvents:UIControlEventTouchUpInside];
     
-//    self.controlView = [[PlayerControlView alloc] initWithFrame:self.bounds];
-//    [self addSubview:self.controlView];
-//    [self.controlView autoPinEdgesToSuperviewMargins];
+    self.controlView = [[PlayerControlView alloc] initWithFrame:self.bounds];
+    [self addSubview:self.controlView];
+    [self.controlView autoPinEdgesToSuperviewMargins];
+    [self.controlView.btn addTarget:self action:@selector(downloadOrPlay)];
     
     return self;
 }

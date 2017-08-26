@@ -10,4 +10,9 @@
 
 @interface PlayerControlView : BaseView
 
+@property(strong, nonatomic) UIImageView* btn;
+
+-(void)showPlayButton;
+-(void)showPauseButton;
+
 @end

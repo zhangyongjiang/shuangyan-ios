@@ -10,7 +10,6 @@
 
 @interface PlayerControlView()
 
-@property(strong, nonatomic) UIImageView* btn;
 
 @end
 
@@ -23,16 +22,22 @@
     
     self.btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     self.btn.contentMode = UIViewContentModeCenter;
+    self.btn.userInteractionEnabled = YES;
     [self addSubview:self.btn];
     [self.btn autoCenterInSuperview];
-    [self setPlayButton];
+    [self showPlayButton];
     
     return self;
 }
 
--(void)setPlayButton
+-(void)showPlayButton
 {
-    self.btn.image = [UIImage imageNamed:@"button-play"];
+    self.btn.image = [UIImage imageNamed:@"audio-play"];
+}
+
+-(void)showPauseButton
+{
+    self.btn.image = [UIImage imageNamed:@"audio-pause"];
 }
 
 @end

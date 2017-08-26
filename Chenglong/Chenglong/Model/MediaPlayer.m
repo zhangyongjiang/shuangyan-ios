@@ -178,4 +178,18 @@ MediaPlayer* gMediaPlayer;
     [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
 }
 
+-(void)background
+{
+    [self.layer removeFromSuperlayer];
+    self.layer = nil;
+}
+
+-(void)foreground
+{
+    self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];    
+    [self.attachedView.layer addSublayer:self.layer];
+    self.layer.frame = self.attachedView.bounds;
+    self.layer.backgroundColor = [UIColor clearColor].CGColor;
+    [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
+}
 @end

@@ -39,18 +39,11 @@
 }
 
 -(void)background:(NSNotification*)noti {
-    [layer removeFromSuperlayer];
-    layer = nil;
-    [player play];
+    [player background];
 }
 
 -(void)foreground:(NSNotification*)noti {
-    if(layer) return;
-    layer = [AVPlayerLayer playerLayerWithPlayer:player.avplayer];
-    layer.frame = self.bounds;
-    [self.layer addSublayer:layer];
-    layer.backgroundColor = [UIColor clearColor].CGColor;
-    [layer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    [player foreground];
 }
 
 -(void)dealloc {

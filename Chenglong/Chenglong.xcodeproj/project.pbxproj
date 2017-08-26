@@ -145,6 +145,10 @@
 		AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */; };
 		AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEE1F15E7D30016B51E /* PlayTask.m */; };
 		AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD318B4F1EFBF9FD0061E993 /* Dbase.m */; };
+		AD3A7FEB1F5228AE009E632D /* audio-pause.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FE71F5228AE009E632D /* audio-pause.png */; };
+		AD3A7FEC1F5228AE009E632D /* audio-pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FE81F5228AE009E632D /* audio-pause@2x.png */; };
+		AD3A7FED1F5228AE009E632D /* audio-play.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FE91F5228AE009E632D /* audio-play.png */; };
+		AD3A7FEE1F5228AE009E632D /* audio-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FEA1F5228AE009E632D /* audio-play@2x.png */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
 		AD3D94F01EE6772400D2704B /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94EF1EE6772400D2704B /* Page.m */; };
@@ -567,6 +571,10 @@
 		AD2A7BEE1F15E7D30016B51E /* PlayTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayTask.m; sourceTree = "<group>"; };
 		AD318B4E1EFBF9FD0061E993 /* Dbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dbase.h; sourceTree = "<group>"; };
 		AD318B4F1EFBF9FD0061E993 /* Dbase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dbase.m; sourceTree = "<group>"; };
+		AD3A7FE71F5228AE009E632D /* audio-pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-pause.png"; sourceTree = "<group>"; };
+		AD3A7FE81F5228AE009E632D /* audio-pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-pause@2x.png"; sourceTree = "<group>"; };
+		AD3A7FE91F5228AE009E632D /* audio-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-play.png"; sourceTree = "<group>"; };
+		AD3A7FEA1F5228AE009E632D /* audio-play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-play@2x.png"; sourceTree = "<group>"; };
 		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
 		AD3D94D71EE5286100D2704B /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Attach.h"; sourceTree = "<group>"; };
@@ -1842,6 +1850,10 @@
 		ADD117B51EF17C5300EF6E04 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD3A7FE71F5228AE009E632D /* audio-pause.png */,
+				AD3A7FE81F5228AE009E632D /* audio-pause@2x.png */,
+				AD3A7FE91F5228AE009E632D /* audio-play.png */,
+				AD3A7FEA1F5228AE009E632D /* audio-play@2x.png */,
 				AD666AAD1F4E6C9B004F3C9D /* button-pause@2x.png */,
 				AD666AAE1F4E6C9B004F3C9D /* button-play@2x.png */,
 				AD666AAF1F4E6C9B004F3C9D /* button-stop@2x.png */,
@@ -2012,6 +2024,7 @@
 				ADD117C11EF2546400EF6E04 /* like-color@3x.png in Resources */,
 				032C96881E2CA31D001EFC29 /* photo_number_icon@2x.png in Resources */,
 				032C96861E2CA31D001EFC29 /* photo_def_photoPickerVc@2x.png in Resources */,
+				AD3A7FED1F5228AE009E632D /* audio-play.png in Resources */,
 				032C968E1E2CA31D001EFC29 /* TZAssetCell.xib in Resources */,
 				032C968A1E2CA31D001EFC29 /* photo_sel_photoPickerVc_pink@2x.png in Resources */,
 				032C96211E2208B6001EFC29 /* ProfileHeaderCell.xib in Resources */,
@@ -2029,8 +2042,10 @@
 				AD49D82B1F096CE5000D0E1B /* TotalFileHeaderView.xib in Resources */,
 				AD49D8361F096CE5000D0E1B /* ResetPwdView.xib in Resources */,
 				032C968F1E2CA31D001EFC29 /* VideoSendIcon@2x.png in Resources */,
+				AD3A7FEE1F5228AE009E632D /* audio-play@2x.png in Resources */,
 				AD49D8341F096CE5000D0E1B /* RegisterView.xib in Resources */,
 				032C961C1E2207E9001EFC29 /* ProfileUnitCell.xib in Resources */,
+				AD3A7FEB1F5228AE009E632D /* audio-pause.png in Resources */,
 				AD49D81C1F096CE5000D0E1B /* FilePhotoViews.xib in Resources */,
 				032C96841E2CA31D001EFC29 /* MMVideoPreviewPlayHL@2x.png in Resources */,
 				ADD117B81EF17C5300EF6E04 /* file-128.png in Resources */,
@@ -2045,6 +2060,7 @@
 				AD49D8251F096CE5000D0E1B /* FileNoDataView.xib in Resources */,
 				ADD117B91EF17C5300EF6E04 /* folder-128.png in Resources */,
 				AD49D8171F096CE5000D0E1B /* CreatFileTypeCell.xib in Resources */,
+				AD3A7FEC1F5228AE009E632D /* audio-pause@2x.png in Resources */,
 				032C96891E2CA31D001EFC29 /* photo_number_icon@3x.png in Resources */,
 				AD49D83C1F096CE5000D0E1B /* RegisterViewController.xib in Resources */,
 				AD49D8381F096CE5000D0E1B /* LoginViewController.xib in Resources */,
