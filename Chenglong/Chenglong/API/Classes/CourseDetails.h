@@ -14,4 +14,6 @@
 @property(strong, nonatomic) User* user;
 @property(strong, nonatomic) NSMutableArray* items;
 
+@property(strong, nonatomic) CourseDetails* parent;
+
 @end

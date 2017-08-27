@@ -154,6 +154,9 @@
 -(void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item
 {
     CourseDetails *cd = item;
+    CourseDetails* parent = [self getParentOfItem:item];
+    cd.parent = parent;
+    
     if(![cd isDirectory]) {
         FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
         c.courseDetails = cd;

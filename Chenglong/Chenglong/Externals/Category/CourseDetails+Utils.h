@@ -12,5 +12,6 @@
 
 -(BOOL) isDirectory;
 -(BOOL) hasChildren;
+-(CourseDetails*) nextSibling;
 
 @end
