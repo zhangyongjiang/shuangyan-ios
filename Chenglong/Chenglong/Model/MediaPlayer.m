@@ -11,6 +11,7 @@
 
 @interface MediaPlayer()
 
+@property (strong, nonatomic) AVQueuePlayer* avplayer;
 @property (strong, nonatomic) NSMutableArray* tasks;
 @property (assign, nonatomic) int current;
 @property (strong, nonatomic) AVPlayerLayer* layer;
