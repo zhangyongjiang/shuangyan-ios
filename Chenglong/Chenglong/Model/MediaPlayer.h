@@ -10,11 +10,15 @@
 #import "PlayTask.h"
 #import <AVFoundation/AVFoundation.h>
 
+#define RepeatNone  0
+#define RepeatOne   1
+#define RepeatAll   2
+
 @interface MediaPlayer : NSObject
 
 +(MediaPlayer*)shared;
 
-@property(assign, nonatomic)BOOL repeat;
+@property(assign, nonatomic)int repeat;
 @property(assign, nonatomic)CGFloat currentTime;
 @property(weak, nonatomic) UIView* attachedView;
 

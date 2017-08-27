@@ -39,6 +39,7 @@ MediaPlayer* gMediaPlayer;
     self.tasks = [NSMutableArray new];
     self.current = 0;
     self.wantplay = NO;
+    self.repeat = RepeatOne;
     
     self.avplayer = [[AVQueuePlayer alloc] init];
     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
@@ -214,10 +215,26 @@ MediaPlayer* gMediaPlayer;
     NSLog(@"playerDidFinishPlaying");
     WeakSelf(weakSelf)
     dispatch_async(dispatch_get_main_queue(), ^(void) {
-        AVPlayerItem* item = (AVPlayerItem*)noti.object;
-        [item seekToTime:kCMTimeZero];
-        [weakSelf.avplayer replaceCurrentItemWithPlayerItem:item];
-        [weakSelf stop];
+        if(weakSelf.repeat == RepeatNone) {
+            AVPlayerItem* item = (AVPlayerItem*)noti.object;
+            [item seekToTime:kCMTimeZero];
+            [weakSelf.avplayer replaceCurrentItemWithPlayerItem:item];
+            [weakSelf stop];
+        }
+        else if(weakSelf.repeat == RepeatOne) {
+            AVPlayerItem* item = (AVPlayerItem*)noti.object;
+            [item seekToTime:kCMTimeZero];
+            [weakSelf.avplayer replaceCurrentItemWithPlayerItem:item];
+            [weakSelf play];
+        }
+        else if(weakSelf.repeat == RepeatAll) {
+            weakSelf.current ++;
+            if(weakSelf.current >= weakSelf.tasks.count)
+                weakSelf.current = 0;
+            PlayTask* task = [weakSelf.tasks objectAtIndex:weakSelf.current];
+            [weakSelf.avplayer replaceCurrentItemWithPlayerItem:task.item];
+            [weakSelf play];
+        }
     });
 }
 
