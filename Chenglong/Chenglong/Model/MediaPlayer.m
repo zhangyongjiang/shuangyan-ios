@@ -15,6 +15,7 @@
 @property (assign, nonatomic) int current;
 @property (strong, nonatomic) AVPlayerLayer* layer;
 @property (strong, nonatomic) UISlider* slider;
+@property (strong, nonatomic) id timeObserverToken;
 
 @end
 
@@ -41,6 +42,11 @@ MediaPlayer* gMediaPlayer;
     if([[UIDevice currentDevice] systemVersion].intValue>=10){
         self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
     }
+    CMTime interval = CMTimeMake(1, 10);
+    WeakSelf(weakSelf)
+    self.timeObserverToken = [self.avplayer addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
+        [weakSelf playerNoti:time];
+    }];
     
     self.slider = [UISlider new];
     self.slider.userInteractionEnabled = YES;
@@ -50,6 +56,14 @@ MediaPlayer* gMediaPlayer;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 
     return self;
+}
+
+-(void)playerNoti:(CMTime) time
+{
+    if(self.current == -1)
+        return;
+    self.slider.maximumValue = self.currentTaskDuration;
+    self.slider.value = self.currentTime;
 }
 
 -(void)addPlayTask:(PlayTask *)task {
@@ -151,7 +165,7 @@ MediaPlayer* gMediaPlayer;
 
 -(CGFloat)currentTime {
     if(self.avplayer.currentTime.timescale != 0)
-        return self.avplayer.currentTime.value / self.avplayer.currentTime.timescale;
+        return ((CGFloat)self.avplayer.currentTime.value) / ((CGFloat)self.avplayer.currentTime.timescale);
     else
         return 0;
 }
