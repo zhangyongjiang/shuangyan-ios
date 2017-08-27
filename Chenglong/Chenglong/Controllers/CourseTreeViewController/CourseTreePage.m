@@ -202,12 +202,13 @@
     UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Play" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
                                     {
                                         treeView.editing = NO;
-                                        NSLog(@"Action to perform with Button 1");
+                                        [treeView itemForSelectedRow];
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:cd userInfo:NULL];
                                     }];
     button.backgroundColor = [UIColor lightGrayColor]; //arbitrary color
     UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
                                      {
-                                         NSLog(@"Action to perform with Button2!");
+                                         treeView.editing = NO;
                                      }];
     button2.backgroundColor = [UIColor redColor]; //arbitrary color
     
