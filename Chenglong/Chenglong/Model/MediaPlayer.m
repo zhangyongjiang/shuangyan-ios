@@ -181,6 +181,13 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(void)setAttachedView:(UIView *)attachedView {
+    if(_attachedView == attachedView) {
+        self.layer.frame = attachedView.bounds;
+        self.slider.width = attachedView.width * 0.8f;
+        self.slider.bottom = attachedView.height - Margin;
+        self.slider.x = attachedView.width * 0.1f;
+        return;
+    }
     _attachedView = attachedView;
     [self.layer removeFromSuperlayer];
     self.layer.frame = attachedView.bounds;
