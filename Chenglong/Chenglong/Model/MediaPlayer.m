@@ -211,8 +211,14 @@ MediaPlayer* gMediaPlayer;
 
 -(void)playerDidFinishPlaying:(NSNotification*)noti
 {
-    [self setCurrentTime:1];
-    [self play];
+    NSLog(@"playerDidFinishPlaying");
+    WeakSelf(weakSelf)
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        AVPlayerItem* item = (AVPlayerItem*)noti.object;
+        [item seekToTime:kCMTimeZero];
+        [weakSelf.avplayer replaceCurrentItemWithPlayerItem:item];
+        [weakSelf.avplayer pause];
+    });
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {
