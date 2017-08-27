@@ -217,7 +217,7 @@ MediaPlayer* gMediaPlayer;
         AVPlayerItem* item = (AVPlayerItem*)noti.object;
         [item seekToTime:kCMTimeZero];
         [weakSelf.avplayer replaceCurrentItemWithPlayerItem:item];
-        [weakSelf.avplayer pause];
+        [weakSelf stop];
     });
 }
 
