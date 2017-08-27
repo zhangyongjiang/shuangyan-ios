@@ -151,13 +151,23 @@
   return UITableViewCellEditingStyleDelete;
 }
 
+
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(treeView:editActionsForItem:)]) {
+        RATreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
+        return [self.delegate treeView:self editActionsForItem:treeNode.item];
+    }
+    return nil;
+}
+
+
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if ([self.delegate respondsToSelector:@selector(treeView:titleForDeleteConfirmationButtonForRowForItem:)]) {
     RATreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
     return [self.delegate treeView:self titleForDeleteConfirmationButtonForRowForItem:treeNode.item];
   }
-  return @"Delete";
+  return @"Play";
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
@@ -187,16 +197,6 @@
     [self.delegate treeView:self didEndEditingRowForItem:treeNode.item];
   }
 }
-
-- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if ([self.delegate respondsToSelector:@selector(treeView:editActionsForItem:)]) {
-    RATreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
-    return [self.delegate treeView:self editActionsForItem:treeNode.item];
-  }
-  return nil;
-}
-
 
 #pragma mark - Tracking the Removal of Views
 

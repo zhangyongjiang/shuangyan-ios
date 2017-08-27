@@ -81,6 +81,8 @@
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
+//        UIButton *accessory = [UIButton buttonWithType:UIButtonTypeContactAdd];
+//        [cell setAccessoryView:accessory];
     }
     
     __weak typeof(self) weakSelf = self;
@@ -180,5 +182,35 @@
     };
     [self.treeView expandRowForItem:item];
     [self.treeView selectRowForItem:item animated:YES scrollPosition:RATreeViewScrollPositionMiddle];
+}
+
+- (void)treeView:(RATreeView *)treeView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowForItem:(id)item
+{
+    if (editingStyle != UITableViewCellEditingStyleDelete) {
+        return;
+    }
+    
+}
+
+-(NSArray*)treeView:(RATreeView *)treeView editActionsForItem:(id)item
+{
+    CourseDetails *cd = item;
+    if(![cd isDirectory]) {
+        return nil;
+    }
+    
+    UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Play" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+                                    {
+                                        treeView.editing = NO;
+                                        NSLog(@"Action to perform with Button 1");
+                                    }];
+    button.backgroundColor = [UIColor lightGrayColor]; //arbitrary color
+    UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+                                     {
+                                         NSLog(@"Action to perform with Button2!");
+                                     }];
+    button2.backgroundColor = [UIColor redColor]; //arbitrary color
+    
+    return @[button, button2];
 }
 @end
