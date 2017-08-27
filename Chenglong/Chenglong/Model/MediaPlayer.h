@@ -21,8 +21,6 @@
 -(void)addPlayTask:(PlayTask*)task;
 -(void)playTask:(PlayTask *)task;
 -(void)play;
--(void)pause;
--(void)resume;
 -(void)stop;
 -(BOOL)isPlaying;
 -(void)removeTask:(LocalMediaContent*)mc;

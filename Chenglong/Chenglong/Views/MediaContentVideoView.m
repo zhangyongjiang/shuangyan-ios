@@ -37,7 +37,7 @@
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [player pause];
+    [player stop];
     player = nil;
 }
 
@@ -46,7 +46,7 @@
     if(!player)
         [self play];
     else if([player isPlaying])
-        [player pause];
+        [player stop];
     else
         [player play];
 }
@@ -68,7 +68,7 @@
     }
     if([player isPlaying]) {
 //        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
-        [player pause];
+        [player stop];
     }
     else {
 //        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
@@ -158,7 +158,7 @@
             [weakSelf play];
             [SVProgressHUD dismiss];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-                [player pause];
+                [player stop];
             });
         });
         return;

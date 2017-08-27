@@ -124,16 +124,6 @@ MediaPlayer* gMediaPlayer;
     [self.avplayer play];
 }
 
--(void)resume
-{
-    [self.avplayer play];
-}
-
--(void)pause
-{
-    [self.avplayer pause];
-}
-
 -(void)removeTask:(LocalMediaContent *)mc
 {
     for (int i=0; i<self.tasks.count; i++) {

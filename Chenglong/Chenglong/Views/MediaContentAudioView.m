@@ -52,7 +52,7 @@
     }
     if([player isPlaying]) {
 //        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
-        [player pause];
+        [player stop];
     }
     else {
         float total = [player currentTaskDuration];
