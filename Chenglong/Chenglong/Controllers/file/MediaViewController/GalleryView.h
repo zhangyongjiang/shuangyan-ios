@@ -15,11 +15,10 @@
 @property(strong,nonatomic)UIColor* tintColor;
 @property(assign,nonatomic)UIViewContentMode contentMode;
 
-@property(strong,nonatomic)NSArray* mediaContents;
-
 -(id)initWithFrame:(CGRect)frame;
 -(void)showPage:(int)pageNumber;
 -(void)play;
 -(void)stop;
+-(void)showText:(NSString*)content andMediaContent:(NSArray*)mediaContents;
 
 @end

@@ -8,17 +8,18 @@
 
 #import "FileDetailsViewController.h"
 #import "MediaContentAudioView.h"
-#import "CourseDetailsView.h"
+#import "courseView.h"
 #import "CoursePickerViewController.h"
 #import "MediaViewController.h"
 #import "BaseNavigationController.h"
 #import "UpdateFileViewController.h"
 #import "CourseTreeViewController.h"
 #import "CoursePickerViewController.h"
+#import "CourseView.h"
 
 @interface FileDetailsViewController () <UIImagePickerControllerDelegate, CousePickerDelegate>
 
-@property(strong, nonatomic) CourseDetailsView* courseDetailsView;
+@property(strong, nonatomic) CourseView* courseView;
 @property(strong, nonatomic) CoursePickerViewController* coursePickerViewController;
 
 @end
@@ -30,12 +31,11 @@
     self.title = self.courseDetails.course.title;
     
     WeakSelf(weakSelf)
-    self.courseDetailsView = [[CourseDetailsView alloc] initWithFrame:self.view.bounds];
-    self.courseDetailsView.courseDetails = self.courseDetails;
-    [self.view addSubview:self.courseDetailsView];
-    [self.courseDetailsView addRemoveResourceHandler:^(MediaContent *localMediaContent) {
-        [weakSelf removeResource:localMediaContent];
-    }];
+    CGRect frame = self.view.bounds;
+    frame.size.height -= 104;
+    self.courseView = [[CourseView alloc] initWithFrame:frame];
+    self.courseView.courseDetails = self.courseDetails;
+    [self.view addSubview:self.courseView];
     
     [self addTopRightMenu];
 }
@@ -48,19 +48,19 @@
     [alert addAction:actionCancel];
     UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         Course* c = [Course new];
-        c.id = self.courseDetailsView.courseDetails.course.id;
+        c.id = self.courseView.courseDetails.course.id;
         c.resources = [NSMutableArray new];
         [c.resources addObject:lmc];
         [CourseApi CourseAPI_RemoveResources:c onSuccess:^(Course *resp) {
             [weakSelf presentFailureTips:@"删除成功"];
-            for (int i=0; i<self.courseDetailsView.courseDetails.course.resources.count; i++) {
-                MediaContent* mc = [self.courseDetailsView.courseDetails.course.resources objectAtIndex:i];
+            for (int i=0; i<self.courseView.courseDetails.course.resources.count; i++) {
+                MediaContent* mc = [self.courseView.courseDetails.course.resources objectAtIndex:i];
                 if([mc.path isEqualToString:lmc.path]) {
-                    [self.courseDetailsView.courseDetails.course.resources removeObjectAtIndex:i];
+                    [self.courseView.courseDetails.course.resources removeObjectAtIndex:i];
                     break;
                 }
             }
-            self.courseDetailsView.courseDetails = self.courseDetailsView.courseDetails;
+            self.courseView.courseDetails = self.courseView.courseDetails;
         } onError:^(APIError *err) {
         }];
     }];
@@ -139,7 +139,7 @@
         [self move];
     }
     else if([cmd isEqualToString:@"下载全部"]){
-        [self.courseDetailsView downloadAll];
+//        [self.courseView downloadAll];
     }
     else if ([cmd isEqualToString:@"拷贝"]) {
         self.coursePickerViewController = [[CoursePickerViewController alloc] init];
@@ -284,7 +284,7 @@
     [CourseApi CourseAPI_AddResourceToCourse:dict courseId:self.courseDetails.course.id onSuccess:^(Course *resp) {
         [self presentFailureTips:@"上传成功"];
         self.courseDetails.course.resources = resp.resources;
-        self.courseDetailsView.courseDetails = self.courseDetails;
+        self.courseView.courseDetails = self.courseDetails;
     } onError:^(APIError *err) {
         NSLog(@"上传失败\n%@", err);
         [self presentFailureTips:@"上传失败"];

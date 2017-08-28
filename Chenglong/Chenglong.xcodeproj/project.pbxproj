@@ -149,6 +149,8 @@
 		AD3A7FEC1F5228AE009E632D /* audio-pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FE81F5228AE009E632D /* audio-pause@2x.png */; };
 		AD3A7FED1F5228AE009E632D /* audio-play.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FE91F5228AE009E632D /* audio-play.png */; };
 		AD3A7FEE1F5228AE009E632D /* audio-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FEA1F5228AE009E632D /* audio-play@2x.png */; };
+		AD3A7FF11F53A80D009E632D /* CourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A7FF01F53A80D009E632D /* CourseView.m */; };
+		AD3A7FF41F53AF6E009E632D /* MediaContentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
 		AD3D94F01EE6772400D2704B /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94EF1EE6772400D2704B /* Page.m */; };
@@ -575,6 +577,10 @@
 		AD3A7FE81F5228AE009E632D /* audio-pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-pause@2x.png"; sourceTree = "<group>"; };
 		AD3A7FE91F5228AE009E632D /* audio-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-play.png"; sourceTree = "<group>"; };
 		AD3A7FEA1F5228AE009E632D /* audio-play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-play@2x.png"; sourceTree = "<group>"; };
+		AD3A7FEF1F53A80D009E632D /* CourseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseView.h; sourceTree = "<group>"; };
+		AD3A7FF01F53A80D009E632D /* CourseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseView.m; sourceTree = "<group>"; };
+		AD3A7FF21F53AF6E009E632D /* MediaContentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentTextView.h; sourceTree = "<group>"; };
+		AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentTextView.m; sourceTree = "<group>"; };
 		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
 		AD3D94D71EE5286100D2704B /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Attach.h"; sourceTree = "<group>"; };
@@ -1843,6 +1849,10 @@
 				AD965AFD1F1E442C005CE723 /* MySearchController.m */,
 				AD666AAA1F4E57FE004F3C9D /* PlayerControlView.h */,
 				AD666AAB1F4E57FE004F3C9D /* PlayerControlView.m */,
+				AD3A7FEF1F53A80D009E632D /* CourseView.h */,
+				AD3A7FF01F53A80D009E632D /* CourseView.m */,
+				AD3A7FF21F53AF6E009E632D /* MediaContentTextView.h */,
+				AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2214,6 +2224,7 @@
 				AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */,
 				ADD117F11EF64E7B00EF6E04 /* BaseNavigationController.m in Sources */,
 				032911811E113D0C000C1F5A /* UIImageView+Thumbnail.m in Sources */,
+				AD3A7FF11F53A80D009E632D /* CourseView.m in Sources */,
 				032C96921E2CA31D001EFC29 /* TZImageManager.m in Sources */,
 				030049001E0E5D65006EDC29 /* TMDiskCache.m in Sources */,
 				AD49D80B1F096CE5000D0E1B /* OnlineFileListTableViewCell.m in Sources */,
@@ -2318,6 +2329,7 @@
 				030049721E0E5F60006EDC29 /* InviteRequest.m in Sources */,
 				AD7E88341F41581000B8CBE3 /* LocalMediaContentShard.m in Sources */,
 				032911D61E13E8D0000C1F5A /* UITextField+Util.m in Sources */,
+				AD3A7FF41F53AF6E009E632D /* MediaContentTextView.m in Sources */,
 				032911591E113BA8000C1F5A /* SDiPhoneVersion.m in Sources */,
 				032C96941E2CA31D001EFC29 /* TZPhotoPickerController.m in Sources */,
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,

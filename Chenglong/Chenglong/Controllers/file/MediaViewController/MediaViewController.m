@@ -21,7 +21,7 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
-    self.galleryView.mediaContents = self.mediaContents;
+    [self.galleryView showText:NULL andMediaContent:self.mediaContents];
     [self.view addSubview:self.galleryView];
     
     UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 60, 40)];

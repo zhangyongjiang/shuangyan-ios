@@ -10,6 +10,7 @@
 #import "MediaConentView.h"
 #import "MediaContentAudioView.h"
 #import "MediaContentVideoView.h"
+#import "MediaContentTextView.h"
 
 @interface GalleryView()
 {
@@ -39,7 +40,7 @@
     self.scrollView.delegate = self;
     
     self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, frame.size.height*0.90, frame.size.width, 50*[UIView scale])];
-    self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    self.pageControl.pageIndicatorTintColor = [UIColor blueColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor colorFromString:@"nsred"];
 
     [self addSubview:self.pageControl];
@@ -57,26 +58,38 @@
     timer = nil;
 }
 
--(void)setMediaContents:(NSArray *)mediaContents {
-    _mediaContents = mediaContents;
-    self.scrollView.contentSize = CGSizeMake(self.width * mediaContents.count, self.height);
+-(void)showText:(NSString *)content andMediaContent:(NSArray *)mediaContents
+{
     for (UIView* imgView in self.mediaViews) {
         [imgView removeFromSuperview];
     }
     self.mediaViews = [[NSMutableArray alloc] init];
+    
+    int xOffset = 0;
+    if(content) {
+        xOffset = self.width;
+        MediaContentTextView* view = [[MediaContentTextView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        view.text = content;
+        [self.mediaViews addObject:view];
+        [self.scrollView addSubview:view];
+    }
+    
     for (int i=0; i<mediaContents.count; i++) {
-        CGFloat x = i * self.width;
+        CGFloat x = i * self.width + xOffset;
         MediaConentView* view = [MediaConentView createViewForMediaContent:[mediaContents objectAtIndex:i]];
         view.frame = CGRectMake(x, 0, self.width, self.height);
         view.clipsToBounds = YES;
         [self.mediaViews addObject:view];
         [self.scrollView addSubview:view];
     }
+    
+    self.scrollView.contentSize = CGSizeMake(self.width * self.mediaViews.count, self.height);
+
     [self showPage:0];
     
-    self.pageControl.numberOfPages = mediaContents.count;
+    self.pageControl.numberOfPages = self.mediaViews.count;
     [self bringSubviewToFront:self.pageControl];
-    if (mediaContents.count<2) {
+    if (self.mediaViews.count<2) {
         self.pageControl.hidden = YES;
     }
 }
@@ -91,7 +104,7 @@
 }
 
 -(void)showPage:(int)index {
-    if (index<0 || index >= self.mediaContents.count || self.pageControl.currentPage == index) {
+    if (index<0 || index >= self.mediaViews.count || self.pageControl.currentPage == index) {
         return;
     }
     UIView* view = [self.mediaViews objectAtIndex:index];
@@ -104,7 +117,7 @@
     self.scrollView.width = self.width;
     self.scrollView.height = self.height;
     int x = 0;
-    for (MediaConentView* view in self.mediaViews) {
+    for (UIView* view in self.mediaViews) {
         CGRect f = CGRectMake(x, 0, self.width, self.height);
         view.frame = f;
         x += self.width;
@@ -113,7 +126,7 @@
 
 -(void)play
 {
-    if(self.mediaContents.count == 0)
+    if(self.mediaViews.count == 0)
         return;
     [self showPage:currentPlay];
     MediaConentView* view = [self.mediaViews objectAtIndex:currentPlay];
@@ -129,7 +142,7 @@
         return;
     }
     currentPlay++;
-    if(currentPlay >= self.mediaContents.count)
+    if(currentPlay >= self.mediaViews.count)
         currentPlay = 0;
     [self showPage:currentPlay];
     view = [self.mediaViews objectAtIndex:currentPlay];
@@ -140,7 +153,7 @@
 {
     [timer invalidate];
     timer = nil;
-    for(int i=0; i<self.mediaContents.count; i++) {
+    for(int i=0; i<self.mediaViews.count; i++) {
         MediaConentView* view = [self.mediaViews objectAtIndex:i];
         [view stop];
     }
