@@ -127,7 +127,7 @@
     else if([cmd isEqualToString:@"全屏"]){
         [[MediaPlayer shared] stop];
         MediaViewController* c = [MediaViewController new];
-        c.mediaContents = self.courseDetails.course.resources;
+        c.courseDetails = self.courseDetails;
         [self.navigationController presentViewController:c animated:YES completion:^{
             
         }];

@@ -9,6 +9,7 @@
 #import "CourseTreePage.h"
 #import "RATableViewCell.h"
 #import "FileDetailsViewController.h"
+#import "MediaViewController.h"
 
 @interface CourseTreePage() <RATreeViewDelegate, RATreeViewDataSource>
 
@@ -158,9 +159,12 @@
     cd.parent = parent;
     
     if(![cd isDirectory]) {
-        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
+//        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
+//        c.courseDetails = cd;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+        MediaViewController* c = [MediaViewController new];
         c.courseDetails = cd;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPresentController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];        
     }
 }
 

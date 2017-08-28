@@ -276,12 +276,12 @@
         [self presentFailureTips:@"先下载"];
         return;
     }
-    MediaViewController* c = [MediaViewController new];
-    c.mediaContents = mediaContents;
-    [self.navigationController presentViewController:c animated:YES completion:^{
-        NSLog(@"completed");
-        [c play];
-    }];
+//    MediaViewController* c = [MediaViewController new];
+//    c.courseDetails = mediaContents;
+//    [self.navigationController presentViewController:c animated:YES completion:^{
+//        NSLog(@"completed");
+//        [c play];
+//    }];
 }
 
 -(void)move {

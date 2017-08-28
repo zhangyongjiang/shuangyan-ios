@@ -25,10 +25,10 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    self.thumbnailImgView = [[UIImageView alloc] initWithFrame:self.bounds];
-    self.thumbnailImgView.contentMode = UIViewContentModeScaleAspectFit;
-    [self addSubview:self.thumbnailImgView];
-    [self.thumbnailImgView autoPinEdgesToSuperviewMargins];
+//    self.thumbnailImgView = [[UIImageView alloc] initWithFrame:self.bounds];
+//    self.thumbnailImgView.contentMode = UIViewContentModeScaleAspectFit;
+//    [self addSubview:self.thumbnailImgView];
+//    [self.thumbnailImgView autoPinEdgesToSuperviewMargins];
     
     [self addTarget:self action:@selector(clicked)];
     

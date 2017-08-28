@@ -10,7 +10,7 @@
 
 @interface MediaViewController : BaseViewController
 
-@property(strong,nonatomic)NSArray* mediaContents;
+@property(strong,nonatomic)CourseDetails* courseDetails;
 
 -(void)play;
 
