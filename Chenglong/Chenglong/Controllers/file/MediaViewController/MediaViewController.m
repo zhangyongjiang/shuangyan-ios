@@ -28,12 +28,12 @@
     [self.view addSubview:self.galleryView];
     
     UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 60, 40)];
-    btn.backgroundColor = [UIColor colorFromRGBA:0xa0a0a080];
+    btn.backgroundColor = [UIColor colorFromRGB:0xffffff];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitle:@"关闭" forState:UIControlStateNormal];
     btn.layer.borderColor = [UIColor blackColor].CGColor;
     btn.layer.borderWidth = 0.5;
-    btn.layer.cornerRadius = btn.height / 2.;
+    btn.layer.cornerRadius = 2.;
     [btn addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }

@@ -76,4 +76,10 @@
     }
     return [self.userId isEqualToString:ctc.userId];
 }
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.page.frame = self.view.bounds;
+}
+
 @end

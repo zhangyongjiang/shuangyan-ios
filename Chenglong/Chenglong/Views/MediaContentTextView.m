@@ -22,6 +22,7 @@
     NSString* html = self.text;
     if(![self.text containsString:@"html"] && ![self.text containsString:@"HTML"]) {
         html = [html stringByReplacingOccurrencesOfString:@"\n" withString:@"<br/>"];
+        html = [NSString stringWithFormat:@"<br/><br/>%@",html];
     }
     [self.webView loadHTMLString:html baseURL:nil];
 }

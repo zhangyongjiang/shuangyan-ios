@@ -221,4 +221,10 @@
     
     return @[button, button2];
 }
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.treeView.frame = self.bounds;
+}
 @end
