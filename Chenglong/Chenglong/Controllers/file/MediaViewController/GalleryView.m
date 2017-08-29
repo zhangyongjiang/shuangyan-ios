@@ -67,7 +67,8 @@
     self.mediaViews = [[NSMutableArray alloc] init];
     
     int xOffset = 0;
-    if(content) {
+    content = [content trim];
+    if(content.length>0) {
         xOffset = self.width;
         MediaContentTextView* view = [[MediaContentTextView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
         view.text = content;
