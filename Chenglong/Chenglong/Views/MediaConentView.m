@@ -18,7 +18,6 @@
 
 @interface MediaConentView()
 {
-    DeleteCallback deleteCallback;
 }
 @property(strong,nonatomic)PlayerControlView* controlView;
 
@@ -202,10 +201,6 @@
         ![MediaConentView isVideo:self.localMediaContent]) {
         [self play];
     }
-}
-
--(void)addRemoveHandler:(DeleteCallback)callback {
-    deleteCallback = callback;
 }
 
 -(void)stop{}

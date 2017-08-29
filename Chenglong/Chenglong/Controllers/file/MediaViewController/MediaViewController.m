@@ -33,7 +33,7 @@
     [btn setTitle:@"关闭" forState:UIControlStateNormal];
     btn.layer.borderColor = [UIColor blackColor].CGColor;
     btn.layer.borderWidth = 0.5;
-    btn.layer.cornerRadius = 2.;
+    btn.layer.cornerRadius = btn.height / 4.;
     [btn addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }

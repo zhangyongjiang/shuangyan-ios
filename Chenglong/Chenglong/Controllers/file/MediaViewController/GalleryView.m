@@ -51,7 +51,7 @@
 
 -(void)dealloc
 {
-    for(MediaConentView* view in self.mediaViews) {
+    for(UIView* view in self.mediaViews) {
         [view removeFromSuperview];
     }
     
@@ -61,8 +61,8 @@
 
 -(void)showText:(NSString *)content andMediaContent:(NSArray *)mediaContents
 {
-    for (UIView* imgView in self.mediaViews) {
-        [imgView removeFromSuperview];
+    for (UIView* view in self.mediaViews) {
+        [view removeFromSuperview];
     }
     self.mediaViews = [[NSMutableArray alloc] init];
     
