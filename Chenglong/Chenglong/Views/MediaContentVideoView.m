@@ -17,18 +17,12 @@
     AVPlayerLayer *layer;
 }
 
-@property(strong,nonatomic)UIImageView* thumbnailImgView;
 @end
 
 @implementation MediaContentVideoView
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
-//    self.thumbnailImgView = [[UIImageView alloc] initWithFrame:self.bounds];
-//    self.thumbnailImgView.contentMode = UIViewContentModeScaleAspectFit;
-//    [self addSubview:self.thumbnailImgView];
-//    [self.thumbnailImgView autoPinEdgesToSuperviewMargins];
     
     [self addTarget:self action:@selector(clicked)];
     
@@ -63,7 +57,6 @@
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
 //        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
-        self.thumbnailImgView.hidden = YES;
         return;
     }
     if([player isPlaying]) {
@@ -90,7 +83,8 @@
 
 -(void)layoutSubviews {
     [super layoutSubviews];
-    if(self.isPlaying) {
+//    if(self.isPlaying)
+    {
         [player setAttachedView:self];
     }
 }
@@ -98,31 +92,6 @@
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     [super setLocalMediaContent:localMediaContent];
     [self showVideoCoverImage];
-//    [SVProgressHUD show];
-//    __block LocalMediaContent * blockMediaContent = localMediaContent;
-//    WeakSelf(weakSelf)
-//    [localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
-//    } completionBlock:^(BOOL completed) {
-//        [blockMediaContent getPlaceholderImageForVideo:^(UIImage *image) {
-//            if(image) {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    weakSelf.thumbnailImgView.image = image;
-//                    [SVProgressHUD dismiss];
-//                });
-//            }
-//            else {
-//                [blockMediaContent downloadWithProgressBlock:^(CGFloat progress) {
-//                } completionBlock:^(BOOL completed) {
-//                    [blockMediaContent getPlaceholderImageForVideo:^(UIImage *image) {
-//                        dispatch_async(dispatch_get_main_queue(), ^{
-//                            weakSelf.thumbnailImgView.image = image;
-//                            [SVProgressHUD dismiss];
-//                        });
-//                    }];
-//                } forShards:2,-1];
-//            }
-//        }];
-//    } forShards:0,1,blockMediaContent.numOfShards-1,-1];
 }
 
 -(void)showVideoCoverImage
@@ -154,7 +123,6 @@
     UIImage *image = [self.localMediaContent getPlaceholderImageForVideo];
     if(image) {
         dispatch_async(dispatch_get_main_queue(), ^{
-//            weakSelf.thumbnailImgView.image = image;
             [weakSelf play];
             [SVProgressHUD dismiss];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{

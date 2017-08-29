@@ -18,7 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.clipsToBounds = YES;
+
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.view.autoresizesSubviews = YES;
     
     self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
     [self.galleryView showText:self.courseDetails.course.content andMediaContent:self.courseDetails.course.resources];
@@ -44,10 +47,11 @@
 }
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    self.view.width = size.width;
-    self.view.height = size.height;
-    self.galleryView.width = size.width;
-    self.galleryView.height = size.height;
+}
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.galleryView.frame = self.view.bounds;
 }
 
 -(void)play

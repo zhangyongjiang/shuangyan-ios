@@ -777,6 +777,7 @@ static CGFloat iscale;
 
 -(void)addTarget:(id)target action:(SEL)action {
     self.userInteractionEnabled = YES;
+
     UITapGestureRecognizer* gr = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
     [self addGestureRecognizer:gr];
 }

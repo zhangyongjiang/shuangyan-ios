@@ -26,6 +26,7 @@
 
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
+    
     currentPlay = 0;
     self.backgroundColor = [UIColor whiteColor];
     self.contentMode = UIViewContentModeScaleAspectFill;
