@@ -40,7 +40,6 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SVProgressHUD (2.0.3)
-  - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -52,7 +51,6 @@ DEPENDENCIES:
   - RATreeView (~> 2.1.2)
   - SDWebImage (~> 3.8)
   - SVProgressHUD (~> 2.0.3)
-  - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -64,8 +62,7 @@ SPEC CHECKSUMS:
   RATreeView: 380cde0090cfde21dc6ac29137f49d3b768fdd28
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
-  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
-PODFILE CHECKSUM: 19a87a42119333d6c1f5ea554fa5b453dcc70a21
+PODFILE CHECKSUM: 7df4472c9ad152115dda895a9424a2c01363b2e3
 
 COCOAPODS: 1.1.1

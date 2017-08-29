@@ -10,6 +10,5 @@ pod 'BlocksKit', '~> 2.2.5'
 pod 'PureLayout'
 pod 'FMDB'
 pod "RATreeView", "~> 2.1.2"
-pod 'SWTableViewCell', '~> 0.3.7'
 
 end
