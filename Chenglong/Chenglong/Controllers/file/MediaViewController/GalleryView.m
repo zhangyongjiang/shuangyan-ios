@@ -99,12 +99,26 @@
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // disable vertical scroll
-    [scrollView setContentOffset: CGPointMake(scrollView.contentOffset.x, 0)];
+    // prevent to scroll to the first page when changing orientation
+    static int previousWidth = 0;
+    static BOOL lock = NO;
+    if(lock)
+        return;
     
-    CGFloat pageWidth = self.scrollView.frame.size.width;
-    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    [self showPage:page];
+    if(currentPlay>0 && previousWidth != (int)scrollView.width) {
+        [self showPage:currentPlay];
+        lock = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 500 * NSEC_PER_MSEC),dispatch_get_main_queue(), ^{
+            lock = NO;
+        });
+    }
+    else {
+        CGFloat pageWidth = self.scrollView.frame.size.width;
+        int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        [self showPage:page];
+    }
+    
+    previousWidth = scrollView.width;
 }
 
 -(void)showPage:(int)index {
