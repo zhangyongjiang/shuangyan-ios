@@ -117,10 +117,6 @@
 		032C96961E2CA31D001EFC29 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C967E1E2CA31D001EFC29 /* TZPhotoPreviewController.m */; };
 		032C96971E2CA31D001EFC29 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96801E2CA31D001EFC29 /* TZVideoPlayerController.m */; };
 		032C96981E2CA31D001EFC29 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96821E2CA31D001EFC29 /* UIView+Layout.m */; };
-		032C96B31E2CB007001EFC29 /* DVFullScreenMediaScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96AA1E2CB007001EFC29 /* DVFullScreenMediaScrollView.m */; };
-		032C96B41E2CB007001EFC29 /* DVFullScreenMediaViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96AC1E2CB007001EFC29 /* DVFullScreenMediaViewer.m */; };
-		032C96B51E2CB007001EFC29 /* MediaPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96AE1E2CB007001EFC29 /* MediaPreviewView.m */; };
-		032C96B61E2CB007001EFC29 /* MediaPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96B01E2CB007001EFC29 /* MediaPreviewViewController.m */; };
 		032C96BA1E2CC525001EFC29 /* UIImagePickerController+Kaishi.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C96B91E2CC525001EFC29 /* UIImagePickerController+Kaishi.m */; };
 		0335B3031E15031B00A2A74B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3021E15031B00A2A74B /* Default@2x.png */; };
 		0335B3051E15045000A2A74B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B3041E15045000A2A74B /* Default-568h@2x.png */; };
@@ -515,14 +511,6 @@
 		032C96801E2CA31D001EFC29 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
 		032C96811E2CA31D001EFC29 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
 		032C96821E2CA31D001EFC29 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
-		032C96A91E2CB007001EFC29 /* DVFullScreenMediaScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVFullScreenMediaScrollView.h; sourceTree = "<group>"; };
-		032C96AA1E2CB007001EFC29 /* DVFullScreenMediaScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVFullScreenMediaScrollView.m; sourceTree = "<group>"; };
-		032C96AB1E2CB007001EFC29 /* DVFullScreenMediaViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVFullScreenMediaViewer.h; sourceTree = "<group>"; };
-		032C96AC1E2CB007001EFC29 /* DVFullScreenMediaViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVFullScreenMediaViewer.m; sourceTree = "<group>"; };
-		032C96AD1E2CB007001EFC29 /* MediaPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPreviewView.h; sourceTree = "<group>"; };
-		032C96AE1E2CB007001EFC29 /* MediaPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPreviewView.m; sourceTree = "<group>"; };
-		032C96AF1E2CB007001EFC29 /* MediaPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPreviewViewController.h; sourceTree = "<group>"; };
-		032C96B01E2CB007001EFC29 /* MediaPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPreviewViewController.m; sourceTree = "<group>"; };
 		032C96B81E2CC525001EFC29 /* UIImagePickerController+Kaishi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+Kaishi.h"; sourceTree = "<group>"; };
 		032C96B91E2CC525001EFC29 /* UIImagePickerController+Kaishi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+Kaishi.m"; sourceTree = "<group>"; };
 		0335B3021E15031B00A2A74B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -1016,7 +1004,6 @@
 				032911511E113B8B000C1F5A /* KSWebViewController.m */,
 				032C96551E2C67C1001EFC29 /* UIPlaceHolderTextView.h */,
 				032C96561E2C67C1001EFC29 /* UIPlaceHolderTextView.m */,
-				032C96A81E2CB007001EFC29 /* ImageCamera */,
 				AD3D94FD1EE6F3B700D2704B /* BaseViewController.h */,
 				AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */,
 			);
@@ -1122,21 +1109,6 @@
 				032C96701E2CA31D001EFC29 /* VideoSendIcon@2x.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		032C96A81E2CB007001EFC29 /* ImageCamera */ = {
-			isa = PBXGroup;
-			children = (
-				032C96A91E2CB007001EFC29 /* DVFullScreenMediaScrollView.h */,
-				032C96AA1E2CB007001EFC29 /* DVFullScreenMediaScrollView.m */,
-				032C96AB1E2CB007001EFC29 /* DVFullScreenMediaViewer.h */,
-				032C96AC1E2CB007001EFC29 /* DVFullScreenMediaViewer.m */,
-				032C96AD1E2CB007001EFC29 /* MediaPreviewView.h */,
-				032C96AE1E2CB007001EFC29 /* MediaPreviewView.m */,
-				032C96AF1E2CB007001EFC29 /* MediaPreviewViewController.h */,
-				032C96B01E2CB007001EFC29 /* MediaPreviewViewController.m */,
-			);
-			path = ImageCamera;
 			sourceTree = "<group>";
 		};
 		0335B3081E1508F800A2A74B /* PopMenuView */ = {
@@ -2161,7 +2133,6 @@
 				AD49D8331F096CE5000D0E1B /* RegisterView.m in Sources */,
 				ADD117E51EF6198300EF6E04 /* MediaWebView.m in Sources */,
 				032C96951E2CA31D001EFC29 /* TZPhotoPreviewCell.m in Sources */,
-				032C96B41E2CB007001EFC29 /* DVFullScreenMediaViewer.m in Sources */,
 				AD49D8201F096CE5000D0E1B /* CourseDetailCell.m in Sources */,
 				AD59D8F51EE913F9009C78D6 /* FitLabel.m in Sources */,
 				0300497F1E0E5F61006EDC29 /* User.m in Sources */,
@@ -2174,7 +2145,6 @@
 				AD49D7FF1F096CE5000D0E1B /* OnlineCourseResourceView.m in Sources */,
 				032911871E113D1F000C1F5A /* UINavigationBar+Awesome.m in Sources */,
 				AD49D8011F096CE5000D0E1B /* OnlineMediaContentView.m in Sources */,
-				032C96B61E2CB007001EFC29 /* MediaPreviewViewController.m in Sources */,
 				AD49D80D1F096CE5000D0E1B /* OnlineSearchListPage.m in Sources */,
 				AD49D8221F096CE5000D0E1B /* CourseFolderCell.m in Sources */,
 				AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */,
@@ -2374,11 +2344,9 @@
 				AD8949681F2BFBA000C024F8 /* CommunityNavigationController.m in Sources */,
 				AD49D8881F0CB3B2000D0E1B /* MediaViewController.m in Sources */,
 				032C96961E2CA31D001EFC29 /* TZPhotoPreviewController.m in Sources */,
-				032C96B31E2CB007001EFC29 /* DVFullScreenMediaScrollView.m in Sources */,
 				AD49D8371F096CE5000D0E1B /* LoginViewController.m in Sources */,
 				032911661E113BD0000C1F5A /* UCActionSheet.m in Sources */,
 				A354C1751C93ED9F00EE0DE5 /* main.m in Sources */,
-				032C96B51E2CB007001EFC29 /* MediaPreviewView.m in Sources */,
 				AD7E882E1F410D7F00B8CBE3 /* LocalMediaContent.m in Sources */,
 				ADEEC3701F3691920078B75E /* CourseDetails+Utils.m in Sources */,
 				030049731E0E5F60006EDC29 /* Journal.m in Sources */,

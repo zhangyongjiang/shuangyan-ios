@@ -8,12 +8,9 @@
 
 #import "BaseView.h"
 
-typedef void(^DeleteCallback)(LocalMediaContent* MediaContent);
-
 @interface MediaConentView : BaseView
 
 @property(strong, nonatomic) LocalMediaContent* localMediaContent;
-@property(assign, nonatomic) BOOL repeat;
 
 +(BOOL) isImage:(LocalMediaContent*)localMediaContent;
 +(BOOL) isAudio:(LocalMediaContent*)localMediaContent;

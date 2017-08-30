@@ -19,7 +19,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWTableViewCell.h"
 
 @interface RATableViewCell : UITableViewCell
 
