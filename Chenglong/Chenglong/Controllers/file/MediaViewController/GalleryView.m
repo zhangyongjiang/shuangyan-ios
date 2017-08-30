@@ -45,6 +45,8 @@
     self.pageControl.currentPageIndicatorTintColor = [UIColor colorFromString:@"nsred"];
 
     [self addSubview:self.pageControl];
+    [self.pageControl autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
+    [self.pageControl autoAlignAxisToSuperviewAxis:ALAxisVertical];
     
     return self;
 }
@@ -109,6 +111,7 @@
     if (index<0 || index >= self.mediaViews.count || self.pageControl.currentPage == index) {
         return;
     }
+    currentPlay = index;
     UIView* view = [self.mediaViews objectAtIndex:index];
     [self.scrollView scrollRectToVisible:CGRectMake(view.x, 0, view.width, view.height) animated:YES];
     self.pageControl.currentPage = index;
@@ -124,6 +127,9 @@
         view.frame = f;
         x += self.width;
     }
+    self.scrollView.contentSize = CGSizeMake(x, self.height);
+    UIView* view = [self.mediaViews objectAtIndex:currentPlay];
+    [self.scrollView scrollRectToVisible:CGRectMake(view.x, 0, view.width, view.height) animated:YES];
 }
 
 -(void)play
