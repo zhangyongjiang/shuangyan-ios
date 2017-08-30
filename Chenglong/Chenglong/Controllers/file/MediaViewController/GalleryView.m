@@ -106,7 +106,6 @@
         return;
     
     if(currentPlay>0 && previousWidth != (int)scrollView.width) {
-        [self showPage:currentPlay];
         lock = YES;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 500 * NSEC_PER_MSEC),dispatch_get_main_queue(), ^{
             lock = NO;
