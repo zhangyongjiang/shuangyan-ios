@@ -66,6 +66,8 @@ MediaPlayer* gMediaPlayer;
 {
     if(self.current == -1)
         return;
+    if(self.slider.maximumValue < 0.000001)
+        self.slider.maximumValue = self.currentTaskDuration;
     self.slider.value = self.currentTime;
 }
 
@@ -189,9 +191,11 @@ MediaPlayer* gMediaPlayer;
 -(void)setAttachedView:(UIView *)attachedView {
     if(_attachedView == attachedView) {
         self.layer.frame = attachedView.bounds;
+        [self.slider removeFromSuperview];
         self.slider.width = attachedView.width * 0.8f;
         self.slider.bottom = attachedView.height - Margin;
         self.slider.x = attachedView.width * 0.1f;
+        [attachedView addSubview:self.slider];
         return;
     }
     _attachedView = attachedView;

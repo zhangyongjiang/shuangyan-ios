@@ -43,11 +43,12 @@
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
+        [player setAttachedView:self];
 //        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         
-        WeakSelf(weakSelf)
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
-
+//        WeakSelf(weakSelf)
+//        timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
+//
         return;
     }
     if([player isPlaying:self.localMediaContent]) {
@@ -61,6 +62,7 @@
             [player setCurrentTime:0];
         }
 //        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
+        [player setAttachedView:self];
         [player play];
     }
 }
