@@ -14,7 +14,6 @@
 @interface MediaContentVideoView()
 {
     MediaPlayer* player;
-    AVPlayerLayer *layer;
 }
 
 @end
