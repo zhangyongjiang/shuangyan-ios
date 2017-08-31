@@ -263,4 +263,10 @@ MediaPlayer* gMediaPlayer;
         [self play];
 }
 
+-(void)stopIfPlayingOnView:(UIView *)view
+{
+    if(_attachedView != view)
+        return;
+    [self stop];
+}
 @end

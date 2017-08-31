@@ -15,6 +15,7 @@
 #import "LocalMediaContentShard.h"
 #import "LocalMediaContentShardGroup.h"
 #import "PlayerControlView.h"
+#import "MediaPlayer.h"
 
 @interface MediaConentView()
 {
@@ -47,7 +48,7 @@
 }
 
 -(void)destroy{
-    
+    [[MediaPlayer shared] stopIfPlayingOnView:self];
 }
 
 -(void)downloadOrPlay {
