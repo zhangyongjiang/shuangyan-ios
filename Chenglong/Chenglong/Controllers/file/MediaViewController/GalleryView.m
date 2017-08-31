@@ -48,11 +48,28 @@
     [self.pageControl autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     [self.pageControl autoAlignAxisToSuperviewAxis:ALAxisVertical];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     return self;
 }
 
+-(void)playEnd:(NSNotification*)noti
+{
+    currentPlay++;
+    if(currentPlay >= self.mediaViews.count)
+        currentPlay = 0;
+
+    self.scrollView.contentOffset = CGPointMake(currentPlay*self.scrollView.width, 0);
+    self.pageControl.currentPage = currentPlay;
+
+    MediaConentView* view = [self.mediaViews objectAtIndex:currentPlay];
+    [view play];
+}
+
+
 -(void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     for(UIView* view in self.mediaViews) {
         [view removeFromSuperview];
     }

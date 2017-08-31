@@ -39,7 +39,7 @@ MediaPlayer* gMediaPlayer;
     self.tasks = [NSMutableArray new];
     self.current = 0;
     self.wantplay = NO;
-    self.repeat = RepeatOne;
+    self.repeat = RepeatNone;
     
     self.avplayer = [[AVQueuePlayer alloc] init];
     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
@@ -229,10 +229,12 @@ MediaPlayer* gMediaPlayer;
     WeakSelf(weakSelf)
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         if(weakSelf.repeat == RepeatNone) {
-            AVPlayerItem* item = (AVPlayerItem*)noti.object;
-            [item seekToTime:kCMTimeZero];
-            [weakSelf.avplayer replaceCurrentItemWithPlayerItem:item];
-            [weakSelf stop];
+            LocalMediaContent* localMediaContent = [weakSelf.tasks objectAtIndex:weakSelf.current];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:localMediaContent];
+//            AVPlayerItem* item = (AVPlayerItem*)noti.object;
+//            [item seekToTime:kCMTimeZero];
+//            [weakSelf.avplayer replaceCurrentItemWithPlayerItem:item];
+//            [weakSelf stop];
         }
         else if(weakSelf.repeat == RepeatOne) {
             AVPlayerItem* item = (AVPlayerItem*)noti.object;

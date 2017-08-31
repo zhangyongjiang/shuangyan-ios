@@ -36,6 +36,7 @@
     btn.layer.cornerRadius = btn.height / 4.;
     [btn addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+    
 }
 
 -(void)cancelPressed:(id)sender {
