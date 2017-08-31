@@ -29,6 +29,7 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(NSString*)getDirName;
 -(NSString*)getFileExtension;
 -(void)createDirs;
+-(void)deleteLocalFile;
 
 -(NSString*)localFilePath;
 -(BOOL)localFileExists;

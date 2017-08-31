@@ -196,14 +196,31 @@
     if (editingStyle != UITableViewCellEditingStyleDelete) {
         return;
     }
-    
+}
+
+-(UITableViewCellEditingStyle)treeView:(RATreeView *)treeView editingStyleForRowForItem:(nonnull id)item
+{
+    CourseDetails *cd = item;
+//    if(![cd isDirectory]) {
+//        return UITableViewCellEditingStyleNone;
+//    }
+    return UITableViewCellEditingStyleDelete;
 }
 
 -(NSArray*)treeView:(RATreeView *)treeView editActionsForItem:(id)item
 {
     CourseDetails *cd = item;
     if(![cd isDirectory]) {
-        return nil;
+        UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除缓存" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+                                        {
+                                            treeView.editing = NO;
+                                            for (LocalMediaContent* mc in cd.course.resources) {
+                                                [mc deleteLocalFile];
+                                            }
+                                        }];
+        button.backgroundColor = [UIColor lightGrayColor]; //arbitrary color
+        
+        return @[button];
     }
     
     UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Play" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)

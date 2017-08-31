@@ -159,7 +159,15 @@
 
 -(void)directDownload
 {
-    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.url]];
+    NSString* range = [NSString stringWithFormat:@"bytes=%ld-%ld", self.offset, (self.offset + self.expectedDownloadSize-1)];
+    NSURL *url = [NSURL URLWithString:self.url];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+    [request setValue:range forHTTPHeaderField:@"Range"];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+//    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.url]];
     [self copyDownloadedFile:NULL orData:data withObject:self];
 }
 
@@ -190,6 +198,7 @@
     [f mkdirs];
     if(location) {
         NSError* error;
+        NSLog(@"from location %@", location.absoluteString);
         [[NSFileManager defaultManager] moveItemAtURL:location
                                                 toURL:[NSURL fileURLWithPath:self.localFilePath]
                                                 error:&error];
@@ -199,9 +208,10 @@
         }
     }
     else if (data) {
-        if(!f.exists) {
+        if(f.exists) {
             [f remove];
         }
+        NSLog(@"from data len %lu", data.length);
         [[NSFileManager defaultManager] createFileAtPath:self.localFilePath contents:data attributes:nil];
     }
     else {
@@ -225,10 +235,11 @@
         [fileHandle writeData:data];
         [fileHandle closeFile];
         free(bytes);
+        NSLog(@"padding from %ld length %ld. new parent file length %ld", self.offset, len, file.length);
     }
     
-    NSLog(@"append shard %i/%i data to %@ at offset %ld", self.shard, self.localMediaContent.numOfShards, parentPath, self.offset);
     NSData* content = [NSData dataWithContentsOfFile:self.localFilePath];
+    NSLog(@"append shard %i/%i data to %@ at offset %ld length %lu", self.shard, self.localMediaContent.numOfShards, parentPath, self.offset, (unsigned long)content.length);
     NSFileHandle*  fileHandle = [NSFileHandle fileHandleForWritingAtPath:parentPath];
     [fileHandle seekToFileOffset:self.offset];
     [fileHandle writeData:content];

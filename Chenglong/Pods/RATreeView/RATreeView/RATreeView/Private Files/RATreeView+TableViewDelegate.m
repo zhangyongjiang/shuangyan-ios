@@ -161,14 +161,14 @@
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if ([self.delegate respondsToSelector:@selector(treeView:titleForDeleteConfirmationButtonForRowForItem:)]) {
-    RATreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
-    return [self.delegate treeView:self titleForDeleteConfirmationButtonForRowForItem:treeNode.item];
-  }
-  return @"Play";
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//  if ([self.delegate respondsToSelector:@selector(treeView:titleForDeleteConfirmationButtonForRowForItem:)]) {
+//    RATreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
+//    return [self.delegate treeView:self titleForDeleteConfirmationButtonForRowForItem:treeNode.item];
+//  }
+//  return @"Play";
+//}
 
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {

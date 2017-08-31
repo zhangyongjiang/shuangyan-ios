@@ -12,13 +12,15 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    self.webView = [UIWebView new];
-    [self addSubview:self.webView];
-    [self.webView autoPinEdgesToSuperviewMargins];
     return self;
 }
 
 -(void)play {
+    if(!self.webView) {
+        self.webView = [UIWebView new];
+        [self addSubview:self.webView];
+        [self.webView autoPinEdgesToSuperviewMargins];
+    }
     NSString* html = self.text;
     if(![self.text containsString:@"html"] && ![self.text containsString:@"HTML"]) {
         html = [html stringByReplacingOccurrencesOfString:@"\n" withString:@"<br/>"];
@@ -33,6 +35,5 @@
 -(void)setText:(NSString *)text
 {
     _text = text;
-    [self play];
 }
 @end

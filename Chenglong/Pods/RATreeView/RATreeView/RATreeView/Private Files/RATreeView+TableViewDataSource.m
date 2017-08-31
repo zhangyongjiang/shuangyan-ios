@@ -56,6 +56,7 @@
     RATreeNode *treeNode = [self treeNodeForIndexPath:indexPath];
     [self.dataSource treeView:self commitEditingStyle:editingStyle forRowForItem:treeNode.item];
   }
+    tableView.editing = NO;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
