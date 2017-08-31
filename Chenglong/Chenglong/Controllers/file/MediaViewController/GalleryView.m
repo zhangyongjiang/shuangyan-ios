@@ -26,10 +26,10 @@
 
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
+    self.mediaViews = [[NSMutableArray alloc] init];
     
     currentPlay = 0;
     self.backgroundColor = [UIColor whiteColor];
-    self.contentMode = UIViewContentModeScaleAspectFill;
 
     self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
     self.scrollView.backgroundColor = [UIColor whiteColor];
@@ -61,21 +61,31 @@
     timer = nil;
 }
 
+-(void)showCourseDetailsArray:(NSMutableArray *)courseDetailsArray
+{
+    for (CourseDetails* cd in courseDetailsArray) {
+        [self showCourseDetails:cd];
+    }
+}
+
+-(void)showCourseDetails:(CourseDetails *)courseDetails
+{
+    [self showText:courseDetails.course.content andMediaContent:courseDetails.course.resources];
+    for (CourseDetails* child in courseDetails.items) {
+        [self showCourseDetails:child];
+    }
+}
+
 -(void)showText:(NSString *)content andMediaContent:(NSArray *)mediaContents
 {
-    for (UIView* view in self.mediaViews) {
-        [view removeFromSuperview];
-    }
-    self.mediaViews = [[NSMutableArray alloc] init];
-    
-    int xOffset = 0;
+    int xOffset = self.mediaViews.count * self.width;
     content = [content trim];
     if(content.length>0) {
-        xOffset = self.width;
         MediaContentTextView* view = [[MediaContentTextView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
         view.text = content;
         [self.mediaViews addObject:view];
         [self.scrollView addSubview:view];
+        xOffset += self.width;
     }
     
     for (int i=0; i<mediaContents.count; i++) {
@@ -93,9 +103,7 @@
     
     self.pageControl.numberOfPages = self.mediaViews.count;
     [self bringSubviewToFront:self.pageControl];
-    if (self.mediaViews.count<2) {
-        self.pageControl.hidden = YES;
-    }
+    self.pageControl.hidden = (self.mediaViews.count<2);
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {

@@ -22,7 +22,7 @@
 -(void)setCourseDetails:(CourseDetails *)courseDetails
 {
     _courseDetails = courseDetails;
-    [self showText:courseDetails.course.content andMediaContent:courseDetails.course.resources];
+    [self showCourseDetails:courseDetails];
 }
 
 @end

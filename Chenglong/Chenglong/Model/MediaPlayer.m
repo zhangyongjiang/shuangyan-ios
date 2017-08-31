@@ -172,7 +172,13 @@ MediaPlayer* gMediaPlayer;
     [self.avplayer seekToTime:seektime];
 }
 
--(BOOL)isPlaying {
+-(BOOL)isPlaying:(LocalMediaContent*)mc {
+    if(self.current<0)
+        return NO;
+    PlayTask* task = [self.tasks objectAtIndex:self.current];
+    if(![task.localMediaContent.path isEqualToString:mc.path])
+        return NO;
+    
     if([[UIDevice currentDevice] systemVersion].intValue>=10){
         return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
     }else{

@@ -20,5 +20,7 @@
 -(void)play;
 -(void)stop;
 -(void)showText:(NSString*)content andMediaContent:(NSArray*)mediaContents;
+-(void)showCourseDetails:(CourseDetails*)courseDetails;
+-(void)showCourseDetailsArray:(NSMutableArray*)courseDetailsArray;
 
 @end

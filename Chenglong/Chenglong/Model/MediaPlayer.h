@@ -26,7 +26,7 @@
 -(void)playTask:(PlayTask *)task;
 -(void)play;
 -(void)stop;
--(BOOL)isPlaying;
+-(BOOL)isPlaying:(LocalMediaContent*)mc;
 -(void)removeTask:(LocalMediaContent*)mc;
 
 -(CGFloat)currentTaskDuration;

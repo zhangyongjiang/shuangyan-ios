@@ -24,7 +24,7 @@
     self.view.autoresizesSubviews = YES;
     
     self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
-    [self.galleryView showText:self.courseDetails.course.content andMediaContent:self.courseDetails.course.resources];
+    [self.galleryView showCourseDetails:self.courseDetails];
     [self.view addSubview:self.galleryView];
     
     UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 60, 40)];

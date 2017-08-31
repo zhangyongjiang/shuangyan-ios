@@ -30,7 +30,7 @@
     
     self.refreshControl = [UIRefreshControl new];
     [self.treeView.scrollView addSubview:self.refreshControl];
-
+    
     [self addSubview:self.treeView];
     
     return self;
@@ -82,26 +82,26 @@
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-//        UIButton *accessory = [UIButton buttonWithType:UIButtonTypeContactAdd];
-//        [cell setAccessoryView:accessory];
+        //        UIButton *accessory = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        //        [cell setAccessoryView:accessory];
     }
     
     __weak typeof(self) weakSelf = self;
     cell.additionButtonTapAction = ^(id sender){
-//        if (![weakSelf.treeView isCellForItemExpanded:dataObject] || weakSelf.treeView.isEditing) {
-//            return;
-//        }
-//        CourseDetails *newDataObject = [[CourseDetails alloc] initWithName:@"Added value" children:@[]];
-//        [dataObject addChild:newDataObject];
-//        [weakSelf.treeView insertItemsAtIndexes:[NSIndexSet indexSetWithIndex:0] inParent:dataObject withAnimation:RATreeViewRowAnimationLeft];
-//        [weakSelf.treeView reloadRowsForItems:@[dataObject] withRowAnimation:RATreeViewRowAnimationNone];
+        //        if (![weakSelf.treeView isCellForItemExpanded:dataObject] || weakSelf.treeView.isEditing) {
+        //            return;
+        //        }
+        //        CourseDetails *newDataObject = [[CourseDetails alloc] initWithName:@"Added value" children:@[]];
+        //        [dataObject addChild:newDataObject];
+        //        [weakSelf.treeView insertItemsAtIndexes:[NSIndexSet indexSetWithIndex:0] inParent:dataObject withAnimation:RATreeViewRowAnimationLeft];
+        //        [weakSelf.treeView reloadRowsForItems:@[dataObject] withRowAnimation:RATreeViewRowAnimationNone];
     };
     
     cell.collapseButtonTapAction = ^(id sender) {
         CourseDetails* parent = [weakSelf getParentOfItem:dataObject];
         if(parent) {
-//            [weakSelf.treeView collapseRowForItem:parent];
-//            [treeView selectRowForItem:parent animated:YES scrollPosition:RATreeViewScrollPositionNone];
+            //            [weakSelf.treeView collapseRowForItem:parent];
+            //            [treeView selectRowForItem:parent animated:YES scrollPosition:RATreeViewScrollPositionNone];
         }
     };
     
@@ -159,12 +159,12 @@
     cd.parent = parent;
     
     if(![cd isDirectory]) {
-//        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
-//        c.courseDetails = cd;
-//        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+        //        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
+        //        c.courseDetails = cd;
+        //        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
         MediaViewController* c = [MediaViewController new];
         c.courseDetails = cd;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPresentController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];        
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPresentController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }
 
@@ -209,8 +209,9 @@
     UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Play" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
                                     {
                                         treeView.editing = NO;
-                                        [treeView itemForSelectedRow];
-                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:cd userInfo:NULL];
+                                        MediaViewController* c = [MediaViewController new];
+                                        c.courseDetails = item;
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPresentController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
                                     }];
     button.backgroundColor = [UIColor lightGrayColor]; //arbitrary color
     UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)

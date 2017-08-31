@@ -39,7 +39,7 @@
     NSLog(@"clicked");
     if(!player)
         [self play];
-    else if([player isPlaying])
+    else if([player isPlaying:self.localMediaContent])
         [player stop];
     else
         [player play];
@@ -59,7 +59,7 @@
 //        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         return;
     }
-    if([player isPlaying]) {
+    if([player isPlaying:self.localMediaContent]) {
 //        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
         [player stop];
     }
@@ -78,12 +78,12 @@
 }
 
 -(BOOL)isPlaying {
-    return [player isPlaying];
+    return [player isPlaying:self.localMediaContent];
 }
 
 -(void)layoutSubviews {
     [super layoutSubviews];
-//    if(self.isPlaying)
+    if(self.isPlaying)
     {
         [player setAttachedView:self];
     }
@@ -91,7 +91,7 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     [super setLocalMediaContent:localMediaContent];
-    [self showVideoCoverImage];
+//    [self showVideoCoverImage];
 }
 
 -(void)showVideoCoverImage
@@ -121,7 +121,7 @@
     }
     
     UIImage *image = [self.localMediaContent getPlaceholderImageForVideo];
-    if(image) {
+    if(image && false) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf play];
             [SVProgressHUD dismiss];
