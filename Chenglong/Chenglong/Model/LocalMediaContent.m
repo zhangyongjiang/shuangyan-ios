@@ -394,4 +394,21 @@
         url = [NSString stringWithFormat:@"%@&access_token=%@", url, AppDelegate.userAccessToken];
     return url;
 }
+
+-(BOOL)isImage{
+    return [self.contentType hasPrefix:@"image"];
+}
+-(BOOL)isAudio{
+    return [self.contentType hasPrefix:@"audio"];
+}
+-(BOOL)isVideo {
+    return [self.contentType hasPrefix:@"video"];
+}
+-(BOOL)isPdf  {
+    return [self.contentType hasPrefix:@"application/pdf"];
+}
+-(BOOL)isText  {
+    return [self.contentType hasPrefix:@"text"];
+}
+
 @end

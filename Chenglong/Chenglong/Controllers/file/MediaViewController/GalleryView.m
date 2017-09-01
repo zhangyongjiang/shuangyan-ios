@@ -11,12 +11,19 @@
 #import "MediaContentAudioView.h"
 #import "MediaContentVideoView.h"
 #import "MediaContentTextView.h"
+#import "MediaContentPdfView.h"
+#import "MediaContentImageView.h"
 
 @interface GalleryView()
 {
     int currentPlay;
-    NSTimer* timer;
 }
+
+@property(strong, nonatomic) MediaContentTextView* textView;
+@property(strong, nonatomic) MediaContentImageView* imageView;
+@property(strong, nonatomic) MediaContentPdfView* pdfView;
+@property(strong, nonatomic) MediaContentAudioView* audioView;
+@property(strong, nonatomic) MediaContentVideoView* videoView;
 
 @property(strong,nonatomic)NSMutableArray* mediaViews;
 
@@ -49,6 +56,18 @@
     [self.pageControl autoAlignAxisToSuperviewAxis:ALAxisVertical];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
+    
+    self.textView = [[MediaContentTextView alloc]initWithFrame:frame];
+    self.imageView = [[MediaContentImageView alloc]initWithFrame:frame];
+    self.audioView = [[MediaContentAudioView alloc]initWithFrame:frame];
+    self.videoView = [[MediaContentVideoView alloc]initWithFrame:frame];
+    self.pdfView = [[MediaContentPdfView alloc]initWithFrame:frame];
+    [self.scrollView addSubview:self.textView];
+    [self.scrollView addSubview:self.imageView];
+    [self.scrollView addSubview:self.pdfView];
+    [self.scrollView addSubview:self.audioView];
+    [self.scrollView addSubview:self.videoView];
+    
     return self;
 }
 
@@ -61,7 +80,8 @@
     self.scrollView.contentOffset = CGPointMake(currentPlay*self.scrollView.width, 0);
     self.pageControl.currentPage = currentPlay;
 
-    MediaConentView* view = [self.mediaViews objectAtIndex:currentPlay];
+    LocalMediaContent* mc = [self.mediaViews objectAtIndex:currentPlay];
+    MediaConentView* view = [self getViewForMediaContent:mc];
     [view play];
 }
 
@@ -69,13 +89,11 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    for(UIView* view in self.mediaViews) {
-        [view removeFromSuperview];
-    }
-    
-    [timer invalidate];
-    timer = nil;
+    [self.textView removeFromSuperview];
+    [self.imageView removeFromSuperview];
+    [self.pdfView removeFromSuperview];
+    [self.audioView removeFromSuperview];
+    [self.videoView removeFromSuperview];
 }
 
 -(void)showCourseDetailsArray:(NSMutableArray *)courseDetailsArray
@@ -98,22 +116,16 @@
     int xOffset = self.mediaViews.count * self.width;
     content = [content trim];
     if(content.length>0) {
-        MediaContentTextView* view = [[MediaContentTextView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
-        view.text = content;
-        [self.mediaViews addObject:view];
-        [self.scrollView addSubview:view];
+        LocalMediaContent* mc = [LocalMediaContent new];
+        mc.contentType = @"text";
+        mc.content = content;
+        [self.mediaViews addObject:mc];
         xOffset += self.width;
     }
-    
-    for (int i=0; i<mediaContents.count; i++) {
-        CGFloat x = i * self.width + xOffset;
-        MediaConentView* view = [MediaConentView createViewForMediaContent:[mediaContents objectAtIndex:i]];
-        view.frame = CGRectMake(x, 0, self.width, self.height);
-        view.clipsToBounds = YES;
-        [self.mediaViews addObject:view];
-        [self.scrollView addSubview:view];
-    }
-    
+
+    if(mediaContents)
+        [self.mediaViews addObjectsFromArray:mediaContents];
+
     self.scrollView.contentSize = CGSizeMake(self.width * self.mediaViews.count, self.height);
 
     [self showPage:0];
@@ -146,28 +158,57 @@
 }
 
 -(void)showPage:(int)index {
-    if (index<0 || index >= self.mediaViews.count || self.pageControl.currentPage == index) {
+    if (currentPlay >= 0 && (index<0 || index >= self.mediaViews.count || self.pageControl.currentPage == index)) {
         return;
     }
     currentPlay = index;
-    UIView* view = [self.mediaViews objectAtIndex:index];
-    [self.scrollView scrollRectToVisible:CGRectMake(view.x, 0, view.width, view.height) animated:YES];
+    LocalMediaContent* mc = [self.mediaViews objectAtIndex:index];
+    MediaConentView* view = [self getViewForMediaContent:mc];
+    [self.scrollView bringSubviewToFront:view];
+    view.x = self.scrollView.width * index;
+    
+    [self.scrollView scrollRectToVisible:CGRectMake(index*self.scrollView.width, 0, self.scrollView.width, self.scrollView.height) animated:YES];
     self.pageControl.currentPage = index;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRadioValueChanged object:self];
+}
+
+-(MediaConentView*)getViewForMediaContent:(LocalMediaContent*)mc
+{
+    [[MediaPlayer shared] removeTask:mc];
+    if(mc.isText) {
+        self.textView.text = mc.content;
+        return self.textView;
+    }
+    if(mc.isImage) {
+        self.imageView.localMediaContent = mc;
+        return self.imageView;
+    }
+    if(mc.isPdf) {
+        self.pdfView.localMediaContent = mc;
+        return self.pdfView;
+    }
+    if(mc.isAudio) {
+        self.audioView.localMediaContent = mc;
+        return self.audioView;
+    }
+    if(mc.isVideo) {
+        self.videoView.localMediaContent = mc;
+        return self.videoView;
+    }
+    return NULL;
 }
 
 -(void)layoutSubviews {
     self.scrollView.width = self.width;
     self.scrollView.height = self.height;
-    int x = 0;
-    for (UIView* view in self.mediaViews) {
-        CGRect f = CGRectMake(x, 0, self.width, self.height);
-        view.frame = f;
-        x += self.width;
-    }
-    self.scrollView.contentSize = CGSizeMake(x, self.height);
-    UIView* view = [self.mediaViews objectAtIndex:currentPlay];
-    [self.scrollView scrollRectToVisible:CGRectMake(view.x, 0, view.width, view.height) animated:YES];
+    self.scrollView.contentSize = CGSizeMake(self.mediaViews.count*self.width, self.height);
+    
+    LocalMediaContent* mc = [self.mediaViews objectAtIndex:currentPlay];
+    MediaConentView* view = [self getViewForMediaContent:mc];
+    view.x = self.width * currentPlay;
+    [self.scrollView bringSubviewToFront:view];
+
+    [self.scrollView scrollRectToVisible:CGRectMake(view.x, 0, self.width, self.height) animated:YES];
 }
 
 -(void)play
@@ -175,33 +216,18 @@
     if(self.mediaViews.count == 0)
         return;
     [self showPage:currentPlay];
-    MediaConentView* view = [self.mediaViews objectAtIndex:currentPlay];
-    [view play];
-    WeakSelf(weakSelf)
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:weakSelf selector:@selector(checkPlayerStatus) userInfo:nil repeats:YES];
-}
-
--(void)checkPlayerStatus
-{
-    MediaContentAudioView* view = [self.mediaViews objectAtIndex:currentPlay];
-    if([view isPlaying]) {
-        return;
-    }
-    currentPlay++;
-    if(currentPlay >= self.mediaViews.count)
-        currentPlay = 0;
-    [self showPage:currentPlay];
-    view = [self.mediaViews objectAtIndex:currentPlay];
+    
+    LocalMediaContent* mc = [self.mediaViews objectAtIndex:currentPlay];
+    MediaConentView* view = [self getViewForMediaContent:mc];
     [view play];
 }
 
 -(void)stop
 {
-    [timer invalidate];
-    timer = nil;
-    for(int i=0; i<self.mediaViews.count; i++) {
-        MediaConentView* view = [self.mediaViews objectAtIndex:i];
-        [view stop];
-    }
+    [self.textView stop];
+    [self.imageView stop];
+    [self.pdfView stop];
+    [self.audioView stop];
+    [self.videoView stop];
 }
 @end

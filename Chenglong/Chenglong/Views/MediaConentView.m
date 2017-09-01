@@ -11,6 +11,7 @@
 #import "MediaContentAudioView.h"
 #import "MediaContentVideoView.h"
 #import "MediaContentPdfView.h"
+#import "MediaContentTextView.h"
 #import "PureLayout.h"
 #import "LocalMediaContentShard.h"
 #import "LocalMediaContentShardGroup.h"
@@ -52,7 +53,7 @@
 }
 
 -(void)downloadOrPlay {
-    if ([MediaConentView isAudio:self.localMediaContent]) {
+    if ([self.localMediaContent isAudio]) {
         [SVProgressHUD showWithStatus:@"loading..."];
         LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
         [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
@@ -64,7 +65,7 @@
             });
         } enableBackgroundMode:YES];
     }
-    else if ([MediaConentView isVideo:self.localMediaContent]) {
+    else if ([self.localMediaContent isVideo]) {
         NSMutableArray* array = [NSMutableArray new];
         LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
         if(!shard.isDownloaded)
@@ -136,37 +137,28 @@
 
 -(void)downloadCompleted
 {
-    if (![MediaConentView isAudio:self.localMediaContent] &&
-        ![MediaConentView isVideo:self.localMediaContent]) {
+    if (![self.localMediaContent isAudio] &&
+        ![self.localMediaContent isVideo]) {
         [self play];
     }
 }
 
-+(BOOL)isImage:(LocalMediaContent*)localMediaContent {
-    return [localMediaContent.contentType hasPrefix:@"image"];
-}
-+(BOOL)isAudio:(LocalMediaContent*)localMediaContent {
-    return [localMediaContent.contentType hasPrefix:@"audio"];
-}
-+(BOOL)isVideo:(LocalMediaContent*)localMediaContent {
-    return [localMediaContent.contentType hasPrefix:@"video"];
-}
-+(BOOL)isPdf:(LocalMediaContent*)localMediaContent {
-    return [localMediaContent.contentType hasPrefix:@"application/pdf"];
-}
 +(MediaConentView*) createViewForMediaContent:(LocalMediaContent*)localMediaContent {
     MediaConentView* view;
-    if([MediaConentView isImage:localMediaContent]) {
+    if([localMediaContent isImage]) {
         view = [[MediaContentImageView alloc] init];
     }
-    else if([MediaConentView isAudio:localMediaContent]) {
+    else if([localMediaContent isAudio]) {
         view = [[MediaContentAudioView alloc] init];
     }
-    else if([MediaConentView isVideo:localMediaContent]) {
+    else if([localMediaContent isVideo]) {
         view = [[MediaContentVideoView alloc] init];
     }
-    else if([MediaConentView isPdf:localMediaContent]) {
+    else if([localMediaContent isPdf]) {
         view = [[MediaContentPdfView alloc] init];
+    }
+    else if([localMediaContent isText]) {
+        view = [[MediaContentTextView alloc] init];
     }
     else
         return nil;
@@ -198,8 +190,8 @@
         }];
     }
     
-    if (![MediaConentView isAudio:self.localMediaContent] &&
-        ![MediaConentView isVideo:self.localMediaContent]) {
+    if (![self.localMediaContent isAudio] &&
+        ![self.localMediaContent isVideo]) {
         [self play];
     }
 }

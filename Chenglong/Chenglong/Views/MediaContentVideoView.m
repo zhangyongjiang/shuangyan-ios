@@ -90,6 +90,8 @@
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
     [super setLocalMediaContent:localMediaContent];
+    [player stop];
+    player = nil;
 //    [self showVideoCoverImage];
 }
 

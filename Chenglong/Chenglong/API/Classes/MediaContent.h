@@ -12,4 +12,6 @@
 @property(strong, nonatomic) NSString* url;
 @property(strong, nonatomic) NSString* md5;
 
+@property(strong, nonatomic) NSString* content;
+
 @end

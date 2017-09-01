@@ -12,10 +12,6 @@
 
 @property(strong, nonatomic) LocalMediaContent* localMediaContent;
 
-+(BOOL) isImage:(LocalMediaContent*)localMediaContent;
-+(BOOL) isAudio:(LocalMediaContent*)localMediaContent;
-+(BOOL) isVideo:(LocalMediaContent*)localMediaContent;
-+(BOOL) isPdf:(LocalMediaContent*)localMediaContent;
 +(MediaConentView*) createViewForMediaContent:(LocalMediaContent*)localMediaContent;
 
 -(void)downloadOrPlay;

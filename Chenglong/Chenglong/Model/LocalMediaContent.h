@@ -49,4 +49,10 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(NSString*)urlWithToken;
 -(UIImage *)getPlaceholderImageForVideo;
 
+-(BOOL)isImage;
+-(BOOL)isAudio;
+-(BOOL)isVideo;
+-(BOOL)isPdf;
+-(BOOL)isText;
+
 @end
