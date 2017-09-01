@@ -147,6 +147,7 @@
 		AD3A7FEE1F5228AE009E632D /* audio-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FEA1F5228AE009E632D /* audio-play@2x.png */; };
 		AD3A7FF11F53A80D009E632D /* CourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A7FF01F53A80D009E632D /* CourseView.m */; };
 		AD3A7FF41F53AF6E009E632D /* MediaContentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */; };
+		AD3A7FF71F58DADF009E632D /* MediaContentViewContailer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A7FF61F58DADF009E632D /* MediaContentViewContailer.m */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
 		AD3D94F01EE6772400D2704B /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94EF1EE6772400D2704B /* Page.m */; };
@@ -569,6 +570,8 @@
 		AD3A7FF01F53A80D009E632D /* CourseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseView.m; sourceTree = "<group>"; };
 		AD3A7FF21F53AF6E009E632D /* MediaContentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentTextView.h; sourceTree = "<group>"; };
 		AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentTextView.m; sourceTree = "<group>"; };
+		AD3A7FF51F58DADF009E632D /* MediaContentViewContailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentViewContailer.h; sourceTree = "<group>"; };
+		AD3A7FF61F58DADF009E632D /* MediaContentViewContailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentViewContailer.m; sourceTree = "<group>"; };
 		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
 		AD3D94D71EE5286100D2704B /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Attach.h"; sourceTree = "<group>"; };
@@ -1756,6 +1759,8 @@
 				AD49D8801F0C5133000D0E1B /* ScaleImgViewController.m */,
 				AD49D8861F0CB3B2000D0E1B /* MediaViewController.h */,
 				AD49D8871F0CB3B2000D0E1B /* MediaViewController.m */,
+				AD3A7FF51F58DADF009E632D /* MediaContentViewContailer.h */,
+				AD3A7FF61F58DADF009E632D /* MediaContentViewContailer.m */,
 			);
 			path = MediaViewController;
 			sourceTree = "<group>";
@@ -2287,6 +2292,7 @@
 				030049691E0E5F60006EDC29 /* CourseInfo.m in Sources */,
 				AD49D8451F098622000D0E1B /* FileDetailsViewController.m in Sources */,
 				030049751E0E5F61006EDC29 /* JournalDetailsList.m in Sources */,
+				AD3A7FF71F58DADF009E632D /* MediaContentViewContailer.m in Sources */,
 				0300495B1E0E5F60006EDC29 /* Account.m in Sources */,
 				AD49D87A1F0BD86C000D0E1B /* UserFileListTableViewCell.m in Sources */,
 				AD49D82C1F096CE5000D0E1B /* TotalFileView.m in Sources */,

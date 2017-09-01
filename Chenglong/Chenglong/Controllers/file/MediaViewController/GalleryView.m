@@ -7,25 +7,15 @@
 //
 
 #import "GalleryView.h"
-#import "MediaConentView.h"
-#import "MediaContentAudioView.h"
-#import "MediaContentVideoView.h"
-#import "MediaContentTextView.h"
-#import "MediaContentPdfView.h"
-#import "MediaContentImageView.h"
+#import "MediaContentViewContailer.h"
 
 @interface GalleryView()
 {
     int currentPlay;
 }
 
-@property(strong, nonatomic) MediaContentTextView* textView;
-@property(strong, nonatomic) MediaContentImageView* imageView;
-@property(strong, nonatomic) MediaContentPdfView* pdfView;
-@property(strong, nonatomic) MediaContentAudioView* audioView;
-@property(strong, nonatomic) MediaContentVideoView* videoView;
-
 @property(strong,nonatomic)NSMutableArray* mediaViews;
+@property(strong, nonatomic)MediaContentViewContailer* contentView;
 
 @end
 
@@ -57,16 +47,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     
-    self.textView = [[MediaContentTextView alloc]initWithFrame:frame];
-    self.imageView = [[MediaContentImageView alloc]initWithFrame:frame];
-    self.audioView = [[MediaContentAudioView alloc]initWithFrame:frame];
-    self.videoView = [[MediaContentVideoView alloc]initWithFrame:frame];
-    self.pdfView = [[MediaContentPdfView alloc]initWithFrame:frame];
-    [self.scrollView addSubview:self.textView];
-    [self.scrollView addSubview:self.imageView];
-    [self.scrollView addSubview:self.pdfView];
-    [self.scrollView addSubview:self.audioView];
-    [self.scrollView addSubview:self.videoView];
+    self.contentView = [[MediaContentViewContailer alloc]initWithFrame:frame];
+    [self.scrollView addSubview:self.contentView];
     
     return self;
 }
@@ -81,19 +63,15 @@
     self.pageControl.currentPage = currentPlay;
 
     LocalMediaContent* mc = [self.mediaViews objectAtIndex:currentPlay];
-    MediaConentView* view = [self getViewForMediaContent:mc];
-    [view play];
+    self.contentView.localMediaContent = mc;
+    [self.contentView play];
 }
 
 
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.textView removeFromSuperview];
-    [self.imageView removeFromSuperview];
-    [self.pdfView removeFromSuperview];
-    [self.audioView removeFromSuperview];
-    [self.videoView removeFromSuperview];
+    [self.contentView removeFromSuperview];
 }
 
 -(void)showCourseDetailsArray:(NSMutableArray *)courseDetailsArray
@@ -163,39 +141,12 @@
     }
     currentPlay = index;
     LocalMediaContent* mc = [self.mediaViews objectAtIndex:index];
-    MediaConentView* view = [self getViewForMediaContent:mc];
-    [self.scrollView bringSubviewToFront:view];
-    view.x = self.scrollView.width * index;
+    self.contentView.localMediaContent = mc;
+    self.contentView.x = self.scrollView.width * index;
     
     [self.scrollView scrollRectToVisible:CGRectMake(index*self.scrollView.width, 0, self.scrollView.width, self.scrollView.height) animated:YES];
     self.pageControl.currentPage = index;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRadioValueChanged object:self];
-}
-
--(MediaConentView*)getViewForMediaContent:(LocalMediaContent*)mc
-{
-    [[MediaPlayer shared] removeTask:mc];
-    if(mc.isText) {
-        self.textView.text = mc.content;
-        return self.textView;
-    }
-    if(mc.isImage) {
-        self.imageView.localMediaContent = mc;
-        return self.imageView;
-    }
-    if(mc.isPdf) {
-        self.pdfView.localMediaContent = mc;
-        return self.pdfView;
-    }
-    if(mc.isAudio) {
-        self.audioView.localMediaContent = mc;
-        return self.audioView;
-    }
-    if(mc.isVideo) {
-        self.videoView.localMediaContent = mc;
-        return self.videoView;
-    }
-    return NULL;
 }
 
 -(void)layoutSubviews {
@@ -203,12 +154,11 @@
     self.scrollView.height = self.height;
     self.scrollView.contentSize = CGSizeMake(self.mediaViews.count*self.width, self.height);
     
-    LocalMediaContent* mc = [self.mediaViews objectAtIndex:currentPlay];
-    MediaConentView* view = [self getViewForMediaContent:mc];
-    view.x = self.width * currentPlay;
-    [self.scrollView bringSubviewToFront:view];
+    self.contentView.x = self.width * currentPlay;
+    self.contentView.width = self.width;
+    self.contentView.height = self.height;
 
-    [self.scrollView scrollRectToVisible:CGRectMake(view.x, 0, self.width, self.height) animated:YES];
+    [self.scrollView scrollRectToVisible:CGRectMake(self.width * currentPlay, 0, self.width, self.height) animated:YES];
 }
 
 -(void)play
@@ -217,17 +167,11 @@
         return;
     [self showPage:currentPlay];
     
-    LocalMediaContent* mc = [self.mediaViews objectAtIndex:currentPlay];
-    MediaConentView* view = [self getViewForMediaContent:mc];
-    [view play];
+    [self.contentView play];
 }
 
 -(void)stop
 {
-    [self.textView stop];
-    [self.imageView stop];
-    [self.pdfView stop];
-    [self.audioView stop];
-    [self.videoView stop];
+    [self.contentView stop];
 }
 @end
