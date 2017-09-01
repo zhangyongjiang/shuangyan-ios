@@ -16,6 +16,8 @@
     MediaPlayer* player;
 }
 
+@property(strong, nonatomic) UIImageView* coverImageView;
+
 @end
 
 @implementation MediaContentVideoView
@@ -23,9 +25,22 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
+    self.coverImageView = [[UIImageView alloc] initWithFrame:frame];
+    self.coverImageView.contentMode = UIViewContentModeCenter;
+    self.coverImageView.image = [UIImage imageNamed:@"logo-300x300"];
+    [self addSubview:self.coverImageView];
+    [self.coverImageView autoPinEdgesToSuperviewMargins];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
+
     [self addTarget:self action:@selector(clicked)];
     
     return self;
+}
+
+-(void)playingNotiHandler:(NSNotification*)noti
+{
+    self.coverImageView.hidden = YES;
 }
 
 -(void)dealloc {
@@ -92,6 +107,7 @@
     [super setLocalMediaContent:localMediaContent];
     [player stop];
     player = nil;
+    self.coverImageView.hidden = NO;
 //    [self showVideoCoverImage];
 }
 

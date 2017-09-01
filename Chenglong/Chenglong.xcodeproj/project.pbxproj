@@ -148,6 +148,7 @@
 		AD3A7FF11F53A80D009E632D /* CourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A7FF01F53A80D009E632D /* CourseView.m */; };
 		AD3A7FF41F53AF6E009E632D /* MediaContentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */; };
 		AD3A7FF71F58DADF009E632D /* MediaContentViewContailer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3A7FF61F58DADF009E632D /* MediaContentViewContailer.m */; };
+		AD3A7FF91F5906AE009E632D /* logo-300x300.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FF81F5906AE009E632D /* logo-300x300.png */; };
 		AD3D94D81EE5286100D2704B /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94D71EE5286100D2704B /* UIView+Position.m */; };
 		AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94DA1EE528AF00D2704B /* NSObject+Attach.m */; };
 		AD3D94F01EE6772400D2704B /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94EF1EE6772400D2704B /* Page.m */; };
@@ -572,6 +573,7 @@
 		AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentTextView.m; sourceTree = "<group>"; };
 		AD3A7FF51F58DADF009E632D /* MediaContentViewContailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentViewContailer.h; sourceTree = "<group>"; };
 		AD3A7FF61F58DADF009E632D /* MediaContentViewContailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentViewContailer.m; sourceTree = "<group>"; };
+		AD3A7FF81F5906AE009E632D /* logo-300x300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-300x300.png"; sourceTree = "<group>"; };
 		AD3D94D61EE5286100D2704B /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
 		AD3D94D71EE5286100D2704B /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		AD3D94D91EE528AF00D2704B /* NSObject+Attach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Attach.h"; sourceTree = "<group>"; };
@@ -1837,6 +1839,7 @@
 		ADD117B51EF17C5300EF6E04 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD3A7FF81F5906AE009E632D /* logo-300x300.png */,
 				AD3A7FE71F5228AE009E632D /* audio-pause.png */,
 				AD3A7FE81F5228AE009E632D /* audio-pause@2x.png */,
 				AD3A7FE91F5228AE009E632D /* audio-play.png */,
@@ -2022,6 +2025,7 @@
 				AD49D8291F096CE5000D0E1B /* MyFilesView.xib in Resources */,
 				AD49D82D1F096CE5000D0E1B /* TotalFileView.xib in Resources */,
 				0300498F1E0E68B4006EDC29 /* 37x-Checkmark@2x.png in Resources */,
+				AD3A7FF91F5906AE009E632D /* logo-300x300.png in Resources */,
 				032C96851E2CA31D001EFC29 /* navi_back@2x.png in Resources */,
 				AD49D8191F096CE5000D0E1B /* CreatFileTypeView.xib in Resources */,
 				A354C1831C93ED9F00EE0DE5 /* Assets.xcassets in Resources */,

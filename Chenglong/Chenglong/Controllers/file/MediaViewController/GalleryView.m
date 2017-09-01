@@ -25,7 +25,7 @@
     self = [super initWithFrame:frame];
     self.mediaViews = [[NSMutableArray alloc] init];
     
-    currentPlay = 0;
+    currentPlay = -1;
     self.backgroundColor = [UIColor whiteColor];
 
     self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
@@ -103,6 +103,9 @@
 
     if(mediaContents)
         [self.mediaViews addObjectsFromArray:mediaContents];
+    
+    if(self.mediaViews.count ==0 )
+        return;
 
     self.scrollView.contentSize = CGSizeMake(self.width * self.mediaViews.count, self.height);
 

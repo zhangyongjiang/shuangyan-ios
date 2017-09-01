@@ -21,7 +21,7 @@
 @property(strong, nonatomic) MediaContentAudioView* audioView;
 @property(strong, nonatomic) MediaContentVideoView* videoView;
 
-@property(strong, nonatomic) MediaConentView* contentView;
+@property(weak, nonatomic) MediaConentView* contentView;
 
 @end
 
@@ -70,7 +70,16 @@
         self.contentView = self.videoView;
     }
     self.contentView.localMediaContent = localMediaContent;
-    [self bringSubviewToFront:self.contentView];
+    [self showView:self.contentView];
+}
+
+-(void)showView:(UIView*)view
+{
+    self.textView.hidden = !(view == self.textView);
+    self.imageView.hidden = !(view == self.imageView);
+    self.pdfView.hidden = !(view == self.pdfView);
+    self.audioView.hidden = !(view == self.audioView);
+    self.videoView.hidden = !(view == self.videoView);
 }
 
 -(void)play

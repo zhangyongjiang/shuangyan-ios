@@ -64,6 +64,8 @@ MediaPlayer* gMediaPlayer;
 
 -(void)playerNoti:(CMTime) time
 {
+    if([self isAvplayerPlaying])
+       [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:nil];
     if(self.current == -1)
         return;
     if(self.slider.maximumValue < 0.000001)
@@ -181,6 +183,15 @@ MediaPlayer* gMediaPlayer;
     if(![task.localMediaContent.path isEqualToString:mc.path])
         return NO;
     
+    if([[UIDevice currentDevice] systemVersion].intValue>=10){
+        return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
+    }else{
+        return self.avplayer.rate==1;
+    }
+}
+
+-(BOOL)isAvplayerPlaying
+{
     if([[UIDevice currentDevice] systemVersion].intValue>=10){
         return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
     }else{
