@@ -411,4 +411,11 @@
     return [self.contentType hasPrefix:@"text"];
 }
 
++(LocalMediaContent*)localMediaContentWithText:(NSString *)text
+{
+    LocalMediaContent* mc = [LocalMediaContent new];
+    mc.contentType = @"text";
+    mc.content = text;
+    return mc;
+}
 @end

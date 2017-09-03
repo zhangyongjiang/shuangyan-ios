@@ -140,6 +140,9 @@
 		AD2A7BE11F1265D00016B51E /* UpdateFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */; };
 		AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */; };
 		AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEE1F15E7D30016B51E /* PlayTask.m */; };
+		AD3062131F5B9050006E6675 /* GalleryCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3062121F5B9050006E6675 /* GalleryCollectionView.m */; };
+		AD3062161F5B979E006E6675 /* GalleryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3062151F5B979E006E6675 /* GalleryCollectionViewCell.m */; };
+		AD3062191F5BA4A5006E6675 /* MediaViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3062181F5BA4A5006E6675 /* MediaViewPage.m */; };
 		AD318B501EFBF9FD0061E993 /* Dbase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD318B4F1EFBF9FD0061E993 /* Dbase.m */; };
 		AD3A7FEB1F5228AE009E632D /* audio-pause.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FE71F5228AE009E632D /* audio-pause.png */; };
 		AD3A7FEC1F5228AE009E632D /* audio-pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3A7FE81F5228AE009E632D /* audio-pause@2x.png */; };
@@ -561,6 +564,12 @@
 		AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayer.m; sourceTree = "<group>"; };
 		AD2A7BED1F15E7D30016B51E /* PlayTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayTask.h; sourceTree = "<group>"; };
 		AD2A7BEE1F15E7D30016B51E /* PlayTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayTask.m; sourceTree = "<group>"; };
+		AD3062111F5B9050006E6675 /* GalleryCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryCollectionView.h; path = Chenglong/Views/GalleryCollectionView.h; sourceTree = SOURCE_ROOT; };
+		AD3062121F5B9050006E6675 /* GalleryCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryCollectionView.m; path = Chenglong/Views/GalleryCollectionView.m; sourceTree = SOURCE_ROOT; };
+		AD3062141F5B979E006E6675 /* GalleryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryCollectionViewCell.h; path = Chenglong/Views/GalleryCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
+		AD3062151F5B979E006E6675 /* GalleryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryCollectionViewCell.m; path = Chenglong/Views/GalleryCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
+		AD3062171F5BA4A5006E6675 /* MediaViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewPage.h; sourceTree = "<group>"; };
+		AD3062181F5BA4A5006E6675 /* MediaViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaViewPage.m; sourceTree = "<group>"; };
 		AD318B4E1EFBF9FD0061E993 /* Dbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dbase.h; sourceTree = "<group>"; };
 		AD318B4F1EFBF9FD0061E993 /* Dbase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dbase.m; sourceTree = "<group>"; };
 		AD3A7FE71F5228AE009E632D /* audio-pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-pause.png"; sourceTree = "<group>"; };
@@ -1763,6 +1772,12 @@
 				AD49D8871F0CB3B2000D0E1B /* MediaViewController.m */,
 				AD3A7FF51F58DADF009E632D /* MediaContentViewContailer.h */,
 				AD3A7FF61F58DADF009E632D /* MediaContentViewContailer.m */,
+				AD3062111F5B9050006E6675 /* GalleryCollectionView.h */,
+				AD3062121F5B9050006E6675 /* GalleryCollectionView.m */,
+				AD3062141F5B979E006E6675 /* GalleryCollectionViewCell.h */,
+				AD3062151F5B979E006E6675 /* GalleryCollectionViewCell.m */,
+				AD3062171F5BA4A5006E6675 /* MediaViewPage.h */,
+				AD3062181F5BA4A5006E6675 /* MediaViewPage.m */,
 			);
 			path = MediaViewController;
 			sourceTree = "<group>";
@@ -2176,6 +2191,7 @@
 				AD49D81E1F096CE5000D0E1B /* MediaAttachmentCollectionViewCell.m in Sources */,
 				AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */,
 				AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */,
+				AD3062191F5BA4A5006E6675 /* MediaViewPage.m in Sources */,
 				AD49D8261F096CE5000D0E1B /* FilesChooseTitleView.m in Sources */,
 				AD49D81A1F096CE5000D0E1B /* CreatFileViews.m in Sources */,
 				0386EF5D1E0FC86D009A1DFE /* UIViewController+Nib.m in Sources */,
@@ -2203,6 +2219,7 @@
 				AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */,
 				ADD117F11EF64E7B00EF6E04 /* BaseNavigationController.m in Sources */,
 				032911811E113D0C000C1F5A /* UIImageView+Thumbnail.m in Sources */,
+				AD3062161F5B979E006E6675 /* GalleryCollectionViewCell.m in Sources */,
 				AD3A7FF11F53A80D009E632D /* CourseView.m in Sources */,
 				032C96921E2CA31D001EFC29 /* TZImageManager.m in Sources */,
 				030049001E0E5D65006EDC29 /* TMDiskCache.m in Sources */,
@@ -2255,6 +2272,7 @@
 				0300497A1E0E5F61006EDC29 /* MoneyRequest.m in Sources */,
 				AD49D82A1F096CE5000D0E1B /* TotalFileHeaderView.m in Sources */,
 				030049611E0E5F60006EDC29 /* BusinessList.m in Sources */,
+				AD3062131F5B9050006E6675 /* GalleryCollectionView.m in Sources */,
 				AD89496B1F2BFD8F00C024F8 /* ProfileNavigationController.m in Sources */,
 				AD49D87B1F0BD86C000D0E1B /* UserFileListViewController.m in Sources */,
 				0335B3111E1508F800A2A74B /* XTPopTableView.m in Sources */,

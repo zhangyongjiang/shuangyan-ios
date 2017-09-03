@@ -8,9 +8,11 @@
 
 #import "MediaViewController.h"
 #import "GalleryView.h"
+#import "GalleryCollectionView.h"
+#import "MediaViewPage.h"
 
 @interface MediaViewController ()
-@property(strong, nonatomic)GalleryView* galleryView;
+@property(strong, nonatomic)MediaViewPage* mediaViewPage;
 
 @end
 
@@ -23,28 +25,21 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.view.autoresizesSubviews = YES;
     
-    self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
-    [self.galleryView showCourseDetails:self.courseDetails];
-    [self.view addSubview:self.galleryView];
+    self.mediaViewPage = [[MediaViewPage alloc] initWithFrame:self.view.bounds];
+    self.mediaViewPage.courseDetails = self.courseDetails;
+    [self.view addSubview:self.mediaViewPage];
     
-    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 60, 40)];
-    btn.backgroundColor = [UIColor colorFromRGB:0xffffff];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn setTitle:@"关闭" forState:UIControlStateNormal];
-    btn.layer.borderColor = [UIColor blackColor].CGColor;
-    btn.layer.borderWidth = 0.5;
-    btn.layer.cornerRadius = btn.height / 4.;
-    [btn addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
+    [self.mediaViewPage.btnClose addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
 -(void)cancelPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
     }];
-    [self.galleryView stop];
-    [self.galleryView removeFromSuperview];
-    self.galleryView = nil;
+    [self.mediaViewPage.galleryView stop];
+    [self.mediaViewPage.galleryView removeFromSuperview];
+    self.mediaViewPage.galleryView = nil;
+    self.mediaViewPage = nil;
 }
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -52,12 +47,12 @@
 
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.galleryView.frame = self.view.bounds;
+    self.mediaViewPage.frame = self.view.bounds;
 }
 
 -(void)play
 {
-    [self.galleryView play];
+    [self.mediaViewPage.galleryView play];
 }
 
 -(BOOL)prefersStatusBarHidden

@@ -30,7 +30,6 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(NSString*)getFileExtension;
 -(void)createDirs;
 -(void)deleteLocalFile;
-
 -(NSString*)localFilePath;
 -(BOOL)localFileExists;
 -(CMTime)duration;
@@ -41,7 +40,6 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(id) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock
                   completionBlock:(void(^)(BOOL completed))completionBlock
                         forShards:(int)shard, ...;
-
 
 -(BOOL)isSingleShard;
 -(int)numOfShards;
@@ -54,5 +52,7 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(BOOL)isVideo;
 -(BOOL)isPdf;
 -(BOOL)isText;
+
++(LocalMediaContent*)localMediaContentWithText:(NSString*)text;
 
 @end
