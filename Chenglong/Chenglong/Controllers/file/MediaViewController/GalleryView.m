@@ -40,13 +40,8 @@
 
 -(void)playEnd:(NSNotification*)noti
 {
-    currentPlay++;
-    if(currentPlay >= self.mediaViews.count)
-        currentPlay = 0;
-
-    LocalMediaContent* mc = [self.mediaViews objectAtIndex:currentPlay];
-    self.contentView.localMediaContent = mc;
-    [self.contentView play];
+    [self next];
+    [self play];
 }
 
 
