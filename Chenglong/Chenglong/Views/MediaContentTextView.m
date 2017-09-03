@@ -21,8 +21,8 @@
         [self addSubview:self.webView];
         [self.webView autoPinEdgesToSuperviewMargins];
     }
-    NSString* html = self.text;
-    if(![self.text containsString:@"html"] && ![self.text containsString:@"HTML"]) {
+    NSString* html = self.localMediaContent.content;
+    if(![html containsString:@"html"] && ![html containsString:@"HTML"]) {
         html = [html stringByReplacingOccurrencesOfString:@"\n" withString:@"<br/>"];
         html = [NSString stringWithFormat:@"<br/><br/>%@",html];
     }
@@ -32,8 +32,4 @@
     });
 }
 
--(void)setText:(NSString *)text
-{
-    _text = text;
-}
 @end

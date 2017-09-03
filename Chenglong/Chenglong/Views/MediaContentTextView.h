@@ -12,6 +12,5 @@
 @interface MediaContentTextView : MediaConentView
 
 @property(strong, nonatomic)UIWebView* webView;
-@property(strong, nonatomic)NSString* text;
 
 @end
