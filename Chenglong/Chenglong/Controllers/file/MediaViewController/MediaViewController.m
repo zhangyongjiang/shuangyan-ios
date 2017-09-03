@@ -30,7 +30,22 @@
     [self.view addSubview:self.mediaViewPage];
     
     [self.mediaViewPage.btnClose addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [self.mediaViewPage.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
+    [self.mediaViewPage.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)previous:(id)sender
+{
+    BOOL success = [self.mediaViewPage.galleryView previous];
+    if(success)
+        [self.mediaViewPage.galleryView play];
+}
+
+-(void)next:(id)sender
+{
+    BOOL success = [self.mediaViewPage.galleryView next];
+    if(success)
+        [self.mediaViewPage.galleryView play];
 }
 
 -(void)cancelPressed:(id)sender {

@@ -99,7 +99,7 @@ MediaPlayer* gMediaPlayer;
     }
     NSLog(@"play content at %@", url);
 
-        AVURLAsset* asset = [AVURLAsset assetWithURL:url];
+        __block AVURLAsset* asset = [AVURLAsset assetWithURL:url];
         [asset.resourceLoader setDelegate:task.localMediaContent queue:TWRDownloadManager.queue];
         NSArray *keys = @[@"playable", @"tracks",@"duration" ];
         [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^()
@@ -114,12 +114,13 @@ MediaPlayer* gMediaPlayer;
                  }
              }
              
-             AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+             __block AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
              [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
              self.slider.maximumValue = self.currentTaskDuration;
-             PlayTask* task = [self.tasks objectAtIndex:self.current];
+             __block PlayTask* task = [self.tasks objectAtIndex:self.current];
              task.item = item;
              dispatch_async(dispatch_get_main_queue(), ^ {
+                 NSLog(@"replaceCurrentItemWithPlayerItem %@", item);
                  [self.avplayer replaceCurrentItemWithPlayerItem:item];
                  [self.avplayer play];
                  [self setAttachedView:self.attachedView];

@@ -17,17 +17,35 @@
     self.galleryView = [[GalleryView alloc] initWithFrame:frame];
     [self addSubview:self.galleryView];
     
+    self.btnClose = [self createButton:@"关闭"];
+    self.btnClose.frame = CGRectMake(10, 10, 60, 40);
+    [self addSubview:self.btnClose];
+    
+    self.btnPrev = [self createButton:@"←"];
+    self.btnPrev.frame = CGRectMake(10, 10, 60, 40);
+    [self addSubview:self.btnPrev];
+    [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10];
+    [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
+    
+    self.btnNext = [self createButton:@"→"];
+    self.btnNext.frame = CGRectMake(10, 10, 60, 40);
+    [self addSubview:self.btnNext];
+    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
+    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
+    
+    return self;
+}
+
+-(UIButton*)createButton:(NSString*)text
+{
     UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 60, 40)];
     btn.backgroundColor = [UIColor colorFromRGB:0xffffff];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn setTitle:@"关闭" forState:UIControlStateNormal];
+    [btn setTitle:text forState:UIControlStateNormal];
     btn.layer.borderColor = [UIColor blackColor].CGColor;
     btn.layer.borderWidth = 0.5;
     btn.layer.cornerRadius = btn.height / 4.;
-    [self addSubview:btn];
-    self.btnClose = btn;
-
-    return self;
+    return btn;
 }
 
 -(void)setCourseDetails:(CourseDetails*)courseDetails

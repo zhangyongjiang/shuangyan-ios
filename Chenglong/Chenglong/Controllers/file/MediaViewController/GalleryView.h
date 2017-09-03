@@ -10,8 +10,6 @@
 
 @interface GalleryView : UIView <UIScrollViewDelegate>
 
-@property(strong,nonatomic)UIScrollView* scrollView;
-@property(strong,nonatomic)UIPageControl* pageControl;
 @property(strong,nonatomic)UIColor* tintColor;
 @property(assign,nonatomic)UIViewContentMode contentMode;
 
@@ -19,8 +17,8 @@
 -(void)showPage:(int)pageNumber;
 -(void)play;
 -(void)stop;
--(void)showText:(NSString*)content andMediaContent:(NSArray*)mediaContents;
 -(void)showCourseDetails:(CourseDetails*)courseDetails;
--(void)showCourseDetailsArray:(NSMutableArray*)courseDetailsArray;
+-(BOOL)previous;
+-(BOOL)next;
 
 @end
