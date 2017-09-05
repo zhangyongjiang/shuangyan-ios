@@ -7,7 +7,6 @@
 //
 
 #import "FileDetailsViewController.h"
-#import "MediaContentAudioView.h"
 #import "courseView.h"
 #import "CoursePickerViewController.h"
 #import "MediaViewController.h"

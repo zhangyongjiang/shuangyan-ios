@@ -8,7 +8,6 @@
 
 #import "MediaConentView.h"
 #import "MediaContentImageView.h"
-#import "MediaContentAudioView.h"
 #import "MediaContentVideoView.h"
 #import "MediaContentPdfView.h"
 #import "MediaContentTextView.h"

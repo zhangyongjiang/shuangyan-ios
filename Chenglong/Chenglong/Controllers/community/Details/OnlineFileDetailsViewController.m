@@ -7,7 +7,6 @@
 //
 
 #import "OnlineFileDetailsViewController.h"
-#import "MediaContentAudioView.h"
 #import "OnlineCourseDetailsView.h"
 #import "CoursePickerViewController.h"
 #import "CourseTreeViewController.h"

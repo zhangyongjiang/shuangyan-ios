@@ -265,7 +265,6 @@
 		AD965AFE1F1E442C005CE723 /* MySearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD965AFD1F1E442C005CE723 /* MySearchController.m */; };
 		ADD1179C1EECFF5300EF6E04 /* MediaConentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */; };
 		ADD1179F1EED010C00EF6E04 /* MediaContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */; };
-		ADD117A51EED098400EF6E04 /* MediaContentAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */; };
 		ADD117A81EED12C600EF6E04 /* CourseDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117A71EED12C600EF6E04 /* CourseDetailsView.m */; };
 		ADD117AB1EED951100EF6E04 /* MediaContentVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117AA1EED951100EF6E04 /* MediaContentVideoView.m */; };
 		ADD117AE1EED956700EF6E04 /* MediaContentPdfView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD117AD1EED956700EF6E04 /* MediaContentPdfView.m */; };
@@ -788,8 +787,6 @@
 		ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaConentView.m; sourceTree = "<group>"; };
 		ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentImageView.h; sourceTree = "<group>"; };
 		ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentImageView.m; sourceTree = "<group>"; };
-		ADD117A31EED098400EF6E04 /* MediaContentAudioView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentAudioView.h; sourceTree = "<group>"; };
-		ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaContentAudioView.m; sourceTree = "<group>"; };
 		ADD117A61EED12C600EF6E04 /* CourseDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsView.h; sourceTree = "<group>"; };
 		ADD117A71EED12C600EF6E04 /* CourseDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsView.m; sourceTree = "<group>"; };
 		ADD117A91EED951100EF6E04 /* MediaContentVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentVideoView.h; sourceTree = "<group>"; };
@@ -1813,8 +1810,6 @@
 				ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */,
 				ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */,
 				ADD1179E1EED010C00EF6E04 /* MediaContentImageView.m */,
-				ADD117A31EED098400EF6E04 /* MediaContentAudioView.h */,
-				ADD117A41EED098400EF6E04 /* MediaContentAudioView.m */,
 				ADD117A61EED12C600EF6E04 /* CourseDetailsView.h */,
 				ADD117A71EED12C600EF6E04 /* CourseDetailsView.m */,
 				ADD117A91EED951100EF6E04 /* MediaContentVideoView.h */,
@@ -2243,7 +2238,6 @@
 				0300496D1E0E5F60006EDC29 /* Event.m in Sources */,
 				032C96BA1E2CC525001EFC29 /* UIImagePickerController+Kaishi.m in Sources */,
 				AD49D8241F096CE5000D0E1B /* FileNoDataView.m in Sources */,
-				ADD117A51EED098400EF6E04 /* MediaContentAudioView.m in Sources */,
 				ADD117A81EED12C600EF6E04 /* CourseDetailsView.m in Sources */,
 				AD89495C1F28F3B000C024F8 /* CourseTreePage.m in Sources */,
 				030049741E0E5F60006EDC29 /* JournalDetails.m in Sources */,

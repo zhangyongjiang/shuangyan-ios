@@ -7,7 +7,6 @@
 //
 
 #import "MediaContentViewContailer.h"
-#import "MediaContentAudioView.h"
 #import "MediaContentVideoView.h"
 #import "MediaContentTextView.h"
 #import "MediaContentPdfView.h"
@@ -18,7 +17,6 @@
 @property(strong, nonatomic) MediaContentTextView* textView;
 @property(strong, nonatomic) MediaContentImageView* imageView;
 @property(strong, nonatomic) MediaContentPdfView* pdfView;
-@property(strong, nonatomic) MediaContentAudioView* audioView;
 @property(strong, nonatomic) MediaContentVideoView* videoView;
 
 @property(weak, nonatomic) MediaConentView* contentView;
@@ -33,18 +31,15 @@
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.textView = [[MediaContentTextView alloc]initWithFrame:frame];
     self.imageView = [[MediaContentImageView alloc]initWithFrame:frame];
-    self.audioView = [[MediaContentAudioView alloc]initWithFrame:frame];
     self.videoView = [[MediaContentVideoView alloc]initWithFrame:frame];
     self.pdfView = [[MediaContentPdfView alloc]initWithFrame:frame];
     [self addSubview:self.textView];
     [self addSubview:self.imageView];
     [self addSubview:self.pdfView];
-    [self addSubview:self.audioView];
     [self addSubview:self.videoView];
     [self.textView autoPinEdgesToSuperviewMargins];
     [self.imageView autoPinEdgesToSuperviewMargins];
     [self.pdfView autoPinEdgesToSuperviewMargins];
-    [self.audioView autoPinEdgesToSuperviewMargins];
     [self.videoView autoPinEdgesToSuperviewMargins];
     return self;
 }
@@ -64,7 +59,7 @@
         self.contentView = self.imageView;
     }
     else if(localMediaContent.isAudio) {
-        self.contentView = self.audioView;
+        self.contentView = self.videoView;
     }
     else if(localMediaContent.isVideo) {
         self.contentView = self.videoView;
@@ -78,7 +73,6 @@
     self.textView.hidden = !(view == self.textView);
     self.imageView.hidden = !(view == self.imageView);
     self.pdfView.hidden = !(view == self.pdfView);
-    self.audioView.hidden = !(view == self.audioView);
     self.videoView.hidden = !(view == self.videoView);
 }
 
