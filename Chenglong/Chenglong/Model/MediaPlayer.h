@@ -18,7 +18,6 @@
 
 +(MediaPlayer*)shared;
 
-@property(assign, nonatomic)int repeat;
 @property(assign, nonatomic)CGFloat currentTime;
 @property(weak, nonatomic) UIView* attachedView;
 
