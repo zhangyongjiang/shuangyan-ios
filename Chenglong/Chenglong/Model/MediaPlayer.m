@@ -43,6 +43,9 @@ MediaPlayer* gMediaPlayer;
     if([[UIDevice currentDevice] systemVersion].intValue>=10){
         self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+
     CMTime interval = CMTimeMake(1, 10);
     WeakSelf(weakSelf)
     self.timeObserverToken = [self.avplayer addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
@@ -112,7 +115,6 @@ MediaPlayer* gMediaPlayer;
              }
              
              __block AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
-             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
              self.slider.maximumValue = self.currentTaskDuration;
              __block PlayTask* task = [self.tasks objectAtIndex:self.current];
              task.item = item;
@@ -126,6 +128,7 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(void)play {
+    NSLog(@"avplayer play");
     [self.avplayer play];
 }
 

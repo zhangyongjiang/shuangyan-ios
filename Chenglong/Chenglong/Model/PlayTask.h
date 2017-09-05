@@ -14,7 +14,4 @@
 @property(assign, nonatomic)BOOL repeat;
 @property(strong, nonatomic)AVPlayerItem* item;
 
--(BOOL)isAudioTask;
--(BOOL)isVideoTask;
-
 @end

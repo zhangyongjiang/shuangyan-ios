@@ -12,7 +12,6 @@
 @interface MediaContentAudioView()
 {
     MediaPlayer *player;
-    NSTimer* timer;
 }
 @end
 
@@ -25,25 +24,18 @@
 
 -(void)dealloc
 {
-    [self destroy];
-}
-
--(void)destroy
-{
-    [timer invalidate];
-    timer = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [player stop];
-    [player removeTask:self.localMediaContent];
     player = nil;
 }
 
 -(void)play {
     if(!player) {
         player = [MediaPlayer shared];
+        [player setAttachedView:self];
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
-        [player setAttachedView:self];
         return;
     }
     if([player isPlaying:self.localMediaContent]) {

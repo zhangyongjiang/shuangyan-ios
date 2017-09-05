@@ -60,25 +60,18 @@
 }
 
 -(void)play {
-//    if(![self.mediaContent isDownloaded]) {
-//        NSLog(@"no downloaded yet");
-//        return;
-//    }
     if(!player) {
         player = [MediaPlayer shared];
         player.attachedView = self;
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
-//        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         return;
     }
     if([player isPlaying:self.localMediaContent]) {
-//        [self.btnDownload setTitle:@"播放" forState: UIControlStateNormal];
         [player stop];
     }
     else {
-//        [self.btnDownload setTitle:@"暂停" forState: UIControlStateNormal];
         [player setAttachedView:self];
         [player play];
     }

@@ -145,7 +145,8 @@
         view = [[MediaContentImageView alloc] init];
     }
     else if([localMediaContent isAudio]) {
-        view = [[MediaContentAudioView alloc] init];
+//        view = [[MediaContentAudioView alloc] init];
+        view = [[MediaContentVideoView alloc] init];
     }
     else if([localMediaContent isVideo]) {
         view = [[MediaContentVideoView alloc] init];

@@ -10,11 +10,4 @@
 
 @implementation PlayTask
 
--(BOOL)isAudioTask {
-    return [self.localMediaContent.contentType hasPrefix:@"audio"];
-}
-
--(BOOL)isVideoTask {
-    return [self.localMediaContent.contentType hasPrefix:@"video"];
-}
 @end
