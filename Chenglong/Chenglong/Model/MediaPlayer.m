@@ -17,7 +17,6 @@
 @property (strong, nonatomic) AVPlayerLayer* layer;
 @property (strong, nonatomic) UISlider* slider;
 @property (strong, nonatomic) id timeObserverToken;
-@property (assign, nonatomic) BOOL wantplay;
 
 @end
 
@@ -38,7 +37,6 @@ MediaPlayer* gMediaPlayer;
     gMediaPlayer = self;
     self.tasks = [NSMutableArray new];
     self.current = 0;
-    self.wantplay = NO;
     
     self.avplayer = [[AVQueuePlayer alloc] init];
     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
@@ -129,7 +127,6 @@ MediaPlayer* gMediaPlayer;
 
 -(void)play {
     [self.avplayer play];
-    self.wantplay = YES;
 }
 
 -(void)removeTask:(LocalMediaContent *)mc
@@ -153,7 +150,6 @@ MediaPlayer* gMediaPlayer;
 
 -(void)stop
 {
-    self.wantplay = NO;
     [self.avplayer pause];
 }
 
@@ -247,8 +243,6 @@ MediaPlayer* gMediaPlayer;
 
 -(void)sliderValueChanged:(UISlider *)sender {
     [self setCurrentTime:sender.value];
-    if(self.wantplay)
-        [self play];
 }
 
 -(void)stopIfPlayingOnView:(UIView *)view
