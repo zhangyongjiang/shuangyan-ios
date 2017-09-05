@@ -84,4 +84,9 @@
 {
     return [player isPlaying:self.localMediaContent];
 }
+
+-(void)stop
+{
+    [player removeTask:self.localMediaContent];
+}
 @end

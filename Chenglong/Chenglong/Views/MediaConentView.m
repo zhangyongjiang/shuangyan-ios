@@ -37,12 +37,20 @@
     [self.controlView autoPinEdgesToSuperviewMargins];
     [self.controlView.btn addTarget:self action:@selector(downloadOrPlay)];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
+
     return self;
 }
 
 -(void)layoutSubviews {
     [super layoutSubviews];
     self.controlView.frame = self.bounds;
+}
+
+-(void)playEnd:(NSNotification*)noti
+{
+    if(![self.localMediaContent isEqual:noti.object])
+        return;
 }
 
 -(void)play {
@@ -53,19 +61,7 @@
 }
 
 -(void)downloadOrPlay {
-    if ([self.localMediaContent isAudio]) {
-        [SVProgressHUD showWithStatus:@"loading..."];
-        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
-        [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
-            
-        } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
-            [SVProgressHUD dismiss];
-            dispatch_async(dispatch_get_main_queue(), ^ {
-                [self play];
-            });
-        } enableBackgroundMode:YES];
-    }
-    else if ([self.localMediaContent isVideo]) {
+    if ([self.localMediaContent isAudio] || [self.localMediaContent isVideo]) {
         NSMutableArray* array = [NSMutableArray new];
         LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
         if(!shard.isDownloaded)

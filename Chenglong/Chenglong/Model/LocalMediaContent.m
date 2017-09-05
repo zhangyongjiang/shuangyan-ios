@@ -411,6 +411,14 @@
     return [self.contentType hasPrefix:@"text"];
 }
 
+-(BOOL)isEqual:(id)object
+{
+    if(![object isKindOfClass:LocalMediaContent.class])
+        return NO;
+    LocalMediaContent* mc = object;
+    return [mc.path isEqualToString:self.path];
+}
+
 +(LocalMediaContent*)localMediaContentWithText:(NSString *)text
 {
     LocalMediaContent* mc = [LocalMediaContent new];

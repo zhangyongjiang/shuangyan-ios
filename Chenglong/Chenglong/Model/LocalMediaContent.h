@@ -33,6 +33,7 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(NSString*)localFilePath;
 -(BOOL)localFileExists;
 -(CMTime)duration;
+-(BOOL)isEqual:(id)object;
 
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
                    completionBlock:(void(^)(BOOL completed))completionBlock;

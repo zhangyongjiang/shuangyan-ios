@@ -14,8 +14,10 @@
 {
     self = [super initWithFrame:frame];
     
+    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.galleryView = [[GalleryView alloc] initWithFrame:frame];
     [self addSubview:self.galleryView];
+    [self.galleryView autoPinEdgesToSuperviewMargins];
     
     self.btnClose = [self createButton:@"关闭"];
     self.btnClose.frame = CGRectMake(10, 10, 60, 40);
@@ -53,9 +55,4 @@
     [self.galleryView showCourseDetails:courseDetails];
 }
 
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.galleryView.frame = self.bounds;
-}
 @end
