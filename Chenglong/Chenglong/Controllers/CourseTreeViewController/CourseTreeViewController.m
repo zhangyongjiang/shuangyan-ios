@@ -30,6 +30,9 @@
     [self.page.refreshControl addTarget:self action:@selector(refreshPage) forControlEvents:UIControlEventValueChanged];
     
     [self.view addSubview:self.page];
+    self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self.page autoPinEdgesToSuperviewMargins];
+    
     [self refreshPage];
 }
 
@@ -75,11 +78,6 @@
             return NO;
     }
     return [self.userId isEqualToString:ctc.userId];
-}
-
--(void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.page.frame = self.view.bounds;
 }
 
 @end

@@ -29,6 +29,7 @@
     self.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadedNoti::) name:NotificationDownloadCompleted object:nil];
     
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.contentView = [[MediaContentViewContailer alloc]initWithFrame:frame];
@@ -42,6 +43,12 @@
 {
     [self next];
     [self play];
+}
+
+-(void)contentDownloadedNoti:(NSNotification*)noti
+{
+    LocalMediaContent* mc = noti.object;
+    // can we start to download next play item ???
 }
 
 

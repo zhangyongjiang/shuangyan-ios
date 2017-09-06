@@ -92,6 +92,8 @@ extern NSString* const kPublishFileSuccessNotificationKey;
 #define NotificationPlayStart           @"NotificationPlayStart"
 #define NotificationPlayEnd             @"NotificationPlayEnd"
 #define NotificationPlaying             @"NotificationPlaying"
+#define NotificationDownloadCompleted   @"NotificationDownloadCompleted"
+#define NotificationShardDownloaded     @"NotificationShardDownloaded"
 
 #define Margin  15
 

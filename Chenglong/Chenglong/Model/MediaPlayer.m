@@ -17,6 +17,7 @@
 @property (strong, nonatomic) AVPlayerLayer* layer;
 @property (strong, nonatomic) UISlider* slider;
 @property (strong, nonatomic) id timeObserverToken;
+@property (assign, nonatomic) BOOL backgroundMode;
 
 @end
 
@@ -200,6 +201,7 @@ MediaPlayer* gMediaPlayer;
 
 -(void)setAttachedView:(UIView *)attachedView {
     if(_attachedView == attachedView) {
+        if(self.backgroundMode)return;
         self.layer.frame = attachedView.bounds;
         [self.slider removeFromSuperview];
         self.slider.width = attachedView.width * 0.8f;
@@ -209,6 +211,7 @@ MediaPlayer* gMediaPlayer;
         return;
     }
     _attachedView = attachedView;
+    if(self.backgroundMode)return;
     [self.layer removeFromSuperlayer];
     self.layer.frame = attachedView.bounds;
     [attachedView.layer addSublayer:self.layer];
@@ -224,13 +227,15 @@ MediaPlayer* gMediaPlayer;
 
 -(void)background:(NSNotification*)noti
 {
+    self.backgroundMode = YES;
     [self.layer removeFromSuperlayer];
     self.layer = nil;
 }
 
 -(void)foreground:(NSNotification*)noti
 {
-    self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];    
+    self.backgroundMode = NO;
+    self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
     [self.attachedView.layer addSublayer:self.layer];
     self.layer.frame = self.attachedView.bounds;
     self.layer.backgroundColor = [UIColor clearColor].CGColor;

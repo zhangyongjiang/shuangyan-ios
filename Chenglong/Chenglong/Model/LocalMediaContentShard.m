@@ -246,5 +246,9 @@
     [fileHandle closeFile];
     
     [self deleteFile];
+    
+    if(self.localMediaContent.isDownloaded) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloadCompleted object:self.localMediaContent];
+    }
 }
 @end
