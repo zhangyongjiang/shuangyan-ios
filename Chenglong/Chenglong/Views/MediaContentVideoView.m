@@ -43,11 +43,13 @@
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    MediaPlayer* player = [MediaPlayer shared];
+    if([player isPlaying:self.localMediaContent]) {
+        [player removeTask:self.localMediaContent];
+    }
 }
 
 -(void)clicked {
-    MediaPlayer* player = [MediaPlayer shared];
-    
     if ([self.localMediaContent isAudio] || [self.localMediaContent isVideo]) {
         NSMutableArray* array = [NSMutableArray new];
         LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
@@ -63,7 +65,7 @@
                 [SVProgressHUD dismiss];
                 WeakSelf(weakSelf)
                 dispatch_async(dispatch_get_main_queue(), ^ {
-                    [weakSelf clicked];
+                    [weakSelf play];
                 });
             }];
             return;
@@ -71,30 +73,23 @@
     }
 
     
-    if(!player)
-        [self play];
-    else if([player isPlaying:self.localMediaContent] && [player isAvplayerPlaying])
-        [player stop];
-    else
-        [player play];
+    [self play];
 }
 
 -(void)play {
     MediaPlayer* player = [MediaPlayer shared];
-    if(!player) {
-        player = [MediaPlayer shared];
+    if([player isPlaying:self.localMediaContent] && [player isAvplayerPlaying]) {
+        [player stop];
+    }
+    else if([player isPlaying:self.localMediaContent]) {
+        [player setAttachedView:self];
+        [player play];
+    }
+    else {
         player.attachedView = self;
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
-        return;
-    }
-    if([player isPlaying:self.localMediaContent] && [player isAvplayerPlaying]) {
-        [player stop];
-    }
-    else {
-        [player setAttachedView:self];
-        [player play];
     }
 }
 
