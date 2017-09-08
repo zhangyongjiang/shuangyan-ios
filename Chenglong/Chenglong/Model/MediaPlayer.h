@@ -26,8 +26,8 @@
 -(void)play;
 -(void)stop;
 -(BOOL)isPlaying:(LocalMediaContent*)mc;
+-(BOOL)isAvplayerPlaying;
 -(void)removeTask:(LocalMediaContent*)mc;
--(void)stopIfPlayingOnView:(UIView*)view;
 
 -(CGFloat)currentTaskDuration;
 

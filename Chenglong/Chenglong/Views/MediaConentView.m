@@ -18,9 +18,6 @@
 #import "MediaPlayer.h"
 
 @interface MediaConentView()
-{
-}
-@property(strong,nonatomic)PlayerControlView* controlView;
 
 @end
 
@@ -30,33 +27,11 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor whiteColor];
-    
-    self.controlView = [[PlayerControlView alloc] initWithFrame:self.bounds];
-    [self addSubview:self.controlView];
-    [self.controlView autoPinEdgesToSuperviewMargins];
-    [self.controlView.btn addTarget:self action:@selector(downloadOrPlay)];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
 
     return self;
 }
 
--(void)layoutSubviews {
-    [super layoutSubviews];
-    self.controlView.frame = self.bounds;
-}
-
--(void)playEnd:(NSNotification*)noti
-{
-    if(![self.localMediaContent isEqual:noti.object])
-        return;
-}
-
 -(void)play {
-}
-
--(void)destroy{
-    [[MediaPlayer shared] stopIfPlayingOnView:self];
 }
 
 -(void)downloadOrPlay {
@@ -83,57 +58,6 @@
         }
     }
     else  {
-        [self play];
-    }
-}
-
--(void)preloadAndPlay:(int)numOfShards {
-    __block int minShards = numOfShards;
-    __block int currentDownloading = 0;
-    for(; currentDownloading<numOfShards;currentDownloading++) {
-        LocalMediaContentShard* shard = [self.localMediaContent getShard:currentDownloading];
-        if(shard.isDownloaded) {
-            if(currentDownloading!=(numOfShards-1))
-                continue;
-            else {
-                [SVProgressHUD dismiss];
-                dispatch_async(dispatch_get_main_queue(), ^ {
-                    [self play];
-                });
-                break;
-            }
-        }
-        WeakSelf(weakSelf)
-        [self.localMediaContent downloadShard:currentDownloading WithProgressBlock:^(CGFloat progress) {
-            NSLog(@"loading %d %f .... ", currentDownloading, progress);
-        } completionBlock:^(BOOL completed) {
-            [weakSelf preloadAndPlay:minShards];
-        }];
-        break;
-    }
-}
-
--(void)download {
-    [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
-        [self downloadInProgress:progress];
-    } completionBlock:^(BOOL completed) {
-        [self downloadCompleted];
-    }];
-}
-
--(void)downloadInProgress:(CGFloat)progress
-{
-    int downloaded = (int)(progress*100);
-    if(progress < 0) {
-        downloaded = -100. * progress / self.localMediaContent.length.floatValue;
-    }
-    NSString* txt = [NSString stringWithFormat:@"下载 %i%% of %@", downloaded, self.localMediaContent.length];
-}
-
--(void)downloadCompleted
-{
-    if (![self.localMediaContent isAudio] &&
-        ![self.localMediaContent isVideo]) {
         [self play];
     }
 }
@@ -179,11 +103,6 @@
         CGFloat progress = 0.;
         if(localMediaContent.length.floatValue>1)
             progress = ((CGFloat)localMediaContent.currentLocalFileLength) /localMediaContent.length.floatValue * 100.;
-        [self.localMediaContent isDownloadingProgressBlock:^(CGFloat progress) {
-            [self downloadInProgress:progress];
-        } completionBlock:^(BOOL completed) {
-            [self downloadCompleted];
-        }];
     }
     
     if (![self.localMediaContent isAudio] &&

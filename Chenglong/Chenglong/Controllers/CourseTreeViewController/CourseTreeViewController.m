@@ -33,10 +33,15 @@
     self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.page autoPinEdgesToSuperviewMargins];
     
-    [self refreshPage];
+    [self showPage];
 }
 
 -(void)refreshPage {
+    [MyHTTPSessionManager disableCacheForSeconds:3];
+    [self showPage];
+}
+
+-(void)showPage {
     [CourseApi CourseAPI_ListUserCourseTree:self.userId onSuccess:^(CourseDetails *resp) {
         resp.course = [Course new];
         resp.course.isDir = [NSNumber numberWithInteger:1];

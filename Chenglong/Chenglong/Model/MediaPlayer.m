@@ -177,17 +177,13 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(BOOL)isPlaying:(LocalMediaContent*)mc {
-    if(self.current<0)
+    if(self.current<0 || self.tasks.count == 0)
         return NO;
     PlayTask* task = [self.tasks objectAtIndex:self.current];
     if(![task.localMediaContent.path isEqualToString:mc.path])
         return NO;
-    
-    if([[UIDevice currentDevice] systemVersion].intValue>=10){
-        return self.avplayer.timeControlStatus == AVPlayerTimeControlStatusPlaying;
-    }else{
-        return self.avplayer.rate==1;
-    }
+
+    return YES;
 }
 
 -(BOOL)isAvplayerPlaying
@@ -253,10 +249,4 @@ MediaPlayer* gMediaPlayer;
     [self setCurrentTime:sender.value];
 }
 
--(void)stopIfPlayingOnView:(UIView *)view
-{
-    if(_attachedView != view)
-        return;
-    [self stop];
-}
 @end
