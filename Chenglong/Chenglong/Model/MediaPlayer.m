@@ -147,6 +147,11 @@ MediaPlayer* gMediaPlayer;
                     self.current = -1;
                 }
             }
+            else {
+                if(self.current > i) {
+                    self.current--;
+                }
+            }
             break;
         }
     }
@@ -241,8 +246,9 @@ MediaPlayer* gMediaPlayer;
 -(void)playerDidFinishPlaying:(NSNotification*)noti
 {
     NSLog(@"playerDidFinishPlaying");
-    LocalMediaContent* localMediaContent = [self.tasks objectAtIndex:self.current];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:localMediaContent];
+    PlayTask* task = [self.tasks objectAtIndex:self.current];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:task.localMediaContent];
+    [self removeTask:task.localMediaContent];
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {

@@ -85,4 +85,12 @@
 {
     [self.contentView stop];
 }
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    MediaPlayer* player = [MediaPlayer shared];
+    if([player isPlaying:self.localMediaContent]) {
+        [player removeTask:self.localMediaContent];
+    }
+}
 @end
