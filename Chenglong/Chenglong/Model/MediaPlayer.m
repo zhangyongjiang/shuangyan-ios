@@ -87,9 +87,7 @@ MediaPlayer* gMediaPlayer;
     NSString* ustr = task.localMediaContent.url;
     NSURL* url = NULL;
     BOOL useResourceLoader = YES;
-    if(task.localMediaContent.isDownloaded)
-        url = [NSURL fileURLWithPath:task.localMediaContent.localFilePath];
-    else if(useResourceLoader) {
+    if(useResourceLoader) {
         url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
     }
     else {

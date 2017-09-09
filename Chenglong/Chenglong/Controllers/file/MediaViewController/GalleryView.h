@@ -17,7 +17,7 @@
 -(void)showPage:(int)pageNumber;
 -(void)play;
 -(void)stop;
--(void)showCourseDetails:(CourseDetails*)courseDetails;
+-(NSInteger)showCourseDetails:(CourseDetails*)courseDetails;
 -(BOOL)previous;
 -(BOOL)next;
 

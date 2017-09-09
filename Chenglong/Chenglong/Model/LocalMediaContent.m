@@ -301,13 +301,6 @@
         if(shard.isDownloaded)
             continue;
         [shard directDownload];
-//        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-//            [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
-//            } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
-//                NSLog(@"shard %d download completed %i", shard.shard, completed);
-//                dispatch_semaphore_signal(sema);
-//            } enableBackgroundMode:YES];
-//        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
     NSMutableData* data = [NSMutableData new];
     for(int i=startShardIndex; i<=endShardIndex; i++) {
@@ -326,8 +319,6 @@
 {
     AVAssetResourceLoadingDataRequest* dataRequest = loadingRequest.dataRequest;
     AVAssetResourceLoadingContentInformationRequest* contentRequest = loadingRequest.contentInformationRequest;
-    
-//    NSLog(@"requesting  %ld bytes at offset %lld/%lld  ", dataRequest.requestedLength, dataRequest.requestedOffset, self.length.longLongValue);
     
     //handle content request
     if (contentRequest)

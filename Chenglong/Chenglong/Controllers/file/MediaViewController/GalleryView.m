@@ -58,12 +58,13 @@
     [self.contentView removeFromSuperview];
 }
 
--(void)showCourseDetails:(CourseDetails *)courseDetails
+-(NSInteger)showCourseDetails:(CourseDetails *)courseDetails
 {
     [self showText:courseDetails.course.content andMediaContent:courseDetails.course.resources];
     for (CourseDetails* child in courseDetails.items) {
         [self showCourseDetails:child];
     }
+    return self.mediaViews.count;
 }
 
 -(void)showText:(NSString *)content andMediaContent:(NSArray *)mediaContents
