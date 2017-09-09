@@ -161,8 +161,12 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(CGFloat)currentTaskDuration {
+    CMTime t = self.avplayer.currentItem.duration;
+    if(t.timescale > 0)
+        return t.value / t.timescale;
+    
     PlayTask* task = [self.tasks objectAtIndex:self.current];
-    CMTime t = task.localMediaContent.duration;
+    t = task.localMediaContent.duration;
     return t.value / t.timescale;
 }
 
