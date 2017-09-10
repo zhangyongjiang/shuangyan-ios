@@ -85,12 +85,6 @@
         deleteCallback(mc);
 }
 
--(void)downloadAll {
-    for (MediaConentView* mcv in self.mediaContentViews) {
-        [mcv downloadOrPlay];
-    }
-}
-
 -(void)addRemoveResourceHandler:(DeleteCourseResourceCallback)callback {
     deleteCallback = callback;
 }

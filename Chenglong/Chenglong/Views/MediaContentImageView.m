@@ -40,12 +40,12 @@
         self.imgView = [UIImageView new];
         [self.imgView setContentMode:UIViewContentModeScaleAspectFill];
         [self addSubview:self.imgView];
-        //        [self.imgView autoPinEdgesToSuperviewMargins];
     }
     
     UIImage* img = [UIImage imageWithContentsOfFile:self.localMediaContent.localFilePath];
     self.imgView.image = img;
     [self layoutSubviews];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.localMediaContent];
 }
 
 -(void)layoutSubviews {

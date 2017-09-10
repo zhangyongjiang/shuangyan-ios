@@ -14,7 +14,6 @@
 
 +(MediaConentView*) createViewForMediaContent:(LocalMediaContent*)localMediaContent;
 
--(void)downloadOrPlay;
 -(void)stop;
 -(void)play;
 -(void)destroy;

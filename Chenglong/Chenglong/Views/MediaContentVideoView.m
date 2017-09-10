@@ -30,6 +30,7 @@
     [self.coverImageView autoPinEdgesToSuperviewMargins];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
 
     [self addTarget:self action:@selector(clicked)];
     
@@ -39,6 +40,10 @@
 -(void)playingNotiHandler:(NSNotification*)noti
 {
     self.coverImageView.hidden = YES;
+}
+
+-(void)playEnd:(NSNotification*)noti
+{
 }
 
 -(void)dealloc {

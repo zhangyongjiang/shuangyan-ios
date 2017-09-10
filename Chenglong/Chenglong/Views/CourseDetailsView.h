@@ -17,7 +17,6 @@ typedef void(^DeleteCourseResourceCallback)(MediaContent* localMediaContent);
 @property(strong, nonatomic)CourseDetails* courseDetails;
 
 -(id)initWithFrame:(CGRect)frame andCourseDetails:(CourseDetails*)courseDetails;
--(void)downloadAll;
 -(void)addRemoveResourceHandler:(DeleteCourseResourceCallback)deleteCallback;
 
 @end

@@ -39,10 +39,26 @@
     return self;
 }
 
+-(LocalMediaContent*)currentMediaContent
+{
+    if(currentPlay!=-1) {
+        return [self.mediaViews objectAtIndex:currentPlay];
+    }
+    return NULL;
+}
+
 -(void)playEnd:(NSNotification*)noti
 {
-    [self next];
-    [self play];
+    if(self.repeat == RepeatAll) {
+        [self next];
+        [self play];
+    }
+    else if(self.repeat == RepeatOne) {
+        [self play];
+    }
+    else {
+        
+    }
 }
 
 -(void)contentDownloadedNoti:(NSNotification*)noti

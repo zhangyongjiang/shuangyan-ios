@@ -34,34 +34,6 @@
 -(void)play {
 }
 
--(void)downloadOrPlay {
-    if ([self.localMediaContent isAudio] || [self.localMediaContent isVideo]) {
-        NSMutableArray* array = [NSMutableArray new];
-        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
-        if(!shard.isDownloaded)
-            [array addObject:shard];
-        LocalMediaContentShard* shardLast = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];
-        if(!shardLast.isDownloaded)
-            [array addObject:shardLast];
-        if(array.count==0) {
-            [self play];
-        } else {
-            [SVProgressHUD showWithStatus:@"loading..."];
-            __block LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
-            [group downloadWithCompletionBlock:^(BOOL completed) {
-                [SVProgressHUD dismiss];
-                NSLog(@"%@", group);
-                dispatch_async(dispatch_get_main_queue(), ^ {
-                    [self play];
-                });
-            }];
-        }
-    }
-    else  {
-        [self play];
-    }
-}
-
 +(MediaConentView*) createViewForMediaContent:(LocalMediaContent*)localMediaContent {
     MediaConentView* view;
     if([localMediaContent isImage]) {

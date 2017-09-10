@@ -12,6 +12,7 @@
 
 @property(strong,nonatomic)UIColor* tintColor;
 @property(assign,nonatomic)UIViewContentMode contentMode;
+@property(assign, nonatomic)int repeat;
 
 -(id)initWithFrame:(CGRect)frame;
 -(void)showPage:(int)pageNumber;
