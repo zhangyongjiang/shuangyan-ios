@@ -39,6 +39,7 @@
     }
     __block CompletionCallback block = completionBlock;
     LocalMediaContentShard* shard = [self.shards objectAtIndex:0];
+    WeakSelf(weakSelf)
     [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
         
     } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
@@ -49,9 +50,8 @@
             }
             return;
         }
-        if(self.shards.count != 0) {
-            [self downloadWithCompletionBlock:block];
-        }
+        
+        [weakSelf downloadWithCompletionBlock:block];
     } enableBackgroundMode:YES];
 }
 

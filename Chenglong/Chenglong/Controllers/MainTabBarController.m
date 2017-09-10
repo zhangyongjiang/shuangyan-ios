@@ -45,7 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self loadLoggedInUser];
+    [self loadLoggedInUser];
 
     self.tabBar.accessibilityLabel = @"MainTabBar";
     self.tabBar.translucent = NO;
@@ -86,12 +86,9 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:kGetMeInfoSuccessNotificationKey object:nil];
         }
     } onError:^(APIError *err) {
-        if ( err.statusCode == 401 ) {
+        toast(@"登录错误。请重新登录");
             AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
             [del logout];
-        } else {
-        
-        }
     }];
 }
 

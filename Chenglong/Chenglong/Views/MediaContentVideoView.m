@@ -15,6 +15,7 @@
 @interface MediaContentVideoView()
 
 @property(strong, nonatomic) UIImageView* coverImageView;
+@property(strong, nonatomic) LocalMediaContentShardGroup* group;
 
 @end
 
@@ -65,13 +66,22 @@
             [array addObject:shardLast];
         if(array.count > 0) {
             [SVProgressHUD showWithStatus:@"loading..."];
-            __block LocalMediaContentShardGroup* group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
-            [group downloadWithCompletionBlock:^(BOOL completed) {
-                [SVProgressHUD dismiss];
-                WeakSelf(weakSelf)
-                dispatch_async(dispatch_get_main_queue(), ^ {
-                    [weakSelf play];
-                });
+            self.group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
+            WeakSelf(weakSelf)
+            [self.group downloadWithCompletionBlock:^(BOOL completed) {
+                if(completed) {
+                    [SVProgressHUD dismiss];
+                    dispatch_async(dispatch_get_main_queue(), ^ {
+                        [weakSelf play];
+                        weakSelf.group = nil;
+                    });
+                }
+                else {
+                    [SVProgressHUD showWithStatus:@"下载异常"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [SVProgressHUD dismiss];
+                    });
+                }
             }];
             return;
         }

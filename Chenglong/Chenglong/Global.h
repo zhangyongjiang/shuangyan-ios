@@ -97,3 +97,4 @@ extern NSString* const kPublishFileSuccessNotificationKey;
 
 #define Margin  15
 
+#define toast(msg)         [SVProgressHUD showWithStatus:msg];dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{[SVProgressHUD dismiss];});

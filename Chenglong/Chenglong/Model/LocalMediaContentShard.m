@@ -187,11 +187,11 @@
 }
 
 
--(void)copyDownloadedFile:(NSURL *)location withObject:(id)object {
-    [self copyDownloadedFile:location orData:NULL withObject:object];
+-(BOOL)copyDownloadedFile:(NSURL *)location withObject:(id)object {
+    return [self copyDownloadedFile:location orData:NULL withObject:object];
 }
 
--(void)copyDownloadedFile:(NSURL *)location orData:(NSData*)data withObject:(id)object {
+-(BOOL)copyDownloadedFile:(NSURL *)location orData:(NSData*)data withObject:(id)object {
     NSLog(@"save shard %i to location %@", self.shard, self.localFilePath);
     
     File* f = [[File alloc] initWithFullPath:self.localFilePath];
@@ -204,7 +204,11 @@
                                                 error:&error];
         if (error) {
             NSLog(@"ERROR: %@", error);
-            return;
+            return NO;
+        }
+        if(f.length != self.expectedDownloadSize) {
+            NSLog(@"ERROR expected file len:%d, got %ld", self.expectedDownloadSize, f.length);
+            return NO;
         }
     }
     else if (data) {
@@ -216,6 +220,7 @@
     }
     else {
         NSLog(@"ERROR!!!!");
+        return NO;
     }
     
     NSString* parentPath = self.localMediaContent.localFilePath;
@@ -250,5 +255,6 @@
     if(self.localMediaContent.isDownloaded) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloadCompleted object:self.localMediaContent];
     }
+    return YES;
 }
 @end

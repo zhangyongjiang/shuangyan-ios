@@ -93,8 +93,17 @@
         [request setValue:range forHTTPHeaderField:@"Range"];
         
         NSURLSessionDownloadTask *downloadTask;
+    WeakSelf(weakSelf)
         if (backgroundMode) {
-            downloadTask = [self.backgroundSession downloadTaskWithRequest:request];
+            downloadTask = [self.backgroundSession downloadTaskWithRequest:request /*completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                TWRDownloadObject *download = [weakSelf.downloads objectForKey:urlString];
+                NSHTTPURLResponse *urlresp = response;
+                 NSInteger statusCode = [urlresp statusCode];
+                if (statusCode != 200) {
+                    NSLog(@"download error status code %ld for url %@", (long)statusCode, urlString);
+                    download.completionBlock(download.delegate, NO);
+                }
+            }*/];
         } else {
             downloadTask = [self.session downloadTaskWithRequest:request];
         }
@@ -107,8 +116,8 @@
 
 - (void)downloadFileForObject:(id<DownloaderDelegate>)obj
                     withURL:(NSString *)urlString
-             progressBlock:(void(^)(LocalMediaContentShard* shard, CGFloat progress))progressBlock
-           completionBlock:(void(^)(LocalMediaContentShard* shard, BOOL completed))completionBlock
+             progressBlock:(void(^)(id shard, CGFloat progress))progressBlock
+           completionBlock:(void(^)(id shard, BOOL completed))completionBlock
       enableBackgroundMode:(BOOL)backgroundMode {
     [self downloadFileForURL:urlString
               progressBlock:progressBlock
@@ -199,10 +208,10 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
         return;
     }
     
-    [download.delegate copyDownloadedFile:location withObject:download.delegate];
+    BOOL copied = [download.delegate copyDownloadedFile:location withObject:download.delegate];
     
     if (download.completionBlock) {
-        download.completionBlock(download.delegate, YES);
+        download.completionBlock(download.delegate, copied);
     }
     
     // remove object from the download

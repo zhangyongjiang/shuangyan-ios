@@ -11,7 +11,7 @@
 
 @protocol DownloaderDelegate <NSObject>
 @optional
-- (void)copyDownloadedFile:(NSURL*)location withObject:(id)object;
+- (BOOL)copyDownloadedFile:(NSURL*)location withObject:(id)object;
 @end
 
 typedef void(^TWRDownloadRemainingTimeBlock)(LocalMediaContentShard* shard, NSUInteger seconds);
