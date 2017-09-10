@@ -88,9 +88,14 @@
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    MediaPlayer* player = [MediaPlayer shared];
-    if([player isPlaying:self.localMediaContent]) {
-        [player removeTask:self.localMediaContent];
-    }
+    [self.textView removeFromSuperview];
+    [self.imageView removeFromSuperview];
+    [self.pdfView removeFromSuperview];
+    [self.videoView removeFromSuperview];
+    self.textView = NULL;
+    self.imageView = NULL;
+    self.pdfView = NULL;
+    self.videoView = NULL;
+    self.contentView = NULL;
 }
 @end
