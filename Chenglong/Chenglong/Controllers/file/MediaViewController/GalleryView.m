@@ -15,7 +15,7 @@
 }
 
 @property(strong,nonatomic)NSMutableArray* mediaContents;
-@property(strong, nonatomic)MediaContentViewContailer* contentView;
+@property(strong, nonatomic)MediaContentViewContailer* containerView;
 
 @end
 
@@ -32,9 +32,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadedNoti:) name:NotificationDownloadCompleted object:nil];
     
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.contentView = [[MediaContentViewContailer alloc]initWithFrame:frame];
-    [self addSubview:self.contentView];
-    [self.contentView autoPinEdgesToSuperviewMargins];
+    self.containerView = [[MediaContentViewContailer alloc]initWithFrame:frame];
+    [self addSubview:self.containerView];
+    [self.containerView autoPinEdgesToSuperviewMargins];
+    
+    self.repeat = RepeatAll;
     
     return self;
 }
@@ -50,7 +52,7 @@
 -(void)playEnd:(NSNotification*)noti
 {
     if(self.repeat == RepeatAll) {
-        [self next];
+        BOOL hasNext = [self next];
         [self play];
     }
     else if(self.repeat == RepeatOne) {
@@ -71,7 +73,7 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.contentView removeFromSuperview];
+    [self.containerView removeFromSuperview];
 }
 
 -(NSInteger)showCourseDetails:(CourseDetails *)courseDetails
@@ -108,7 +110,7 @@
 -(void)showPage:(int)index {
     currentPlay = index;
     LocalMediaContent* mc = [self.mediaContents objectAtIndex:index];
-    self.contentView.localMediaContent = mc;
+    self.containerView.localMediaContent = mc;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRadioValueChanged object:self];
 }
 
@@ -118,30 +120,30 @@
         return;
     [self showPage:currentPlay];
     
-    [self.contentView play];
+    [self.containerView play];
 }
 
 -(void)stop
 {
-    [self.contentView stop];
+    [self.containerView stop];
 }
 
 -(BOOL)next
 {
-    if(currentPlay >= self.mediaContents.count-1) {
-        return NO;
-    }
     currentPlay++;
+    if(currentPlay >= self.mediaContents.count) {
+        currentPlay = 0;
+    }
     [self showPage:currentPlay];
     return YES;
 }
 
 -(BOOL)previous
 {
-    if(currentPlay <=0 ) {
-        return NO;
-    }
     currentPlay--;
+    if(currentPlay <0 ) {
+        currentPlay = self.mediaContents.count-1;
+    }
     [self showPage:currentPlay];
     return YES;
 }
