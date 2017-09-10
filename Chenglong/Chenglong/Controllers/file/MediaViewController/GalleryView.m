@@ -14,7 +14,7 @@
     int currentPlay;
 }
 
-@property(strong,nonatomic)NSMutableArray* mediaViews;
+@property(strong,nonatomic)NSMutableArray* mediaContents;
 @property(strong, nonatomic)MediaContentViewContailer* contentView;
 
 @end
@@ -23,7 +23,7 @@
 
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
-    self.mediaViews = [[NSMutableArray alloc] init];
+    self.mediaContents = [[NSMutableArray alloc] init];
     
     currentPlay = -1;
     self.backgroundColor = [UIColor whiteColor];
@@ -42,7 +42,7 @@
 -(LocalMediaContent*)currentMediaContent
 {
     if(currentPlay!=-1) {
-        return [self.mediaViews objectAtIndex:currentPlay];
+        return [self.mediaContents objectAtIndex:currentPlay];
     }
     return NULL;
 }
@@ -80,25 +80,25 @@
     for (CourseDetails* child in courseDetails.items) {
         [self showCourseDetails:child];
     }
-    return self.mediaViews.count;
+    return self.mediaContents.count;
 }
 
 -(void)showText:(NSString *)content andMediaContent:(NSArray *)mediaContents
 {
-    int xOffset = self.mediaViews.count * self.width;
+    int xOffset = self.mediaContents.count * self.width;
     content = [content trim];
     if(content.length>0) {
         LocalMediaContent* mc = [LocalMediaContent new];
         mc.contentType = @"text";
         mc.content = content;
-        [self.mediaViews addObject:mc];
+        [self.mediaContents addObject:mc];
         xOffset += self.width;
     }
 
     if(mediaContents)
-        [self.mediaViews addObjectsFromArray:mediaContents];
+        [self.mediaContents addObjectsFromArray:mediaContents];
     
-    if(self.mediaViews.count > 0 ) {
+    if(self.mediaContents.count > 0 ) {
         if(currentPlay == -1) {
             [self showPage:0];
         }
@@ -107,14 +107,14 @@
 
 -(void)showPage:(int)index {
     currentPlay = index;
-    LocalMediaContent* mc = [self.mediaViews objectAtIndex:index];
+    LocalMediaContent* mc = [self.mediaContents objectAtIndex:index];
     self.contentView.localMediaContent = mc;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRadioValueChanged object:self];
 }
 
 -(void)play
 {
-    if(self.mediaViews.count == 0)
+    if(self.mediaContents.count == 0)
         return;
     [self showPage:currentPlay];
     
@@ -128,7 +128,7 @@
 
 -(BOOL)next
 {
-    if(currentPlay >= self.mediaViews.count-1) {
+    if(currentPlay >= self.mediaContents.count-1) {
         return NO;
     }
     currentPlay++;
