@@ -183,12 +183,18 @@
     if(item == NULL)
         return;
     CourseDetails* parent = [self getParentOfItem:item];
-    while(parent != NULL) {
-        [self.treeView expandRowForItem:parent];
-        parent = [self getParentOfItem:parent];
-    };
+    [self expandItem:parent];
     [self.treeView expandRowForItem:item];
     [self.treeView selectRowForItem:item animated:YES scrollPosition:RATreeViewScrollPositionMiddle];
+}
+
+-(void)expandItem:(CourseDetails*)item
+{
+    CourseDetails* parent = [self getParentOfItem:item];
+    if(parent != NULL) {
+        [self expandItem:parent];
+    }
+    [self.treeView expandRowForItem:item];
 }
 
 - (void)treeView:(RATreeView *)treeView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowForItem:(id)item

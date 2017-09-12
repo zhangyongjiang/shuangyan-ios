@@ -106,6 +106,41 @@
 }
 
 -(void)creatCourseDir:(CourseDetails*)cd {
+    WeakSelf(weakSelf)
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"文件名称" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:actionCancel];
+    UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [alert.textFields firstObject];
+        if ([NSString isEmpty:tf.text]) {
+            [self presentFailureTips:@"文件标题不能为空"];
+            return;
+        }
+        Course *course = [Course new];
+        course.title = tf.text;
+        course.parentCourseId = cd.course.id;
+        [SVProgressHUD showWithStatus:@"创建中"];
+        [CourseApi CourseAPI_CreateCourseDir:course onSuccess:^(Course *resp) {
+            
+            [SVProgressHUD dismiss];
+            weakSelf.selectedCourseId = resp.id;
+            [weakSelf refreshPage];
+            
+        } onError:^(APIError *err) {
+            
+            [SVProgressHUD dismiss];
+            ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
+        }];
+    }];
+    [alert addAction:actionSure];
+    [[self getCurrentNavController] presentViewController:alert animated:YES completion:^{
+        
+    }];
 }
 
 -(void)changeCourseName:(CourseDetails*)cd {
