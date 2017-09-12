@@ -31,13 +31,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseSelected:) name:NotificationCourseSelected object:NULL];
 }
 
--(void)addTopRightMenu {
-    self.menuItems = [[NSMutableArray alloc] init];
-    NSMutableArray* arr = self.menuItems;
+-(NSMutableArray*) getTopRightMenuItems {
+    NSMutableArray* arr = [NSMutableArray new];
     [arr addObject:[[MenuItem alloc] initWithText:@"上传者" andImgName:@"file_search_age_icon"] ];
     [arr addObject:[[MenuItem alloc] initWithText:@"拷贝到..." andImgName:@"file_item_newFile_icon"]] ;
     
-    [super addTopRightMenu:arr];
+    return arr;
 }
 
 -(void)topRightMenuItemClicked:(NSString *)cmd {
@@ -69,11 +68,11 @@
         [self.page setCourseDetailsWithParent:resp];
         self.title = resp.courseDetails.course.title;
         User* user = [Global loggedInUser];
-        if(resp.courseDetails.items.count == 0 || [resp.courseDetails.user.id isEqualToString:user.id])
-            [self enableMenuItem:@"拷贝" enable:NO];
-        else {
-            
-        }
+//        if(resp.courseDetails.items.count == 0 || [resp.courseDetails.user.id isEqualToString:user.id])
+//            [self enableMenuItem:@"拷贝" enable:NO];
+//        else {
+//            
+//        }
     } onError:^(APIError *err) {
     }];
 }

@@ -34,6 +34,31 @@
     [self.page autoPinEdgesToSuperviewMargins];
     
     [self showPage];
+    [super addTopRightMenu];
+}
+
+-(NSMutableArray*)getTopRightMenuItems {
+    NSMutableArray* menuItems = [[NSMutableArray alloc] init];
+    CourseDetails* selected = [self.page.treeView itemForSelectedRow];
+    if(!selected.course.isDir.boolValue) {
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
+    }
+    else {
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"]] ;
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"]];
+    }
+    return menuItems;
+}
+
+-(void)topRightMenuItemClicked:(NSString *)cmd {
+    NSLog(@"cmd %@ clicked", cmd);
 }
 
 -(void)refreshPage {

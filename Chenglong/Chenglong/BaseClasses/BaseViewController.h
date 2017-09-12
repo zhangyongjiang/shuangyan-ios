@@ -13,16 +13,15 @@
 
 @property (nonatomic, strong) UIView *navBgView;
 @property (nonatomic, strong) UIView *shadowLineView;
-@property (strong, nonatomic) NSMutableArray* menuItems;
 
 //显示错误信息等
 - (void)alertShowWithMsg:(NSString *)msg;
 -(void)loadCameraOrPhotoLibraryWithDelegate:(id)delegate allowEditing:(BOOL)allowEditing;
 
--(void)addTopRightMenu:(NSArray*)menuItems;
+-(void)addTopRightMenu;
 -(void)topRightMenuItemClicked:(NSString*)cmd;
 -(void)popMenu;
--(void)enableMenuItem:(NSString*)name enable:(BOOL)enable;
+-(NSMutableArray*)getTopRightMenuItems;
 
 -(BOOL)hasNextPage:(int)pageSize current:(int)currentPage currentItems:(NSInteger)currentItems;
 

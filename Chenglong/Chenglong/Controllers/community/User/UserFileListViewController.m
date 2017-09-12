@@ -27,13 +27,11 @@
     self.title = @"用户根目录文件";
 }
 
--(void)addTopRightMenu {
-    self.menuItems = [[NSMutableArray alloc] init];
-    NSMutableArray* arr = self.menuItems;
+-(NSMutableArray*) getTopRightMenuItems {
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
     [arr addObject:[[MenuItem alloc] initWithText:@"上传者" andImgName:@"file_search_age_icon"] ];
     [arr addObject:[[MenuItem alloc] initWithText:@"拷贝到..." andImgName:@"file_item_newFile_icon"]] ;
-    
-    [super addTopRightMenu:arr];
+    return arr;
 }
 
 -(void)topRightMenuItemClicked:(NSString *)cmd {

@@ -21,7 +21,6 @@
 
 -(id)init {
     self = [super init];
-    self.menuItems  = [NSMutableArray arrayWithCapacity:0];
     return self;
 }
 
@@ -30,7 +29,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)addTopRightMenu:(NSArray*)menuItems
+- (void)addTopRightMenu
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 40, 40);
@@ -47,23 +46,14 @@
     [self popMenu];
 }
 
--(void)enableMenuItem:(NSString*)name enable:(BOOL)enable {
-    if(!self.menuItems) return;
-    for (MenuItem* mi in self.menuItems) {
-        if([mi.text containsString:name]) {
-            mi.enabled = [NSNumber numberWithBool:enable];
-            break;
-        }
-    }
-}
-
 -(void)popMenu
 {
     UIButton* btn = self.btn;
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     NSMutableArray* imgArr = [[NSMutableArray alloc] init];
     NSMutableArray* enabled = [[NSMutableArray alloc] init];
-    for (MenuItem* mi in self.menuItems) {
+    NSMutableArray* menuItems = [self getTopRightMenuItems];
+    for (MenuItem* mi in menuItems) {
         [arr addObject:mi.text];
         [imgArr addObject:mi.imgName];
         [enabled addObject:mi.enabled];
@@ -172,7 +162,8 @@
 #pragma mark - menuView delegate
 - (void)selectIndexPathRow:(NSInteger )index view:(XTPopViewBase *)baseView
 {
-    MenuItem* mi = [self.menuItems objectAtIndex:index];
+    NSMutableArray* menuItems = [self getTopRightMenuItems];
+    MenuItem* mi = [menuItems objectAtIndex:index];
     [self topRightMenuItemClicked:mi.text];
 }
 
@@ -305,6 +296,13 @@
 
 -(BOOL)isSameViewController:(UIViewController*)c
 {
+    if(self == c)
+        return YES;
     return NO;
+}
+
+-(NSMutableArray*)getTopRightMenuItems
+{
+    return NULL;
 }
 @end

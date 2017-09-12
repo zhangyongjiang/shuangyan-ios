@@ -69,7 +69,7 @@
     }];
 }
 
--(void)addTopRightMenu {
+-(NSMutableArray*)getTopRightMenuItems {
     if([Global isLoginUser:self.courseDetails.course.userId]) {
         NSMutableArray* arr = [NSMutableArray arrayWithObjects:
                                [[MenuItem alloc] initWithText:@"修改" andImgName:@"file_item_edit_icon"],
@@ -80,18 +80,14 @@
                                [[MenuItem alloc] initWithText:@"全屏" andImgName:@"file_item_exchange_icon"],
                                [[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"],
                                nil];
-        self.menuItems = arr;
-        [super addTopRightMenu:arr];
-        
-        [self enableMenuItem:@"下载全部" enable:![self isAllDownloaded]];
+        return arr;
     }
     else {
         NSMutableArray* arr = [NSMutableArray arrayWithObjects:
                                [[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_newFile_icon"],
                                [[MenuItem alloc] initWithText:@"上传者" andImgName:@"file_search_age_icon"],
                                nil];
-        self.menuItems = arr;
-        [super addTopRightMenu:arr];
+        return arr;
     }
 }
 
