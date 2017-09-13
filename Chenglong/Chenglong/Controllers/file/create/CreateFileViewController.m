@@ -113,7 +113,7 @@ static CGFloat creatFileViewHeight = 420.f;
         [SVProgressHUD showWithStatus:@"上传中"];
         [CourseApi CourseAPI_CreateCourseFileWithResources:@{@"file":self.creatFileViews.mediaAttachmentDataSource.attachments} json:[course toJson] onSuccess:^(Course *resp) {
             [SVProgressHUD dismiss];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseAdded object:resp];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         } onError:^(APIError *err) {
             [SVProgressHUD dismiss];

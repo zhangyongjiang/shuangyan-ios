@@ -9,8 +9,7 @@
 #import "CourseTreeViewController.h"
 #import "CreateFileViewController.h"
 #import "BaseNavigationController.h"
-#import "MyHTTPSessionManager.h"
-#import "TMCache.h"
+#import "MediaViewController.h"
 
 @interface CourseTreeViewController ()
 
@@ -39,6 +38,14 @@
     
     [self showPage];
     [super addTopRightMenu];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseAddedNoti:) name:NotificationCourseAdded object:NULL];
+}
+
+-(void)courseAddedNoti:(NSNotification*)noti {
+    Course* course = noti.object;
+    self.selectedCourseId = course.id;
+    [self refreshPage];
 }
 
 -(NSMutableArray*)getTopRightMenuItems {
@@ -99,10 +106,12 @@
             [self removeCourse:selected];
         }
         else if([cmd isEqualToString:@"改名"]) {
+            [self changeCourseName:selected];
         }
         else if([cmd isEqualToString:@"移动"]) {
         }
         else if([cmd isEqualToString:@"播放"]) {
+            [self playCourse:selected];
         }
     }
 }
@@ -147,6 +156,11 @@
 }
 
 -(void)playCourse:(CourseDetails*)cd {
+    MediaViewController* c = [MediaViewController new];
+    c.courseDetails = cd;
+    [self.navigationController presentViewController:c animated:YES completion:^{
+        
+    }];
 }
 
 -(void)moveCourse:(CourseDetails*)cd {
