@@ -9,6 +9,8 @@
 #import "CourseTreeViewController.h"
 #import "CreateFileViewController.h"
 #import "BaseNavigationController.h"
+#import "MyHTTPSessionManager.h"
+#import "TMCache.h"
 
 @interface CourseTreeViewController ()
 
@@ -126,11 +128,9 @@
         course.parentCourseId = cd.course.id;
         [SVProgressHUD showWithStatus:@"创建中"];
         [CourseApi CourseAPI_CreateCourseDir:course onSuccess:^(Course *resp) {
-            
             [SVProgressHUD dismiss];
             weakSelf.selectedCourseId = resp.id;
             [weakSelf refreshPage];
-            
         } onError:^(APIError *err) {
             
             [SVProgressHUD dismiss];
@@ -154,15 +154,18 @@
 
 -(void)removeCourse:(CourseDetails*)cd {
     WeakSelf(weakSelf)
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    NSString* title = [NSString stringWithFormat:@"确认删除 %@?", cd.course.title];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除" message:title preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     }];
     [alert addAction:actionCancel];
     UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [CourseApi CourseAPI_RemoveCourse:cd.course.id onSuccess:^(Course *resp) {
             [weakSelf presentFailureTips:@"删除成功"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseChanged object:resp];
             [weakSelf.navigationController popViewControllerAnimated:YES];
+            CourseDetails* parent = [weakSelf.page deleteCourse:resp.id];
+            weakSelf.selectedCourseId = parent.course.id;
+            [weakSelf refreshPage];
         } onError:^(APIError *err) {
             ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);
         }];

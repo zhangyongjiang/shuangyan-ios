@@ -52,6 +52,7 @@ typedef void (^OnRequestRetries)(NSURLSessionDataTask* oldOperation, NSURLSessio
 - (void)logError:(APIError*)error operation:(NSURLSessionDataTask*)operation;
 
 +(void)disableCacheForSeconds:(double)seconds;
++ (NSString *)getKeyWithParemeters:(id)parameters withUrlString:(NSString *)URLString;
 
 - (BOOL)newWorkachablity;
 

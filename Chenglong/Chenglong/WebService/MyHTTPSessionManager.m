@@ -26,7 +26,7 @@ NSUInteger kDefaultMaxRetries = 3;
 }
 
 
-- (NSString *)getKeyWithParemeters:(id)parameters withUrlString:(NSString *)URLString
++ (NSString *)getKeyWithParemeters:(id)parameters withUrlString:(NSString *)URLString
 {
     return [[NSString stringWithFormat:@"%@?%@",URLString,parameters] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
 }
@@ -82,7 +82,7 @@ NSUInteger kDefaultMaxRetries = 3;
     
     
     BOOL cacheDisabled = [MyHTTPSessionManager isCacheDisabled];
-    NSString * key = [self getKeyWithParemeters:parameters withUrlString:URLString];
+    NSString * key = [MyHTTPSessionManager getKeyWithParemeters:parameters withUrlString:URLString];
     if (!cacheDisabled) {
         id object = [[TMCache sharedCache] objectForKey:key];
         if (object) {

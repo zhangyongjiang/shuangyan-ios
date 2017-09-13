@@ -251,4 +251,22 @@
     [super layoutSubviews];
     self.treeView.frame = self.bounds;
 }
+
+-(CourseDetails*)deleteCourse:(NSString *)courseId
+{
+    CourseDetails* item = [self searchCourse:courseId inTree:self.courseDetails];
+    if(item == NULL)
+        return NULL;
+    CourseDetails* parent = [self getParentOfItem:item];
+    for (int i=0; i<parent.items.count; i++) {
+        CourseDetails* c = [parent.items objectAtIndex:i];
+        if([c.course.id isEqualToString:courseId]) {
+            [parent.items removeObjectAtIndex:i];
+            [self.treeView reloadData];
+            [self expandItem:parent];
+            break;
+        }
+    }
+    return parent;
+}
 @end
