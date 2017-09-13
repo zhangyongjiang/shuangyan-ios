@@ -205,7 +205,10 @@
 
 -(void)showCoverImage
 {
-    [self showVideoCoverImage];
+    if(self.localMediaContent.isVideo)
+        [self showVideoCoverImage];
+    else
+        self.coverImageView.hidden = NO;
     [[MediaPlayer shared] setCurrentTime:0];
 }
 @end
