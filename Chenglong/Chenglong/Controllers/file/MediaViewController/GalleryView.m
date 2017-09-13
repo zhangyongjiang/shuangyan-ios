@@ -53,7 +53,8 @@
 {
     if(self.repeat == RepeatAll) {
         BOOL hasNext = [self next];
-        [self play];
+        if(hasNext)
+            [self play];
     }
     else if(self.repeat == RepeatOne) {
         [self play];
@@ -130,6 +131,8 @@
 
 -(BOOL)next
 {
+    if(self.mediaContents.count<2)
+        return NO;
     currentPlay++;
     if(currentPlay >= self.mediaContents.count) {
         currentPlay = 0;
@@ -140,6 +143,8 @@
 
 -(BOOL)previous
 {
+    if(self.mediaContents.count<2)
+        return NO;
     currentPlay--;
     if(currentPlay <0 ) {
         currentPlay = self.mediaContents.count-1;
