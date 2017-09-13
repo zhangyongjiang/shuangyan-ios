@@ -84,4 +84,8 @@
 }
 
 -(void)stop{}
+
+-(void)showCoverImage
+{
+}
 @end

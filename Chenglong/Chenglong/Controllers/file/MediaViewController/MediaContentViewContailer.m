@@ -98,4 +98,9 @@
     self.videoView = NULL;
     self.contentView = NULL;
 }
+
+-(void)showCoverImage
+{
+    [self.contentView showCoverImage];
+}
 @end

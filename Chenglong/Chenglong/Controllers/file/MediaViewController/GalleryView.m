@@ -36,7 +36,7 @@
     [self addSubview:self.containerView];
     [self.containerView autoPinEdgesToSuperviewMargins];
     
-    self.repeat = RepeatAll;
+    self.repeat = RepeatNone;
     
     return self;
 }
@@ -60,7 +60,7 @@
         [self play];
     }
     else {
-        
+        [self.containerView showCoverImage];
     }
 }
 

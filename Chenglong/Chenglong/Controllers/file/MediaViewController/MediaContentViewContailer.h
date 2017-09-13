@@ -14,5 +14,6 @@
 
 -(void)play;
 -(void)stop;
+-(void)showCoverImage;
 
 @end

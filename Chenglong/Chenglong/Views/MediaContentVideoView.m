@@ -24,8 +24,9 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
+    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.coverImageView = [[UIImageView alloc] initWithFrame:frame];
-    self.coverImageView.contentMode = UIViewContentModeCenter;
+    self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.coverImageView.image = [UIImage imageNamed:@"logo-300x300"];
     [self addSubview:self.coverImageView];
     [self.coverImageView autoPinEdgesToSuperviewMargins];
@@ -166,15 +167,9 @@
     }
     
     UIImage *image = [self.localMediaContent getPlaceholderImageForVideo];
-    if(image && false) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf play];
-            [SVProgressHUD dismiss];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-                MediaPlayer* player = [MediaPlayer shared];
-                [player stop];
-            });
-        });
+    if(image) {
+        self.coverImageView.image = image;
+        self.coverImageView.hidden = NO;
         return;
     }
 
@@ -206,5 +201,11 @@
         }
     }
     [SVProgressHUD dismiss];
+}
+
+-(void)showCoverImage
+{
+    [self showVideoCoverImage];
+    [[MediaPlayer shared] setCurrentTime:0];
 }
 @end

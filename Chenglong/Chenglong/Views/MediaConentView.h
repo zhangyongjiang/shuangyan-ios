@@ -17,5 +17,6 @@
 -(void)stop;
 -(void)play;
 -(void)destroy;
+-(void)showCoverImage;
 
 @end

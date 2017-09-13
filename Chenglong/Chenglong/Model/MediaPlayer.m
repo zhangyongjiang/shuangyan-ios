@@ -181,6 +181,7 @@ MediaPlayer* gMediaPlayer;
     int32_t timeScale = self.avplayer.currentItem.asset.duration.timescale;
     CMTime seektime=CMTimeMakeWithSeconds(currentTime, timeScale);
     [self.avplayer seekToTime:seektime];
+    self.slider.value = currentTime;
 }
 
 -(BOOL)isPlaying:(LocalMediaContent*)mc {
