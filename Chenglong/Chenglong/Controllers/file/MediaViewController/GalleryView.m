@@ -79,33 +79,35 @@
 
 -(NSInteger)showCourseDetails:(CourseDetails *)courseDetails
 {
-    [self showText:courseDetails.course.content andMediaContent:courseDetails.course.resources];
-    for (CourseDetails* child in courseDetails.items) {
-        [self showCourseDetails:child];
-    }
-    return self.mediaContents.count;
-}
-
--(void)showText:(NSString *)content andMediaContent:(NSArray *)mediaContents
-{
-    int xOffset = self.mediaContents.count * self.width;
+    NSString* content = courseDetails.course.content;
+    NSArray * mediaContents = courseDetails.course.resources;
     content = [content trim];
     if(content.length>0) {
         LocalMediaContent* mc = [LocalMediaContent new];
         mc.contentType = @"text";
         mc.content = content;
+        mc.parent = courseDetails.course;
         [self.mediaContents addObject:mc];
-        xOffset += self.width;
     }
-
-    if(mediaContents)
+    
+    if(mediaContents) {
         [self.mediaContents addObjectsFromArray:mediaContents];
+        for(LocalMediaContent* lmc in mediaContents) {
+            lmc.parent = courseDetails.course;
+        }
+    }
+    
+    for (CourseDetails* child in courseDetails.items) {
+        [self showCourseDetails:child];
+    }
     
     if(self.mediaContents.count > 0 ) {
         if(currentPlay == -1) {
             [self showPage:0];
         }
     }
+    
+    return self.mediaContents.count;
 }
 
 -(void)showPage:(int)index {

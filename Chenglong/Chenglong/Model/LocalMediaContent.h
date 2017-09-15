@@ -18,6 +18,7 @@ typedef void(^CompletionCallback)(BOOL completed);
 @property(copy, nonatomic)ProgressCallback progressBlock;
 @property(copy, nonatomic)CompletionCallback completionBlock;
 @property(strong, nonatomic)NSMutableDictionary* shards;
+@property(weak, nonatomic)Course* parent;
 
 -(BOOL)isDownloaded;
 -(long)currentLocalFileLength;
