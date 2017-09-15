@@ -14,6 +14,7 @@
 #import "BaseNavigationController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import "TMCache.h"
 
 @interface AppDelegate ()
 {
@@ -160,6 +161,7 @@
     LoginViewController* loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
     BaseNavigationController* navController = [[BaseNavigationController alloc] initWithRootViewController:loginViewController];
     self.window.rootViewController = navController;
+    [[TMCache sharedCache] removeAllObjects];
 }
 - (void)onLoginSuccess:(NSNotification *)noti
 {

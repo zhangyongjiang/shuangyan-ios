@@ -80,7 +80,7 @@ static CGFloat registerViewHeight = 380.f;
         [self presentMessageTips:@"昵称不能为空"];
         return;
     }
-    PhoneRegisterRequest* registerRequest = [[PhoneRegisterRequest alloc] init];
+    __block PhoneRegisterRequest* registerRequest = [[PhoneRegisterRequest alloc] init];
     registerRequest.phone = phoneNumber;
     registerRequest.password = pwd;
     registerRequest.validationCode = @"160718";//通用验证码 160718
@@ -91,13 +91,38 @@ static CGFloat registerViewHeight = 380.f;
         
         [SVProgressHUD dismiss];
         [Global setLoggedInUser:resp];
-        RegisterSuccessViewController *registerSuccess = [RegisterSuccessViewController loadFromNib];
-        [weakSelf.navigationController pushViewController:registerSuccess animated:YES];
+        
+        PhoneLoginRequest* req = [PhoneLoginRequest new];
+        req.phone = registerRequest.phone;
+        req.password = registerRequest.password;
+        [weakSelf authLogin:req];
+
+//        RegisterSuccessViewController *registerSuccess = [RegisterSuccessViewController loadFromNib];
+//        [weakSelf.navigationController pushViewController:registerSuccess animated:YES];
         
     } onError:^(APIError *err) {
         [SVProgressHUD dismiss];
         [weakSelf alertShowWithMsg:@"手机已经被注册"];
     }];
+}
+
+-(void) authLogin:(PhoneLoginRequest*) loginRequest
+{
+    [SVProgressHUD showWithStatus:@"登录中"];
+    WeakSelf(weakSelf)
+    [UserApi UserAPI_Oauth2PhoneLogin:loginRequest onSuccess:^(TokenedUser *resp) {
+        
+        [SVProgressHUD dismiss];
+        
+        [Global setLoggedInUser:resp.user];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAppLoginSuccessNotificationKey object:resp];
+        
+    } onError:^(APIError *err) {
+        [SVProgressHUD dismiss];
+        FDAlertView *alert = [[FDAlertView alloc] initWithTitle:nil message:@"手机号格式不对或密码不对" delegate:nil cancelButtonTitle:@"忘记密码" otherButtonTitles:@"确定", nil];
+        [alert show];
+    }];
+
 }
 
 #pragma mark - 键盘
