@@ -37,7 +37,6 @@
     [self.page autoPinEdgesToSuperviewMargins];
     
     [self showPage];
-    [super addTopRightMenu];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseAddedNoti:) name:NotificationCourseAdded object:NULL];
 }
@@ -54,9 +53,11 @@
     if(selected.course.isDir.boolValue) {
         [menuItems addObject:[[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"]] ;
         [menuItems addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
-        [menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
-        [menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
-        [menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
+        if(selected.parent) {
+            [menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
+            [menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
+            [menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
+        }
         if(selected.items.count) {
             [menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"]];
         }
@@ -200,8 +201,10 @@
         resp.course = [Course new];
         resp.course.isDir = [NSNumber numberWithInteger:1];
         
-        if(self.userId == NULL || [Global isLoginUser:self.userId])
+        if(self.userId == NULL || [Global isLoginUser:self.userId]){
             resp.course.title = [NSString stringWithFormat:@"我的文件"];
+            [super addTopRightMenu];
+        }
         else
             resp.course.title = [NSString stringWithFormat:@"%@的文件", resp.user.name];
         
