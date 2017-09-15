@@ -19,7 +19,8 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
+    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
+
     self.treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], self.height)];
     self.treeView.treeFooterView = [UIView new];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
@@ -32,6 +33,7 @@
     [self.treeView.scrollView addSubview:self.refreshControl];
     
     [self addSubview:self.treeView];
+    [self.treeView autoPinEdgesToSuperviewMargins];
     
     return self;
 }
@@ -244,12 +246,6 @@
     button2.backgroundColor = [UIColor redColor]; //arbitrary color
     
     return @[button, button2];
-}
-
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.treeView.frame = self.bounds;
 }
 
 -(CourseDetails*)deleteCourse:(NSString *)courseId

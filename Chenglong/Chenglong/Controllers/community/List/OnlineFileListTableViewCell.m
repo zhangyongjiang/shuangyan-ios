@@ -21,7 +21,9 @@
     self.view = [[OnlineFileListItemView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], OnlineFileListViewHeight)];
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [self.contentView addSubview:self.view];
+    [self.view autoPinEdgesToSuperviewMargins];
     self.clipsToBounds = YES;
+
     return self;
 }
 

@@ -33,6 +33,7 @@
 }
 
 -(void)setup {
+    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.frame = self.bounds;
