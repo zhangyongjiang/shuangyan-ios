@@ -164,7 +164,7 @@
         //        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
         MediaViewController* c = [MediaViewController new];
         c.courseDetails = cd;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPresentController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }
 
@@ -234,7 +234,7 @@
                                         treeView.editing = NO;
                                         MediaViewController* c = [MediaViewController new];
                                         c.courseDetails = item;
-                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPresentController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
                                     }];
     button.backgroundColor = [UIColor lightGrayColor]; //arbitrary color
     UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)

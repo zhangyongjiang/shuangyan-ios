@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.courseDetails.course.title;
     self.view.clipsToBounds = YES;
 
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -74,4 +75,5 @@
 {
     return YES;
 }
+
 @end

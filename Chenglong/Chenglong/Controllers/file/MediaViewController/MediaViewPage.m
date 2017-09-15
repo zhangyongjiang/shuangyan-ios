@@ -21,7 +21,7 @@
     
     self.btnClose = [self createButton:@"关闭"];
     self.btnClose.frame = CGRectMake(10, 10, 60, 40);
-    [self addSubview:self.btnClose];
+//    [self addSubview:self.btnClose];
     
     self.btnPrev = [self createButton:@"←"];
     self.btnPrev.frame = CGRectMake(10, 10, 60, 40);

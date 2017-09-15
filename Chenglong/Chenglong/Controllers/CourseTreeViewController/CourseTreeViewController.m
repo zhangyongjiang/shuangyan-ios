@@ -242,4 +242,10 @@
     return [self.userId isEqualToString:ctc.userId];
 }
 
+-(BOOL)hidesBottomBarWhenPushed
+{
+    if(self.navigationController.viewControllers.count==1 && [self.navigationController.viewControllers lastObject] == self)
+        return NO;
+    return YES;
+}
 @end
