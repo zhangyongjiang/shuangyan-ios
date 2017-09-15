@@ -14,6 +14,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor blackColor];
+    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     return self;
 }
 

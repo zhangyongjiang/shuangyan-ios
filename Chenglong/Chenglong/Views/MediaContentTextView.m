@@ -12,6 +12,7 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     return self;
 }
 

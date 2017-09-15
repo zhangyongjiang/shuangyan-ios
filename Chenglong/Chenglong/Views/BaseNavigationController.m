@@ -48,4 +48,38 @@
     }
     [super pushViewController:viewController animated:animated];
 }
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+         if(orientation == UIInterfaceOrientationPortrait) {
+             NSLog(@"UIInterfaceOrientationPortrait");
+             self.navigationBarHidden = NO;
+         }
+         if(orientation == UIInterfaceOrientationPortraitUpsideDown) {
+             NSLog(@"UIInterfaceOrientationPortraitUpsideDown");
+             self.navigationBarHidden = NO;
+         }
+         if(orientation == UIInterfaceOrientationLandscapeLeft) {
+             NSLog(@"UIInterfaceOrientationLandscapeLeft");
+             self.navigationBarHidden = YES;
+         }
+         if(orientation == UIInterfaceOrientationLandscapeRight) {
+             NSLog(@"UIInterfaceOrientationLandscapeRight");
+             self.navigationBarHidden = YES;
+         }
+         if(orientation == UIInterfaceOrientationUnknown) {
+             NSLog(@"UIInterfaceOrientationUnknown");
+             self.navigationBarHidden = NO;
+         }
+         // do whatever
+     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         
+     }];
+    
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
 @end
