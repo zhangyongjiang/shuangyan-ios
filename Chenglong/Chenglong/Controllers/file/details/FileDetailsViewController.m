@@ -29,12 +29,13 @@
     [super viewDidLoad];
     self.title = self.courseDetails.course.title;
     
-    WeakSelf(weakSelf)
     CGRect frame = self.view.bounds;
     frame.size.height -= 104;
     self.courseView = [[CourseView alloc] initWithFrame:frame];
     self.courseView.courseDetails = self.courseDetails;
     [self.view addSubview:self.courseView];
+    self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self.courseView autoPinEdgesToSuperviewMargins];
     
     [self addTopRightMenu];
 }
