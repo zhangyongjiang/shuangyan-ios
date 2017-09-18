@@ -170,7 +170,15 @@
     }
 }
 
+-(void)setParent:(CourseDetails*)cd {
+    for(CourseDetails* child in cd.items) {
+        child.parent = cd;
+        [self setParent:child];
+    }
+}
+
 -(void)setCourseDetails:(CourseDetails *)courseDetails {
+    [self setParent:courseDetails];
     _courseDetails = courseDetails;
     CourseDetails* root = [courseDetails.items objectAtIndex:0];
     [self.treeView reloadData];

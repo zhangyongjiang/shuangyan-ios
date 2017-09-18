@@ -59,6 +59,13 @@ static Global *_shared = nil;
     return [userId isEqualToString:[Global loggedInUser].id];
 }
 
++(BOOL)isSuperUser
+{
+    User* u = [Global loggedInUser];
+    if (!u) return NO;
+    return [u.type isEqualToString:@"Super"];
+}
+
 + (User*)loggedInUser {
     User *user = [User tm_objectForKey:kCacheUserModel];
     

@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, FileMediaType) {
 + (User*)loggedInUser;
 + (BOOL)isLoginUser:(NSString*)userId;
 + (void)setLoggedInUser:(User*)user;
++(BOOL)isSuperUser;
 
 + (NSString*)versionString;
 + (NSString*)versionNoBundle;

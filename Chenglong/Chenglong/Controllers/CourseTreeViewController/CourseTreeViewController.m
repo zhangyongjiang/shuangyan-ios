@@ -201,7 +201,7 @@
         resp.course = [Course new];
         resp.course.isDir = [NSNumber numberWithInteger:1];
         
-        if(self.userId == NULL || [Global isLoginUser:self.userId]){
+        if(self.userId == NULL || [Global isLoginUser:self.userId] || [Global isSuperUser]){
             resp.course.title = [NSString stringWithFormat:@"我的文件"];
             [super addTopRightMenu];
         }
