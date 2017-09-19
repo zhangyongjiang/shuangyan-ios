@@ -30,9 +30,33 @@
     self.mediaViewPage.courseDetails = self.courseDetails;
     [self.view addSubview:self.mediaViewPage];
     
+    [super addTopRightMenu];
+    
     [self.mediaViewPage.btnClose addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.mediaViewPage.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
     [self.mediaViewPage.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(NSMutableArray*)getTopRightMenuItems
+{
+    NSMutableArray* menuItems = [NSMutableArray new];
+    if(![Global isLoginUser:self.courseDetails.course.userId]) {
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_download_icon"]];
+    }
+    if([Global isLoginUser:self.courseDetails.course.userId] || [Global isSuperUser]){
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_download_icon"]];
+    }
+    return menuItems;
+}
+
+-(void)topRightMenuItemClicked:(NSString *)cmd
+{
+    if([cmd isEqualToString:@"拷贝"]) {
+        
+    }
 }
 
 -(void)previous:(id)sender
