@@ -21,5 +21,6 @@
 -(NSInteger)showCourseDetails:(CourseDetails*)courseDetails;
 -(BOOL)previous;
 -(BOOL)next;
+-(int)toggleRepeat;
 
 @end

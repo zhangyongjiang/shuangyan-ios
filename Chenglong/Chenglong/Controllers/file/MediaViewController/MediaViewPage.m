@@ -21,7 +21,14 @@
     
     self.btnClose = [self createButton:@"关闭"];
     self.btnClose.frame = CGRectMake(10, 10, 60, 40);
-//    [self addSubview:self.btnClose];
+    //    [self addSubview:self.btnClose];
+    
+    self.btnRepeat = [self createButton:@" 重复 "];
+    self.btnRepeat.frame = CGRectMake(10, 10, 100, 40);
+    [self addSubview:self.btnRepeat];
+    [self.btnRepeat autoPinEdgeToSuperviewMargin:ALEdgeTop];
+    [self.btnRepeat autoPinEdgeToSuperviewMargin:ALEdgeRight];
+    [self.btnRepeat addTarget:self action:@selector(btnRepeatClicked) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnPrev = [self createButton:@"←"];
     self.btnPrev.frame = CGRectMake(10, 10, 60, 40);
@@ -36,6 +43,17 @@
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     return self;
+}
+
+-(void)btnRepeatClicked
+{
+    int repeat = [self.galleryView toggleRepeat];
+    if (repeat == RepeatNone)
+        [self.btnRepeat setTitle:@"不重复" forState:UIControlStateNormal];
+    else if (repeat == RepeatOne)
+        [self.btnRepeat setTitle:@"重复当前" forState:UIControlStateNormal];
+    else if (repeat == RepeatAll)
+        [self.btnRepeat setTitle:@"重复所有" forState:UIControlStateNormal];
 }
 
 -(UIButton*)createButton:(NSString*)text

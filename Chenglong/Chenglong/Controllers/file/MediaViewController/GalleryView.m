@@ -70,6 +70,16 @@
     // can we start to download next play item ???
 }
 
+-(int)toggleRepeat
+{
+    if(self.repeat == RepeatNone)
+        self.repeat = RepeatOne;
+    else if(self.repeat == RepeatOne)
+        self.repeat = RepeatAll;
+    else if(self.repeat == RepeatAll)
+        self.repeat = RepeatNone;
+    return self.repeat;
+}
 
 -(void)dealloc
 {

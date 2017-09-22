@@ -16,6 +16,7 @@
 @property(strong, nonatomic)UIButton* btnClose;
 @property(strong, nonatomic)UIButton* btnPrev;
 @property(strong, nonatomic)UIButton* btnNext;
+@property(strong, nonatomic)UIButton* btnRepeat;
 
 
 @end
