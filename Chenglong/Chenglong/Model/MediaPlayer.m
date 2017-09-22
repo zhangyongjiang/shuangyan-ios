@@ -66,7 +66,7 @@ MediaPlayer* gMediaPlayer;
 -(void)playerNoti:(CMTime) time
 {
     if([self isAvplayerPlaying])
-       [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:nil];
+       [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:[self.tasks objectAtIndex:self.current]];
     if(self.current == -1)
         return;
     if(self.slider.maximumValue < 0.000001)
@@ -122,6 +122,7 @@ MediaPlayer* gMediaPlayer;
                  [self.avplayer replaceCurrentItemWithPlayerItem:item];
                  [self.avplayer play];
                  [self setAttachedView:self.attachedView];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayStart object:task];
              });
          }];
 }
@@ -137,6 +138,7 @@ MediaPlayer* gMediaPlayer;
         PlayTask* task = [self.tasks objectAtIndex:0];
         if([task.localMediaContent.url isEqualToString:mc.url]) {
             [self.tasks removeObjectAtIndex:i];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:task];
             [self.avplayer removeItem:task.item];
             if(i==self.current) {
                 [self.avplayer pause];
@@ -250,7 +252,7 @@ MediaPlayer* gMediaPlayer;
 {
     NSLog(@"playerDidFinishPlaying");
     PlayTask* task = [self.tasks objectAtIndex:self.current];
-    self.current  = -1;
+//    self.current  = -1;
     [self removeTask:task.localMediaContent];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:task.localMediaContent];
 }

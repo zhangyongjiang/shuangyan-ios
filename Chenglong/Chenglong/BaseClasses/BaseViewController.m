@@ -30,7 +30,7 @@
     self.lockView = [UIView new];
     self.lockView.hidden = YES;
     self.lockView.userInteractionEnabled = YES;
-    self.lockView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.lockView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [self.view addSubview:self.lockView];
     [self.lockView autoPinEdgesToSuperviewMargins];
     
