@@ -9,10 +9,9 @@
 #import "MediaViewController.h"
 #import "GalleryView.h"
 #import "GalleryCollectionView.h"
-#import "MediaViewPage.h"
 
 @interface MediaViewController ()
-@property(strong, nonatomic)MediaViewPage* mediaViewPage;
+@property(strong, nonatomic)GalleryView* galleryView;
 
 @end
 
@@ -26,14 +25,14 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.view.autoresizesSubviews = YES;
     
-    self.mediaViewPage = [[MediaViewPage alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.mediaViewPage];
+    self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.galleryView];
     
     [super addTopRightMenu];
     
-    [self.mediaViewPage.btnClose addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.mediaViewPage.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
-    [self.mediaViewPage.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
+    [self.galleryView.btnClose addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.galleryView.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
+    [self.galleryView.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
 }
@@ -69,25 +68,24 @@
 
 -(void)previous:(id)sender
 {
-    BOOL success = [self.mediaViewPage.galleryView previous];
+    BOOL success = [self.galleryView previous];
     if(success)
-        [self.mediaViewPage.galleryView play];
+        [self.galleryView play];
 }
 
 -(void)next:(id)sender
 {
-    BOOL success = [self.mediaViewPage.galleryView next];
+    BOOL success = [self.galleryView next];
     if(success)
-        [self.mediaViewPage.galleryView play];
+        [self.galleryView play];
 }
 
 -(void)cancelPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
     }];
-    [self.mediaViewPage.galleryView stop];
-    [self.mediaViewPage.galleryView removeFromSuperview];
-    self.mediaViewPage.galleryView = nil;
-    self.mediaViewPage = nil;
+    [self.galleryView stop];
+    [self.galleryView removeFromSuperview];
+    self.galleryView = nil;
 }
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -95,12 +93,12 @@
 
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mediaViewPage.frame = self.view.bounds;
+    self.galleryView.frame = self.view.bounds;
 }
 
 -(void)play
 {
-    [self.mediaViewPage.galleryView play];
+    [self.galleryView play];
 }
 
 -(BOOL)prefersStatusBarHidden
@@ -111,6 +109,6 @@
 -(void)setCourseDetails:(CourseDetails *)courseDetails
 {
     _courseDetails = courseDetails;
-    self.mediaViewPage.courseDetails = self.courseDetails;
+    self.galleryView.courseDetails = self.courseDetails;
 }
 @end

@@ -70,12 +70,12 @@
 
 -(void)setCourseDetails:(CourseDetails*)courseDetails
 {
-    NSInteger cnt = [self.galleryView showCourseDetails:courseDetails];
-    if(cnt < 2) {
-        self.btnNext.hidden = YES;
-        self.btnPrev.hidden = YES;
-    }
-    [self.galleryView play];
+//    NSInteger cnt = [self.galleryView showCourseDetails:courseDetails];
+//    if(cnt < 2) {
+//        self.btnNext.hidden = YES;
+//        self.btnPrev.hidden = YES;
+//    }
+//    [self.galleryView play];
 }
 
 @end

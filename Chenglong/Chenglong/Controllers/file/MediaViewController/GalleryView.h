@@ -13,12 +13,16 @@
 @property(strong,nonatomic)UIColor* tintColor;
 @property(assign,nonatomic)UIViewContentMode contentMode;
 @property(assign, nonatomic)int repeat;
+@property(strong, nonatomic)UIButton* btnClose;
+@property(strong, nonatomic)UIButton* btnPrev;
+@property(strong, nonatomic)UIButton* btnNext;
+@property(strong, nonatomic)UIButton* btnRepeat;
+@property(strong, nonatomic)CourseDetails* courseDetails;
 
 -(id)initWithFrame:(CGRect)frame;
 -(void)showPage:(int)pageNumber;
 -(void)play;
 -(void)stop;
--(NSInteger)showCourseDetails:(CourseDetails*)courseDetails;
 -(BOOL)previous;
 -(BOOL)next;
 -(int)toggleRepeat;
