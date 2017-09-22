@@ -22,7 +22,8 @@
 @property(weak, nonatomic) UIView* attachedView;
 
 -(void)playTask:(PlayTask *)task;
--(void)play;
+-(void)pause;
+-(void)resume;
 -(void)stop;
 -(BOOL)isPlaying:(LocalMediaContent*)mc;
 -(BOOL)isAvplayerPlaying;

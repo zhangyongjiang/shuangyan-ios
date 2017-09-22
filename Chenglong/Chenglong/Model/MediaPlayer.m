@@ -122,6 +122,16 @@ MediaPlayer* gMediaPlayer;
 
 -(void)stop
 {
+    [self.avplayer replaceCurrentItemWithPlayerItem:nil];
+}
+
+-(void)resume
+{
+    [self.avplayer play];
+}
+
+-(void)pause
+{
     [self.avplayer pause];
 }
 

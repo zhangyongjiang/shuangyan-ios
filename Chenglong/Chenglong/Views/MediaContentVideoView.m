@@ -73,7 +73,7 @@
                 if(completed) {
                     [SVProgressHUD dismiss];
                     dispatch_async(dispatch_get_main_queue(), ^ {
-                        [weakSelf play];
+                        [weakSelf togglePlay];
                         weakSelf.group = nil;
                     });
                 }
@@ -89,17 +89,17 @@
     }
 
     
-    [self play];
+    [self togglePlay];
 }
 
--(void)play {
+-(void)togglePlay {
     MediaPlayer* player = [MediaPlayer shared];
     if([player isPlaying:self.localMediaContent] && [player isAvplayerPlaying]) {
-        [player stop];
+        [player pause];
     }
     else if([player isPlaying:self.localMediaContent]) {
         [player setAttachedView:self];
-        [player play];
+        [player resume];
     }
     else {
         player.attachedView = self;
@@ -107,6 +107,14 @@
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
     }
+}
+
+-(void)play {
+    MediaPlayer* player = [MediaPlayer shared];
+    player.attachedView = self;
+    PlayTask* task = [[PlayTask alloc] init];
+    task.localMediaContent = self.localMediaContent;
+    [player playTask:task];
 }
 
 -(void)destroy
