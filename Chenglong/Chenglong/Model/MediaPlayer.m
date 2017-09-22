@@ -62,10 +62,14 @@ MediaPlayer* gMediaPlayer;
 
 -(void)playerNoti:(CMTime) time
 {
-    if([self isAvplayerPlaying])
+    if([self isAvplayerPlaying]) {
        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:self.playTask];
-    else
+        self.slider.hidden = YES;
+    }
+    else {
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayPaused object:self.playTask];
+        self.slider.hidden = NO;
+    }
     if(self.slider.maximumValue < 0.000001)
         self.slider.maximumValue = self.currentTaskDuration;
     self.slider.value = self.currentTime;
@@ -223,6 +227,7 @@ MediaPlayer* gMediaPlayer;
 {
     NSLog(@"playerDidFinishPlaying");
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask];
+    self.slider.hidden = NO;
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {
