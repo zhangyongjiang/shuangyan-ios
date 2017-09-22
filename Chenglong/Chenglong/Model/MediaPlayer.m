@@ -11,13 +11,12 @@
 
 @interface MediaPlayer()
 
-@property (strong, nonatomic) AVQueuePlayer* avplayer;
-@property (strong, nonatomic) NSMutableArray* tasks;
-@property (assign, nonatomic) int current;
+@property (strong, nonatomic) AVPlayer* avplayer;
 @property (strong, nonatomic) AVPlayerLayer* layer;
 @property (strong, nonatomic) UISlider* slider;
 @property (strong, nonatomic) id timeObserverToken;
 @property (assign, nonatomic) BOOL backgroundMode;
+@property (strong, nonatomic) PlayTask* playTask;
 
 @end
 
@@ -36,10 +35,8 @@ MediaPlayer* gMediaPlayer;
 {
     self = [super init];
     gMediaPlayer = self;
-    self.tasks = [NSMutableArray new];
-    self.current = 0;
     
-    self.avplayer = [[AVQueuePlayer alloc] init];
+    self.avplayer = [[AVPlayer alloc] init];
     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
     if([[UIDevice currentDevice] systemVersion].intValue>=10){
         self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
@@ -66,23 +63,14 @@ MediaPlayer* gMediaPlayer;
 -(void)playerNoti:(CMTime) time
 {
     if([self isAvplayerPlaying])
-       [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:[self.tasks objectAtIndex:self.current]];
-    if(self.current == -1)
-        return;
+       [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:self.playTask];
     if(self.slider.maximumValue < 0.000001)
         self.slider.maximumValue = self.currentTaskDuration;
     self.slider.value = self.currentTime;
 }
 
--(void)addPlayTask:(PlayTask *)task {
-    [self.tasks addObject:task];
-    if(self.current == -1)
-        self.current = 0;
-}
-
 -(void)playTask:(PlayTask *)task {
-    [self.tasks addObject:task];
-    self.current = self.tasks.count - 1;
+    self.playTask = task;
 
     NSString* ustr = task.localMediaContent.url;
     NSURL* url = NULL;
@@ -115,7 +103,7 @@ MediaPlayer* gMediaPlayer;
              
              __block AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
              self.slider.maximumValue = self.currentTaskDuration;
-             __block PlayTask* task = [self.tasks objectAtIndex:self.current];
+             __block PlayTask* task = self.playTask;
              task.item = item;
              dispatch_async(dispatch_get_main_queue(), ^ {
                  NSLog(@"replaceCurrentItemWithPlayerItem %@", item);
@@ -132,31 +120,6 @@ MediaPlayer* gMediaPlayer;
     [self.avplayer play];
 }
 
--(void)removeTask:(LocalMediaContent *)mc
-{
-    for (int i=0; i<self.tasks.count; i++) {
-        PlayTask* task = [self.tasks objectAtIndex:0];
-        if([task.localMediaContent.url isEqualToString:mc.url]) {
-            [self.tasks removeObjectAtIndex:i];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:task];
-            [self.avplayer removeItem:task.item];
-            if(i==self.current) {
-                [self.avplayer pause];
-                self.current ++;
-                if(self.current >= self.tasks.count) {
-                    self.current = -1;
-                }
-            }
-            else {
-                if(self.current > i) {
-                    self.current--;
-                }
-            }
-            break;
-        }
-    }
-}
-
 -(void)stop
 {
     [self.avplayer pause];
@@ -167,8 +130,7 @@ MediaPlayer* gMediaPlayer;
     if(t.timescale > 0)
         return t.value / t.timescale;
     
-    PlayTask* task = [self.tasks objectAtIndex:self.current];
-    t = task.localMediaContent.duration;
+    t = self.playTask.localMediaContent.duration;
     return t.value / t.timescale;
 }
 
@@ -187,10 +149,7 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(BOOL)isPlaying:(LocalMediaContent*)mc {
-    if(self.current<0 || self.tasks.count == 0)
-        return NO;
-    PlayTask* task = [self.tasks objectAtIndex:self.current];
-    if(![task.localMediaContent.path isEqualToString:mc.path])
+    if(![self.playTask.localMediaContent.path isEqualToString:mc.path])
         return NO;
 
     return YES;
@@ -251,10 +210,7 @@ MediaPlayer* gMediaPlayer;
 -(void)playerDidFinishPlaying:(NSNotification*)noti
 {
     NSLog(@"playerDidFinishPlaying");
-    PlayTask* task = [self.tasks objectAtIndex:self.current];
-//    self.current  = -1;
-    [self removeTask:task.localMediaContent];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:task.localMediaContent];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask];
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {

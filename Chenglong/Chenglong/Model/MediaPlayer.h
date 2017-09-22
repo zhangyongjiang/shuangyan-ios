@@ -21,13 +21,11 @@
 @property(assign, nonatomic)CGFloat currentTime;
 @property(weak, nonatomic) UIView* attachedView;
 
--(void)addPlayTask:(PlayTask*)task;
 -(void)playTask:(PlayTask *)task;
 -(void)play;
 -(void)stop;
 -(BOOL)isPlaying:(LocalMediaContent*)mc;
 -(BOOL)isAvplayerPlaying;
--(void)removeTask:(LocalMediaContent*)mc;
 
 -(CGFloat)currentTaskDuration;
 
