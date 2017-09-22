@@ -115,8 +115,8 @@
 -(void)setCourseDetails:(CourseDetails*)courseDetails
 {
     _courseDetails = courseDetails;
-    NSInteger cnt = [self showCourseDetails:courseDetails];
-    if(cnt < 2) {
+    [self showCourseDetails:courseDetails];
+    if(self.mediaContents.count < 2) {
         self.btnNext.hidden = YES;
         self.btnPrev.hidden = YES;
     }
@@ -133,10 +133,20 @@
 
 -(void)playingNotiHandler:(NSNotification*)noti
 {
+    if(self.btnRepeat.hidden)
+        return;
+    self.btnRepeat.hidden = YES;
+    self.btnPrev.hidden = YES;
+    self.btnNext.hidden = YES;
 }
 
 -(void)playPaused:(NSNotification*)noti
 {
+    if(!self.btnRepeat.hidden)
+        return;
+    self.btnRepeat.hidden = NO;
+    self.btnPrev.hidden = !(self.mediaContents.count>1);
+    self.btnNext.hidden = !(self.mediaContents.count>1);
 }
 
 -(void)playEnd:(NSNotification*)noti
@@ -180,7 +190,7 @@
     [self.containerView removeFromSuperview];
 }
 
--(NSInteger)showCourseDetails:(CourseDetails *)courseDetails
+-(void)showCourseDetails:(CourseDetails *)courseDetails
 {
     NSString* content = courseDetails.course.content;
     NSArray * mediaContents = courseDetails.course.resources;
@@ -209,8 +219,6 @@
             [self showPage:0];
         }
     }
-    
-    return self.mediaContents.count;
 }
 
 -(void)showPage:(int)index {
