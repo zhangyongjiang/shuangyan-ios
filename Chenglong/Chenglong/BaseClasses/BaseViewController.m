@@ -27,12 +27,11 @@
     self.lockScreen = NO;
     self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     
-    self.lockView = [UIView new];
+    self.lockView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenHeight])];
     self.lockView.hidden = YES;
     self.lockView.userInteractionEnabled = YES;
-    self.lockView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    self.lockView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.lockView];
-    [self.lockView autoPinEdgesToSuperviewMargins];
     
     return self;
 }
@@ -346,4 +345,10 @@
         self.lockScreen = !self.lockScreen;
     }
 }
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.lockView.frame = CGRectMake(0, 0, [UIView screenWidth], [UIView screenHeight]);
+}
+
 @end
