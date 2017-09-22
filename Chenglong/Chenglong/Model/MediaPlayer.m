@@ -64,6 +64,8 @@ MediaPlayer* gMediaPlayer;
 {
     if([self isAvplayerPlaying])
        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:self.playTask];
+    else
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayPaused object:self.playTask];
     if(self.slider.maximumValue < 0.000001)
         self.slider.maximumValue = self.currentTaskDuration;
     self.slider.value = self.currentTime;

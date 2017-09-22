@@ -30,9 +30,6 @@
     
     [super addTopRightMenu];
     
-    [self.galleryView.btnClose addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.galleryView.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
-    [self.galleryView.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
 }
@@ -64,28 +61,6 @@
     if([cmd isEqualToString:@"拷贝"]) {
         
     }
-}
-
--(void)previous:(id)sender
-{
-    BOOL success = [self.galleryView previous];
-    if(success)
-        [self.galleryView play];
-}
-
--(void)next:(id)sender
-{
-    BOOL success = [self.galleryView next];
-    if(success)
-        [self.galleryView play];
-}
-
--(void)cancelPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
-    [self.galleryView stop];
-    [self.galleryView removeFromSuperview];
-    self.galleryView = nil;
 }
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {

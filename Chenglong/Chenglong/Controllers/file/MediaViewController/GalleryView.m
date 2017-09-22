@@ -24,20 +24,14 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     self.mediaContents = [[NSMutableArray alloc] init];
-    
     currentPlay = -1;
+    self.repeat = RepeatNone;
+    
     self.backgroundColor = [UIColor whiteColor];
-    
-    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
-    
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.containerView = [[MediaContentViewContailer alloc]initWithFrame:frame];
     [self addSubview:self.containerView];
     [self.containerView autoPinEdgesToSuperviewMargins];
-    
-    self.btnClose = [self createButton:@"关闭"];
-    self.btnClose.frame = CGRectMake(10, 10, 60, 40);
-    //    [self addSubview:self.btnClose];
     
     self.btnRepeat = [self createButton:@" 重复 "];
     self.btnRepeat.frame = CGRectMake(10, 10, 100, 40);
@@ -58,12 +52,40 @@
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playPaused:) name:NotificationPlayPaused object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadedNoti:) name:NotificationDownloadCompleted object:nil];
     
-    self.repeat = RepeatNone;
+    [self.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     
     return self;
+}
+
+
+-(void)previous:(id)sender
+{
+    if(self.mediaContents.count<2)
+        return;
+    currentPlay--;
+    if(currentPlay <0 ) {
+        currentPlay = self.mediaContents.count-1;
+    }
+    [self showPage:currentPlay];
+    [self play];
+}
+
+-(void)next:(id)sender
+{
+    if(self.mediaContents.count<2)
+        return ;
+    currentPlay++;
+    if(currentPlay >= self.mediaContents.count) {
+        currentPlay = 0;
+    }
+    [self showPage:currentPlay];
+    [self play];
 }
 
 
@@ -109,12 +131,23 @@
     return NULL;
 }
 
+-(void)playingNotiHandler:(NSNotification*)noti
+{
+}
+
+-(void)playPaused:(NSNotification*)noti
+{
+}
+
 -(void)playEnd:(NSNotification*)noti
 {
     if(self.repeat == RepeatAll) {
-        BOOL hasNext = [self next];
-        if(hasNext)
-            [self play];
+        currentPlay++;
+        if(currentPlay >= self.mediaContents.count) {
+            currentPlay = 0;
+        }
+        [self showPage:currentPlay];
+        [self play];
     }
     else if(self.repeat == RepeatOne) {
         [self play];
@@ -201,27 +234,5 @@
     [self.containerView stop];
 }
 
--(BOOL)next
-{
-    if(self.mediaContents.count<2)
-        return NO;
-    currentPlay++;
-    if(currentPlay >= self.mediaContents.count) {
-        currentPlay = 0;
-    }
-    [self showPage:currentPlay];
-    return YES;
-}
 
--(BOOL)previous
-{
-    if(self.mediaContents.count<2)
-        return NO;
-    currentPlay--;
-    if(currentPlay <0 ) {
-        currentPlay = self.mediaContents.count-1;
-    }
-    [self showPage:currentPlay];
-    return YES;
-}
 @end
