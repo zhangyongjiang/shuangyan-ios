@@ -295,11 +295,11 @@
     long endShardIndex = (offset + length) / self.shardSize;
     if(endShardIndex - startShardIndex > 1)
         endShardIndex = startShardIndex;
-    NSLog(@"downloadNowForDataAtOffset startShard %ld endShard %ld offset %ld length %ld", startShardIndex, endShardIndex, offset, length);
     for(int i=startShardIndex; i<=endShardIndex; i++) {
         LocalMediaContentShard* shard = [self getShard:i];
         if(shard.isDownloaded)
             continue;
+        NSLog(@"downloadNowForDataAtOffset startShard %ld endShard %ld offset %ld length %ld", startShardIndex, endShardIndex, offset, length);
         [shard directDownload];
     }
     NSMutableData* data = [NSMutableData new];

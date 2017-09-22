@@ -57,6 +57,7 @@
         self.btnNext.hidden = YES;
         self.btnPrev.hidden = YES;
     }
+    [self.galleryView play];
 }
 
 @end
