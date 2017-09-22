@@ -14,6 +14,9 @@
 
 @property (nonatomic, strong) UIBarButtonItem *rightMenuItem;
 @property (nonatomic, strong) UIButton* btn;
+@property (nonatomic, assign) BOOL lockScreen;
+
+@property (nonatomic, strong) UIView* lockView;
 
 @end
 
@@ -21,6 +24,16 @@
 
 -(id)init {
     self = [super init];
+    self.lockScreen = NO;
+    self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    self.lockView = [UIView new];
+    self.lockView.hidden = YES;
+    self.lockView.userInteractionEnabled = YES;
+    self.lockView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [self.view addSubview:self.lockView];
+    [self.lockView autoPinEdgesToSuperviewMargins];
+    
     return self;
 }
 
@@ -304,5 +317,33 @@
 -(NSMutableArray*)getTopRightMenuItems
 {
     return NULL;
+}
+
+- (BOOL)shouldAutorotate {
+    return !self.lockScreen;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (UIEventSubtypeMotionShake) {
+        if(self.lockScreen) {
+            toast(@"屏幕解除锁定");
+            self.lockView.hidden = YES;
+            [self.view bringSubviewToFront:self.lockView];
+        }
+        else {
+            toast(@"屏幕锁定");
+            self.lockView.hidden = NO;
+            [self.view bringSubviewToFront:self.lockView];
+        }
+        self.lockScreen = !self.lockScreen;
+    }
 }
 @end

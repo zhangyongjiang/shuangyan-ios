@@ -26,6 +26,7 @@
 }
 
 @property (nonatomic, assign) BOOL firstViewDidAppear;
+
 @end
 
 
@@ -47,6 +48,7 @@
     [super viewDidLoad];
     [self loadLoggedInUser];
 
+    self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.tabBar.accessibilityLabel = @"MainTabBar";
     self.tabBar.translucent = NO;
     self.delegate = self;
@@ -95,5 +97,14 @@
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     return viewController != tabBarController.selectedViewController;
 }
+
+- (BOOL)shouldAutorotate {
+    return self.selectedViewController.shouldAutorotate;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return self.selectedViewController.supportedInterfaceOrientations;
+}
+
 
 @end

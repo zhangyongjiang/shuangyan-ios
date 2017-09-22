@@ -82,4 +82,14 @@
     
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
+
+- (BOOL)shouldAutorotate {
+    //Use this if your root controller is a navigation controller
+    return self.visibleViewController.shouldAutorotate;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    //Navigation Controller
+    return self.visibleViewController.supportedInterfaceOrientations;
+}
 @end

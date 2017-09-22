@@ -26,8 +26,8 @@
     self.btnRepeat = [self createButton:@" 重复 "];
     self.btnRepeat.frame = CGRectMake(10, 10, 100, 40);
     [self addSubview:self.btnRepeat];
-    [self.btnRepeat autoPinEdgeToSuperviewMargin:ALEdgeTop];
-    [self.btnRepeat autoPinEdgeToSuperviewMargin:ALEdgeRight];
+    [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
+    [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
     [self.btnRepeat addTarget:self action:@selector(btnRepeatClicked) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnPrev = [self createButton:@"←"];

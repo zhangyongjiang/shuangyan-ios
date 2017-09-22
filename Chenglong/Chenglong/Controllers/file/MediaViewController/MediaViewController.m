@@ -27,7 +27,6 @@
     self.view.autoresizesSubviews = YES;
     
     self.mediaViewPage = [[MediaViewPage alloc] initWithFrame:self.view.bounds];
-    self.mediaViewPage.courseDetails = self.courseDetails;
     [self.view addSubview:self.mediaViewPage];
     
     [super addTopRightMenu];
@@ -100,4 +99,9 @@
     return YES;
 }
 
+-(void)setCourseDetails:(CourseDetails *)courseDetails
+{
+    _courseDetails = courseDetails;
+    self.mediaViewPage.courseDetails = self.courseDetails;
+}
 @end
