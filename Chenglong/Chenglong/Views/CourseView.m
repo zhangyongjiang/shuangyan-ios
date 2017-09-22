@@ -21,8 +21,8 @@
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails
 {
-    _courseDetails = courseDetails;
-    [self showCourseDetails:courseDetails];
+//    _courseDetails = courseDetails;
+//    [self showCourseDetails:courseDetails];
 }
 
 @end

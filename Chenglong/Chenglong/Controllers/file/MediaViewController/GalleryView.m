@@ -28,9 +28,12 @@
     currentPlay = -1;
     self.backgroundColor = [UIColor whiteColor];
     
-    
+    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.containerView = [[MediaContentViewContailer alloc]initWithFrame:frame];
+    [self addSubview:self.containerView];
+    [self.containerView autoPinEdgesToSuperviewMargins];
     
     self.btnClose = [self createButton:@"关闭"];
     self.btnClose.frame = CGRectMake(10, 10, 60, 40);
@@ -55,17 +58,8 @@
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
-
-    
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadedNoti:) name:NotificationDownloadCompleted object:nil];
-    
-    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.containerView = [[MediaContentViewContailer alloc]initWithFrame:frame];
-    [self addSubview:self.containerView];
-    [self.containerView autoPinEdgesToSuperviewMargins];
     
     self.repeat = RepeatNone;
     
