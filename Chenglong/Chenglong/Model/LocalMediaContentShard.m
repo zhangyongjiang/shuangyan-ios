@@ -166,8 +166,10 @@
     NSURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloadError object:NULL];
+    }
     
-//    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.url]];
     [self copyDownloadedFile:NULL orData:data withObject:self];
 }
 
@@ -206,15 +208,6 @@
             NSLog(@"ERROR: %@", error);
             return NO;
         }
-        if(f.length != self.expectedDownloadSize) {
-            NSLog(@"ERROR expected file len:%d, got %ld", self.expectedDownloadSize, f.length);
-            toast(@"文件下载错误");
-            NSString* content = [[NSString alloc] initWithData:f.content encoding:NSUTF8StringEncoding];
-            if([content containsString:@"invalid_token"]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:NotificationInvalidToken object:NULL];
-            }
-            return NO;
-        }
     }
     else if (data) {
         if(f.exists) {
@@ -227,7 +220,24 @@
         NSLog(@"ERROR!!!!");
         return NO;
     }
-    
+
+    if(f.length != self.expectedDownloadSize) {
+        NSLog(@"ERROR expected file len:%d, got %ld", self.expectedDownloadSize, f.length);
+        NSString* content = [[NSString alloc] initWithData:f.content encoding:NSUTF8StringEncoding];
+        if([content containsString:@"invalid_token"]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationInvalidToken object:NULL];
+            toast(@"请重新登录");
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                [del logout];
+            });
+        } else {
+            toast(@"文件下载错误");
+        }
+        return NO;
+    }
+
     NSString* parentPath = self.localMediaContent.localFilePath;
     File* file = [[File alloc] initWithFullPath:parentPath];
     if(!file.exists ) {

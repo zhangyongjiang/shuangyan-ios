@@ -98,6 +98,7 @@ extern NSString* const kPublishFileSuccessNotificationKey;
 #define NotificationDownloadCompleted   @"NotificationDownloadCompleted"
 #define NotificationShardDownloaded     @"NotificationShardDownloaded"
 #define NotificationInvalidToken        @"NotificationInvalidToken"
+#define NotificationDownloadError       @"NotificationDownloadError"
 
 #define Margin  15
 
