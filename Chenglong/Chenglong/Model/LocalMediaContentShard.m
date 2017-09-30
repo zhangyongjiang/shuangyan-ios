@@ -267,6 +267,8 @@
     
     [self deleteFile];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationShardDownloaded object:self];
+    
     if(self.localMediaContent.isDownloaded) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloadCompleted object:self.localMediaContent];
     }
