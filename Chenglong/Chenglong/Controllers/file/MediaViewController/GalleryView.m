@@ -69,7 +69,8 @@
 {
     if(self.mediaContents.count<2)
         return;
-    self.autoplay = NO;
+    if(sender)
+        self.autoplay = NO;
     currentPlay--;
     if(currentPlay <0 ) {
         currentPlay = self.mediaContents.count-1;
@@ -82,7 +83,8 @@
 {
     if(self.mediaContents.count<2)
         return ;
-    self.autoplay = NO;
+    if(sender)
+        self.autoplay = NO;
     currentPlay++;
     if(currentPlay >= self.mediaContents.count) {
         currentPlay = 0;

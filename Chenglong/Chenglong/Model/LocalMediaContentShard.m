@@ -209,6 +209,10 @@
         if(f.length != self.expectedDownloadSize) {
             NSLog(@"ERROR expected file len:%d, got %ld", self.expectedDownloadSize, f.length);
             toast(@"文件下载错误");
+            NSString* content = [[NSString alloc] initWithData:f.content encoding:NSUTF8StringEncoding];
+            if([content containsString:@"invalid_token"]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:NotificationInvalidToken object:NULL];
+            }
             return NO;
         }
     }
