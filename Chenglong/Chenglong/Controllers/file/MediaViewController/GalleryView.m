@@ -53,6 +53,11 @@
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
+    self.labelProgress = [FitLabel new];
+    [self addSubview:self.labelProgress];
+    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
+    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:30];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playPaused:) name:NotificationPlayPaused object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
@@ -168,7 +173,7 @@
         [self play];
     }
     else  {
-        if (self.autoplay) {
+        if (self.autoplay && self.mediaContents.count>1) {
             [self next:NULL];
         }
         else {

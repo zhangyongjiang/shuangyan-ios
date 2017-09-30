@@ -17,6 +17,7 @@
 @property(strong, nonatomic)UIButton* btnPrev;
 @property(strong, nonatomic)UIButton* btnNext;
 @property(strong, nonatomic)UIButton* btnRepeat;
+@property(strong, nonatomic)FitLabel* labelProgress;
 @property(strong, nonatomic)CourseDetails* courseDetails;
 
 -(id)initWithFrame:(CGRect)frame;
