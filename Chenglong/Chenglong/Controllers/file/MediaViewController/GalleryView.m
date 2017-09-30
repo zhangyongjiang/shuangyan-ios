@@ -26,6 +26,7 @@
     self.mediaContents = [[NSMutableArray alloc] init];
     currentPlay = -1;
     self.repeat = RepeatNone;
+    self.autoplay = YES;
     
     self.backgroundColor = [UIColor whiteColor];
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -68,6 +69,7 @@
 {
     if(self.mediaContents.count<2)
         return;
+    self.autoplay = NO;
     currentPlay--;
     if(currentPlay <0 ) {
         currentPlay = self.mediaContents.count-1;
@@ -80,6 +82,7 @@
 {
     if(self.mediaContents.count<2)
         return ;
+    self.autoplay = NO;
     currentPlay++;
     if(currentPlay >= self.mediaContents.count) {
         currentPlay = 0;
@@ -162,8 +165,13 @@
     else if(self.repeat == RepeatOne) {
         [self play];
     }
-    else {
-        [self.containerView showCoverImage];
+    else  {
+        if (self.autoplay) {
+            [self next:NULL];
+        }
+        else {
+            [self.containerView showCoverImage];
+        }
     }
 }
 
