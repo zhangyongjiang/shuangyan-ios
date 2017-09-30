@@ -52,7 +52,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     MediaPlayer* player = [MediaPlayer shared];
     if([player isPlaying:self.localMediaContent]) {
-//        [player removeTask:self.localMediaContent];
+        [player stop];
     }
 }
 
@@ -115,14 +115,6 @@
     PlayTask* task = [[PlayTask alloc] init];
     task.localMediaContent = self.localMediaContent;
     [player playTask:task];
-}
-
--(void)destroy
-{
-    MediaPlayer* player = [MediaPlayer shared];
-    [player stop];
-//    [player removeTask:self.localMediaContent];
-    player = nil;
 }
 
 -(BOOL)isPlaying {
