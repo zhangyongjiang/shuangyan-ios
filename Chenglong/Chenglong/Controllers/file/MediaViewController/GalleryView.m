@@ -54,8 +54,6 @@
     [self addSubview:self.btnNext];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
-    [self.btnNext autoSetDimension:ALDimensionWidth toSize:60];
-    [self.btnNext autoSetDimension:ALDimensionHeight toSize:40];
     
     self.labelProgress = [FitLabel new];
     [self addSubview:self.labelProgress];
@@ -148,12 +146,10 @@
 
 -(void)playingNotiHandler:(NSNotification*)noti
 {
-    if(self.btnRepeat.hidden)
-        return;
+    self.labelProgress.hidden = UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation);
     self.btnRepeat.hidden = YES;
     self.btnPrev.hidden = YES;
     self.btnNext.hidden = YES;
-    self.labelProgress.hidden = UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation);
 }
 
 
