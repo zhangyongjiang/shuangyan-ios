@@ -8,6 +8,7 @@
 
 #import "GalleryView.h"
 #import "MediaContentViewContailer.h"
+#import "Progress.h"
 
 @interface GalleryView()
 {
@@ -62,6 +63,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playPaused:) name:NotificationPlayPaused object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadedNoti:) name:NotificationDownloadCompleted object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadingNoti:) name:NotificationDownloading object:nil];
     
     [self.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
@@ -148,6 +150,7 @@
     self.btnRepeat.hidden = YES;
     self.btnPrev.hidden = YES;
     self.btnNext.hidden = YES;
+    self.labelProgress.hidden = YES;
 }
 
 -(void)playPaused:(NSNotification*)noti
@@ -155,6 +158,7 @@
     if(!self.btnRepeat.hidden)
         return;
     self.btnRepeat.hidden = NO;
+    self.labelProgress.hidden = NO;
     self.btnPrev.hidden = !(self.mediaContents.count>1);
     self.btnNext.hidden = !(self.mediaContents.count>1);
 }
@@ -186,6 +190,13 @@
 {
     LocalMediaContent* mc = noti.object;
     // can we start to download next play item ???
+}
+
+-(void)contentDownloadingNoti:(NSNotification*)noti
+{
+    Progress* mc = noti.object;
+    NSString* label = [NSString stringWithFormat:@"下载中 %ld of %ld", mc.current, mc.expected];
+    self.labelProgress.text = label;
 }
 
 -(int)toggleRepeat

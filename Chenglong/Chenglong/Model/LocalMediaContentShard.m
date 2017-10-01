@@ -8,6 +8,7 @@
 
 #import "LocalMediaContentShard.h"
 #import "TWRDownloadManager.h"
+#import "Progress.h"
 
 @interface LocalMediaContentShard() <DownloaderDelegate>
 
@@ -163,6 +164,17 @@
     if(!useSendSynchronousRequest){
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         [self downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            Progress* p = [Progress new];
+            p.object = shard;
+            if(progress<0) {
+                p.current = self.shard * self.localMediaContent.shardSize - progress;
+                p.expected = self.localMediaContent.length;
+            }
+            else {
+                p.current = self.shard * self.localMediaContent.shardSize + progress * self.expectedDownloadSize;
+                p.expected = self.localMediaContent.length;
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloading object:p];
             NSLog(@"direct downloading");
         } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
             dispatch_semaphore_signal(semaphore);
