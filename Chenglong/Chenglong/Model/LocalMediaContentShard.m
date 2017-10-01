@@ -174,6 +174,9 @@
                 p.current = self.shard * self.localMediaContent.shardSize + progress * self.expectedDownloadSize;
                 p.expected = self.localMediaContent.length.longValue;
             }
+            if(shard.localMediaContent.isDownloaded)
+                p.current = self.localMediaContent.length.longValue;
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloading object:p];
         } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
             dispatch_semaphore_signal(semaphore);
