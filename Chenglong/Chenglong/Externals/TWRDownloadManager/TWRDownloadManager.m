@@ -95,7 +95,7 @@
         NSURLSessionDownloadTask *downloadTask;
     WeakSelf(weakSelf)
         if (backgroundMode) {
-            downloadTask = [self.backgroundSession downloadTaskWithRequest:request completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            downloadTask = [self.backgroundSession downloadTaskWithRequest:request /*completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 TWRDownloadObject *download = [weakSelf.downloads objectForKey:urlString];
                 NSHTTPURLResponse *urlresp = response;
                  NSInteger statusCode = [urlresp statusCode];
@@ -103,7 +103,7 @@
                     NSLog(@"download error status code %ld for url %@", (long)statusCode, urlString);
                     download.completionBlock(download.delegate, NO);
                 }
-            }];
+            }*/];
         } else {
             downloadTask = [self.session downloadTaskWithRequest:request];
         }

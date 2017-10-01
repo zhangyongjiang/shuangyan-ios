@@ -159,18 +159,30 @@
 
 -(void)directDownload
 {
-    NSString* range = [NSString stringWithFormat:@"bytes=%ld-%ld", self.offset, (self.offset + self.expectedDownloadSize-1)];
-    NSURL *url = [NSURL URLWithString:self.url];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-    [request setValue:range forHTTPHeaderField:@"Range"];
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if(error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloadError object:NULL];
+    BOOL useSendSynchronousRequest = NO;
+    if(!useSendSynchronousRequest){
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [self downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
+            NSLog(@"direct downloading");
+        } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
+            dispatch_semaphore_signal(semaphore);
+        } enableBackgroundMode:NO];
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     }
-    
-    [self copyDownloadedFile:NULL orData:data withObject:self];
+    else {
+        NSString* range = [NSString stringWithFormat:@"bytes=%ld-%ld", self.offset, (self.offset + self.expectedDownloadSize-1)];
+        NSURL *url = [NSURL URLWithString:self.url];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+        [request setValue:range forHTTPHeaderField:@"Range"];
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if(error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloadError object:NULL];
+        }
+        
+        [self copyDownloadedFile:NULL orData:data withObject:self];
+    }
 }
 
 -(void)downloadWithProgressBlock:(void (^)(LocalMediaContentShard *, CGFloat))progressBlock completionBlock:(void (^)(LocalMediaContentShard *, BOOL))completionBlock enableBackgroundMode:(BOOL)backgroundMode {
