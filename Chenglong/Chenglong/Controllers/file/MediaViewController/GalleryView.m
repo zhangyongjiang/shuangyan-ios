@@ -9,6 +9,7 @@
 #import "GalleryView.h"
 #import "MediaContentViewContailer.h"
 #import "Progress.h"
+#import "LocalMediaContentShard.h"
 
 @interface GalleryView()
 {
@@ -194,10 +195,17 @@
 
 -(void)contentDownloadingNoti:(NSNotification*)noti
 {
+    static NSTimeInterval lastUpdteTime = 0;
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if(now - lastUpdteTime < 1.)
+        return;
+    lastUpdteTime = now;
+    
     __block Progress* mc = noti.object;
     WeakSelf(weakSelf)
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSString* label = [NSString stringWithFormat:@"下载中 %.02f%% of %ld", mc.progress*100., mc.expected];
+        LocalMediaContentShard* shard = mc.object;
+        NSString* label = [NSString stringWithFormat:@"下载中 %.02f%% of %ld", shard.localMediaContent.downloadProgress*100, shard.localMediaContent.length.longValue];
         weakSelf.labelProgress.text = label;
     });
 }

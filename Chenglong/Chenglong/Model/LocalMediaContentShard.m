@@ -166,17 +166,6 @@
         [self downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
             Progress* p = [Progress new];
             p.object = shard;
-            if(progress<0) {
-                p.current = self.shard * self.localMediaContent.shardSize - progress;
-                p.expected = self.localMediaContent.length.longValue;
-            }
-            else {
-                p.current = self.shard * self.localMediaContent.shardSize + progress * self.expectedDownloadSize;
-                p.expected = self.localMediaContent.length.longValue;
-            }
-            if(shard.localMediaContent.isDownloaded)
-                p.current = self.localMediaContent.length.longValue;
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloading object:p];
         } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
             dispatch_semaphore_signal(semaphore);

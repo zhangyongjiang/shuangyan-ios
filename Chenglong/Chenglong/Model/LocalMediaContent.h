@@ -35,6 +35,7 @@ typedef void(^CompletionCallback)(BOOL completed);
 -(BOOL)localFileExists;
 -(CMTime)duration;
 -(BOOL)isEqual:(id)object;
+-(CGFloat)downloadProgress;
 
 -(BOOL) isDownloadingProgressBlock:(void(^)(CGFloat progress))progressBlock
                    completionBlock:(void(^)(BOOL completed))completionBlock;

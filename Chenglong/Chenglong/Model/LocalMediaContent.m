@@ -417,4 +417,15 @@
     mc.content = text;
     return mc;
 }
+
+-(CGFloat)downloadProgress
+{
+    long current = 0;
+    for(int i=0; i<self.numOfShards; i++) {
+        LocalMediaContentShard* shard = [self getShard:i];
+        if(shard.isDownloaded)
+            current += shard.expectedDownloadSize;
+    }
+    return (CGFloat)current / (CGFloat)self.length.longValue;
+}
 @end
