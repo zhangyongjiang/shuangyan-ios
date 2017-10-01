@@ -205,8 +205,11 @@
     WeakSelf(weakSelf)
     dispatch_async(dispatch_get_main_queue(), ^{
         LocalMediaContentShard* shard = mc.object;
-        NSString* label = [NSString stringWithFormat:@"下载中 %.02f%% of %ld", shard.localMediaContent.downloadProgress*100, shard.localMediaContent.length.longValue];
+        CGFloat progress = shard.localMediaContent.downloadProgress;
+        NSString* label = [NSString stringWithFormat:@"下载中 %.02f%% of %ld", progress*100, shard.localMediaContent.length.longValue];
         weakSelf.labelProgress.text = label;
+        if(progress>0.98)
+            lastUpdteTime = 0;
     });
 }
 
