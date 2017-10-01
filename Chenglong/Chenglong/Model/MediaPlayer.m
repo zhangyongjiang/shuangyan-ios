@@ -112,7 +112,6 @@ MediaPlayer* gMediaPlayer;
              __block PlayTask* task = self.playTask;
              task.item = item;
              dispatch_async(dispatch_get_main_queue(), ^ {
-                 NSLog(@"replaceCurrentItemWithPlayerItem %@", item);
                  [self.avplayer replaceCurrentItemWithPlayerItem:item];
                  [self.avplayer play];
                  [self setAttachedView:self.attachedView];

@@ -9,6 +9,7 @@
 #import "LocalMediaContent.h"
 #import "TWRDownloadManager.h"
 #import "LocalMediaContentShardGroup.h"
+#import "Progress.h"
 
 @interface LocalMediaContent()
 {
@@ -333,6 +334,10 @@
     //handle data request
     if (dataRequest)
     {
+        Progress* p = [Progress new];
+        p.object = self;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationLoadingRequest object:self];
+        
         NSData* data = [self downloadNowForDataAtOffset:dataRequest.requestedOffset length:dataRequest.requestedLength];
         if(data) {
             [dataRequest respondWithData:data];

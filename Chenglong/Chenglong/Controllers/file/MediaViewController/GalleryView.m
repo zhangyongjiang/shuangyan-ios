@@ -50,10 +50,12 @@
     [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     self.btnNext = [self createButton:@"→"];
-    self.btnNext.frame = CGRectMake(10, 10, 60, 40);
+    self.btnNext.frame = CGRectMake([UIView screenWidth]-70, [UIView screenHeight]-50, 60, 40);
     [self addSubview:self.btnNext];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
+    [self.btnNext autoSetDimension:ALDimensionWidth toSize:60];
+    [self.btnNext autoSetDimension:ALDimensionHeight toSize:40];
     
     self.labelProgress = [FitLabel new];
     [self addSubview:self.labelProgress];
@@ -65,6 +67,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadedNoti:) name:NotificationDownloadCompleted object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadingNoti:) name:NotificationDownloading object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(avplayerContentLoadingNoti:) name:NotificationLoadingRequest object:nil];
     
     [self.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
@@ -154,6 +157,21 @@
     self.labelProgress.hidden = UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation);
 }
 
+-(void)avplayerContentLoadingNoti:(NSNotification*)noti
+{
+    static NSTimeInterval lastTime = 0;
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (now - lastTime < 10)
+        return;
+    lastTime = now;
+    
+    LocalMediaContent* p = noti.object;
+    MediaPlayer* player = [MediaPlayer shared];
+    if([player isPlaying:p] && ![player isAvplayerPlaying]) {
+        [player resume];
+    }
+}
+
 -(void)playPaused:(NSNotification*)noti
 {
     if(!self.btnRepeat.hidden)
@@ -178,8 +196,11 @@
         [self play];
     }
     else  {
-        if (self.autoplay && self.mediaContents.count>1) {
-            [self next:NULL];
+        if (self.autoplay) {
+            if(currentPlay != (self.mediaContents.count-1))
+                [self next:NULL];
+            else
+                [self.containerView showCoverImage];
         }
         else {
             [self.containerView showCoverImage];
@@ -195,21 +216,11 @@
 
 -(void)contentDownloadingNoti:(NSNotification*)noti
 {
-    static NSTimeInterval lastUpdteTime = 0;
-    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
-    if(now - lastUpdteTime < 1.)
-        return;
-    lastUpdteTime = now;
-    
     __block Progress* mc = noti.object;
     WeakSelf(weakSelf)
     dispatch_async(dispatch_get_main_queue(), ^{
-        LocalMediaContentShard* shard = mc.object;
-        CGFloat progress = shard.localMediaContent.downloadProgress;
-        NSString* label = [NSString stringWithFormat:@"下载中 %.02f%% of %ld", progress*100, shard.localMediaContent.length.longValue];
+        NSString* label = [NSString stringWithFormat:@"下载中 %ld of %ld", mc.current, mc.expected];
         weakSelf.labelProgress.text = label;
-        if(progress>0.98)
-            lastUpdteTime = 0;
     });
 }
 

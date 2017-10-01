@@ -12,7 +12,7 @@
 
 @property(assign, nonatomic) long expected;
 @property(assign, nonatomic) long current;
-@property(strong, nonatomic) NSObject* object;
+@property(strong, nonatomic) LocalMediaContent* object;
 
 -(CGFloat)progress;
 
