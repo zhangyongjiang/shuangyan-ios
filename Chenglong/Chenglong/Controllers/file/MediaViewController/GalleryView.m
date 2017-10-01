@@ -67,7 +67,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadedNoti:) name:NotificationDownloadCompleted object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadingNoti:) name:NotificationDownloading object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(avplayerContentLoadingNoti:) name:NotificationLoadingRequest object:nil];
     
     [self.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
@@ -157,20 +156,6 @@
     self.labelProgress.hidden = UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation);
 }
 
--(void)avplayerContentLoadingNoti:(NSNotification*)noti
-{
-    static NSTimeInterval lastTime = 0;
-    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
-    if (now - lastTime < 10)
-        return;
-    lastTime = now;
-    
-    LocalMediaContent* p = noti.object;
-    MediaPlayer* player = [MediaPlayer shared];
-    if([player isPlaying:p] && ![player isAvplayerPlaying]) {
-        [player resume];
-    }
-}
 
 -(void)playPaused:(NSNotification*)noti
 {

@@ -14,6 +14,7 @@
 
 @interface MediaContentVideoView()
 
+@property(assign, nonatomic) BOOL userPlaying;
 @property(strong, nonatomic) UIImageView* coverImageView;
 @property(strong, nonatomic) LocalMediaContentShardGroup* group;
 
@@ -33,6 +34,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(avplayerContentLoadingNoti:) name:NotificationLoadingRequest object:nil];
 
     [self addTarget:self action:@selector(clicked)];
     
@@ -46,6 +48,8 @@
 
 -(void)playEnd:(NSNotification*)noti
 {
+    NSLog(@"playEnd");
+    self.userPlaying = NO;
 }
 
 -(void)dealloc {
@@ -96,17 +100,38 @@
     MediaPlayer* player = [MediaPlayer shared];
     if([player isPlaying:self.localMediaContent] && [player isAvplayerPlaying]) {
         [player pause];
+        self.userPlaying = NO;
     }
     else if([player isPlaying:self.localMediaContent]) {
         [player setAttachedView:self];
         [player resume];
+        self.userPlaying = YES;
     }
     else {
         player.attachedView = self;
         PlayTask* task = [[PlayTask alloc] init];
         task.localMediaContent = self.localMediaContent;
         [player playTask:task];
+        self.userPlaying = YES;
     }
+}
+
+-(void)avplayerContentLoadingNoti:(NSNotification*)noti
+{
+    static NSTimeInterval lastTime = 0;
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (now - lastTime < 10)
+        return;
+    lastTime = now;
+    if(!self.userPlaying)
+        return;
+    
+    LocalMediaContent* p = noti.object;
+    MediaPlayer* player = [MediaPlayer shared];
+    if([player isPlaying:p] && ![player isAvplayerPlaying]) {
+        [player resume];
+    }
+    
 }
 
 -(void)play {
@@ -115,6 +140,7 @@
     PlayTask* task = [[PlayTask alloc] init];
     task.localMediaContent = self.localMediaContent;
     [player playTask:task];
+    self.userPlaying = YES;
 }
 
 -(BOOL)isPlaying {

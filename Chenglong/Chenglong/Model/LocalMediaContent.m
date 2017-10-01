@@ -334,16 +334,15 @@
     //handle data request
     if (dataRequest)
     {
-        Progress* p = [Progress new];
-        p.object = self;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationLoadingRequest object:self];
-        
         NSData* data = [self downloadNowForDataAtOffset:dataRequest.requestedOffset length:dataRequest.requestedLength];
         if(data) {
             [dataRequest respondWithData:data];
         } else {
             NSLog(@"no data served");
         }
+        Progress* p = [Progress new];
+        p.object = self;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationLoadingRequest object:self];
         [loadingRequest finishLoading];
     }
     return YES;

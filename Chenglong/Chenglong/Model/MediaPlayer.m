@@ -121,7 +121,6 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(void)play {
-    NSLog(@"avplayer play");
     [self.avplayer play];
 }
 
