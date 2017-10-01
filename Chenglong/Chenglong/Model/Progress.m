@@ -10,4 +10,9 @@
 
 @implementation Progress
 
+-(CGFloat)progress
+{
+    return (CGFloat)self.current / (CGFloat)self.expected;
+}
+
 @end

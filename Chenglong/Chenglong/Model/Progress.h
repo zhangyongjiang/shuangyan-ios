@@ -14,4 +14,6 @@
 @property(assign, nonatomic) long current;
 @property(strong, nonatomic) NSObject* object;
 
+-(CGFloat)progress;
+
 @end

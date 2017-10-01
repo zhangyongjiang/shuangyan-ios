@@ -150,7 +150,7 @@
     self.btnRepeat.hidden = YES;
     self.btnPrev.hidden = YES;
     self.btnNext.hidden = YES;
-    self.labelProgress.hidden = YES;
+    self.labelProgress.hidden = UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation);
 }
 
 -(void)playPaused:(NSNotification*)noti
@@ -194,9 +194,12 @@
 
 -(void)contentDownloadingNoti:(NSNotification*)noti
 {
-    Progress* mc = noti.object;
-    NSString* label = [NSString stringWithFormat:@"下载中 %ld of %ld", mc.current, mc.expected];
-    self.labelProgress.text = label;
+    __block Progress* mc = noti.object;
+    WeakSelf(weakSelf)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* label = [NSString stringWithFormat:@"下载中 %.02f%% of %ld", mc.progress*100., mc.expected];
+        weakSelf.labelProgress.text = label;
+    });
 }
 
 -(int)toggleRepeat

@@ -168,14 +168,13 @@
             p.object = shard;
             if(progress<0) {
                 p.current = self.shard * self.localMediaContent.shardSize - progress;
-                p.expected = self.localMediaContent.length;
+                p.expected = self.localMediaContent.length.longValue;
             }
             else {
                 p.current = self.shard * self.localMediaContent.shardSize + progress * self.expectedDownloadSize;
-                p.expected = self.localMediaContent.length;
+                p.expected = self.localMediaContent.length.longValue;
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDownloading object:p];
-            NSLog(@"direct downloading");
         } completionBlock:^(LocalMediaContentShard *shard, BOOL completed) {
             dispatch_semaphore_signal(semaphore);
         } enableBackgroundMode:NO];
