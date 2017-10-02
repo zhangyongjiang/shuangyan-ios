@@ -27,6 +27,7 @@
     
     self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.galleryView];
+    self.galleryView.courseDetails = self.courseDetails;
     
     [super addTopRightMenu];
     

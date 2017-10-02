@@ -57,8 +57,8 @@
     
     self.labelProgress = [FitLabel new];
     [self addSubview:self.labelProgress];
-    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
-    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:30];
+    [self.labelProgress autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
+    [self.labelProgress autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:30];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playPaused:) name:NotificationPlayPaused object:nil];
