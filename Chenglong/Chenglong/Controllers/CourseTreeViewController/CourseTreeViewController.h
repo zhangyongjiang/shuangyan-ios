@@ -15,4 +15,6 @@
 @property (strong, nonatomic) NSString* selectedCourseId;
 @property (strong, nonatomic) CourseTreePage* page;
 
+-(id)initWithUserId:(NSString*)userId andCourseId:(NSString*)courseId;
+
 @end

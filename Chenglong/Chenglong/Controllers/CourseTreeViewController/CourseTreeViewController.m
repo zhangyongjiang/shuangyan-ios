@@ -18,6 +18,14 @@
 
 @implementation CourseTreeViewController
 
+-(id)initWithUserId:(NSString *)userId andCourseId:(NSString *)courseId
+{
+    self = [super init];
+    self.userId = userId;
+    self.selectedCourseId = courseId;
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     CGRect rect = self.view.bounds;

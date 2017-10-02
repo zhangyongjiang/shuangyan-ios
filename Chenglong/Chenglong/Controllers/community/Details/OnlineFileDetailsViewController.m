@@ -37,8 +37,7 @@
         self.coursePickerViewController.delegate = self;
     }
     else if ([cmd isEqualToString:@"上传者"]){
-        CourseTreeViewController* controller = [CourseTreeViewController new];
-        controller.userId = self.courseDetails.course.userId;
+        CourseTreeViewController* controller = [[CourseTreeViewController alloc] initWithUserId:self.courseDetails.course.userId andCourseId:nil];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

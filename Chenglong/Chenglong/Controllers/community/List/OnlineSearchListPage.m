@@ -55,9 +55,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CourseDetails* cd = [self.courseDetailsList.items objectAtIndex:indexPath.row];
     if(cd.course.isDir.intValue == 1) {
-        CourseTreeViewController* c = [CourseTreeViewController new];
-        c.userId = cd.course.userId;
-        c.selectedCourseId = cd.course.id;
+        CourseTreeViewController* c = [[CourseTreeViewController alloc] initWithUserId:cd.course.userId andCourseId:cd.course.id];
         
 //        OnlineFileListViewController* c = [[OnlineFileListViewController alloc] init];
 //        c.courseId = cd.course.id;

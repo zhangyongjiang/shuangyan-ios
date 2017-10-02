@@ -22,18 +22,16 @@
 
 @implementation BaseViewController
 
--(id)init {
-    self = [super init];
+-(void)setup
+{
     self.lockScreen = NO;
-    self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     
+    self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.lockView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenHeight])];
     self.lockView.hidden = YES;
     self.lockView.userInteractionEnabled = YES;
     self.lockView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.lockView];
-    
-    return self;
 }
 
 -(void)dealloc
@@ -95,7 +93,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self setup];
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
