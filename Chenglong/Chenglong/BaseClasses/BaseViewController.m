@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) UIBarButtonItem *rightMenuItem;
 @property (nonatomic, strong) UIButton* btn;
-@property (nonatomic, assign) BOOL lockScreen;
+@property (nonatomic, assign) int lockScreen;
 
 @property (nonatomic, strong) UIView* lockView;
 
@@ -24,7 +24,7 @@
 
 -(void)setup
 {
-    self.lockScreen = NO;
+    self.lockScreen = 0;
     
     self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.lockView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], [UIView screenHeight])];
@@ -318,7 +318,7 @@
 }
 
 - (BOOL)shouldAutorotate {
-    return !self.lockScreen;
+    return self.lockScreen == 0;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
@@ -331,17 +331,23 @@
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake) {
-        if(self.lockScreen) {
+        if(self.lockScreen == 0) {
+            toast(@"屏幕锁定");
+            self.lockView.hidden = NO;
+            self.lockView.backgroundColor = [UIColor clearColor];
+            [self.view bringSubviewToFront:self.lockView];
+        }
+        else if(self.lockScreen == 1) {
+            self.lockView.backgroundColor = [UIColor blackColor];
+            self.lockView.hidden = NO;
+            [self.view bringSubviewToFront:self.lockView];
+        }
+        else if(self.lockScreen == 2) {
             toast(@"屏幕解除锁定");
             self.lockView.hidden = YES;
             [self.view bringSubviewToFront:self.lockView];
         }
-        else {
-            toast(@"屏幕锁定");
-            self.lockView.hidden = NO;
-            [self.view bringSubviewToFront:self.lockView];
-        }
-        self.lockScreen = !self.lockScreen;
+        self.lockScreen = (self.lockScreen+1)%3;
     }
 }
 
