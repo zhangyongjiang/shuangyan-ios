@@ -44,6 +44,7 @@
 -(void)playingNotiHandler:(NSNotification*)noti
 {
     self.coverImageView.hidden = YES;
+    [SVProgressHUD dismiss];
 }
 
 -(void)playEnd:(NSNotification*)noti
@@ -70,19 +71,16 @@
         if(!shardLast.isDownloaded)
             [array addObject:shardLast];
         if(array.count > 0) {
-            [SVProgressHUD showWithStatus:@"loading..."];
             self.group = [[LocalMediaContentShardGroup alloc] initWithShards:array];
             WeakSelf(weakSelf)
             [self.group downloadWithCompletionBlock:^(BOOL completed) {
                 if(completed) {
-                    [SVProgressHUD dismiss];
                     dispatch_async(dispatch_get_main_queue(), ^ {
                         [weakSelf togglePlay];
                         weakSelf.group = nil;
                     });
                 }
                 else {
-                    [SVProgressHUD showWithStatus:@"下载异常"];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [SVProgressHUD dismiss];
                     });
@@ -141,6 +139,9 @@
     task.localMediaContent = self.localMediaContent;
     [player playTask:task];
     self.userPlaying = YES;
+    if(!self.localMediaContent.isDownloaded) {
+        [SVProgressHUD show];
+    }
 }
 
 -(BOOL)isPlaying {

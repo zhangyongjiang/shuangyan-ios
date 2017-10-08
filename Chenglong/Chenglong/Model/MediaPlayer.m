@@ -56,8 +56,14 @@ MediaPlayer* gMediaPlayer;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidTokenNoti:) name:NotificationInvalidToken object:nil];
 
     return self;
+}
+
+-(void)invalidTokenNoti:(CMTime) time
+{
+    [self stop];
 }
 
 -(void)playerNoti:(CMTime) time
