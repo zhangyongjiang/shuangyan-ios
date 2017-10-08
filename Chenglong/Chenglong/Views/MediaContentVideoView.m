@@ -24,7 +24,7 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
+
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     self.coverImageView = [[UIImageView alloc] initWithFrame:frame];
     self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -156,6 +156,10 @@
     {
         [player setAttachedView:self];
     }
+    if (self.width > self.height)
+        self.backgroundColor = [UIColor blackColor];
+    else
+        self.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
