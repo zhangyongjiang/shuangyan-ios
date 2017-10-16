@@ -132,6 +132,10 @@
     if(self.mediaContents.count < 2) {
         self.btnNext.hidden = YES;
         self.btnPrev.hidden = YES;
+        LocalMediaContent* lmc = self.mediaContents.firstObject;
+        if(!lmc.isAudio && !lmc.isVideo) {
+            [self.btnRepeat removeFromSuperview];
+        }
     }
     [self play];
 }
