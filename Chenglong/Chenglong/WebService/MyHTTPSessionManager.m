@@ -116,10 +116,20 @@ NSUInteger kDefaultMaxRetries = 3;
                                          }
                                          failure:^(NSURLSessionDataTask *operation, NSError *error) {
                                              //                                               NSLog(@"GET ERROR: %@ with data: %@. %@", URLString, parameters, error);
-                                             APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
-                                             failure(apiError);
-                                             [self logError:apiError operation:operation];
                                              [SVProgressHUD dismiss];
+                                             APIError* apiError = [[APIError alloc] initWithOperation:operation andError:error];
+                                             [self logError:apiError operation:operation];
+                                             if ([apiError.errorCode isEqualToString:@"invalid_token"]) {
+                                                 [[NSNotificationCenter defaultCenter] postNotificationName:NotificationInvalidToken object:NULL];
+                                                 toast(@"请重新登录");
+                                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                                     AppDelegate* del = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                                                     [del logout];
+                                                 });
+
+                                             } else {
+                                                 failure(apiError);
+                                             }
                                          }];
     
     return operation;
