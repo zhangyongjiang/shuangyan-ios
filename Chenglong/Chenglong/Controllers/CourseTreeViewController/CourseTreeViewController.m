@@ -61,15 +61,15 @@
     CourseDetails* selected = [self.page.treeView itemForSelectedRow];
     if(self.userId == nil || [Global isLoginUser:self.userId] || [Global isSuperUser]){
         if(selected.course.isDir.boolValue) {
+            if(selected.items.count) {
+                [menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"]];
+            }
             [menuItems addObject:[[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"]] ;
             [menuItems addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
             if(selected.parent) {
                 [menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
                 [menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
                 [menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
-            }
-            if(selected.items.count) {
-                [menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"]];
             }
             [menuItems addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_download_icon"]];
         }
@@ -175,9 +175,7 @@
 -(void)playCourse:(CourseDetails*)cd {
     MediaViewController* c = [MediaViewController new];
     c.courseDetails = cd;
-    [self.navigationController presentViewController:c animated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:c animated:YES];
 }
 
 -(void)moveCourse:(CourseDetails*)cd {
