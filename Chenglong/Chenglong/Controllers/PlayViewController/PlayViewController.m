@@ -25,6 +25,14 @@
     [self.view addSubview:self.galleryView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
+}
+
+-(void)playingNotiHandler:(NSNotification*)noti
+{
+    PlayTask* pt = noti.object;
+    if(![self.title isEqualToString:pt.localMediaContent.parent.title])
+        self.title = pt.localMediaContent.parent.title;
 }
 
 -(void)playCourseNotiHandler:(NSNotification*)noti

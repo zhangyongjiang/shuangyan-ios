@@ -54,13 +54,15 @@
     self.tabBar.translucent = NO;
     self.delegate = self;
     
+    PlayListNavViewController* playNavViewController = [PlayListNavViewController new];
     [self setViewControllers:@[[MyFileNavigationController new],
                                [CommunityNavigationController new],
-                               [PlayListNavViewController new],
+                               playNavViewController,
                                [ProfileNavigationController new]
                                ]];
     [self addObser];
-    
+    if(playNavViewController.view)
+        NSLog(@"preload view");
 }
 
 - (void)addObser
