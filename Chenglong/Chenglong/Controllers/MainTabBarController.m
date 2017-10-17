@@ -108,5 +108,38 @@
     return self.selectedViewController.supportedInterfaceOrientations;
 }
 
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+         if(orientation == UIInterfaceOrientationPortrait) {
+             NSLog(@"UIInterfaceOrientationPortrait");
+             self.tabBar.hidden = NO;
+         }
+         if(orientation == UIInterfaceOrientationPortraitUpsideDown) {
+             NSLog(@"UIInterfaceOrientationPortraitUpsideDown");
+             self.tabBar.hidden = NO;
+         }
+         if(orientation == UIInterfaceOrientationLandscapeLeft) {
+             NSLog(@"UIInterfaceOrientationLandscapeLeft");
+             self.tabBar.hidden = YES;
+         }
+         if(orientation == UIInterfaceOrientationLandscapeRight) {
+             NSLog(@"UIInterfaceOrientationLandscapeRight");
+             self.tabBar.hidden = YES;
+         }
+         if(orientation == UIInterfaceOrientationUnknown) {
+             NSLog(@"UIInterfaceOrientationUnknown");
+             self.tabBar.hidden = NO;
+         }
+         // do whatever
+     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         
+     }];
+    
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
 
 @end
