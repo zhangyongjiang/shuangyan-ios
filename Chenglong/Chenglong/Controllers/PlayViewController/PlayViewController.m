@@ -7,9 +7,10 @@
 //
 
 #import "PlayViewController.h"
+#import "GalleryView.h"
 
 @interface PlayViewController ()
-
+@property(strong, nonatomic) GalleryView* galleryView;
 @end
 
 @implementation PlayViewController
@@ -17,6 +18,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"播放";
+    
+    self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.galleryView];
+    [self.galleryView autoPinEdgesToSuperviewMargins];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
+}
+
+-(void)playCourseNotiHandler:(NSNotification*)noti
+{
+    CourseDetails* pt = noti.object;
+    self.galleryView.courseDetails = pt;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -161,12 +161,11 @@
     cd.parent = parent;
     
     if(![cd isDirectory]) {
-        //        FileDetailsViewController* c = [[FileDetailsViewController alloc] init];
-        //        c.courseDetails = cd;
-        //        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
-        MediaViewController* c = [MediaViewController new];
-        c.courseDetails = cd;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:cd userInfo:nil];
+        
+//        MediaViewController* c = [MediaViewController new];
+//        c.courseDetails = cd;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
 }
 

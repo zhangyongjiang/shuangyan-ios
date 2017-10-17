@@ -127,6 +127,11 @@
 
 -(void)setCourseDetails:(CourseDetails*)courseDetails
 {
+    self.mediaContents = [[NSMutableArray alloc] init];
+    currentPlay = -1;
+    self.repeat = RepeatNone;
+    self.autoplay = YES;
+    
     _courseDetails = courseDetails;
     [self showCourseDetails:courseDetails];
     if(self.mediaContents.count < 2) {
