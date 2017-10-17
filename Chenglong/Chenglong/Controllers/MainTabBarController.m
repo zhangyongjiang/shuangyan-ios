@@ -19,6 +19,7 @@
 #import "MyFileNavigationController.h"
 #import "CommunityNavigationController.h"
 #import "ProfileNavigationController.h"
+#import "PlayListNavViewController.h"
 
 
 @interface MainTabBarController ()<UITabBarControllerDelegate>
@@ -55,6 +56,7 @@
     
     [self setViewControllers:@[[MyFileNavigationController new],
                                [CommunityNavigationController new],
+                               [PlayListNavViewController new],
                                [ProfileNavigationController new]
                                ]];
     [self addObser];

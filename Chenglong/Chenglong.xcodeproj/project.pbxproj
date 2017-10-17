@@ -249,6 +249,8 @@
 		AD666CB81F00C61800D3F18E /* CourseParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CB71F00C61800D3F18E /* CourseParent.m */; };
 		AD666CE11F02A1F500D3F18E /* MoneyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CE01F02A1F500D3F18E /* MoneyAPI.m */; };
 		AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666CEC1F0536C300D3F18E /* CoursePathView.m */; };
+		AD6A67021F962A5C000A97BD /* PlayListNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6A67011F962A5C000A97BD /* PlayListNavViewController.m */; };
+		AD6A67051F962AE9000A97BD /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6A67041F962AE9000A97BD /* PlayViewController.m */; };
 		AD7E882E1F410D7F00B8CBE3 /* LocalMediaContent.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E882D1F410D7F00B8CBE3 /* LocalMediaContent.m */; };
 		AD7E88311F41168900B8CBE3 /* MediaContentDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E88301F41168900B8CBE3 /* MediaContentDownloader.m */; };
 		AD7E88341F41581000B8CBE3 /* LocalMediaContentShard.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7E88331F41581000B8CBE3 /* LocalMediaContentShard.m */; };
@@ -755,6 +757,10 @@
 		AD666CE01F02A1F500D3F18E /* MoneyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyAPI.m; sourceTree = "<group>"; };
 		AD666CEB1F0536C300D3F18E /* CoursePathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursePathView.h; sourceTree = "<group>"; };
 		AD666CEC1F0536C300D3F18E /* CoursePathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursePathView.m; sourceTree = "<group>"; };
+		AD6A67001F962A5C000A97BD /* PlayListNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListNavViewController.h; sourceTree = "<group>"; };
+		AD6A67011F962A5C000A97BD /* PlayListNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListNavViewController.m; sourceTree = "<group>"; };
+		AD6A67031F962AE9000A97BD /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayViewController.h; path = PlayViewController/PlayViewController.h; sourceTree = "<group>"; };
+		AD6A67041F962AE9000A97BD /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayViewController.m; path = PlayViewController/PlayViewController.m; sourceTree = "<group>"; };
 		AD7E882C1F410D7F00B8CBE3 /* LocalMediaContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMediaContent.h; sourceTree = "<group>"; };
 		AD7E882D1F410D7F00B8CBE3 /* LocalMediaContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMediaContent.m; sourceTree = "<group>"; };
 		AD7E882F1F41168900B8CBE3 /* MediaContentDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContentDownloader.h; sourceTree = "<group>"; };
@@ -1404,6 +1410,7 @@
 		AD49D7681F096CE5000D0E1B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD6A67061F962AF8000A97BD /* PlayViewController */,
 				AD8949561F28F21300C024F8 /* CourseTreeViewController */,
 				AD49D7691F096CE5000D0E1B /* CommunityFiles */,
 				AD49D7991F096CE5000D0E1B /* MyFiles */,
@@ -1418,6 +1425,8 @@
 				AD8949671F2BFBA000C024F8 /* CommunityNavigationController.m */,
 				AD8949691F2BFD8F00C024F8 /* ProfileNavigationController.h */,
 				AD89496A1F2BFD8F00C024F8 /* ProfileNavigationController.m */,
+				AD6A67001F962A5C000A97BD /* PlayListNavViewController.h */,
+				AD6A67011F962A5C000A97BD /* PlayListNavViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1788,6 +1797,15 @@
 				AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */,
 			);
 			path = TWRDownloadManager;
+			sourceTree = "<group>";
+		};
+		AD6A67061F962AF8000A97BD /* PlayViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A67031F962AE9000A97BD /* PlayViewController.h */,
+				AD6A67041F962AE9000A97BD /* PlayViewController.m */,
+			);
+			name = PlayViewController;
 			sourceTree = "<group>";
 		};
 		AD8949561F28F21300C024F8 /* CourseTreeViewController */ = {
@@ -2360,9 +2378,11 @@
 				AD49D8421F096CE5000D0E1B /* SpendingHistoryViewController.m in Sources */,
 				032C96571E2C67C1001EFC29 /* UIPlaceHolderTextView.m in Sources */,
 				ADFEAB6F1DED6EBA00C0D703 /* JournalApi.m in Sources */,
+				AD6A67021F962A5C000A97BD /* PlayListNavViewController.m in Sources */,
 				032C96931E2CA31D001EFC29 /* TZImagePickerController.m in Sources */,
 				030049711E0E5F60006EDC29 /* Invitation.m in Sources */,
 				AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */,
+				AD6A67051F962AE9000A97BD /* PlayViewController.m in Sources */,
 				AD8949681F2BFBA000C024F8 /* CommunityNavigationController.m in Sources */,
 				AD49D8881F0CB3B2000D0E1B /* MediaViewController.m in Sources */,
 				032C96961E2CA31D001EFC29 /* TZPhotoPreviewController.m in Sources */,
