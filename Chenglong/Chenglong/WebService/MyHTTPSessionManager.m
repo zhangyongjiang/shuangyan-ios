@@ -208,7 +208,8 @@ NSUInteger kDefaultMaxRetries = 3;
     MyHTTPSessionManager* __weak weakSelf = self;
     
     [self setDefaultJsonRequestSerializer];
-    [self setAuthorizationToken];
+    if (![URLString containsString:@"login"])
+        [self setAuthorizationToken];
     
     NSLog(@"POST: %@ with data: %@", URLString, parameters);
     [SVProgressHUD show];

@@ -241,9 +241,10 @@
     UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Play" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
                                     {
                                         treeView.editing = NO;
-                                        MediaViewController* c = [MediaViewController new];
-                                        c.courseDetails = item;
-                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:item userInfo:nil];
+//                                        MediaViewController* c = [MediaViewController new];
+//                                        c.courseDetails = item;
+//                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
                                     }];
     button.backgroundColor = [UIColor lightGrayColor]; //arbitrary color
     UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
