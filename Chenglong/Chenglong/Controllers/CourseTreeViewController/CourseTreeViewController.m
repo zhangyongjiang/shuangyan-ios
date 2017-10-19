@@ -28,6 +28,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
     CGRect rect = self.view.bounds;
     rect.size.height = rect.size.height - 108;
     self.page = [[CourseTreePage alloc] initWithFrame:rect];
@@ -261,5 +263,10 @@
     if(self.navigationController.viewControllers.count==1 && [self.navigationController.viewControllers lastObject] == self)
         return NO;
     return YES;
+}
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.page.frame = self.view.bounds;
 }
 @end

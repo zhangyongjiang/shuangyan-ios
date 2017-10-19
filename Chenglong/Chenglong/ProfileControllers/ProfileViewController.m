@@ -34,6 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
 
     self.navigationItem.title = @"设置";
     self.view.backgroundColor = [UIColor kaishiColor:UIColorTypeBackgroundColor];
