@@ -27,8 +27,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.extendedLayoutIncludesOpaqueBars = YES;
-    self.edgesForExtendedLayout = UIRectEdgeBottom;
     self.definesPresentationContext = YES;
     [self createPage];
 }

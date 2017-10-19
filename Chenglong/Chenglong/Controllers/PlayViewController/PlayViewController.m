@@ -17,8 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.extendedLayoutIncludesOpaqueBars = YES;
-    self.edgesForExtendedLayout = UIRectEdgeBottom;
     self.title = @"播放";
     
     self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];

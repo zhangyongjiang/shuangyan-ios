@@ -113,6 +113,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationPresentController:) name:NotificationPresentController object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRefreshControl:) name:NotificationRefreshControl object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationEndOfDisplay:) name:NotificationEndOfDisplay object:nil];
+    
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
 }
 
 -(void)notificationPresentController:(NSNotification*)noti {

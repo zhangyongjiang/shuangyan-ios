@@ -28,8 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.extendedLayoutIncludesOpaqueBars = YES;
-    self.edgesForExtendedLayout = UIRectEdgeBottom;
     CGRect rect = self.view.bounds;
     rect.size.height = rect.size.height - 108;
     self.page = [[CourseTreePage alloc] initWithFrame:rect];
