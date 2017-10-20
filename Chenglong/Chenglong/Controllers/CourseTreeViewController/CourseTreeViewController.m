@@ -263,8 +263,4 @@
     return YES;
 }
 
--(void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.page.frame = self.view.bounds;
-}
 @end
