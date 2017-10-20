@@ -29,8 +29,14 @@
 -(void)playingNotiHandler:(NSNotification*)noti
 {
     PlayTask* pt = noti.object;
-    if(![self.title isEqualToString:pt.localMediaContent.parent.title])
-        self.title = pt.localMediaContent.parent.title;
+    NSString* title = NULL;
+    if(pt.localMediaContent.parent.title.length>10)
+        title = [pt.localMediaContent.parent.title substringToIndex:10];
+    else
+        title = pt.localMediaContent.parent.title;
+    if(![self.title isEqualToString:title]){
+        self.title = title;
+    }
 }
 
 -(void)playCourseNotiHandler:(NSNotification*)noti
