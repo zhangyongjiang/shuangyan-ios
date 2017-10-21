@@ -18,13 +18,14 @@
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    self.backgroundColor = [UIColor colorFromRGBA:0x00000088];
+    self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
     
-    self.btn = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    self.btn.contentMode = UIViewContentModeCenter;
-    self.btn.userInteractionEnabled = YES;
-    [self addSubview:self.btn];
-    [self.btn autoCenterInSuperview];
+    self.btnPlayPause = [UIImageView new];
+    self.btnPlayPause.contentMode = UIViewContentModeScaleAspectFit;
+    [self addSubview:self.btnPlayPause];
+    [self.btnPlayPause autoCenterInSuperview];
+    [self.btnPlayPause autoSetDimensionsToSize:CGSizeMake(60, 60)];
+    
     [self showPlayButton];
     
     return self;
@@ -32,12 +33,16 @@
 
 -(void)showPlayButton
 {
-    self.btn.image = [UIImage imageNamed:@"audio-play"];
+    self.btnPlayPause.image = [UIImage imageNamed:@"ic_play_arrow"];
 }
 
 -(void)showPauseButton
 {
-    self.btn.image = [UIImage imageNamed:@"audio-pause"];
+    self.btnPlayPause.image = [UIImage imageNamed:@"audio-pause"];
 }
 
+-(UIImageView*)makeSmallButton
+{
+    return NULL;
+}
 @end

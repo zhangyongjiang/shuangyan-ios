@@ -10,7 +10,13 @@
 
 @interface PlayerControlView : BaseView
 
-@property(strong, nonatomic) UIImageView* btn;
+@property(strong, nonatomic) UIImageView* btnPlayPause;
+@property(strong, nonatomic) UIImageView* btnPrev;
+@property(strong, nonatomic) UIImageView* btnNext;
+@property(strong, nonatomic) UIImageView* btnFullScreen;
+@property(strong, nonatomic) FitLabel* labelCurrentTime;
+@property(strong, nonatomic) FitLabel* labelTotalTime;
+@property (strong, nonatomic) UISlider* slider;
 
 -(void)showPlayButton;
 -(void)showPauseButton;

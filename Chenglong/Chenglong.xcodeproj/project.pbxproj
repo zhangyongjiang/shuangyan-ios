@@ -239,6 +239,7 @@
 		AD59D8FE1EEA51AB009C78D6 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D8FD1EEA51AB009C78D6 /* WebViewController.m */; };
 		AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */; };
 		AD59D9181EEADDC6009C78D6 /* TWRDownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */; };
+		AD607E371F9B699E00A9C333 /* PlayListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E361F9B699E00A9C333 /* PlayListPage.m */; };
 		AD666AAC1F4E57FE004F3C9D /* PlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666AAB1F4E57FE004F3C9D /* PlayerControlView.m */; };
 		AD666AB01F4E6C9B004F3C9D /* button-pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD666AAD1F4E6C9B004F3C9D /* button-pause@2x.png */; };
 		AD666AB11F4E6C9B004F3C9D /* button-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD666AAE1F4E6C9B004F3C9D /* button-play@2x.png */; };
@@ -740,6 +741,8 @@
 		AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadManager.m; sourceTree = "<group>"; };
 		AD59D9151EEADDC6009C78D6 /* TWRDownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRDownloadObject.h; sourceTree = "<group>"; };
 		AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadObject.m; sourceTree = "<group>"; };
+		AD607E351F9B699E00A9C333 /* PlayListPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayListPage.h; sourceTree = "<group>"; };
+		AD607E361F9B699E00A9C333 /* PlayListPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayListPage.m; sourceTree = "<group>"; };
 		AD666AAA1F4E57FE004F3C9D /* PlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControlView.h; sourceTree = "<group>"; };
 		AD666AAB1F4E57FE004F3C9D /* PlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlView.m; sourceTree = "<group>"; };
 		AD666AAD1F4E6C9B004F3C9D /* button-pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-pause@2x.png"; sourceTree = "<group>"; };
@@ -1804,6 +1807,8 @@
 			children = (
 				AD6A67031F962AE9000A97BD /* PlayViewController.h */,
 				AD6A67041F962AE9000A97BD /* PlayViewController.m */,
+				AD607E351F9B699E00A9C333 /* PlayListPage.h */,
+				AD607E361F9B699E00A9C333 /* PlayListPage.m */,
 			);
 			name = PlayViewController;
 			sourceTree = "<group>";
@@ -2252,6 +2257,7 @@
 				0329117B1E113CE0000C1F5A /* UIFont+Kaishi.m in Sources */,
 				030049781E0E5F61006EDC29 /* MoneyFlow.m in Sources */,
 				0329115F1E113BC6000C1F5A /* UIView+Data.m in Sources */,
+				AD607E371F9B699E00A9C333 /* PlayListPage.m in Sources */,
 				AD666CB51F00C49A00D3F18E /* CourseSummaryView.m in Sources */,
 				0300496D1E0E5F60006EDC29 /* Event.m in Sources */,
 				032C96BA1E2CC525001EFC29 /* UIImagePickerController+Kaishi.m in Sources */,
