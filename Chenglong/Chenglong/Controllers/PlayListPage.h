@@ -7,10 +7,10 @@
 //
 
 #import "Page.h"
-#import "PlayerControlView.h"
+#import "PlayerView.h"
 
 @interface PlayListPage : Page
 
-@property(strong, nonatomic)PlayerControlView* playerControlView;
+@property(strong, nonatomic)PlayerView* playerView;
 
 @end

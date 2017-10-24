@@ -65,7 +65,7 @@
 //    [self.slider setMaximumValueImage:[UIImage new]];
     [self addSubview:self.slider];
     [self.slider autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:5];
-    [self.slider autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+    [self.slider autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
     [self.slider autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.btnFullScreen withOffset:5];
     
     self.labelTotalTime = [FitLabel new];

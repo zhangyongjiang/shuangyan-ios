@@ -11,7 +11,6 @@
 #import "PlayerControlView.h"
 
 @interface PlayViewController ()
-@property(strong, nonatomic) GalleryView* galleryView;
 @end
 
 @implementation PlayViewController
@@ -19,9 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"播放";
-    
-    self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.galleryView];
+
+    self.page = [[PlayListPage alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.page];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
@@ -43,7 +42,6 @@
 -(void)playCourseNotiHandler:(NSNotification*)noti
 {
     CourseDetails* pt = noti.object;
-    self.galleryView.courseDetails = pt;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +51,7 @@
 
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.galleryView.frame = self.view.bounds;
+    self.page.frame = self.view.bounds;
 }
 
 @end

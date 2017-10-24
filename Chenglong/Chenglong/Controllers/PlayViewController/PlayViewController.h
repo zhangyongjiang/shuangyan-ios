@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "PlayListPage.h"
 
 @interface PlayViewController : BaseViewController
+
+@property(strong, nonatomic) PlayListPage* page;
 
 @end

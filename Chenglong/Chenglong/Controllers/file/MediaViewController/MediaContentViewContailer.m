@@ -42,10 +42,6 @@
     [self.pdfView autoPinEdgesToSuperviewMargins];
     [self.videoView autoPinEdgesToSuperviewMargins];
     
-    self.playerControlView = [PlayerControlView new];
-    [self addSubview:self.playerControlView];
-    [self.playerControlView autoPinEdgesToSuperviewMargins];
-    
     return self;
 }
 

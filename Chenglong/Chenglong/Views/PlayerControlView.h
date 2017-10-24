@@ -7,7 +7,6 @@
 //
 
 #import "BaseView.h"
-#import "MediaContentViewContailer.h"
 
 @interface PlayerControlView : BaseView
 
@@ -20,8 +19,6 @@
 @property(strong, nonatomic) FitLabel* labelTotalTime;
 @property(strong, nonatomic) FitLabel* labelProgress;
 @property (strong, nonatomic) UISlider* slider;
-
-@property(strong, nonatomic) MediaContentViewContailer* containerView;
 
 -(void)showPlayButton;
 -(void)showPauseButton;

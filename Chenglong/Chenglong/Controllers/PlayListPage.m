@@ -12,7 +12,22 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    
+    self.playerView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75)];
+    [self addSubview:self.playerView];
+    
     return self;
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
+        self.playerView.frame = self.bounds;
+    } else {
+        self.playerView.frame = CGRectMake(0, 0, UIView.screenWidth, UIView.screenWidth*0.75);
+    }
 }
 
 @end
