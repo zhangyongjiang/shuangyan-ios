@@ -42,6 +42,7 @@
 -(void)playCourseNotiHandler:(NSNotification*)noti
 {
     CourseDetails* pt = noti.object;
+    [self.page addCourseDetails:pt];
 }
 
 - (void)didReceiveMemoryWarning {

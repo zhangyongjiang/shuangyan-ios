@@ -12,8 +12,12 @@
 
 @interface PlayerView : BaseView
 
+@property(strong, nonatomic) LocalMediaContent* localMediaContent;
 @property(strong, nonatomic) MediaContentViewContailer* containerView;
 @property(strong, nonatomic) PlayerControlView* controlView;
+
+-(void)play;
+-(void)stop;
 
 @end
 

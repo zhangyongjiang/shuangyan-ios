@@ -13,4 +13,6 @@
 
 @property(strong, nonatomic)PlayerView* playerView;
 
+-(void)addCourseDetails:(CourseDetails*)courseDetails;
+
 @end

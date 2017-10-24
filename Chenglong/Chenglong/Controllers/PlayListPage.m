@@ -30,4 +30,9 @@
     }
 }
 
+-(void)addCourseDetails:(CourseDetails *)courseDetails
+{
+    self.playerView.localMediaContent = [courseDetails.course.resources objectAtIndex:0];
+    [self.playerView play];
+}
 @end
