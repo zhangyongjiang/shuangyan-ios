@@ -13,6 +13,7 @@
 @property(strong, nonatomic) UIImageView* btnPlayPause;
 @property(strong, nonatomic) UIImageView* btnPrev;
 @property(strong, nonatomic) UIImageView* btnNext;
+@property(strong, nonatomic) UIImageView* btnRepeat;
 @property(strong, nonatomic) UIImageView* btnFullScreen;
 @property(strong, nonatomic) FitLabel* labelCurrentTime;
 @property(strong, nonatomic) FitLabel* labelTotalTime;
