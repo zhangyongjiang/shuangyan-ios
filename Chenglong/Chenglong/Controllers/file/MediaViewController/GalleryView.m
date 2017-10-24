@@ -36,38 +36,11 @@
     [self addSubview:self.containerView];
     [self.containerView autoPinEdgesToSuperviewMargins];
     
-    self.btnRepeat = [self createButton:@" 重复 "];
-    self.btnRepeat.frame = CGRectMake(10, 10, 100, 40);
-    [self addSubview:self.btnRepeat];
-    [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
-    [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
-    [self.btnRepeat addTarget:self action:@selector(btnRepeatClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.btnPrev = [self createButton:@"←"];
-    self.btnPrev.frame = CGRectMake(10, 10, 60, 40);
-    [self addSubview:self.btnPrev];
-    [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10];
-    [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
-    
-    self.btnNext = [self createButton:@"→"];
-    self.btnNext.frame = CGRectMake([UIView screenWidth]-70, [UIView screenHeight]-50, 60, 40);
-    [self addSubview:self.btnNext];
-    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
-    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
-    
-    self.labelProgress = [FitLabel new];
-    [self addSubview:self.labelProgress];
-    [self.labelProgress autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
-    [self.labelProgress autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:30];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playPaused:) name:NotificationPlayPaused object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadedNoti:) name:NotificationDownloadCompleted object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contentDownloadingNoti:) name:NotificationDownloading object:nil];
-    
-    [self.btnPrev addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
-    [self.btnNext addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     
     return self;
 }
@@ -102,17 +75,6 @@
 }
 
 
--(void)btnRepeatClicked
-{
-    int repeat = [self toggleRepeat];
-    if (repeat == RepeatNone)
-        [self.btnRepeat setTitle:@"不重复" forState:UIControlStateNormal];
-    else if (repeat == RepeatOne)
-        [self.btnRepeat setTitle:@"重复当前" forState:UIControlStateNormal];
-    else if (repeat == RepeatAll)
-        [self.btnRepeat setTitle:@"重复所有" forState:UIControlStateNormal];
-}
-
 -(UIButton*)createButton:(NSString*)text
 {
     UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 60, 40)];
@@ -134,14 +96,6 @@
     
     _courseDetails = courseDetails;
     [self showCourseDetails:courseDetails];
-    if(self.mediaContents.count < 2) {
-        self.btnNext.hidden = YES;
-        self.btnPrev.hidden = YES;
-        LocalMediaContent* lmc = self.mediaContents.firstObject;
-        if(!lmc.isAudio && !lmc.isVideo) {
-            [self.btnRepeat removeFromSuperview];
-        }
-    }
     [self play];
 }
 
@@ -155,21 +109,11 @@
 
 -(void)playingNotiHandler:(NSNotification*)noti
 {
-    self.labelProgress.hidden = UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation);
-    self.btnRepeat.hidden = YES;
-    self.btnPrev.hidden = YES;
-    self.btnNext.hidden = YES;
 }
 
 
 -(void)playPaused:(NSNotification*)noti
 {
-    if(!self.btnRepeat.hidden)
-        return;
-    self.btnRepeat.hidden = NO;
-    self.labelProgress.hidden = NO;
-    self.btnPrev.hidden = !(self.mediaContents.count>1);
-    self.btnNext.hidden = !(self.mediaContents.count>1);
 }
 
 -(void)playEnd:(NSNotification*)noti
@@ -212,7 +156,6 @@
         NSString* label = [NSString stringWithFormat:@"下载中 %ld of %ld", mc.current, mc.expected];
         if(mc.object.isDownloaded)
             label = @"下载完成";
-        weakSelf.labelProgress.text = label;
     });
 }
 

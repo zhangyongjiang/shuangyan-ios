@@ -17,6 +17,7 @@
 @property(strong, nonatomic) UIImageView* btnFullScreen;
 @property(strong, nonatomic) FitLabel* labelCurrentTime;
 @property(strong, nonatomic) FitLabel* labelTotalTime;
+@property(strong, nonatomic) FitLabel* labelProgress;
 @property (strong, nonatomic) UISlider* slider;
 
 -(void)showPlayButton;

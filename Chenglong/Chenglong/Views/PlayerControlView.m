@@ -17,6 +17,7 @@
 
 -(id)initWithFrame:(CGRect)frame
 {
+    CGFloat size = 40;
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
     
@@ -24,7 +25,7 @@
     self.btnPlayPause.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:self.btnPlayPause];
     [self.btnPlayPause autoCenterInSuperview];
-    [self.btnPlayPause autoSetDimensionsToSize:CGSizeMake(60, 60)];
+    [self.btnPlayPause autoSetDimensionsToSize:CGSizeMake(size, size)];
     
     self.btnPrev = [UIImageView new];
     self.btnPrev.contentMode = UIViewContentModeScaleAspectFit;
@@ -32,7 +33,7 @@
     [self addSubview:self.btnPrev];
     [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeLeft];
     [self.btnPrev autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
-    [self.btnPrev autoSetDimensionsToSize:CGSizeMake(60, 60)];
+    [self.btnPrev autoSetDimensionsToSize:CGSizeMake(size, size)];
     
     self.btnNext = [UIImageView new];
     self.btnNext.contentMode = UIViewContentModeScaleAspectFit;
@@ -40,7 +41,7 @@
     [self addSubview:self.btnNext];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnNext autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
-    [self.btnNext autoSetDimensionsToSize:CGSizeMake(60, 60)];
+    [self.btnNext autoSetDimensionsToSize:CGSizeMake(size, size)];
     
     self.btnFullScreen = [UIImageView new];
     self.btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
@@ -48,7 +49,7 @@
     [self addSubview:self.btnFullScreen];
     [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeTop];
-    [self.btnFullScreen autoSetDimensionsToSize:CGSizeMake(60, 60)];
+    [self.btnFullScreen autoSetDimensionsToSize:CGSizeMake(size, size)];
     
     self.btnRepeat = [UIImageView new];
     self.btnRepeat.contentMode = UIViewContentModeScaleAspectFit;
@@ -56,7 +57,7 @@
     [self addSubview:self.btnRepeat];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeBottom];
-    [self.btnRepeat autoSetDimensionsToSize:CGSizeMake(60, 60)];
+    [self.btnRepeat autoSetDimensionsToSize:CGSizeMake(size, size)];
     
     self.slider = [UISlider new];
 //    [self.slider setThumbImage:[self imageFromColor:[UIColor blackColor]] forState:UIControlStateNormal];
@@ -78,6 +79,12 @@
     [self addSubview:self.labelCurrentTime];
     [self.labelCurrentTime autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.slider withOffset:1];
     [self.labelCurrentTime autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.slider withOffset:0];
+    
+    self.labelProgress = [FitLabel new];
+    self.labelProgress.text = @"下载完成";
+    [self addSubview:self.labelProgress];
+    [self.labelProgress autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:5];
+    [self.labelProgress autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:5];
 
 
 //    self.labelCurrentTime = [FitLabel new];
