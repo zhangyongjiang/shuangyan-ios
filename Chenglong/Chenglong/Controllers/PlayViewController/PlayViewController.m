@@ -23,9 +23,6 @@
     self.galleryView = [[GalleryView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.galleryView];
     
-    PlayerControlView* v = [[PlayerControlView alloc] initWithFrame:CGRectMake(0, 200, UIView.screenWidth, UIView.screenWidth*0.75)];
-    [self.view addSubview:v];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
 }

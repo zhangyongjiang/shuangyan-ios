@@ -7,10 +7,12 @@
 //
 
 #import "BaseView.h"
+#import "PlayerControlView.h"
 
 @interface MediaContentViewContailer : BaseView
 
 @property(strong, nonatomic)LocalMediaContent* localMediaContent;
+@property(strong, nonatomic)PlayerControlView* playerControlView;
 
 -(void)play;
 -(void)stop;
