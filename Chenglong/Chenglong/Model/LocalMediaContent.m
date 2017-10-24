@@ -341,7 +341,7 @@
             NSLog(@"no data served");
         }
         Progress* p = [Progress new];
-        p.object = self;
+        p.localMediaContent = self;
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationLoadingRequest object:self];
         [loadingRequest finishLoading];
     }

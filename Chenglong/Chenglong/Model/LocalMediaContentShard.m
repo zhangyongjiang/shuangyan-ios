@@ -165,7 +165,7 @@
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         [self downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
             Progress* p = [Progress new];
-            p.object = shard.localMediaContent;
+            p.localMediaContent = shard.localMediaContent;
             if(progress<0) {
                 p.current = self.shard * self.localMediaContent.shardSize - progress;
                 p.expected = self.localMediaContent.length.longValue;

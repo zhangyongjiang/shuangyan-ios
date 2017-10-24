@@ -154,7 +154,7 @@
     WeakSelf(weakSelf)
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString* label = [NSString stringWithFormat:@"下载中 %ld of %ld", mc.current, mc.expected];
-        if(mc.object.isDownloaded)
+        if(mc.localMediaContent.isDownloaded)
             label = @"下载完成";
     });
 }

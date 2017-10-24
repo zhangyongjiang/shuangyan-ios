@@ -93,7 +93,7 @@
 //    [self.labelCurrentTime autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
 
     [self showPlayButton];
-    
+
     return self;
 }
 

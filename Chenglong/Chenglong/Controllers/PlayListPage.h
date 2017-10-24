@@ -7,12 +7,10 @@
 //
 
 #import "Page.h"
-#import "MediaContentViewContailer.h"
 #import "PlayerControlView.h"
 
 @interface PlayListPage : Page
 
-@property(strong, nonatomic) MediaContentViewContailer* containerView;
 @property(strong, nonatomic)PlayerControlView* playerControlView;
 
 @end
