@@ -26,7 +26,8 @@
     [self addSubview:self.btnPlayPause];
     [self.btnPlayPause autoCenterInSuperview];
     [self.btnPlayPause autoSetDimensionsToSize:CGSizeMake(size, size)];
-    
+    [self.btnPlayPause addTarget:self action:@selector(playPauseBtnClicked:)];
+
     self.btnPrev = [UIImageView new];
     self.btnPrev.contentMode = UIViewContentModeScaleAspectFit;
     self.btnPrev.image = [UIImage imageNamed:@"ic_skip_previous"];
@@ -67,7 +68,9 @@
     [self.slider autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:5];
     [self.slider autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
     [self.slider autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.btnFullScreen withOffset:5];
-    
+    self.slider.userInteractionEnabled = YES;
+    [self.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+
     self.labelTotalTime = [FitLabel new];
     self.labelTotalTime.text = @"1:15";
     [self addSubview:self.labelTotalTime];
@@ -86,16 +89,27 @@
     [self.labelProgress autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:5];
     [self.labelProgress autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:5];
 
-
 //    self.labelCurrentTime = [FitLabel new];
 //    [self addSubview:self.labelCurrentTime];
 //    [self.labelCurrentTime autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:5];
 //    [self.labelCurrentTime autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
 
     [self showPlayButton];
-
+    
     return self;
 }
+
+-(void)playPauseBtnClicked:(id)sender
+{
+    if(MediaPlayer.shared.isAvplayerPlaying) {
+        [MediaPlayer.shared pause];
+        [self showPauseButton];
+    } else {
+        [MediaPlayer.shared resume];
+        [self showPlayButton];
+    }
+}
+
 
 - (UIImage *)imageFromColor:(UIColor *)color {
     CGRect rect = CGRectMake(0, 0, 2, 8);
@@ -115,11 +129,10 @@
 
 -(void)showPauseButton
 {
-    self.btnPlayPause.image = [UIImage imageNamed:@"audio-pause"];
+    self.btnPlayPause.image = [UIImage imageNamed:@"ic_pause"];
 }
 
--(UIImageView*)makeSmallButton
-{
-    return NULL;
+-(void)sliderValueChanged:(UISlider *)sender {
 }
+
 @end

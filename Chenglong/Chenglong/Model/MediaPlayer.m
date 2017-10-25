@@ -13,7 +13,6 @@
 
 @property (strong, nonatomic) AVPlayer* avplayer;
 @property (strong, nonatomic) AVPlayerLayer* layer;
-@property (strong, nonatomic) UISlider* slider;
 @property (strong, nonatomic) id timeObserverToken;
 @property (assign, nonatomic) BOOL backgroundMode;
 @property (strong, nonatomic) PlayTask* playTask;
@@ -50,10 +49,6 @@ MediaPlayer* gMediaPlayer;
         [weakSelf playerNoti:time];
     }];
     
-    self.slider = [UISlider new];
-    self.slider.userInteractionEnabled = YES;
-    [self.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidTokenNoti:) name:NotificationInvalidToken object:nil];
@@ -70,15 +65,10 @@ MediaPlayer* gMediaPlayer;
 {
     if([self isAvplayerPlaying]) {
        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:self.playTask];
-        self.slider.hidden = YES;
     }
     else {
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayPaused object:self.playTask];
-        self.slider.hidden = NO;
     }
-    if(self.slider.maximumValue < 0.000001)
-        self.slider.maximumValue = self.currentTaskDuration;
-    self.slider.value = self.currentTime;
 }
 
 -(void)playTask:(PlayTask *)task {
@@ -114,7 +104,6 @@ MediaPlayer* gMediaPlayer;
              }
              
              __block AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
-             self.slider.maximumValue = self.currentTaskDuration;
              __block PlayTask* task = self.playTask;
              task.item = item;
              dispatch_async(dispatch_get_main_queue(), ^ {
@@ -165,7 +154,6 @@ MediaPlayer* gMediaPlayer;
     int32_t timeScale = self.avplayer.currentItem.asset.duration.timescale;
     CMTime seektime=CMTimeMakeWithSeconds(currentTime, timeScale);
     [self.avplayer seekToTime:seektime];
-    self.slider.value = currentTime;
 }
 
 -(BOOL)isPlaying:(LocalMediaContent*)mc {
@@ -188,11 +176,6 @@ MediaPlayer* gMediaPlayer;
     if(_attachedView == attachedView) {
         if(self.backgroundMode)return;
         self.layer.frame = attachedView.bounds;
-        [self.slider removeFromSuperview];
-        self.slider.width = attachedView.width * 0.8f;
-        self.slider.bottom = attachedView.height - Margin;
-        self.slider.x = attachedView.width * 0.1f;
-        [attachedView addSubview:self.slider];
         return;
     }
     _attachedView = attachedView;
@@ -203,11 +186,6 @@ MediaPlayer* gMediaPlayer;
     self.layer.backgroundColor = [UIColor clearColor].CGColor;
     [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
     
-    [self.slider removeFromSuperview];
-    self.slider.width = attachedView.width * 0.8f;
-    self.slider.bottom = attachedView.height - Margin;
-    self.slider.x = attachedView.width * 0.1f;
-    [attachedView addSubview:self.slider];
 }
 
 -(void)background:(NSNotification*)noti
@@ -231,7 +209,6 @@ MediaPlayer* gMediaPlayer;
 {
     NSLog(@"playerDidFinishPlaying");
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask];
-    self.slider.hidden = NO;
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {
