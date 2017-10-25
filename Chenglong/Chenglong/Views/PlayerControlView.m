@@ -96,7 +96,32 @@
 
     [self showPlayButton];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playStartNotiHandler:) name:NotificationPlayStart object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
+
     return self;
+}
+
+-(void)playStartNotiHandler:(NSNotification*)noti {
+    CGFloat duration = MediaPlayer.shared.currentTaskDuration;
+    self.slider.maximumValue = duration;
+    self.labelTotalTime.text = [self secondToDuration:duration];
+}
+
+-(void)playingNotiHandler:(NSNotification*)noti {
+    CGFloat currentTime = MediaPlayer.shared.currentTime;
+    self.slider.value = currentTime;
+    self.labelCurrentTime.text = [self secondToDuration:currentTime];
+}
+
+-(NSString*)secondToDuration:(CGFloat)seconds {
+    int hour = seconds / 3600;
+    int minute = (seconds - hour * 3600) / 60;
+    int second = seconds - hour * 3600 - minute * 60;
+    if (hour == 0)
+        return [NSString stringWithFormat:@"%02d:%02d", minute, second];
+    else
+        return [NSString stringWithFormat:@"%02d:%02d:%02d", hour, minute, second];
 }
 
 -(void)playPauseBtnClicked:(id)sender

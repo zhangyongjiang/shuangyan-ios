@@ -36,7 +36,7 @@
     [self.controlView addTarget:self action:@selector(coverViewClicked)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
-    
+
     return self;
 }
 
