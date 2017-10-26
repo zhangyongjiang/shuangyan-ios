@@ -158,6 +158,7 @@
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {
+    [MediaPlayer.shared setCurrentTime:sender.value ];
 }
 
 @end
