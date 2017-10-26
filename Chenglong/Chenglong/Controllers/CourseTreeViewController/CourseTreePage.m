@@ -13,14 +13,16 @@
 
 @interface CourseTreePage() <RATreeViewDelegate, RATreeViewDataSource>
 
+@property(strong, nonatomic) UIImageView* btnPlayNow;
+@property(strong, nonatomic) UIImageView* btnPlayNext;
+
 @end
 
 @implementation CourseTreePage
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
-
+    
     self.treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, 0, [UIView screenWidth], self.height)];
     self.treeView.treeFooterView = [UIView new];
     self.treeView.separatorStyle = RATreeViewCellSeparatorStyleNone;
@@ -35,6 +37,15 @@
     [self addSubview:self.treeView];
     [self.treeView autoPinEdgesToSuperviewMargins];
     
+    self.btnPlayNow = [UIImageView new];
+    self.btnPlayNow.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.2];
+    self.btnPlayNow.contentMode = UIViewContentModeScaleToFill;
+    self.btnPlayNow.image = [UIImage imageNamed:@"ic_play_arrow"];
+    [self addSubview:self.btnPlayNow];
+    [self.btnPlayNow autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+    [self.btnPlayNow autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
+    [self.btnPlayNow autoSetDimensionsToSize:CGSizeMake(40, 40)];
+
     return self;
 }
 
@@ -272,5 +283,10 @@
         }
     }
     return parent;
+}
+
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    self.frame = self.superview.bounds;
 }
 @end

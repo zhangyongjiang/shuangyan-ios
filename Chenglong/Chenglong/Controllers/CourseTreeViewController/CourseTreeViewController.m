@@ -40,9 +40,9 @@
     
     [self.page.refreshControl addTarget:self action:@selector(refreshPage) forControlEvents:UIControlEventValueChanged];
     
-    [self.view addSubview:self.page];
     self.view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
-    [self.page autoPinEdgesToSuperviewMargins];
+    [self.view addSubview:self.page];
+//    [self.page autoPinEdgesToSuperviewMargins];
     
     [self showPage];
     [super addTopRightMenu];
