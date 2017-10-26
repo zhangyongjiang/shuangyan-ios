@@ -62,6 +62,7 @@
 {
     self.containerView.localMediaContent = self.localMediaContent;
     [self.containerView play];
+    [self.controlView showPauseButton];
 }
 
 -(void) stop

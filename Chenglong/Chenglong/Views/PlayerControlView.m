@@ -128,10 +128,10 @@
 {
     if(MediaPlayer.shared.isAvplayerPlaying) {
         [MediaPlayer.shared pause];
-        [self showPauseButton];
+        [self showPlayButton];
     } else {
         [MediaPlayer.shared resume];
-        [self showPlayButton];
+        [self showPauseButton];
     }
 }
 

@@ -152,10 +152,7 @@
 -(void)layoutSubviews {
     MediaPlayer* player = [MediaPlayer shared];
     [super layoutSubviews];
-    if(self.isPlaying)
-    {
-        [player setAttachedView:self];
-    }
+    [player setAttachedView:self];
     if (self.width > self.height)
         self.backgroundColor = [UIColor blackColor];
     else
