@@ -223,6 +223,8 @@
         }
         
         CourseDetails* container = [CourseDetails new];
+        container.course = [Course new];
+        container.course.isDir = [NSNumber numberWithInt:1];
         container.items = [NSMutableArray arrayWithObject:resp];
         self.page.courseDetails = container;
         [self.page.refreshControl endRefreshing];

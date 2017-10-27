@@ -88,6 +88,34 @@
             }
         }
     }
+    [self setPlayButton];
+}
+
+-(void)setPlayButton
+{
+    NSMutableArray* selected = [self getSelectedCourses];
+    if(selected.count == 0) {
+        self.btnPlayNow.hidden = YES;
+    }
+    else {
+        self.btnPlayNow.hidden = NO;
+    }
+}
+
+-(NSMutableArray*)getSelectedCourses {
+    NSMutableArray* selectedCourses =[NSMutableArray new];
+    [self addSelectedCourses:selectedCourses inCourseDetails:self.courseDetails];
+    return selectedCourses;
+}
+-(void)addSelectedCourses:(NSMutableArray*)selected inCourseDetails:(CourseDetails*)cd {
+    if(cd.items.count==0 && !cd.course.isDir.integerValue) {
+        if(cd.selected)
+           [selected addObject:cd];
+        return;
+    }
+    for (CourseDetails* child in cd.items) {
+        [self addSelectedCourses:selected inCourseDetails:child];
+    }
 }
 
 -(void)markSelected:(CourseDetails*)cd selected:(BOOL)selected {
@@ -249,6 +277,7 @@
     [self setParent:courseDetails];
     _courseDetails = courseDetails;
     CourseDetails* root = [courseDetails.items objectAtIndex:0];
+    self.btnPlayNow.hidden = YES;
     [self.treeView reloadData];
     [self.treeView expandRowForItem:root];
 }
@@ -331,14 +360,32 @@
     if(item == NULL)
         return NULL;
     CourseDetails* parent = [self getParentOfItem:item];
-    for (int i=0; i<parent.items.count; i++) {
+    int selected = 0;
+    for (int i=parent.items.count-1; i>=0; i--) {
         CourseDetails* c = [parent.items objectAtIndex:i];
         if([c.course.id isEqualToString:courseId]) {
             [parent.items removeObjectAtIndex:i];
             [self.treeView reloadData];
             [self expandItem:parent];
-            break;
         }
+        else {
+            if (c.selected)
+                selected++;
+        }
+    }
+    if(selected == parent.items.count) {
+        if(!parent.selected) {
+            parent.selected = YES;
+            RATableViewCell *cell = [self.treeView cellForItem:parent];
+            if(!cell.isHidden) {
+                NSInteger level = [self.treeView levelForCellForItem:parent];
+                BOOL expanded = [self.treeView isCellForItemExpanded:parent];
+                [cell setupWithCourseDetails:parent level:level expanded:expanded];
+            }
+        }
+    }
+    if(!item.selected) {
+        [self setPlayButton];
     }
     return parent;
 }
