@@ -44,7 +44,7 @@
             i++;
             if(i == self.playList.count)
                 i = 0;
-            CourseDetails* next = [self.playList objectAtIndex:i+1];
+            CourseDetails* next = [self.playList objectAtIndex:i];
             LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
             lmc.parent = next.course;
             self.playerView.localMediaContent = lmc;
@@ -70,6 +70,7 @@
 -(void)addCourseDetailsList:(NSMutableArray *)courseDetailsList
 {
     [self.playList addObjectsFromArray:courseDetailsList];
+    [self.courseListPage addCourseDetailsList:courseDetailsList];
     if(self.playList.count == courseDetailsList.count) {
         CourseDetails* first = [self.playList objectAtIndex:0];
         LocalMediaContent* lmc = [first.course.resources objectAtIndex:0];
@@ -77,18 +78,17 @@
         self.playerView.localMediaContent = lmc;
         [self.playerView play];
     }
-    [self.courseListPage addCourseDetailsList:courseDetailsList];
 }
 
 -(void)addCourseDetails:(CourseDetails *)courseDetails
 {
     [self.playList addObject:courseDetails];
+    [self.courseListPage addCourseDetails:courseDetails];
     if(self.playList.count == 1) {
         LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
         lmc.parent = courseDetails.course;
         self.playerView.localMediaContent = lmc;
         [self.playerView play];
     }
-    [self.courseListPage addCourseDetails:courseDetails];
 }
 @end
