@@ -64,6 +64,9 @@
 
 -(void)selectCourse:(id)sender
 {
+    if(self.courseDetails.course.isDir.integerValue && self.courseDetails.items.count==0)
+        return;
+    
     if(self.courseDetails.selected) {
         self.courseDetails.selected = NO;
         self.btnSelect.image = [UIImage imageNamed:@"ic_check_gray"];

@@ -23,6 +23,7 @@
     [self.view addSubview:self.page];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseListNotiHandler:) name:NotificationPlayCourseList object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
 }
 
@@ -43,6 +44,12 @@
 {
     CourseDetails* pt = noti.object;
     [self.page addCourseDetails:pt];
+}
+
+-(void)playCourseListNotiHandler:(NSNotification*)noti
+{
+    NSMutableArray* list = noti.object;
+    [self.page addCourseDetailsList:list];
 }
 
 - (void)didReceiveMemoryWarning {

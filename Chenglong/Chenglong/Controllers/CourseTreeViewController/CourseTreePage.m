@@ -13,8 +13,8 @@
 
 @interface CourseTreePage() <RATreeViewDelegate, RATreeViewDataSource>
 
-@property(strong, nonatomic) UIImageView* btnPlayNow;
-@property(strong, nonatomic) UIImageView* btnPlayNext;
+@property(strong, nonatomic) UIButton* btnPlayNow;
+@property(strong, nonatomic) UIButton* btnPlayNext;
 
 @end
 
@@ -37,18 +37,28 @@
     [self addSubview:self.treeView];
     [self.treeView autoPinEdgesToSuperviewMargins];
     
-    self.btnPlayNow = [UIImageView new];
+    self.btnPlayNow = [UIButton new];
+    [self.btnPlayNow setImage:[UIImage imageNamed:@"ic_play_arrow"] forState:UIControlStateNormal];
+    self.btnPlayNow.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
     self.btnPlayNow.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.2];
-    self.btnPlayNow.contentMode = UIViewContentModeScaleToFill;
-    self.btnPlayNow.image = [UIImage imageNamed:@"ic_play_arrow"];
+//    self.btnPlayNow.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:self.btnPlayNow];
-    [self.btnPlayNow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
-    [self.btnPlayNow autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
-    [self.btnPlayNow autoSetDimensionsToSize:CGSizeMake(40, 40)];
+    [self.btnPlayNow autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [self.btnPlayNow autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+    [self.btnPlayNow autoSetDimensionsToSize:CGSizeMake(80, 40)];
+    [self.btnPlayNow addTarget:self action:@selector(playNow:) forControlEvents:UIControlEventTouchUpInside];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseSelected:) name:NotificationCourseSelected object:nil];
     
     return self;
+}
+
+-(void)playNow:(id)sender
+{
+    NSMutableArray* selected = [self getSelectedCourses];
+    if(selected.count == 0)
+        return;
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourseList object:selected userInfo:nil];
 }
 
 -(void)courseSelected:(NSNotification*)noti
@@ -96,9 +106,13 @@
     NSMutableArray* selected = [self getSelectedCourses];
     if(selected.count == 0) {
         self.btnPlayNow.hidden = YES;
+        self.btnPlayNext.hidden = YES;
     }
     else {
         self.btnPlayNow.hidden = NO;
+        self.btnPlayNext.hidden = NO;
+        NSString* title = [NSString stringWithFormat:@"%d", selected.count];
+        [self.btnPlayNow setTitle:title forState:UIControlStateNormal];
     }
 }
 
@@ -278,6 +292,7 @@
     _courseDetails = courseDetails;
     CourseDetails* root = [courseDetails.items objectAtIndex:0];
     self.btnPlayNow.hidden = YES;
+    self.btnPlayNext.hidden = YES;
     [self.treeView reloadData];
     [self.treeView expandRowForItem:root];
 }
