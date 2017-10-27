@@ -11,8 +11,6 @@
 
 @interface PlayListPage : Page
 
-@property(strong, nonatomic)PlayerView* playerView;
-
 -(void)addCourseDetails:(CourseDetails*)courseDetails;
 -(void)addCourseDetailsList:(NSMutableArray*)courseDetailsList;
 

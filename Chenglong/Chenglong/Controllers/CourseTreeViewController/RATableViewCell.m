@@ -27,6 +27,7 @@
 @property (strong, nonatomic) FitLabel *customTitleLabel;
 @property (strong, nonatomic) UIButton *collapseButton;
 @property (strong, nonatomic) UIImageView *btnSelect;
+@property (strong, nonatomic) UIImageView *btnPlay;
 
 @end
 
@@ -50,16 +51,30 @@
     //    [self.collapseButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:Margin];
     //    [self.collapseButton autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customTitleLabel withOffset:-Margin/2.];
     
+    self.btnPlay = [UIImageView new];
+    self.btnPlay.contentMode = UIViewContentModeScaleToFill;
+    self.btnPlay.image = [UIImage imageNamed:@"ic_play_circle_outline"];
+    [self addSubview:self.btnPlay];
+    [self.btnPlay autoSetDimensionsToSize:CGSizeMake(20, 20)];
+    [self.btnPlay autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:5];
+    [self.btnPlay autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [self.btnPlay addTarget:self action:@selector(playCourse:)];
+    
     self.btnSelect = [UIImageView new];
     self.btnSelect.contentMode = UIViewContentModeScaleToFill;
     self.btnSelect.image = [UIImage imageNamed:@"ic_check_gray"];
     [self addSubview:self.btnSelect];
     [self.btnSelect autoSetDimensionsToSize:CGSizeMake(20, 20)];
-    [self.btnSelect autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:5];
+    [self.btnSelect autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.btnPlay withOffset:2];
     [self.btnSelect autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [self.btnSelect addTarget:self action:@selector(selectCourse:)];
     
     return self;
+}
+
+-(void)playCourse:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:self.courseDetails userInfo:nil];
 }
 
 -(void)selectCourse:(id)sender
@@ -90,6 +105,7 @@
 {
     self.courseDetails = cd;
     if([cd isDirectory]) {
+        self.btnPlay.hidden = YES;
         self.collapseButton.hidden = NO;
         if([cd hasChildren]) {
             if(expanded) {
@@ -155,6 +171,10 @@
     if (self.collapseButtonTapAction) {
         self.collapseButtonTapAction(sender);
     }
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
