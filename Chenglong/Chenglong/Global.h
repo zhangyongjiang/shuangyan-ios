@@ -88,6 +88,7 @@ extern NSString* const kPublishFileSuccessNotificationKey;
 #define NotificationGalleryPageChanged  @"NotificationGalleryPageChanged"
 #define NotificationUserSelected        @"NotificationUserSelected"
 #define NotificationCourseSelected      @"NotificationCourseSelected"
+#define NotificationCourseReplay        @"NotificationCourseReplay"
 #define NotificationCourseUnselected    @"NotificationCourseUnselected"
 #define NotificationCourseChanged       @"NotificationCourseChanged"
 #define NotificationCourseAdded         @"NotificationCourseAdded"

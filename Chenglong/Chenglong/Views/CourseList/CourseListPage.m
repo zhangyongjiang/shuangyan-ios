@@ -63,6 +63,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseReplay object:[self.courseList objectAtIndex:indexPath.row]];
 }
 
 -(void)setCourseList:(NSMutableArray *)courseList

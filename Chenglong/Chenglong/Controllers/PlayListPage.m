@@ -31,8 +31,18 @@
     [self addSubview:self.courseListPage];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseReplay:) name:NotificationCourseReplay object:nil];
+
     return self;
+}
+
+-(void)courseReplay:(NSNotification*)noti
+{
+    CourseDetails* next = noti.object;
+    LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
+    lmc.parent = next.course;
+    self.playerView.localMediaContent = lmc;
+    [self.playerView play];
 }
 
 -(void)playEnd:(NSNotification*)noti
