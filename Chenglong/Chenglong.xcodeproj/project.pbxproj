@@ -241,6 +241,9 @@
 		AD59D9181EEADDC6009C78D6 /* TWRDownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */; };
 		AD607E371F9B699E00A9C333 /* PlayListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E361F9B699E00A9C333 /* PlayListPage.m */; };
 		AD607E3A1F9FCB2D00A9C333 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E391F9FCB2D00A9C333 /* PlayerView.m */; };
+		AD607E401FA3966B00A9C333 /* CourseListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E3D1FA3966B00A9C333 /* CourseListPage.m */; };
+		AD607E411FA3966B00A9C333 /* CourseListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E3F1FA3966B00A9C333 /* CourseListTableViewCell.m */; };
+		AD607E441FA3973E00A9C333 /* CourseListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E431FA3973E00A9C333 /* CourseListItemView.m */; };
 		AD666AAC1F4E57FE004F3C9D /* PlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666AAB1F4E57FE004F3C9D /* PlayerControlView.m */; };
 		AD666AB01F4E6C9B004F3C9D /* button-pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD666AAD1F4E6C9B004F3C9D /* button-pause@2x.png */; };
 		AD666AB11F4E6C9B004F3C9D /* button-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD666AAE1F4E6C9B004F3C9D /* button-play@2x.png */; };
@@ -746,6 +749,12 @@
 		AD607E361F9B699E00A9C333 /* PlayListPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayListPage.m; sourceTree = "<group>"; };
 		AD607E381F9FCB2D00A9C333 /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
 		AD607E391F9FCB2D00A9C333 /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
+		AD607E3C1FA3966B00A9C333 /* CourseListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListPage.h; sourceTree = "<group>"; };
+		AD607E3D1FA3966B00A9C333 /* CourseListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListPage.m; sourceTree = "<group>"; };
+		AD607E3E1FA3966B00A9C333 /* CourseListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListTableViewCell.h; sourceTree = "<group>"; };
+		AD607E3F1FA3966B00A9C333 /* CourseListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListTableViewCell.m; sourceTree = "<group>"; };
+		AD607E421FA3973E00A9C333 /* CourseListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListItemView.h; sourceTree = "<group>"; };
+		AD607E431FA3973E00A9C333 /* CourseListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListItemView.m; sourceTree = "<group>"; };
 		AD666AAA1F4E57FE004F3C9D /* PlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControlView.h; sourceTree = "<group>"; };
 		AD666AAB1F4E57FE004F3C9D /* PlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlView.m; sourceTree = "<group>"; };
 		AD666AAD1F4E6C9B004F3C9D /* button-pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-pause@2x.png"; sourceTree = "<group>"; };
@@ -1805,6 +1814,19 @@
 			path = TWRDownloadManager;
 			sourceTree = "<group>";
 		};
+		AD607E3B1FA3966B00A9C333 /* CourseList */ = {
+			isa = PBXGroup;
+			children = (
+				AD607E421FA3973E00A9C333 /* CourseListItemView.h */,
+				AD607E431FA3973E00A9C333 /* CourseListItemView.m */,
+				AD607E3C1FA3966B00A9C333 /* CourseListPage.h */,
+				AD607E3D1FA3966B00A9C333 /* CourseListPage.m */,
+				AD607E3E1FA3966B00A9C333 /* CourseListTableViewCell.h */,
+				AD607E3F1FA3966B00A9C333 /* CourseListTableViewCell.m */,
+			);
+			path = CourseList;
+			sourceTree = "<group>";
+		};
 		AD6A67061F962AF8000A97BD /* PlayViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1832,6 +1854,7 @@
 		ADD117991EECFF3D00EF6E04 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AD607E3B1FA3966B00A9C333 /* CourseList */,
 				ADD1179A1EECFF5300EF6E04 /* MediaConentView.h */,
 				ADD1179B1EECFF5300EF6E04 /* MediaConentView.m */,
 				ADD1179D1EED010C00EF6E04 /* MediaContentImageView.h */,
@@ -2213,6 +2236,7 @@
 				A364CBE21C94CBCF0075E65F /* AppDelegate.m in Sources */,
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
 				AD49D81E1F096CE5000D0E1B /* MediaAttachmentCollectionViewCell.m in Sources */,
+				AD607E401FA3966B00A9C333 /* CourseListPage.m in Sources */,
 				AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */,
 				AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */,
 				AD49D8261F096CE5000D0E1B /* FilesChooseTitleView.m in Sources */,
@@ -2261,6 +2285,7 @@
 				0329117E1E113CEB000C1F5A /* UIImage+Kaishi.m in Sources */,
 				AD49D83B1F096CE5000D0E1B /* RegisterViewController.m in Sources */,
 				0329117B1E113CE0000C1F5A /* UIFont+Kaishi.m in Sources */,
+				AD607E441FA3973E00A9C333 /* CourseListItemView.m in Sources */,
 				030049781E0E5F61006EDC29 /* MoneyFlow.m in Sources */,
 				0329115F1E113BC6000C1F5A /* UIView+Data.m in Sources */,
 				AD607E371F9B699E00A9C333 /* PlayListPage.m in Sources */,
@@ -2330,6 +2355,7 @@
 				0329114D1E113B1C000C1F5A /* UINavigationController+BackButtonHandler.m in Sources */,
 				032911551E113BA2000C1F5A /* NSObject+CurrentController.m in Sources */,
 				AD49D8301F096CE5000D0E1B /* MainTabBarController.m in Sources */,
+				AD607E411FA3966B00A9C333 /* CourseListTableViewCell.m in Sources */,
 				032C96201E2208B6001EFC29 /* ProfileHeaderCell.m in Sources */,
 				ADD117F41EF6FBC800EF6E04 /* File.m in Sources */,
 				032C96971E2CA31D001EFC29 /* TZVideoPlayerController.m in Sources */,
