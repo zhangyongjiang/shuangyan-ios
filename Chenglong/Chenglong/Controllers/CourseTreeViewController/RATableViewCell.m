@@ -24,6 +24,9 @@
 
 @interface RATableViewCell ()
 
+@property (strong, nonatomic) FitLabel *customTitleLabel;
+@property (strong, nonatomic) UIButton *collapseButton;
+@property (strong, nonatomic) UIImageView *btnSelect;
 
 @end
 
@@ -47,10 +50,29 @@
     //    [self.collapseButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:Margin];
     //    [self.collapseButton autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customTitleLabel withOffset:-Margin/2.];
     
+    self.btnSelect = [UIImageView new];
+    self.btnSelect.contentMode = UIViewContentModeScaleToFill;
+    self.btnSelect.image = [UIImage imageNamed:@"ic_check_gray"];
+    [self addSubview:self.btnSelect];
+    [self.btnSelect autoSetDimensionsToSize:CGSizeMake(20, 20)];
+    [self.btnSelect autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:5];
+    [self.btnSelect autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [self.btnSelect addTarget:self action:@selector(selectCourse:)];
+    
     return self;
 }
 
-
+-(void)selectCourse:(id)sender
+{
+    if(self.courseDetails.selected) {
+        self.courseDetails.selected = NO;
+        self.btnSelect.image = [UIImage imageNamed:@"ic_check_gray"];
+    } else {
+        self.courseDetails.selected = YES;
+        self.btnSelect.image = [UIImage imageNamed:@"ic_check"];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseSelected object:self.courseDetails];
+}
 
 
 - (void)prepareForReuse
@@ -63,6 +85,7 @@
 
 - (void)setupWithCourseDetails:(CourseDetails *)cd level:(NSInteger)level expanded:(BOOL)expanded
 {
+    self.courseDetails = cd;
     if([cd isDirectory]) {
         self.collapseButton.hidden = NO;
         if([cd hasChildren]) {
@@ -98,10 +121,7 @@
     [self.collapseButton vcenterInParent];
     self.collapseButton.x = self.customTitleLabel.left - self.collapseButton.width - 3;
     
-    CGRect detailsFrame = self.detailedLabel.frame;
-    detailsFrame.origin.x = left;
-    self.detailedLabel.frame = detailsFrame;
-    [self.detailedLabel vcenterInParent];
+    self.btnSelect.image = [UIImage imageNamed:cd.selected?@"ic_check":@"ic_check_gray"];
 }
 
 
@@ -115,9 +135,6 @@
 - (void)setAdditionButtonHidden:(BOOL)additionButtonHidden animated:(BOOL)animated
 {
     _additionButtonHidden = additionButtonHidden;
-    [UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
-        self.additionButton.hidden = additionButtonHidden;
-    }];
 }
 
 

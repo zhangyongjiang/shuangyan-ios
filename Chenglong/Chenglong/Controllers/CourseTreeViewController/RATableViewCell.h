@@ -23,10 +23,7 @@
 @interface RATableViewCell : UITableViewCell
 
 
-@property (strong, nonatomic) FitLabel *detailedLabel;
-@property (strong, nonatomic) FitLabel *customTitleLabel;
-@property (strong, nonatomic) UIButton *additionButton;
-@property (strong, nonatomic) UIButton *collapseButton;
+@property (strong, nonatomic) CourseDetails* courseDetails;
 
 @property (nonatomic, copy) void (^additionButtonTapAction)(id sender);
 @property (nonatomic, copy) void (^collapseButtonTapAction)(id sender);

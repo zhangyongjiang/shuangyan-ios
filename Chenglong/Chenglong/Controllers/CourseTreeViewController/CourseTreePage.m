@@ -42,11 +42,68 @@
     self.btnPlayNow.contentMode = UIViewContentModeScaleToFill;
     self.btnPlayNow.image = [UIImage imageNamed:@"ic_play_arrow"];
     [self addSubview:self.btnPlayNow];
-    [self.btnPlayNow autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+    [self.btnPlayNow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [self.btnPlayNow autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
     [self.btnPlayNow autoSetDimensionsToSize:CGSizeMake(40, 40)];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseSelected:) name:NotificationCourseSelected object:nil];
+    
     return self;
+}
+
+-(void)courseSelected:(NSNotification*)noti
+{
+    CourseDetails* cd = noti.object;
+    CourseDetails* item = [self searchCourse:cd.course.id inTree:self.courseDetails];
+    if(item == NULL)
+        return;
+    [self markSelected:item selected:cd.selected];
+    CourseDetails* parent = [self getParentOfItem:item];
+    if(parent) {
+        if(!cd.selected && parent.selected) {
+            parent.selected = NO;
+            RATableViewCell *cell = [self.treeView cellForItem:parent];
+            if(!cell.isHidden) {
+                NSInteger level = [self.treeView levelForCellForItem:parent];
+                BOOL expanded = [self.treeView isCellForItemExpanded:parent];
+                [cell setupWithCourseDetails:parent level:level expanded:expanded];
+            }
+        }
+        else if(cd.selected && !parent.selected) {
+            BOOL allSelected = YES;
+            for (CourseDetails* child in parent.items) {
+                if(!child.selected) {
+                    allSelected = NO;
+                    break;
+                }
+            }
+            if(allSelected) {
+                parent.selected = YES;
+                RATableViewCell *cell = [self.treeView cellForItem:parent];
+                if(!cell.isHidden) {
+                    NSInteger level = [self.treeView levelForCellForItem:parent];
+                    BOOL expanded = [self.treeView isCellForItemExpanded:parent];
+                    [cell setupWithCourseDetails:parent level:level expanded:expanded];
+                }
+            }
+        }
+    }
+}
+
+-(void)markSelected:(CourseDetails*)cd selected:(BOOL)selected {
+    cd.selected = selected;
+    RATableViewCell *cell = [self.treeView cellForItem:cd];
+    if(!cell.isHidden) {
+        NSInteger level = [self.treeView levelForCellForItem:cd];
+        BOOL expanded = [self.treeView isCellForItemExpanded:cd];
+        [cell setupWithCourseDetails:cd level:level expanded:expanded];
+    }
+
+    if(cd.course.isDir.integerValue) {
+        for (CourseDetails* child in cd.items) {
+            [self markSelected:child selected:selected];
+        }
+    }
 }
 
 -(CourseDetails*) getParentOfItem:(CourseDetails*) item
@@ -95,10 +152,11 @@
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        //        UIButton *accessory = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        //        [cell setAccessoryView:accessory];
     }
-    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+//    UIButton *accessory = [UIButton buttonWithType:UIButtonTypeContactAdd];
+//    [cell setAccessoryView:accessory];
+
     __weak typeof(self) weakSelf = self;
     cell.additionButtonTapAction = ^(id sender){
         //        if (![weakSelf.treeView isCellForItemExpanded:dataObject] || weakSelf.treeView.isEditing) {
@@ -172,7 +230,7 @@
     cd.parent = parent;
     
     if(![cd isDirectory]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:cd userInfo:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseSelected object:cd userInfo:nil];
         
 //        MediaViewController* c = [MediaViewController new];
 //        c.courseDetails = cd;

@@ -15,5 +15,6 @@
 @property(strong, nonatomic) NSMutableArray* items;
 
 @property(strong, nonatomic) CourseDetails* parent;
+@property(assign, nonatomic) BOOL selected;
 
 @end
