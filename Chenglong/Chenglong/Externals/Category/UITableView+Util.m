@@ -33,4 +33,15 @@
     [self endUpdates];
 }
 
+-(BOOL)isVisible:(NSIndexPath*)cellpath
+{
+    for (NSIndexPath* path in self.indexPathsForVisibleRows) {
+        if(path.section == cellpath.section && path.row == cellpath.row)
+            return YES;
+    }
+    return NO;
+}
+
 @end
+
+

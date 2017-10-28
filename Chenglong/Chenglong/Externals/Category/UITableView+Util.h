@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface UITableView (Util)
-
 - (void)setSelfSeparatorInset:(UIEdgeInsets)separatorInset;
 - (void)reloadIndexPaths:(NSArray*)indexPaths;
 - (void)insertIndexPaths:(NSArray*)indexPaths;
+-(BOOL)isVisible:(NSIndexPath*)cellpath;
 @end
+
+
