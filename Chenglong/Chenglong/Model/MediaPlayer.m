@@ -208,7 +208,7 @@ MediaPlayer* gMediaPlayer;
 -(void)playerDidFinishPlaying:(NSNotification*)noti
 {
     NSLog(@"playerDidFinishPlaying");
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask.localMediaContent];
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {

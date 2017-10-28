@@ -45,10 +45,10 @@
 
 -(void)playEnd:(NSNotification*)noti
 {
-    PlayTask* task = noti.object;
+    LocalMediaContent* task = noti.object;
     for (int i=self.playList.count-1; i>=0; i--) {
         CourseDetails* item = [self.playList objectAtIndex:i];
-        if([item.course.id isEqualToString:task.localMediaContent.parent.id]) {
+        if([item.course.id isEqualToString:task.parent.id]) {
             i++;
             if(i == self.playList.count)
                 i = 0;
