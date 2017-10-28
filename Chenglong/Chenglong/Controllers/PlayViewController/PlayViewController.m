@@ -25,6 +25,7 @@
     [self addTopRightMenu];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseAppendNotiHandler:) name:NotificationPlayCourseAppend object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseListNotiHandler:) name:NotificationPlayCourseList object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
 }
@@ -55,6 +56,12 @@
 }
 
 -(void)playCourseNotiHandler:(NSNotification*)noti
+{
+    CourseDetails* pt = noti.object;
+    [self.page addCourseDetailsToBeginning:pt];
+}
+
+-(void)playCourseAppendNotiHandler:(NSNotification*)noti
 {
     CourseDetails* pt = noti.object;
     [self.page addCourseDetails:pt];

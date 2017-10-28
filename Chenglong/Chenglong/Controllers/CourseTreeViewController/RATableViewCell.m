@@ -28,6 +28,7 @@
 @property (strong, nonatomic) UIButton *collapseButton;
 @property (strong, nonatomic) UIButton *btnSelect;
 @property (strong, nonatomic) UIButton *btnPlay;
+@property (strong, nonatomic) UIButton *btnPlayList;
 
 @end
 
@@ -52,10 +53,10 @@
     //    [self.collapseButton autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customTitleLabel withOffset:-Margin/2.];
     
     self.btnPlay = [UIButton new];
-    [self.btnPlay setImage:[UIImage imageNamed:@"ic_play_circle_outline"] forState:UIControlStateNormal];
+    [self.btnPlay setImage:[UIImage imageNamed:@"ic_play_arrow"] forState:UIControlStateNormal];
     [self addSubview:self.btnPlay];
-    [self.btnPlay autoSetDimensionsToSize:CGSizeMake(40, 40)];
-    [self.btnPlay autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:5];
+    [self.btnPlay autoSetDimensionsToSize:CGSizeMake(30, 30)];
+    [self.btnPlay autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:1];
     [self.btnPlay autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [self.btnPlay addTarget:self action:@selector(playCourse:)];
     
@@ -66,8 +67,22 @@
     [self.btnSelect autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [self.btnSelect autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
     [self.btnSelect addTarget:self action:@selector(selectCourse:)];
+    self.btnSelect.hidden = YES; // disable it for now
+    
+    self.btnPlayList = [UIButton new];
+    [self.btnPlayList setImage:[UIImage imageNamed:@"ic_playlist_play"] forState:UIControlStateNormal];
+    [self addSubview:self.btnPlayList];
+    [self.btnPlayList autoSetDimensionsToSize:CGSizeMake(30, 30)];
+    [self.btnPlayList autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [self.btnPlayList autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.btnPlay];
+    [self.btnPlayList addTarget:self action:@selector(addToPlayList:)];
     
     return self;
+}
+
+-(void)addToPlayList:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourseAppend object:self.courseDetails userInfo:nil];
 }
 
 -(void)playCourse:(id)sender
@@ -103,7 +118,7 @@
 {
     self.courseDetails = cd;
     if([cd isDirectory]) {
-        self.btnPlay.hidden = YES;
+//        self.btnPlay.hidden = YES;
         self.collapseButton.hidden = NO;
         if([cd hasChildren]) {
             if(expanded) {
@@ -118,7 +133,7 @@
         }
     }
     else {
-        self.btnPlay.hidden = NO;
+//        self.btnPlay.hidden = NO;
         self.collapseButton.hidden = YES;
         [self.collapseButton setBackgroundImage:[UIImage imageNamed:@"file_item_up_icon"] forState:UIControlStateNormal];
     }
@@ -127,6 +142,8 @@
     [self.customTitleLabel vcenterInParent];
     
     CGFloat left = 45 + 20 * level;
+    if(self.btnSelect.hidden)
+        left -= 25;
     if(![cd isDirectory]) {
         left -= 20;
     }

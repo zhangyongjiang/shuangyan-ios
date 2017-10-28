@@ -14,6 +14,7 @@
 @property(strong, nonatomic) NSMutableArray* playList;
 
 -(void)addCourseDetails:(CourseDetails*)courseDetails;
+-(void)addCourseDetailsToBeginning:(CourseDetails*)courseDetails;
 -(void)addCourseDetailsList:(NSMutableArray*)courseDetailsList;
 
 @end

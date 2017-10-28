@@ -100,11 +100,22 @@
     }
 }
 
+-(void)addCourseDetailsToBeginning:(CourseDetails *)courseDetails
+{
+    [self.playList insertObject:courseDetails atIndex:0];
+    self.courseListPage.courseList = self.playList;
+
+    LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
+    lmc.parent = courseDetails.course;
+    self.playerView.localMediaContent = lmc;
+    [self.playerView play];
+}
+
 -(void)setPlayList:(NSMutableArray *)playList {
     _playList = playList;
     if(playList.count == 0) {
         [self.playerView stop];
     }
-    self.courseListPage.courseList = [NSMutableArray new];
+    self.courseListPage.courseList = playList;
 }
 @end
