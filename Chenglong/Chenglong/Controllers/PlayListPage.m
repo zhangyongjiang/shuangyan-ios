@@ -105,5 +105,6 @@
     if(playList.count == 0) {
         [self.playerView stop];
     }
+    self.courseListPage.courseList = [NSMutableArray new];
 }
 @end

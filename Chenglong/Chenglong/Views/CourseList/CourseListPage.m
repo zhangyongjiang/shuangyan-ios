@@ -13,8 +13,6 @@
 
 @interface CourseListPage()
 
-@property(strong, nonatomic) NSMutableArray* courseList;
-
 @end
 
 @implementation CourseListPage

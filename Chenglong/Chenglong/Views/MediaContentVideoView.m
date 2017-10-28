@@ -239,4 +239,9 @@
         self.coverImageView.hidden = NO;
     [[MediaPlayer shared] setCurrentTime:0];
 }
+
+-(void)stop
+{
+    [MediaPlayer.shared stop];
+}
 @end

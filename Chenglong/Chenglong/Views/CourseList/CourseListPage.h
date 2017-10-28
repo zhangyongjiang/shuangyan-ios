@@ -11,6 +11,8 @@
 
 @interface CourseListPage : TableViewPage
 
+@property(strong, nonatomic) NSMutableArray* courseList;
+
 -(void)addCourseDetailsList:(NSMutableArray *)courseDetailsList;
 -(void)addCourseDetails:(CourseDetails *)courseDetails;
 
