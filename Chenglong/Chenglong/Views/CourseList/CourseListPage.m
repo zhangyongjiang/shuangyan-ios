@@ -35,18 +35,23 @@
     for(int i=0; i<self.courseList.count; i++) {
         CourseDetails* cd = [self.courseList objectAtIndex:i];
         if ([cd.course.id isEqualToString:course.id]) {
-            NSIndexPath* path = [NSIndexPath indexPathForRow:i inSection:0];
-            [_tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
+            NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:i];
+            if([_tableView isVisible:path])
+                [_tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
+            else
+                [_tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         }
     }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.courseList.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.courseList.count;
+    return 1;
+    CourseDetails* cd = [self.courseList objectAtIndex:section];
+    return cd.course.resources.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,13 +60,14 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CourseListTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CourseListItemTableViewCellID];
-    CourseDetails* item = [self.courseList objectAtIndex:indexPath.row];
+    CourseDetails* item = [self.courseList objectAtIndex:indexPath.section];
     cell.courseDetails = item;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseReplay object:[self.courseList objectAtIndex:indexPath.row]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseReplay object:[self.courseList objectAtIndex:indexPath.section]];
 }
 
 -(void)setCourseList:(NSMutableArray *)courseList

@@ -19,7 +19,9 @@
     [super viewDidLoad];
     self.title = @"播放";
 
-    self.page = [[PlayListPage alloc] initWithFrame:self.view.bounds];
+    CGRect rect = self.view.bounds;
+    rect.size.height -= 64;
+    self.page = [[PlayListPage alloc] initWithFrame:rect];
     [self.view addSubview:self.page];
     
     [self addTopRightMenu];
