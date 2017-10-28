@@ -17,7 +17,7 @@
 
 -(id)initWithFrame:(CGRect)frame
 {
-    CGFloat size = 40;
+    CGFloat size = 60;
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
     
@@ -54,7 +54,7 @@
     
     self.btnRepeat = [UIImageView new];
     self.btnRepeat.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat"];
+    self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat"];
     [self addSubview:self.btnRepeat];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeBottom];
