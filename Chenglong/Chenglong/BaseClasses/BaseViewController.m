@@ -69,7 +69,8 @@
         [enabled addObject:mi.enabled];
     }
 
-    CGPoint point = CGPointMake(btn.frame.origin.x + btn.frame.size.width / 2, btn.frame.origin.y + btn.frame.size.height + 10);
+//    CGPoint point = CGPointMake(btn.frame.origin.x + btn.frame.size.width / 2, btn.frame.origin.y + btn.frame.size.height + 10);
+    CGPoint point = CGPointMake(UIView.screenWidth-25, btn.frame.origin.y + btn.frame.size.height + 10);
     XTPopTableView *_menuTableView = [[XTPopTableView alloc] initWithOrigin:point Width:150 Height:45*arr.count Type:XTTypeOfUpRight Color:[UIColor whiteColor]];
     _menuTableView.backgroundColor = [UIColor colorWithWhite:0 alpha:.3f];
     [_menuTableView.tableView setSeparatorColor:[UIColor colorFromString:@"dedede"]];
