@@ -186,4 +186,9 @@
     }
 }
 
++(BOOL)isLandscape
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    return UIInterfaceOrientationIsLandscape(orientation);
+}
 @end

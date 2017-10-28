@@ -22,9 +22,12 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     self.playList = [NSMutableArray new];
+    self.repeat = RepeatNone;
+    self.fullscreen = NO;
     
     self.playerView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75)];
     [self.playerView.controlView.btnRepeat addTarget:self action:@selector(toggleRepeat)];
+    [self.playerView.controlView.btnFullScreen addTarget:self action:@selector(toggleFullscreen)];
     [self addSubview:self.playerView];
     
     self.courseListPage = [[CourseListPage alloc] initWithFrame:CGRectMake(0, self.playerView.bottom, self.playerView.width, self.height-self.playerView.height)];
@@ -34,6 +37,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseReplay:) name:NotificationCourseReplay object:nil];
 
     return self;
+}
+
+-(void)toggleFullscreen
+{
+    self.fullscreen = !self.fullscreen;
+    if ([AppDelegate isLandscape])
+        return;
+    if(self.fullscreen) {
+        self.playerView.frame = self.bounds;
+        self.courseListPage.hidden = YES;
+    } else {
+        self.playerView.frame = CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75);
+        self.courseListPage.hidden = NO;
+    }
 }
 
 -(void)toggleRepeat

@@ -17,6 +17,7 @@
 
 +(AppDelegate*)appDelegate;
 +(NSString*)userAccessToken;
++(BOOL)isLandscape;
 
 @end
 
