@@ -22,9 +22,23 @@
     self.page = [[PlayListPage alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.page];
     
+    [self addTopRightMenu];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseListNotiHandler:) name:NotificationPlayCourseList object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
+}
+
+-(NSMutableArray*)getTopRightMenuItems {
+    NSMutableArray* menuItems = [[NSMutableArray alloc] init];
+    [menuItems addObject:[[MenuItem alloc] initWithText:@"清除" andImgName:@"ic_clear"]] ;
+    return menuItems;
+}
+
+-(void)topRightMenuItemClicked:(NSString *)cmd {
+    if([cmd isEqualToString:@"删除"]) {
+        self.page.playList = [NSMutableArray new];
+    }
 }
 
 -(void)playingNotiHandler:(NSNotification*)noti

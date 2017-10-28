@@ -38,7 +38,7 @@
         CourseDetails* cd = [self.courseList objectAtIndex:i];
         if ([cd.course.id isEqualToString:course.id]) {
             NSIndexPath* path = [NSIndexPath indexPathForRow:i inSection:0];
-            [_tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionTop];
+            [_tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
         }
     }
 }

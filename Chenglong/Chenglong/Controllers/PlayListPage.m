@@ -11,8 +11,6 @@
 
 @interface PlayListPage()
 
-@property(strong, nonatomic) NSMutableArray* playList;
-
 @property(strong, nonatomic)PlayerView* playerView;
 @property(strong, nonatomic)CourseListPage* courseListPage;
 
@@ -99,6 +97,13 @@
         lmc.parent = courseDetails.course;
         self.playerView.localMediaContent = lmc;
         [self.playerView play];
+    }
+}
+
+-(void)setPlayList:(NSMutableArray *)playList {
+    _playList = playList;
+    if(playList.count == 0) {
+        [self.playerView stop];
     }
 }
 @end

@@ -11,6 +11,8 @@
 
 @interface PlayListPage : Page
 
+@property(strong, nonatomic) NSMutableArray* playList;
+
 -(void)addCourseDetails:(CourseDetails*)courseDetails;
 -(void)addCourseDetailsList:(NSMutableArray*)courseDetailsList;
 

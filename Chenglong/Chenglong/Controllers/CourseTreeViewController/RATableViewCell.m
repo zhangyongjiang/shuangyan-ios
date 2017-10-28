@@ -26,8 +26,8 @@
 
 @property (strong, nonatomic) FitLabel *customTitleLabel;
 @property (strong, nonatomic) UIButton *collapseButton;
-@property (strong, nonatomic) UIImageView *btnSelect;
-@property (strong, nonatomic) UIImageView *btnPlay;
+@property (strong, nonatomic) UIButton *btnSelect;
+@property (strong, nonatomic) UIButton *btnPlay;
 
 @end
 
@@ -51,22 +51,20 @@
     //    [self.collapseButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:Margin];
     //    [self.collapseButton autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.customTitleLabel withOffset:-Margin/2.];
     
-    self.btnPlay = [UIImageView new];
-    self.btnPlay.contentMode = UIViewContentModeScaleToFill;
-    self.btnPlay.image = [UIImage imageNamed:@"ic_play_circle_outline"];
+    self.btnPlay = [UIButton new];
+    [self.btnPlay setImage:[UIImage imageNamed:@"ic_play_circle_outline"] forState:UIControlStateNormal];
     [self addSubview:self.btnPlay];
-    [self.btnPlay autoSetDimensionsToSize:CGSizeMake(20, 20)];
+    [self.btnPlay autoSetDimensionsToSize:CGSizeMake(40, 40)];
     [self.btnPlay autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:5];
     [self.btnPlay autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [self.btnPlay addTarget:self action:@selector(playCourse:)];
     
-    self.btnSelect = [UIImageView new];
-    self.btnSelect.contentMode = UIViewContentModeScaleToFill;
-    self.btnSelect.image = [UIImage imageNamed:@"ic_check_gray"];
+    self.btnSelect = [UIButton new];
+    [self.btnSelect setImage:[UIImage imageNamed:@"ic_check_gray"] forState:UIControlStateNormal];
     [self addSubview:self.btnSelect];
     [self.btnSelect autoSetDimensionsToSize:CGSizeMake(20, 20)];
-    [self.btnSelect autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.btnPlay withOffset:2];
     [self.btnSelect autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [self.btnSelect autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
     [self.btnSelect addTarget:self action:@selector(selectCourse:)];
     
     return self;
@@ -84,10 +82,10 @@
     
     if(self.courseDetails.selected) {
         self.courseDetails.selected = NO;
-        self.btnSelect.image = [UIImage imageNamed:@"ic_check_gray"];
+        [self.btnSelect setImage:[UIImage imageNamed:@"ic_check_gray"] forState:UIControlStateNormal];
     } else {
         self.courseDetails.selected = YES;
-        self.btnSelect.image = [UIImage imageNamed:@"ic_check"];
+        [self.btnSelect setImage:[UIImage imageNamed:@"ic_check"] forState:UIControlStateNormal];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseSelected object:self.courseDetails];
 }
@@ -120,6 +118,7 @@
         }
     }
     else {
+        self.btnPlay.hidden = NO;
         self.collapseButton.hidden = YES;
         [self.collapseButton setBackgroundImage:[UIImage imageNamed:@"file_item_up_icon"] forState:UIControlStateNormal];
     }
@@ -127,7 +126,7 @@
     self.customTitleLabel.text = cd.course.title;
     [self.customTitleLabel vcenterInParent];
     
-    CGFloat left = 21 + 20 * level;
+    CGFloat left = 45 + 20 * level;
     if(![cd isDirectory]) {
         left -= 20;
     }
@@ -140,7 +139,7 @@
     [self.collapseButton vcenterInParent];
     self.collapseButton.x = self.customTitleLabel.left - self.collapseButton.width - 3;
     
-    self.btnSelect.image = [UIImage imageNamed:cd.selected?@"ic_check":@"ic_check_gray"];
+    [self.btnSelect setImage:[UIImage imageNamed:cd.selected?@"ic_check":@"ic_check_gray"] forState:UIControlStateNormal];
 }
 
 

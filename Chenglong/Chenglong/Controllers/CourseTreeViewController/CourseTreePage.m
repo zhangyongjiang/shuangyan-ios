@@ -65,6 +65,8 @@
 {
     CourseDetails* cd = noti.object;
     CourseDetails* item = [self searchCourse:cd.course.id inTree:self.courseDetails];
+    if(cd.course.id == NULL)
+        item = [self.courseDetails.items objectAtIndex:0];
     if(item == NULL)
         return;
     [self markSelected:item selected:cd.selected];
