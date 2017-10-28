@@ -41,12 +41,12 @@
     [self.btnPlayNow setImage:[UIImage imageNamed:@"ic_play_arrow"] forState:UIControlStateNormal];
     self.btnPlayNow.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
     self.btnPlayNow.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.2];
-//    self.btnPlayNow.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:self.btnPlayNow];
     [self.btnPlayNow autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [self.btnPlayNow autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
     [self.btnPlayNow autoSetDimensionsToSize:CGSizeMake(80, 40)];
     [self.btnPlayNow addTarget:self action:@selector(playNow:) forControlEvents:UIControlEventTouchUpInside];
+    self.btnPlayNow.hidden = YES;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseSelected:) name:NotificationCourseSelected object:nil];
     
@@ -105,6 +105,9 @@
 
 -(void)setPlayButton
 {
+    // disable the play button for now.
+    return;
+    
     NSMutableArray* selected = [self getSelectedCourses];
     if(selected.count == 0) {
         self.btnPlayNow.hidden = YES;

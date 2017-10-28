@@ -81,9 +81,7 @@
     for (CourseDetails* item in courseDetailsList) {
         [self listFile:item toArray:holder];
     }
-    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
-                           NSMakeRange(0,holder.count)];
-    [self.playList insertObjects:holder atIndexes:indexes];
+    [self.playList addObjectsFromArray:holder];
     self.courseListPage.courseList = self.playList;
     if(holder.count == self.playList.count) {
         CourseDetails* courseDetails = [holder objectAtIndex:0];
