@@ -51,6 +51,7 @@
         self.playerView.frame = CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75);
         self.courseListPage.hidden = NO;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:[NSNumber numberWithBool:self.fullscreen]];
 }
 
 -(void)toggleRepeat
@@ -118,8 +119,13 @@
         self.playerView.frame = self.bounds;
         self.courseListPage.hidden = YES;
     } else {
-        self.playerView.frame = CGRectMake(0, 0, UIView.screenWidth, UIView.screenWidth*0.75);
-        self.courseListPage.hidden = NO;
+        if(self.fullscreen) {
+            self.playerView.frame = self.bounds;
+            self.courseListPage.hidden = YES;
+        } else {
+            self.playerView.frame = CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75);
+            self.courseListPage.hidden = NO;
+        }
     }
 }
 

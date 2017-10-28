@@ -28,8 +28,23 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseAppendNotiHandler:) name:NotificationPlayCourseAppend object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseListNotiHandler:) name:NotificationPlayCourseList object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen:) name:NotificationFullscreen object:nil];
 }
 
+-(void)toggleFullscreen:(NSNotification*)noti
+{
+    NSNumber* number = noti.object;
+    BOOL fullscreen = number.boolValue;
+    if(fullscreen) {
+        if([AppDelegate isLandscape])
+            return;
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    } else {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+}
+
+    
 -(NSMutableArray*)getTopRightMenuItems {
     NSMutableArray* menuItems = [[NSMutableArray alloc] init];
     [menuItems addObject:[[MenuItem alloc] initWithText:@"清除" andImgName:@"ic_clear"]] ;
@@ -81,6 +96,10 @@
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.page.frame = self.view.bounds;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end

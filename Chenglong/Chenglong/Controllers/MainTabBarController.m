@@ -27,6 +27,7 @@
 }
 
 @property (nonatomic, assign) BOOL firstViewDidAppear;
+@property (nonatomic, assign) BOOL fullscreen;
 
 @end
 
@@ -67,8 +68,21 @@
 
 - (void)addObser
 {
-   
- 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen:) name:NotificationFullscreen object:nil];
+}
+
+-(void)toggleFullscreen:(NSNotification*)noti
+{
+    NSNumber* number = noti.object;
+    BOOL fullscreen = number.boolValue;
+    self.fullscreen = fullscreen;
+    if(fullscreen) {
+        if([AppDelegate isLandscape])
+            return;
+        self.tabBar.hidden = YES;
+    } else {
+        self.tabBar.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

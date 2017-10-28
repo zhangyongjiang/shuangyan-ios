@@ -74,6 +74,7 @@ extern NSString* const kPublishFileSuccessNotificationKey;
 #define NotificationLogout              @"NotificationLogout"
 #define NotificationNoGuest             @"NotificationNoGuest"
 #define NotificationAlert               @"NotificationAlert"
+#define NotificationFullscreen          @"NotificationFullscreen"
 #define NotificationMeChanged           @"NotificationMeChanged"
 #define NotificationCartChanged         @"NotificationCartChanged"
 #define NotificationMsgChanged          @"NotificationMsgChanged"

@@ -153,10 +153,10 @@
     MediaPlayer* player = [MediaPlayer shared];
     [super layoutSubviews];
     [player setAttachedView:self];
-    if (self.width > 400)
+//    if (self.width > 400)
         self.backgroundColor = [UIColor blackColor];
-    else
-        self.backgroundColor = [UIColor whiteColor];
+//    else
+//        self.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
