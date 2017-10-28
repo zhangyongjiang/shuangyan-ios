@@ -77,12 +77,18 @@
 
 -(void)addCourseDetailsList:(NSMutableArray *)courseDetailsList
 {
-    [self.playList addObjectsFromArray:courseDetailsList];
-    [self.courseListPage addCourseDetailsList:courseDetailsList];
-    if(self.playList.count == courseDetailsList.count) {
-        CourseDetails* first = [self.playList objectAtIndex:0];
-        LocalMediaContent* lmc = [first.course.resources objectAtIndex:0];
-        lmc.parent = first.course;
+    NSMutableArray* holder = [NSMutableArray new];
+    for (CourseDetails* item in courseDetailsList) {
+        [self listFile:item toArray:holder];
+    }
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
+                           NSMakeRange(0,holder.count)];
+    [self.playList insertObjects:holder atIndexes:indexes];
+    self.courseListPage.courseList = self.playList;
+    if(holder.count == self.playList.count) {
+        CourseDetails* courseDetails = [holder objectAtIndex:0];
+        LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
+        lmc.parent = courseDetails.course;
         self.playerView.localMediaContent = lmc;
         [self.playerView play];
     }
@@ -90,40 +96,30 @@
 
 -(void)addCourseDetails:(CourseDetails *)courseDetails
 {
-    [self.playList addObject:courseDetails];
-    [self.courseListPage addCourseDetails:courseDetails];
-    if(self.playList.count == 1) {
-        LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
-        lmc.parent = courseDetails.course;
-        self.playerView.localMediaContent = lmc;
-        [self.playerView play];
-    }
+    [self addCourseDetailsList:[NSMutableArray arrayWithObject:courseDetails]];
 }
 
 -(void)addCourseDetailsToBeginning:(CourseDetails *)courseDetails
 {
-    [self.playList insertObject:courseDetails atIndex:0];
-    self.courseListPage.courseList = self.playList;
-    
-    LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
-    lmc.parent = courseDetails.course;
-    self.playerView.localMediaContent = lmc;
-    [self.playerView play];
+    [self addCourseDetailsListToBeginning:[NSMutableArray arrayWithObject:courseDetails]];
 }
 
 -(void)addCourseDetailsListToBeginning:(NSMutableArray *)courseDetailsList
 {
-    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
-                           NSMakeRange(0,courseDetailsList.count)];
-    [self.playList insertObjects:courseDetailsList atIndexes:indexes];
-    self.courseListPage.courseList = self.playList;
-    if(courseDetailsList.count == self.playList.count) {
-        CourseDetails* courseDetails = [courseDetailsList objectAtIndex:0];
-        LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
-        lmc.parent = courseDetails.course;
-        self.playerView.localMediaContent = lmc;
-        [self.playerView play];
+    NSMutableArray* holder = [NSMutableArray new];
+    for (CourseDetails* item in courseDetailsList) {
+        [self listFile:item toArray:holder];
     }
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
+                           NSMakeRange(0,holder.count)];
+    [self.playList insertObjects:holder atIndexes:indexes];
+    self.courseListPage.courseList = self.playList;
+
+    CourseDetails* courseDetails = [holder objectAtIndex:0];
+    LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
+    lmc.parent = courseDetails.course;
+    self.playerView.localMediaContent = lmc;
+    [self.playerView play];
 }
 
 -(void)setPlayList:(NSMutableArray *)playList {
@@ -133,4 +129,19 @@
     }
     self.courseListPage.courseList = playList;
 }
+
+-(void)listFile:(CourseDetails*)cd toArray:(NSMutableArray*)holder {
+    if(![cd isDirectory]) {
+        [holder addObject:cd];
+        return;
+    }
+    for (CourseDetails* child in cd.items) {
+        if(child.isDirectory) {
+            [self listFile:child toArray:holder];
+        }
+        else
+            [holder addObject:child];
+    }
+}
+
 @end

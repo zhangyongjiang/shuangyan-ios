@@ -58,23 +58,7 @@
 -(void)playCourseNotiHandler:(NSNotification*)noti
 {
     CourseDetails* pt = noti.object;
-    if(![pt isDirectory]) {
-        [self.page addCourseDetailsToBeginning:pt];
-        return;
-    }
-    NSMutableArray* list = [NSMutableArray new];
-    [self playListDirectory:pt toArray:list];
-    if(list.count>0)
-        [self.page addCourseDetailsListToBeginning:list];
-}
--(void)playListDirectory:(CourseDetails*)cd toArray:(NSMutableArray*)holder {
-    for (CourseDetails* child in cd.items) {
-        if(child.isDirectory) {
-            [self playListDirectory:child toArray:holder];
-        }
-        else
-            [holder addObject:child];
-    }
+    [self.page addCourseDetailsToBeginning:pt];
 }
 
 -(void)playCourseAppendNotiHandler:(NSNotification*)noti
