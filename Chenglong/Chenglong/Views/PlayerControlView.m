@@ -35,6 +35,7 @@
     [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeLeft];
     [self.btnPrev autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
     [self.btnPrev autoSetDimensionsToSize:CGSizeMake(size, size)];
+    self.btnPrev.hidden = YES; // no need for now
     
     self.btnNext = [UIImageView new];
     self.btnNext.contentMode = UIViewContentModeScaleAspectFit;
@@ -43,7 +44,8 @@
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnNext autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
     [self.btnNext autoSetDimensionsToSize:CGSizeMake(size, size)];
-    
+    self.btnNext.hidden = YES; // no need for now
+
     self.btnFullScreen = [UIImageView new];
     self.btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
     self.btnFullScreen.image = [UIImage imageNamed:@"ic_fullscreen"];
