@@ -13,6 +13,7 @@
 
 @property(strong, nonatomic)PlayerView* playerView;
 @property(strong, nonatomic)CourseListPage* courseListPage;
+@property(assign, nonatomic)int repeat;
 
 @end
 
@@ -23,6 +24,7 @@
     self.playList = [NSMutableArray new];
     
     self.playerView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75)];
+    [self.playerView.controlView.btnRepeat addTarget:self action:@selector(toggleRepeat)];
     [self addSubview:self.playerView];
     
     self.courseListPage = [[CourseListPage alloc] initWithFrame:CGRectMake(0, self.playerView.bottom, self.playerView.width, self.height-self.playerView.height)];
@@ -32,6 +34,22 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseReplay:) name:NotificationCourseReplay object:nil];
 
     return self;
+}
+
+-(void)toggleRepeat
+{
+    if(self.repeat == RepeatNone) {
+        self.repeat = RepeatAll;
+        self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_repeat"];
+    }
+    else if (self.repeat == RepeatAll) {
+        self.repeat = RepeatOne;
+        self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_one"];
+    }
+    else if (self.repeat == RepeatOne) {
+        self.repeat = RepeatNone;
+        self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat"];
+    }
 }
 
 -(void)courseReplay:(NSNotification*)noti
@@ -49,9 +67,22 @@
     for (int i=self.playList.count-1; i>=0; i--) {
         CourseDetails* item = [self.playList objectAtIndex:i];
         if([item.course.id isEqualToString:task.parent.id]) {
+            if(self.repeat == RepeatOne) {
+                CourseDetails* next = [self.playList objectAtIndex:i];
+                LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
+                lmc.parent = next.course;
+                self.playerView.localMediaContent = lmc;
+                [self.playerView play];
+                return;
+            }
+            
             i++;
-            if(i == self.playList.count)
-                i = 0;
+            if(i == self.playList.count) {
+                if(self.repeat == RepeatAll)
+                    i = 0;
+                else
+                    return;
+            }
             CourseDetails* next = [self.playList objectAtIndex:i];
             LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
             lmc.parent = next.course;
