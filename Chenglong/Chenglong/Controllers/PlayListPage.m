@@ -104,11 +104,26 @@
 {
     [self.playList insertObject:courseDetails atIndex:0];
     self.courseListPage.courseList = self.playList;
-
+    
     LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
     lmc.parent = courseDetails.course;
     self.playerView.localMediaContent = lmc;
     [self.playerView play];
+}
+
+-(void)addCourseDetailsListToBeginning:(NSMutableArray *)courseDetailsList
+{
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
+                           NSMakeRange(0,courseDetailsList.count)];
+    [self.playList insertObjects:courseDetailsList atIndexes:indexes];
+    self.courseListPage.courseList = self.playList;
+    if(courseDetailsList.count == self.playList.count) {
+        CourseDetails* courseDetails = [courseDetailsList objectAtIndex:0];
+        LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
+        lmc.parent = courseDetails.course;
+        self.playerView.localMediaContent = lmc;
+        [self.playerView play];
+    }
 }
 
 -(void)setPlayList:(NSMutableArray *)playList {

@@ -16,5 +16,6 @@
 -(void)addCourseDetails:(CourseDetails*)courseDetails;
 -(void)addCourseDetailsToBeginning:(CourseDetails*)courseDetails;
 -(void)addCourseDetailsList:(NSMutableArray*)courseDetailsList;
+-(void)addCourseDetailsListToBeginning:(NSMutableArray*)courseDetailsList;
 
 @end
