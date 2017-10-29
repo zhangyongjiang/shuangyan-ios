@@ -169,6 +169,10 @@
 
     CourseDetails* courseDetails = [holder objectAtIndex:0];
     LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
+    if(lmc == NULL && courseDetails.course.content.length>0) {
+            lmc = [LocalMediaContent localMediaContentWithText:courseDetails.course.content];
+    }
+
     lmc.parent = courseDetails.course;
     self.playerView.localMediaContent = lmc;
     [self.playerView play];

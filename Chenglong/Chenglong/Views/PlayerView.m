@@ -60,6 +60,7 @@
 
 -(void) play
 {
+    self.controlView.hidden = YES;
     self.containerView.localMediaContent = self.localMediaContent;
     [self.containerView play];
     [self.controlView showPauseButton];
