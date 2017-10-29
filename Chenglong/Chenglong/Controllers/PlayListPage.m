@@ -57,7 +57,7 @@
     CourseDetails* next = noti.object;
     LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
     if(lmc == NULL)
-        lmc = [LocalMediaContent localMediaContentWithText:next.course.title];
+        lmc = [LocalMediaContent localMediaContentWithText:next.course.content];
     lmc.parent = next.course;
     self.playerView.localMediaContent = lmc;
     [self.playerView play];

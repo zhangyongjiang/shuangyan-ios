@@ -21,10 +21,10 @@
 
     CGRect rect = self.view.bounds;
     rect.size.height -= 64;
+    [self addTopRightMenu];
+
     self.page = [[PlayListPage alloc] initWithFrame:rect];
     [self.view addSubview:self.page];
-    
-    [self addTopRightMenu];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseAppendNotiHandler:) name:NotificationPlayCourseAppend object:nil];
@@ -35,6 +35,8 @@
 
 -(void)toggleFullscreen:(NSNotification*)noti
 {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    return;
     NSNumber* number = noti.object;
     BOOL fullscreen = number.boolValue;
     if(fullscreen) {

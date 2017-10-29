@@ -59,6 +59,7 @@
     [self.btnPlay autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:1];
     [self.btnPlay autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [self.btnPlay addTarget:self action:@selector(playCourse:)];
+    self.btnPlay.hidden = YES;
     
     self.btnSelect = [UIButton new];
     [self.btnSelect setImage:[UIImage imageNamed:@"ic_check_gray"] forState:UIControlStateNormal];
@@ -76,6 +77,7 @@
     [self.btnPlayList autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [self.btnPlayList autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.btnPlay];
     [self.btnPlayList addTarget:self action:@selector(addToPlayList:)];
+    self.btnPlayList.hidden = YES;
     
     return self;
 }

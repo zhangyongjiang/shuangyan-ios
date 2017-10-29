@@ -17,6 +17,8 @@
 
 -(id)init {
     self = [super init];
+    self.navigationBar.hidden = YES;
+    
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"播放" image:[[UIImage imageNamed:@"tab_btn_city_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_btn_city_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     self.tabBarItem.imageInsets = UIEdgeInsetsMake(-4, 0, 4, 0);
     
