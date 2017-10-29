@@ -17,4 +17,6 @@
 @property(strong, nonatomic) CourseDetails* parent;
 @property(assign, nonatomic) BOOL selected;
 
+-(void)sortChild;
+
 @end

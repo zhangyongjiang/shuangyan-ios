@@ -212,6 +212,7 @@
 
 -(void)showPage {
     [CourseApi CourseAPI_ListUserCourseTree:self.userId onSuccess:^(CourseDetails *resp) {
+        [resp sortChild];
         resp.course = [Course new];
         resp.course.isDir = [NSNumber numberWithInteger:1];
         
