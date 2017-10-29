@@ -26,8 +26,6 @@
     self.fullscreen = NO;
     
     self.playerView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75)];
-    [self.playerView.controlView.btnRepeat addTarget:self action:@selector(toggleRepeat)];
-    [self.playerView.controlView.btnFullScreen addTarget:self action:@selector(toggleFullscreen)];
     [self addSubview:self.playerView];
     
     self.courseListPage = [[CourseListPage alloc] initWithFrame:CGRectMake(0, self.playerView.bottom, self.playerView.width, self.height-self.playerView.height)];
@@ -35,6 +33,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseReplay:) name:NotificationCourseReplay object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen) name:NotificationFullscreen object:nil]; 
 
     return self;
 }
@@ -51,29 +50,14 @@
         self.playerView.frame = CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75);
         self.courseListPage.hidden = NO;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:[NSNumber numberWithBool:self.fullscreen]];
-}
-
--(void)toggleRepeat
-{
-    if(self.repeat == RepeatNone) {
-        self.repeat = RepeatOne;
-        self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_one"];
-    }
-    else if (self.repeat == RepeatAll) {
-        self.repeat = RepeatNone;
-        self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat"];
-    }
-    else if (self.repeat == RepeatOne) {
-        self.repeat = RepeatAll;
-        self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_repeat"];
-    }
 }
 
 -(void)courseReplay:(NSNotification*)noti
 {
     CourseDetails* next = noti.object;
     LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
+    if(lmc == NULL)
+        lmc = [LocalMediaContent localMediaContentWithText:next.course.title];
     lmc.parent = next.course;
     self.playerView.localMediaContent = lmc;
     [self.playerView play];

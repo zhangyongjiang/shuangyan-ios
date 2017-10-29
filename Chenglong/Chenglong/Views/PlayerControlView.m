@@ -10,6 +10,8 @@
 
 @interface PlayerControlView()
 
+@property(assign, nonatomic) int repeat;
+@property(assign, nonatomic) BOOL fullscreen;
 
 @end
 
@@ -27,6 +29,7 @@
     [self.btnPlayPause autoCenterInSuperview];
     [self.btnPlayPause autoSetDimensionsToSize:CGSizeMake(size, size)];
     [self.btnPlayPause addTarget:self action:@selector(playPauseBtnClicked:)];
+    [self showPlayButton];
 
     self.btnPrev = [UIImageView new];
     self.btnPrev.contentMode = UIViewContentModeScaleAspectFit;
@@ -53,7 +56,8 @@
     [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeTop];
     [self.btnFullScreen autoSetDimensionsToSize:CGSizeMake(size, size)];
-    
+    [self.btnFullScreen addTarget:self action:@selector(toggleFullscreen)];
+
     self.btnRepeat = [UIImageView new];
     self.btnRepeat.contentMode = UIViewContentModeScaleAspectFit;
     self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat"];
@@ -61,7 +65,8 @@
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeBottom];
     [self.btnRepeat autoSetDimensionsToSize:CGSizeMake(size, size)];
-    
+    [self.btnRepeat addTarget:self action:@selector(toggleRepeat)];
+
     self.slider = [UISlider new];
 //    [self.slider setThumbImage:[self imageFromColor:[UIColor blackColor]] forState:UIControlStateNormal];
 //    [self.slider setMinimumValueImage:[UIImage new]];
@@ -96,24 +101,40 @@
 //    [self.labelCurrentTime autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:5];
 //    [self.labelCurrentTime autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
 
-    [self showPlayButton];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playStartNotiHandler:) name:NotificationPlayStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
 
     return self;
 }
 
+-(void)toggleFullscreen
+{
+    self.fullscreen = !self.fullscreen;
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:[NSNumber numberWithBool:self.fullscreen]];
+}
+
 -(void)playStartNotiHandler:(NSNotification*)noti {
     CGFloat duration = MediaPlayer.shared.currentTaskDuration;
     self.slider.maximumValue = duration;
     self.labelTotalTime.text = [self secondToDuration:duration];
+    [self showPauseButton];
 }
 
 -(void)playingNotiHandler:(NSNotification*)noti {
     CGFloat currentTime = MediaPlayer.shared.currentTime;
     self.slider.value = currentTime;
     self.labelCurrentTime.text = [self secondToDuration:currentTime];
+
+    static BOOL hiding = NO;
+    if (self.hidden || hiding)
+        return;
+    hiding = YES;
+    WeakSelf(weakSelf)
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if([MediaPlayer shared].isAvplayerPlaying)
+            weakSelf.hidden = YES;
+        hiding = NO;
+    });
 }
 
 -(NSString*)secondToDuration:(CGFloat)seconds {
@@ -161,6 +182,22 @@
 
 -(void)sliderValueChanged:(UISlider *)sender {
     [MediaPlayer.shared setCurrentTime:sender.value ];
+}
+
+-(void)toggleRepeat
+{
+    if(self.repeat == RepeatNone) {
+        self.repeat = RepeatOne;
+        self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_one"];
+    }
+    else if (self.repeat == RepeatAll) {
+        self.repeat = RepeatNone;
+        self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat"];
+    }
+    else if (self.repeat == RepeatOne) {
+        self.repeat = RepeatAll;
+        self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat"];
+    }
 }
 
 @end
