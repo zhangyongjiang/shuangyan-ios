@@ -43,7 +43,8 @@
 
 -(void)playingNotiHandler:(NSNotification*)noti
 {
-    self.coverImageView.hidden = YES;
+    if(self.localMediaContent.isVideo)
+        self.coverImageView.hidden = YES;
     [SVProgressHUD dismiss];
 }
 
@@ -134,7 +135,10 @@
 
 -(void)play {
     MediaPlayer* player = [MediaPlayer shared];
-    player.attachedView = self;
+    if(self.localMediaContent.isVideo)
+        player.attachedView = self;
+    else
+        [self showAudioCoverImage];
     PlayTask* task = [[PlayTask alloc] init];
     task.localMediaContent = self.localMediaContent;
     [player playTask:task];
@@ -231,10 +235,18 @@
     [SVProgressHUD dismiss];
 }
 
+-(void)showAudioCoverImage
+{
+    self.coverImageView.image = [UIImage imageNamed:@"ic_audiotrack_white"];
+    self.coverImageView.hidden = NO;
+}
+
 -(void)showCoverImage
 {
     if(self.localMediaContent.isVideo)
         [self showVideoCoverImage];
+    else if(self.localMediaContent.isAudio)
+        [self showAudioCoverImage];
     else
         self.coverImageView.hidden = NO;
     [[MediaPlayer shared] setCurrentTime:0];

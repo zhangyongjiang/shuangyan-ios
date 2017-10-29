@@ -57,16 +57,16 @@
 -(void)toggleRepeat
 {
     if(self.repeat == RepeatNone) {
-        self.repeat = RepeatAll;
-        self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_repeat"];
-    }
-    else if (self.repeat == RepeatAll) {
         self.repeat = RepeatOne;
         self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_one"];
     }
-    else if (self.repeat == RepeatOne) {
+    else if (self.repeat == RepeatAll) {
         self.repeat = RepeatNone;
         self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat"];
+    }
+    else if (self.repeat == RepeatOne) {
+        self.repeat = RepeatAll;
+        self.playerView.controlView.btnRepeat.image = [UIImage imageNamed:@"ic_repeat"];
     }
 }
 
