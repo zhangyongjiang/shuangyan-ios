@@ -14,6 +14,7 @@
 @property(strong, nonatomic)PlayerView* playerView;
 @property(strong, nonatomic)CourseListPage* courseListPage;
 @property(assign, nonatomic)int repeat;
+@property(assign, nonatomic)BOOL fullscreen;
 
 @end
 
@@ -40,13 +41,14 @@
 
 -(void)toggleFullscreen
 {
-    self.fullscreen = !self.fullscreen;
     if ([AppDelegate isLandscape])
         return;
-    if(self.fullscreen) {
+    if(!self.fullscreen) {
+        self.fullscreen = YES;
         self.playerView.frame = self.bounds;
         self.courseListPage.hidden = YES;
     } else {
+        self.fullscreen = NO;
         self.playerView.frame = CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75);
         self.courseListPage.hidden = NO;
     }

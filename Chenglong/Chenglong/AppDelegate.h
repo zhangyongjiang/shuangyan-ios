@@ -17,6 +17,7 @@
 
 +(AppDelegate*)appDelegate;
 +(NSString*)userAccessToken;
++ (NSString*)appendAccessTokenToUrl:(NSString*)url;
 +(BOOL)isLandscape;
 
 @end

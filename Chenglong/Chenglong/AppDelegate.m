@@ -175,6 +175,14 @@
     return del;
 }
 
++ (NSString*)appendAccessTokenToUrl:(NSString*)url {
+    NSString* op = @"?";
+    if([url containsString:@"?"]) {
+        op = @"&";
+    }
+    return [NSString stringWithFormat:@"%@%@access_token=%@", url, op, [AppDelegate userAccessToken]];
+}
+
 + (NSString*)userAccessToken {
     NSString* token = [Lockbox stringForKey:kOauthTokenKey];
     

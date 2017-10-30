@@ -12,7 +12,6 @@
 @interface PlayListPage : Page
 
 @property(strong, nonatomic) NSMutableArray* playList;
-@property(assign, nonatomic)BOOL fullscreen;
 
 -(void)addCourseDetails:(CourseDetails*)courseDetails;
 -(void)addCourseDetailsToBeginning:(CourseDetails*)courseDetails;

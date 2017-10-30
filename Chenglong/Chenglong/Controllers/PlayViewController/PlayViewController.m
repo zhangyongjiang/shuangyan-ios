@@ -35,11 +35,9 @@
 
 -(void)toggleFullscreen:(NSNotification*)noti
 {
-    NSNumber* number = noti.object;
-    BOOL fullscreen = number.boolValue;
-    if(fullscreen) {
-        if([AppDelegate isLandscape])
-            return;
+    if([AppDelegate isLandscape])
+        return;
+    if(!self.navigationController.navigationBar.hidden) {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:YES];

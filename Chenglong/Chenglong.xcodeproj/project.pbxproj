@@ -244,6 +244,7 @@
 		AD607E401FA3966B00A9C333 /* CourseListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E3D1FA3966B00A9C333 /* CourseListPage.m */; };
 		AD607E411FA3966B00A9C333 /* CourseListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E3F1FA3966B00A9C333 /* CourseListTableViewCell.m */; };
 		AD607E441FA3973E00A9C333 /* CourseListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E431FA3973E00A9C333 /* CourseListItemView.m */; };
+		AD607E4B1FA789C300A9C333 /* PdfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E4A1FA789C300A9C333 /* PdfViewController.m */; };
 		AD666AAC1F4E57FE004F3C9D /* PlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD666AAB1F4E57FE004F3C9D /* PlayerControlView.m */; };
 		AD666AB01F4E6C9B004F3C9D /* button-pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD666AAD1F4E6C9B004F3C9D /* button-pause@2x.png */; };
 		AD666AB11F4E6C9B004F3C9D /* button-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD666AAE1F4E6C9B004F3C9D /* button-play@2x.png */; };
@@ -755,6 +756,8 @@
 		AD607E3F1FA3966B00A9C333 /* CourseListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListTableViewCell.m; sourceTree = "<group>"; };
 		AD607E421FA3973E00A9C333 /* CourseListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListItemView.h; sourceTree = "<group>"; };
 		AD607E431FA3973E00A9C333 /* CourseListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListItemView.m; sourceTree = "<group>"; };
+		AD607E491FA789C300A9C333 /* PdfViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PdfViewController.h; sourceTree = "<group>"; };
+		AD607E4A1FA789C300A9C333 /* PdfViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PdfViewController.m; sourceTree = "<group>"; };
 		AD666AAA1F4E57FE004F3C9D /* PlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControlView.h; sourceTree = "<group>"; };
 		AD666AAB1F4E57FE004F3C9D /* PlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlView.m; sourceTree = "<group>"; };
 		AD666AAD1F4E6C9B004F3C9D /* button-pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-pause@2x.png"; sourceTree = "<group>"; };
@@ -1425,6 +1428,7 @@
 		AD49D7681F096CE5000D0E1B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD607E481FA789AE00A9C333 /* PdfViewController */,
 				AD6A67061F962AF8000A97BD /* PlayViewController */,
 				AD8949561F28F21300C024F8 /* CourseTreeViewController */,
 				AD49D7691F096CE5000D0E1B /* CommunityFiles */,
@@ -1825,6 +1829,15 @@
 				AD607E3F1FA3966B00A9C333 /* CourseListTableViewCell.m */,
 			);
 			path = CourseList;
+			sourceTree = "<group>";
+		};
+		AD607E481FA789AE00A9C333 /* PdfViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AD607E491FA789C300A9C333 /* PdfViewController.h */,
+				AD607E4A1FA789C300A9C333 /* PdfViewController.m */,
+			);
+			path = PdfViewController;
 			sourceTree = "<group>";
 		};
 		AD6A67061F962AF8000A97BD /* PlayViewController */ = {
@@ -2319,6 +2332,7 @@
 				030049791E0E5F61006EDC29 /* MoneyFlowList.m in Sources */,
 				AD666CB21F00BFD000D3F18E /* UserView.m in Sources */,
 				0300497A1E0E5F61006EDC29 /* MoneyRequest.m in Sources */,
+				AD607E4B1FA789C300A9C333 /* PdfViewController.m in Sources */,
 				AD49D82A1F096CE5000D0E1B /* TotalFileHeaderView.m in Sources */,
 				030049611E0E5F60006EDC29 /* BusinessList.m in Sources */,
 				AD3062131F5B9050006E6675 /* GalleryCollectionView.m in Sources */,

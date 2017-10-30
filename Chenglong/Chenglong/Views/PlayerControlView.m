@@ -11,7 +11,6 @@
 @interface PlayerControlView()
 
 @property(assign, nonatomic) int repeat;
-@property(assign, nonatomic) BOOL fullscreen;
 
 @end
 
@@ -109,8 +108,7 @@
 
 -(void)toggleFullscreen
 {
-    self.fullscreen = !self.fullscreen;
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:[NSNumber numberWithBool:self.fullscreen]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:nil];
 }
 
 -(void)playStartNotiHandler:(NSNotification*)noti {
