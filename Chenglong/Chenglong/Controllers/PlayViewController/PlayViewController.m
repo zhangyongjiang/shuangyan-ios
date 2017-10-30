@@ -35,13 +35,15 @@
 
 -(void)toggleFullscreen:(NSNotification*)noti
 {
+    static BOOL fullscreen = NO;
     if([AppDelegate isLandscape])
         return;
-    if(!self.navigationController.navigationBar.hidden) {
+    if(!fullscreen) {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
+    fullscreen = !fullscreen;
 }
 
 -(NSMutableArray*)getTopRightMenuItems {
