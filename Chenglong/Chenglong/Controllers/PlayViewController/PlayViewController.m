@@ -35,8 +35,6 @@
 
 -(void)toggleFullscreen:(NSNotification*)noti
 {
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    return;
     NSNumber* number = noti.object;
     BOOL fullscreen = number.boolValue;
     if(fullscreen) {
@@ -48,7 +46,6 @@
     }
 }
 
-    
 -(NSMutableArray*)getTopRightMenuItems {
     NSMutableArray* menuItems = [[NSMutableArray alloc] init];
     [menuItems addObject:[[MenuItem alloc] initWithText:@"清除" andImgName:@"ic_clear"]] ;
