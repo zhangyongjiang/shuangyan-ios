@@ -31,7 +31,7 @@
 -(void)playStart:(NSNotification*)noti
 {
     PlayTask* task = noti.object;
-    Course* course = task.localMediaContent.parent;
+    Course* course = task.courseDetails.course;
     for(int i=0; i<self.courseList.count; i++) {
         CourseDetails* cd = [self.courseList objectAtIndex:i];
         if ([cd.course.id isEqualToString:course.id]) {

@@ -28,9 +28,9 @@
     return self;
 }
 
--(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent
+-(void)setCourseDetails:(CourseDetails *)courseDetails
 {
-    _localMediaContent = localMediaContent;
-    self.mediaContentView.localMediaContent = localMediaContent;
+    _courseDetails = courseDetails;
+    self.mediaContentView.courseDetails = courseDetails;
 }
 @end

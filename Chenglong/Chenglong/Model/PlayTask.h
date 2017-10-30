@@ -10,7 +10,7 @@
 
 @interface PlayTask : NSObject
 
-@property(strong, nonatomic)LocalMediaContent* localMediaContent;
+@property(strong, nonatomic)CourseDetails* courseDetails;
 @property(assign, nonatomic)BOOL repeat;
 @property(strong, nonatomic)AVPlayerItem* item;
 

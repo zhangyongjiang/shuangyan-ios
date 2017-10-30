@@ -29,7 +29,7 @@
 
 -(void) play
 {
-    self.containerView.localMediaContent = self.courseDetails;
+    self.containerView.courseDetails = self.courseDetails;
     [self.containerView play];
 }
 

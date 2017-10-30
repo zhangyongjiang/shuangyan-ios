@@ -43,16 +43,16 @@
 -(void)play {
     BOOL remote = YES;
     if(remote) {
-        NSString* str = self.localMediaContent.url;
+        NSString* str = self.courseDetails.course.localMediaContent.url;
         str = [AppDelegate appendAccessTokenToUrl:str];
         NSURL* url = [NSURL URLWithString:str];
         [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
         return;
     }
     WeakSelf(weakSelf)
-    if(![self.localMediaContent isDownloaded]) {
+    if(![self.courseDetails.course.localMediaContent isDownloaded]) {
         [SVProgressHUD showWithStatus:@"loading ..."];
-        [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
+        [self.courseDetails.course.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
             [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"loading %f ... ", progress]];
         } completionBlock:^(BOOL completed) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -66,7 +66,7 @@
 }
 
 -(void)loadFromLocal {
-    NSURL* url = [NSURL  fileURLWithPath:self.localMediaContent.localFilePath];
+    NSURL* url = [NSURL  fileURLWithPath:self.courseDetails.course.localMediaContent.localFilePath];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 

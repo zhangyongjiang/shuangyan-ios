@@ -62,10 +62,10 @@
 {
     PlayTask* pt = noti.object;
     NSString* title = NULL;
-    if(pt.localMediaContent.parent.title.length>10)
-        title = [pt.localMediaContent.parent.title substringToIndex:10];
+    if(pt.courseDetails.course.title.length>10)
+        title = [pt.courseDetails.course.title substringToIndex:10];
     else
-        title = pt.localMediaContent.parent.title;
+        title = pt.courseDetails.course.title;
     if(![self.title isEqualToString:title]){
         self.title = title;
     }

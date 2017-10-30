@@ -45,11 +45,12 @@
     return self;
 }
 
--(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent
+-(void)setCourseDetails:(CourseDetails *)courseDetails
 {
-    _localMediaContent = localMediaContent;
+    _courseDetails = courseDetails;
     [self.contentView stop];
     
+    LocalMediaContent* localMediaContent = courseDetails.course.localMediaContent;
     if(localMediaContent.isText) {
         self.contentView = self.textView;
     }
@@ -65,7 +66,7 @@
     else if(localMediaContent.isVideo) {
         self.contentView = self.videoView;
     }
-    self.contentView.localMediaContent = localMediaContent;
+    self.contentView.courseDetails = courseDetails;
     [self showView:self.contentView];
 }
 

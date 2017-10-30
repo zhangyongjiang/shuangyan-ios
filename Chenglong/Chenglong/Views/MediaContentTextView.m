@@ -22,7 +22,7 @@
         [self addSubview:self.webView];
         [self.webView autoPinEdgesToSuperviewMargins];
     }
-    NSString* html = self.localMediaContent.content;
+    NSString* html = self.courseDetails.course.content;
     if(![html containsString:@"html"] && ![html containsString:@"HTML"]) {
         html = [html stringByReplacingOccurrencesOfString:@"\n" withString:@"<br/>"];
         html = [NSString stringWithFormat:@"<br/><br/>%@",html];

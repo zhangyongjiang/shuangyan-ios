@@ -61,7 +61,7 @@
 
 -(void)playingNotiHandler:(NSNotification*)noti
 {
-    if(self.localMediaContent.isVideo)
+    if(self.courseDetails.course.localMediaContent.isVideo)
         self.coverImageView.hidden = YES;
     [SVProgressHUD dismiss];
 }
@@ -75,18 +75,18 @@
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     MediaPlayer* player = [MediaPlayer shared];
-    if([player isPlaying:self.localMediaContent]) {
+    if([player isPlaying:self.courseDetails.course.localMediaContent]) {
         [player stop];
     }
 }
 
 -(void)clicked {
-    if ([self.localMediaContent isAudio] || [self.localMediaContent isVideo]) {
+    if ([self.courseDetails.course.localMediaContent isAudio] || [self.courseDetails.course.localMediaContent isVideo]) {
         NSMutableArray* array = [NSMutableArray new];
-        LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
+        LocalMediaContentShard* shard = [self.courseDetails.course.localMediaContent getShard:0];
         if(!shard.isDownloaded)
             [array addObject:shard];
-        LocalMediaContentShard* shardLast = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];
+        LocalMediaContentShard* shardLast = [self.courseDetails.course.localMediaContent getShard:self.courseDetails.course.localMediaContent.numOfShards-1];
         if(!shardLast.isDownloaded)
             [array addObject:shardLast];
         if(array.count > 0) {
@@ -115,11 +115,11 @@
 
 -(void)togglePlay {
     MediaPlayer* player = [MediaPlayer shared];
-    if([player isPlaying:self.localMediaContent] && [player isAvplayerPlaying]) {
+    if([player isPlaying:self.courseDetails.course.localMediaContent] && [player isAvplayerPlaying]) {
         [player pause];
         self.userPlaying = NO;
     }
-    else if([player isPlaying:self.localMediaContent]) {
+    else if([player isPlaying:self.courseDetails.course.localMediaContent]) {
         [player setAttachedView:self];
         [player resume];
         self.userPlaying = YES;
@@ -127,7 +127,7 @@
     else {
         player.attachedView = self;
         PlayTask* task = [[PlayTask alloc] init];
-        task.localMediaContent = self.localMediaContent;
+        task.courseDetails = self.courseDetails;
         [player playTask:task];
         self.userPlaying = YES;
     }
@@ -153,22 +153,22 @@
 
 -(void)play {
     MediaPlayer* player = [MediaPlayer shared];
-    if(self.localMediaContent.isVideo)
+    if(self.courseDetails.course.localMediaContent.isVideo)
         player.attachedView = self;
     else
         [self showAudioCoverImage];
     PlayTask* task = [[PlayTask alloc] init];
-    task.localMediaContent = self.localMediaContent;
+    task.courseDetails = self.courseDetails;
     [player playTask:task];
     self.userPlaying = YES;
-    if(!self.localMediaContent.isDownloaded) {
+    if(!self.courseDetails.course.localMediaContent.isDownloaded) {
         [SVProgressHUD show];
     }
 }
 
 -(BOOL)isPlaying {
     MediaPlayer* player = [MediaPlayer shared];
-    return [player isPlaying:self.localMediaContent] && [player isAvplayerPlaying];
+    return [player isPlaying:self.courseDetails.course.localMediaContent] && [player isAvplayerPlaying];
 }
 
 -(void)layoutSubviews {
@@ -181,9 +181,9 @@
 //        self.backgroundColor = [UIColor whiteColor];
 }
 
--(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
+-(void)setCourseDetails:(CourseDetails *)courseDetails {
     MediaPlayer* player = [MediaPlayer shared];
-    [super setLocalMediaContent:localMediaContent];
+    [super setCourseDetails:courseDetails];
     [player stop];
     player = nil;
     self.coverImageView.hidden = NO;
@@ -194,7 +194,7 @@
 {
     WeakSelf(weakSelf)
     
-    LocalMediaContentShard* shard = [self.localMediaContent getShard:0];
+    LocalMediaContentShard* shard = [self.courseDetails.course.localMediaContent getShard:0];
     if(!shard.isDownloaded) {
         [SVProgressHUD show];
         [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
@@ -205,7 +205,7 @@
         return;
     }
     
-    shard = [self.localMediaContent getShard:self.localMediaContent.numOfShards-1];
+    shard = [self.courseDetails.course.localMediaContent getShard:self.courseDetails.course.localMediaContent.numOfShards-1];
     if(!shard.isDownloaded) {
         [SVProgressHUD show];
         [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
@@ -216,14 +216,14 @@
         return;
     }
     
-    UIImage *image = [self.localMediaContent getPlaceholderImageForVideo];
+    UIImage *image = [self.courseDetails.course.localMediaContent getPlaceholderImageForVideo];
     if(image) {
         self.coverImageView.image = image;
         self.coverImageView.hidden = NO;
         return;
     }
 
-    shard = [self.localMediaContent getShard:self.localMediaContent.numOfShards-2];
+    shard = [self.courseDetails.course.localMediaContent getShard:self.courseDetails.course.localMediaContent.numOfShards-2];
     if(!shard.isDownloaded) {
         [SVProgressHUD show];
         [shard downloadWithProgressBlock:^(LocalMediaContentShard *shard, CGFloat progress) {
@@ -234,9 +234,9 @@
         return;
     }
 
-    int maxShard = self.localMediaContent.numOfShards-1;
+    int maxShard = self.courseDetails.course.localMediaContent.numOfShards-1;
     for(int i=1; i<maxShard;i++) {
-        shard = [self.localMediaContent getShard:i];
+        shard = [self.courseDetails.course.localMediaContent getShard:i];
         if(shard.isDownloaded) {
             continue;
         }
@@ -261,9 +261,9 @@
 
 -(void)showCoverImage
 {
-    if(self.localMediaContent.isVideo)
+    if(self.courseDetails.course.localMediaContent.isVideo)
         [self showVideoCoverImage];
-    else if(self.localMediaContent.isAudio)
+    else if(self.courseDetails.course.localMediaContent.isAudio)
         [self showAudioCoverImage];
     else
         self.coverImageView.hidden = NO;

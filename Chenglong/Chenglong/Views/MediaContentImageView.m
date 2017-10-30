@@ -19,10 +19,10 @@
 }
 
 -(void)play {
-    if(![self.localMediaContent isDownloaded]) {
+    if(![self.courseDetails.course.localMediaContent isDownloaded]) {
         WeakSelf(weakSelf)
         [SVProgressHUD showWithStatus:@"loading ..."];
-        [self.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
+        [self.courseDetails.course.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
             [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"loading %0.2f%% ... ", progress*100.]];
         } completionBlock:^(BOOL completed) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -43,7 +43,7 @@
         [self addSubview:self.imgView];
     }
     
-    UIImage* img = [UIImage imageWithContentsOfFile:self.localMediaContent.localFilePath];
+    UIImage* img = [UIImage imageWithContentsOfFile:self.courseDetails.course.localMediaContent.localFilePath];
     self.imgView.image = img;
     [self layoutSubviews];
 }
@@ -65,12 +65,6 @@
         CGFloat x = (self.width - w)/2.;
         self.imgView.frame = CGRectMake(x, 0, w, h);
     }
-}
-
--(void)setLocalMediaContent:(LocalMediaContent *)mediaContent {
-    [super setLocalMediaContent:mediaContent];
-//    if([mediaContent isDownloaded])
-//        self.btnDownload.hidden = YES;
 }
 
 @end

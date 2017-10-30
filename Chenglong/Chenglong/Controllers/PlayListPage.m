@@ -63,10 +63,11 @@
 
 -(void)playEnd:(NSNotification*)noti
 {
-    LocalMediaContent* task = noti.object;
+    CourseDetails* task = noti.object;
     for (int i=self.playList.count-1; i>=0; i--) {
         CourseDetails* item = [self.playList objectAtIndex:i];
-        if([item.course.id isEqualToString:task.parent.id]) {
+        Course* parent = task.course;
+        if([item.course.id isEqualToString:parent.id]) {
             if(self.repeat == RepeatOne) {
                 CourseDetails* next = [self.playList objectAtIndex:i];
                 self.playerView.courseDetails = next;

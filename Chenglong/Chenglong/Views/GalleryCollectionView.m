@@ -57,10 +57,7 @@
 
 -(void)addCourseDetails:(CourseDetails*)courseDetails
 {
-    if(courseDetails.course.content.length>0) {
-        [self.mediaContents addObject:[LocalMediaContent localMediaContentWithText:courseDetails.course.content]];
-    }
-    [self.mediaContents addObjectsFromArray:self.courseDetails.course.resources];
+    [self.mediaContents addObject:courseDetails];
     for (CourseDetails* child in courseDetails.items) {
         [self addCourseDetails:child];
     }
@@ -73,8 +70,8 @@
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GalleryCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:GALLERYCOLLECTIONVIEWCELLID forIndexPath:indexPath];
-    LocalMediaContent* mc = [self.mediaContents objectAtIndex:indexPath.section];
-    cell.localMediaContent = mc;
+    CourseDetails* mc = [self.mediaContents objectAtIndex:indexPath.section];
+    cell.courseDetails = mc;
     return cell;
 }
 

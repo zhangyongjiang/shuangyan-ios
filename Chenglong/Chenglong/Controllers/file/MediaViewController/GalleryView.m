@@ -185,15 +185,11 @@
         LocalMediaContent* mc = [LocalMediaContent new];
         mc.contentType = @"text";
         mc.content = content;
-        mc.parent = courseDetails.course;
         [self.mediaContents addObject:mc];
     }
     
     if(mediaContents) {
         [self.mediaContents addObjectsFromArray:mediaContents];
-        for(LocalMediaContent* lmc in mediaContents) {
-            lmc.parent = courseDetails.course;
-        }
     }
     
     for (CourseDetails* child in courseDetails.items) {
@@ -209,8 +205,8 @@
 
 -(void)showPage:(int)index {
     currentPlay = index;
-    LocalMediaContent* mc = [self.mediaContents objectAtIndex:index];
-    self.containerView.localMediaContent = mc;
+    CourseDetails* mc = [self.mediaContents objectAtIndex:index];
+    self.containerView.courseDetails = mc;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRadioValueChanged object:self];
 }
 

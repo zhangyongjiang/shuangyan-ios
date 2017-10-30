@@ -11,7 +11,7 @@
 
 @interface MediaContentViewContailer : BaseView
 
-@property(strong, nonatomic)LocalMediaContent* localMediaContent;
+@property(strong, nonatomic)CourseDetails* courseDetails;
 
 -(void)play;
 -(void)stop;

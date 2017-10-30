@@ -7,6 +7,7 @@
 //
 
 #import "MediaContent.h"
+#import "Course.h"
 #import <AVFoundation/AVFoundation.h>
 
 typedef void(^ProgressCallback)(CGFloat progress);
@@ -18,7 +19,6 @@ typedef void(^CompletionCallback)(BOOL completed);
 @property(copy, nonatomic)ProgressCallback progressBlock;
 @property(copy, nonatomic)CompletionCallback completionBlock;
 @property(strong, nonatomic)NSMutableDictionary* shards;
-@property(weak, nonatomic)Course* parent;
 
 -(BOOL)isDownloaded;
 -(long)currentLocalFileLength;

@@ -1,7 +1,7 @@
 /*Auto generated file. Do not modify. Wed Jan 11 15:45:26 CST 2017 */
 
 #import "Data.h"
-#import "MediaContent.h"
+#import "LocalMediaContent.h"
 
 @interface Course : Data
 
@@ -21,4 +21,11 @@
 @property(strong, nonatomic) NSNumber* value;
 @property(strong, nonatomic) NSString* originalCourseId;
 
+-(BOOL)isAudio;
+-(BOOL)isVideo;
+-(BOOL)isAudioOrVideo;
+-(BOOL)isPdf;
+-(BOOL)isImage;
+-(BOOL)isText;
+-(LocalMediaContent*)localMediaContent;
 @end

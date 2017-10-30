@@ -10,6 +10,6 @@
 
 @interface GalleryCollectionViewCell : UICollectionViewCell
 
-@property(strong, nonatomic)LocalMediaContent* localMediaContent;
+@property(strong, nonatomic)CourseDetails* courseDetails;
 
 @end

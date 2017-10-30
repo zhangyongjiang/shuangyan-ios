@@ -74,11 +74,11 @@ MediaPlayer* gMediaPlayer;
 -(void)playTask:(PlayTask *)task {
     self.playTask = task;
 
-    NSString* ustr = task.localMediaContent.url;
+    NSString* ustr = task.courseDetails.course.localMediaContent.url;
     NSURL* url = NULL;
     BOOL useResourceLoader = YES;
     if(useResourceLoader) {
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.localMediaContent.localFilePath]];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"course://%@", task.courseDetails.course.localMediaContent.localFilePath]];
     }
     else {
         if([ustr containsString:@"aliyuncs.com"])
@@ -89,7 +89,7 @@ MediaPlayer* gMediaPlayer;
     NSLog(@"play content at %@", url);
 
         __block AVURLAsset* asset = [AVURLAsset assetWithURL:url];
-        [asset.resourceLoader setDelegate:task.localMediaContent queue:TWRDownloadManager.queue];
+        [asset.resourceLoader setDelegate:task.courseDetails.course.localMediaContent queue:TWRDownloadManager.queue];
         NSArray *keys = @[@"playable", @"tracks",@"duration" ];
         [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^()
          {
@@ -139,7 +139,7 @@ MediaPlayer* gMediaPlayer;
     if(t.timescale > 0)
         return t.value / t.timescale;
     
-    t = self.playTask.localMediaContent.duration;
+    t = self.playTask.courseDetails.course.localMediaContent.duration;
     return t.value / t.timescale;
 }
 
@@ -157,7 +157,7 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(BOOL)isPlaying:(LocalMediaContent*)mc {
-    if(![self.playTask.localMediaContent.path isEqualToString:mc.path])
+    if(![self.playTask.courseDetails.course.localMediaContent.path isEqualToString:mc.path])
         return NO;
 
     return YES;
@@ -208,7 +208,7 @@ MediaPlayer* gMediaPlayer;
 -(void)playerDidFinishPlaying:(NSNotification*)noti
 {
     NSLog(@"playerDidFinishPlaying");
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask.localMediaContent];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask.courseDetails];
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {

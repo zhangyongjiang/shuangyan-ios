@@ -10,13 +10,12 @@
 
 @interface MediaConentView : BaseView
 
-@property(strong, nonatomic) LocalMediaContent* localMediaContent;
+@property(strong, nonatomic) CourseDetails* courseDetails;
 
-+(MediaConentView*) createViewForMediaContent:(LocalMediaContent*)localMediaContent;
++(MediaConentView*) createViewForCourseDetails:(CourseDetails*)courseDetails;
 
 -(void)stop;
 -(void)play;
--(void)destroy;
 -(void)showCoverImage;
 
 @end

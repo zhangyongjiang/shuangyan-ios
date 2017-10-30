@@ -32,7 +32,6 @@
 {
     for (MediaConentView* view in self.mediaContentViews) {
         [view removeFromSuperview];
-        [view destroy];
     }
 }
 
@@ -67,16 +66,15 @@
     CGFloat y = self.labelDesc.bottom;
     if(y>0.1)
         y += Margin;
-    WeakSelf(weakSelf)
-    for (MediaContent* mc in self.courseDetails.course.resources) {
-        MediaConentView* view = [MediaConentView createViewForMediaContent:mc];
-        if(view) {
-            view.y = y;
-            [self.scrollView addSubview:view];
-            y = y + view.height + Margin;
-            [self.mediaContentViews addObject:view];
-        }
+
+    MediaConentView* view = [MediaConentView createViewForCourseDetails:self.courseDetails];
+    if(view) {
+        view.y = y;
+        [self.scrollView addSubview:view];
+        y = y + view.height + Margin;
+        [self.mediaContentViews addObject:view];
     }
+
     self.scrollView.contentSize = CGSizeMake(self.width, y+128);
 }
 

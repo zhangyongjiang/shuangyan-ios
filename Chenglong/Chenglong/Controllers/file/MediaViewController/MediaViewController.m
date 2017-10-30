@@ -38,8 +38,8 @@
 -(void)playingNotiHandler:(NSNotification*)noti
 {
     PlayTask* pt = noti.object;
-    if(![self.title isEqualToString:pt.localMediaContent.parent.title])
-        self.title = pt.localMediaContent.parent.title;
+    if(![self.title isEqualToString:pt.courseDetails.course.title])
+        self.title = pt.courseDetails.course.title;
 }
 
 -(NSMutableArray*)getTopRightMenuItems

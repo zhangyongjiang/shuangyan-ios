@@ -34,29 +34,29 @@
 -(void)play {
 }
 
-+(MediaConentView*) createViewForMediaContent:(LocalMediaContent*)localMediaContent {
++(MediaConentView*) createViewForCourseDetails:(CourseDetails *)courseDetails {
     MediaConentView* view;
-    if([localMediaContent isImage]) {
+    if([courseDetails.course isImage]) {
         view = [[MediaContentImageView alloc] init];
     }
-    else if([localMediaContent isAudio]) {
+    else if([courseDetails.course isAudio]) {
 //        view = [[MediaContentAudioView alloc] init];
         view = [[MediaContentVideoView alloc] init];
     }
-    else if([localMediaContent isVideo]) {
+    else if([courseDetails.course isVideo]) {
         view = [[MediaContentVideoView alloc] init];
     }
-    else if([localMediaContent isPdf]) {
+    else if([courseDetails.course isPdf]) {
         view = [[MediaContentPdfView alloc] init];
     }
-    else if([localMediaContent isText]) {
+    else if([courseDetails.course isText]) {
         view = [[MediaContentTextView alloc] init];
     }
     else
         return nil;
     view.width = [UIView screenWidth];
     view.height = [UIView screenWidth];
-    view.localMediaContent = localMediaContent;
+    view.courseDetails = courseDetails;
     
     view.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
     view.clipsToBounds = YES;
@@ -67,18 +67,9 @@
     return view;
 }
 
--(void)setLocalMediaContent:(LocalMediaContent *)localMediaContent {
-    _localMediaContent = localMediaContent;
-    BOOL downloaded = [localMediaContent isDownloaded];
-    
-    if(!downloaded) {
-        CGFloat progress = 0.;
-        if(localMediaContent.length.floatValue>1)
-            progress = ((CGFloat)localMediaContent.currentLocalFileLength) /localMediaContent.length.floatValue * 100.;
-    }
-    
-    if (![self.localMediaContent isAudio] &&
-        ![self.localMediaContent isVideo]) {
+-(void)setCourseDetails:(CourseDetails *)courseDetails {
+    _courseDetails = courseDetails;
+    if (![self.courseDetails.course isAudioOrVideo]) {
         [self play];
     }
 }
