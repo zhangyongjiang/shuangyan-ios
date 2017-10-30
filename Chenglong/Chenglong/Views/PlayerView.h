@@ -12,7 +12,7 @@
 
 @interface PlayerView : BaseView
 
-@property(strong, nonatomic) LocalMediaContent* localMediaContent;
+@property(strong, nonatomic) CourseDetails* courseDetails;
 @property(strong, nonatomic) MediaContentViewContailer* containerView;
 
 -(void)play;

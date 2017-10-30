@@ -57,11 +57,7 @@
 -(void)courseReplay:(NSNotification*)noti
 {
     CourseDetails* next = noti.object;
-    LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
-    if(lmc == NULL)
-        lmc = [LocalMediaContent localMediaContentWithText:next.course.content];
-    lmc.parent = next.course;
-    self.playerView.localMediaContent = lmc;
+    self.playerView.courseDetails = next;
     [self.playerView play];
 }
 
@@ -73,9 +69,7 @@
         if([item.course.id isEqualToString:task.parent.id]) {
             if(self.repeat == RepeatOne) {
                 CourseDetails* next = [self.playList objectAtIndex:i];
-                LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
-                lmc.parent = next.course;
-                self.playerView.localMediaContent = lmc;
+                self.playerView.courseDetails = next;
                 [self.playerView play];
                 return;
             }
@@ -88,9 +82,7 @@
                     return;
             }
             CourseDetails* next = [self.playList objectAtIndex:i];
-            LocalMediaContent* lmc = [next.course.resources objectAtIndex:0];
-            lmc.parent = next.course;
-            self.playerView.localMediaContent = lmc;
+            self.playerView.courseDetails = next;
             [self.playerView play];
             return;
         }
@@ -125,9 +117,7 @@
     self.courseListPage.courseList = self.playList;
     if(holder.count == self.playList.count) {
         CourseDetails* courseDetails = [holder objectAtIndex:0];
-        LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
-        lmc.parent = courseDetails.course;
-        self.playerView.localMediaContent = lmc;
+        self.playerView.courseDetails = courseDetails;
         [self.playerView play];
     }
 }
@@ -154,13 +144,7 @@
     self.courseListPage.courseList = self.playList;
 
     CourseDetails* courseDetails = [holder objectAtIndex:0];
-    LocalMediaContent* lmc = [courseDetails.course.resources objectAtIndex:0];
-    if(lmc == NULL && courseDetails.course.content.length>0) {
-            lmc = [LocalMediaContent localMediaContentWithText:courseDetails.course.content];
-    }
-
-    lmc.parent = courseDetails.course;
-    self.playerView.localMediaContent = lmc;
+    self.playerView.courseDetails = courseDetails;
     [self.playerView play];
 }
 
