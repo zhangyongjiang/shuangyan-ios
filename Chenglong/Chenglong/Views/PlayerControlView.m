@@ -196,6 +196,7 @@
         self.repeat = RepeatAll;
         self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat"];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRepeat object:[NSNumber numberWithInt:self.repeat]];
 }
 
 @end

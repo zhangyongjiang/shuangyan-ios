@@ -20,6 +20,7 @@
 
 @property(assign, nonatomic)CGFloat currentTime;
 @property(weak, nonatomic) UIView* attachedView;
+@property (assign, nonatomic) BOOL repeat;
 
 -(void)playTask:(PlayTask *)task;
 -(void)pause;

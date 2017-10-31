@@ -52,16 +52,29 @@ MediaPlayer* gMediaPlayer;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidTokenNoti:) name:NotificationInvalidToken object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repeatNoti:) name:NotificationRepeat object:nil];
 
     return self;
 }
 
--(void)invalidTokenNoti:(CMTime) time
+-(void)invalidTokenNoti:(NSNotification*)noti
 {
     [self stop];
 }
 
--(void)playerNoti:(CMTime) time
+-(void)repeatNoti:(NSNotification*)noti
+{
+    NSNumber* num = noti.object;
+    int repeat = num.intValue;
+    if(repeat == RepeatOne) {
+        self.repeat = YES;
+    }
+    else if(repeat == RepeatNone) {
+        self.repeat = NO;
+    }
+}
+
+-(void)playerNoti:(CMTime)time
 {
     if([self isAvplayerPlaying]) {
        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlaying object:self.playTask];
@@ -208,6 +221,10 @@ MediaPlayer* gMediaPlayer;
 -(void)playerDidFinishPlaying:(NSNotification*)noti
 {
     NSLog(@"playerDidFinishPlaying");
+    if(self.repeat) {
+        [self playTask:self.playTask];
+        return;
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask.courseDetails];
 }
 
