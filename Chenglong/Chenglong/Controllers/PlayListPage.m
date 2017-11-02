@@ -34,9 +34,17 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseReplay:) name:NotificationCourseReplay object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen) name:NotificationFullscreen object:nil]; 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen) name:NotificationFullscreen object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repeatNoti:) name:NotificationRepeat object:nil];
 
     return self;
+}
+
+-(void)repeatNoti:(NSNotification*)noti
+{
+    NSNumber* num = noti.object;
+    int repeat = num.intValue;
+    self.repeat = repeat;
 }
 
 -(void)toggleFullscreen
