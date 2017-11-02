@@ -46,6 +46,7 @@
     UIImage* img = [UIImage imageWithContentsOfFile:self.courseDetails.course.localMediaContent.localFilePath];
     self.imgView.image = img;
     [self layoutSubviews];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayStart object:self.courseDetails];
 }
 
 -(void)layoutSubviews {

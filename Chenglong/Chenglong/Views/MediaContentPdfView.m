@@ -41,6 +41,7 @@
 }
 
 -(void)play {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayStart object:self.courseDetails];
     BOOL remote = YES;
     if(remote) {
         NSString* str = self.courseDetails.course.localMediaContent.url;

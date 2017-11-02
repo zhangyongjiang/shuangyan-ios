@@ -30,8 +30,8 @@
 
 -(void)playStart:(NSNotification*)noti
 {
-    PlayTask* task = noti.object;
-    Course* course = task.courseDetails.course;
+    CourseDetails* cd = noti.object;
+    Course* course = cd.course;
     for(int i=0; i<self.courseList.count; i++) {
         CourseDetails* cd = [self.courseList objectAtIndex:i];
         if ([cd.course.id isEqualToString:course.id]) {

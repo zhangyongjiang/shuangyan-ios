@@ -28,6 +28,7 @@
         html = [NSString stringWithFormat:@"<br/><br/>%@",html];
     }
     [self.webView loadHTMLString:html baseURL:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayStart object:self.courseDetails];
 }
 
 @end

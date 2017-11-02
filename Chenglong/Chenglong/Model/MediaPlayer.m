@@ -123,7 +123,7 @@ MediaPlayer* gMediaPlayer;
                  [self.avplayer replaceCurrentItemWithPlayerItem:item];
                  [self.avplayer play];
                  [self setAttachedView:self.attachedView];
-                 [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayStart object:task];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayStart object:task.courseDetails];
              });
          }];
 }

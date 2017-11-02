@@ -29,7 +29,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseAppendNotiHandler:) name:NotificationPlayCourseAppend object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseListNotiHandler:) name:NotificationPlayCourseList object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlayStart object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playStartNotiHandler:) name:NotificationPlayStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen:) name:NotificationFullscreen object:nil];
 }
 
@@ -58,14 +58,14 @@
     }
 }
 
--(void)playingNotiHandler:(NSNotification*)noti
+-(void)playStartNotiHandler:(NSNotification*)noti
 {
-    PlayTask* pt = noti.object;
+    CourseDetails* cd = noti.object;
     NSString* title = NULL;
-    if(pt.courseDetails.course.title.length>10)
-        title = [pt.courseDetails.course.title substringToIndex:10];
+    if(cd.course.title.length>10)
+        title = [cd.course.title substringToIndex:10];
     else
-        title = pt.courseDetails.course.title;
+        title = cd.course.title;
     if(![self.title isEqualToString:title]){
         self.title = title;
     }

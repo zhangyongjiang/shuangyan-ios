@@ -112,6 +112,9 @@
 }
 
 -(void)playStartNotiHandler:(NSNotification*)noti {
+    CourseDetails* cd = noti.object;
+    if(!cd.course.isAudioOrVideo)
+        return;
     CGFloat duration = MediaPlayer.shared.currentTaskDuration;
     self.slider.maximumValue = duration;
     self.labelTotalTime.text = [self secondToDuration:duration];
