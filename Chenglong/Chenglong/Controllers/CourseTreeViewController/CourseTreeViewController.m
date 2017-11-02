@@ -173,9 +173,7 @@
 }
 
 -(void)playCourse:(CourseDetails*)cd {
-    MediaViewController* c = [MediaViewController new];
-    c.courseDetails = cd;
-    [self.navigationController pushViewController:c animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:cd];
 }
 
 -(void)moveCourse:(CourseDetails*)cd {
