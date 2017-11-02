@@ -109,6 +109,9 @@ static NSInteger kPhotoMaxNumber = 7;
     self.mediaPicker.allowsEditing = NO;
     self.mediaPicker.delegate = self;
     
+    ageContainView.hidden = YES; // hide it for now.
+    _tvContent.height += ageContainView.height;
+
     self.photoViews.frame = CGRectMake(0, ageContainView.bottom + 12, SCREEN_BOUNDS_SIZE_WIDTH, 150.f);
     self.photoViews.collection.delegate = self;
     self.photoViews.collection.dataSource = _mediaAttachmentDataSource;
@@ -124,7 +127,7 @@ static NSInteger kPhotoMaxNumber = 7;
 //照片
 - (void)takePhoto
 {
-    self.mediaPicker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeImage, nil];
+    self.mediaPicker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie, nil];
     [self showPhotoActionSheetWithPhoto:YES];
 //    [UIImagePickerController showImagePickerOptionsFromViewController:[self getCurrentNavController].topViewController cameraSelected:^(UIViewController* controller) {
 //        
@@ -201,7 +204,7 @@ static NSInteger kPhotoMaxNumber = 7;
     if (isPhoto) {
         self.imagePicker = nil;
         self.imagePicker = [[TZImagePickerController alloc] initWithMaxImagesCount:kPhotoMaxNumber - self.mediaAttachmentDataSource.attachments.count delegate:self];
-        self.imagePicker.allowPickingVideo = NO;
+        self.imagePicker.allowPickingVideo = YES;
         [[self getCurrentNavController] presentViewController:self.imagePicker animated:YES completion:nil];
     }else{
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {

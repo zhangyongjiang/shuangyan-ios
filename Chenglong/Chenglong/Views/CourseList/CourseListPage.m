@@ -19,6 +19,11 @@
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+
+    self.layer.borderColor = [UIColor blackColor].CGColor;
+    self.layer.borderWidth = 1;
+//    self.layer.cornerRadius = 6;
+
     self.courseList = [NSMutableArray new];
     
     [_tableView registerClass:[CourseListTableViewCell class] forCellReuseIdentifier:CourseListItemTableViewCellID];
@@ -55,7 +60,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 40;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
