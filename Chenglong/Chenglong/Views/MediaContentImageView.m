@@ -15,7 +15,27 @@
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor blackColor];
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    self.imgView = [UIImageView new];
+    [self.imgView setContentMode:UIViewContentModeScaleAspectFill];
+    [self addSubview:self.imgView];
+
+    CGFloat size = 60;
+    UIImageView* btnFullScreen = [UIImageView new];
+    btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
+    btnFullScreen.image = [UIImage imageNamed:@"ic_fullscreen"];
+    [self addSubview:btnFullScreen];
+    [btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeRight];
+    [btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeTop];
+    [btnFullScreen autoSetDimensionsToSize:CGSizeMake(size, size)];
+    [btnFullScreen addTarget:self action:@selector(toggleFullscreen)];
+    
     return self;
+}
+
+-(void)toggleFullscreen
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:nil];
 }
 
 -(void)play {
@@ -37,12 +57,6 @@
 
 -(void)loadFromLocal
 {
-    if(self.imgView == NULL) {
-        self.imgView = [UIImageView new];
-        [self.imgView setContentMode:UIViewContentModeScaleAspectFill];
-        [self addSubview:self.imgView];
-    }
-    
     UIImage* img = [UIImage imageWithContentsOfFile:self.courseDetails.course.localMediaContent.localFilePath];
     self.imgView.image = img;
     [self layoutSubviews];

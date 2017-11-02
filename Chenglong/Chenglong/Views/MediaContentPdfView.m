@@ -14,7 +14,6 @@
 @implementation MediaContentPdfView
 
 -(id)initWithFrame:(CGRect)frame {
-    CGFloat size = 60;
     self = [super initWithFrame:frame];
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
 
@@ -23,6 +22,7 @@
     [self addSubview:self.webView];
     [self.webView autoPinEdgesToSuperviewMargins];
 
+    CGFloat size = 60;
     UIImageView* btnFullScreen = [UIImageView new];
     btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
     btnFullScreen.image = [UIImage imageNamed:@"ic_fullscreen"];
