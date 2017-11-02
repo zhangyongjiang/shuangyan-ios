@@ -51,7 +51,10 @@
     [self.contentView stop];
     
     LocalMediaContent* localMediaContent = courseDetails.course.localMediaContent;
-    if(localMediaContent.isText) {
+    if(localMediaContent == NULL) {
+        self.contentView = self.textView;
+    }
+    else if(localMediaContent.isText) {
         self.contentView = self.textView;
     }
     else if(localMediaContent.isPdf) {
