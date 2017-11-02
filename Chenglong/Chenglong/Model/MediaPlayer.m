@@ -69,7 +69,7 @@ MediaPlayer* gMediaPlayer;
     if(repeat == RepeatOne) {
         self.repeat = YES;
     }
-    else if(repeat == RepeatNone) {
+    else {
         self.repeat = NO;
     }
 }
