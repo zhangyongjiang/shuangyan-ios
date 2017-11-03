@@ -34,7 +34,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseReplay:) name:NotificationCourseReplay object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen) name:NotificationFullscreen object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen:) name:NotificationFullscreen object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repeatNoti:) name:NotificationRepeat object:nil];
 
     return self;
@@ -47,7 +47,7 @@
     self.repeat = repeat;
 }
 
--(void)toggleFullscreen
+-(void)toggleFullscreen:(NSNotification*)noti
 {
     if ([AppDelegate isLandscape])
         return;
@@ -129,6 +129,7 @@
         self.playerView.courseDetails = courseDetails;
         [self.playerView play];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayMulti object:[NSNumber numberWithBool:self.playList.count>1]];
 }
 
 -(void)addCourseDetails:(CourseDetails *)courseDetails
@@ -155,6 +156,7 @@
     CourseDetails* courseDetails = [holder objectAtIndex:0];
     self.playerView.courseDetails = courseDetails;
     [self.playerView play];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayMulti object:[NSNumber numberWithBool:self.playList.count>1]];
 }
 
 -(void)setPlayList:(NSMutableArray *)playList {

@@ -47,7 +47,7 @@
     [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeLeft];
     [self.btnPrev autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
     [self.btnPrev autoSetDimensionsToSize:CGSizeMake(size, size)];
-    self.btnPrev.hidden = YES; // no need for now
+    [self.btnPrev addTarget:self action:@selector(btnPrevClicked)];
     
     self.btnNext = [UIImageView new];
     self.btnNext.contentMode = UIViewContentModeScaleAspectFit;
@@ -56,7 +56,7 @@
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnNext autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
     [self.btnNext autoSetDimensionsToSize:CGSizeMake(size, size)];
-    self.btnNext.hidden = YES; // no need for now
+    [self.btnNext addTarget:self action:@selector(btnNextClicked)];
 
     self.btnFullScreen = [UIImageView new];
     self.btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
@@ -114,6 +114,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playStartNotiHandler:) name:NotificationPlayStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playMultiNotiHandler:) name:NotificationPlayMulti object:nil];
 
     return self;
 }
@@ -127,10 +128,27 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:nil];
 }
 
+-(void)btnPrevClicked {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayPrev object:nil];
+}
+
+-(void)btnNextClicked {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayNext object:nil];
+}
+
+-(void)playMultiNotiHandler:(NSNotification*)noti {
+    NSNumber* num = noti.object;
+    [self showPrevNext:num.boolValue];
+}
+
 -(void)playStartNotiHandler:(NSNotification*)noti {
     CourseDetails* cd = noti.object;
-    if(!cd.course.isAudioOrVideo)
+    if(!cd.course.isAudioOrVideo) {
+        [self showMediaControl:NO];
         return;
+    }
+    
+    [self showMediaControl:YES];
     CGFloat duration = MediaPlayer.shared.currentTaskDuration;
     self.slider.maximumValue = duration;
     self.labelTotalTime.text = [self secondToDuration:duration];
@@ -218,4 +236,17 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRepeat object:[NSNumber numberWithInt:self.repeat]];
 }
 
+-(void)showMediaControl:(BOOL)show {
+    self.btnPlayPause.hidden = !show;
+    self.labelProgress.hidden = !show;
+    self.labelTotalTime.hidden = !show;
+    self.labelCurrentTime.hidden = !show;
+    self.slider.hidden = !show;
+}
+
+-(void)showPrevNext:(BOOL)show {
+    self.btnNext.hidden = !show;
+    self.btnPrev.hidden = !show;
+}
 @end
+

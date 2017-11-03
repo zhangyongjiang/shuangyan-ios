@@ -29,8 +29,31 @@
     [_tableView registerClass:[CourseListTableViewCell class] forCellReuseIdentifier:CourseListItemTableViewCellID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playStart:) name:NotificationPlayStart object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playNextNoti:) name:NotificationPlayNext object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playPrevNoti:) name:NotificationPlayPrev object:nil];
 
     return self;
+}
+
+
+-(void)playPrevNoti:(NSNotification*)noti
+{
+    int section = _tableView.indexPathForSelectedRow.section;
+    section --;
+    if(section<0)
+        section = self.courseList.count - 1;
+    CourseDetails* cd = [self.courseList objectAtIndex:section];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseReplay object:cd];
+}
+
+-(void)playNextNoti:(NSNotification*)noti
+{
+    int section = _tableView.indexPathForSelectedRow.section;
+    section ++;
+    if(section>=self.courseList.count)
+        section = 0;
+    CourseDetails* cd = [self.courseList objectAtIndex:section];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseReplay object:cd];
 }
 
 -(void)playStart:(NSNotification*)noti

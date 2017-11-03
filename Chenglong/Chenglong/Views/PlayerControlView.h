@@ -10,6 +10,7 @@
 
 @interface PlayerControlView : BaseView
 
-
+-(void)showMediaControl:(BOOL)show;
+-(void)showPrevNext:(BOOL)show;
 
 @end
