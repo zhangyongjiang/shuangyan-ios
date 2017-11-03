@@ -20,7 +20,7 @@
 {
     CGFloat size = 60;
     self = [super initWithFrame:frame];
-    self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     
     self.btnPlayPause = [UIImageView new];
     self.btnPlayPause.contentMode = UIViewContentModeScaleAspectFit;
@@ -32,7 +32,7 @@
 
     self.btnPrev = [UIImageView new];
     self.btnPrev.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnPrev.image = [UIImage imageNamed:@"ic_skip_previous"];
+    self.btnPrev.image = [UIImage imageNamed:@"ic_skip_previous_white"];
     [self addSubview:self.btnPrev];
     [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeLeft];
     [self.btnPrev autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
@@ -41,7 +41,7 @@
     
     self.btnNext = [UIImageView new];
     self.btnNext.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnNext.image = [UIImage imageNamed:@"ic_skip_next"];
+    self.btnNext.image = [UIImage imageNamed:@"ic_skip_next_white"];
     [self addSubview:self.btnNext];
     [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnNext autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
@@ -50,7 +50,7 @@
 
     self.btnFullScreen = [UIImageView new];
     self.btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnFullScreen.image = [UIImage imageNamed:@"ic_fullscreen"];
+    self.btnFullScreen.image = [UIImage imageNamed:@"ic_fullscreen_white"];
     [self addSubview:self.btnFullScreen];
     [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeTop];
@@ -59,7 +59,7 @@
 
     self.btnRepeat = [UIImageView new];
     self.btnRepeat.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat"];
+    self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat_white"];
     [self addSubview:self.btnRepeat];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeBottom];
@@ -173,12 +173,12 @@
 
 -(void)showPlayButton
 {
-    self.btnPlayPause.image = [UIImage imageNamed:@"ic_play_arrow"];
+    self.btnPlayPause.image = [UIImage imageNamed:@"ic_play_arrow_white"];
 }
 
 -(void)showPauseButton
 {
-    self.btnPlayPause.image = [UIImage imageNamed:@"ic_pause"];
+    self.btnPlayPause.image = [UIImage imageNamed:@"ic_pause_white"];
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {
@@ -189,15 +189,15 @@
 {
     if(self.repeat == RepeatNone) {
         self.repeat = RepeatOne;
-        self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_one"];
+        self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_one_white"];
     }
     else if (self.repeat == RepeatAll) {
         self.repeat = RepeatNone;
-        self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat"];
+        self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat_white"];
     }
     else if (self.repeat == RepeatOne) {
         self.repeat = RepeatAll;
-        self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat"];
+        self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_white"];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationRepeat object:[NSNumber numberWithInt:self.repeat]];
 }
