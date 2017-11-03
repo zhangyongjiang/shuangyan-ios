@@ -7,7 +7,7 @@
 //
 
 #import "Page.h"
-#import "PlayerView.h"
+#import "MediaContentViewContailer.h"
 
 @interface PlayListPage : Page
 

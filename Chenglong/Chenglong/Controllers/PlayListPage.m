@@ -11,7 +11,7 @@
 
 @interface PlayListPage()
 
-@property(strong, nonatomic)PlayerView* playerView;
+@property(strong, nonatomic)MediaContentViewContailer* playerView;
 @property(strong, nonatomic)CourseListPage* courseListPage;
 @property(assign, nonatomic)int repeat;
 @property(assign, nonatomic)BOOL fullscreen;
@@ -26,7 +26,7 @@
     self.repeat = RepeatNone;
     self.fullscreen = NO;
     
-    self.playerView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75)];
+    self.playerView = [[MediaContentViewContailer alloc] initWithFrame:CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75)];
     [self addSubview:self.playerView];
     
     self.courseListPage = [[CourseListPage alloc] initWithFrame:CGRectMake(0, self.playerView.bottom, self.playerView.width, self.height-self.playerView.height)];

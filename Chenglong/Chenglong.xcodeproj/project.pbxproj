@@ -240,7 +240,6 @@
 		AD59D9171EEADDC6009C78D6 /* TWRDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9141EEADDC6009C78D6 /* TWRDownloadManager.m */; };
 		AD59D9181EEADDC6009C78D6 /* TWRDownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */; };
 		AD607E371F9B699E00A9C333 /* PlayListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E361F9B699E00A9C333 /* PlayListPage.m */; };
-		AD607E3A1F9FCB2D00A9C333 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E391F9FCB2D00A9C333 /* PlayerView.m */; };
 		AD607E401FA3966B00A9C333 /* CourseListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E3D1FA3966B00A9C333 /* CourseListPage.m */; };
 		AD607E411FA3966B00A9C333 /* CourseListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E3F1FA3966B00A9C333 /* CourseListTableViewCell.m */; };
 		AD607E441FA3973E00A9C333 /* CourseListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD607E431FA3973E00A9C333 /* CourseListItemView.m */; };
@@ -748,8 +747,6 @@
 		AD59D9161EEADDC6009C78D6 /* TWRDownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadObject.m; sourceTree = "<group>"; };
 		AD607E351F9B699E00A9C333 /* PlayListPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayListPage.h; sourceTree = "<group>"; };
 		AD607E361F9B699E00A9C333 /* PlayListPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayListPage.m; sourceTree = "<group>"; };
-		AD607E381F9FCB2D00A9C333 /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
-		AD607E391F9FCB2D00A9C333 /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
 		AD607E3C1FA3966B00A9C333 /* CourseListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListPage.h; sourceTree = "<group>"; };
 		AD607E3D1FA3966B00A9C333 /* CourseListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListPage.m; sourceTree = "<group>"; };
 		AD607E3E1FA3966B00A9C333 /* CourseListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListTableViewCell.h; sourceTree = "<group>"; };
@@ -1904,8 +1901,6 @@
 				AD3A7FF01F53A80D009E632D /* CourseView.m */,
 				AD3A7FF21F53AF6E009E632D /* MediaContentTextView.h */,
 				AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */,
-				AD607E381F9FCB2D00A9C333 /* PlayerView.h */,
-				AD607E391F9FCB2D00A9C333 /* PlayerView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2234,7 +2229,6 @@
 				ADD117EE1EF623F100EF6E04 /* PdfView.m in Sources */,
 				0335B3121E1508F800A2A74B /* XTPopViewBase.m in Sources */,
 				AD49D8821F0C5133000D0E1B /* ScaleImgViewController.m in Sources */,
-				AD607E3A1F9FCB2D00A9C333 /* PlayerView.m in Sources */,
 				AD59D8FE1EEA51AB009C78D6 /* WebViewController.m in Sources */,
 				ADD117AE1EED956700EF6E04 /* MediaContentPdfView.m in Sources */,
 				032C96911E2CA31D001EFC29 /* TZAssetModel.m in Sources */,
