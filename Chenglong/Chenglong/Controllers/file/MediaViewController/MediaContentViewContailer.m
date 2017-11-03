@@ -21,6 +21,9 @@
 
 @property(weak, nonatomic) MediaConentView* contentView;
 
+@property(strong, nonatomic) PlayerControlView* controlView;
+@property(strong, nonatomic) UIView* coverView;
+
 @end
 
 @implementation MediaContentViewContailer
@@ -42,7 +45,20 @@
     [self.pdfView autoPinEdgesToSuperviewMargins];
     [self.videoView autoPinEdgesToSuperviewMargins];
     
+    self.coverView = [UIView new];
+    [self addSubview:self.coverView];
+    [self.coverView autoPinEdgesToSuperviewMargins];
+    [self.coverView addTarget:self action:@selector(coverViewClicked)];
+
+    self.controlView = [PlayerControlView new];
+    [self addSubview:self.controlView];
+    [self.controlView autoPinEdgesToSuperviewMargins];
+    
     return self;
+}
+
+-(void)coverViewClicked {
+    self.controlView.hidden = NO;
 }
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails

@@ -18,8 +18,6 @@
 @property(assign, nonatomic) BOOL userPlaying;
 @property(strong, nonatomic) UIImageView* coverImageView;
 @property(strong, nonatomic) LocalMediaContentShardGroup* group;
-@property(strong, nonatomic) PlayerControlView* controlView;
-@property(strong, nonatomic) UIView* coverView;
 
 @end
 
@@ -35,16 +33,6 @@
     [self addSubview:self.coverImageView];
     [self.coverImageView autoPinEdgesToSuperviewMargins];
     
-    self.controlView = [PlayerControlView new];
-    [self addSubview:self.controlView];
-    [self.controlView autoPinEdgesToSuperviewMargins];
-//    [self.controlView addTarget:self action:@selector(coverViewClicked)];
-
-    self.coverView = [UIView new];
-    [self addSubview:self.coverView];
-    [self.coverView autoPinEdgesToSuperviewMargins];
-    [self.coverView addTarget:self action:@selector(coverViewClicked)];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playEnd:) name:NotificationPlayEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(avplayerContentLoadingNoti:) name:NotificationLoadingRequest object:nil];
@@ -52,11 +40,6 @@
 //    [self addTarget:self action:@selector(clicked)];
     
     return self;
-}
-
--(void)coverViewClicked {
-    self.controlView.hidden = !self.controlView.hidden;
-    [self bringSubviewToFront:self.controlView];
 }
 
 -(void)playingNotiHandler:(NSNotification*)noti

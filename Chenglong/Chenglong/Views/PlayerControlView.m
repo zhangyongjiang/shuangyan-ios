@@ -99,11 +99,17 @@
 //    [self addSubview:self.labelCurrentTime];
 //    [self.labelCurrentTime autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:5];
 //    [self.labelCurrentTime autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
+    
+    [self addTarget:self action:@selector(toggleDisplay)];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playStartNotiHandler:) name:NotificationPlayStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
 
     return self;
+}
+
+-(void)toggleDisplay {
+    self.hidden = !self.hidden;
 }
 
 -(void)toggleFullscreen

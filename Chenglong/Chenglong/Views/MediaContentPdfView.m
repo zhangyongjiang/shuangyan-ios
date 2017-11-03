@@ -22,22 +22,7 @@
     [self addSubview:self.webView];
     [self.webView autoPinEdgesToSuperviewMargins];
 
-    CGFloat size = 60;
-    UIImageView* btnFullScreen = [UIImageView new];
-    btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
-    btnFullScreen.image = [UIImage imageNamed:@"ic_fullscreen"];
-    [self addSubview:btnFullScreen];
-    [btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeRight];
-    [btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeTop];
-    [btnFullScreen autoSetDimensionsToSize:CGSizeMake(size, size)];
-    [btnFullScreen addTarget:self action:@selector(toggleFullscreen)];
-
     return self;
-}
-
--(void)toggleFullscreen
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:nil];
 }
 
 -(void)play {
