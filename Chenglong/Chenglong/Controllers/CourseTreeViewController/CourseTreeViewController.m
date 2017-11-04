@@ -31,7 +31,7 @@
     CGRect rect = self.view.bounds;
     rect.size.height = rect.size.height - 108;
     self.page = [[CourseTreePage alloc] initWithFrame:rect];
-    if(self.userId == nil || [Global isLoginUser:self.userId]){
+    if(self.userId == nil ){
         self.title = @"我的文件";
     }
     else {
@@ -214,7 +214,7 @@
         resp.course = [Course new];
         resp.course.isDir = [NSNumber numberWithInteger:1];
         
-        if(self.userId == NULL || [Global isLoginUser:self.userId]){
+        if(self.userId == NULL ){
             resp.course.title = [NSString stringWithFormat:@"我的文件"];
         }
         else {
@@ -259,6 +259,7 @@
 
 -(BOOL)hidesBottomBarWhenPushed
 {
+    return NO;
     if(self.navigationController.viewControllers.count==1 && [self.navigationController.viewControllers lastObject] == self)
         return NO;
     return YES;

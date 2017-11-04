@@ -78,6 +78,7 @@
 
 -(BOOL)hidesBottomBarWhenPushed
 {
+    return NO;
     if(self.navigationController.viewControllers.count==1 && [self.navigationController.viewControllers lastObject] == self)
         return NO;
     return YES;
