@@ -115,6 +115,17 @@ static CGFloat creatFileViewHeight = 420.f;
             [SVProgressHUD dismiss];
             [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseAdded object:resp];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            
+            for (int i=0; i<resp.resources.count; i++) {
+                LocalMediaContent* lmc = [resp.resources objectAtIndex:i];
+                File* f = [[File alloc] initWithFullPath:lmc.localFilePath];
+                [f mkdirs];
+                if(f.exists) {
+                    [f remove];
+                }
+                MediaAttachment* attachment = [self.creatFileViews.mediaAttachmentDataSource.attachments objectAtIndex:i];
+                [[NSFileManager defaultManager] createFileAtPath:lmc.localFilePath contents:attachment.media attributes:nil];
+            }
         } onError:^(APIError *err) {
             [SVProgressHUD dismiss];
             ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);

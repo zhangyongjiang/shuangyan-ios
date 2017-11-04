@@ -53,7 +53,8 @@
     self.controlView = [PlayerControlView new];
     [self addSubview:self.controlView];
     [self.controlView autoPinEdgesToSuperviewMargins];
-    
+    self.controlView.hidden = YES;
+
     return self;
 }
 
