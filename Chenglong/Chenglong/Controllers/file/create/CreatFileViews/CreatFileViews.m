@@ -12,6 +12,7 @@
 #import "FilePhotoViews.h"
 #import "UIImage+Kaishi.h"
 #import "UIImagePickerController+Kaishi.h"
+#import "VideoServer.h"
 
 static NSInteger kPhotoMaxNumber = 7;
 
@@ -244,6 +245,34 @@ static NSInteger kPhotoMaxNumber = 7;
 }
 
 #pragma mark - TZImagePickerControllerDelegate Methods
+
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(id)asset {
+    self.mediaType = FileMediaTypeVideo;
+    MediaAttachment *newAttachment = [[MediaAttachment alloc] init];
+    newAttachment.type = FileMediaTypeVideo;
+
+    PHAsset *myAsset = asset;
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    [[PHImageManager defaultManager] requestAVAssetForVideo:myAsset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+        NSURL *fileRUL = [asset valueForKey:@"URL"];
+        NSData *beforeVideoData = [NSData dataWithContentsOfURL:fileRUL];//未压缩的视频流
+        
+        VideoServer *videoServer = [[VideoServer alloc] init];
+        [videoServer compressVideo:fileRUL andVideoName:@"" andSave:NO successCompress:^(NSData *resultData) {
+            if (resultData == nil || resultData.length == 0 ) {
+                newAttachment.media = beforeVideoData;
+                newAttachment.coverPhoto = coverImage;
+                [self.mediaAttachmentDataSource.attachments insertObject:newAttachment atIndex:self.mediaAttachmentDataSource.attachments.count - 1];
+                [self.photoViews.collection reloadData];
+            }else{
+                newAttachment.media = resultData;
+                newAttachment.coverPhoto = coverImage;
+                [self.mediaAttachmentDataSource.attachments insertObject:newAttachment atIndex:self.mediaAttachmentDataSource.attachments.count - 1];
+                [self.photoViews.collection reloadData];
+            }
+        }];
+    }];
+}
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets infos:(NSArray<NSDictionary *> *)infos {
     

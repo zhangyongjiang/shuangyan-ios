@@ -159,6 +159,7 @@
 		AD3D94F61EE6790E00D2704B /* TableViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F51EE6790E00D2704B /* TableViewPage.m */; };
 		AD3D94F91EE679A000D2704B /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F81EE679A000D2704B /* UIColor+String.m */; };
 		AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */; };
+		AD3EE96B1FAD440B00660B27 /* VideoServer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96A1FAD440B00660B27 /* VideoServer.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7661F07D3CA000D0E1B /* CourseNameView.m */; };
 		AD49D7FF1F096CE5000D0E1B /* OnlineCourseResourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */; };
@@ -603,6 +604,8 @@
 		AD3D94F81EE679A000D2704B /* UIColor+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+String.m"; sourceTree = "<group>"; };
 		AD3D94FD1EE6F3B700D2704B /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		AD3EE9691FAD440B00660B27 /* VideoServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoServer.h; sourceTree = "<group>"; };
+		AD3EE96A1FAD440B00660B27 /* VideoServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoServer.m; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		AD49D7651F07D3CA000D0E1B /* CourseNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseNameView.h; sourceTree = "<group>"; };
@@ -1387,6 +1390,8 @@
 				AD81B5051F4910DA0020FF31 /* LocalMediaContentShardGroup.m */,
 				AD3D2E801F8149D90014BE87 /* Progress.h */,
 				AD3D2E811F8149D90014BE87 /* Progress.m */,
+				AD3EE9691FAD440B00660B27 /* VideoServer.h */,
+				AD3EE96A1FAD440B00660B27 /* VideoServer.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2386,6 +2391,7 @@
 				AD7E88341F41581000B8CBE3 /* LocalMediaContentShard.m in Sources */,
 				032911D61E13E8D0000C1F5A /* UITextField+Util.m in Sources */,
 				AD3A7FF41F53AF6E009E632D /* MediaContentTextView.m in Sources */,
+				AD3EE96B1FAD440B00660B27 /* VideoServer.m in Sources */,
 				032911591E113BA8000C1F5A /* SDiPhoneVersion.m in Sources */,
 				032C96941E2CA31D001EFC29 /* TZPhotoPickerController.m in Sources */,
 				032911721E113C9A000C1F5A /* NSDate+Kaishi.m in Sources */,
