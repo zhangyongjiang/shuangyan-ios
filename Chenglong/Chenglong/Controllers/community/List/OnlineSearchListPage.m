@@ -15,8 +15,12 @@
 #import "MySearchController.h"
 #import "CourseTreeViewController.h"
 #import "MediaViewController.h"
+#import "SearchBox.h"
 
 #define OnlineFileListItemTableViewCellID @"OnlineSearchListItemTableViewCellID"
+
+@interface OnlineFileListPage() <UITextFieldDelegate>
+@end
 
 @implementation OnlineSearchListPage
 
@@ -24,14 +28,11 @@
     self = [super initWithFrame:frame];
     [_tableView registerClass:[OnlineFileListTableViewCell class] forCellReuseIdentifier:OnlineFileListItemTableViewCellID];
     
-    self.searchController = [[MySearchController alloc]initWithSearchResultsController:nil];
-    //    self.searchController.searchBar.showsCancelButton = NO;
-    //    self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.searchController.searchBar.frame = CGRectMake(0, 0, [UIView screenWidth], 44);
-    self.searchController.searchBar.placeholder = @"关键词";
-    _tableView.tableHeaderView = self.searchController.searchBar;
-    
+    SearchBox* headView = [[SearchBox alloc] initWithFrame:CGRectMake(0, 0, UIView.screenWidth, 40)];
+    headView.layer.borderWidth = 2;
+    headView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    _tableView.tableHeaderView = headView;
+
     return self;
 }
 
@@ -63,9 +64,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
     }
     else {
-        MediaViewController* c = [MediaViewController new];
-        c.courseDetails = cd;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:tableView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:cd userInfo:nil];
     }
 }
 

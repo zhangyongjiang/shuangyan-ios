@@ -160,6 +160,7 @@
 		AD3D94F91EE679A000D2704B /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94F81EE679A000D2704B /* UIColor+String.m */; };
 		AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */; };
 		AD3EE96B1FAD440B00660B27 /* VideoServer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96A1FAD440B00660B27 /* VideoServer.m */; };
+		AD3EE96E1FAE526F00660B27 /* SearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96D1FAE526F00660B27 /* SearchBox.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7661F07D3CA000D0E1B /* CourseNameView.m */; };
 		AD49D7FF1F096CE5000D0E1B /* OnlineCourseResourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */; };
@@ -606,6 +607,8 @@
 		AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		AD3EE9691FAD440B00660B27 /* VideoServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoServer.h; sourceTree = "<group>"; };
 		AD3EE96A1FAD440B00660B27 /* VideoServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoServer.m; sourceTree = "<group>"; };
+		AD3EE96C1FAE526F00660B27 /* SearchBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBox.h; sourceTree = "<group>"; };
+		AD3EE96D1FAE526F00660B27 /* SearchBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBox.m; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		AD49D7651F07D3CA000D0E1B /* CourseNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseNameView.h; sourceTree = "<group>"; };
@@ -1906,6 +1909,8 @@
 				AD3A7FF01F53A80D009E632D /* CourseView.m */,
 				AD3A7FF21F53AF6E009E632D /* MediaContentTextView.h */,
 				AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */,
+				AD3EE96C1FAE526F00660B27 /* SearchBox.h */,
+				AD3EE96D1FAE526F00660B27 /* SearchBox.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2245,6 +2250,7 @@
 				030049911E0E68B4006EDC29 /* NSObject+Tips.m in Sources */,
 				030049631E0E5F60006EDC29 /* BusinessReviewList.m in Sources */,
 				AD49D80E1F096CE5000D0E1B /* OnlineSearchListViewController.m in Sources */,
+				AD3EE96E1FAE526F00660B27 /* SearchBox.m in Sources */,
 				A364CBE21C94CBCF0075E65F /* AppDelegate.m in Sources */,
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
 				AD49D81E1F096CE5000D0E1B /* MediaAttachmentCollectionViewCell.m in Sources */,

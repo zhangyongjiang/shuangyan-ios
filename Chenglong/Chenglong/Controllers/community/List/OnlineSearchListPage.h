@@ -11,7 +11,7 @@
 
 @interface OnlineSearchListPage : TableViewPage
 
-@property(strong,nonatomic)UISearchController* searchController;
+@property(strong, nonatomic) UITextField* txtFieldKeywords;
 @property(strong, nonatomic) CourseDetailsList* courseDetailsList;
 
 -(CourseDetails*) selected;

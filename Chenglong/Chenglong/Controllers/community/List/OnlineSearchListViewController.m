@@ -10,7 +10,7 @@
 #import "ObjectMapper.h"
 #import "CreateFileViewController.h"
 
-@interface OnlineSearchListViewController () <UISearchResultsUpdating>
+@interface OnlineSearchListViewController ()
 
 @property(strong, nonatomic) OnlineSearchListPage* page;
 @property(assign, nonatomic)int currentPage;
@@ -29,6 +29,14 @@
     [super viewDidLoad];
     self.definesPresentationContext = YES;
     [self createPage];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiSearchHandler:) name:NotificationSearch object:nil];
+}
+
+-(void)notiSearchHandler:(NSNotification*)noti {
+    NSString* keywords = noti.object;
+    self.keywords = keywords;
+    [self refreshPage];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -38,7 +46,6 @@
 
 -(void)createPage {
     self.page = [[OnlineSearchListPage alloc] initWithFrame:self.view.bounds];
-    self.page.searchController.searchResultsUpdater = self;
     [self.view addSubview:self.page];
     
     [self refreshPage];
@@ -46,7 +53,7 @@
 
 -(void)refreshPage {
     self.currentPage = 0;
-    [CourseApi CourseAPI_Search:nil age:nil page:nil onSuccess:^(CourseDetailsList *resp) {
+    [CourseApi CourseAPI_Search:self.keywords age:nil page:nil onSuccess:^(CourseDetailsList *resp) {
         if(resp.courseDetails) {
             self.navigationItem.title = resp.courseDetails.course.title;
         }
@@ -61,31 +68,12 @@
         return;
     }
     self.currentPage++;
-    [CourseApi CourseAPI_Search:nil age:nil page:[NSNumber numberWithInt:self.currentPage] onSuccess:^(CourseDetailsList *resp) {
+    [CourseApi CourseAPI_Search:self.keywords age:nil page:[NSNumber numberWithInt:self.currentPage] onSuccess:^(CourseDetailsList *resp) {
         [self.page appendCourseDetailsList:resp];
     } onError:^(APIError *err) {
         
     }];
 
-}
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
-    NSString* keywords = self.page.searchController.searchBar.text;
-    if([keywords trim].length == 0)
-        keywords = NULL;
-    if(self.keywords == NULL && keywords == NULL)
-        return;
-    if(self.keywords != NULL && [self.keywords caseInsensitiveCompare:keywords] == NSOrderedSame)
-        return;
-    self.keywords = keywords;
-    [CourseApi CourseAPI_Search:keywords age:nil page:nil onSuccess:^(CourseDetailsList *resp) {
-        if(resp.courseDetails) {
-            self.navigationItem.title = resp.courseDetails.course.title;
-        }
-        [self.page setCourseDetailsList:resp];
-    } onError:^(APIError *err) {
-        
-    }];
 }
 
 -(BOOL)hidesBottomBarWhenPushed
