@@ -49,16 +49,12 @@
 -(NSMutableArray*)getTopRightMenuItems {
     NSMutableArray* menuItems = [[NSMutableArray alloc] init];
     [menuItems addObject:[[MenuItem alloc] initWithText:@"清除" andImgName:@"ic_clear"]] ;
-    [menuItems addObject:[[MenuItem alloc] initWithText:@"全屏" andImgName:@"ic_fullscreen"]] ;
     return menuItems;
 }
 
 -(void)topRightMenuItemClicked:(NSString *)cmd {
     if([cmd isEqualToString:@"清除"]) {
         self.page.playList = [NSMutableArray new];
-    }
-    else if([cmd isEqualToString:@"全屏"]) {
-        [self toggleFullscreen:nil];
     }
 }
 
