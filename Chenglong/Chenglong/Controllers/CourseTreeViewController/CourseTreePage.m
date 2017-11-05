@@ -270,20 +270,6 @@
     return data.items[index];
 }
 
--(void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item
-{
-    CourseDetails *cd = item;
-    CourseDetails* parent = [self getParentOfItem:item];
-    cd.parent = parent;
-    
-    if(![cd isDirectory]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:cd userInfo:nil];
-        
-//        MediaViewController* c = [MediaViewController new];
-//        c.courseDetails = cd;
-//        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
-    }
-}
 
 -(void)setParent:(CourseDetails*)cd {
     for(CourseDetails* child in cd.items) {
@@ -326,90 +312,14 @@
 
 - (void)treeView:(RATreeView *)treeView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowForItem:(id)item
 {
-    if (editingStyle != UITableViewCellEditingStyleDelete) {
-        return;
-    }
 }
 
 -(UITableViewCellEditingStyle)treeView:(RATreeView *)treeView editingStyleForRowForItem:(nonnull id)item
 {
     CourseDetails *cd = item;
-//    if(![cd isDirectory]) {
-//        return UITableViewCellEditingStyleNone;
-//    }
-    return UITableViewCellEditingStyleDelete;
+    return UITableViewCellEditingStyleNone;
 }
 
--(NSArray*)treeView:(RATreeView *)treeView editActionsForItem:(id)item
-{
-    CourseDetails *cd = item;
-    NSMutableArray* array = [NSMutableArray new];
-    if(![cd isDirectory]) {
-        UITableViewRowAction *cleanCache = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除缓存" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
-                                            {
-                                                treeView.editing = NO;
-                                                for (LocalMediaContent* mc in cd.course.resources) {
-                                                    [mc deleteLocalFile];
-                                                }
-                                            }];
-        cleanCache.backgroundColor = [UIColor lightGrayColor];
-        [array addObject:cleanCache];
-    }
-        
-        UITableViewRowAction *actRemove = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
-                                            {
-                                                treeView.editing = NO;
-                                                [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDeleteCourse object:item userInfo:nil];
-                                            }];
-        actRemove.backgroundColor = [UIColor redColor];
-    [array addObject:actRemove];
-        
-        UITableViewRowAction *playNext = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"播放" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
-                                            {
-                                                treeView.editing = NO;
-                                                [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourseAppend object:item userInfo:nil];
-                                            }];
-        playNext.backgroundColor = [UIColor blueColor];
-    [array addObject:playNext];
-
-    return array;
-}
-
--(CourseDetails*)deleteCourse:(NSString *)courseId
-{
-    CourseDetails* item = [self searchCourse:courseId inTree:self.courseDetails];
-    if(item == NULL)
-        return NULL;
-    CourseDetails* parent = [self getParentOfItem:item];
-    int selected = 0;
-    for (int i=parent.items.count-1; i>=0; i--) {
-        CourseDetails* c = [parent.items objectAtIndex:i];
-        if([c.course.id isEqualToString:courseId]) {
-            [parent.items removeObjectAtIndex:i];
-            [self.treeView reloadData];
-            [self expandItem:parent];
-        }
-        else {
-            if (c.selected)
-                selected++;
-        }
-    }
-    if(selected == parent.items.count) {
-        if(!parent.selected) {
-            parent.selected = YES;
-            RATableViewCell *cell = [self.treeView cellForItem:parent];
-            if(!cell.isHidden) {
-                NSInteger level = [self.treeView levelForCellForItem:parent];
-                BOOL expanded = [self.treeView isCellForItemExpanded:parent];
-                [cell setupWithCourseDetails:parent level:level expanded:expanded];
-            }
-        }
-    }
-    if(!item.selected) {
-        [self setPlayButton];
-    }
-    return parent;
-}
 
 -(void)layoutSubviews {
     [super layoutSubviews];

@@ -31,7 +31,7 @@
     [super viewDidLoad];
     CGRect rect = self.view.bounds;
     rect.size.height = rect.size.height - 108;
-    self.page = [[CourseTreePage alloc] initWithFrame:rect];
+    self.page = [[MyCourseTreePage alloc] initWithFrame:rect];
     if(self.userId == nil ){
         self.title = @"我的文件";
     }

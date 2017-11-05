@@ -17,6 +17,4 @@
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 
 -(void)selectCourse:(NSString*)courseId;
--(CourseDetails*)deleteCourse:(NSString*)courseId;
--(CourseDetails*) getParentOfItem:(CourseDetails*) item;
 @end

@@ -7,13 +7,13 @@
 //
 
 #import "BaseViewController.h"
-#import "CourseTreePage.h"
+#import "MyCourseTreePage.h"
 
 @interface CourseTreeViewController : BaseViewController
 
 @property (strong, nonatomic) NSString* userId;
 @property (strong, nonatomic) NSString* selectedCourseId;
-@property (strong, nonatomic) CourseTreePage* page;
+@property (strong, nonatomic) MyCourseTreePage* page;
 
 -(id)initWithUserId:(NSString*)userId andCourseId:(NSString*)courseId;
 
