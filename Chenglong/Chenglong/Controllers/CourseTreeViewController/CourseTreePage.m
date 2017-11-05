@@ -343,6 +343,7 @@
 -(NSArray*)treeView:(RATreeView *)treeView editActionsForItem:(id)item
 {
     CourseDetails *cd = item;
+    NSMutableArray* array = [NSMutableArray new];
     if(![cd isDirectory]) {
         UITableViewRowAction *cleanCache = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除缓存" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
                                             {
@@ -351,34 +352,27 @@
                                                     [mc deleteLocalFile];
                                                 }
                                             }];
-        cleanCache.backgroundColor = [UIColor lightGrayColor]; //arbitrary color
+        cleanCache.backgroundColor = [UIColor lightGrayColor];
+        [array addObject:cleanCache];
+    }
         
-        UITableViewRowAction *playNext = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"播放列表" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+        UITableViewRowAction *actRemove = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+                                            {
+                                                treeView.editing = NO;
+                                                [[NSNotificationCenter defaultCenter] postNotificationName:NotificationDeleteCourse object:item userInfo:nil];
+                                            }];
+        actRemove.backgroundColor = [UIColor redColor];
+    [array addObject:actRemove];
+        
+        UITableViewRowAction *playNext = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"播放" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
                                             {
                                                 treeView.editing = NO;
                                                 [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourseAppend object:item userInfo:nil];
                                             }];
-        playNext.backgroundColor = [UIColor greenColor];
-        
-        return @[cleanCache, playNext];
-    }
-    
-    UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Play" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
-                                    {
-                                        treeView.editing = NO;
-                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayCourse object:item userInfo:nil];
-//                                        MediaViewController* c = [MediaViewController new];
-//                                        c.courseDetails = item;
-//                                        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPushController object:treeView userInfo:[NSDictionary  dictionaryWithObjectsAndKeys:c, @"controller",nil]];
-                                    }];
-    button.backgroundColor = [UIColor lightGrayColor]; //arbitrary color
-    UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
-                                     {
-                                         treeView.editing = NO;
-                                     }];
-    button2.backgroundColor = [UIColor redColor]; //arbitrary color
-    
-    return @[button, button2];
+        playNext.backgroundColor = [UIColor blueColor];
+    [array addObject:playNext];
+
+    return array;
 }
 
 -(CourseDetails*)deleteCourse:(NSString *)courseId

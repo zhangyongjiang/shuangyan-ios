@@ -32,6 +32,25 @@
     self.lockView.userInteractionEnabled = YES;
     self.lockView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.lockView];
+    [self.lockView addTarget:self action:@selector(lockScreenClicked)];
+}
+
+-(void)lockScreenClicked {
+    static NSTimeInterval lastClickTime = 0;
+    static int clickCnt = 0;
+    
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if(now - lastClickTime > 0.5) {
+        clickCnt = 0;
+        lastClickTime = now;
+        return;
+    }
+    lastClickTime = now;
+    clickCnt++;
+    if(clickCnt >= 4) {
+        [self motionEnded:UIEventSubtypeMotionShake withEvent:nil];
+        clickCnt = 0;
+    }
 }
 
 -(void)dealloc
@@ -114,9 +133,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationPresentController:) name:NotificationPresentController object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRefreshControl:) name:NotificationRefreshControl object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationEndOfDisplay:) name:NotificationEndOfDisplay object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiLockScreenHandler:) name:NotificationLockScreen object:nil];
+
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.edgesForExtendedLayout = UIRectEdgeBottom;
+}
+
+-(void)notiLockScreenHandler:(NSNotification*)noti {
+    [self motionEnded:UIEventSubtypeMotionShake withEvent:nil];
 }
 
 -(void)notificationPresentController:(NSNotification*)noti {
@@ -334,24 +358,26 @@
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-    if (UIEventSubtypeMotionShake) {
+    if (motion == UIEventSubtypeMotionShake) {
         if(self.lockScreen == 0) {
             toast(@"屏幕锁定");
             self.lockView.hidden = NO;
             self.lockView.backgroundColor = [UIColor clearColor];
             [self.view bringSubviewToFront:self.lockView];
         }
-        else if(self.lockScreen == 1) {
-            self.lockView.backgroundColor = [UIColor blackColor];
-            self.lockView.hidden = NO;
-            [self.view bringSubviewToFront:self.lockView];
-        }
-        else if(self.lockScreen == 2) {
+//        else if(self.lockScreen == 1) {
+//            self.lockView.backgroundColor = [UIColor blackColor];
+//            self.lockView.hidden = NO;
+//            [self.view bringSubviewToFront:self.lockView];
+//        }
+//        else if(self.lockScreen == 2) {
+        else {
             toast(@"屏幕解除锁定");
             self.lockView.hidden = YES;
+            self.lockView.backgroundColor = [UIColor clearColor];
             [self.view bringSubviewToFront:self.lockView];
         }
-        self.lockScreen = (self.lockScreen+1)%3;
+        self.lockScreen = (self.lockScreen+1)%2;
     }
 }
 

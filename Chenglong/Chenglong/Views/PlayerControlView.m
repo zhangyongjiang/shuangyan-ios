@@ -14,6 +14,7 @@
 
 @property(strong, nonatomic) UIImageView* btnPlayPause;
 @property(strong, nonatomic) UIImageView* btnPrev;
+@property(strong, nonatomic) UIImageView* btnLock;
 @property(strong, nonatomic) UIImageView* btnNext;
 @property(strong, nonatomic) UIImageView* btnRepeat;
 @property(strong, nonatomic) UIImageView* btnFullScreen;
@@ -66,7 +67,16 @@
     [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeTop];
     [self.btnFullScreen autoSetDimensionsToSize:CGSizeMake(size, size)];
     [self.btnFullScreen addTarget:self action:@selector(toggleFullscreen)];
-
+    
+    self.btnLock = [UIImageView new];
+    self.btnLock.contentMode = UIViewContentModeScaleAspectFit;
+    self.btnLock.image = [UIImage imageNamed:@"ic_lock_white"];
+    [self addSubview:self.btnLock];
+    [self.btnLock autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [self.btnLock autoPinEdgeToSuperviewEdge:ALEdgeTop];
+    [self.btnLock autoSetDimensionsToSize:CGSizeMake(size, size)];
+    [self.btnLock addTarget:self action:@selector(lockScreen)];
+    
     self.btnRepeat = [UIImageView new];
     self.btnRepeat.contentMode = UIViewContentModeScaleAspectFit;
     self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat_white"];
@@ -121,6 +131,12 @@
 
 -(void)toggleDisplay {
     self.hidden = !self.hidden;
+}
+
+-(void)lockScreen
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationLockScreen object:nil];
+    self.hidden = YES;
 }
 
 -(void)toggleFullscreen
