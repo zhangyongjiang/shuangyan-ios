@@ -69,9 +69,6 @@
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails {
     _courseDetails = courseDetails;
-    if (![self.courseDetails.course isAudioOrVideo]) {
-        [self play];
-    }
 }
 
 -(void)stop{}

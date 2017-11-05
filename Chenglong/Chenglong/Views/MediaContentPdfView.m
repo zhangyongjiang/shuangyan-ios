@@ -8,7 +8,7 @@
 
 #import "MediaContentPdfView.h"
 
-@interface MediaContentPdfView()
+@interface MediaContentPdfView() <UIWebViewDelegate>
 @end
 
 @implementation MediaContentPdfView
@@ -17,17 +17,20 @@
     self = [super initWithFrame:frame];
     self.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
 
-    self.webView = [UIWebView new];
-    self.webView.scalesPageToFit = YES;
+    self.webView = [[UIWebView alloc] initWithFrame:self.bounds];
+    self.webView.scalesPageToFit = NO;
+    self.webView.delegate = self;
     [self addSubview:self.webView];
-    [self.webView autoPinEdgesToSuperviewMargins];
+    
+//    auto layout will cause display issue.
+//    [self.webView autoPinEdgesToSuperviewMargins];
 
     return self;
 }
 
 -(void)play {
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayStart object:self.courseDetails];
-    BOOL remote = YES;
+    BOOL remote = NO;
     if(remote) {
         NSString* str = self.courseDetails.course.localMediaContent.url;
         str = [AppDelegate appendAccessTokenToUrl:str];
@@ -37,9 +40,9 @@
     }
     WeakSelf(weakSelf)
     if(![self.courseDetails.course.localMediaContent isDownloaded]) {
-        [SVProgressHUD showWithStatus:@"loading ..."];
+        [SVProgressHUD showWithStatus:@"下载 ..."];
         [self.courseDetails.course.localMediaContent downloadWithProgressBlock:^(CGFloat progress) {
-            [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"loading %f ... ", progress]];
+            [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"下载 %.01f%%", progress*100]];
         } completionBlock:^(BOOL completed) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf loadFromLocal];
@@ -56,4 +59,26 @@
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    NSLog(@"webViewDidFinishLoad %@", webView.request.URL);
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    NSLog(@"webViewDidStartLoad %@", webView.request.URL);
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Error : %@",error);
+}
+
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    self.webView.frame = self.bounds;
+}
 @end

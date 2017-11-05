@@ -73,18 +73,23 @@
     }
     else if(localMediaContent.isText) {
         self.contentView = self.textView;
+        self.coverView.hidden = YES;
     }
     else if(localMediaContent.isPdf) {
         self.contentView = self.pdfView;
+        self.coverView.hidden = YES;
     }
     else if(localMediaContent.isImage) {
         self.contentView = self.imageView;
+        self.coverView.hidden = NO;
     }
     else if(localMediaContent.isAudio) {
         self.contentView = self.videoView;
+        self.coverView.hidden = NO;
     }
     else if(localMediaContent.isVideo) {
         self.contentView = self.videoView;
+        self.coverView.hidden = NO;
     }
     self.contentView.courseDetails = courseDetails;
     [self showView:self.contentView];
