@@ -48,6 +48,12 @@
     [super addTopRightMenu];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseAddedNoti:) name:NotificationCourseAdded object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteCourseNoti:) name:NotificationDeleteCourse object:NULL];
+}
+
+-(void)deleteCourseNoti:(NSNotification*)noti {
+    CourseDetails* course = noti.object;
+    [self removeCourse:course];
 }
 
 -(void)courseAddedNoti:(NSNotification*)noti {
@@ -189,9 +195,7 @@
     UIAlertAction *actionSure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [CourseApi CourseAPI_RemoveCourse:cd.course.id onSuccess:^(Course *resp) {
             [weakSelf presentFailureTips:@"删除成功"];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-            CourseDetails* parent = [weakSelf.page deleteCourse:resp.id];
-            weakSelf.selectedCourseId = parent.course.id;
+            weakSelf.selectedCourseId = resp.parentCourseId;
             [weakSelf refreshPage];
         } onError:^(APIError *err) {
             ALERT_VIEW_WITH_TITLE(err.errorCode, err.errorMsg);

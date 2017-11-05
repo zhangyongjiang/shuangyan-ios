@@ -68,6 +68,32 @@
 - (void)addObser
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreen:) name:NotificationFullscreen object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
+}
+
+-(void)playCourseNotiHandler:(NSNotification*)noti {
+    if(self.selectedIndex == 2)
+        return;
+
+    self.selectedIndex = 2;
+    return;
+    
+    int controllerIndex = 2;
+    UIView * fromView = self.selectedViewController.view;
+    UIView * toView = [[self.viewControllers objectAtIndex:controllerIndex] view];
+    
+    // Transition using a page curl.
+    WeakSelf(weakSelf  )
+    [UIView transitionFromView:fromView
+                        toView:toView
+                      duration:0.6
+                       options:(controllerIndex > self.selectedIndex ? UIViewAnimationOptionTransitionCurlUp : UIViewAnimationOptionTransitionCurlDown)
+                    completion:^(BOOL finished) {
+                        if (finished) {
+                            weakSelf.selectedIndex = controllerIndex;
+                        }
+                    }];
+    
 }
 
 -(void)toggleFullscreen:(NSNotification*)noti
