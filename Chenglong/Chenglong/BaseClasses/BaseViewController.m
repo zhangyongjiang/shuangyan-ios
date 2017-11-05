@@ -40,7 +40,7 @@
     static int clickCnt = 0;
     
     NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
-    if(now - lastClickTime > 0.5) {
+    if(now - lastClickTime > 0.3) {
         clickCnt = 0;
         lastClickTime = now;
         return;
@@ -48,7 +48,7 @@
     lastClickTime = now;
     clickCnt++;
     if(clickCnt >= 4) {
-        [self motionEnded:UIEventSubtypeMotionShake withEvent:nil];
+        [self toggleLockScreen];
         clickCnt = 0;
     }
 }
@@ -140,7 +140,7 @@
 }
 
 -(void)notiLockScreenHandler:(NSNotification*)noti {
-    [self motionEnded:UIEventSubtypeMotionShake withEvent:nil];
+    [self toggleLockScreen];
 }
 
 -(void)notificationPresentController:(NSNotification*)noti {
@@ -353,32 +353,36 @@
     return UIInterfaceOrientationMaskAll;
 }
 
-- (BOOL)canBecomeFirstResponder {
-    return YES;
-}
+//- (BOOL)canBecomeFirstResponder {
+//    return YES;
+//}
+//
+//- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+//    if (motion == UIEventSubtypeMotionShake) {
+//        [self toggleLockScreen];
+//    }
+//}
 
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-    if (motion == UIEventSubtypeMotionShake) {
-        if(self.lockScreen == 0) {
-            toast(@"屏幕锁定");
-            self.lockView.hidden = NO;
-            self.lockView.backgroundColor = [UIColor clearColor];
-            [self.view bringSubviewToFront:self.lockView];
-        }
-//        else if(self.lockScreen == 1) {
-//            self.lockView.backgroundColor = [UIColor blackColor];
-//            self.lockView.hidden = NO;
-//            [self.view bringSubviewToFront:self.lockView];
-//        }
-//        else if(self.lockScreen == 2) {
-        else {
-            toast(@"屏幕解除锁定");
-            self.lockView.hidden = YES;
-            self.lockView.backgroundColor = [UIColor clearColor];
-            [self.view bringSubviewToFront:self.lockView];
-        }
-        self.lockScreen = (self.lockScreen+1)%2;
+-(void) toggleLockScreen {
+    if(self.lockScreen == 0) {
+        toast(@"屏幕锁定");
+        self.lockView.hidden = NO;
+        self.lockView.backgroundColor = [UIColor clearColor];
+        [self.view bringSubviewToFront:self.lockView];
     }
+    //        else if(self.lockScreen == 1) {
+    //            self.lockView.backgroundColor = [UIColor blackColor];
+    //            self.lockView.hidden = NO;
+    //            [self.view bringSubviewToFront:self.lockView];
+    //        }
+    //        else if(self.lockScreen == 2) {
+    else {
+        toast(@"屏幕解除锁定");
+        self.lockView.hidden = YES;
+        self.lockView.backgroundColor = [UIColor clearColor];
+        [self.view bringSubviewToFront:self.lockView];
+    }
+    self.lockScreen = (self.lockScreen+1)%2;
 }
 
 -(void)viewDidLayoutSubviews {

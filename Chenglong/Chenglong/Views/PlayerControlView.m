@@ -141,6 +141,7 @@
 
 -(void)toggleFullscreen
 {
+    self.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:nil];
 }
 
@@ -206,6 +207,7 @@
     } else {
         [MediaPlayer.shared resume];
         [self showPauseButton];
+        self.hidden = YES;
     }
 }
 
