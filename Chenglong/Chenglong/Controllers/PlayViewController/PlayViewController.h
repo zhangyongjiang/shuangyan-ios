@@ -6,10 +6,10 @@
 //  Copyright © 2017 Chenglong. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "LockViewController.h"
 #import "PlayListPage.h"
 
-@interface PlayViewController : BaseViewController
+@interface PlayViewController : LockViewController
 
 @property(strong, nonatomic) PlayListPage* page;
 

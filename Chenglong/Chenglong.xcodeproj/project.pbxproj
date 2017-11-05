@@ -161,6 +161,7 @@
 		AD3D94FF1EE6F3B700D2704B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D94FE1EE6F3B700D2704B /* BaseViewController.m */; };
 		AD3EE96B1FAD440B00660B27 /* VideoServer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96A1FAD440B00660B27 /* VideoServer.m */; };
 		AD3EE96E1FAE526F00660B27 /* SearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96D1FAE526F00660B27 /* SearchBox.m */; };
+		AD3EE9711FAED54900660B27 /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96F1FAED54900660B27 /* LockViewController.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7661F07D3CA000D0E1B /* CourseNameView.m */; };
 		AD49D7FF1F096CE5000D0E1B /* OnlineCourseResourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */; };
@@ -609,6 +610,8 @@
 		AD3EE96A1FAD440B00660B27 /* VideoServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoServer.m; sourceTree = "<group>"; };
 		AD3EE96C1FAE526F00660B27 /* SearchBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBox.h; sourceTree = "<group>"; };
 		AD3EE96D1FAE526F00660B27 /* SearchBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBox.m; sourceTree = "<group>"; };
+		AD3EE96F1FAED54900660B27 /* LockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockViewController.m; sourceTree = "<group>"; };
+		AD3EE9701FAED54900660B27 /* LockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockViewController.h; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		AD49D7651F07D3CA000D0E1B /* CourseNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseNameView.h; sourceTree = "<group>"; };
@@ -1034,6 +1037,8 @@
 		0329114F1E113B85000C1F5A /* BaseClasses */ = {
 			isa = PBXGroup;
 			children = (
+				AD3EE9701FAED54900660B27 /* LockViewController.h */,
+				AD3EE96F1FAED54900660B27 /* LockViewController.m */,
 				AD59D8FC1EEA51AB009C78D6 /* WebViewController.h */,
 				AD59D8FD1EEA51AB009C78D6 /* WebViewController.m */,
 				AD59D8F31EE913F9009C78D6 /* FitLabel.h */,
@@ -2308,6 +2313,7 @@
 				0329115F1E113BC6000C1F5A /* UIView+Data.m in Sources */,
 				AD607E371F9B699E00A9C333 /* PlayListPage.m in Sources */,
 				AD666CB51F00C49A00D3F18E /* CourseSummaryView.m in Sources */,
+				AD3EE9711FAED54900660B27 /* LockViewController.m in Sources */,
 				0300496D1E0E5F60006EDC29 /* Event.m in Sources */,
 				032C96BA1E2CC525001EFC29 /* UIImagePickerController+Kaishi.m in Sources */,
 				AD49D8241F096CE5000D0E1B /* FileNoDataView.m in Sources */,
