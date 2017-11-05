@@ -162,6 +162,7 @@
 		AD3EE96B1FAD440B00660B27 /* VideoServer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96A1FAD440B00660B27 /* VideoServer.m */; };
 		AD3EE96E1FAE526F00660B27 /* SearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96D1FAE526F00660B27 /* SearchBox.m */; };
 		AD3EE9711FAED54900660B27 /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96F1FAED54900660B27 /* LockViewController.m */; };
+		AD3EE9791FAF673C00660B27 /* TreePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE9781FAF673B00660B27 /* TreePickerViewController.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7661F07D3CA000D0E1B /* CourseNameView.m */; };
 		AD49D7FF1F096CE5000D0E1B /* OnlineCourseResourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */; };
@@ -612,6 +613,10 @@
 		AD3EE96D1FAE526F00660B27 /* SearchBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBox.m; sourceTree = "<group>"; };
 		AD3EE96F1FAED54900660B27 /* LockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockViewController.m; sourceTree = "<group>"; };
 		AD3EE9701FAED54900660B27 /* LockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockViewController.h; sourceTree = "<group>"; };
+		AD3EE9771FAF673B00660B27 /* TreePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreePickerViewController.h; sourceTree = "<group>"; };
+		AD3EE9781FAF673B00660B27 /* TreePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreePickerViewController.m; sourceTree = "<group>"; };
+		AD3EE97A1FAF674F00660B27 /* TreePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TreePickerViewController.m; path = Chenglong/Controllers/TreePickerViewController/TreePickerViewController.m; sourceTree = SOURCE_ROOT; };
+		AD3EE97B1FAF674F00660B27 /* TreePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreePickerViewController.h; path = Chenglong/Controllers/TreePickerViewController/TreePickerViewController.h; sourceTree = SOURCE_ROOT; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		AD49D7651F07D3CA000D0E1B /* CourseNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseNameView.h; sourceTree = "<group>"; };
@@ -1435,9 +1440,30 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
+		AD3EE9751FAF670100660B27 /* TreePickerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AD3EE97B1FAF674F00660B27 /* TreePickerViewController.h */,
+				AD3EE97A1FAF674F00660B27 /* TreePickerViewController.m */,
+			);
+			name = TreePickerViewController;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		AD3EE9761FAF673B00660B27 /* TreePickerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AD3EE9771FAF673B00660B27 /* TreePickerViewController.h */,
+				AD3EE9781FAF673B00660B27 /* TreePickerViewController.m */,
+			);
+			path = TreePickerViewController;
+			sourceTree = "<group>";
+		};
 		AD49D7681F096CE5000D0E1B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD3EE9751FAF670100660B27 /* TreePickerViewController */,
+				AD3EE9761FAF673B00660B27 /* TreePickerViewController */,
 				AD607E481FA789AE00A9C333 /* PdfViewController */,
 				AD6A67061F962AF8000A97BD /* PlayViewController */,
 				AD8949561F28F21300C024F8 /* CourseTreeViewController */,
@@ -2282,6 +2308,7 @@
 				AD49D8811F0C5133000D0E1B /* ImageViewController.m in Sources */,
 				AD49D83F1F096CE5000D0E1B /* SpendingHistoryItemView.m in Sources */,
 				AD49D8121F096CE5000D0E1B /* OnlineDirListPage.m in Sources */,
+				AD3EE9791FAF673C00660B27 /* TreePickerViewController.m in Sources */,
 				AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */,
 				AD49D84F1F09869E000D0E1B /* FileListPage.m in Sources */,
 				030049821E0E5F61006EDC29 /* UserFriend.m in Sources */,

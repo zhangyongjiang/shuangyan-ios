@@ -10,6 +10,7 @@
 #import "CreateFileViewController.h"
 #import "BaseNavigationController.h"
 #import "MediaViewController.h"
+#import "TreePickerViewController.h"
 
 @interface CourseTreeViewController ()
 
@@ -65,7 +66,7 @@
 -(NSMutableArray*)getTopRightMenuItems {
     NSMutableArray* menuItems = [[NSMutableArray alloc] init];
     CourseDetails* selected = [self.page.treeView itemForSelectedRow];
-    if(self.userId == nil || [Global isLoginUser:self.userId] || [Global isSuperUser]){
+    if(self.userId == nil /* || [Global isLoginUser:self.userId] /*|| [Global isSuperUser]*/){
         if(selected.course.isDir.boolValue) {
             if(selected.items.count) {
                 [menuItems addObject:[[MenuItem alloc] initWithText:@"播放" andImgName:@"file_item_play_icon"]];
@@ -84,11 +85,11 @@
             [menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
             [menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
             [menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
-            [menuItems addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_download_icon"]];
+            [menuItems addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"ic_copy"]];
         }
     }
     else {
-        [menuItems addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_download_icon"]];
+        [menuItems addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"ic_copy"]];
     }
     return menuItems;
 }
@@ -96,6 +97,12 @@
 -(void)topRightMenuItemClicked:(NSString *)cmd {
     NSLog(@"cmd %@ clicked", cmd);
     CourseDetails* selected = [self.page.treeView itemForSelectedRow];
+    
+    if([cmd isEqualToString:@"拷贝"]){
+        [self copyCourse:selected];
+        return;
+    }
+    
     if(selected.course.isDir.boolValue) {
         if ([cmd isEqualToString:@"新文件"]) {
             CreateFileViewController *file = [CreateFileViewController loadFromNib];
@@ -137,6 +144,14 @@
             [self playCourse:selected];
         }
     }
+}
+
+-(void)copyCourse:(CourseDetails*)cd {
+    TreePickerViewController* c = [TreePickerViewController new];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:c];
+    [self.navigationController presentViewController:nav animated:YES completion:^{
+        
+    }];
 }
 
 -(void)creatCourseDir:(CourseDetails*)cd {
