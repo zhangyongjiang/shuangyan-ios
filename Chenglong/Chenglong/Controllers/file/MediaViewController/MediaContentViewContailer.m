@@ -70,6 +70,7 @@
     LocalMediaContent* localMediaContent = courseDetails.course.localMediaContent;
     if(localMediaContent == NULL) {
         self.contentView = self.textView;
+        self.coverView.hidden = YES;
     }
     else if(localMediaContent.isText) {
         self.contentView = self.textView;
