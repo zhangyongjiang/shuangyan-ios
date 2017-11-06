@@ -164,6 +164,7 @@
 		AD3EE9711FAED54900660B27 /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE96F1FAED54900660B27 /* LockViewController.m */; };
 		AD3EE9791FAF673C00660B27 /* TreePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE9781FAF673B00660B27 /* TreePickerViewController.m */; };
 		AD3EE97F1FAF6E5100660B27 /* MyCourseTreePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE97E1FAF6E5100660B27 /* MyCourseTreePage.m */; };
+		AD3EE9821FB093B100660B27 /* UserCourseTreePage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3EE9811FB093B100660B27 /* UserCourseTreePage.m */; };
 		AD454AD11E22271D006731CE /* CourseDetailsList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD454AD01E22271D006731CE /* CourseDetailsList.m */; };
 		AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7661F07D3CA000D0E1B /* CourseNameView.m */; };
 		AD49D7FF1F096CE5000D0E1B /* OnlineCourseResourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49D7701F096CE5000D0E1B /* OnlineCourseResourceView.m */; };
@@ -620,6 +621,8 @@
 		AD3EE97B1FAF674F00660B27 /* TreePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreePickerViewController.h; path = Chenglong/Controllers/TreePickerViewController/TreePickerViewController.h; sourceTree = SOURCE_ROOT; };
 		AD3EE97D1FAF6E5100660B27 /* MyCourseTreePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCourseTreePage.h; sourceTree = "<group>"; };
 		AD3EE97E1FAF6E5100660B27 /* MyCourseTreePage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCourseTreePage.m; sourceTree = "<group>"; };
+		AD3EE9801FB093B100660B27 /* UserCourseTreePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCourseTreePage.h; sourceTree = "<group>"; };
+		AD3EE9811FB093B100660B27 /* UserCourseTreePage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCourseTreePage.m; sourceTree = "<group>"; };
 		AD454ACF1E22271D006731CE /* CourseDetailsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailsList.h; sourceTree = "<group>"; };
 		AD454AD01E22271D006731CE /* CourseDetailsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailsList.m; sourceTree = "<group>"; };
 		AD49D7651F07D3CA000D0E1B /* CourseNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseNameView.h; sourceTree = "<group>"; };
@@ -1901,6 +1904,8 @@
 				AD89495B1F28F3B000C024F8 /* CourseTreePage.m */,
 				AD3EE97D1FAF6E5100660B27 /* MyCourseTreePage.h */,
 				AD3EE97E1FAF6E5100660B27 /* MyCourseTreePage.m */,
+				AD3EE9801FB093B100660B27 /* UserCourseTreePage.h */,
+				AD3EE9811FB093B100660B27 /* UserCourseTreePage.m */,
 			);
 			path = CourseTreeViewController;
 			sourceTree = "<group>";
@@ -2313,6 +2318,7 @@
 				AD49D8811F0C5133000D0E1B /* ImageViewController.m in Sources */,
 				AD49D83F1F096CE5000D0E1B /* SpendingHistoryItemView.m in Sources */,
 				AD49D8121F096CE5000D0E1B /* OnlineDirListPage.m in Sources */,
+				AD3EE9821FB093B100660B27 /* UserCourseTreePage.m in Sources */,
 				AD3EE9791FAF673C00660B27 /* TreePickerViewController.m in Sources */,
 				AD3D94DB1EE528AF00D2704B /* NSObject+Attach.m in Sources */,
 				AD49D84F1F09869E000D0E1B /* FileListPage.m in Sources */,
