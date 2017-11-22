@@ -31,4 +31,7 @@
 
 -(CGFloat)currentTaskDuration;
 
+-(void)background:(NSNotification*)noti;
+-(void)foreground:(NSNotification*)noti;
+
 @end

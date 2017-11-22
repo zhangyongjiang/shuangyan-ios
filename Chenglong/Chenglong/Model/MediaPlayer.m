@@ -49,8 +49,8 @@ MediaPlayer* gMediaPlayer;
         [weakSelf playerNoti:time];
     }];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foreground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidTokenNoti:) name:NotificationInvalidToken object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repeatNoti:) name:NotificationRepeat object:nil];
 
@@ -204,18 +204,13 @@ MediaPlayer* gMediaPlayer;
 -(void)background:(NSNotification*)noti
 {
     self.backgroundMode = YES;
-    [self.layer removeFromSuperlayer];
-    self.layer = nil;
+    self.layer.player = nil;
 }
 
 -(void)foreground:(NSNotification*)noti
 {
     self.backgroundMode = NO;
-    self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
-    [self.attachedView.layer addSublayer:self.layer];
-    self.layer.frame = self.attachedView.bounds;
-    self.layer.backgroundColor = [UIColor clearColor].CGColor;
-    [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    self.layer.player = self.avplayer;
 }
 
 -(void)playerDidFinishPlaying:(NSNotification*)noti
