@@ -112,6 +112,7 @@ MediaPlayer* gMediaPlayer;
                  AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&error];
                  if (keyStatus == AVKeyValueStatusFailed) {
                      NSLog(@"AVKeyValueStatusFailed for key %@", thisKey);
+                     toast(@"文件错误。暂时播放不了。抱歉！");
                      return ;
                  }
              }

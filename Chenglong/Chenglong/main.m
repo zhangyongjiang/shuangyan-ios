@@ -11,6 +11,15 @@
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        int retval;
+        @try{
+            retval = UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        }
+        @catch (NSException *exception)
+        {
+            NSLog(@"Gosh!!! %@", [exception callStackSymbols]);
+            @throw;
+        }
+        return retval;
     }
 }

@@ -38,6 +38,8 @@
 
 -(void)playPrevNoti:(NSNotification*)noti
 {
+    if(self.courseList.count == 0)
+        return;
     int section = _tableView.indexPathForSelectedRow.section;
     section --;
     if(section<0)
@@ -48,6 +50,8 @@
 
 -(void)playNextNoti:(NSNotification*)noti
 {
+    if(self.courseList.count == 0)
+        return;
     int section = _tableView.indexPathForSelectedRow.section;
     section ++;
     if(section>=self.courseList.count)
