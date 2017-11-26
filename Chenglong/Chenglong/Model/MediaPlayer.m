@@ -11,7 +11,7 @@
 
 @interface MediaPlayer()
 
-@property (strong, nonatomic) AVPlayer* avplayer;
+@property (strong, nonatomic) AVQueuePlayer* avplayer;
 @property (strong, nonatomic) AVPlayerLayer* layer;
 @property (strong, nonatomic) id timeObserverToken;
 @property (assign, nonatomic) BOOL backgroundMode;
@@ -35,7 +35,7 @@ MediaPlayer* gMediaPlayer;
     self = [super init];
     gMediaPlayer = self;
     
-    self.avplayer = [[AVPlayer alloc] init];
+    self.avplayer = [[AVQueuePlayer alloc] init];
     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
     if([[UIDevice currentDevice] systemVersion].intValue>=10){
         self.avplayer.automaticallyWaitsToMinimizeStalling = NO;
