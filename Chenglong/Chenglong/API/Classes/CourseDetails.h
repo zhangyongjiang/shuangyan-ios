@@ -14,7 +14,6 @@
 @property(strong, nonatomic) User* user;
 @property(strong, nonatomic) NSMutableArray* items;
 
-@property(strong, nonatomic) CourseDetails* parent;
 @property(assign, nonatomic) BOOL selected;
 
 -(void)sortChild;

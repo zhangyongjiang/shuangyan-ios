@@ -73,11 +73,6 @@
             }
             [menuItems addObject:[[MenuItem alloc] initWithText:@"新文件" andImgName:@"file_item_newFile_icon"]] ;
             [menuItems addObject:[[MenuItem alloc] initWithText:@"新文件夹" andImgName:@"file_item_newfolder_icon"] ];
-            if(selected.parent) {
-                [menuItems addObject:[[MenuItem alloc] initWithText:@"删除" andImgName:@"file_item_remove_icon"]];
-                [menuItems addObject:[[MenuItem alloc] initWithText:@"改名" andImgName:@"file_item_edit_icon"]];
-                [menuItems addObject:[[MenuItem alloc] initWithText:@"移动" andImgName:@"file_item_exchange_icon"]];
-            }
             [menuItems addObject:[[MenuItem alloc] initWithText:@"拷贝" andImgName:@"file_item_download_icon"]];
         }
         else {

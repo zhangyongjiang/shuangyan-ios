@@ -79,7 +79,8 @@
     {
         objc_property_t prop=properties[i];
         const char* propertyName = property_getName(prop);
-        id value =  [self performSelector:NSSelectorFromString([NSString stringWithUTF8String:propertyName])];
+        NSString* sname = [NSString stringWithUTF8String:propertyName];
+        id value =  [self performSelector:NSSelectorFromString(sname)];
         if(value !=nil){
             [propertyArray addObject:[NSString stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
             if ([value isKindOfClass:[Data class]]) {
