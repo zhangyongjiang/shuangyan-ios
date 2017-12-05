@@ -23,7 +23,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     self.playList = [NSMutableArray new];
-    self.repeat = RepeatNone;
+    self.repeat = RepeatAll;
     self.fullscreen = NO;
     
     self.playerView = [[MediaContentViewContailer alloc] initWithFrame:CGRectMake(0, 0,UIView.screenWidth, UIView.screenWidth*0.75)];

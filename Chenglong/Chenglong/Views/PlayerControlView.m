@@ -29,8 +29,11 @@
 
 -(id)initWithFrame:(CGRect)frame
 {
-    CGFloat size = 60;
     self = [super initWithFrame:frame];
+    
+    self.repeat = RepeatAll;
+    
+    CGFloat size = 60;
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     
     self.btnPlayPause = [UIImageView new];
@@ -79,7 +82,7 @@
     
     self.btnRepeat = [UIImageView new];
     self.btnRepeat.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnRepeat.image = [UIImage imageNamed:@"ic_no_repeat_white"];
+    self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_white"];
     [self addSubview:self.btnRepeat];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [self.btnRepeat autoPinEdgeToSuperviewEdge:ALEdgeBottom];
