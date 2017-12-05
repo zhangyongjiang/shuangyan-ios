@@ -70,6 +70,9 @@
 {
     
     Class clazz = [self class];
+    if([clazz.description isEqualToString:@"LocalMediaContent"]) {
+        clazz = NSClassFromString(@"MediaContent");
+    }
     u_int count;
     
     objc_property_t* properties = class_copyPropertyList(clazz, &count);
