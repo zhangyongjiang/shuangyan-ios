@@ -17,5 +17,6 @@
 -(void)addCourseDetailsToBeginning:(CourseDetails*)courseDetails;
 -(void)addCourseDetailsList:(NSMutableArray*)courseDetailsList;
 -(void)addCourseDetailsListToBeginning:(NSMutableArray*)courseDetailsList;
+-(void)playByCourseId:(NSString *)courseId time:(CGFloat)time;
 
 @end

@@ -64,6 +64,7 @@
 {
     CourseDetails* cd = noti.object;
     Course* course = cd.course;
+    [[NSUserDefaults standardUserDefaults] setObject:course.id forKey:CurrentPlayCourseId];
     for(int i=0; i<self.courseList.count; i++) {
         CourseDetails* cd = [self.courseList objectAtIndex:i];
         if ([cd.course.id isEqualToString:course.id]) {

@@ -26,7 +26,9 @@
                 NSLog(@"insert play list failed");
             }
         }];
-        return success;
+        if (!success) {
+            return success;
+        }
     }
     return TRUE;
 }

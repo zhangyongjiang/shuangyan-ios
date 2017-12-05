@@ -167,6 +167,16 @@
     self.courseListPage.courseList = playList;
 }
 
+-(void)playByCourseId:(NSString *)courseId time:(CGFloat)time {
+    for (CourseDetails* cd in self.playList) {
+        if([cd.course.id isEqualToString:courseId]) {
+            self.playerView.courseDetails = cd;
+            [self.playerView play];
+            [MediaPlayer.shared setCurrentTime:time];
+        }
+    }
+}
+
 -(void)listFile:(CourseDetails*)cd toArray:(NSMutableArray*)holder {
     if(![cd isDirectory]) {
         [holder addObject:cd];

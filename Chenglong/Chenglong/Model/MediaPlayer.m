@@ -17,6 +17,8 @@
 @property (assign, nonatomic) BOOL backgroundMode;
 @property (strong, nonatomic) PlayTask* playTask;
 
+@property (assign, nonatomic) CGFloat seekTo;
+
 @end
 
 MediaPlayer* gMediaPlayer;
@@ -34,6 +36,7 @@ MediaPlayer* gMediaPlayer;
 {
     self = [super init];
     gMediaPlayer = self;
+    self.seekTo = -1;
     
     self.avplayer = [[AVQueuePlayer alloc] init];
     self.layer = [AVPlayerLayer playerLayerWithPlayer:self.avplayer];
@@ -123,6 +126,14 @@ MediaPlayer* gMediaPlayer;
              dispatch_async(dispatch_get_main_queue(), ^ {
                  [self.avplayer replaceCurrentItemWithPlayerItem:item];
                  [self.avplayer play];
+                 
+                 if(self.seekTo > 0) {
+                     int32_t timeScale = self.avplayer.currentItem.asset.duration.timescale;
+                     CMTime seektime=CMTimeMakeWithSeconds(self.seekTo, timeScale);
+                     [self.avplayer seekToTime:seektime];
+                     self.seekTo = -1;
+                 }
+                 
                  [self setAttachedView:self.attachedView];
                  [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayStart object:task.courseDetails];
              });
@@ -165,6 +176,7 @@ MediaPlayer* gMediaPlayer;
 }
 
 -(void)setCurrentTime:(CGFloat)currentTime {
+    self.seekTo = currentTime;
     int32_t timeScale = self.avplayer.currentItem.asset.duration.timescale;
     CMTime seektime=CMTimeMakeWithSeconds(currentTime, timeScale);
     [self.avplayer seekToTime:seektime];

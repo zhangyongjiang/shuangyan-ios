@@ -177,6 +177,9 @@
     self.slider.value = currentTime;
     self.labelCurrentTime.text = [self secondToDuration:currentTime];
 
+    NSNumber* time = [NSNumber numberWithFloat:currentTime];
+    [[NSUserDefaults standardUserDefaults] setObject:time forKey:CurrentPlayCourseTime];
+
     static BOOL hiding = NO;
     if (self.hidden || hiding)
         return;

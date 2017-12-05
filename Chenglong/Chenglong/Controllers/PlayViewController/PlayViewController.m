@@ -30,7 +30,15 @@
     self.page = [[PlayListPage alloc] initWithFrame:rect];
     [self.view addSubview:self.page];
     NSMutableArray* playlist = [self.dbPlayList getPlayList];
-    self.page.playList = playlist;
+    if(playlist.count>0) {
+        self.page.playList = playlist;
+        NSString* currentPlayCourseId = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentPlayCourseId];
+        if(currentPlayCourseId != NULL) {
+            NSNumber* time = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentPlayCourseTime];
+            CGFloat ftime = (time == NULL) ? 0 : time.floatValue;
+            [self.page playByCourseId:currentPlayCourseId time:ftime];
+        }
+    }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseAppendNotiHandler:) name:NotificationPlayCourseAppend object:nil];
