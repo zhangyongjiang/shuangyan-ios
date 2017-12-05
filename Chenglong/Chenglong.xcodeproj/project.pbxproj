@@ -137,6 +137,8 @@
 		A364CCC91C94CBFA0075E65F /* ObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC2E1C94CBFA0075E65F /* ObjectMapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A364CCD01C94CBFA0075E65F /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC401C94CBFA0075E65F /* Data.m */; };
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
+		AD149C351FD4450D00F4AF7A /* TableBase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD149C341FD4450D00F4AF7A /* TableBase.m */; };
+		AD149C381FD4452000F4AF7A /* PlayList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD149C371FD4452000F4AF7A /* PlayList.m */; };
 		AD2A7BE11F1265D00016B51E /* UpdateFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */; };
 		AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */; };
 		AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEE1F15E7D30016B51E /* PlayTask.m */; };
@@ -570,6 +572,10 @@
 		A364CC491C94CBFA0075E65F /* NSString+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Json.h"; sourceTree = "<group>"; };
 		A364CC4A1C94CBFA0075E65F /* NSString+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Json.m"; sourceTree = "<group>"; };
 		A364CC4B1C94CBFA0075E65F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		AD149C331FD4450D00F4AF7A /* TableBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableBase.h; sourceTree = "<group>"; };
+		AD149C341FD4450D00F4AF7A /* TableBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableBase.m; sourceTree = "<group>"; };
+		AD149C361FD4452000F4AF7A /* PlayList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayList.h; sourceTree = "<group>"; };
+		AD149C371FD4452000F4AF7A /* PlayList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayList.m; sourceTree = "<group>"; };
 		AD2A7BDF1F1265D00016B51E /* UpdateFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateFileViewController.h; sourceTree = "<group>"; };
 		AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateFileViewController.m; sourceTree = "<group>"; };
 		AD2A7BEA1F15E6700016B51E /* MediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayer.h; sourceTree = "<group>"; };
@@ -1429,6 +1435,10 @@
 			children = (
 				AD318B4E1EFBF9FD0061E993 /* Dbase.h */,
 				AD318B4F1EFBF9FD0061E993 /* Dbase.m */,
+				AD149C331FD4450D00F4AF7A /* TableBase.h */,
+				AD149C341FD4450D00F4AF7A /* TableBase.m */,
+				AD149C361FD4452000F4AF7A /* PlayList.h */,
+				AD149C371FD4452000F4AF7A /* PlayList.m */,
 			);
 			path = Dbase;
 			sourceTree = "<group>";
@@ -2331,6 +2341,7 @@
 				032911811E113D0C000C1F5A /* UIImageView+Thumbnail.m in Sources */,
 				AD3062161F5B979E006E6675 /* GalleryCollectionViewCell.m in Sources */,
 				AD3A7FF11F53A80D009E632D /* CourseView.m in Sources */,
+				AD149C351FD4450D00F4AF7A /* TableBase.m in Sources */,
 				032C96921E2CA31D001EFC29 /* TZImageManager.m in Sources */,
 				030049001E0E5D65006EDC29 /* TMDiskCache.m in Sources */,
 				AD49D80B1F096CE5000D0E1B /* OnlineFileListTableViewCell.m in Sources */,
@@ -2420,6 +2431,7 @@
 				032911551E113BA2000C1F5A /* NSObject+CurrentController.m in Sources */,
 				AD49D8301F096CE5000D0E1B /* MainTabBarController.m in Sources */,
 				AD607E411FA3966B00A9C333 /* CourseListTableViewCell.m in Sources */,
+				AD149C381FD4452000F4AF7A /* PlayList.m in Sources */,
 				032C96201E2208B6001EFC29 /* ProfileHeaderCell.m in Sources */,
 				ADD117F41EF6FBC800EF6E04 /* File.m in Sources */,
 				032C96971E2CA31D001EFC29 /* TZVideoPlayerController.m in Sources */,

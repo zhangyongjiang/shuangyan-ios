@@ -16,6 +16,11 @@
     BOOL downloadCancelled;
 }
 
+@property(assign, nonatomic)int shardSize;
+@property(copy, nonatomic)ProgressCallback progressBlock;
+@property(copy, nonatomic)CompletionCallback completionBlock;
+@property(strong, nonatomic)NSMutableDictionary* shards;
+
 @end
 
 @implementation LocalMediaContent
@@ -432,4 +437,5 @@
     }
     return (CGFloat)current / (CGFloat)self.length.longValue;
 }
+
 @end

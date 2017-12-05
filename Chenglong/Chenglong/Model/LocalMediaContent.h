@@ -15,11 +15,7 @@ typedef void(^CompletionCallback)(BOOL completed);
 
 @interface LocalMediaContent : MediaContent <AVAssetResourceLoaderDelegate>
 
-@property(assign, nonatomic)int shardSize;
-@property(copy, nonatomic)ProgressCallback progressBlock;
-@property(copy, nonatomic)CompletionCallback completionBlock;
-@property(strong, nonatomic)NSMutableDictionary* shards;
-
+-(int)shardSize;
 -(BOOL)isDownloaded;
 -(long)currentLocalFileLength;
 -(void) downloadWithProgressBlock:(void(^)(CGFloat progress))progressBlock

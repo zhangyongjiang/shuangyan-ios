@@ -9,8 +9,11 @@
 #import "PlayViewController.h"
 #import "GalleryView.h"
 #import "PlayerControlView.h"
+#import "PlayList.h"
 
 @interface PlayViewController ()
+
+@property(strong,nonatomic) PlayList* dbPlayList;
 @end
 
 @implementation PlayViewController
@@ -18,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"播放";
+    self.dbPlayList = [PlayList new];
 
     CGRect rect = self.view.bounds;
     rect.size.height -= 64;
@@ -25,7 +29,9 @@
 
     self.page = [[PlayListPage alloc] initWithFrame:rect];
     [self.view addSubview:self.page];
-    
+    NSMutableArray* playlist = [self.dbPlayList getPlayList];
+    self.page.playList = playlist;
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseNotiHandler:) name:NotificationPlayCourse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseAppendNotiHandler:) name:NotificationPlayCourseAppend object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playCourseListNotiHandler:) name:NotificationPlayCourseList object:nil];
@@ -75,18 +81,24 @@
 {
     CourseDetails* pt = noti.object;
     [self.page addCourseDetailsToBeginning:pt];
+    [self.dbPlayList deleteAllPlayList];
+    [self.dbPlayList savePlayList:self.page.playList];
 }
 
 -(void)playCourseAppendNotiHandler:(NSNotification*)noti
 {
     CourseDetails* pt = noti.object;
     [self.page addCourseDetails:pt];
+    [self.dbPlayList deleteAllPlayList];
+    [self.dbPlayList savePlayList:self.page.playList];
 }
 
 -(void)playCourseListNotiHandler:(NSNotification*)noti
 {
     NSMutableArray* list = noti.object;
     [self.page addCourseDetailsList:list];
+    [self.dbPlayList deleteAllPlayList];
+    [self.dbPlayList savePlayList:self.page.playList];
 }
 
 - (void)didReceiveMemoryWarning {
