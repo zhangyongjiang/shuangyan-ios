@@ -12,6 +12,8 @@
 @interface Dbase : NSObject
 
 +(Dbase*)shared;
+-(void)setByName:(NSString*)name value:(NSString*)value;
+-(NSString*)getByName:(NSString*)name;
 
 @property(strong, nonatomic)FMDatabaseQueue* database;
 

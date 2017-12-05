@@ -53,4 +53,28 @@ Dbase* gdb;
 }
 
 
+-(void)setByName:(NSString*)name value:(NSString*)value {
+    [self.database inDatabase:^(FMDatabase *db) {
+        NSString* sql = @"insert into Config (name, value) values (?, ?)";
+        BOOL success = [db executeUpdate:sql, name, value];
+        if (!success) {
+            NSLog(@"insert config failed");
+        }
+    }];
+}
+
+-(NSString*)getByName:(NSString*)name {
+    __block NSMutableArray* array = [NSMutableArray arrayWithCapacity:0];
+    [self.database inDatabase:^(FMDatabase *db) {
+        NSString* sql = @"select value from Config where name=?";
+        FMResultSet *s = [db executeQuery:sql, name];
+        while ([s next]) {
+            NSString* value = [s stringForColumnIndex:0];
+            [array addObject:value];
+        }
+    }];
+    return array.count == 0 ? NULL : [array objectAtIndex:0];
+}
+
+
 @end
