@@ -40,12 +40,12 @@
     
     self.titlesArr = @{@"0":@[@"我的头像"]
                        ,@"1":@[@"修改密码",@"邀请朋友"]
-                       ,@"2":@[@"充值",@"消费记录"]
-                       ,@"3":@[@"联系爸爸早教",@"关于爸爸早教",@"隐私条例",@"服务条款"]};
+//                       ,@"2":@[@"充值",@"消费记录"]
+                       ,@"2":@[@"联系爸爸早教",@"关于爸爸早教",@"隐私条例",@"服务条款"]};
     self.imgsArr = @{@"0":@[@""]
                      ,@"1":@[@"profile_fixpwd_icon",@"profile_friend_icon"]
-                     ,@"2":@[@"profile_msg_icon",@"profile_pay_icon"]
-                     ,@"3":@[@"profile_phone_icon",@"profile_info_icon",@"profile_info_icon",@"profile_info_icon"]};
+//                     ,@"2":@[@"profile_msg_icon",@"profile_pay_icon"]
+                     ,@"2":@[@"profile_phone_icon",@"profile_info_icon",@"profile_info_icon",@"profile_info_icon"]};
     
     [self configSubViews];
     
