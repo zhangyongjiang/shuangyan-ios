@@ -7,6 +7,10 @@
 //
 
 #import "PlayerControlView.h"
+#import "ButtonPrev.h"
+#import "ButtonNext.h"
+#import "ButtonFullscreen.h"
+#import "ButtonLockScreen.h"
 
 @interface PlayerControlView()
 
@@ -44,41 +48,10 @@
     [self.btnPlayPause addTarget:self action:@selector(playPauseBtnClicked:)];
     [self showPlayButton];
 
-    self.btnPrev = [UIImageView new];
-    self.btnPrev.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnPrev.image = [UIImage imageNamed:@"ic_skip_previous_white"];
-    [self addSubview:self.btnPrev];
-    [self.btnPrev autoPinEdgeToSuperviewEdge:ALEdgeLeft];
-    [self.btnPrev autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
-    [self.btnPrev autoSetDimensionsToSize:CGSizeMake(size, size)];
-    [self.btnPrev addTarget:self action:@selector(btnPrevClicked)];
-    
-    self.btnNext = [UIImageView new];
-    self.btnNext.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnNext.image = [UIImage imageNamed:@"ic_skip_next_white"];
-    [self addSubview:self.btnNext];
-    [self.btnNext autoPinEdgeToSuperviewEdge:ALEdgeRight];
-    [self.btnNext autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.btnPlayPause];
-    [self.btnNext autoSetDimensionsToSize:CGSizeMake(size, size)];
-    [self.btnNext addTarget:self action:@selector(btnNextClicked)];
-
-    self.btnFullScreen = [UIImageView new];
-    self.btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnFullScreen.image = [UIImage imageNamed:@"ic_fullscreen_white"];
-    [self addSubview:self.btnFullScreen];
-    [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeRight];
-    [self.btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeTop];
-    [self.btnFullScreen autoSetDimensionsToSize:CGSizeMake(size, size)];
-    [self.btnFullScreen addTarget:self action:@selector(toggleFullscreen)];
-    
-    self.btnLock = [UIImageView new];
-    self.btnLock.contentMode = UIViewContentModeScaleAspectFit;
-    self.btnLock.image = [UIImage imageNamed:@"ic_lock_white"];
-    [self addSubview:self.btnLock];
-    [self.btnLock autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [self.btnLock autoPinEdgeToSuperviewEdge:ALEdgeTop];
-    [self.btnLock autoSetDimensionsToSize:CGSizeMake(size, size)];
-    [self.btnLock addTarget:self action:@selector(lockScreen)];
+    self.btnPrev = [ButtonPrev createBtnInSuperView:self];
+    self.btnNext = [ButtonNext createBtnInSuperView:self];
+    self.btnFullScreen = [ButtonFullscreen createBtnInSuperView:self withIcon:@"ic_fullscreen_white"];
+    self.btnLock = [ButtonLockScreen createBtnInSuperView:self withIcon:@"ic_lock_white"];
     
     self.btnRepeat = [UIImageView new];
     self.btnRepeat.contentMode = UIViewContentModeScaleAspectFit;
@@ -128,6 +101,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playStartNotiHandler:) name:NotificationPlayStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingNotiHandler:) name:NotificationPlaying object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playMultiNotiHandler:) name:NotificationPlayMulti object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lockScreenNotiHandler:) name:NotificationLockScreen object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFullscreenNotiHandler:) name:NotificationFullscreen object:nil];
 
     return self;
 }
@@ -136,24 +111,14 @@
     self.hidden = !self.hidden;
 }
 
--(void)lockScreen
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationLockScreen object:nil];
-    self.hidden = YES;
-}
-
--(void)toggleFullscreen
+-(void)lockScreenNotiHandler:(NSNotification*)noti
 {
     self.hidden = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:nil];
 }
 
--(void)btnPrevClicked {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayPrev object:nil];
-}
-
--(void)btnNextClicked {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayNext object:nil];
+-(void)toggleFullscreenNotiHandler:(NSNotification*)noti
+{
+    self.hidden = YES;
 }
 
 -(void)playMultiNotiHandler:(NSNotification*)noti {

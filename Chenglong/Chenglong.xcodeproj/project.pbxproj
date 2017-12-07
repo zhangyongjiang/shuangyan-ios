@@ -139,6 +139,10 @@
 		A364CCD51C94CBFA0075E65F /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A364CC4A1C94CBFA0075E65F /* NSString+Json.m */; };
 		AD149C351FD4450D00F4AF7A /* TableBase.m in Sources */ = {isa = PBXBuildFile; fileRef = AD149C341FD4450D00F4AF7A /* TableBase.m */; };
 		AD149C381FD4452000F4AF7A /* PlayList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD149C371FD4452000F4AF7A /* PlayList.m */; };
+		AD288B121FD8A9780018F526 /* ButtonPrev.m in Sources */ = {isa = PBXBuildFile; fileRef = AD288B111FD8A9780018F526 /* ButtonPrev.m */; };
+		AD288B151FD8AAE10018F526 /* ButtonNext.m in Sources */ = {isa = PBXBuildFile; fileRef = AD288B141FD8AAE10018F526 /* ButtonNext.m */; };
+		AD288B181FD8C5800018F526 /* ButtonFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = AD288B171FD8C5800018F526 /* ButtonFullscreen.m */; };
+		AD288B1B1FD8C6D50018F526 /* ButtonLockScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = AD288B1A1FD8C6D50018F526 /* ButtonLockScreen.m */; };
 		AD2A7BE11F1265D00016B51E /* UpdateFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */; };
 		AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */; };
 		AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEE1F15E7D30016B51E /* PlayTask.m */; };
@@ -576,6 +580,14 @@
 		AD149C341FD4450D00F4AF7A /* TableBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableBase.m; sourceTree = "<group>"; };
 		AD149C361FD4452000F4AF7A /* PlayList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayList.h; sourceTree = "<group>"; };
 		AD149C371FD4452000F4AF7A /* PlayList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayList.m; sourceTree = "<group>"; };
+		AD288B101FD8A9780018F526 /* ButtonPrev.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonPrev.h; sourceTree = "<group>"; };
+		AD288B111FD8A9780018F526 /* ButtonPrev.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonPrev.m; sourceTree = "<group>"; };
+		AD288B131FD8AAE10018F526 /* ButtonNext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonNext.h; sourceTree = "<group>"; };
+		AD288B141FD8AAE10018F526 /* ButtonNext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonNext.m; sourceTree = "<group>"; };
+		AD288B161FD8C5800018F526 /* ButtonFullscreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonFullscreen.h; sourceTree = "<group>"; };
+		AD288B171FD8C5800018F526 /* ButtonFullscreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonFullscreen.m; sourceTree = "<group>"; };
+		AD288B191FD8C6D50018F526 /* ButtonLockScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonLockScreen.h; sourceTree = "<group>"; };
+		AD288B1A1FD8C6D50018F526 /* ButtonLockScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonLockScreen.m; sourceTree = "<group>"; };
 		AD2A7BDF1F1265D00016B51E /* UpdateFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateFileViewController.h; sourceTree = "<group>"; };
 		AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateFileViewController.m; sourceTree = "<group>"; };
 		AD2A7BEA1F15E6700016B51E /* MediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayer.h; sourceTree = "<group>"; };
@@ -1962,6 +1974,14 @@
 				AD3A7FF31F53AF6E009E632D /* MediaContentTextView.m */,
 				AD3EE96C1FAE526F00660B27 /* SearchBox.h */,
 				AD3EE96D1FAE526F00660B27 /* SearchBox.m */,
+				AD288B101FD8A9780018F526 /* ButtonPrev.h */,
+				AD288B111FD8A9780018F526 /* ButtonPrev.m */,
+				AD288B131FD8AAE10018F526 /* ButtonNext.h */,
+				AD288B141FD8AAE10018F526 /* ButtonNext.m */,
+				AD288B161FD8C5800018F526 /* ButtonFullscreen.h */,
+				AD288B171FD8C5800018F526 /* ButtonFullscreen.m */,
+				AD288B191FD8C6D50018F526 /* ButtonLockScreen.h */,
+				AD288B1A1FD8C6D50018F526 /* ButtonLockScreen.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2306,6 +2326,7 @@
 				ADEB6AA31D9BEC1B0082253C /* WebService.m in Sources */,
 				AD49D81E1F096CE5000D0E1B /* MediaAttachmentCollectionViewCell.m in Sources */,
 				AD607E401FA3966B00A9C333 /* CourseListPage.m in Sources */,
+				AD288B121FD8A9780018F526 /* ButtonPrev.m in Sources */,
 				AD666CED1F0536C300D3F18E /* CoursePathView.m in Sources */,
 				AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */,
 				AD49D8261F096CE5000D0E1B /* FilesChooseTitleView.m in Sources */,
@@ -2383,6 +2404,7 @@
 				AD49D8851F0CB1A9000D0E1B /* GalleryView.m in Sources */,
 				0300497D1E0E5F61006EDC29 /* RenameRequest.m in Sources */,
 				AD49D82F1F096CE5000D0E1B /* SameCityViewController.m in Sources */,
+				AD288B181FD8C5800018F526 /* ButtonFullscreen.m in Sources */,
 				ADFEAB7D1DED6EBA00C0D703 /* UserApi.m in Sources */,
 				030048F41E0E5D17006EDC29 /* Global.m in Sources */,
 				030049011E0E5D65006EDC29 /* TMMemoryCache.m in Sources */,
@@ -2462,6 +2484,7 @@
 				0386EF5C1E0FC86D009A1DFE /* UIView+Nib.m in Sources */,
 				AD8949541F23E8CC00C024F8 /* TokenedUser.m in Sources */,
 				AD49D8401F096CE5000D0E1B /* SpendingHistoryPage.m in Sources */,
+				AD288B1B1FD8C6D50018F526 /* ButtonLockScreen.m in Sources */,
 				AD49D81F1F096CE5000D0E1B /* MediaAttachmentDataSource.m in Sources */,
 				AD49D8501F09869E000D0E1B /* FileListTableViewCell.m in Sources */,
 				030049771E0E5F61006EDC29 /* MediaContent.m in Sources */,
@@ -2473,6 +2496,7 @@
 				0335B3101E1508F800A2A74B /* XTPopNormalView.m in Sources */,
 				0329115C1E113BC0000C1F5A /* TTTAttributedLabel.m in Sources */,
 				AD49D7671F07D3CA000D0E1B /* CourseNameView.m in Sources */,
+				AD288B151FD8AAE10018F526 /* ButtonNext.m in Sources */,
 				AD49D80C1F096CE5000D0E1B /* OnlineFileListViewController.m in Sources */,
 				030049801E0E5F61006EDC29 /* UserDetails.m in Sources */,
 				032911751E113CBA000C1F5A /* SDImageCache+Thumbnail.m in Sources */,
