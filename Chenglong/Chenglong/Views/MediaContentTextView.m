@@ -7,6 +7,9 @@
 //
 
 #import "MediaContentTextView.h"
+#import "ButtonPrev.h"
+#import "ButtonNext.h"
+#import "ButtonFullscreen.h"
 
 @implementation MediaContentTextView
 
@@ -17,17 +20,11 @@
     self.webView = [UIWebView new];
     [self addSubview:self.webView];
     [self.webView autoPinEdgesToSuperviewMargins];
-    
-    CGFloat size = 60;
-    UIImageView* btnFullScreen = [UIImageView new];
-    btnFullScreen.contentMode = UIViewContentModeScaleAspectFit;
-    btnFullScreen.image = [UIImage imageNamed:@"ic_fullscreen"];
-    [self addSubview:btnFullScreen];
-    [btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeRight];
-    [btnFullScreen autoPinEdgeToSuperviewEdge:ALEdgeTop];
-    [btnFullScreen autoSetDimensionsToSize:CGSizeMake(size, size)];
-    [btnFullScreen addTarget:self action:@selector(toggleFullscreen)];
-    
+
+    [ButtonFullscreen createBtnInSuperView:self withIcon:@"ic_fullscreen"];
+    [ButtonPrev createBtnInSuperView:self withIcon:@"ic_skip_previous"];
+    [ButtonNext createBtnInSuperView:self withIcon:@"ic_skip_next"];
+
     return self;
 }
 

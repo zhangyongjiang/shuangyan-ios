@@ -10,6 +10,6 @@
 
 @interface ButtonPrev : UIImageView
 
-+(ButtonPrev*)createBtnInSuperView:(UIView*)parent;
++(ButtonPrev*)createBtnInSuperView:(UIView*)parent withIcon:(NSString*)imageName;
 
 @end

@@ -48,8 +48,8 @@
     [self.btnPlayPause addTarget:self action:@selector(playPauseBtnClicked:)];
     [self showPlayButton];
 
-    self.btnPrev = [ButtonPrev createBtnInSuperView:self];
-    self.btnNext = [ButtonNext createBtnInSuperView:self];
+    self.btnPrev = [ButtonPrev createBtnInSuperView:self withIcon:@"ic_skip_previous_white"];
+    self.btnNext = [ButtonNext createBtnInSuperView:self withIcon:@"ic_skip_next_white"];
     self.btnFullScreen = [ButtonFullscreen createBtnInSuperView:self withIcon:@"ic_fullscreen_white"];
     self.btnLock = [ButtonLockScreen createBtnInSuperView:self withIcon:@"ic_lock_white"];
     

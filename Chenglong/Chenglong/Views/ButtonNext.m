@@ -20,11 +20,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayNext object:nil];
 }
 
-+(ButtonNext*)createBtnInSuperView:(UIView*)parent
++(ButtonNext*)createBtnInSuperView:(UIView*)parent withIcon:(NSString*)imageName
 {
     ButtonNext* btn = [ButtonNext new];
     btn.contentMode = UIViewContentModeScaleAspectFit;
-    btn.image = [UIImage imageNamed:@"ic_skip_next_white"];
+    btn.image = [UIImage imageNamed:imageName];
     [parent addSubview:btn];
     [btn autoPinEdgeToSuperviewEdge:ALEdgeRight];
     [btn autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
