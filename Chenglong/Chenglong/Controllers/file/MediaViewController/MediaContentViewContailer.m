@@ -12,7 +12,7 @@
 #import "MediaContentPdfView.h"
 #import "MediaContentImageView.h"
 
-@interface MediaContentViewContailer()
+@interface MediaContentViewContailer()<UIGestureRecognizerDelegate>
 
 @property(strong, nonatomic) MediaContentTextView* textView;
 @property(strong, nonatomic) MediaContentImageView* imageView;
@@ -22,7 +22,6 @@
 @property(weak, nonatomic) MediaConentView* contentView;
 
 @property(strong, nonatomic) PlayerControlView* controlView;
-@property(strong, nonatomic) UIView* coverView;
 
 @end
 
@@ -45,21 +44,29 @@
     [self.pdfView autoPinEdgesToSuperviewMargins];
     [self.videoView autoPinEdgesToSuperviewMargins];
     
-    self.coverView = [UIView new];
-    [self addSubview:self.coverView];
-    [self.coverView autoPinEdgesToSuperviewMargins];
-    [self.coverView addTarget:self action:@selector(coverViewClicked)];
-
     self.controlView = [PlayerControlView new];
     [self addSubview:self.controlView];
     [self.controlView autoPinEdgesToSuperviewMargins];
     self.controlView.hidden = YES;
 
+    UITapGestureRecognizer *webViewTapped = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    webViewTapped.numberOfTapsRequired = 1;
+    webViewTapped.delegate = self;
+    [self addGestureRecognizer:webViewTapped];
+
     return self;
 }
 
--(void)coverViewClicked {
-    self.controlView.hidden = NO;
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (void)tapAction:(UITapGestureRecognizer *)sender
+{
+//    CGPoint point = [sender locationInView:self];
+    self.controlView.hidden = !self.controlView.hidden;
 }
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails
@@ -70,27 +77,21 @@
     LocalMediaContent* localMediaContent = courseDetails.course.localMediaContent;
     if(localMediaContent == NULL) {
         self.contentView = self.textView;
-        self.coverView.hidden = YES;
     }
     else if(localMediaContent.isText) {
         self.contentView = self.textView;
-        self.coverView.hidden = YES;
     }
     else if(localMediaContent.isPdf) {
         self.contentView = self.pdfView;
-        self.coverView.hidden = YES;
     }
     else if(localMediaContent.isImage) {
         self.contentView = self.imageView;
-        self.coverView.hidden = NO;
     }
     else if(localMediaContent.isAudio) {
         self.contentView = self.videoView;
-        self.coverView.hidden = NO;
     }
     else if(localMediaContent.isVideo) {
         self.contentView = self.videoView;
-        self.coverView.hidden = NO;
     }
     self.contentView.courseDetails = courseDetails;
     [self showView:self.contentView];

@@ -21,16 +21,7 @@
     [self addSubview:self.webView];
     [self.webView autoPinEdgesToSuperviewMargins];
 
-    [ButtonFullscreen createBtnInSuperView:self withIcon:@"ic_fullscreen"];
-    [ButtonPrev createBtnInSuperView:self withIcon:@"ic_skip_previous"];
-    [ButtonNext createBtnInSuperView:self withIcon:@"ic_skip_next"];
-
     return self;
-}
-
--(void)toggleFullscreen
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationFullscreen object:nil];
 }
 
 -(void)play {
