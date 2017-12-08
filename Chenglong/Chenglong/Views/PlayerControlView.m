@@ -27,6 +27,7 @@
 @property(strong, nonatomic) FitLabel* labelProgress;
 @property (strong, nonatomic) UISlider* slider;
 
+@property(assign, nonatomic) int delayedDisplayCnt;
 @end
 
 @implementation PlayerControlView
@@ -144,16 +145,14 @@
     NSNumber* time = [NSNumber numberWithFloat:currentTime];
     [[NSUserDefaults standardUserDefaults] setObject:time forKey:CurrentPlayCourseTime];
 
-    static BOOL hiding = NO;
-    if (self.hidden || hiding)
+    if (self.hidden)
         return;
-    hiding = YES;
-    WeakSelf(weakSelf)
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if([MediaPlayer shared].isAvplayerPlaying)
-            weakSelf.hidden = YES;
-        hiding = NO;
-    });
+    if (self.delayedDisplayCnt == 0) {
+        self.delayedDisplayCnt = 30;
+    }
+    self.delayedDisplayCnt --;
+    if(self.delayedDisplayCnt == 0)
+        self.hidden = YES;
 }
 
 -(NSString*)secondToDuration:(CGFloat)seconds {
@@ -203,10 +202,13 @@
 -(void)sliderValueChanged:(UISlider *)sender {
     self.labelCurrentTime.text = [self secondToDuration:sender.value];
     [MediaPlayer.shared setCurrentTime:sender.value ];
+    self.delayedDisplayCnt = 30;
 }
 
 -(void)toggleRepeat
 {
+    self.hidden = NO;
+    self.delayedDisplayCnt = 30;
     if(self.repeat == RepeatNone) {
         self.repeat = RepeatOne;
         self.btnRepeat.image = [UIImage imageNamed:@"ic_repeat_one_white"];
