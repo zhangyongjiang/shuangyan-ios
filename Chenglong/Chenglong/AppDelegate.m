@@ -45,11 +45,26 @@
     [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
 }
 
+-(void)regNoti {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playStartNotiHandler:) name:NotificationPlayStart object:nil];
+}
+-(void)playStartNotiHandler:(NSNotification*)noti {
+    __block CourseDetails* cd = noti.object;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [CourseApi CourseAPI_Like:cd.course.id onSuccess:^(CourseInfo *resp) {
+            NSLog(@"liked ");
+        } onError:^(APIError *err) {
+            
+        }];
+    });
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 //    [self test];
     [Dbase shared];
     [self runOnBackend];
+    [self regNoti];
     
     UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     window.backgroundColor = [UIColor whiteColor];
