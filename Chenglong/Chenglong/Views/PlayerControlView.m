@@ -225,6 +225,7 @@
     self.labelTotalTime.hidden = !show;
     self.labelCurrentTime.hidden = !show;
     self.slider.hidden = !show;
+    self.btnRepeat.hidden = !show;
 }
 
 -(void)showPrevNext:(BOOL)show {

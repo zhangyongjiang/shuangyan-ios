@@ -165,6 +165,7 @@
         [self.playerView stop];
     }
     self.courseListPage.courseList = playList;
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayMulti object:[NSNumber numberWithBool:self.playList.count>1]];
 }
 
 -(void)playByCourseId:(NSString *)courseId time:(CGFloat)time {
