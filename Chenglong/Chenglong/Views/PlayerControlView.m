@@ -75,12 +75,14 @@
 
     self.labelTotalTime = [FitLabel new];
     self.labelTotalTime.text = @"1:15";
+    self.labelTotalTime.textColor = [UIColor whiteColor];
     [self addSubview:self.labelTotalTime];
     [self.labelTotalTime autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.slider withOffset:1];
     [self.labelTotalTime autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:self.slider withOffset:0];
     
     self.labelCurrentTime = [FitLabel new];
     self.labelCurrentTime.text = @"0:15";
+    self.labelCurrentTime.textColor = [UIColor whiteColor];
     [self addSubview:self.labelCurrentTime];
     [self.labelCurrentTime autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.slider withOffset:1];
     [self.labelCurrentTime autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.slider withOffset:0];
