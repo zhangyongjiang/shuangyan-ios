@@ -236,8 +236,4 @@ MediaPlayer* gMediaPlayer;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPlayEnd object:self.playTask.courseDetails];
 }
 
--(void)sliderValueChanged:(UISlider *)sender {
-    [self setCurrentTime:sender.value];
-}
-
 @end

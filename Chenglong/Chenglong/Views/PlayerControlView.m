@@ -68,7 +68,7 @@
 //    [self.slider setMaximumValueImage:[UIImage new]];
     [self addSubview:self.slider];
     [self.slider autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:5];
-    [self.slider autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
+    [self.slider autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:2];
     [self.slider autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:self.btnFullScreen withOffset:5];
     self.slider.userInteractionEnabled = YES;
     [self.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -201,6 +201,7 @@
 }
 
 -(void)sliderValueChanged:(UISlider *)sender {
+    self.labelCurrentTime.text = [self secondToDuration:sender.value];
     [MediaPlayer.shared setCurrentTime:sender.value ];
 }
 

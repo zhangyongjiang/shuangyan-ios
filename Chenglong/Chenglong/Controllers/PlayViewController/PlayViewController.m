@@ -69,6 +69,7 @@
 -(void)topRightMenuItemClicked:(NSString *)cmd {
     if([cmd isEqualToString:@"清除"]) {
         self.page.playList = [NSMutableArray new];
+        [self.dbPlayList deleteAllPlayList];
     }
 }
 

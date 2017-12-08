@@ -108,6 +108,7 @@
 -(void)play
 {
     [self.contentView play];
+    [MediaPlayer.shared setCurrentTime:0.];
 }
 
 -(void)stop
