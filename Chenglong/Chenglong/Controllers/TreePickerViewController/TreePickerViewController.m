@@ -29,8 +29,12 @@
 }
 
 -(void)courseSelected {
-    NSLog(@"course selected");
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    CourseDetails* selected = self.page.selectedCourseDetails;
+    if(selected) {
+        NSLog(@"course %@ %@ selected", selected.course.id, selected.course.title);
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationCourseSelected object:selected];
+    }
 }
 
 -(void)showPage {

@@ -317,4 +317,9 @@
     [super layoutSubviews];
     self.frame = self.superview.bounds;
 }
+
+-(NSString*)selectedCourseDetails {
+    CourseDetails *cd = self.treeView.itemForSelectedRow;
+    return cd;
+}
 @end

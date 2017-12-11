@@ -143,6 +143,7 @@
 		AD288B151FD8AAE10018F526 /* ButtonNext.m in Sources */ = {isa = PBXBuildFile; fileRef = AD288B141FD8AAE10018F526 /* ButtonNext.m */; };
 		AD288B181FD8C5800018F526 /* ButtonFullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = AD288B171FD8C5800018F526 /* ButtonFullscreen.m */; };
 		AD288B1B1FD8C6D50018F526 /* ButtonLockScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = AD288B1A1FD8C6D50018F526 /* ButtonLockScreen.m */; };
+		AD288B1E1FDE16A30018F526 /* CopyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD288B1D1FDE16A30018F526 /* CopyViewController.m */; };
 		AD2A7BE11F1265D00016B51E /* UpdateFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */; };
 		AD2A7BEC1F15E6700016B51E /* MediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEB1F15E6700016B51E /* MediaPlayer.m */; };
 		AD2A7BEF1F15E7D30016B51E /* PlayTask.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2A7BEE1F15E7D30016B51E /* PlayTask.m */; };
@@ -588,6 +589,8 @@
 		AD288B171FD8C5800018F526 /* ButtonFullscreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonFullscreen.m; sourceTree = "<group>"; };
 		AD288B191FD8C6D50018F526 /* ButtonLockScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonLockScreen.h; sourceTree = "<group>"; };
 		AD288B1A1FD8C6D50018F526 /* ButtonLockScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonLockScreen.m; sourceTree = "<group>"; };
+		AD288B1C1FDE16A30018F526 /* CopyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CopyViewController.h; path = CopyController/CopyViewController.h; sourceTree = "<group>"; };
+		AD288B1D1FDE16A30018F526 /* CopyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CopyViewController.m; path = CopyController/CopyViewController.m; sourceTree = "<group>"; };
 		AD2A7BDF1F1265D00016B51E /* UpdateFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateFileViewController.h; sourceTree = "<group>"; };
 		AD2A7BE01F1265D00016B51E /* UpdateFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateFileViewController.m; sourceTree = "<group>"; };
 		AD2A7BEA1F15E6700016B51E /* MediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayer.h; sourceTree = "<group>"; };
@@ -1510,6 +1513,8 @@
 				AD89496A1F2BFD8F00C024F8 /* ProfileNavigationController.m */,
 				AD6A67001F962A5C000A97BD /* PlayListNavViewController.h */,
 				AD6A67011F962A5C000A97BD /* PlayListNavViewController.m */,
+				AD288B1C1FDE16A30018F526 /* CopyViewController.h */,
+				AD288B1D1FDE16A30018F526 /* CopyViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2293,6 +2298,7 @@
 				ADD117E51EF6198300EF6E04 /* MediaWebView.m in Sources */,
 				032C96951E2CA31D001EFC29 /* TZPhotoPreviewCell.m in Sources */,
 				AD49D8201F096CE5000D0E1B /* CourseDetailCell.m in Sources */,
+				AD288B1E1FDE16A30018F526 /* CopyViewController.m in Sources */,
 				AD59D8F51EE913F9009C78D6 /* FitLabel.m in Sources */,
 				0300497F1E0E5F61006EDC29 /* User.m in Sources */,
 				0300496F1E0E5F60006EDC29 /* FriendRequest.m in Sources */,

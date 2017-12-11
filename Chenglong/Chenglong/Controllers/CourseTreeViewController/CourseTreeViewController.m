@@ -11,9 +11,9 @@
 #import "BaseNavigationController.h"
 #import "MediaViewController.h"
 #import "TreePickerViewController.h"
+#import "CopyViewController.h"
 
 @interface CourseTreeViewController ()
-
 
 @end
 
@@ -49,12 +49,18 @@
     [super addTopRightMenu];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseAddedNoti:) name:NotificationCourseAdded object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(courseSelectedNoti:) name:NotificationCourseSelected object:NULL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteCourseNoti:) name:NotificationDeleteCourse object:NULL];
 }
 
 -(void)deleteCourseNoti:(NSNotification*)noti {
     CourseDetails* course = noti.object;
     [self removeCourse:course];
+}
+
+-(void)courseSelectedNoti:(NSNotification*)noti {
+    NSLog(@"course selected noti");
+    CourseDetails* course = noti.object;
 }
 
 -(void)courseAddedNoti:(NSNotification*)noti {
@@ -142,10 +148,11 @@
 }
 
 -(void)copyCourse:(CourseDetails*)cd {
-    TreePickerViewController* c = [TreePickerViewController new];
+    CopyViewController* c = [CopyViewController new];
+    c.srcCourse = cd;
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:c];
     [self.navigationController presentViewController:nav animated:YES completion:^{
-        
+        NSLog(@"completion");
     }];
 }
 
