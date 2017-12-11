@@ -65,8 +65,23 @@
 
 - (void)tapAction:(UITapGestureRecognizer *)sender
 {
-//    CGPoint point = [sender locationInView:self];
+    CGPoint point = [sender locationInView:self];
+    if([self isPoint:point inX0:0 y:0 x1:btnsize y1:btnsize] ||
+       [self isPoint:point inX0:(self.width-btnsize) y:0 x1:self.width y1:btnsize] ||
+       [self isPoint:point inX0:(0) y:(self.height-btnsize) x1:btnsize y1:self.height] ||
+       [self isPoint:point inX0:(self.width-btnsize) y:(self.height-btnsize) x1:self.width y1:self.height] ||
+       [self isPoint:point inX0:0 y:(self.height/2-btnsize/2) x1:btnsize y1:(self.height/2+btnsize/2)] ||
+       [self isPoint:point inX0:(self.width-btnsize) y:(self.height/2-btnsize/2) x1:self.width y1:(self.height/2+btnsize/2)] ||
+       [self isPoint:point inX0:(self.width/2-btnsize/2) y:(self.height/2-btnsize/2) x1:(self.width/2+btnsize/2) y1:(self.height/2+btnsize/2)]
+
+       ) {
+        return;
+    }
     self.controlView.hidden = !self.controlView.hidden;
+}
+
+-(BOOL)isPoint:(CGPoint)p inX0:(CGFloat)x0 y:(CGFloat)y0 x1:(CGFloat)x1 y1:(CGFloat)y1 {
+    return p.x>x0 && p.x < x1 && p.y>y0 && p.y<y1;
 }
 
 -(void)setCourseDetails:(CourseDetails *)courseDetails
